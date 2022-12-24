@@ -1,0 +1,1053 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proof Index &#8212; Multivariate Calculus</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+
+    <script>
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Multivariate Calculus</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="geometry.html">
+   Geometry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vector%20space.html">
+   Vector space
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear%20map.html">
+   Linear maps
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="derivative.html">
+   Derivative
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="integration.html">
+   Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="smooth%20function.html">
+   Smooth functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vector%20calculus.html">
+   Vector calculus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="form.html">
+   Differential forms
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprf-prf.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+
+   <h1>Proof Index</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-Al_Kashi_theorem"><strong>Al_Kashi_theorem</strong></a> | 
+   <a href="#cap-Cauchy_Schwarz_inequality"><strong>Cauchy_Schwarz_inequality</strong></a> | 
+   <a href="#cap-Euclidean_distance"><strong>Euclidean_distance</strong></a> | 
+   <a href="#cap-Euclidean_space"><strong>Euclidean_space</strong></a> | 
+   <a href="#cap-Fubini_theorem"><strong>Fubini_theorem</strong></a> | 
+   <a href="#cap-General_FTIC"><strong>General_FTIC</strong></a> | 
+   <a href="#cap-Green"><strong>Green</strong></a> | 
+   <a href="#cap-Lagrange_multiplier"><strong>Lagrange_multiplier</strong></a> | 
+   <a href="#cap-Poincare"><strong>Poincare</strong></a> | 
+   <a href="#cap-Second Derivative Matrix"><strong>Second Derivative Matrix</strong></a> | 
+   <a href="#cap-arc_length"><strong>arc_length</strong></a> | 
+   <a href="#cap-basis"><strong>basis</strong></a> | 
+   <a href="#cap-binormal_vector"><strong>binormal_vector</strong></a> | 
+   <a href="#cap-chain"><strong>chain</strong></a> | 
+   <a href="#cap-characteristic_polynomial"><strong>characteristic_polynomial</strong></a> | 
+   <a href="#cap-continuous_function"><strong>continuous_function</strong></a> | 
+   <a href="#cap-cross_product"><strong>cross_product</strong></a> | 
+   <a href="#cap-cube"><strong>cube</strong></a> | 
+   <a href="#cap-curl"><strong>curl</strong></a> | 
+   <a href="#cap-curvature"><strong>curvature</strong></a> | 
+   <a href="#cap-definition-0"><strong>definition-0</strong></a> | 
+   <a href="#cap-derivative_form"><strong>derivative_form</strong></a> | 
+   <a href="#cap-determinant"><strong>determinant</strong></a> | 
+   <a href="#cap-differentiable_function"><strong>differentiable_function</strong></a> | 
+   <a href="#cap-directional_derivative"><strong>directional_derivative</strong></a> | 
+   <a href="#cap-divergence"><strong>divergence</strong></a> | 
+   <a href="#cap-divergence_theorem"><strong>divergence_theorem</strong></a> | 
+   <a href="#cap-dot_product"><strong>dot_product</strong></a> | 
+   <a href="#cap-double_integral"><strong>double_integral</strong></a> | 
+   <a href="#cap-example-11"><strong>example-11</strong></a> | 
+   <a href="#cap-example-5"><strong>example-5</strong></a> | 
+   <a href="#cap-example-6"><strong>example-6</strong></a> | 
+   <a href="#cap-flow"><strong>flow</strong></a> | 
+   <a href="#cap-flux"><strong>flux</strong></a> | 
+   <a href="#cap-flux_integral"><strong>flux_integral</strong></a> | 
+   <a href="#cap-high_dimension_fundamental_theorem_calculus"><strong>high_dimension_fundamental_theorem_calculus</strong></a> | 
+   <a href="#cap-homotopy"><strong>homotopy</strong></a> | 
+   <a href="#cap-implicit_function_theorem"><strong>implicit_function_theorem</strong></a> | 
+   <a href="#cap-integration_form"><strong>integration_form</strong></a> | 
+   <a href="#cap-inverse_function_theorem"><strong>inverse_function_theorem</strong></a> | 
+   <a href="#cap-invertibility_matrix_theorem"><strong>invertibility_matrix_theorem</strong></a> | 
+   <a href="#cap-k-form"><strong>k-form</strong></a> | 
+   <a href="#cap-line_integral"><strong>line_integral</strong></a> | 
+   <a href="#cap-linear_mapping"><strong>linear_mapping</strong></a> | 
+   <a href="#cap-linearity_derivative_theorem"><strong>linearity_derivative_theorem</strong></a> | 
+   <a href="#cap-matrix_addition"><strong>matrix_addition</strong></a> | 
+   <a href="#cap-matrix_multiplication"><strong>matrix_multiplication</strong></a> | 
+   <a href="#cap-matrix_scalar"><strong>matrix_scalar</strong></a> | 
+   <a href="#cap-multivariable_derivative_chain_rule"><strong>multivariable_derivative_chain_rule</strong></a> | 
+   <a href="#cap-normal_vector"><strong>normal_vector</strong></a> | 
+   <a href="#cap-null_sequence"><strong>null_sequence</strong></a> | 
+   <a href="#cap-parameterized_surface"><strong>parameterized_surface</strong></a> | 
+   <a href="#cap-partial_derivative"><strong>partial_derivative</strong></a> | 
+   <a href="#cap-polar_integral"><strong>polar_integral</strong></a> | 
+   <a href="#cap-product derivative"><strong>product derivative</strong></a> | 
+   <a href="#cap-proposition-1"><strong>proposition-1</strong></a> | 
+   <a href="#cap-proposition-10"><strong>proposition-10</strong></a> | 
+   <a href="#cap-proposition-2"><strong>proposition-2</strong></a> | 
+   <a href="#cap-proposition-7"><strong>proposition-7</strong></a> | 
+   <a href="#cap-pullback"><strong>pullback</strong></a> | 
+   <a href="#cap-pullback_determinant"><strong>pullback_determinant</strong></a> | 
+   <a href="#cap-sequence_convergence"><strong>sequence_convergence</strong></a> | 
+   <a href="#cap-stokes_theorem"><strong>stokes_theorem</strong></a> | 
+   <a href="#cap-surface integral"><strong>surface integral</strong></a> | 
+   <a href="#cap-surface_integral"><strong>surface_integral</strong></a> | 
+   <a href="#cap-tangent_vector"><strong>tangent_vector</strong></a> | 
+   <a href="#cap-theorem-11"><strong>theorem-11</strong></a> | 
+   <a href="#cap-theorem-12"><strong>theorem-12</strong></a> | 
+   <a href="#cap-theorem-3"><strong>theorem-3</strong></a> | 
+   <a href="#cap-theorem-4"><strong>theorem-4</strong></a> | 
+   <a href="#cap-theorem-5"><strong>theorem-5</strong></a> | 
+   <a href="#cap-theorem-6"><strong>theorem-6</strong></a> | 
+   <a href="#cap-theorem-9"><strong>theorem-9</strong></a> | 
+   <a href="#cap-triple_integral"><strong>triple_integral</strong></a> | 
+   <a href="#cap-vector_addition"><strong>vector_addition</strong></a> | 
+   <a href="#cap-vector_field"><strong>vector_field</strong></a> | 
+   <a href="#cap-vector_scalar_multiplication"><strong>vector_scalar_multiplication</strong></a> | 
+   <a href="#cap-velocity"><strong>velocity</strong></a> | 
+   <a href="#cap-wedge_product"><strong>wedge_product</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Al_Kashi_theorem"><td></td><td>
+       <strong>Al_Kashi_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#Al_Kashi_theorem"><code class="xref">Al_Kashi_theorem</code></a> <em>(geometry)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Cauchy_Schwarz_inequality"><td></td><td>
+       <strong>Cauchy_Schwarz_inequality</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#Cauchy_Schwarz_inequality"><code class="xref">Cauchy_Schwarz_inequality</code></a> <em>(geometry)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Euclidean_distance"><td></td><td>
+       <strong>Euclidean_distance</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#Euclidean_distance"><code class="xref">Euclidean_distance</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Euclidean_space"><td></td><td>
+       <strong>Euclidean_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#Euclidean_space"><code class="xref">Euclidean_space</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Fubini_theorem"><td></td><td>
+       <strong>Fubini_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="integration.html#Fubini_theorem"><code class="xref">Fubini_theorem</code></a> <em>(integration)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-General_FTIC"><td></td><td>
+       <strong>General_FTIC</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#General_FTIC"><code class="xref">General_FTIC</code></a> <em>(form)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Green"><td></td><td>
+       <strong>Green</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#Green"><code class="xref">Green</code></a> <em>(vector calculus)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Lagrange_multiplier"><td></td><td>
+       <strong>Lagrange_multiplier</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#Lagrange_multiplier"><code class="xref">Lagrange_multiplier</code></a> <em>(derivative)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Poincare"><td></td><td>
+       <strong>Poincare</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#Poincare"><code class="xref">Poincare</code></a> <em>(form)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Second Derivative Matrix"><td></td><td>
+       <strong>Second Derivative Matrix</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#Second Derivative Matrix"><code class="xref">Second Derivative Matrix</code></a> <em>(derivative)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-arc_length"><td></td><td>
+       <strong>arc_length</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#arc_length"><code class="xref">arc_length</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-basis"><td></td><td>
+       <strong>basis</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20space.html#basis"><code class="xref">basis</code></a> <em>(vector space)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-binormal_vector"><td></td><td>
+       <strong>binormal_vector</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#binormal_vector"><code class="xref">binormal_vector</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-chain"><td></td><td>
+       <strong>chain</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#chain"><code class="xref">chain</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-characteristic_polynomial"><td></td><td>
+       <strong>characteristic_polynomial</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#characteristic_polynomial"><code class="xref">characteristic_polynomial</code></a> <em>(derivative)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-continuous_function"><td></td><td>
+       <strong>continuous_function</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20space.html#continuous_function"><code class="xref">continuous_function</code></a> <em>(vector space)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-cross_product"><td></td><td>
+       <strong>cross_product</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#cross_product"><code class="xref">cross_product</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-cube"><td></td><td>
+       <strong>cube</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#cube"><code class="xref">cube</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-curl"><td></td><td>
+       <strong>curl</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#curl"><code class="xref">curl</code></a> <em>(vector calculus)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-curvature"><td></td><td>
+       <strong>curvature</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#curvature"><code class="xref">curvature</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-0"><td></td><td>
+       <strong>definition-0</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20space.html#definition-0"><code class="xref">definition-0</code></a> <em>(vector space)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-derivative_form"><td></td><td>
+       <strong>derivative_form</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#derivative_form"><code class="xref">derivative_form</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-determinant"><td></td><td>
+       <strong>determinant</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#determinant"><code class="xref">determinant</code></a> <em>(linear map)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-differentiable_function"><td></td><td>
+       <strong>differentiable_function</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#differentiable_function"><code class="xref">differentiable_function</code></a> <em>(derivative)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-directional_derivative"><td></td><td>
+       <strong>directional_derivative</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#directional_derivative"><code class="xref">directional_derivative</code></a> <em>(derivative)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-divergence"><td></td><td>
+       <strong>divergence</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#divergence"><code class="xref">divergence</code></a> <em>(vector calculus)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-divergence_theorem"><td></td><td>
+       <strong>divergence_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#divergence_theorem"><code class="xref">divergence_theorem</code></a> <em>(vector calculus)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dot_product"><td></td><td>
+       <strong>dot_product</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#dot_product"><code class="xref">dot_product</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-double_integral"><td></td><td>
+       <strong>double_integral</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="integration.html#double_integral"><code class="xref">double_integral</code></a> <em>(integration)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-11"><td></td><td>
+       <strong>example-11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#example-11"><code class="xref">example-11</code></a> <em>(geometry)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-5"><td></td><td>
+       <strong>example-5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#example-5"><code class="xref">example-5</code></a> <em>(vector calculus)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-6"><td></td><td>
+       <strong>example-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#example-6"><code class="xref">example-6</code></a> <em>(vector calculus)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-flow"><td></td><td>
+       <strong>flow</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#flow"><code class="xref">flow</code></a> <em>(vector calculus)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-flux"><td></td><td>
+       <strong>flux</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#flux"><code class="xref">flux</code></a> <em>(vector calculus)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-flux_integral"><td></td><td>
+       <strong>flux_integral</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#flux_integral"><code class="xref">flux_integral</code></a> <em>(vector calculus)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-high_dimension_fundamental_theorem_calculus"><td></td><td>
+       <strong>high_dimension_fundamental_theorem_calculus</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#high_dimension_fundamental_theorem_calculus"><code class="xref">high_dimension_fundamental_theorem_calculus</code></a> <em>(vector calculus)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-homotopy"><td></td><td>
+       <strong>homotopy</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#homotopy"><code class="xref">homotopy</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-implicit_function_theorem"><td></td><td>
+       <strong>implicit_function_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#implicit_function_theorem"><code class="xref">implicit_function_theorem</code></a> <em>(derivative)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-integration_form"><td></td><td>
+       <strong>integration_form</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#integration_form"><code class="xref">integration_form</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-inverse_function_theorem"><td></td><td>
+       <strong>inverse_function_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#inverse_function_theorem"><code class="xref">inverse_function_theorem</code></a> <em>(derivative)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-invertibility_matrix_theorem"><td></td><td>
+       <strong>invertibility_matrix_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#invertibility_matrix_theorem"><code class="xref">invertibility_matrix_theorem</code></a> <em>(linear map)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-k-form"><td></td><td>
+       <strong>k-form</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#k-form"><code class="xref">k-form</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-line_integral"><td></td><td>
+       <strong>line_integral</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#line_integral"><code class="xref">line_integral</code></a> <em>(vector calculus)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-linear_mapping"><td></td><td>
+       <strong>linear_mapping</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#linear_mapping"><code class="xref">linear_mapping</code></a> <em>(linear map)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-linearity_derivative_theorem"><td></td><td>
+       <strong>linearity_derivative_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#linearity_derivative_theorem"><code class="xref">linearity_derivative_theorem</code></a> <em>(derivative)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-matrix_addition"><td></td><td>
+       <strong>matrix_addition</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#matrix_addition"><code class="xref">matrix_addition</code></a> <em>(linear map)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-matrix_multiplication"><td></td><td>
+       <strong>matrix_multiplication</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#matrix_multiplication"><code class="xref">matrix_multiplication</code></a> <em>(linear map)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-matrix_scalar"><td></td><td>
+       <strong>matrix_scalar</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#matrix_scalar"><code class="xref">matrix_scalar</code></a> <em>(linear map)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-multivariable_derivative_chain_rule"><td></td><td>
+       <strong>multivariable_derivative_chain_rule</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#multivariable_derivative_chain_rule"><code class="xref">multivariable_derivative_chain_rule</code></a> <em>(derivative)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-normal_vector"><td></td><td>
+       <strong>normal_vector</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#normal_vector"><code class="xref">normal_vector</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-null_sequence"><td></td><td>
+       <strong>null_sequence</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20space.html#null_sequence"><code class="xref">null_sequence</code></a> <em>(vector space)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-parameterized_surface"><td></td><td>
+       <strong>parameterized_surface</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#parameterized_surface"><code class="xref">parameterized_surface</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-partial_derivative"><td></td><td>
+       <strong>partial_derivative</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#partial_derivative"><code class="xref">partial_derivative</code></a> <em>(derivative)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-polar_integral"><td></td><td>
+       <strong>polar_integral</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="integration.html#polar_integral"><code class="xref">polar_integral</code></a> <em>(integration)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-product derivative"><td></td><td>
+       <strong>product derivative</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#product derivative"><code class="xref">product derivative</code></a> <em>(derivative)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-1"><td></td><td>
+       <strong>proposition-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#proposition-1"><code class="xref">proposition-1</code></a> <em>(linear map)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-10"><td></td><td>
+       <strong>proposition-10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#proposition-10"><code class="xref">proposition-10</code></a> <em>(derivative)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-2"><td></td><td>
+       <strong>proposition-2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#proposition-2"><code class="xref">proposition-2</code></a> <em>(linear map)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-7"><td></td><td>
+       <strong>proposition-7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#proposition-7"><code class="xref">proposition-7</code></a> <em>(derivative)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-pullback"><td></td><td>
+       <strong>pullback</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#pullback"><code class="xref">pullback</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-pullback_determinant"><td></td><td>
+       <strong>pullback_determinant</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#pullback_determinant"><code class="xref">pullback_determinant</code></a> <em>(form)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-sequence_convergence"><td></td><td>
+       <strong>sequence_convergence</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20space.html#sequence_convergence"><code class="xref">sequence_convergence</code></a> <em>(vector space)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-stokes_theorem"><td></td><td>
+       <strong>stokes_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#stokes_theorem"><code class="xref">stokes_theorem</code></a> <em>(vector calculus)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-surface integral"><td></td><td>
+       <strong>surface integral</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="integration.html#surface integral"><code class="xref">surface integral</code></a> <em>(integration)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-surface_integral"><td></td><td>
+       <strong>surface_integral</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#surface_integral"><code class="xref">surface_integral</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-tangent_vector"><td></td><td>
+       <strong>tangent_vector</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#tangent_vector"><code class="xref">tangent_vector</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-11"><td></td><td>
+       <strong>theorem-11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#theorem-11"><code class="xref">theorem-11</code></a> <em>(linear map)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-12"><td></td><td>
+       <strong>theorem-12</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#theorem-12"><code class="xref">theorem-12</code></a> <em>(linear map)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-3"><td></td><td>
+       <strong>theorem-3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#theorem-3"><code class="xref">theorem-3</code></a> <em>(linear map)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-4"><td></td><td>
+       <strong>theorem-4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="linear%20map.html#theorem-4"><code class="xref">theorem-4</code></a> <em>(linear map)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-5"><td></td><td>
+       <strong>theorem-5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#theorem-5"><code class="xref">theorem-5</code></a> <em>(form)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-6"><td></td><td>
+       <strong>theorem-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#theorem-6"><code class="xref">theorem-6</code></a> <em>(form)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-9"><td></td><td>
+       <strong>theorem-9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="derivative.html#theorem-9"><code class="xref">theorem-9</code></a> <em>(derivative)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-triple_integral"><td></td><td>
+       <strong>triple_integral</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="integration.html#triple_integral"><code class="xref">triple_integral</code></a> <em>(integration)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-vector_addition"><td></td><td>
+       <strong>vector_addition</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#vector_addition"><code class="xref">vector_addition</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-vector_field"><td></td><td>
+       <strong>vector_field</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="vector%20calculus.html#vector_field"><code class="xref">vector_field</code></a> <em>(vector calculus)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-vector_scalar_multiplication"><td></td><td>
+       <strong>vector_scalar_multiplication</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#vector_scalar_multiplication"><code class="xref">vector_scalar_multiplication</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-velocity"><td></td><td>
+       <strong>velocity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="geometry.html#velocity"><code class="xref">velocity</code></a> <em>(geometry)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-wedge_product"><td></td><td>
+       <strong>wedge_product</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="form.html#wedge_product"><code class="xref">wedge_product</code></a> <em>(form)</em></td><td>
+       <em>definition</em></td></tr>
+   </table>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
