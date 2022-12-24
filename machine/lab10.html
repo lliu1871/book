@@ -1,0 +1,1605 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 10: Local Models &#8212; Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 11: Kernel Machines" href="lab11.html" />
+    <link rel="prev" title="Lab 9: Neural network" href="lab9.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: Multivariate Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: Dimensionality Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Nonparametric Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: Linear Discrimination
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Neural network
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lab 10: Local Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Kernel Machines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Hidden Markov Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Applications
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab10.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab10.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/lab10.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/lab10.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#som">
+   SOM
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lab 10: Local Models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#som">
+   SOM
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-10-local-models">
+<h1>Lab 10: Local Models<a class="headerlink" href="#lab-10-local-models" title="Permalink to this headline">#</a></h1>
+<section id="som">
+<h2>SOM<a class="headerlink" href="#som" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">minisom</span> <span class="kn">import</span> <span class="n">MiniSom</span>   
+<span class="n">data</span> <span class="o">=</span> <span class="p">[[</span> <span class="mf">0.80</span><span class="p">,</span>  <span class="mf">0.55</span><span class="p">,</span>  <span class="mf">0.22</span><span class="p">,</span>  <span class="mf">0.03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.82</span><span class="p">,</span>  <span class="mf">0.50</span><span class="p">,</span>  <span class="mf">0.23</span><span class="p">,</span>  <span class="mf">0.03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.80</span><span class="p">,</span>  <span class="mf">0.54</span><span class="p">,</span>  <span class="mf">0.22</span><span class="p">,</span>  <span class="mf">0.03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.80</span><span class="p">,</span>  <span class="mf">0.53</span><span class="p">,</span>  <span class="mf">0.26</span><span class="p">,</span>  <span class="mf">0.03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.79</span><span class="p">,</span>  <span class="mf">0.56</span><span class="p">,</span>  <span class="mf">0.22</span><span class="p">,</span>  <span class="mf">0.03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.75</span><span class="p">,</span>  <span class="mf">0.60</span><span class="p">,</span>  <span class="mf">0.25</span><span class="p">,</span>  <span class="mf">0.03</span><span class="p">],</span>
+        <span class="p">[</span> <span class="mf">0.77</span><span class="p">,</span>  <span class="mf">0.59</span><span class="p">,</span>  <span class="mf">0.22</span><span class="p">,</span>  <span class="mf">0.03</span><span class="p">]]</span>    
+
+<span class="n">som</span> <span class="o">=</span> <span class="n">MiniSom</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">train_random</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">minisom</span> <span class="kn">import</span> <span class="n">MiniSom</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.gridspec</span> <span class="kn">import</span> <span class="n">GridSpec</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">&#39;https://book.phylolab.net/machine_learning_data/iris.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1"># data normalization</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">apply_along_axis</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># Initialization and training</span>
+<span class="n">som</span> <span class="o">=</span> <span class="n">MiniSom</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> 
+              <span class="n">neighborhood_function</span><span class="o">=</span><span class="s1">&#39;triangle&#39;</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">som</span><span class="o">.</span><span class="n">pca_weights_init</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training...&quot;</span><span class="p">)</span>
+<span class="n">som</span><span class="o">.</span><span class="n">train_batch</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># random training</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">...ready!&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="c1"># Plotting the response for each pattern in the iris dataset</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">som</span><span class="o">.</span><span class="n">distance_map</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bone_r&#39;</span><span class="p">)</span>  <span class="c1"># plotting the distance map as background</span>
+<span class="c1">#plt.colorbar()</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">&#39;https://book.phylolab.net/machine_learning_data/iris.csv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">t</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;setosa&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">t</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;versicolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">t</span><span class="p">[</span><span class="n">target</span> <span class="o">==</span> <span class="s1">&#39;virginica&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># use different colors and markers for each label</span>
+<span class="n">markers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;C2&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">xx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">som</span><span class="o">.</span><span class="n">winner</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>  <span class="c1"># getting the winner</span>
+    <span class="c1"># palce a marker on the winning position for the sample xx</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mf">.5</span><span class="p">,</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">.5</span><span class="p">,</span> <span class="n">markers</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">cnt</span><span class="p">]],</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span>
+             <span class="n">markeredgecolor</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">t</span><span class="p">[</span><span class="n">cnt</span><span class="p">]],</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">markeredgewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Training...
+
+ [    0 / 1000 ]   0% - ? it/s
+ [    0 / 1000 ]   0% - ? it/s
+ [    1 / 1000 ]   0% - 0:00:01 left 
+ [    2 / 1000 ]   0% - 0:00:00 left 
+ [    3 / 1000 ]   0% - 0:00:00 left 
+ [    4 / 1000 ]   0% - 0:00:00 left 
+ [    5 / 1000 ]   0% - 0:00:00 left 
+ [    6 / 1000 ]   1% - 0:00:00 left 
+ [    7 / 1000 ]   1% - 0:00:00 left 
+ [    8 / 1000 ]   1% - 0:00:00 left 
+ [    9 / 1000 ]   1% - 0:00:00 left 
+ [   10 / 1000 ]   1% - 0:00:00 left 
+ [   11 / 1000 ]   1% - 0:00:00 left 
+ [   12 / 1000 ]   1% - 0:00:00 left 
+ [   13 / 1000 ]   1% - 0:00:00 left 
+ [   14 / 1000 ]   1% - 0:00:00 left 
+ [   15 / 1000 ]   2% - 0:00:00 left 
+ [   16 / 1000 ]   2% - 0:00:00 left 
+ [   17 / 1000 ]   2% - 0:00:00 left 
+ [   18 / 1000 ]   2% - 0:00:00 left 
+ [   19 / 1000 ]   2% - 0:00:00 left 
+ [   20 / 1000 ]   2% - 0:00:00 left 
+ [   21 / 1000 ]   2% - 0:00:00 left 
+ [   22 / 1000 ]   2% - 0:00:00 left 
+ [   23 / 1000 ]   2% - 0:00:00 left 
+ [   24 / 1000 ]   2% - 0:00:00 left 
+ [   25 / 1000 ]   2% - 0:00:00 left 
+ [   26 / 1000 ]   3% - 0:00:00 left 
+ [   27 / 1000 ]   3% - 0:00:00 left 
+ [   28 / 1000 ]   3% - 0:00:00 left 
+ [   29 / 1000 ]   3% - 0:00:00 left 
+ [   30 / 1000 ]   3% - 0:00:00 left 
+ [   31 / 1000 ]   3% - 0:00:00 left 
+ [   32 / 1000 ]   3% - 0:00:00 left 
+ [   33 / 1000 ]   3% - 0:00:00 left 
+ [   34 / 1000 ]   3% - 0:00:00 left 
+ [   35 / 1000 ]   4% - 0:00:00 left 
+ [   36 / 1000 ]   4% - 0:00:00 left 
+ [   37 / 1000 ]   4% - 0:00:00 left 
+ [   38 / 1000 ]   4% - 0:00:00 left 
+ [   39 / 1000 ]   4% - 0:00:00 left 
+ [   40 / 1000 ]   4% - 0:00:00 left 
+ [   41 / 1000 ]   4% - 0:00:00 left 
+ [   42 / 1000 ]   4% - 0:00:00 left 
+ [   43 / 1000 ]   4% - 0:00:00 left 
+ [   44 / 1000 ]   4% - 0:00:00 left 
+ [   45 / 1000 ]   4% - 0:00:00 left 
+ [   46 / 1000 ]   5% - 0:00:00 left 
+ [   47 / 1000 ]   5% - 0:00:00 left 
+ [   48 / 1000 ]   5% - 0:00:00 left 
+ [   49 / 1000 ]   5% - 0:00:00 left 
+ [   50 / 1000 ]   5% - 0:00:00 left 
+ [   51 / 1000 ]   5% - 0:00:00 left 
+ [   52 / 1000 ]   5% - 0:00:00 left 
+ [   53 / 1000 ]   5% - 0:00:00 left 
+ [   54 / 1000 ]   5% - 0:00:00 left 
+ [   55 / 1000 ]   6% - 0:00:00 left 
+ [   56 / 1000 ]   6% - 0:00:00 left 
+ [   57 / 1000 ]   6% - 0:00:00 left 
+ [   58 / 1000 ]   6% - 0:00:00 left 
+ [   59 / 1000 ]   6% - 0:00:00 left 
+ [   60 / 1000 ]   6% - 0:00:00 left 
+ [   61 / 1000 ]   6% - 0:00:00 left 
+ [   62 / 1000 ]   6% - 0:00:00 left 
+ [   63 / 1000 ]   6% - 0:00:00 left 
+ [   64 / 1000 ]   6% - 0:00:00 left 
+ [   65 / 1000 ]   6% - 0:00:00 left 
+ [   66 / 1000 ]   7% - 0:00:00 left 
+ [   67 / 1000 ]   7% - 0:00:00 left 
+ [   68 / 1000 ]   7% - 0:00:00 left 
+ [   69 / 1000 ]   7% - 0:00:00 left 
+ [   70 / 1000 ]   7% - 0:00:00 left 
+ [   71 / 1000 ]   7% - 0:00:00 left 
+ [   72 / 1000 ]   7% - 0:00:00 left 
+ [   73 / 1000 ]   7% - 0:00:00 left 
+ [   74 / 1000 ]   7% - 0:00:00 left 
+ [   75 / 1000 ]   8% - 0:00:00 left 
+ [   76 / 1000 ]   8% - 0:00:00 left 
+ [   77 / 1000 ]   8% - 0:00:00 left 
+ [   78 / 1000 ]   8% - 0:00:00 left 
+ [   79 / 1000 ]   8% - 0:00:00 left 
+ [   80 / 1000 ]   8% - 0:00:00 left 
+ [   81 / 1000 ]   8% - 0:00:00 left 
+ [   82 / 1000 ]   8% - 0:00:00 left 
+ [   83 / 1000 ]   8% - 0:00:00 left 
+ [   84 / 1000 ]   8% - 0:00:00 left 
+ [   85 / 1000 ]   8% - 0:00:00 left 
+ [   86 / 1000 ]   9% - 0:00:00 left 
+ [   87 / 1000 ]   9% - 0:00:00 left 
+ [   88 / 1000 ]   9% - 0:00:00 left 
+ [   89 / 1000 ]   9% - 0:00:00 left 
+ [   90 / 1000 ]   9% - 0:00:00 left 
+ [   91 / 1000 ]   9% - 0:00:00 left 
+ [   92 / 1000 ]   9% - 0:00:00 left 
+ [   93 / 1000 ]   9% - 0:00:00 left 
+ [   94 / 1000 ]   9% - 0:00:00 left 
+ [   95 / 1000 ]  10% - 0:00:00 left 
+ [   96 / 1000 ]  10% - 0:00:00 left 
+ [   97 / 1000 ]  10% - 0:00:00 left 
+ [   98 / 1000 ]  10% - 0:00:00 left 
+ [   99 / 1000 ]  10% - 0:00:00 left 
+ [  100 / 1000 ]  10% - 0:00:00 left 
+ [  101 / 1000 ]  10% - 0:00:00 left 
+ [  102 / 1000 ]  10% - 0:00:00 left 
+ [  103 / 1000 ]  10% - 0:00:00 left 
+ [  104 / 1000 ]  10% - 0:00:00 left 
+ [  105 / 1000 ]  10% - 0:00:00 left 
+ [  106 / 1000 ]  11% - 0:00:00 left 
+ [  107 / 1000 ]  11% - 0:00:00 left 
+ [  108 / 1000 ]  11% - 0:00:00 left 
+ [  109 / 1000 ]  11% - 0:00:00 left 
+ [  110 / 1000 ]  11% - 0:00:00 left 
+ [  111 / 1000 ]  11% - 0:00:00 left 
+ [  112 / 1000 ]  11% - 0:00:00 left 
+ [  113 / 1000 ]  11% - 0:00:00 left 
+ [  114 / 1000 ]  11% - 0:00:00 left 
+ [  115 / 1000 ]  12% - 0:00:00 left 
+ [  116 / 1000 ]  12% - 0:00:00 left 
+ [  117 / 1000 ]  12% - 0:00:00 left 
+ [  118 / 1000 ]  12% - 0:00:00 left 
+ [  119 / 1000 ]  12% - 0:00:00 left 
+ [  120 / 1000 ]  12% - 0:00:00 left 
+ [  121 / 1000 ]  12% - 0:00:00 left 
+ [  122 / 1000 ]  12% - 0:00:00 left 
+ [  123 / 1000 ]  12% - 0:00:00 left 
+ [  124 / 1000 ]  12% - 0:00:00 left 
+ [  125 / 1000 ]  12% - 0:00:00 left 
+ [  126 / 1000 ]  13% - 0:00:00 left 
+ [  127 / 1000 ]  13% - 0:00:00 left 
+ [  128 / 1000 ]  13% - 0:00:00 left 
+ [  129 / 1000 ]  13% - 0:00:00 left 
+ [  130 / 1000 ]  13% - 0:00:00 left 
+ [  131 / 1000 ]  13% - 0:00:00 left 
+ [  132 / 1000 ]  13% - 0:00:00 left 
+ [  133 / 1000 ]  13% - 0:00:00 left 
+ [  134 / 1000 ]  13% - 0:00:00 left 
+ [  135 / 1000 ]  14% - 0:00:00 left 
+ [  136 / 1000 ]  14% - 0:00:00 left 
+ [  137 / 1000 ]  14% - 0:00:00 left 
+ [  138 / 1000 ]  14% - 0:00:00 left 
+ [  139 / 1000 ]  14% - 0:00:00 left 
+ [  140 / 1000 ]  14% - 0:00:00 left 
+ [  141 / 1000 ]  14% - 0:00:00 left 
+ [  142 / 1000 ]  14% - 0:00:00 left 
+ [  143 / 1000 ]  14% - 0:00:00 left 
+ [  144 / 1000 ]  14% - 0:00:00 left 
+ [  145 / 1000 ]  14% - 0:00:00 left 
+ [  146 / 1000 ]  15% - 0:00:00 left 
+ [  147 / 1000 ]  15% - 0:00:00 left 
+ [  148 / 1000 ]  15% - 0:00:00 left 
+ [  149 / 1000 ]  15% - 0:00:00 left 
+ [  150 / 1000 ]  15% - 0:00:00 left 
+ [  151 / 1000 ]  15% - 0:00:00 left 
+ [  152 / 1000 ]  15% - 0:00:00 left 
+ [  153 / 1000 ]  15% - 0:00:00 left 
+ [  154 / 1000 ]  15% - 0:00:00 left 
+ [  155 / 1000 ]  16% - 0:00:00 left 
+ [  156 / 1000 ]  16% - 0:00:00 left 
+ [  157 / 1000 ]  16% - 0:00:00 left 
+ [  158 / 1000 ]  16% - 0:00:00 left 
+ [  159 / 1000 ]  16% - 0:00:00 left 
+ [  160 / 1000 ]  16% - 0:00:00 left 
+ [  161 / 1000 ]  16% - 0:00:00 left 
+ [  162 / 1000 ]  16% - 0:00:00 left 
+ [  163 / 1000 ]  16% - 0:00:00 left 
+ [  164 / 1000 ]  16% - 0:00:00 left 
+ [  165 / 1000 ]  16% - 0:00:00 left 
+ [  166 / 1000 ]  17% - 0:00:00 left 
+ [  167 / 1000 ]  17% - 0:00:00 left 
+ [  168 / 1000 ]  17% - 0:00:00 left 
+ [  169 / 1000 ]  17% - 0:00:00 left 
+ [  170 / 1000 ]  17% - 0:00:00 left 
+ [  171 / 1000 ]  17% - 0:00:00 left 
+ [  172 / 1000 ]  17% - 0:00:00 left 
+ [  173 / 1000 ]  17% - 0:00:00 left 
+ [  174 / 1000 ]  17% - 0:00:00 left 
+ [  175 / 1000 ]  18% - 0:00:00 left 
+ [  176 / 1000 ]  18% - 0:00:00 left 
+ [  177 / 1000 ]  18% - 0:00:00 left 
+ [  178 / 1000 ]  18% - 0:00:00 left 
+ [  179 / 1000 ]  18% - 0:00:00 left 
+ [  180 / 1000 ]  18% - 0:00:00 left 
+ [  181 / 1000 ]  18% - 0:00:00 left 
+ [  182 / 1000 ]  18% - 0:00:00 left 
+ [  183 / 1000 ]  18% - 0:00:00 left 
+ [  184 / 1000 ]  18% - 0:00:00 left 
+ [  185 / 1000 ]  18% - 0:00:00 left 
+ [  186 / 1000 ]  19% - 0:00:00 left 
+ [  187 / 1000 ]  19% - 0:00:00 left 
+ [  188 / 1000 ]  19% - 0:00:00 left 
+ [  189 / 1000 ]  19% - 0:00:00 left 
+ [  190 / 1000 ]  19% - 0:00:00 left 
+ [  191 / 1000 ]  19% - 0:00:00 left 
+ [  192 / 1000 ]  19% - 0:00:00 left 
+ [  193 / 1000 ]  19% - 0:00:00 left 
+ [  194 / 1000 ]  19% - 0:00:00 left 
+ [  195 / 1000 ]  20% - 0:00:00 left 
+ [  196 / 1000 ]  20% - 0:00:00 left 
+ [  197 / 1000 ]  20% - 0:00:00 left 
+ [  198 / 1000 ]  20% - 0:00:00 left 
+ [  199 / 1000 ]  20% - 0:00:00 left 
+ [  200 / 1000 ]  20% - 0:00:00 left 
+ [  201 / 1000 ]  20% - 0:00:00 left 
+ [  202 / 1000 ]  20% - 0:00:00 left 
+ [  203 / 1000 ]  20% - 0:00:00 left 
+ [  204 / 1000 ]  20% - 0:00:00 left 
+ [  205 / 1000 ]  20% - 0:00:00 left 
+ [  206 / 1000 ]  21% - 0:00:00 left 
+ [  207 / 1000 ]  21% - 0:00:00 left 
+ [  208 / 1000 ]  21% - 0:00:00 left 
+ [  209 / 1000 ]  21% - 0:00:00 left 
+ [  210 / 1000 ]  21% - 0:00:00 left 
+ [  211 / 1000 ]  21% - 0:00:00 left 
+ [  212 / 1000 ]  21% - 0:00:00 left 
+ [  213 / 1000 ]  21% - 0:00:00 left 
+ [  214 / 1000 ]  21% - 0:00:00 left 
+ [  215 / 1000 ]  22% - 0:00:00 left 
+ [  216 / 1000 ]  22% - 0:00:00 left 
+ [  217 / 1000 ]  22% - 0:00:00 left 
+ [  218 / 1000 ]  22% - 0:00:00 left 
+ [  219 / 1000 ]  22% - 0:00:00 left 
+ [  220 / 1000 ]  22% - 0:00:00 left 
+ [  221 / 1000 ]  22% - 0:00:00 left 
+ [  222 / 1000 ]  22% - 0:00:00 left 
+ [  223 / 1000 ]  22% - 0:00:00 left 
+ [  224 / 1000 ]  22% - 0:00:00 left 
+ [  225 / 1000 ]  22% - 0:00:00 left 
+ [  226 / 1000 ]  23% - 0:00:00 left 
+ [  227 / 1000 ]  23% - 0:00:00 left 
+ [  228 / 1000 ]  23% - 0:00:00 left 
+ [  229 / 1000 ]  23% - 0:00:00 left 
+ [  230 / 1000 ]  23% - 0:00:00 left 
+ [  231 / 1000 ]  23% - 0:00:00 left 
+ [  232 / 1000 ]  23% - 0:00:00 left 
+ [  233 / 1000 ]  23% - 0:00:00 left 
+ [  234 / 1000 ]  23% - 0:00:00 left 
+ [  235 / 1000 ]  24% - 0:00:00 left 
+ [  236 / 1000 ]  24% - 0:00:00 left 
+ [  237 / 1000 ]  24% - 0:00:00 left 
+ [  238 / 1000 ]  24% - 0:00:00 left 
+ [  239 / 1000 ]  24% - 0:00:00 left 
+ [  240 / 1000 ]  24% - 0:00:00 left 
+ [  241 / 1000 ]  24% - 0:00:00 left 
+ [  242 / 1000 ]  24% - 0:00:00 left 
+ [  243 / 1000 ]  24% - 0:00:00 left 
+ [  244 / 1000 ]  24% - 0:00:00 left 
+ [  245 / 1000 ]  24% - 0:00:00 left 
+ [  246 / 1000 ]  25% - 0:00:00 left 
+ [  247 / 1000 ]  25% - 0:00:00 left 
+ [  248 / 1000 ]  25% - 0:00:00 left 
+ [  249 / 1000 ]  25% - 0:00:00 left 
+ [  250 / 1000 ]  25% - 0:00:00 left 
+ [  251 / 1000 ]  25% - 0:00:00 left 
+ [  252 / 1000 ]  25% - 0:00:00 left 
+ [  253 / 1000 ]  25% - 0:00:00 left 
+ [  254 / 1000 ]  25% - 0:00:00 left 
+ [  255 / 1000 ]  26% - 0:00:00 left 
+ [  256 / 1000 ]  26% - 0:00:00 left 
+ [  257 / 1000 ]  26% - 0:00:00 left 
+ [  258 / 1000 ]  26% - 0:00:00 left 
+ [  259 / 1000 ]  26% - 0:00:00 left 
+ [  260 / 1000 ]  26% - 0:00:00 left 
+ [  261 / 1000 ]  26% - 0:00:00 left 
+ [  262 / 1000 ]  26% - 0:00:00 left 
+ [  263 / 1000 ]  26% - 0:00:00 left 
+ [  264 / 1000 ]  26% - 0:00:00 left 
+ [  265 / 1000 ]  26% - 0:00:00 left 
+ [  266 / 1000 ]  27% - 0:00:00 left 
+ [  267 / 1000 ]  27% - 0:00:00 left 
+ [  268 / 1000 ]  27% - 0:00:00 left 
+ [  269 / 1000 ]  27% - 0:00:00 left 
+ [  270 / 1000 ]  27% - 0:00:00 left 
+ [  271 / 1000 ]  27% - 0:00:00 left 
+ [  272 / 1000 ]  27% - 0:00:00 left 
+ [  273 / 1000 ]  27% - 0:00:00 left 
+ [  274 / 1000 ]  27% - 0:00:00 left 
+ [  275 / 1000 ]  28% - 0:00:00 left 
+ [  276 / 1000 ]  28% - 0:00:00 left 
+ [  277 / 1000 ]  28% - 0:00:00 left 
+ [  278 / 1000 ]  28% - 0:00:00 left 
+ [  279 / 1000 ]  28% - 0:00:00 left 
+ [  280 / 1000 ]  28% - 0:00:00 left 
+ [  281 / 1000 ]  28% - 0:00:00 left 
+ [  282 / 1000 ]  28% - 0:00:00 left 
+ [  283 / 1000 ]  28% - 0:00:00 left 
+ [  284 / 1000 ]  28% - 0:00:00 left 
+ [  285 / 1000 ]  28% - 0:00:00 left 
+ [  286 / 1000 ]  29% - 0:00:00 left 
+ [  287 / 1000 ]  29% - 0:00:00 left 
+ [  288 / 1000 ]  29% - 0:00:00 left 
+ [  289 / 1000 ]  29% - 0:00:00 left 
+ [  290 / 1000 ]  29% - 0:00:00 left 
+ [  291 / 1000 ]  29% - 0:00:00 left 
+ [  292 / 1000 ]  29% - 0:00:00 left 
+ [  293 / 1000 ]  29% - 0:00:00 left 
+ [  294 / 1000 ]  29% - 0:00:00 left 
+ [  295 / 1000 ]  30% - 0:00:00 left 
+ [  296 / 1000 ]  30% - 0:00:00 left 
+ [  297 / 1000 ]  30% - 0:00:00 left 
+ [  298 / 1000 ]  30% - 0:00:00 left 
+ [  299 / 1000 ]  30% - 0:00:00 left 
+ [  300 / 1000 ]  30% - 0:00:00 left 
+ [  301 / 1000 ]  30% - 0:00:00 left 
+ [  302 / 1000 ]  30% - 0:00:00 left 
+ [  303 / 1000 ]  30% - 0:00:00 left 
+ [  304 / 1000 ]  30% - 0:00:00 left 
+ [  305 / 1000 ]  30% - 0:00:00 left 
+ [  306 / 1000 ]  31% - 0:00:00 left 
+ [  307 / 1000 ]  31% - 0:00:00 left 
+ [  308 / 1000 ]  31% - 0:00:00 left 
+ [  309 / 1000 ]  31% - 0:00:00 left 
+ [  310 / 1000 ]  31% - 0:00:00 left 
+ [  311 / 1000 ]  31% - 0:00:00 left 
+ [  312 / 1000 ]  31% - 0:00:00 left 
+ [  313 / 1000 ]  31% - 0:00:00 left 
+ [  314 / 1000 ]  31% - 0:00:00 left 
+ [  315 / 1000 ]  32% - 0:00:00 left 
+ [  316 / 1000 ]  32% - 0:00:00 left 
+ [  317 / 1000 ]  32% - 0:00:00 left 
+ [  318 / 1000 ]  32% - 0:00:00 left 
+ [  319 / 1000 ]  32% - 0:00:00 left 
+ [  320 / 1000 ]  32% - 0:00:00 left 
+ [  321 / 1000 ]  32% - 0:00:00 left 
+ [  322 / 1000 ]  32% - 0:00:00 left 
+ [  323 / 1000 ]  32% - 0:00:00 left 
+ [  324 / 1000 ]  32% - 0:00:00 left 
+ [  325 / 1000 ]  32% - 0:00:00 left 
+ [  326 / 1000 ]  33% - 0:00:00 left 
+ [  327 / 1000 ]  33% - 0:00:00 left 
+ [  328 / 1000 ]  33% - 0:00:00 left 
+ [  329 / 1000 ]  33% - 0:00:00 left 
+ [  330 / 1000 ]  33% - 0:00:00 left 
+ [  331 / 1000 ]  33% - 0:00:00 left 
+ [  332 / 1000 ]  33% - 0:00:00 left 
+ [  333 / 1000 ]  33% - 0:00:00 left 
+ [  334 / 1000 ]  33% - 0:00:00 left 
+ [  335 / 1000 ]  34% - 0:00:00 left 
+ [  336 / 1000 ]  34% - 0:00:00 left 
+ [  337 / 1000 ]  34% - 0:00:00 left 
+ [  338 / 1000 ]  34% - 0:00:00 left 
+ [  339 / 1000 ]  34% - 0:00:00 left 
+ [  340 / 1000 ]  34% - 0:00:00 left 
+ [  341 / 1000 ]  34% - 0:00:00 left 
+ [  342 / 1000 ]  34% - 0:00:00 left 
+ [  343 / 1000 ]  34% - 0:00:00 left 
+ [  344 / 1000 ]  34% - 0:00:00 left 
+ [  345 / 1000 ]  34% - 0:00:00 left 
+ [  346 / 1000 ]  35% - 0:00:00 left 
+ [  347 / 1000 ]  35% - 0:00:00 left 
+ [  348 / 1000 ]  35% - 0:00:00 left 
+ [  349 / 1000 ]  35% - 0:00:00 left 
+ [  350 / 1000 ]  35% - 0:00:00 left 
+ [  351 / 1000 ]  35% - 0:00:00 left 
+ [  352 / 1000 ]  35% - 0:00:00 left 
+ [  353 / 1000 ]  35% - 0:00:00 left 
+ [  354 / 1000 ]  35% - 0:00:00 left 
+ [  355 / 1000 ]  36% - 0:00:00 left 
+ [  356 / 1000 ]  36% - 0:00:00 left 
+ [  357 / 1000 ]  36% - 0:00:00 left 
+ [  358 / 1000 ]  36% - 0:00:00 left 
+ [  359 / 1000 ]  36% - 0:00:00 left 
+ [  360 / 1000 ]  36% - 0:00:00 left 
+ [  361 / 1000 ]  36% - 0:00:00 left 
+ [  362 / 1000 ]  36% - 0:00:00 left 
+ [  363 / 1000 ]  36% - 0:00:00 left 
+ [  364 / 1000 ]  36% - 0:00:00 left 
+ [  365 / 1000 ]  36% - 0:00:00 left 
+ [  366 / 1000 ]  37% - 0:00:00 left 
+ [  367 / 1000 ]  37% - 0:00:00 left 
+ [  368 / 1000 ]  37% - 0:00:00 left 
+ [  369 / 1000 ]  37% - 0:00:00 left 
+ [  370 / 1000 ]  37% - 0:00:00 left 
+ [  371 / 1000 ]  37% - 0:00:00 left 
+ [  372 / 1000 ]  37% - 0:00:00 left 
+ [  373 / 1000 ]  37% - 0:00:00 left 
+ [  374 / 1000 ]  37% - 0:00:00 left 
+ [  375 / 1000 ]  38% - 0:00:00 left 
+ [  376 / 1000 ]  38% - 0:00:00 left 
+ [  377 / 1000 ]  38% - 0:00:00 left 
+ [  378 / 1000 ]  38% - 0:00:00 left 
+ [  379 / 1000 ]  38% - 0:00:00 left 
+ [  380 / 1000 ]  38% - 0:00:00 left 
+ [  381 / 1000 ]  38% - 0:00:00 left 
+ [  382 / 1000 ]  38% - 0:00:00 left 
+ [  383 / 1000 ]  38% - 0:00:00 left 
+ [  384 / 1000 ]  38% - 0:00:00 left 
+ [  385 / 1000 ]  38% - 0:00:00 left 
+ [  386 / 1000 ]  39% - 0:00:00 left 
+ [  387 / 1000 ]  39% - 0:00:00 left 
+ [  388 / 1000 ]  39% - 0:00:00 left 
+ [  389 / 1000 ]  39% - 0:00:00 left 
+ [  390 / 1000 ]  39% - 0:00:00 left 
+ [  391 / 1000 ]  39% - 0:00:00 left 
+ [  392 / 1000 ]  39% - 0:00:00 left 
+ [  393 / 1000 ]  39% - 0:00:00 left 
+ [  394 / 1000 ]  39% - 0:00:00 left 
+ [  395 / 1000 ]  40% - 0:00:00 left 
+ [  396 / 1000 ]  40% - 0:00:00 left 
+ [  397 / 1000 ]  40% - 0:00:00 left 
+ [  398 / 1000 ]  40% - 0:00:00 left 
+ [  399 / 1000 ]  40% - 0:00:00 left 
+ [  400 / 1000 ]  40% - 0:00:00 left 
+ [  401 / 1000 ]  40% - 0:00:00 left 
+ [  402 / 1000 ]  40% - 0:00:00 left 
+ [  403 / 1000 ]  40% - 0:00:00 left 
+ [  404 / 1000 ]  40% - 0:00:00 left 
+ [  405 / 1000 ]  40% - 0:00:00 left 
+ [  406 / 1000 ]  41% - 0:00:00 left 
+ [  407 / 1000 ]  41% - 0:00:00 left 
+ [  408 / 1000 ]  41% - 0:00:00 left 
+ [  409 / 1000 ]  41% - 0:00:00 left 
+ [  410 / 1000 ]  41% - 0:00:00 left 
+ [  411 / 1000 ]  41% - 0:00:00 left 
+ [  412 / 1000 ]  41% - 0:00:00 left 
+ [  413 / 1000 ]  41% - 0:00:00 left 
+ [  414 / 1000 ]  41% - 0:00:00 left 
+ [  415 / 1000 ]  42% - 0:00:00 left 
+ [  416 / 1000 ]  42% - 0:00:00 left 
+ [  417 / 1000 ]  42% - 0:00:00 left 
+ [  418 / 1000 ]  42% - 0:00:00 left 
+ [  419 / 1000 ]  42% - 0:00:00 left 
+ [  420 / 1000 ]  42% - 0:00:00 left 
+ [  421 / 1000 ]  42% - 0:00:00 left 
+ [  422 / 1000 ]  42% - 0:00:00 left 
+ [  423 / 1000 ]  42% - 0:00:00 left 
+ [  424 / 1000 ]  42% - 0:00:00 left 
+ [  425 / 1000 ]  42% - 0:00:00 left 
+ [  426 / 1000 ]  43% - 0:00:00 left 
+ [  427 / 1000 ]  43% - 0:00:00 left 
+ [  428 / 1000 ]  43% - 0:00:00 left 
+ [  429 / 1000 ]  43% - 0:00:00 left 
+ [  430 / 1000 ]  43% - 0:00:00 left 
+ [  431 / 1000 ]  43% - 0:00:00 left 
+ [  432 / 1000 ]  43% - 0:00:00 left 
+ [  433 / 1000 ]  43% - 0:00:00 left 
+ [  434 / 1000 ]  43% - 0:00:00 left 
+ [  435 / 1000 ]  44% - 0:00:00 left 
+ [  436 / 1000 ]  44% - 0:00:00 left 
+ [  437 / 1000 ]  44% - 0:00:00 left 
+ [  438 / 1000 ]  44% - 0:00:00 left 
+ [  439 / 1000 ]  44% - 0:00:00 left 
+ [  440 / 1000 ]  44% - 0:00:00 left 
+ [  441 / 1000 ]  44% - 0:00:00 left 
+ [  442 / 1000 ]  44% - 0:00:00 left 
+ [  443 / 1000 ]  44% - 0:00:00 left 
+ [  444 / 1000 ]  44% - 0:00:00 left 
+ [  445 / 1000 ]  44% - 0:00:00 left 
+ [  446 / 1000 ]  45% - 0:00:00 left 
+ [  447 / 1000 ]  45% - 0:00:00 left 
+ [  448 / 1000 ]  45% - 0:00:00 left 
+ [  449 / 1000 ]  45% - 0:00:00 left 
+ [  450 / 1000 ]  45% - 0:00:00 left 
+ [  451 / 1000 ]  45% - 0:00:00 left 
+ [  452 / 1000 ]  45% - 0:00:00 left 
+ [  453 / 1000 ]  45% - 0:00:00 left 
+ [  454 / 1000 ]  45% - 0:00:00 left 
+ [  455 / 1000 ]  46% - 0:00:00 left 
+ [  456 / 1000 ]  46% - 0:00:00 left 
+ [  457 / 1000 ]  46% - 0:00:00 left 
+ [  458 / 1000 ]  46% - 0:00:00 left 
+ [  459 / 1000 ]  46% - 0:00:00 left 
+ [  460 / 1000 ]  46% - 0:00:00 left 
+ [  461 / 1000 ]  46% - 0:00:00 left 
+ [  462 / 1000 ]  46% - 0:00:00 left 
+ [  463 / 1000 ]  46% - 0:00:00 left 
+ [  464 / 1000 ]  46% - 0:00:00 left 
+ [  465 / 1000 ]  46% - 0:00:00 left 
+ [  466 / 1000 ]  47% - 0:00:00 left 
+ [  467 / 1000 ]  47% - 0:00:00 left 
+ [  468 / 1000 ]  47% - 0:00:00 left 
+ [  469 / 1000 ]  47% - 0:00:00 left 
+ [  470 / 1000 ]  47% - 0:00:00 left 
+ [  471 / 1000 ]  47% - 0:00:00 left 
+ [  472 / 1000 ]  47% - 0:00:00 left 
+ [  473 / 1000 ]  47% - 0:00:00 left 
+ [  474 / 1000 ]  47% - 0:00:00 left 
+ [  475 / 1000 ]  48% - 0:00:00 left 
+ [  476 / 1000 ]  48% - 0:00:00 left 
+ [  477 / 1000 ]  48% - 0:00:00 left 
+ [  478 / 1000 ]  48% - 0:00:00 left 
+ [  479 / 1000 ]  48% - 0:00:00 left 
+ [  480 / 1000 ]  48% - 0:00:00 left 
+ [  481 / 1000 ]  48% - 0:00:00 left 
+ [  482 / 1000 ]  48% - 0:00:00 left 
+ [  483 / 1000 ]  48% - 0:00:00 left 
+ [  484 / 1000 ]  48% - 0:00:00 left 
+ [  485 / 1000 ]  48% - 0:00:00 left 
+ [  486 / 1000 ]  49% - 0:00:00 left 
+ [  487 / 1000 ]  49% - 0:00:00 left 
+ [  488 / 1000 ]  49% - 0:00:00 left 
+ [  489 / 1000 ]  49% - 0:00:00 left 
+ [  490 / 1000 ]  49% - 0:00:00 left 
+ [  491 / 1000 ]  49% - 0:00:00 left 
+ [  492 / 1000 ]  49% - 0:00:00 left 
+ [  493 / 1000 ]  49% - 0:00:00 left 
+ [  494 / 1000 ]  49% - 0:00:00 left 
+ [  495 / 1000 ]  50% - 0:00:00 left 
+ [  496 / 1000 ]  50% - 0:00:00 left 
+ [  497 / 1000 ]  50% - 0:00:00 left 
+ [  498 / 1000 ]  50% - 0:00:00 left 
+ [  499 / 1000 ]  50% - 0:00:00 left 
+ [  500 / 1000 ]  50% - 0:00:00 left 
+ [  501 / 1000 ]  50% - 0:00:00 left 
+ [  502 / 1000 ]  50% - 0:00:00 left 
+ [  503 / 1000 ]  50% - 0:00:00 left 
+ [  504 / 1000 ]  50% - 0:00:00 left 
+ [  505 / 1000 ]  50% - 0:00:00 left 
+ [  506 / 1000 ]  51% - 0:00:00 left 
+ [  507 / 1000 ]  51% - 0:00:00 left 
+ [  508 / 1000 ]  51% - 0:00:00 left 
+ [  509 / 1000 ]  51% - 0:00:00 left 
+ [  510 / 1000 ]  51% - 0:00:00 left 
+ [  511 / 1000 ]  51% - 0:00:00 left 
+ [  512 / 1000 ]  51% - 0:00:00 left 
+ [  513 / 1000 ]  51% - 0:00:00 left 
+ [  514 / 1000 ]  51% - 0:00:00 left 
+ [  515 / 1000 ]  52% - 0:00:00 left 
+ [  516 / 1000 ]  52% - 0:00:00 left 
+ [  517 / 1000 ]  52% - 0:00:00 left 
+ [  518 / 1000 ]  52% - 0:00:00 left 
+ [  519 / 1000 ]  52% - 0:00:00 left 
+ [  520 / 1000 ]  52% - 0:00:00 left 
+ [  521 / 1000 ]  52% - 0:00:00 left 
+ [  522 / 1000 ]  52% - 0:00:00 left 
+ [  523 / 1000 ]  52% - 0:00:00 left 
+ [  524 / 1000 ]  52% - 0:00:00 left 
+ [  525 / 1000 ]  52% - 0:00:00 left 
+ [  526 / 1000 ]  53% - 0:00:00 left 
+ [  527 / 1000 ]  53% - 0:00:00 left 
+ [  528 / 1000 ]  53% - 0:00:00 left 
+ [  529 / 1000 ]  53% - 0:00:00 left 
+ [  530 / 1000 ]  53% - 0:00:00 left 
+ [  531 / 1000 ]  53% - 0:00:00 left 
+ [  532 / 1000 ]  53% - 0:00:00 left 
+ [  533 / 1000 ]  53% - 0:00:00 left 
+ [  534 / 1000 ]  53% - 0:00:00 left 
+ [  535 / 1000 ]  54% - 0:00:00 left 
+ [  536 / 1000 ]  54% - 0:00:00 left 
+ [  537 / 1000 ]  54% - 0:00:00 left 
+ [  538 / 1000 ]  54% - 0:00:00 left 
+ [  539 / 1000 ]  54% - 0:00:00 left 
+ [  540 / 1000 ]  54% - 0:00:00 left 
+ [  541 / 1000 ]  54% - 0:00:00 left 
+ [  542 / 1000 ]  54% - 0:00:00 left 
+ [  543 / 1000 ]  54% - 0:00:00 left 
+ [  544 / 1000 ]  54% - 0:00:00 left 
+ [  545 / 1000 ]  54% - 0:00:00 left 
+ [  546 / 1000 ]  55% - 0:00:00 left 
+ [  547 / 1000 ]  55% - 0:00:00 left 
+ [  548 / 1000 ]  55% - 0:00:00 left 
+ [  549 / 1000 ]  55% - 0:00:00 left 
+ [  550 / 1000 ]  55% - 0:00:00 left 
+ [  551 / 1000 ]  55% - 0:00:00 left 
+ [  552 / 1000 ]  55% - 0:00:00 left 
+ [  553 / 1000 ]  55% - 0:00:00 left 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [  554 / 1000 ]  55% - 0:00:00 left 
+ [  555 / 1000 ]  56% - 0:00:00 left 
+ [  556 / 1000 ]  56% - 0:00:00 left 
+ [  557 / 1000 ]  56% - 0:00:00 left 
+ [  558 / 1000 ]  56% - 0:00:00 left 
+ [  559 / 1000 ]  56% - 0:00:00 left 
+ [  560 / 1000 ]  56% - 0:00:00 left 
+ [  561 / 1000 ]  56% - 0:00:00 left 
+ [  562 / 1000 ]  56% - 0:00:00 left 
+ [  563 / 1000 ]  56% - 0:00:00 left 
+ [  564 / 1000 ]  56% - 0:00:00 left 
+ [  565 / 1000 ]  56% - 0:00:00 left 
+ [  566 / 1000 ]  57% - 0:00:00 left 
+ [  567 / 1000 ]  57% - 0:00:00 left 
+ [  568 / 1000 ]  57% - 0:00:00 left 
+ [  569 / 1000 ]  57% - 0:00:00 left 
+ [  570 / 1000 ]  57% - 0:00:00 left 
+ [  571 / 1000 ]  57% - 0:00:00 left 
+ [  572 / 1000 ]  57% - 0:00:00 left 
+ [  573 / 1000 ]  57% - 0:00:00 left 
+ [  574 / 1000 ]  57% - 0:00:00 left 
+ [  575 / 1000 ]  58% - 0:00:00 left 
+ [  576 / 1000 ]  58% - 0:00:00 left 
+ [  577 / 1000 ]  58% - 0:00:00 left 
+ [  578 / 1000 ]  58% - 0:00:00 left 
+ [  579 / 1000 ]  58% - 0:00:00 left 
+ [  580 / 1000 ]  58% - 0:00:00 left 
+ [  581 / 1000 ]  58% - 0:00:00 left 
+ [  582 / 1000 ]  58% - 0:00:00 left 
+ [  583 / 1000 ]  58% - 0:00:00 left 
+ [  584 / 1000 ]  58% - 0:00:00 left 
+ [  585 / 1000 ]  58% - 0:00:00 left 
+ [  586 / 1000 ]  59% - 0:00:00 left 
+ [  587 / 1000 ]  59% - 0:00:00 left 
+ [  588 / 1000 ]  59% - 0:00:00 left 
+ [  589 / 1000 ]  59% - 0:00:00 left 
+ [  590 / 1000 ]  59% - 0:00:00 left 
+ [  591 / 1000 ]  59% - 0:00:00 left 
+ [  592 / 1000 ]  59% - 0:00:00 left 
+ [  593 / 1000 ]  59% - 0:00:00 left 
+ [  594 / 1000 ]  59% - 0:00:00 left 
+ [  595 / 1000 ]  60% - 0:00:00 left 
+ [  596 / 1000 ]  60% - 0:00:00 left 
+ [  597 / 1000 ]  60% - 0:00:00 left 
+ [  598 / 1000 ]  60% - 0:00:00 left 
+ [  599 / 1000 ]  60% - 0:00:00 left 
+ [  600 / 1000 ]  60% - 0:00:00 left 
+ [  601 / 1000 ]  60% - 0:00:00 left 
+ [  602 / 1000 ]  60% - 0:00:00 left 
+ [  603 / 1000 ]  60% - 0:00:00 left 
+ [  604 / 1000 ]  60% - 0:00:00 left 
+ [  605 / 1000 ]  60% - 0:00:00 left 
+ [  606 / 1000 ]  61% - 0:00:00 left 
+ [  607 / 1000 ]  61% - 0:00:00 left 
+ [  608 / 1000 ]  61% - 0:00:00 left 
+ [  609 / 1000 ]  61% - 0:00:00 left 
+ [  610 / 1000 ]  61% - 0:00:00 left 
+ [  611 / 1000 ]  61% - 0:00:00 left 
+ [  612 / 1000 ]  61% - 0:00:00 left 
+ [  613 / 1000 ]  61% - 0:00:00 left 
+ [  614 / 1000 ]  61% - 0:00:00 left 
+ [  615 / 1000 ]  62% - 0:00:00 left 
+ [  616 / 1000 ]  62% - 0:00:00 left 
+ [  617 / 1000 ]  62% - 0:00:00 left 
+ [  618 / 1000 ]  62% - 0:00:00 left 
+ [  619 / 1000 ]  62% - 0:00:00 left 
+ [  620 / 1000 ]  62% - 0:00:00 left 
+ [  621 / 1000 ]  62% - 0:00:00 left 
+ [  622 / 1000 ]  62% - 0:00:00 left 
+ [  623 / 1000 ]  62% - 0:00:00 left 
+ [  624 / 1000 ]  62% - 0:00:00 left 
+ [  625 / 1000 ]  62% - 0:00:00 left 
+ [  626 / 1000 ]  63% - 0:00:00 left 
+ [  627 / 1000 ]  63% - 0:00:00 left 
+ [  628 / 1000 ]  63% - 0:00:00 left 
+ [  629 / 1000 ]  63% - 0:00:00 left 
+ [  630 / 1000 ]  63% - 0:00:00 left 
+ [  631 / 1000 ]  63% - 0:00:00 left 
+ [  632 / 1000 ]  63% - 0:00:00 left 
+ [  633 / 1000 ]  63% - 0:00:00 left 
+ [  634 / 1000 ]  63% - 0:00:00 left 
+ [  635 / 1000 ]  64% - 0:00:00 left 
+ [  636 / 1000 ]  64% - 0:00:00 left 
+ [  637 / 1000 ]  64% - 0:00:00 left 
+ [  638 / 1000 ]  64% - 0:00:00 left 
+ [  639 / 1000 ]  64% - 0:00:00 left 
+ [  640 / 1000 ]  64% - 0:00:00 left 
+ [  641 / 1000 ]  64% - 0:00:00 left 
+ [  642 / 1000 ]  64% - 0:00:00 left 
+ [  643 / 1000 ]  64% - 0:00:00 left 
+ [  644 / 1000 ]  64% - 0:00:00 left 
+ [  645 / 1000 ]  64% - 0:00:00 left 
+ [  646 / 1000 ]  65% - 0:00:00 left 
+ [  647 / 1000 ]  65% - 0:00:00 left 
+ [  648 / 1000 ]  65% - 0:00:00 left 
+ [  649 / 1000 ]  65% - 0:00:00 left 
+ [  650 / 1000 ]  65% - 0:00:00 left 
+ [  651 / 1000 ]  65% - 0:00:00 left 
+ [  652 / 1000 ]  65% - 0:00:00 left 
+ [  653 / 1000 ]  65% - 0:00:00 left 
+ [  654 / 1000 ]  65% - 0:00:00 left 
+ [  655 / 1000 ]  66% - 0:00:00 left 
+ [  656 / 1000 ]  66% - 0:00:00 left 
+ [  657 / 1000 ]  66% - 0:00:00 left 
+ [  658 / 1000 ]  66% - 0:00:00 left 
+ [  659 / 1000 ]  66% - 0:00:00 left 
+ [  660 / 1000 ]  66% - 0:00:00 left 
+ [  661 / 1000 ]  66% - 0:00:00 left 
+ [  662 / 1000 ]  66% - 0:00:00 left 
+ [  663 / 1000 ]  66% - 0:00:00 left 
+ [  664 / 1000 ]  66% - 0:00:00 left 
+ [  665 / 1000 ]  66% - 0:00:00 left 
+ [  666 / 1000 ]  67% - 0:00:00 left 
+ [  667 / 1000 ]  67% - 0:00:00 left 
+ [  668 / 1000 ]  67% - 0:00:00 left 
+ [  669 / 1000 ]  67% - 0:00:00 left 
+ [  670 / 1000 ]  67% - 0:00:00 left 
+ [  671 / 1000 ]  67% - 0:00:00 left 
+ [  672 / 1000 ]  67% - 0:00:00 left 
+ [  673 / 1000 ]  67% - 0:00:00 left 
+ [  674 / 1000 ]  67% - 0:00:00 left 
+ [  675 / 1000 ]  68% - 0:00:00 left 
+ [  676 / 1000 ]  68% - 0:00:00 left 
+ [  677 / 1000 ]  68% - 0:00:00 left 
+ [  678 / 1000 ]  68% - 0:00:00 left 
+ [  679 / 1000 ]  68% - 0:00:00 left 
+ [  680 / 1000 ]  68% - 0:00:00 left 
+ [  681 / 1000 ]  68% - 0:00:00 left 
+ [  682 / 1000 ]  68% - 0:00:00 left 
+ [  683 / 1000 ]  68% - 0:00:00 left 
+ [  684 / 1000 ]  68% - 0:00:00 left 
+ [  685 / 1000 ]  68% - 0:00:00 left 
+ [  686 / 1000 ]  69% - 0:00:00 left 
+ [  687 / 1000 ]  69% - 0:00:00 left 
+ [  688 / 1000 ]  69% - 0:00:00 left 
+ [  689 / 1000 ]  69% - 0:00:00 left 
+ [  690 / 1000 ]  69% - 0:00:00 left 
+ [  691 / 1000 ]  69% - 0:00:00 left 
+ [  692 / 1000 ]  69% - 0:00:00 left 
+ [  693 / 1000 ]  69% - 0:00:00 left 
+ [  694 / 1000 ]  69% - 0:00:00 left 
+ [  695 / 1000 ]  70% - 0:00:00 left 
+ [  696 / 1000 ]  70% - 0:00:00 left 
+ [  697 / 1000 ]  70% - 0:00:00 left 
+ [  698 / 1000 ]  70% - 0:00:00 left 
+ [  699 / 1000 ]  70% - 0:00:00 left 
+ [  700 / 1000 ]  70% - 0:00:00 left 
+ [  701 / 1000 ]  70% - 0:00:00 left 
+ [  702 / 1000 ]  70% - 0:00:00 left 
+ [  703 / 1000 ]  70% - 0:00:00 left 
+ [  704 / 1000 ]  70% - 0:00:00 left 
+ [  705 / 1000 ]  70% - 0:00:00 left 
+ [  706 / 1000 ]  71% - 0:00:00 left 
+ [  707 / 1000 ]  71% - 0:00:00 left 
+ [  708 / 1000 ]  71% - 0:00:00 left 
+ [  709 / 1000 ]  71% - 0:00:00 left 
+ [  710 / 1000 ]  71% - 0:00:00 left 
+ [  711 / 1000 ]  71% - 0:00:00 left 
+ [  712 / 1000 ]  71% - 0:00:00 left 
+ [  713 / 1000 ]  71% - 0:00:00 left 
+ [  714 / 1000 ]  71% - 0:00:00 left 
+ [  715 / 1000 ]  72% - 0:00:00 left 
+ [  716 / 1000 ]  72% - 0:00:00 left 
+ [  717 / 1000 ]  72% - 0:00:00 left 
+ [  718 / 1000 ]  72% - 0:00:00 left 
+ [  719 / 1000 ]  72% - 0:00:00 left 
+ [  720 / 1000 ]  72% - 0:00:00 left 
+ [  721 / 1000 ]  72% - 0:00:00 left 
+ [  722 / 1000 ]  72% - 0:00:00 left 
+ [  723 / 1000 ]  72% - 0:00:00 left 
+ [  724 / 1000 ]  72% - 0:00:00 left 
+ [  725 / 1000 ]  72% - 0:00:00 left 
+ [  726 / 1000 ]  73% - 0:00:00 left 
+ [  727 / 1000 ]  73% - 0:00:00 left 
+ [  728 / 1000 ]  73% - 0:00:00 left 
+ [  729 / 1000 ]  73% - 0:00:00 left 
+ [  730 / 1000 ]  73% - 0:00:00 left 
+ [  731 / 1000 ]  73% - 0:00:00 left 
+ [  732 / 1000 ]  73% - 0:00:00 left 
+ [  733 / 1000 ]  73% - 0:00:00 left 
+ [  734 / 1000 ]  73% - 0:00:00 left 
+ [  735 / 1000 ]  74% - 0:00:00 left 
+ [  736 / 1000 ]  74% - 0:00:00 left 
+ [  737 / 1000 ]  74% - 0:00:00 left 
+ [  738 / 1000 ]  74% - 0:00:00 left 
+ [  739 / 1000 ]  74% - 0:00:00 left 
+ [  740 / 1000 ]  74% - 0:00:00 left 
+ [  741 / 1000 ]  74% - 0:00:00 left 
+ [  742 / 1000 ]  74% - 0:00:00 left 
+ [  743 / 1000 ]  74% - 0:00:00 left 
+ [  744 / 1000 ]  74% - 0:00:00 left 
+ [  745 / 1000 ]  74% - 0:00:00 left 
+ [  746 / 1000 ]  75% - 0:00:00 left 
+ [  747 / 1000 ]  75% - 0:00:00 left 
+ [  748 / 1000 ]  75% - 0:00:00 left 
+ [  749 / 1000 ]  75% - 0:00:00 left 
+ [  750 / 1000 ]  75% - 0:00:00 left 
+ [  751 / 1000 ]  75% - 0:00:00 left 
+ [  752 / 1000 ]  75% - 0:00:00 left 
+ [  753 / 1000 ]  75% - 0:00:00 left 
+ [  754 / 1000 ]  75% - 0:00:00 left 
+ [  755 / 1000 ]  76% - 0:00:00 left 
+ [  756 / 1000 ]  76% - 0:00:00 left 
+ [  757 / 1000 ]  76% - 0:00:00 left 
+ [  758 / 1000 ]  76% - 0:00:00 left 
+ [  759 / 1000 ]  76% - 0:00:00 left 
+ [  760 / 1000 ]  76% - 0:00:00 left 
+ [  761 / 1000 ]  76% - 0:00:00 left 
+ [  762 / 1000 ]  76% - 0:00:00 left 
+ [  763 / 1000 ]  76% - 0:00:00 left 
+ [  764 / 1000 ]  76% - 0:00:00 left 
+ [  765 / 1000 ]  76% - 0:00:00 left 
+ [  766 / 1000 ]  77% - 0:00:00 left 
+ [  767 / 1000 ]  77% - 0:00:00 left 
+ [  768 / 1000 ]  77% - 0:00:00 left 
+ [  769 / 1000 ]  77% - 0:00:00 left 
+ [  770 / 1000 ]  77% - 0:00:00 left 
+ [  771 / 1000 ]  77% - 0:00:00 left 
+ [  772 / 1000 ]  77% - 0:00:00 left 
+ [  773 / 1000 ]  77% - 0:00:00 left 
+ [  774 / 1000 ]  77% - 0:00:00 left 
+ [  775 / 1000 ]  78% - 0:00:00 left 
+ [  776 / 1000 ]  78% - 0:00:00 left 
+ [  777 / 1000 ]  78% - 0:00:00 left 
+ [  778 / 1000 ]  78% - 0:00:00 left 
+ [  779 / 1000 ]  78% - 0:00:00 left 
+ [  780 / 1000 ]  78% - 0:00:00 left 
+ [  781 / 1000 ]  78% - 0:00:00 left 
+ [  782 / 1000 ]  78% - 0:00:00 left 
+ [  783 / 1000 ]  78% - 0:00:00 left 
+ [  784 / 1000 ]  78% - 0:00:00 left 
+ [  785 / 1000 ]  78% - 0:00:00 left 
+ [  786 / 1000 ]  79% - 0:00:00 left 
+ [  787 / 1000 ]  79% - 0:00:00 left 
+ [  788 / 1000 ]  79% - 0:00:00 left 
+ [  789 / 1000 ]  79% - 0:00:00 left 
+ [  790 / 1000 ]  79% - 0:00:00 left 
+ [  791 / 1000 ]  79% - 0:00:00 left 
+ [  792 / 1000 ]  79% - 0:00:00 left 
+ [  793 / 1000 ]  79% - 0:00:00 left 
+ [  794 / 1000 ]  79% - 0:00:00 left 
+ [  795 / 1000 ]  80% - 0:00:00 left 
+ [  796 / 1000 ]  80% - 0:00:00 left 
+ [  797 / 1000 ]  80% - 0:00:00 left 
+ [  798 / 1000 ]  80% - 0:00:00 left 
+ [  799 / 1000 ]  80% - 0:00:00 left 
+ [  800 / 1000 ]  80% - 0:00:00 left 
+ [  801 / 1000 ]  80% - 0:00:00 left 
+ [  802 / 1000 ]  80% - 0:00:00 left 
+ [  803 / 1000 ]  80% - 0:00:00 left 
+ [  804 / 1000 ]  80% - 0:00:00 left 
+ [  805 / 1000 ]  80% - 0:00:00 left 
+ [  806 / 1000 ]  81% - 0:00:00 left 
+ [  807 / 1000 ]  81% - 0:00:00 left 
+ [  808 / 1000 ]  81% - 0:00:00 left 
+ [  809 / 1000 ]  81% - 0:00:00 left 
+ [  810 / 1000 ]  81% - 0:00:00 left 
+ [  811 / 1000 ]  81% - 0:00:00 left 
+ [  812 / 1000 ]  81% - 0:00:00 left 
+ [  813 / 1000 ]  81% - 0:00:00 left 
+ [  814 / 1000 ]  81% - 0:00:00 left 
+ [  815 / 1000 ]  82% - 0:00:00 left 
+ [  816 / 1000 ]  82% - 0:00:00 left 
+ [  817 / 1000 ]  82% - 0:00:00 left 
+ [  818 / 1000 ]  82% - 0:00:00 left 
+ [  819 / 1000 ]  82% - 0:00:00 left 
+ [  820 / 1000 ]  82% - 0:00:00 left 
+ [  821 / 1000 ]  82% - 0:00:00 left 
+ [  822 / 1000 ]  82% - 0:00:00 left 
+ [  823 / 1000 ]  82% - 0:00:00 left 
+ [  824 / 1000 ]  82% - 0:00:00 left 
+ [  825 / 1000 ]  82% - 0:00:00 left 
+ [  826 / 1000 ]  83% - 0:00:00 left 
+ [  827 / 1000 ]  83% - 0:00:00 left 
+ [  828 / 1000 ]  83% - 0:00:00 left 
+ [  829 / 1000 ]  83% - 0:00:00 left 
+ [  830 / 1000 ]  83% - 0:00:00 left 
+ [  831 / 1000 ]  83% - 0:00:00 left 
+ [  832 / 1000 ]  83% - 0:00:00 left 
+ [  833 / 1000 ]  83% - 0:00:00 left 
+ [  834 / 1000 ]  83% - 0:00:00 left 
+ [  835 / 1000 ]  84% - 0:00:00 left 
+ [  836 / 1000 ]  84% - 0:00:00 left 
+ [  837 / 1000 ]  84% - 0:00:00 left 
+ [  838 / 1000 ]  84% - 0:00:00 left 
+ [  839 / 1000 ]  84% - 0:00:00 left 
+ [  840 / 1000 ]  84% - 0:00:00 left 
+ [  841 / 1000 ]  84% - 0:00:00 left 
+ [  842 / 1000 ]  84% - 0:00:00 left 
+ [  843 / 1000 ]  84% - 0:00:00 left 
+ [  844 / 1000 ]  84% - 0:00:00 left 
+ [  845 / 1000 ]  84% - 0:00:00 left 
+ [  846 / 1000 ]  85% - 0:00:00 left 
+ [  847 / 1000 ]  85% - 0:00:00 left 
+ [  848 / 1000 ]  85% - 0:00:00 left 
+ [  849 / 1000 ]  85% - 0:00:00 left 
+ [  850 / 1000 ]  85% - 0:00:00 left 
+ [  851 / 1000 ]  85% - 0:00:00 left 
+ [  852 / 1000 ]  85% - 0:00:00 left 
+ [  853 / 1000 ]  85% - 0:00:00 left 
+ [  854 / 1000 ]  85% - 0:00:00 left 
+ [  855 / 1000 ]  86% - 0:00:00 left 
+ [  856 / 1000 ]  86% - 0:00:00 left 
+ [  857 / 1000 ]  86% - 0:00:00 left 
+ [  858 / 1000 ]  86% - 0:00:00 left 
+ [  859 / 1000 ]  86% - 0:00:00 left 
+ [  860 / 1000 ]  86% - 0:00:00 left 
+ [  861 / 1000 ]  86% - 0:00:00 left 
+ [  862 / 1000 ]  86% - 0:00:00 left 
+ [  863 / 1000 ]  86% - 0:00:00 left 
+ [  864 / 1000 ]  86% - 0:00:00 left 
+ [  865 / 1000 ]  86% - 0:00:00 left 
+ [  866 / 1000 ]  87% - 0:00:00 left 
+ [  867 / 1000 ]  87% - 0:00:00 left 
+ [  868 / 1000 ]  87% - 0:00:00 left 
+ [  869 / 1000 ]  87% - 0:00:00 left 
+ [  870 / 1000 ]  87% - 0:00:00 left 
+ [  871 / 1000 ]  87% - 0:00:00 left 
+ [  872 / 1000 ]  87% - 0:00:00 left 
+ [  873 / 1000 ]  87% - 0:00:00 left 
+ [  874 / 1000 ]  87% - 0:00:00 left 
+ [  875 / 1000 ]  88% - 0:00:00 left 
+ [  876 / 1000 ]  88% - 0:00:00 left 
+ [  877 / 1000 ]  88% - 0:00:00 left 
+ [  878 / 1000 ]  88% - 0:00:00 left 
+ [  879 / 1000 ]  88% - 0:00:00 left 
+ [  880 / 1000 ]  88% - 0:00:00 left 
+ [  881 / 1000 ]  88% - 0:00:00 left 
+ [  882 / 1000 ]  88% - 0:00:00 left 
+ [  883 / 1000 ]  88% - 0:00:00 left 
+ [  884 / 1000 ]  88% - 0:00:00 left 
+ [  885 / 1000 ]  88% - 0:00:00 left 
+ [  886 / 1000 ]  89% - 0:00:00 left 
+ [  887 / 1000 ]  89% - 0:00:00 left 
+ [  888 / 1000 ]  89% - 0:00:00 left 
+ [  889 / 1000 ]  89% - 0:00:00 left 
+ [  890 / 1000 ]  89% - 0:00:00 left 
+ [  891 / 1000 ]  89% - 0:00:00 left 
+ [  892 / 1000 ]  89% - 0:00:00 left 
+ [  893 / 1000 ]  89% - 0:00:00 left 
+ [  894 / 1000 ]  89% - 0:00:00 left 
+ [  895 / 1000 ]  90% - 0:00:00 left 
+ [  896 / 1000 ]  90% - 0:00:00 left 
+ [  897 / 1000 ]  90% - 0:00:00 left 
+ [  898 / 1000 ]  90% - 0:00:00 left 
+ [  899 / 1000 ]  90% - 0:00:00 left 
+ [  900 / 1000 ]  90% - 0:00:00 left 
+ [  901 / 1000 ]  90% - 0:00:00 left 
+ [  902 / 1000 ]  90% - 0:00:00 left 
+ [  903 / 1000 ]  90% - 0:00:00 left 
+ [  904 / 1000 ]  90% - 0:00:00 left 
+ [  905 / 1000 ]  90% - 0:00:00 left 
+ [  906 / 1000 ]  91% - 0:00:00 left 
+ [  907 / 1000 ]  91% - 0:00:00 left 
+ [  908 / 1000 ]  91% - 0:00:00 left 
+ [  909 / 1000 ]  91% - 0:00:00 left 
+ [  910 / 1000 ]  91% - 0:00:00 left 
+ [  911 / 1000 ]  91% - 0:00:00 left 
+ [  912 / 1000 ]  91% - 0:00:00 left 
+ [  913 / 1000 ]  91% - 0:00:00 left 
+ [  914 / 1000 ]  91% - 0:00:00 left 
+ [  915 / 1000 ]  92% - 0:00:00 left 
+ [  916 / 1000 ]  92% - 0:00:00 left 
+ [  917 / 1000 ]  92% - 0:00:00 left 
+ [  918 / 1000 ]  92% - 0:00:00 left 
+ [  919 / 1000 ]  92% - 0:00:00 left 
+ [  920 / 1000 ]  92% - 0:00:00 left 
+ [  921 / 1000 ]  92% - 0:00:00 left 
+ [  922 / 1000 ]  92% - 0:00:00 left 
+ [  923 / 1000 ]  92% - 0:00:00 left 
+ [  924 / 1000 ]  92% - 0:00:00 left 
+ [  925 / 1000 ]  92% - 0:00:00 left 
+ [  926 / 1000 ]  93% - 0:00:00 left 
+ [  927 / 1000 ]  93% - 0:00:00 left 
+ [  928 / 1000 ]  93% - 0:00:00 left 
+ [  929 / 1000 ]  93% - 0:00:00 left 
+ [  930 / 1000 ]  93% - 0:00:00 left 
+ [  931 / 1000 ]  93% - 0:00:00 left 
+ [  932 / 1000 ]  93% - 0:00:00 left 
+ [  933 / 1000 ]  93% - 0:00:00 left 
+ [  934 / 1000 ]  93% - 0:00:00 left 
+ [  935 / 1000 ]  94% - 0:00:00 left 
+ [  936 / 1000 ]  94% - 0:00:00 left 
+ [  937 / 1000 ]  94% - 0:00:00 left 
+ [  938 / 1000 ]  94% - 0:00:00 left 
+ [  939 / 1000 ]  94% - 0:00:00 left 
+ [  940 / 1000 ]  94% - 0:00:00 left 
+ [  941 / 1000 ]  94% - 0:00:00 left 
+ [  942 / 1000 ]  94% - 0:00:00 left 
+ [  943 / 1000 ]  94% - 0:00:00 left 
+ [  944 / 1000 ]  94% - 0:00:00 left 
+ [  945 / 1000 ]  94% - 0:00:00 left 
+ [  946 / 1000 ]  95% - 0:00:00 left 
+ [  947 / 1000 ]  95% - 0:00:00 left 
+ [  948 / 1000 ]  95% - 0:00:00 left 
+ [  949 / 1000 ]  95% - 0:00:00 left 
+ [  950 / 1000 ]  95% - 0:00:00 left 
+ [  951 / 1000 ]  95% - 0:00:00 left 
+ [  952 / 1000 ]  95% - 0:00:00 left 
+ [  953 / 1000 ]  95% - 0:00:00 left 
+ [  954 / 1000 ]  95% - 0:00:00 left 
+ [  955 / 1000 ]  96% - 0:00:00 left 
+ [  956 / 1000 ]  96% - 0:00:00 left 
+ [  957 / 1000 ]  96% - 0:00:00 left 
+ [  958 / 1000 ]  96% - 0:00:00 left 
+ [  959 / 1000 ]  96% - 0:00:00 left 
+ [  960 / 1000 ]  96% - 0:00:00 left 
+ [  961 / 1000 ]  96% - 0:00:00 left 
+ [  962 / 1000 ]  96% - 0:00:00 left 
+ [  963 / 1000 ]  96% - 0:00:00 left 
+ [  964 / 1000 ]  96% - 0:00:00 left 
+ [  965 / 1000 ]  96% - 0:00:00 left 
+ [  966 / 1000 ]  97% - 0:00:00 left 
+ [  967 / 1000 ]  97% - 0:00:00 left 
+ [  968 / 1000 ]  97% - 0:00:00 left 
+ [  969 / 1000 ]  97% - 0:00:00 left 
+ [  970 / 1000 ]  97% - 0:00:00 left 
+ [  971 / 1000 ]  97% - 0:00:00 left 
+ [  972 / 1000 ]  97% - 0:00:00 left 
+ [  973 / 1000 ]  97% - 0:00:00 left 
+ [  974 / 1000 ]  97% - 0:00:00 left 
+ [  975 / 1000 ]  98% - 0:00:00 left 
+ [  976 / 1000 ]  98% - 0:00:00 left 
+ [  977 / 1000 ]  98% - 0:00:00 left 
+ [  978 / 1000 ]  98% - 0:00:00 left 
+ [  979 / 1000 ]  98% - 0:00:00 left 
+ [  980 / 1000 ]  98% - 0:00:00 left 
+ [  981 / 1000 ]  98% - 0:00:00 left 
+ [  982 / 1000 ]  98% - 0:00:00 left 
+ [  983 / 1000 ]  98% - 0:00:00 left 
+ [  984 / 1000 ]  98% - 0:00:00 left 
+ [  985 / 1000 ]  98% - 0:00:00 left 
+ [  986 / 1000 ]  99% - 0:00:00 left 
+ [  987 / 1000 ]  99% - 0:00:00 left 
+ [  988 / 1000 ]  99% - 0:00:00 left 
+ [  989 / 1000 ]  99% - 0:00:00 left 
+ [  990 / 1000 ]  99% - 0:00:00 left 
+ [  991 / 1000 ]  99% - 0:00:00 left 
+ [  992 / 1000 ]  99% - 0:00:00 left 
+ [  993 / 1000 ]  99% - 0:00:00 left 
+ [  994 / 1000 ]  99% - 0:00:00 left 
+ [  995 / 1000 ] 100% - 0:00:00 left 
+ [  996 / 1000 ] 100% - 0:00:00 left 
+ [  997 / 1000 ] 100% - 0:00:00 left 
+ [  998 / 1000 ] 100% - 0:00:00 left 
+ [  999 / 1000 ] 100% - 0:00:00 left 
+ [ 1000 / 1000 ] 100% - 0:00:00 left 
+ quantization error: 0.014785493983449272
+
+...ready!
+</pre></div>
+</div>
+<img alt="_images/lab10_2_2.png" src="_images/lab10_2_2.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lab9.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lab 9: Neural network</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lab11.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 11: Kernel Machines</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1201 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 3: Multivariate Methods &#8212; Machine Learning</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 4: Dimensionality Reduction" href="lab4.html" />
+    <link rel="prev" title="Lab 2: Supervised Learning" href="lab2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Supervised Learning
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lab 3: Multivariate Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: Dimensionality Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Clustering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Nonparametric Methods
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Decision Trees
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: Linear Discrimination
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Neural network
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Local Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Kernel Machines
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Hidden Markov Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Reinforcement Learning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Applications
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab3.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab3.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/lab3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/lab3.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameter-estimation">
+   Parameter Estimation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-normal-distributions-with-different-mean-and-covariance-matrix">
+     Two normal distributions with different mean and covariance matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-classes-may-have-a-common-covaraince-matrix">
+     Two classes may have a common covaraince matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diagnal-covariance-matrix">
+     Diagnal covariance matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#independent-random-variables-with-a-common-variance">
+     Independent random variables with a common variance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimation-of-missing-values">
+   Estimation of Missing Values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multivariate-classification">
+   Multivariate Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-classes-have-a-common-covariance-matrix">
+     Two classes have a common covariance matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regularized-discriminant-analysis">
+     Regularized discriminant analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lab 3: Multivariate Methods</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parameter-estimation">
+   Parameter Estimation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-normal-distributions-with-different-mean-and-covariance-matrix">
+     Two normal distributions with different mean and covariance matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-classes-may-have-a-common-covaraince-matrix">
+     Two classes may have a common covaraince matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#diagnal-covariance-matrix">
+     Diagnal covariance matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#independent-random-variables-with-a-common-variance">
+     Independent random variables with a common variance
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#estimation-of-missing-values">
+   Estimation of Missing Values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multivariate-classification">
+   Multivariate Classification
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#two-classes-have-a-common-covariance-matrix">
+     Two classes have a common covariance matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regularized-discriminant-analysis">
+     Regularized discriminant analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-3-multivariate-methods">
+<h1>Lab 3: Multivariate Methods<a class="headerlink" href="#lab-3-multivariate-methods" title="Permalink to this headline">#</a></h1>
+<section id="parameter-estimation">
+<h2>Parameter Estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this headline">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(𝑋={𝑋_1,…,𝑋_𝑃}\)</span> be a <span class="math notranslate nohighlight">\(p\)</span>-dimension point. The mean vector is <span class="math notranslate nohighlight">\(\mu=𝐸(𝑋)\)</span> and the covariance matrix is <span class="math notranslate nohighlight">\(Σ_{𝑝×𝑝}\)</span></p>
+<section id="two-normal-distributions-with-different-mean-and-covariance-matrix">
+<h3>Two normal distributions with different mean and covariance matrix<a class="headerlink" href="#two-normal-distributions-with-different-mean-and-covariance-matrix" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
+<span class="n">sigma1</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sigma1</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma1</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="o">=</span><span class="m">0.5</span>
+<span class="n">bvn1</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">sigma1</span><span class="p">)</span>
+
+<span class="n">sigma2</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sigma2</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma2</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="m">0.5</span>
+<span class="n">bvn2</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">7</span><span class="p">,</span><span class="m">8</span><span class="p">),</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">sigma2</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Y&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">bvn2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab3_1_0.png" src="_images/lab3_1_0.png" />
+</div>
+</div>
+<p>The mean vector <span class="math notranslate nohighlight">\(\mu\)</span> can be estimated by the sample average</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bvn1_average</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">bvn2_average</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">bvn2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the first group&quot;</span><span class="p">)</span>
+<span class="n">bvn1_average</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the second group&quot;</span><span class="p">)</span>
+<span class="n">bvn2_average</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the first group&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3.03764335942294</li><li>3.96881287803235</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the second group&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>6.98647913619303</li><li>7.93412081858675</li></ol>
+</div></div>
+</div>
+<p>The covariance matrix can be estimated by the sample covariance matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bvn1_cov</span> <span class="o">=</span> <span class="nf">cov</span><span class="p">(</span><span class="n">bvn1</span><span class="p">)</span>
+<span class="n">bvn2_cov</span> <span class="o">=</span> <span class="nf">cov</span><span class="p">(</span><span class="n">bvn2</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the first group&quot;</span><span class="p">)</span>
+<span class="n">bvn1_cov</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the second group&quot;</span><span class="p">)</span>
+<span class="n">bvn2_cov</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the first group&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>2.3322472</td><td>0.8961914</td></tr>
+	<tr><td>0.8961914</td><td>2.4796381</td></tr>
+</tbody>
+</table>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the second group&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>0.9244082</td><td>0.3555686</td></tr>
+	<tr><td>0.3555686</td><td>0.8645121</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="two-classes-may-have-a-common-covaraince-matrix">
+<h3>Two classes may have a common covaraince matrix<a class="headerlink" href="#two-classes-may-have-a-common-covaraince-matrix" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sigma</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="o">=</span><span class="m">0.5</span>
+
+<span class="n">bvn1</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">bvn2</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">7</span><span class="p">,</span><span class="m">8</span><span class="p">),</span> <span class="n">sigma</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Y&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">bvn2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab3_7_0.png" src="_images/lab3_7_0.png" />
+</div>
+</div>
+<p>The covariance matrix is estimated by the sample covariance of the pooled data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pooldata</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">bvn1</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">bvn1</span><span class="p">),</span><span class="n">bvn2</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">bvn2</span><span class="p">))</span>
+<span class="n">bvn1_cov</span> <span class="o">=</span> <span class="nf">cov</span><span class="p">(</span><span class="n">pooldata</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The pooled covariance matrix&quot;</span><span class="p">)</span>
+<span class="n">bvn1_cov</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The pooled covariance matrix&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 2 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>0.9553481</td><td>0.4652093</td></tr>
+	<tr><td>0.4652093</td><td>0.9274343</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="diagnal-covariance-matrix">
+<h3>Diagnal covariance matrix<a class="headerlink" href="#diagnal-covariance-matrix" title="Permalink to this headline">#</a></h3>
+<p>In this case, the coordinate random variables <span class="math notranslate nohighlight">\(X_1,...X_p\)</span> are independently distributed with a normal distribution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sigma</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="o">=</span> <span class="m">0</span>
+<span class="n">sigma</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="m">4</span>
+
+<span class="n">bvn1</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">bvn2</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">7</span><span class="p">,</span><span class="m">8</span><span class="p">),</span> <span class="n">sigma</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Y&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">bvn2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab3_11_0.png" src="_images/lab3_11_0.png" />
+</div>
+</div>
+</section>
+<section id="independent-random-variables-with-a-common-variance">
+<h3>Independent random variables with a common variance<a class="headerlink" href="#independent-random-variables-with-a-common-variance" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sigma</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sigma</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="o">=</span> <span class="m">0</span>
+
+<span class="n">bvn1</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="n">sigma</span><span class="p">)</span>
+<span class="n">bvn2</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">7</span><span class="p">,</span><span class="m">8</span><span class="p">),</span> <span class="n">sigma</span><span class="p">)</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">12</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;X&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;Y&quot;</span><span class="p">)</span>
+<span class="nf">points</span><span class="p">(</span><span class="n">bvn2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab3_13_0.png" src="_images/lab3_13_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="estimation-of-missing-values">
+<h2>Estimation of Missing Values<a class="headerlink" href="#estimation-of-missing-values" title="Permalink to this headline">#</a></h2>
+<p>Values of certain variables may be missing in data. For example, the first 10 values of the first column of bvn1 are missing</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bvn1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">NA</span>
+<span class="n">bvn1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 100 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>       NA</td><td>5.024504</td></tr>
+	<tr><td>       NA</td><td>4.578649</td></tr>
+	<tr><td>       NA</td><td>4.769220</td></tr>
+	<tr><td>       NA</td><td>2.422622</td></tr>
+	<tr><td>       NA</td><td>3.375092</td></tr>
+	<tr><td>       NA</td><td>4.323497</td></tr>
+	<tr><td>       NA</td><td>3.542277</td></tr>
+	<tr><td>       NA</td><td>2.996729</td></tr>
+	<tr><td>       NA</td><td>4.269878</td></tr>
+	<tr><td>       NA</td><td>6.437111</td></tr>
+	<tr><td>2.1076129</td><td>3.441330</td></tr>
+	<tr><td>3.4508052</td><td>3.603447</td></tr>
+	<tr><td>3.2548340</td><td>3.514021</td></tr>
+	<tr><td>2.6561778</td><td>2.802738</td></tr>
+	<tr><td>3.9806484</td><td>3.535134</td></tr>
+	<tr><td>4.7112332</td><td>3.823459</td></tr>
+	<tr><td>1.9254321</td><td>3.320495</td></tr>
+	<tr><td>2.8445279</td><td>3.847161</td></tr>
+	<tr><td>3.5409488</td><td>3.713421</td></tr>
+	<tr><td>3.7795430</td><td>2.769170</td></tr>
+	<tr><td>3.0201695</td><td>4.781387</td></tr>
+	<tr><td>2.8423008</td><td>3.348663</td></tr>
+	<tr><td>2.6665404</td><td>4.456042</td></tr>
+	<tr><td>4.4478959</td><td>3.651249</td></tr>
+	<tr><td>3.0527210</td><td>4.232738</td></tr>
+	<tr><td>4.4392995</td><td>5.119628</td></tr>
+	<tr><td>3.6256871</td><td>4.834122</td></tr>
+	<tr><td>0.9315342</td><td>4.425242</td></tr>
+	<tr><td>3.5009491</td><td>3.736928</td></tr>
+	<tr><td>1.4454925</td><td>1.214729</td></tr>
+	<tr><td>⋮</td><td>⋮</td></tr>
+	<tr><td>3.212363</td><td>4.384727</td></tr>
+	<tr><td>2.539181</td><td>4.653402</td></tr>
+	<tr><td>3.633194</td><td>4.912972</td></tr>
+	<tr><td>3.926088</td><td>3.611286</td></tr>
+	<tr><td>4.153831</td><td>5.288419</td></tr>
+	<tr><td>2.662910</td><td>3.985773</td></tr>
+	<tr><td>2.437599</td><td>2.495853</td></tr>
+	<tr><td>3.188677</td><td>4.458447</td></tr>
+	<tr><td>2.786960</td><td>5.435171</td></tr>
+	<tr><td>2.948143</td><td>4.790579</td></tr>
+	<tr><td>3.023585</td><td>5.117055</td></tr>
+	<tr><td>3.180743</td><td>5.121938</td></tr>
+	<tr><td>3.083989</td><td>5.247145</td></tr>
+	<tr><td>2.727565</td><td>4.040894</td></tr>
+	<tr><td>2.630180</td><td>5.370423</td></tr>
+	<tr><td>2.429020</td><td>5.594441</td></tr>
+	<tr><td>1.820222</td><td>4.410211</td></tr>
+	<tr><td>3.954594</td><td>4.009958</td></tr>
+	<tr><td>3.487521</td><td>4.193685</td></tr>
+	<tr><td>3.856844</td><td>3.294128</td></tr>
+	<tr><td>3.008010</td><td>4.573104</td></tr>
+	<tr><td>1.950706</td><td>3.301044</td></tr>
+	<tr><td>2.687744</td><td>4.315563</td></tr>
+	<tr><td>2.414676</td><td>2.829747</td></tr>
+	<tr><td>3.311005</td><td>2.793014</td></tr>
+	<tr><td>2.658336</td><td>3.866366</td></tr>
+	<tr><td>5.418663</td><td>4.307859</td></tr>
+	<tr><td>4.088112</td><td>4.868757</td></tr>
+	<tr><td>2.906015</td><td>5.143279</td></tr>
+	<tr><td>2.921844</td><td>3.567095</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>We fill in the missing entries by estimating them, i.e., imputation. In the main imputation, missing values are replaced by the average of the available data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bvn1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">bvn1</span><span class="p">[,</span><span class="m">1</span><span class="p">],</span><span class="n">na.rm</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">bvn1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li><li>3.04154813346952</li></ol>
+</div></div>
+</div>
+<p>In imputation by regression, missing values are predicted by linear regression</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">bvn1</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">),]</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">x</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">~</span><span class="n">x</span><span class="p">[,</span><span class="m">2</span><span class="p">])</span>
+<span class="n">bvn1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,]</span> <span class="o">=</span> <span class="n">reg</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">+</span><span class="n">bvn1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="n">reg</span><span class="o">$</span><span class="n">coef</span><span class="p">[</span><span class="m">2</span><span class="p">]</span>
+<span class="n">bvn1</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>3.13962642891326</li><li>3.09403397265831</li><li>3.11352147997647</li><li>2.87356148069449</li><li>2.97095976138874</li><li>3.06794245505737</li><li>2.98805588265146</li><li>2.93226893913637</li><li>3.06245944094564</li><li>3.28407782333319</li></ol>
+</div></div>
+</div>
+</section>
+<section id="multivariate-classification">
+<h2>Multivariate Classification<a class="headerlink" href="#multivariate-classification" title="Permalink to this headline">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\{C_i: i=1,...,k\}\)</span> be the <span class="math notranslate nohighlight">\(k\)</span> classes. The points in the class <span class="math notranslate nohighlight">\(C_i\)</span> follow the multivariate normal distribution with mean vector <span class="math notranslate nohighlight">\(\mu_i\)</span> and covariance matrix <span class="math notranslate nohighlight">\(\Sigma_i\)</span>.</p>
+<p>Given the training data <span class="math notranslate nohighlight">\(X_i\)</span> in class <span class="math notranslate nohighlight">\(C_i\)</span>, the mean vector and covariance matrix can be estimated by the sample average <span class="math notranslate nohighlight">\(\bar{X}_i\)</span> and sample covariance matrix <span class="math notranslate nohighlight">\(S_i\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sigma1</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sigma1</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma1</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span><span class="o">=</span><span class="m">0.5</span>
+<span class="n">bvn1</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">),</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">sigma1</span><span class="p">)</span>
+
+<span class="n">sigma2</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sigma2</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">sigma2</span><span class="p">[</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="m">0.5</span>
+<span class="n">bvn2</span> <span class="o">=</span> <span class="nf">mvrnorm</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">7</span><span class="p">,</span><span class="m">8</span><span class="p">),</span> <span class="n">Sigma</span><span class="o">=</span><span class="n">sigma2</span><span class="p">)</span>
+
+<span class="n">bvn1_average</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+<span class="n">bvn2_average</span> <span class="o">=</span> <span class="nf">apply</span><span class="p">(</span><span class="n">bvn2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">mean</span><span class="p">)</span>
+
+<span class="n">bvn1_cov</span> <span class="o">=</span> <span class="nf">cov</span><span class="p">(</span><span class="n">bvn1</span><span class="p">)</span>
+<span class="n">bvn2_cov</span> <span class="o">=</span> <span class="nf">cov</span><span class="p">(</span><span class="n">bvn2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(P(C_i): i=1,...k\)</span> be the prior probabilities of the k classes. Given the training data <span class="math notranslate nohighlight">\(X\)</span>, the probablity <span class="math notranslate nohighlight">\(P(C_i)\)</span> can be estimated by the proportion of points in the class <span class="math notranslate nohighlight">\(C_i\)</span></p>
+<p>The Bayes classifier is given by the posterior probability <span class="math notranslate nohighlight">\(g_i(x) = logf(x|C_i) + log(C_i)\)</span>. We substitute the mean vector, covariance matrix, and prior probabilties with their estimates. The posterior probability of the class <span class="math notranslate nohighlight">\(C_i\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[g_i(x) = -\frac{1}{2}(x-\bar{X}_i)^TS_i^{-1}(x-\bar{X}_i)+\hat{P}(C_i)\]</div>
+<p>The Bayes classification is that <span class="math notranslate nohighlight">\(x\in C_i\)</span> if <span class="math notranslate nohighlight">\(g_i(x) &gt; g_j(x)\)</span> for <span class="math notranslate nohighlight">\(i,j = 1,...,k\)</span> and <span class="math notranslate nohighlight">\(j\ne i\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="n">bvn2</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="m">-0.5</span><span class="o">*</span><span class="nf">diag</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">bvn1_average</span><span class="p">)</span><span class="o">%*%</span><span class="nf">solve</span><span class="p">(</span><span class="n">bvn1_cov</span><span class="p">)</span><span class="o">%*%</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">bvn1_average</span><span class="p">))</span><span class="m">+0.5</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="m">-0.5</span><span class="o">*</span><span class="nf">diag</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">bvn2_average</span><span class="p">)</span><span class="o">%*%</span><span class="nf">solve</span><span class="p">(</span><span class="n">bvn2_cov</span><span class="p">)</span><span class="o">%*%</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">bvn2_average</span><span class="p">))</span><span class="m">+0.5</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;first class&quot;</span><span class="p">)</span>
+<span class="nf">which</span><span class="p">(</span><span class="n">g1</span><span class="o">&gt;</span><span class="n">g2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;second class&quot;</span><span class="p">)</span>
+<span class="nf">which</span><span class="p">(</span><span class="n">g1</span><span class="o">&lt;</span><span class="n">g2</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;two misclassified points&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">g1</span><span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">200</span><span class="p">]</span><span class="o">&gt;</span><span class="n">g2</span><span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">200</span><span class="p">]),]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;first class&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li><li>56</li><li>57</li><li>58</li><li>59</li><li>60</li><li>61</li><li>62</li><li>63</li><li>64</li><li>65</li><li>66</li><li>67</li><li>68</li><li>69</li><li>70</li><li>71</li><li>72</li><li>73</li><li>74</li><li>75</li><li>76</li><li>77</li><li>78</li><li>79</li><li>80</li><li>81</li><li>82</li><li>83</li><li>84</li><li>85</li><li>86</li><li>87</li><li>88</li><li>90</li><li>91</li><li>92</li><li>93</li><li>94</li><li>95</li><li>96</li><li>97</li><li>98</li><li>99</li><li>100</li><li>108</li><li>110</li><li>146</li><li>148</li><li>156</li><li>164</li><li>170</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;second class&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1</li><li>43</li><li>89</li><li>101</li><li>102</li><li>103</li><li>104</li><li>105</li><li>106</li><li>107</li><li>109</li><li>111</li><li>112</li><li>113</li><li>114</li><li>115</li><li>116</li><li>117</li><li>118</li><li>119</li><li>120</li><li>121</li><li>122</li><li>123</li><li>124</li><li>125</li><li>126</li><li>127</li><li>128</li><li>129</li><li>130</li><li>131</li><li>132</li><li>133</li><li>134</li><li>135</li><li>136</li><li>137</li><li>138</li><li>139</li><li>140</li><li>141</li><li>142</li><li>143</li><li>144</li><li>145</li><li>147</li><li>149</li><li>150</li><li>151</li><li>152</li><li>153</li><li>154</li><li>155</li><li>157</li><li>158</li><li>159</li><li>160</li><li>161</li><li>162</li><li>163</li><li>165</li><li>166</li><li>167</li><li>168</li><li>169</li><li>171</li><li>172</li><li>173</li><li>174</li><li>175</li><li>176</li><li>177</li><li>178</li><li>179</li><li>180</li><li>181</li><li>182</li><li>183</li><li>184</li><li>185</li><li>186</li><li>187</li><li>188</li><li>189</li><li>190</li><li>191</li><li>192</li><li>193</li><li>194</li><li>195</li><li>196</li><li>197</li><li>198</li><li>199</li><li>200</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;two misclassified points&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 7 × 2 of type dbl</caption>
+<tbody>
+	<tr><td>2.482592</td><td>7.107218</td></tr>
+	<tr><td>2.410720</td><td>3.335874</td></tr>
+	<tr><td>3.649219</td><td>4.939120</td></tr>
+	<tr><td>2.526924</td><td>2.886185</td></tr>
+	<tr><td>1.739628</td><td>4.929293</td></tr>
+	<tr><td>2.543182</td><td>5.286411</td></tr>
+	<tr><td>2.805832</td><td>4.915668</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="two-classes-have-a-common-covariance-matrix">
+<h3>Two classes have a common covariance matrix<a class="headerlink" href="#two-classes-have-a-common-covariance-matrix" title="Permalink to this headline">#</a></h3>
+<p>If two classes have a common covariance matrix <span class="math notranslate nohighlight">\(S\)</span>, the posterior probability of the class <span class="math notranslate nohighlight">\(C_i\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[g_i(x) = -\frac{1}{2}(x-\bar{X}_i)^TS^{-1}(x-\bar{X}_i)+\hat{P}(C_i)\]</div>
+<p>When <span class="math notranslate nohighlight">\(g_i(x)\)</span> is compared with <span class="math notranslate nohighlight">\(g_j(x)\)</span>, the quadratic term <span class="math notranslate nohighlight">\(x^TS^{-1}x\)</span> cancels because it is common in all posterior probabilities of classes. Thus, it becomes a linear discriminant</p>
+<div class="math notranslate nohighlight">
+\[g_i(x) = \bar{X}_i^TS^{-1}x -\frac{1}{2}\bar{X}_i^TS^{-1}\bar{X}_i + \hat{P}(C_i)\]</div>
+<p>The Bayes classification is that <span class="math notranslate nohighlight">\(x\in C_i\)</span> if <span class="math notranslate nohighlight">\(g_i(x) &gt; g_j(x)\)</span> for <span class="math notranslate nohighlight">\(i,j = 1,...,k\)</span> and <span class="math notranslate nohighlight">\(j\ne i\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pooldata</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">bvn1</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">bvn1</span><span class="p">),</span><span class="n">bvn2</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">bvn2</span><span class="p">))</span>
+<span class="n">bvn1_cov</span> <span class="o">=</span> <span class="n">bvn2_cov</span> <span class="o">=</span> <span class="nf">cov</span><span class="p">(</span><span class="n">pooldata</span><span class="p">)</span>
+
+<span class="n">m1</span> <span class="o">=</span> <span class="m">0.5</span><span class="o">*</span><span class="n">bvn1_average</span><span class="o">%*%</span><span class="nf">solve</span><span class="p">(</span><span class="n">bvn1_cov</span><span class="p">)</span><span class="o">%*%</span><span class="n">bvn1_average</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="m">0.5</span><span class="o">*</span><span class="n">bvn2_average</span><span class="o">%*%</span><span class="nf">solve</span><span class="p">(</span><span class="n">bvn1_cov</span><span class="p">)</span><span class="o">%*%</span><span class="n">bvn2_average</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">bvn1</span><span class="p">,</span><span class="n">bvn2</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">bvn1_average</span><span class="o">%*%</span><span class="nf">solve</span><span class="p">(</span><span class="n">bvn1_cov</span><span class="p">)</span><span class="o">%*%</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="nf">c</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m1</span><span class="p">)</span> <span class="o">+</span> <span class="m">0.5</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">bvn2_average</span><span class="o">%*%</span><span class="nf">solve</span><span class="p">(</span><span class="n">bvn2_cov</span><span class="p">)</span><span class="o">%*%</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="nf">c</span><span class="p">(</span><span class="n">m2</span><span class="p">,</span><span class="n">m2</span><span class="p">)</span> <span class="o">+</span> <span class="m">0.5</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;first class&quot;</span><span class="p">)</span>
+<span class="nf">which</span><span class="p">(</span><span class="n">g1</span><span class="o">&gt;</span><span class="n">g2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;second class&quot;</span><span class="p">)</span>
+<span class="nf">which</span><span class="p">(</span><span class="n">g1</span><span class="o">&lt;</span><span class="n">g2</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;two misclassified points&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="nf">which</span><span class="p">(</span><span class="n">g1</span><span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">200</span><span class="p">]</span><span class="o">&gt;</span><span class="n">g2</span><span class="p">[</span><span class="m">101</span><span class="o">:</span><span class="m">200</span><span class="p">]),]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;first class&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li><li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>25</li><li>26</li><li>27</li><li>28</li><li>29</li><li>30</li><li>31</li><li>32</li><li>33</li><li>34</li><li>35</li><li>36</li><li>37</li><li>38</li><li>39</li><li>40</li><li>41</li><li>42</li><li>43</li><li>44</li><li>45</li><li>46</li><li>47</li><li>48</li><li>49</li><li>50</li><li>51</li><li>52</li><li>53</li><li>54</li><li>55</li><li>56</li><li>57</li><li>58</li><li>59</li><li>60</li><li>61</li><li>62</li><li>63</li><li>64</li><li>65</li><li>66</li><li>67</li><li>68</li><li>69</li><li>70</li><li>71</li><li>72</li><li>73</li><li>74</li><li>75</li><li>76</li><li>77</li><li>78</li><li>79</li><li>80</li><li>81</li><li>82</li><li>83</li><li>84</li><li>85</li><li>86</li><li>87</li><li>88</li><li>89</li><li>90</li><li>91</li><li>92</li><li>93</li><li>94</li><li>95</li><li>96</li><li>97</li><li>98</li><li>99</li><li>100</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;second class&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>24</li><li>101</li><li>102</li><li>103</li><li>104</li><li>105</li><li>106</li><li>107</li><li>108</li><li>109</li><li>110</li><li>111</li><li>112</li><li>113</li><li>114</li><li>115</li><li>116</li><li>117</li><li>118</li><li>119</li><li>120</li><li>121</li><li>122</li><li>123</li><li>124</li><li>125</li><li>126</li><li>127</li><li>128</li><li>129</li><li>130</li><li>131</li><li>132</li><li>133</li><li>134</li><li>135</li><li>136</li><li>137</li><li>138</li><li>139</li><li>140</li><li>141</li><li>142</li><li>143</li><li>144</li><li>145</li><li>146</li><li>147</li><li>148</li><li>149</li><li>150</li><li>151</li><li>152</li><li>153</li><li>154</li><li>155</li><li>156</li><li>157</li><li>158</li><li>159</li><li>160</li><li>161</li><li>162</li><li>163</li><li>164</li><li>165</li><li>166</li><li>167</li><li>168</li><li>169</li><li>170</li><li>171</li><li>172</li><li>173</li><li>174</li><li>175</li><li>176</li><li>177</li><li>178</li><li>179</li><li>180</li><li>181</li><li>182</li><li>183</li><li>184</li><li>185</li><li>186</li><li>187</li><li>188</li><li>189</li><li>190</li><li>191</li><li>192</li><li>193</li><li>194</li><li>195</li><li>196</li><li>197</li><li>198</li><li>199</li><li>200</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;two misclassified points&quot;
+</pre></div>
+</div>
+<div class="output text_html"></div></div>
+</div>
+</section>
+<section id="regularized-discriminant-analysis">
+<h3>Regularized discriminant analysis<a class="headerlink" href="#regularized-discriminant-analysis" title="Permalink to this headline">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(S_i\)</span> be the sample covaraince matrix for class <span class="math notranslate nohighlight">\(i\)</span> and let <span class="math notranslate nohighlight">\(S\)</span> be the covariance matrix of the pool data. The covariance matrix is written as a weighted average of the three special cases</p>
+<div class="math notranslate nohighlight">
+\[w(\lambda) = \lambda S + (1-\lambda) S_i\]</div>
+<div class="math notranslate nohighlight">
+\[v(\lambda,\gamma) = (1-\gamma)w(\lambda) + \gamma\frac{1}{p}tr(w(\lambda))I\]</div>
+<p>When <span class="math notranslate nohighlight">\(\lambda=\gamma=0\)</span>, it is a quadratic classifier.</p>
+<p>When <span class="math notranslate nohighlight">\(\lambda=1\)</span> and <span class="math notranslate nohighlight">\(\gamma=0\)</span>, it is a linear classifier.</p>
+<p>When <span class="math notranslate nohighlight">\(\lambda=0\)</span> and <span class="math notranslate nohighlight">\(\gamma=1\)</span>, the covariance matrices are diagonal with <span class="math notranslate nohighlight">\(\sigma^2\)</span> and it is the nearest mean classifier.</p>
+<p>When <span class="math notranslate nohighlight">\(\lambda=1\)</span> and <span class="math notranslate nohighlight">\(\gamma=1\)</span>, the covariance matrices are diagonal with the same variance.</p>
+<p>The choice of <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> can be optimized by cross-validation</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">mlbench</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">caret</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">glmnet</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">klaR</span><span class="p">)</span>
+
+<span class="nf">data</span><span class="p">(</span><span class="n">Sonar</span><span class="p">)</span>
+<span class="n">Sonar</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: ggplot2
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: lattice
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Matrix
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded glmnet 4.1-6
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 208 × 61</caption>
+<thead>
+	<tr><th></th><th scope=col>V1</th><th scope=col>V2</th><th scope=col>V3</th><th scope=col>V4</th><th scope=col>V5</th><th scope=col>V6</th><th scope=col>V7</th><th scope=col>V8</th><th scope=col>V9</th><th scope=col>V10</th><th scope=col>⋯</th><th scope=col>V52</th><th scope=col>V53</th><th scope=col>V54</th><th scope=col>V55</th><th scope=col>V56</th><th scope=col>V57</th><th scope=col>V58</th><th scope=col>V59</th><th scope=col>V60</th><th scope=col>Class</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>⋯</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>1</th><td>0.0200</td><td>0.0371</td><td>0.0428</td><td>0.0207</td><td>0.0954</td><td>0.0986</td><td>0.1539</td><td>0.1601</td><td>0.3109</td><td>0.2111</td><td>⋯</td><td>0.0027</td><td>0.0065</td><td>0.0159</td><td>0.0072</td><td>0.0167</td><td>0.0180</td><td>0.0084</td><td>0.0090</td><td>0.0032</td><td>R</td></tr>
+	<tr><th scope=row>2</th><td>0.0453</td><td>0.0523</td><td>0.0843</td><td>0.0689</td><td>0.1183</td><td>0.2583</td><td>0.2156</td><td>0.3481</td><td>0.3337</td><td>0.2872</td><td>⋯</td><td>0.0084</td><td>0.0089</td><td>0.0048</td><td>0.0094</td><td>0.0191</td><td>0.0140</td><td>0.0049</td><td>0.0052</td><td>0.0044</td><td>R</td></tr>
+	<tr><th scope=row>3</th><td>0.0262</td><td>0.0582</td><td>0.1099</td><td>0.1083</td><td>0.0974</td><td>0.2280</td><td>0.2431</td><td>0.3771</td><td>0.5598</td><td>0.6194</td><td>⋯</td><td>0.0232</td><td>0.0166</td><td>0.0095</td><td>0.0180</td><td>0.0244</td><td>0.0316</td><td>0.0164</td><td>0.0095</td><td>0.0078</td><td>R</td></tr>
+	<tr><th scope=row>4</th><td>0.0100</td><td>0.0171</td><td>0.0623</td><td>0.0205</td><td>0.0205</td><td>0.0368</td><td>0.1098</td><td>0.1276</td><td>0.0598</td><td>0.1264</td><td>⋯</td><td>0.0121</td><td>0.0036</td><td>0.0150</td><td>0.0085</td><td>0.0073</td><td>0.0050</td><td>0.0044</td><td>0.0040</td><td>0.0117</td><td>R</td></tr>
+	<tr><th scope=row>5</th><td>0.0762</td><td>0.0666</td><td>0.0481</td><td>0.0394</td><td>0.0590</td><td>0.0649</td><td>0.1209</td><td>0.2467</td><td>0.3564</td><td>0.4459</td><td>⋯</td><td>0.0031</td><td>0.0054</td><td>0.0105</td><td>0.0110</td><td>0.0015</td><td>0.0072</td><td>0.0048</td><td>0.0107</td><td>0.0094</td><td>R</td></tr>
+	<tr><th scope=row>6</th><td>0.0286</td><td>0.0453</td><td>0.0277</td><td>0.0174</td><td>0.0384</td><td>0.0990</td><td>0.1201</td><td>0.1833</td><td>0.2105</td><td>0.3039</td><td>⋯</td><td>0.0045</td><td>0.0014</td><td>0.0038</td><td>0.0013</td><td>0.0089</td><td>0.0057</td><td>0.0027</td><td>0.0051</td><td>0.0062</td><td>R</td></tr>
+	<tr><th scope=row>7</th><td>0.0317</td><td>0.0956</td><td>0.1321</td><td>0.1408</td><td>0.1674</td><td>0.1710</td><td>0.0731</td><td>0.1401</td><td>0.2083</td><td>0.3513</td><td>⋯</td><td>0.0201</td><td>0.0248</td><td>0.0131</td><td>0.0070</td><td>0.0138</td><td>0.0092</td><td>0.0143</td><td>0.0036</td><td>0.0103</td><td>R</td></tr>
+	<tr><th scope=row>8</th><td>0.0519</td><td>0.0548</td><td>0.0842</td><td>0.0319</td><td>0.1158</td><td>0.0922</td><td>0.1027</td><td>0.0613</td><td>0.1465</td><td>0.2838</td><td>⋯</td><td>0.0081</td><td>0.0120</td><td>0.0045</td><td>0.0121</td><td>0.0097</td><td>0.0085</td><td>0.0047</td><td>0.0048</td><td>0.0053</td><td>R</td></tr>
+	<tr><th scope=row>9</th><td>0.0223</td><td>0.0375</td><td>0.0484</td><td>0.0475</td><td>0.0647</td><td>0.0591</td><td>0.0753</td><td>0.0098</td><td>0.0684</td><td>0.1487</td><td>⋯</td><td>0.0145</td><td>0.0128</td><td>0.0145</td><td>0.0058</td><td>0.0049</td><td>0.0065</td><td>0.0093</td><td>0.0059</td><td>0.0022</td><td>R</td></tr>
+	<tr><th scope=row>10</th><td>0.0164</td><td>0.0173</td><td>0.0347</td><td>0.0070</td><td>0.0187</td><td>0.0671</td><td>0.1056</td><td>0.0697</td><td>0.0962</td><td>0.0251</td><td>⋯</td><td>0.0090</td><td>0.0223</td><td>0.0179</td><td>0.0084</td><td>0.0068</td><td>0.0032</td><td>0.0035</td><td>0.0056</td><td>0.0040</td><td>R</td></tr>
+	<tr><th scope=row>11</th><td>0.0039</td><td>0.0063</td><td>0.0152</td><td>0.0336</td><td>0.0310</td><td>0.0284</td><td>0.0396</td><td>0.0272</td><td>0.0323</td><td>0.0452</td><td>⋯</td><td>0.0062</td><td>0.0120</td><td>0.0052</td><td>0.0056</td><td>0.0093</td><td>0.0042</td><td>0.0003</td><td>0.0053</td><td>0.0036</td><td>R</td></tr>
+	<tr><th scope=row>12</th><td>0.0123</td><td>0.0309</td><td>0.0169</td><td>0.0313</td><td>0.0358</td><td>0.0102</td><td>0.0182</td><td>0.0579</td><td>0.1122</td><td>0.0835</td><td>⋯</td><td>0.0133</td><td>0.0265</td><td>0.0224</td><td>0.0074</td><td>0.0118</td><td>0.0026</td><td>0.0092</td><td>0.0009</td><td>0.0044</td><td>R</td></tr>
+	<tr><th scope=row>13</th><td>0.0079</td><td>0.0086</td><td>0.0055</td><td>0.0250</td><td>0.0344</td><td>0.0546</td><td>0.0528</td><td>0.0958</td><td>0.1009</td><td>0.1240</td><td>⋯</td><td>0.0176</td><td>0.0127</td><td>0.0088</td><td>0.0098</td><td>0.0019</td><td>0.0059</td><td>0.0058</td><td>0.0059</td><td>0.0032</td><td>R</td></tr>
+	<tr><th scope=row>14</th><td>0.0090</td><td>0.0062</td><td>0.0253</td><td>0.0489</td><td>0.1197</td><td>0.1589</td><td>0.1392</td><td>0.0987</td><td>0.0955</td><td>0.1895</td><td>⋯</td><td>0.0059</td><td>0.0095</td><td>0.0194</td><td>0.0080</td><td>0.0152</td><td>0.0158</td><td>0.0053</td><td>0.0189</td><td>0.0102</td><td>R</td></tr>
+	<tr><th scope=row>15</th><td>0.0124</td><td>0.0433</td><td>0.0604</td><td>0.0449</td><td>0.0597</td><td>0.0355</td><td>0.0531</td><td>0.0343</td><td>0.1052</td><td>0.2120</td><td>⋯</td><td>0.0083</td><td>0.0057</td><td>0.0174</td><td>0.0188</td><td>0.0054</td><td>0.0114</td><td>0.0196</td><td>0.0147</td><td>0.0062</td><td>R</td></tr>
+	<tr><th scope=row>16</th><td>0.0298</td><td>0.0615</td><td>0.0650</td><td>0.0921</td><td>0.1615</td><td>0.2294</td><td>0.2176</td><td>0.2033</td><td>0.1459</td><td>0.0852</td><td>⋯</td><td>0.0031</td><td>0.0153</td><td>0.0071</td><td>0.0212</td><td>0.0076</td><td>0.0152</td><td>0.0049</td><td>0.0200</td><td>0.0073</td><td>R</td></tr>
+	<tr><th scope=row>17</th><td>0.0352</td><td>0.0116</td><td>0.0191</td><td>0.0469</td><td>0.0737</td><td>0.1185</td><td>0.1683</td><td>0.1541</td><td>0.1466</td><td>0.2912</td><td>⋯</td><td>0.0346</td><td>0.0158</td><td>0.0154</td><td>0.0109</td><td>0.0048</td><td>0.0095</td><td>0.0015</td><td>0.0073</td><td>0.0067</td><td>R</td></tr>
+	<tr><th scope=row>18</th><td>0.0192</td><td>0.0607</td><td>0.0378</td><td>0.0774</td><td>0.1388</td><td>0.0809</td><td>0.0568</td><td>0.0219</td><td>0.1037</td><td>0.1186</td><td>⋯</td><td>0.0331</td><td>0.0131</td><td>0.0120</td><td>0.0108</td><td>0.0024</td><td>0.0045</td><td>0.0037</td><td>0.0112</td><td>0.0075</td><td>R</td></tr>
+	<tr><th scope=row>19</th><td>0.0270</td><td>0.0092</td><td>0.0145</td><td>0.0278</td><td>0.0412</td><td>0.0757</td><td>0.1026</td><td>0.1138</td><td>0.0794</td><td>0.1520</td><td>⋯</td><td>0.0084</td><td>0.0010</td><td>0.0018</td><td>0.0068</td><td>0.0039</td><td>0.0120</td><td>0.0132</td><td>0.0070</td><td>0.0088</td><td>R</td></tr>
+	<tr><th scope=row>20</th><td>0.0126</td><td>0.0149</td><td>0.0641</td><td>0.1732</td><td>0.2565</td><td>0.2559</td><td>0.2947</td><td>0.4110</td><td>0.4983</td><td>0.5920</td><td>⋯</td><td>0.0092</td><td>0.0035</td><td>0.0098</td><td>0.0121</td><td>0.0006</td><td>0.0181</td><td>0.0094</td><td>0.0116</td><td>0.0063</td><td>R</td></tr>
+	<tr><th scope=row>21</th><td>0.0473</td><td>0.0509</td><td>0.0819</td><td>0.1252</td><td>0.1783</td><td>0.3070</td><td>0.3008</td><td>0.2362</td><td>0.3830</td><td>0.3759</td><td>⋯</td><td>0.0193</td><td>0.0118</td><td>0.0064</td><td>0.0042</td><td>0.0054</td><td>0.0049</td><td>0.0082</td><td>0.0028</td><td>0.0027</td><td>R</td></tr>
+	<tr><th scope=row>22</th><td>0.0664</td><td>0.0575</td><td>0.0842</td><td>0.0372</td><td>0.0458</td><td>0.0771</td><td>0.0771</td><td>0.1130</td><td>0.2353</td><td>0.1838</td><td>⋯</td><td>0.0141</td><td>0.0190</td><td>0.0043</td><td>0.0036</td><td>0.0026</td><td>0.0024</td><td>0.0162</td><td>0.0109</td><td>0.0079</td><td>R</td></tr>
+	<tr><th scope=row>23</th><td>0.0099</td><td>0.0484</td><td>0.0299</td><td>0.0297</td><td>0.0652</td><td>0.1077</td><td>0.2363</td><td>0.2385</td><td>0.0075</td><td>0.1882</td><td>⋯</td><td>0.0173</td><td>0.0149</td><td>0.0115</td><td>0.0202</td><td>0.0139</td><td>0.0029</td><td>0.0160</td><td>0.0106</td><td>0.0134</td><td>R</td></tr>
+	<tr><th scope=row>24</th><td>0.0115</td><td>0.0150</td><td>0.0136</td><td>0.0076</td><td>0.0211</td><td>0.1058</td><td>0.1023</td><td>0.0440</td><td>0.0931</td><td>0.0734</td><td>⋯</td><td>0.0091</td><td>0.0016</td><td>0.0084</td><td>0.0064</td><td>0.0026</td><td>0.0029</td><td>0.0037</td><td>0.0070</td><td>0.0041</td><td>R</td></tr>
+	<tr><th scope=row>25</th><td>0.0293</td><td>0.0644</td><td>0.0390</td><td>0.0173</td><td>0.0476</td><td>0.0816</td><td>0.0993</td><td>0.0315</td><td>0.0736</td><td>0.0860</td><td>⋯</td><td>0.0035</td><td>0.0052</td><td>0.0083</td><td>0.0078</td><td>0.0075</td><td>0.0105</td><td>0.0160</td><td>0.0095</td><td>0.0011</td><td>R</td></tr>
+	<tr><th scope=row>26</th><td>0.0201</td><td>0.0026</td><td>0.0138</td><td>0.0062</td><td>0.0133</td><td>0.0151</td><td>0.0541</td><td>0.0210</td><td>0.0505</td><td>0.1097</td><td>⋯</td><td>0.0108</td><td>0.0070</td><td>0.0063</td><td>0.0030</td><td>0.0011</td><td>0.0007</td><td>0.0024</td><td>0.0057</td><td>0.0044</td><td>R</td></tr>
+	<tr><th scope=row>27</th><td>0.0151</td><td>0.0320</td><td>0.0599</td><td>0.1050</td><td>0.1163</td><td>0.1734</td><td>0.1679</td><td>0.1119</td><td>0.0889</td><td>0.1205</td><td>⋯</td><td>0.0061</td><td>0.0015</td><td>0.0084</td><td>0.0128</td><td>0.0054</td><td>0.0011</td><td>0.0019</td><td>0.0023</td><td>0.0062</td><td>R</td></tr>
+	<tr><th scope=row>28</th><td>0.0177</td><td>0.0300</td><td>0.0288</td><td>0.0394</td><td>0.0630</td><td>0.0526</td><td>0.0688</td><td>0.0633</td><td>0.0624</td><td>0.0613</td><td>⋯</td><td>0.0102</td><td>0.0122</td><td>0.0044</td><td>0.0075</td><td>0.0124</td><td>0.0099</td><td>0.0057</td><td>0.0032</td><td>0.0019</td><td>R</td></tr>
+	<tr><th scope=row>29</th><td>0.0100</td><td>0.0275</td><td>0.0190</td><td>0.0371</td><td>0.0416</td><td>0.0201</td><td>0.0314</td><td>0.0651</td><td>0.1896</td><td>0.2668</td><td>⋯</td><td>0.0088</td><td>0.0104</td><td>0.0036</td><td>0.0088</td><td>0.0047</td><td>0.0117</td><td>0.0020</td><td>0.0091</td><td>0.0058</td><td>R</td></tr>
+	<tr><th scope=row>30</th><td>0.0189</td><td>0.0308</td><td>0.0197</td><td>0.0622</td><td>0.0080</td><td>0.0789</td><td>0.1440</td><td>0.1451</td><td>0.1789</td><td>0.2522</td><td>⋯</td><td>0.0038</td><td>0.0096</td><td>0.0142</td><td>0.0190</td><td>0.0140</td><td>0.0099</td><td>0.0092</td><td>0.0052</td><td>0.0075</td><td>R</td></tr>
+	<tr><th scope=row>⋮</th><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋱</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td><td>⋮</td></tr>
+	<tr><th scope=row>179</th><td>0.0197</td><td>0.0394</td><td>0.0384</td><td>0.0076</td><td>0.0251</td><td>0.0629</td><td>0.0747</td><td>0.0578</td><td>0.1357</td><td>0.1695</td><td>⋯</td><td>0.0134</td><td>0.0097</td><td>0.0042</td><td>0.0058</td><td>0.0072</td><td>0.0041</td><td>0.0045</td><td>0.0047</td><td>0.0054</td><td>M</td></tr>
+	<tr><th scope=row>180</th><td>0.0394</td><td>0.0420</td><td>0.0446</td><td>0.0551</td><td>0.0597</td><td>0.1416</td><td>0.0956</td><td>0.0802</td><td>0.1618</td><td>0.2558</td><td>⋯</td><td>0.0146</td><td>0.0040</td><td>0.0114</td><td>0.0032</td><td>0.0062</td><td>0.0101</td><td>0.0068</td><td>0.0053</td><td>0.0087</td><td>M</td></tr>
+	<tr><th scope=row>181</th><td>0.0310</td><td>0.0221</td><td>0.0433</td><td>0.0191</td><td>0.0964</td><td>0.1827</td><td>0.1106</td><td>0.1702</td><td>0.2804</td><td>0.4432</td><td>⋯</td><td>0.0204</td><td>0.0059</td><td>0.0053</td><td>0.0079</td><td>0.0037</td><td>0.0015</td><td>0.0056</td><td>0.0067</td><td>0.0054</td><td>M</td></tr>
+	<tr><th scope=row>182</th><td>0.0423</td><td>0.0321</td><td>0.0709</td><td>0.0108</td><td>0.1070</td><td>0.0973</td><td>0.0961</td><td>0.1323</td><td>0.2462</td><td>0.2696</td><td>⋯</td><td>0.0176</td><td>0.0035</td><td>0.0093</td><td>0.0121</td><td>0.0075</td><td>0.0056</td><td>0.0021</td><td>0.0043</td><td>0.0017</td><td>M</td></tr>
+	<tr><th scope=row>183</th><td>0.0095</td><td>0.0308</td><td>0.0539</td><td>0.0411</td><td>0.0613</td><td>0.1039</td><td>0.1016</td><td>0.1394</td><td>0.2592</td><td>0.3745</td><td>⋯</td><td>0.0181</td><td>0.0019</td><td>0.0102</td><td>0.0133</td><td>0.0040</td><td>0.0042</td><td>0.0030</td><td>0.0031</td><td>0.0033</td><td>M</td></tr>
+	<tr><th scope=row>184</th><td>0.0096</td><td>0.0404</td><td>0.0682</td><td>0.0688</td><td>0.0887</td><td>0.0932</td><td>0.0955</td><td>0.2140</td><td>0.2546</td><td>0.2952</td><td>⋯</td><td>0.0237</td><td>0.0078</td><td>0.0144</td><td>0.0170</td><td>0.0012</td><td>0.0109</td><td>0.0036</td><td>0.0043</td><td>0.0018</td><td>M</td></tr>
+	<tr><th scope=row>185</th><td>0.0269</td><td>0.0383</td><td>0.0505</td><td>0.0707</td><td>0.1313</td><td>0.2103</td><td>0.2263</td><td>0.2524</td><td>0.3595</td><td>0.5915</td><td>⋯</td><td>0.0167</td><td>0.0199</td><td>0.0145</td><td>0.0081</td><td>0.0045</td><td>0.0043</td><td>0.0027</td><td>0.0055</td><td>0.0057</td><td>M</td></tr>
+	<tr><th scope=row>186</th><td>0.0340</td><td>0.0625</td><td>0.0381</td><td>0.0257</td><td>0.0441</td><td>0.1027</td><td>0.1287</td><td>0.1850</td><td>0.2647</td><td>0.4117</td><td>⋯</td><td>0.0141</td><td>0.0019</td><td>0.0067</td><td>0.0099</td><td>0.0042</td><td>0.0057</td><td>0.0051</td><td>0.0033</td><td>0.0058</td><td>M</td></tr>
+	<tr><th scope=row>187</th><td>0.0209</td><td>0.0191</td><td>0.0411</td><td>0.0321</td><td>0.0698</td><td>0.1579</td><td>0.1438</td><td>0.1402</td><td>0.3048</td><td>0.3914</td><td>⋯</td><td>0.0078</td><td>0.0201</td><td>0.0104</td><td>0.0039</td><td>0.0031</td><td>0.0062</td><td>0.0087</td><td>0.0070</td><td>0.0042</td><td>M</td></tr>
+	<tr><th scope=row>188</th><td>0.0368</td><td>0.0279</td><td>0.0103</td><td>0.0566</td><td>0.0759</td><td>0.0679</td><td>0.0970</td><td>0.1473</td><td>0.2164</td><td>0.2544</td><td>⋯</td><td>0.0105</td><td>0.0024</td><td>0.0018</td><td>0.0057</td><td>0.0092</td><td>0.0009</td><td>0.0086</td><td>0.0110</td><td>0.0052</td><td>M</td></tr>
+	<tr><th scope=row>189</th><td>0.0089</td><td>0.0274</td><td>0.0248</td><td>0.0237</td><td>0.0224</td><td>0.0845</td><td>0.1488</td><td>0.1224</td><td>0.1569</td><td>0.2119</td><td>⋯</td><td>0.0096</td><td>0.0103</td><td>0.0093</td><td>0.0025</td><td>0.0044</td><td>0.0021</td><td>0.0069</td><td>0.0060</td><td>0.0018</td><td>M</td></tr>
+	<tr><th scope=row>190</th><td>0.0158</td><td>0.0239</td><td>0.0150</td><td>0.0494</td><td>0.0988</td><td>0.1425</td><td>0.1463</td><td>0.1219</td><td>0.1697</td><td>0.1923</td><td>⋯</td><td>0.0121</td><td>0.0108</td><td>0.0057</td><td>0.0028</td><td>0.0079</td><td>0.0034</td><td>0.0046</td><td>0.0022</td><td>0.0021</td><td>M</td></tr>
+	<tr><th scope=row>191</th><td>0.0156</td><td>0.0210</td><td>0.0282</td><td>0.0596</td><td>0.0462</td><td>0.0779</td><td>0.1365</td><td>0.0780</td><td>0.1038</td><td>0.1567</td><td>⋯</td><td>0.0150</td><td>0.0060</td><td>0.0082</td><td>0.0091</td><td>0.0038</td><td>0.0056</td><td>0.0056</td><td>0.0048</td><td>0.0024</td><td>M</td></tr>
+	<tr><th scope=row>192</th><td>0.0315</td><td>0.0252</td><td>0.0167</td><td>0.0479</td><td>0.0902</td><td>0.1057</td><td>0.1024</td><td>0.1209</td><td>0.1241</td><td>0.1533</td><td>⋯</td><td>0.0108</td><td>0.0062</td><td>0.0044</td><td>0.0072</td><td>0.0007</td><td>0.0054</td><td>0.0035</td><td>0.0001</td><td>0.0055</td><td>M</td></tr>
+	<tr><th scope=row>193</th><td>0.0056</td><td>0.0267</td><td>0.0221</td><td>0.0561</td><td>0.0936</td><td>0.1146</td><td>0.0706</td><td>0.0996</td><td>0.1673</td><td>0.1859</td><td>⋯</td><td>0.0072</td><td>0.0055</td><td>0.0074</td><td>0.0068</td><td>0.0084</td><td>0.0037</td><td>0.0024</td><td>0.0034</td><td>0.0007</td><td>M</td></tr>
+	<tr><th scope=row>194</th><td>0.0203</td><td>0.0121</td><td>0.0380</td><td>0.0128</td><td>0.0537</td><td>0.0874</td><td>0.1021</td><td>0.0852</td><td>0.1136</td><td>0.1747</td><td>⋯</td><td>0.0134</td><td>0.0094</td><td>0.0047</td><td>0.0045</td><td>0.0042</td><td>0.0028</td><td>0.0036</td><td>0.0013</td><td>0.0016</td><td>M</td></tr>
+	<tr><th scope=row>195</th><td>0.0392</td><td>0.0108</td><td>0.0267</td><td>0.0257</td><td>0.0410</td><td>0.0491</td><td>0.1053</td><td>0.1690</td><td>0.2105</td><td>0.2471</td><td>⋯</td><td>0.0083</td><td>0.0080</td><td>0.0026</td><td>0.0079</td><td>0.0042</td><td>0.0071</td><td>0.0044</td><td>0.0022</td><td>0.0014</td><td>M</td></tr>
+	<tr><th scope=row>196</th><td>0.0129</td><td>0.0141</td><td>0.0309</td><td>0.0375</td><td>0.0767</td><td>0.0787</td><td>0.0662</td><td>0.1108</td><td>0.1777</td><td>0.2245</td><td>⋯</td><td>0.0124</td><td>0.0093</td><td>0.0072</td><td>0.0019</td><td>0.0027</td><td>0.0054</td><td>0.0017</td><td>0.0024</td><td>0.0029</td><td>M</td></tr>
+	<tr><th scope=row>197</th><td>0.0050</td><td>0.0017</td><td>0.0270</td><td>0.0450</td><td>0.0958</td><td>0.0830</td><td>0.0879</td><td>0.1220</td><td>0.1977</td><td>0.2282</td><td>⋯</td><td>0.0165</td><td>0.0056</td><td>0.0010</td><td>0.0027</td><td>0.0062</td><td>0.0024</td><td>0.0063</td><td>0.0017</td><td>0.0028</td><td>M</td></tr>
+	<tr><th scope=row>198</th><td>0.0366</td><td>0.0421</td><td>0.0504</td><td>0.0250</td><td>0.0596</td><td>0.0252</td><td>0.0958</td><td>0.0991</td><td>0.1419</td><td>0.1847</td><td>⋯</td><td>0.0132</td><td>0.0027</td><td>0.0022</td><td>0.0059</td><td>0.0016</td><td>0.0025</td><td>0.0017</td><td>0.0027</td><td>0.0027</td><td>M</td></tr>
+	<tr><th scope=row>199</th><td>0.0238</td><td>0.0318</td><td>0.0422</td><td>0.0399</td><td>0.0788</td><td>0.0766</td><td>0.0881</td><td>0.1143</td><td>0.1594</td><td>0.2048</td><td>⋯</td><td>0.0096</td><td>0.0071</td><td>0.0084</td><td>0.0038</td><td>0.0026</td><td>0.0028</td><td>0.0013</td><td>0.0035</td><td>0.0060</td><td>M</td></tr>
+	<tr><th scope=row>200</th><td>0.0116</td><td>0.0744</td><td>0.0367</td><td>0.0225</td><td>0.0076</td><td>0.0545</td><td>0.1110</td><td>0.1069</td><td>0.1708</td><td>0.2271</td><td>⋯</td><td>0.0141</td><td>0.0103</td><td>0.0100</td><td>0.0034</td><td>0.0026</td><td>0.0037</td><td>0.0044</td><td>0.0057</td><td>0.0035</td><td>M</td></tr>
+	<tr><th scope=row>201</th><td>0.0131</td><td>0.0387</td><td>0.0329</td><td>0.0078</td><td>0.0721</td><td>0.1341</td><td>0.1626</td><td>0.1902</td><td>0.2610</td><td>0.3193</td><td>⋯</td><td>0.0150</td><td>0.0076</td><td>0.0032</td><td>0.0037</td><td>0.0071</td><td>0.0040</td><td>0.0009</td><td>0.0015</td><td>0.0085</td><td>M</td></tr>
+	<tr><th scope=row>202</th><td>0.0335</td><td>0.0258</td><td>0.0398</td><td>0.0570</td><td>0.0529</td><td>0.1091</td><td>0.1709</td><td>0.1684</td><td>0.1865</td><td>0.2660</td><td>⋯</td><td>0.0120</td><td>0.0039</td><td>0.0053</td><td>0.0062</td><td>0.0046</td><td>0.0045</td><td>0.0022</td><td>0.0005</td><td>0.0031</td><td>M</td></tr>
+	<tr><th scope=row>203</th><td>0.0272</td><td>0.0378</td><td>0.0488</td><td>0.0848</td><td>0.1127</td><td>0.1103</td><td>0.1349</td><td>0.2337</td><td>0.3113</td><td>0.3997</td><td>⋯</td><td>0.0091</td><td>0.0045</td><td>0.0043</td><td>0.0043</td><td>0.0098</td><td>0.0054</td><td>0.0051</td><td>0.0065</td><td>0.0103</td><td>M</td></tr>
+	<tr><th scope=row>204</th><td>0.0187</td><td>0.0346</td><td>0.0168</td><td>0.0177</td><td>0.0393</td><td>0.1630</td><td>0.2028</td><td>0.1694</td><td>0.2328</td><td>0.2684</td><td>⋯</td><td>0.0116</td><td>0.0098</td><td>0.0199</td><td>0.0033</td><td>0.0101</td><td>0.0065</td><td>0.0115</td><td>0.0193</td><td>0.0157</td><td>M</td></tr>
+	<tr><th scope=row>205</th><td>0.0323</td><td>0.0101</td><td>0.0298</td><td>0.0564</td><td>0.0760</td><td>0.0958</td><td>0.0990</td><td>0.1018</td><td>0.1030</td><td>0.2154</td><td>⋯</td><td>0.0061</td><td>0.0093</td><td>0.0135</td><td>0.0063</td><td>0.0063</td><td>0.0034</td><td>0.0032</td><td>0.0062</td><td>0.0067</td><td>M</td></tr>
+	<tr><th scope=row>206</th><td>0.0522</td><td>0.0437</td><td>0.0180</td><td>0.0292</td><td>0.0351</td><td>0.1171</td><td>0.1257</td><td>0.1178</td><td>0.1258</td><td>0.2529</td><td>⋯</td><td>0.0160</td><td>0.0029</td><td>0.0051</td><td>0.0062</td><td>0.0089</td><td>0.0140</td><td>0.0138</td><td>0.0077</td><td>0.0031</td><td>M</td></tr>
+	<tr><th scope=row>207</th><td>0.0303</td><td>0.0353</td><td>0.0490</td><td>0.0608</td><td>0.0167</td><td>0.1354</td><td>0.1465</td><td>0.1123</td><td>0.1945</td><td>0.2354</td><td>⋯</td><td>0.0086</td><td>0.0046</td><td>0.0126</td><td>0.0036</td><td>0.0035</td><td>0.0034</td><td>0.0079</td><td>0.0036</td><td>0.0048</td><td>M</td></tr>
+	<tr><th scope=row>208</th><td>0.0260</td><td>0.0363</td><td>0.0136</td><td>0.0272</td><td>0.0214</td><td>0.0338</td><td>0.0655</td><td>0.1400</td><td>0.1843</td><td>0.2354</td><td>⋯</td><td>0.0146</td><td>0.0129</td><td>0.0047</td><td>0.0039</td><td>0.0061</td><td>0.0040</td><td>0.0036</td><td>0.0061</td><td>0.0115</td><td>M</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>Regularized Discriminant Analysis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">set.seed</span><span class="p">(</span><span class="m">1337</span><span class="p">)</span>
+<span class="n">cv_5_grid</span> <span class="o">=</span> <span class="nf">trainControl</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s">&quot;cv&quot;</span><span class="p">,</span> <span class="n">number</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+
+<span class="n">fit_rda_grid</span> <span class="o">=</span> <span class="nf">train</span><span class="p">(</span><span class="n">Class</span> <span class="o">~</span> <span class="n">.</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">Sonar</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;rda&quot;</span><span class="p">,</span> <span class="n">trControl</span> <span class="o">=</span> <span class="n">cv_5_grid</span><span class="p">)</span>
+<span class="n">fit_rda_grid</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">fit_rda_grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Regularized Discriminant Analysis 
+
+208 samples
+ 60 predictor
+  2 classes: &#39;M&#39;, &#39;R&#39; 
+
+No pre-processing
+Resampling: Cross-Validated (5 fold) 
+Summary of sample sizes: 167, 166, 166, 167, 166 
+Resampling results across tuning parameters:
+
+  gamma  lambda  Accuracy   Kappa    
+  0.0    0.0     0.6977933  0.3791172
+  0.0    0.5     0.7644599  0.5259800
+  0.0    1.0     0.7310105  0.4577198
+  0.5    0.0     0.7885017  0.5730052
+  0.5    0.5     0.8271777  0.6502693
+  0.5    1.0     0.7988386  0.5939209
+  1.0    0.0     0.6732869  0.3418352
+  1.0    0.5     0.6780488  0.3527778
+  1.0    1.0     0.6825784  0.3631626
+
+Accuracy was used to select the optimal model using the largest value.
+The final values used for the model were gamma = 0.5 and lambda = 0.5.
+</pre></div>
+</div>
+<img alt="_images/lab3_29_1.png" src="_images/lab3_29_1.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lab2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lab 2: Supervised Learning</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lab4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 4: Dimensionality Reduction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
