@@ -1,0 +1,744 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 14: Substitution models &#8212; Statistical Inference in Bioinformatics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 15: Phylogenetic models" href="chap15.html" />
+    <link rel="prev" title="Chapter 13: Markov Chains" href="chap13.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap0.html">
+   Chapter 0: Prerequisites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Probability theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Discrete random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Continuous random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Multiple random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Estimation theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Bayesian analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Markov Chains
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Phylogenetic models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to R
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap14.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap14.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap14.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap14.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transition-probability-matrix">
+   Transition probability matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transition-rate-matrix">
+   Transition rate matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jukes-cantor-model">
+     Jukes-Cantor model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-time-reversible-model">
+   General time reversible model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   Applications
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 14: Substitution models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transition-probability-matrix">
+   Transition probability matrix
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transition-rate-matrix">
+   Transition rate matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jukes-cantor-model">
+     Jukes-Cantor model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-time-reversible-model">
+   General time reversible model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   Applications
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-14-substitution-models">
+<h1>Chapter 14: Substitution models<a class="headerlink" href="#chapter-14-substitution-models" title="Permalink to this headline">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Substitution_model">substitution models</a></p></li>
+</ul>
+</div>
+<p>The substitution model is a continuous time Markov chain describing how a single nucleotide evolves over a continuous time <span class="math notranslate nohighlight">\(t\)</span>. Let <span class="math notranslate nohighlight">\(X_t\)</span> be the nucleotide at time <span class="math notranslate nohighlight">\(t\)</span>. The state space is finite, i.e., <span class="math notranslate nohighlight">\((A,C,G,T)\)</span>. Let <span class="math notranslate nohighlight">\(\pi_t = \left(\pi_t(A),\pi_t(C),\pi_t(G),\pi_t(T)\right)\)</span> be the probability distribution of <span class="math notranslate nohighlight">\(X_t\)</span>.</p>
+<div class="admonition-goal admonition">
+<p class="admonition-title">Goal</p>
+<p>Our goal is to find <span class="math notranslate nohighlight">\(\pi_t\)</span> and the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_\infty\)</span> as time <span class="math notranslate nohighlight">\(t\)</span> goes to infinity.</p>
+</div>
+<section id="transition-probability-matrix">
+<h2>Transition probability matrix<a class="headerlink" href="#transition-probability-matrix" title="Permalink to this headline">#</a></h2>
+<p>The transition probabilities <span class="math notranslate nohighlight">\(P(t)\)</span> for nucleotides is a 4
+by 4 matrix, in which <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span> is the probability that nucleotide <span class="math notranslate nohighlight">\(i\)</span>
+changes to nucleotide <span class="math notranslate nohighlight">\(j\)</span> in time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i,j=A,C,G,T\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P(t) = \begin{pmatrix}
+P_{AA}(t),\ P_{AC}(t),\ P_{AG}(t),P_{AT}(t) \\
+P_{CA}(t),\ P_{CC}(t),\ P_{CG}(t),P_{CT}(t) \\
+P_{GA}(t),\ P_{GC}(t),\ P_{GG}(t),P_{GT}(t) \\
+P_{TA}(t),\ P_{TC}(t),\ P_{TG}(t),P_{TT}(t)\  \\
+\end{pmatrix}\end{split}\]</div>
+<p>Given the transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span>, the probability distribution <span class="math notranslate nohighlight">\(\pi_t\)</span> of
+<span class="math notranslate nohighlight">\(X_{t}\)</span> is equal to the initial probability <span class="math notranslate nohighlight">\(\pi_0\)</span> at time 0 multiplied by the transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_t = \pi_0P(t)
+\]</div>
+<p>The transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span> can be derived from the
+transition rate matrix <span class="math notranslate nohighlight">\(Q\)</span></p>
+<div class="math notranslate nohighlight">
+\[P(t) = e^{Qt}\]</div>
+<p>The limiting probability distribution <span class="math notranslate nohighlight">\(\pi_\infty\)</span> can be found by solving the equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation} 
+\begin{cases}
+\pi_\infty Q = 0 \\ 
+\sum_{j}^{}\pi_{j} = 1
+\end{cases}
+\end{equation}
+\end{split}\]</div>
+</section>
+<section id="transition-rate-matrix">
+<h2>Transition rate matrix<a class="headerlink" href="#transition-rate-matrix" title="Permalink to this headline">#</a></h2>
+<p>The rate matrix <span class="math notranslate nohighlight">\(Q\)</span> describes
+the rate at which nucleotides of one type mutate to nucleotides of
+another type, i.e., <span class="math notranslate nohighlight">\(Q_{ij}\)</span> for <span class="math notranslate nohighlight">\(i \neq j\)</span> is the substitution rate at which
+nucleotide <span class="math notranslate nohighlight">\(i\)</span> mutates to nucleotide <span class="math notranslate nohighlight">\(j\)</span>. The diagonals of the <span class="math notranslate nohighlight">\(Q\)</span> matrix are
+chosen so that the rows sum to zero. Since the diagonal values are determined, they are often replaced by a dash in the <span class="math notranslate nohighlight">\(Q\)</span> matrix.</p>
+<section id="jukes-cantor-model">
+<h3>Jukes-Cantor model<a class="headerlink" href="#jukes-cantor-model" title="Permalink to this headline">#</a></h3>
+<p>The Jukes-Cantor model is the simplest substitution model. It assumes that all nucleotide
+transitions have the same rate <span class="math notranslate nohighlight">\(u\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q = \begin{pmatrix}
+- &amp; u &amp; u &amp; u \\
+u &amp; - &amp; u &amp; u \\
+u &amp; u &amp; - &amp; u \\
+u &amp; u &amp; u &amp; - \\
+\end{pmatrix}\end{split}\]</div>
+<p>For <span class="math notranslate nohighlight">\(i,j = \{ A,C,G,T\}\)</span>, the transition probabilities for the Jukes-Cantor model are given by eq(3),</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{ij}(t) = \left\{ \begin{matrix}
+\frac{1}{4} + \frac{3}{4}e^{- tu},\ for\ i = j \\
+\frac{1}{4} - \frac{1}{4}e^{- tu},\ for\ i \neq j \\
+\end{matrix} \right.\ \end{split}\]</div>
+<p>For the Jukes-Cantor model, the limiting probabilities are
+<span class="math notranslate nohighlight">\(\lim_{t \rightarrow \infty}{P_{ij}(t)} = 1/4\)</span> for all i and j.
+Thus, the limiting probabilities are</p>
+<div class="math notranslate nohighlight">
+\[\pi_{A} = \pi_{C} = \pi_{G} = \pi_{T} = \frac{1}{4}\]</div>
+<p>It can be verified that <span class="math notranslate nohighlight">\(\pi Q = 0\)</span> and <span class="math notranslate nohighlight">\(\sum_{j}^{}\pi_{j} = 1\)</span>.</p>
+</section>
+</section>
+<section id="general-time-reversible-model">
+<h2>General time reversible model<a class="headerlink" href="#general-time-reversible-model" title="Permalink to this headline">#</a></h2>
+<p>The general time reversible (GTR) model assumes that all transitions have distinct rates and the rate matrix <span class="math notranslate nohighlight">\(Q_0\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Q_0 = \begin{pmatrix}
+ - &amp; \alpha &amp; \beta &amp; \gamma \\
+\alpha &amp; - &amp; \phi &amp; \omega \\
+\beta &amp; \phi &amp;  - &amp; \sigma \\
+\gamma &amp; \omega &amp; \sigma &amp; - \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>The transition probability matrix P(t) can be derived from equ(3) and the limiting probabilities can be found by solving the equations in (4). Because the rate matrix <span class="math notranslate nohighlight">\(Q_0\)</span> is symmetric, the limiting probabilities are always equal to <span class="math notranslate nohighlight">\(1/4\)</span>. The <span class="math notranslate nohighlight">\(Q\)</span> matrix must be modified in order to produce arbitrary limiting probabilities.</p>
+<p>It can be shown that the limiting probabilities of the Markov chain with
+the following rate matrix <span class="math notranslate nohighlight">\(Q\)</span> are <span class="math notranslate nohighlight">\(\pi_\infty=\left(\pi_A,\pi_C,\pi_G,\pi_T\right)\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Q=\begin{pmatrix}
+-&amp;\pi_C\alpha&amp;\pi_G\beta&amp;\pi_T\gamma\\
+\pi_A\alpha&amp;-&amp;\pi_G\phi&amp;\pi_T\omega\\
+\pi_A\beta&amp;\pi_C\phi&amp;-&amp;\pi_T\sigma\\
+\pi_A\gamma&amp;\pi_C\omega&amp;\pi_G\sigma&amp;-\\
+\end{pmatrix}
+\end{split}\]</div>
+<p>The general time reversible model for nucleotides consists of 9 free
+parameters, including the limiting probabilities
+<span class="math notranslate nohighlight">\((\pi_{A},\pi_{C},\pi_{G},\pi_{T})\)</span> and 6 rate parameters
+<span class="math notranslate nohighlight">\((\alpha,\beta,\gamma,\phi,\omega,\sigma)\)</span>.</p>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">#</a></h2>
+<p>Substitution models can be used to calculate distance between two DNA
+sequences. A simple distance measure (called p-distance) between two sequences is defined as
+the proportion of different nucleotides. For example, the p-distance of
+the following two sequences is 1/5.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+AAAAA\\
+AAATA
+\end{align*}
+\end{split}\]</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The p-distance does not consider multiple mutations and
+may underestimate the distance between two sequences.</p>
+</div>
+<p>By contrast, the distance measures derived from substitution models can
+make a correction for multiple mutations. Considering the Jukes-Cantor
+model, in which the transition probabilities are given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P_{ij}(t) = \left\{ \begin{matrix}
+\frac{1}{4} + \frac{3}{4}e^{- ut},\ for\ i = j \\
+\frac{1}{4} - \frac{1}{4}e^{- ut},\ for\ i \neq j \\
+\end{matrix} \right.\ \end{split}\]</div>
+<p>The probability of different nucleotides is
+<span class="math notranslate nohighlight">\(p = \frac{3}{4} - \frac{3}{4}e^{- ut}\)</span>, from which we find the
+evolutionary distance <span class="math notranslate nohighlight">\(d\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[d = \frac{3ut}{4} = - \frac{3}{4}log(1 - \frac{4p}{3})\]</div>
+<p>The transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span> and limiting probabilities
+<span class="math notranslate nohighlight">\((\pi_{A},\pi_{C},\pi_{G},\pi_{T})\)</span> will be used to derive the
+likelihood function for phylogenetic models.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chap13.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 13: Markov Chains</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap15.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 15: Phylogenetic models</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

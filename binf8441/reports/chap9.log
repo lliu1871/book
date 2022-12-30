@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "C:\Python37\lib\site-packages\jupyter_cache\executors\utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "C:\Python37\lib\site-packages\nbclient\client.py", line 1112, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Python37\lib\site-packages\nbclient\util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "C:\Python37\lib\site-packages\nbclient\util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "C:\Python37\lib\asyncio\base_events.py", line 579, in run_until_complete
+    return future.result()
+  File "C:\Python37\lib\site-packages\nbclient\client.py", line 554, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "C:\Python37\lib\site-packages\nbclient\client.py", line 857, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "C:\Python37\lib\site-packages\nbclient\client.py", line 760, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+newdata1 <- data.frame(gre = 590, gpa = 3.9, rank = 1)
+predict(result, newdata = c(590,3.9,1), type = "response")
+------------------
+
+Error in model.frame.default(Terms, newdata, na.action = na.action, xlev = object$xlevels): 'data' must be a data.frame, environment, or list
+Traceback:
+
+1. predict(result, newdata = c(590, 3.9, 1), type = "response")
+2. predict.glm(result, newdata = c(590, 3.9, 1), type = "response")
+3. predict.lm(object, newdata, se.fit, scale = 1, type = if (type == 
+ .     "link") "response" else type, terms = terms, na.action = na.action)
+4. model.frame(Terms, newdata, na.action = na.action, xlev = object$xlevels)
+5. model.frame.default(Terms, newdata, na.action = na.action, xlev = object$xlevels)
+6. stop("'data' must be a data.frame, environment, or list")
+ERROR: Error in model.frame.default(Terms, newdata, na.action = na.action, xlev = object$xlevels): 'data' must be a data.frame, environment, or list
+
+
