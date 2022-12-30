@@ -792,7 +792,7 @@ Metropolis-Hastings algorithm</p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Input:</strong> the likelihood and prior
 <strong>Output</strong> a sample generated from the target distribution</p>
-<ol class="simple">
+<ol>
 <li><p>An arbitrary initial value for <span class="math notranslate nohighlight">\(\theta = \theta_{0}\)</span></p></li>
 <li><p>We update <span class="math notranslate nohighlight">\(\theta\)</span> as follows. Suppose the current value is
 <span class="math notranslate nohighlight">\(\theta_{n}\)</span>. A new value of <span class="math notranslate nohighlight">\(\theta\)</span> is proposed in the
@@ -803,15 +803,17 @@ distribution is the probability distribution from which
 <span class="math notranslate nohighlight">\(\theta_{new}\)</span> is proposed, written as <span class="math notranslate nohighlight">\(P(\theta_{new}|\theta_{n})\)</span>.
 Here, we use the uniform distribution (it is often called random
 walk) as the proposal distribution.</p></li>
-<li><p>The newly proposed <span class="math notranslate nohighlight">\(\theta_{new}\)</span> is either accepted or rejected
-according to the probability known as the Hastings ratio,</p></li>
-</ol>
+<li><p>The newly proposed <span class="math notranslate nohighlight">\(\theta_{new}\)</span> is either accepted or rejected according to the probability known as the Hastings ratio,</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\theta_{n + 1} = \left{ \begin{matrix}
-\theta_{new}\ with\ probabilty = \ min{\frac{f\left( \theta_{new} \middle| x \right)P\left( \theta_{n} \middle| \theta_{new} \right)}{f\left( \theta_{n} \middle| x \right)P\left( \theta_{new} \middle| \theta_{n} \right)},\ 1} \\
-\theta_{n},\ otherwise \\
-\end{matrix} \right.\ \end{split}\]</div>
-<ol class="simple">
+\[\begin{split}
+    \theta_{n + 1} = \begin{matrix}
+    \begin{cases}
+    \theta_{new}\ with\ probabilty = \ min\left\{\frac{f\left( \theta_{new} \middle| x \right)P\left( \theta_{n} \middle| \theta_{new} \right)}{f\left( \theta_{n} \middle| x \right)P\left( \theta_{new} \middle| \theta_{n} \right)},\ 1\right\} \\
+    \theta_{n},\ otherwise \\
+    \end{cases}
+    \end{matrix}
+    \end{split}\]</div>
+</li>
 <li><p>Continue to generate <span class="math notranslate nohighlight">\(\theta\)</span> until the algorithm converges</p></li>
 </ol>
 </section>
@@ -928,10 +930,10 @@ and (4) a function for accepting or rejecting the proposed
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;MCMC estimate of lambda: 0.978181536016448&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;MCMC estimate of lambda: 0.836655029295755&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Bayesian estimate of lambda: 1.00478050725172&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Bayesian estimate of lambda: 0.877607175277353&quot;
 </pre></div>
 </div>
 <img alt="_images/chap12_1_2.png" src="_images/chap12_1_2.png" />
