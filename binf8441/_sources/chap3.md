@@ -8,9 +8,9 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
+  display_name: R
+  language: R
+  name: ir
 ---
 
 # Chapter 3: Continuous random variables
@@ -26,6 +26,7 @@ kernelspec:
 ```
 
 ````{prf:definition} cumulative probability function
+:nonumber:
 :label: cdf
 The cumulative distribution function (CDF) of a real-valued random variable $X$, evaluated at $x$, is the probability that $X$ will take a value less than or equal to $x$
 
@@ -36,7 +37,29 @@ $$F(x)=P(X \leq x)$$
 - $\lim_{x\rightarrow -\infty} F(x) = P(X<-\infty) = 0$
 - $\lim_{x\rightarrow \infty} F(x) = P(X<\infty) = 1$
 
+```{code-cell}
+par(mfrow=c(2,1))
+# plot normal CDF
+curve(pnorm, from = -10, to = 10,col="blue", main="normal CDF")
+# plot normal density
+curve(dnorm, from=-4, to=4, col="blue", main="normal density curve")
+abline(v=c(-2,2),col="red")
+
+# shade the area under the curve
+x = seq(-4,4,by=0.01)
+y = dnorm(x)
+den <- data.frame(x,y)
+
+value1=-2
+value2=2
+polygon(c(value1,den$x[den$x >= value1 & den$x <= value2],value2),
+        c(0, den$y[den$x >= value1 & den$x <= value2 ],0),
+        col = "slateblue1", border = 1)
+legend(-1.2,0.2,"p(-2<x<2)", text.col="white", border="slateblue1",fill="slateblue1", bg="slateblue1", box.col="slateblue1")
+```
+
 ````{prf:definition} probability density function
+:nonumber:
 :label: pdf
 The probability density function $f(x)$ is the derivate of the CDF at $x$, i.e.,
 
@@ -50,7 +73,10 @@ $$f(x)=\frac{d F(x)}{d x}$$
 
 $$P(a<X<b) = \int_a^b f(x)dx$$
 
+
+
 ````{prf:definition} expectation
+:nonumber:
 :label: expectation2
 Let $f(x)$ be the density function of a random variable $X$. The expectation of $X$ is defined as
 
@@ -74,15 +100,21 @@ $$var(X) = E(X-E(X))^2$$
 
 ### Uniform distribution
 
-- $f(x)=\frac{1}{b-a}$, for $x \in[a, b]$
-- $E(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} d y$
-- $E(X)=\int_{a}^{b} x f(x) d x=\frac{a+b}{2}$
-- $\operatorname{var}(X)=E\left(X^{2}\right)-\{E(X)\}^{2}$
 
+- $f(x)=\frac{1}{b-a}$, for $x \in[a, b]$
+- $F(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} d y$
+- $E(X)=\int_{a}^{b} x f(x) d x=\frac{a+b}{2}$
+- $var(X)=E\left(X^{2}\right)-\{E(X)\}^{2}$
+
+```{code-cell}
+par(mfrow=c(2,1))
+curve(dunif(x,1,3), from=1, to=3, main="uniform", col="blue")
+curve(dnorm(x,0,1), -4, 4, main="normal", col="blue")
+```
 ### Normal distribution
 
 - $f(x)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}$, for $x \in[-\infty, \infty]$
-- $E(X)=u$ and $\operatorname{var}(X)=\sigma^{2}$
+- $E(X)=u$ and $var(X)=\sigma^{2}$
 
 If random variable $X$ has the normal distribution with mean $u$ and variance $\sigma^{2}, Y=aX+b$ follows the normal distribution with mean $a u+b$ and variance $a^{2} \sigma^{2}$. To calculate the probability, we first standardize the random variable and then use the standard normal distribution to calculate probabilities,
 
@@ -92,19 +124,25 @@ If random variable $X$ has the normal distribution with mean $u$ and variance $\
 
 - $f(x)=\frac{1}{\lambda} e^{-\frac{x}{\lambda}}$, for $x>0$ and $\lambda>0 . F(x)=1-e^{-\frac{x}{\lambda}}$
 - $E(X)=\lambda$ 
-- $\operatorname{var}(X)=\lambda^{2}$
+- $var(X)=\lambda^{2}$
 
+```{code-cell}
+par(mfrow=c(2,2))
+curve(dexp(x,rate=4), 0, 10, main="exponential",col="blue")
+curve(dbeta(x,2,2),0,10, main="beta",col="blue")
+curve(dgamma(x,shape=2), 0, 10, main="gamma",col="blue")
+```
 ### Beta distribution
 
 - $f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}, 0 \leq x \leq 1, \alpha>0, \beta>0$
 - $E(X)=\frac{\alpha}{\alpha+\beta}$
-- $\operatorname{var}(X)=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}$
+- $var(X)=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}$
 
 ### Gamma distribution
 
 - $f(x)=\frac{1}{\Gamma(\alpha) \beta^{\alpha}} x^{\alpha-1} e^{-\frac{x}{\beta}}, x>0, \alpha>0, \beta>0$
 - $E(X)=\alpha \beta$
-- $\operatorname{var}(X)=\alpha \beta^{2}$ 
+- $var(X)=\alpha \beta^{2}$ 
 
 ## Transformation
 
@@ -146,7 +184,10 @@ $$
 f_{Y}(y)=f_{X}\left(g^{-1}(y)\right) *\left|\frac{d g^{-1}(y)}{d y}\right|
 $$
 
-````{prf:example}
+````\{prf:example\} 3.1
+:nonumber:
+:label: 3.1
+:nonumber:
 The random variable $X$ is an exponential random variable with density function $f(x)=\lambda e^{-\lambda x}$. Find the distribution of $Y=X+2$. The inverse function is $X=Y-2$. Thus, for $y>2$
 
 $$
@@ -160,8 +201,11 @@ $$
 M_{X+Y}(t)=M_{X}(t) M_{Y}(t)
 $$
 
-````{prf:example}
-The MGF of a normal random variable is $e^{u t+\sigma^{2} t^{2} / 2}$. Suppose $X_{1}, X_{2}, \ldots, X_{n}$ $\sim \operatorname{Normal}\left(u, \sigma^{2}\right)$. Find the probability distribution of the sample average $\frac{\sum_{i=1}^{n} X_{i}}{n}$. 
+````\{prf:example\} 3.2
+:nonumber:
+:label: 3.2
+:nonumber:
+The MGF of a normal random variable is $e^{u t+\sigma^{2} t^{2} / 2}$. Suppose $X_{1}, X_{2}, \ldots, X_{n}$ $\sim Normal\left(u, \sigma^{2}\right)$. Find the probability distribution of the sample average $\frac{\sum_{i=1}^{n} X_{i}}{n}$. 
 
 We first find the MGF of the sum $\sum_{i=1}^{n} X_{i}$, which is equal to
 

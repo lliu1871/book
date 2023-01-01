@@ -48,25 +48,35 @@ $$P\left(\cup_{i=1}^{\infty} E_{i}\right)=\sum_{i=1}^{\infty} P\left(E_{i}\right
 - $P(A\cup B) = P(A)+P(B)-P(A\cap B)$
 - If two events $A$ and $B$ are disjoint, then $P(A\cap B) = 0$
 
-````{prf:example} Flipping a coin, if the probability of head is 0.47, what is the probability of tail?
+````\{prf:example\} 1.1
+:nonumber:
+:label: 1.1
+:nonumber:
 
 $P(tail) = 1-P(head) = 1-0.47 = 0.53$
 ````
 
-````{prf:example} What is the probability $P(head \cup tail)$?
+````\{prf:example\} 1.2
+:nonumber:
+:label: 1.2
+:nonumber:
 $P(head \cup tail) = P(head) + P(tail) - P(head\cap tail) = 0.47 + 0.53 - 0 = 1$
 ````
 
 
 ## Conditional probabilities
 ````{prf:definition} conditional probability
+:nonumber:
 :label: conditional_probability
 For two events $A$ and $B$, the probability of $A$ given that the event $B$ occurs is called the conditional probability of $A$ conditional on the event $B$, denoted by $P(A|B)$. 
 ````
 - $P(A|B)=\frac{P(A \cap B)}{P(B)}$
 - $P(A\cap B) = P(A)P(B|A) = P(B)P(A|B)$
 
-````{prf:example} If $A$ is a subset of $B$, show that $P(B|A)=1$
+````\{prf:example\} 1.3
+:nonumber:
+:label: 1.3
+:nonumber:
 $P(B|A)=\frac{P(A \cap B)}{P(A)}=\frac{P(A)}{P(A)}=1$
 ````
 
@@ -74,7 +84,10 @@ $P(B|A)=\frac{P(A \cap B)}{P(A)}=\frac{P(A)}{P(A)}=1$
 :height: 250px
 ```
 
-````{prf:example}
+````\{prf:example\} 1.4
+:nonumber:
+:label: 1.4
+:nonumber:
 Let $H=home$, $R=restaurant$, $C=chicken$, and $V=veg$. From the diagram, we know that $P(H)=0.8$, $P(R=0.2)$, $P(C|H)=0.4$, $P(V|H)=0.6$, $P(C|R)=0.9$, $P(V|R)=0.1$.
 
 What is the probability of having chicken at home?
@@ -91,21 +104,31 @@ $P(H|C) = \frac{P(H\cap C)}{P(C)} = \frac{0.4\times 0.8}{0.4} = 0.8$
 
 ## Independent events
 ````{prf:definition} independence
+:nonumber:
 :label: independence
 Two sets (events) $A$ and $B$ are independent if and only if $P(A \cap B)=P(A) P(B)$.
 ```` 
 
-````{prf:example} If $A$ and $B$ are independent, then $P(A|B) = P(A)$
+````\{prf:example\} 1.5
+:nonumber:
+:label: 1.5
+:nonumber:
 By definition, the conditional probability is $P(A|B) = \frac{P(A\cap B)}{P(B)}$. Since $A$ and $B$ are independent, $P(A\cap B) = P(A)P(B)$. Thus, $P(A|B) = \frac{P(A)P(B)}{P(B)} = P(A)$
 ```` 
 
-````{prf:example} Show that if $A$ and $B$ are two disjoint sets and $P(A)>0$ and $P(B)>0$, then $A$ and $B$ are not independent.
+````\{prf:example\} 1.6
+:nonumber:
+:label: 1.6
+:nonumber:
 
 We show it by contradiction. Suppose $A$ and $B$ are independent. Then, $P(A\cap B) = P(A)P(B)>0$. However, $A$ and $B$ are disjoint and thus $P(A\cap B) = 0$. 
 
 ````
 
-````{prf:example} Flipping a fair coin 3 times, what is the probability of three heads
+````\{prf:example\} 1.7
+:nonumber:
+:label: 1.7
+:nonumber:
 Let $X_1, X_2, X_3$ be the outcomes of three flips. The probability of three heads is
 
 $$

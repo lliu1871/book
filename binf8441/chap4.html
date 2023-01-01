@@ -620,8 +620,8 @@ title="Print to PDF"
 <section id="discrete-cases">
 <h2>Discrete cases<a class="headerlink" href="#discrete-cases" title="Permalink to this headline">#</a></h2>
 <p>Considering two discrete random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> with a joint probability mass function (pmf) <span class="math notranslate nohighlight">\(P(X=x, Y=y)\)</span> or simply <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
-<div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="4.1">
+<p class="admonition-title"><span>Example </span> (4.1)</p>
 <section class="example-content" id="proof-content">
 <p>The joint pmf can be represented by a table. The following table indicates <span class="math notranslate nohighlight">\(P(X=1,Y=0)=0.1\)</span>, <span class="math notranslate nohighlight">\(P(X=1,Y=1)=0.3\)</span>, <span class="math notranslate nohighlight">\(P(X=2,Y=0)=0.2\)</span>, <span class="math notranslate nohighlight">\(P(X=2,Y=1)=0.4\)</span>. The total probability is <span class="math notranslate nohighlight">\(0.1+0.2+0.3+0.4=1\)</span>.</p>
 <table class="colwidths-auto table">
@@ -648,7 +648,7 @@ title="Print to PDF"
 </table>
 </section>
 </div><div class="proof definition admonition" id="marginal">
-<p class="admonition-title"><span class="caption-number">Definition 21 </span> (marginal pmf)</p>
+<p class="admonition-title"><span>Definition </span> (marginal pmf)</p>
 <section class="definition-content" id="proof-content">
 <p>The marginal pmf of <span class="math notranslate nohighlight">\(X\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -667,7 +667,7 @@ P(y)=\sum_{x} P(x, y)
 P(x \mid y)=\frac{P(x, y)}{P(y)}
 \]</div>
 <div class="proof definition admonition" id="joint_expectation">
-<p class="admonition-title"><span class="caption-number">Definition 22 </span></p>
+<p class="admonition-title"><span>Definition </span></p>
 <section class="definition-content" id="proof-content">
 <p>The expectation of a function of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
@@ -680,8 +680,8 @@ E(g(x, y))=\sum_{x} \sum_{y} g(x, y) P(x, y)
 \[
 E(X \mid Y=y)=\sum_{x} x P(x \mid y)
 \]</div>
-<div class="proof example admonition" id="example-3">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="4.2">
+<p class="admonition-title"><span>Example </span> (4.2)</p>
 <section class="example-content" id="proof-content">
 <p>The joint pmf of two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is given in the following table</p>
 <div class="math notranslate nohighlight">
@@ -807,8 +807,8 @@ f\left(X_{1}, X_{2}\right)=f\left(X_{1}\right) f\left(X_{2}\right)
 \[
 f\left(X_{1},\dots, X_{n}\right)=\prod_{i=1}^nf\left(X_{i}\right)
 \]</div>
-<div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="4.3">
+<p class="admonition-title"><span>Example </span> (4.3)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(\left(X_{1}, X_{2}, \ldots, X_{n}\right) \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>. The joint density function of <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -826,8 +826,8 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n}=x_{n} \mid \mu, \sigma^{2}\right)
 <p class="admonition-title">Important</p>
 <p>The joint density function of data <span class="math notranslate nohighlight">\(\left(X_1,\dots,X_n\right)\)</span> is also called the <strong>likelihood</strong> function. The likelihood function measures the likelihood of the observed data <span class="math notranslate nohighlight">\(\left(X_1,\dots,X_n\right)\)</span> given the parameters. When we estimate the parameter values from data, we choose the parameter values such that they can maximize the likelihood of the observed data; this is called “maximum likelihood estimate”</p>
 </div>
-<div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="4.4">
+<p class="admonition-title"><span>Example </span> (4.4)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)\)</span>. The joint density function is</p>
 <div class="math notranslate nohighlight">
@@ -841,8 +841,8 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n} = x_{n} \mid \lambda\right) &amp;
 \end{equation}
 \end{split}\]</div>
 </section>
-</div><div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="4.5">
+<p class="admonition-title"><span>Example </span> (4.5)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Exponential}(\lambda)\)</span>. The joint density function is</p>
 <div class="math notranslate nohighlight">
@@ -898,8 +898,8 @@ G_{s_{n}}(t)=\prod_{i=1}^{n} G_{i}(t)
 \[
 G_{S_{n}}(t)=(G(t))^{n}
 \]</div>
-<div class="proof example admonition" id="example-8">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="4.6">
+<p class="admonition-title"><span>Example </span> (4.6)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)\)</span> and <span class="math notranslate nohighlight">\(G(t)=e^{\lambda(t-1)}\)</span></p>
 <div class="math notranslate nohighlight">
@@ -908,8 +908,8 @@ G_{s_{n}}(t)=(G(t))^{n}=e^{n \lambda(t-1)}
 \]</div>
 <p>Thus, <span class="math notranslate nohighlight">\(S_{n}\)</span> is a Poisson random variable with mean <span class="math notranslate nohighlight">\(\lambda^{*}=n \lambda\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-9">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="4.7">
+<p class="admonition-title"><span>Example </span> (4.7)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Bernoulli}(\lambda), G(t)=(1-p)+p t\)</span></p>
 <div class="math notranslate nohighlight">
@@ -941,8 +941,8 @@ M_{S_{n}}(t)=(M(t))^{n}
 <li><p>The moment generating function for the gamma distribution is <span class="math notranslate nohighlight">\((1-t / \alpha)^{-\beta}\)</span></p></li>
 </ol>
 </div>
-<div class="proof example admonition" id="example-10">
-<p class="admonition-title"><span>Example </span> (1)</p>
+<div class="proof example admonition" id="4.8">
+<p class="admonition-title"><span>Example </span> (4.8)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, find the probability distribution of the sum <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span>.</p>
 <p>Since <span class="math notranslate nohighlight">\(X_i's\)</span> have the same normal distribution with the MGF <span class="math notranslate nohighlight">\(M(t)=e^{u t+\sigma^{2} t^{2} / 2}\)</span>, the MGF of the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> is</p>
@@ -950,8 +950,8 @@ M_{S_{n}}(t)=(M(t))^{n}
 \[M_{S_{n}}(t)=(M(t))^{n}=\left(e^{u t+\sigma^{2} t^{2} / 2}\right)^{n}=\left(e^{nut+n\sigma^{2} t^{2} / 2}\right)\]</div>
 <p>Thus, the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(n \mu\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span></p>
 </section>
-</div><div class="proof example admonition" id="example-11">
-<p class="admonition-title"><span>Example </span> (2)</p>
+</div><div class="proof example admonition" id="4.9">
+<p class="admonition-title"><span>Example </span> (4.9)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \exp (\lambda)\)</span>, find the probability distribution of the sum <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span>.</p>
 <p>Since <span class="math notranslate nohighlight">\(X_i's\)</span> have the same exponential distribution with the MGF <span class="math notranslate nohighlight">\(M(t)=(1-t / \lambda)^{-1}\)</span>, the MGF of the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> is</p>
@@ -960,8 +960,8 @@ M_{S_{n}}(t)=(M(t))^{n}
 <p>Thus, <span class="math notranslate nohighlight">\(S_{n}\)</span> follows the Gamma distribution with <span class="math notranslate nohighlight">\(\alpha=\lambda\)</span> and <span class="math notranslate nohighlight">\(\beta=n\)</span>.</p>
 </section>
 </div><p>Alternatively, we may find the CDF of the statistic.</p>
-<div class="proof example admonition" id="example-12">
-<p class="admonition-title"><span>Example </span> (3)</p>
+<div class="proof example admonition" id="4.1">
+<p class="admonition-title"><span>Example </span> (4.10)</p>
 <section class="example-content" id="proof-content">
 <p>Find the distribution of <span class="math notranslate nohighlight">\(\max \left\{X_{1}, X_{2}, \ldots, X_{n}\right\}\)</span></p>
 <p><span class="math notranslate nohighlight">\(P\left(X_{\max } \leq a\right)=P\left(X_{1} \leq a, X_{2} \leq a, \ldots, X_{n} \leq a\right)=\prod P\left(X_{i} \leq a\right)=(F(a))^{n}\)</span>. Thus, the probability density function is <span class="math notranslate nohighlight">\(f\left(X_{\max }=a\right)=n(F(a))^{n-1} f(a)\)</span></p>

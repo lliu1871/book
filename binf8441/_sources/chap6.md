@@ -54,7 +54,10 @@ Rejection region: we reject the null hypothesis $\mathrm{H}_{0}$ if $t$ is too l
 5. The rejection region consists of values of test statistic for rejecting the null hypothesis.
 
 
-````{prf:example}
+````\{prf:example\} 6.1
+:nonumber:
+:label: 6.1
+:nonumber:
 A pharmaceutical company is testing if a new drug is effective. In this case, we should formulate the hypotheses as follows
 
 H0: the drug is not effective
@@ -79,6 +82,7 @@ If we reject the null, we conclude that the drug is not effective. If we cannot 
 | | | |
 
 ````{prf:definition} Type I and II error
+:nonumber:
 :label: Type I error
 
 Type I error $=\mathrm{P}\left(\right.$ rejection region $\left.\mid \mathrm{H}_{0}\right)$
@@ -133,6 +137,11 @@ $$ pvalue = P(\text{rejection region} | H_0)$$
 
 where the critical value $a$ in the rejection region is replaced by the test statistic calculated from data.
 
+```{code-cell}
+data = rnorm(20, mean=2, sd = 1)
+t.test(data, mu = 3, alternative="less")
+```
+
 ### two-sided tests
 
 $$
@@ -142,6 +151,11 @@ $$
 Test-stat: $t=\frac{\bar{x}-1} {sd(\bar{x})}$. The null distribution of $t$ is the student $t$ distribution with degrees of freedom $(n-1)$.
 
 Rejection region: we reject the null if $t>a$ or $t<b$, where $a$ is the 97.5% quantile and $b$ is the 2.5% quantile of the null distribution of the test statistic.
+
+```{code-cell}
+data = rnorm(20, mean=2, sd = 1)
+t.test(data, mu = 3, alternative="two.sided")
+```
 
 ## Two sample t-test
 The two-sample t-test is used to determine if two population means $\mu_1$ and $\mu_2$ are equal.
@@ -165,6 +179,13 @@ Test-stat: the same
 
 Rejection region: we reject the null if the test statistic is $t<a$ where the critical value $a$ is the 5% quantile of the t distribution with $n_1+n_2-2$ degrees of freedom.
 
+```{code-cell}
+group1 = rnorm(20, mean=2, sd = 1)
+group2 = rnorm(20, mean=3, sd = 1)
+boxplot(cbind(group1,group2))
+t.test(group1, group2, alternative="greater")
+```
+
 ### two-sided tests
 
 $$
@@ -175,6 +196,9 @@ Test-stat: the same
 
 Rejection region: we reject the null if the test statistic is $t<a$ or $t>b$ where the critical values $a$ and $b$ are the 97.5% and 2.5% quantile of the t distribution with $n_1+n_2-2$ degrees of freedom.
 
+```{code-cell}
+t.test(group1, group2, alternative="two.sided")
+```
 
 ## F-test for more than two samples
 The F-test (ANOVA) can determine whether multiple group means are equal. Let $\mu_1,\dots,\mu_k$ be the means of $k$ populations. 
@@ -184,6 +208,17 @@ $$ H_0: \mu_1 = \dots = \mu_k \text{ versus } H_1: \text{at least two means are 
 Test-stat: $t$ = variation between sample means / variation within the samples
 
 Rejection region: We reject the null if $t>a$ where $a$ is the 95% quantile of the F distribution.
+
+```{code-cell}
+group1 = rnorm(20, mean=2, sd = 1)
+group2 = rnorm(20, mean=3.2, sd = 1)
+group3 = rnorm(20, mean=4, sd = 1)
+data = c(group1,group2,group3)
+group= c(rep("group1",20),rep("group2",20),rep("group3",20))
+boxplot(data~group)
+result = aov(data~group)
+summary(result)
+```
 
 ## Association test (contingency table):
 
@@ -209,6 +244,13 @@ The null distribution of the test statistic is asymptotically (sample size is la
 
 Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the chi-square distribution with $(r-1)(c-1)$ degrees of freedom.
 
+```{code-cell}
+x=matrix(c(6,3,2,9),2,2)
+contingency_table = as.table(x)
+result = chisq.test(contingency_table)
+result
+print(paste("the expected count is ",result$expected))
+```
 
 ## Likelihood ratio test
 
@@ -221,7 +263,9 @@ Test-stat: $t=\frac{l_{0}}{l_{1}}$, or equivalently, $t=2 \log \left(l_{1}\right
 Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the null distribution of the test statistic.
 
 
-````{prf:example}
+````\{prf:example\} 6.2
+:nonumber:
+:label: 6.2
 :nonumber:
 Given a random sample $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}=1\right)$, we want to test if $\mu=1$ or $\mu=2$.
 
@@ -252,6 +296,15 @@ The null distribution of $t$ is normal with mean $-n \mu+\frac{3 n}{2}$ and vari
 Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the null distribution of the test statistic $t$.
 ````
 
+```{code-cell}
+x = rnorm(20,mean=2,sd=1)
+loglike0 = sum(log(dnorm(x,mean=2,sd=1)))
+loglike1 = sum(log(dnorm(x,mean=3,sd=1)))
+t = 2*loglike1 - 2*loglike0
+a = qchisq(0.95,df=1)
+print(paste("the test statistic is",t, "and the critical value a =",a))
+```
+
 ````{prf:lemma} Neyman-Pearson lemma
 The likelihood ratio test for two simple hypotheses is the most powerful test.
 ````
@@ -274,6 +327,15 @@ The null distribution of the test statistic is asymptotically the chi-square dis
 
 Rejection region: we reject the null if $t>a$ where $a$ is the 95% quantile of the chi-square distribution
 
+```{code-cell}
+x = rnorm(20,mean=2,sd=1)
+loglike0 = sum(log(dnorm(x,mean=1.2,sd=1)))
+loglike1 = sum(log(dnorm(x,mean=mean(x),sd=1)))
+t = 2*loglike1 - 2*loglike0
+a = qchisq(0.95,df=1)
+print(paste("the test statistic is",t, "and the critical value a =",a))
+```
+
 ## Mann-Whitney test (nonparametric test for two samples)
 
 The data consist of two random samples. Let $X_{1}, \dots, X_{n}$ be the sample generated from population 1 and $Y_{1}, \dots, Y_{m}$ be the sample from population 2. We want to test if two samples are from the same population, i.e.,
@@ -288,7 +350,9 @@ Under the null hypothesis that two samples are generated from the same populatio
 
 Rejection region: we reject the null hypothesis if $t>a$ or $t<b$, where $a$ is the 97.5% quantile of the null distribution of the test statistic, and $b$ is the 2.5% quantile of the null distribution of the test statistic.
 
-````{prf:example}
+````\{prf:example\} 6.3
+:nonumber:
+:label: 6.3
 :nonumber:
 
 Data is given in the table
@@ -301,23 +365,14 @@ $$
 \end{array}
 $$
 
-Test-stat: $t=5+1+3+4=13$
+Test-stat: Let $R_i$ be the sum of the ranks in group $i$. Define $U_i=n_1n_2+\frac{n_i(n_i+1)}{2}-R_i$. The test statistic is the smaller of $U_1$ and $U_2$. 
 
 Rejection region: we reject the null hypothesis if $t>a$ or $t<b$, where $a$ is the 97.5% quantile of the null distribution of the test statistic, and $b$ is the 2.5% quantile of the null distribution of the test statistic.
-
-Because the data set contains 9 observations, the ranks of observations are from 1 to 9 . Under the null hypothesis, the ranks of the observations in the $X$ sample consist of 4 numbers selected at random from 1-9. The test statistic $t$ is the sum of 4 numbers. We can use simulation to approximate the null distribution of the test statistic (see below).
-
-Since $a=27$ and $b=12$, we do not reject the null. 
 
 ````
 
 ```{code-cell}
-nsim = 1000
-t = 1:nsim
-
-for(i in 1:nsim){
-  rank = sample(1:9, 4)
-  t[i] = sum(rank)
-}
-quantile(t, probs=c(0.025,0.975))
+x=c(2.3,1.4,1.6,1.8)
+y=c(1.5,3.7,3.2,2.8,3.3)
+wilcox.test(x,y)
 ```

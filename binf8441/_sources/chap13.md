@@ -33,14 +33,18 @@ integers), the process is said to be a discrete time process. If $T$ is an
 interval of real line, the process is said to be a continuous time
 process.
 
-````{prf:example}
+````\{prf:example\} 13.1
+:nonumber:
+:label: 13.1
 :nonumber:
 $X_{t}$ is the total number of customers that have entered a
 supermarket by time $t$. This is a discrete state continuous time
 stochastic process. $X_{t} = 0,1,\ldots,$ and $t \ge 0$.
 ````
 
-````{prf:example}
+````\{prf:example\} 13.2
+:nonumber:
+:label: 13.2
 :nonumber:
 $X_{t}$ is the number of individuals in a population at each
 generation $t$, i.e., $X_{t} = 0,1,2,\ldots$, and $t = 0, 1, 2, \dots$ This
@@ -56,6 +60,7 @@ $P\left( X_{n + 1} \middle| X_{n},\ldots,X_{0} \right) = P(X_{n + 1}|X_{n})$.
 ```
 
 ````{prf:definition} Markov chain
+:nonumber:
 :label: Markov chain
 
 A discrete time Markov chain $\{ X_{n},n = 0,1,2\ldots\}$ is a discrete
@@ -104,7 +109,9 @@ homogeneous transition probability matrix are given. The initial state
 $X_0$ defines how the chain starts and the transition probability matrix
 $P$ determines how the chain moves.
 
-````{prf:example} 1
+````\{prf:example\} 13.3
+:nonumber:
+:label: 13.3
 :nonumber:
 
 Suppose that a gene has two alleles $A$ and $a$. The alleles
@@ -130,19 +137,21 @@ A \\
 \end{pmatrix}$$
 ````
 
-````{prf:example}
+````\{prf:example\} 13.4
+:nonumber:
+:label: 13.4
 :nonumber:
 We consider a population of $N$ individuals. Let $X_{n}$
 denote the number of individuals with allele A in generation $n$.
 Suppose $X_{0} = k, 0 \leq k \leq N$. Given $X_{i}$ (the number of A in
-generation i), $X_{i + 1}\ $has a binomial distribution (*N*, X~i~/*N*).
+generation i), $X_{i + 1}\ $has the Binomial $(N, X_i/N)$.
 The transition probabilities are independent of time n. Thus, they are
 time homogeneous transition probabilities. The one-step transition
 probability matrix is given by
 
 $$
 P = \begin{pmatrix}
-1& 0 & 0 &ldots  \\
+1& 0 & 0 &\ldots  \\
 B\left( 0,\frac{1}{N} \right)& B\left( 1,\frac{1}{N} \right)& B\left( 2,\frac{1}{N} \right) & \ldots \\
 B\left( 0,\frac{2}{N} \right) & B\left( 1,\frac{2}{N} \right) & B\left( 3,\frac{2}{N} \right) & \ldots \\
 0& 0 & \ldots & 1 \\
@@ -154,7 +163,9 @@ Binomial $(N, p = \frac{j}{N})$.
 ````
 
 
-````{prf:example} 2
+````\{prf:example\} 13.5
+:nonumber:
+:label: 13.5
 :nonumber:
 A gambling model. a gamble either wins \$1 with probability
 $p$ or loses \$1 with probability 1-p. if the gambler quits playing either
@@ -178,7 +189,9 @@ $$
 States 0 and N are called **absorbing states**, because once the process gets into those states it will never get out.
 ```
 
-````{prf:example} 3
+````\{prf:example\} 13.6
+:nonumber:
+:label: 13.6
 :nonumber:
 In example 1, if the initial state $P(X_0) = (0.1, 0.9)$ and $\alpha = 0.1$ and
 $\beta=0.2$, find $P(X_1)$
@@ -222,6 +235,17 @@ In general,
 
 $$P\left( X_{n} \right) = P\left( X_{0} \right)\cdot P^{n}$$
 
+```{code-cell}
+p = matrix(c(0.8,0.1,0.2,0.9),2,2)
+x_0 = c(0.1,0.9)
+
+x_1 = x_0 %*% p
+print(paste("the probability distribution of x_1 is", x_1))
+
+library(expm)
+x_10 = x_0 %*% (p %^% 10)
+print(paste("the probability distribution of x_10 is",x_10))
+```
 ### 2. Limiting probability distribution
 Another major goal of the Markov chain theory is to find the limiting
 probabilities $\lim_{n \rightarrow \infty}{P(X_{n})}$, as time $n$ goes to
@@ -242,9 +266,25 @@ $$
 $$
 ````
 
+```{code-cell}
+library(expm)
+print(paste("the probability for time = 10", round(x_0 %*% (p %^% 10),5)))
+print(paste("the probability for time = 20", round(x_0 %*% (p %^% 20),5)))
+print(paste("the probability for time = 30", round(x_0 %*% (p %^% 30),5)))
+print(paste("the probability for time = 40", round(x_0 %*% (p %^% 40),5)))
+print(paste("the probability for time = 50", round(x_0 %*% (p %^% 50),5)))
+print(paste("the probability for time = 60", round(x_0 %*% (p %^% 60),5)))
+```
+
 Note that once the chain reaches the limiting probability distribution, it will stay in
 the limiting probability distribution. Thus, the limiting probability distribution is also
 called the stationary distribution.
+
+```{code-cell}
+x_lim = x_0 %*% (p %^% 60)
+print(paste("the limit probability is",round(x_lim,5)))
+print(paste("the probability after one more move is", round(x_lim %*% p,5)))
+```
 
 For irreducible finite state discrete time Markov chain, the ergodic
 conditions are always satisfied. Thus, we can find the limiting
@@ -259,7 +299,10 @@ $$
 \end{equation}
 $$
 
-````{prf:example} 4
+
+````\{prf:example\} 13.7
+:nonumber:
+:label: 13.7
 :nonumber:
 
 Consider a Markov chain of two alleles (a, A) with the one-step
@@ -283,10 +326,17 @@ $P( X_{0}) = \left(\frac{1}{9},\frac{8}{9}\right)$, then
 $P( X_{n}) = \left(\frac{1}{9},\frac{8}{9}\right)$ for all $n$.
 ````
 
+```{code-cell}
+x = matrix(c(0.2,0.1,0.8,0.9),2,2)
+eigen(t(x))
+print(paste("the limiting probability is", eigen(t(x))$vectors[,1]/sum(eigen(t(x))$vectors[,1])))
+```
+
 ## Continuous time Markov chains
 
 
 ````{prf:definition} continuous time Markov chain
+:nonumber:
 :label: CTMC
 
 A continuous time Markov chain $\{ X_{t}\}$ is a discrete

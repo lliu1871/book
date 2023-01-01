@@ -606,8 +606,8 @@ title="Print to PDF"
 <p>In the Bayesian framework, probability is
 opinion, and that inference from data is nothing other than the revision
 of such opinion in the light of relevant new information.</p>
-<div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="12.1">
+<p class="admonition-title"><span>Example </span> (12.1)</p>
 <section class="example-content" id="proof-content">
 <p>There are two boxes in the room: 5 red balls and 5 blue balls
 in box1; 1 red ball and 9 blue balls in box2. Someone randomly selected
@@ -737,7 +737,7 @@ otherwise numerical approaches may be necessary.</p>
 <div class="math notranslate nohighlight">
 \[L\left( \theta,\widehat{\theta} \right) = \left( \theta - \widehat{\theta}(x) \right)^{2}\]</div>
 <div class="proof definition admonition" id="Bayes risk">
-<p class="admonition-title"><span class="caption-number">Definition 29 </span> (Bayes risk)</p>
+<p class="admonition-title"><span>Definition </span> (Bayes risk)</p>
 <section class="definition-content" id="proof-content">
 <p>The Bayes risk of <span class="math notranslate nohighlight">\(\widehat{\theta}\ \)</span>is defined as</p>
 <div class="math notranslate nohighlight">
@@ -745,7 +745,7 @@ otherwise numerical approaches may be necessary.</p>
 </section>
 </div><p>The expectation is taken over the probability distribution of data <span class="math notranslate nohighlight">\(X\)</span> and parameter <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <div class="proof definition admonition" id="Bayes estimator">
-<p class="admonition-title"><span class="caption-number">Definition 30 </span> (Bayes estimator)</p>
+<p class="admonition-title"><span>Definition </span> (Bayes estimator)</p>
 <section class="definition-content" id="proof-content">
 <p>An estimator <span class="math notranslate nohighlight">\(\widehat{\theta}\ \)</span>is said to be a Bayes estimator if it
 minimizes the Bayes risk among all estimators.</p>
@@ -753,8 +753,8 @@ minimizes the Bayes risk among all estimators.</p>
 </div><p>The estimator which minimizes the posterior expected loss
 <span class="math notranslate nohighlight">\(E\left( L\left( \theta,\widehat{\theta} \right)|X \right)\)</span> for each <span class="math notranslate nohighlight">\(X\)</span>
 also minimizes the Bayes risk and therefore is a Bayes estimator.</p>
-<div class="proof example admonition" id="example-3">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="12.2">
+<p class="admonition-title"><span>Example </span> (12.2)</p>
 <section class="example-content" id="proof-content">
 <p>If the loss function is squared error, the Bayesian estimate
 <span class="math notranslate nohighlight">\(\widehat{\theta}\)</span> of <span class="math notranslate nohighlight">\(\theta\)</span> is the posterior mean <span class="math notranslate nohighlight">\(E(\theta|X)\)</span>,
@@ -840,8 +840,8 @@ distribution, the Bayesian inference can be based on the generated
 sample. For example, the posterior mean, a Bayesian estimator of
 parameter <span class="math notranslate nohighlight">\(\theta\)</span>, is approximated by the sample average of <span class="math notranslate nohighlight">\(\theta\)</span>
 generated from the MCMC algorithm.</p>
-<div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="12.3">
+<p class="admonition-title"><span>Example </span> (12.3)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\((x_{1},\ldots,x_{n})\)</span> is a random sample generated from the
 exponential distribution with mean <span class="math notranslate nohighlight">\(1/\lambda\)</span>. The prior of <span class="math notranslate nohighlight">\(\lambda\)</span>
@@ -930,10 +930,10 @@ and (4) a function for accepting or rejecting the proposed
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;MCMC estimate of lambda: 0.836655029295755&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;MCMC estimate of lambda: 0.809601248909669&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Bayesian estimate of lambda: 0.877607175277353&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Bayesian estimate of lambda: 0.775870073885247&quot;
 </pre></div>
 </div>
 <img alt="_images/chap12_1_2.png" src="_images/chap12_1_2.png" />

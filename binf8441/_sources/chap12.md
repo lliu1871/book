@@ -29,7 +29,9 @@ In the Bayesian framework, probability is
 opinion, and that inference from data is nothing other than the revision
 of such opinion in the light of relevant new information.
 
-````{prf:example}
+````\{prf:example\} 12.1
+:nonumber:
+:label: 12.1
 :nonumber:
 There are two boxes in the room: 5 red balls and 5 blue balls
 in box1; 1 red ball and 9 blue balls in box2. Someone randomly selected
@@ -126,6 +128,7 @@ $L(\theta,\widehat{\theta})$ be a loss function, such as the squared loss
 $$L\left( \theta,\widehat{\theta} \right) = \left( \theta - \widehat{\theta}(x) \right)^{2}$$
 
 ````{prf:definition} Bayes risk
+:nonumber:
 :label: Bayes risk
 The Bayes risk of $\widehat{\theta}\ $is defined as
 
@@ -135,6 +138,7 @@ $$E\left( L\left( \theta,\widehat{\theta} \right) \right) = \int_{\theta}^{}{\in
 The expectation is taken over the probability distribution of data $X$ and parameter $\theta$. 
 
 ````{prf:definition} Bayes estimator
+:nonumber:
 :label: Bayes estimator
 An estimator $\widehat{\theta}\ $is said to be a Bayes estimator if it
 minimizes the Bayes risk among all estimators.
@@ -144,7 +148,9 @@ The estimator which minimizes the posterior expected loss
 $E\left( L\left( \theta,\widehat{\theta} \right)|X \right)$ for each $X$
 also minimizes the Bayes risk and therefore is a Bayes estimator. 
 
-````{prf:example}
+````\{prf:example\} 12.2
+:nonumber:
+:label: 12.2
 :nonumber:
 If the loss function is squared error, the Bayesian estimate
 $\widehat{\theta}$ of $\theta$ is the posterior mean $E(\theta|X)$,
@@ -201,15 +207,18 @@ Metropolis-Hastings algorithm
     Here, we use the uniform distribution (it is often called random
     walk) as the proposal distribution.
 
-3.  The newly proposed $\theta_{new}$ is either accepted or rejected
-    according to the probability known as the Hastings ratio,
+3. The newly proposed $\theta_{new}$ is either accepted or rejected according to the probability known as the Hastings ratio,
 
-$$\theta_{n + 1} = \left{ \begin{matrix}
-\theta_{new}\ with\ probabilty = \ min{\frac{f\left( \theta_{new} \middle| x \right)P\left( \theta_{n} \middle| \theta_{new} \right)}{f\left( \theta_{n} \middle| x \right)P\left( \theta_{new} \middle| \theta_{n} \right)},\ 1} \\
-\theta_{n},\ otherwise \\
-\end{matrix} \right.\ $$
+    $$
+    \theta_{n + 1} = \begin{matrix}
+    \begin{cases}
+    \theta_{new}\ with\ probabilty = \ min\left\{\frac{f\left( \theta_{new} \middle| x \right)P\left( \theta_{n} \middle| \theta_{new} \right)}{f\left( \theta_{n} \middle| x \right)P\left( \theta_{new} \middle| \theta_{n} \right)},\ 1\right\} \\
+    \theta_{n},\ otherwise \\
+    \end{cases}
+    \end{matrix}
+    $$
 
-4.  Continue to generate $\theta$ until the algorithm converges
+4. Continue to generate $\theta$ until the algorithm converges
 ````
 
 ### 1. Burnin
@@ -233,7 +242,9 @@ sample. For example, the posterior mean, a Bayesian estimator of
 parameter $\theta$, is approximated by the sample average of $\theta$
 generated from the MCMC algorithm.
 
-````{prf:example}
+````\{prf:example\} 12.3
+:nonumber:
+:label: 12.3
 :nonumber:
 
 $(x_{1},\ldots,x_{n})$ is a random sample generated from the

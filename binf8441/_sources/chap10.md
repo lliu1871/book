@@ -26,6 +26,7 @@ kernelspec:
 ```
 
 ````{prf:definition} Monte Carlo simulation
+:label: 10.1
 :nonumber:
 Monte Carlo simulation is a computational technique that rely on repeated random samplings to obtain numerical results. 
 ````
@@ -59,7 +60,9 @@ It indicates that we can generate a ransom sample $\left(x_{1}, \ldots, x_{n}\ri
 
 ```
 
-````{prf:example} 
+````\{prf:example\} 10.1
+:nonumber:
+:label: 10.1
 :nonumber:
 Calculate $\int_{0}^{\infty}log(x) e^{-x} d x$
 
@@ -74,7 +77,9 @@ x = rexp(10000)
 mean(log(x))
 ```
 
-````{prf:example}
+````\{prf:example\} 10.2
+:nonumber:
+:label: 10.2
 :nonumber:
 Calculate $\int_{1}^{5} \frac{2 \log (x)}{x^{2}} d x$. Note that $\int_{1}^{5} \frac{2 \log (x)}{x^{2}} d x=\int_{1}^{5} \frac{8 \log (x)}{x^{2}} \frac{1}{4} d x$ and $\frac{1}{4}$ is the density of uniform (1,5). The integral $\int_{1}^{5} \frac{2 \log (x)}{x^{2}} d x=E(g(X))$, in which $g(x)=\frac{8 \log (x)}{x^{2}}$ and the density $f(x)=\frac{1}{4}$.
 ````
@@ -90,7 +95,9 @@ If the population (or the probability distribution) is given, we can generate ra
 ### 1. Calculating the variance of an estimator 
 Suppose $\left(x_{1}, \ldots, x_{n}\right)$ is a random sample generated from a given probability distribution with a given parameter $\theta$. Let $\hat{\theta}$ be the estimator of $\theta$. The variance of $\hat{\theta}$ can be approximated by the sample variance of $\hat{\theta}$. 
 
-````{prf:example}
+````\{prf:example\} 10.3
+:nonumber:
+:label: 10.3
 :nonumber:
 A random sample of size 10 are generated from the normal distribution with mean 1 and variance 1 . Find the variance of $\hat{\theta}=\frac{x_{\min }+x_{\max }}{2}$.
 
@@ -119,7 +126,9 @@ var(theta_hat)
 
 The mean squared error $E\left[(\hat{\theta}-\theta)^{2}\right]$ of the estimator $\hat{\theta}$ of the parameter $\theta$ can be approximated by simulation. When the true $\theta$ is given, the expectation $E\left[(\hat{\theta}-\theta)^{2}\right]$ can be approximated by the sample average of $\left(\widehat{\theta}_{i}-\theta\right)^{2}$, in which $\widehat{\theta}_{i}$ is calculated from the sample $i$ generated from the probability distribution.
 
-````{prf:example}
+````\{prf:example\} 10.4
+:nonumber:
+:label: 10.4
 :nonumber:
 A random sample of size 10 is generated from the normal distribution with the unknown mean $\mu$ and variance 1. We want to compare the mean squared errors of two estimators, the sample median $\tilde{x}$ and the sample average $\bar{x}$, of the population mean $\mu$.
 
@@ -162,7 +171,10 @@ legend("topleft", legend=c("mse_median", "mse_average"), fill = c("red","blue"))
 
 The power is $P\left(\right.$ reject $\left.H_{0} \mid H_{1}\right)$, which can be approximated by simulation, when the alternative probability distribution under $\mathrm{H}_{1}$ is given. We generate samples under $\mathrm{H}_{1}$. The power of a test, i.e., the probability of rejecting $\mathrm{H}_{0}$, is approximated by the proportion of samples for which $\mathrm{H}_{0}$ is rejected by the test. If the alternative hypothesis is an interval of parameter $\theta$, we need to calculate the power for each value of $\theta$.
 
-````{prf:example}
+````\{prf:example\} 10.5
+:nonumber:
+:label: 10.5
+:nonumber:
 We want to calculate the power of the two sample t-test. Suppose the samples are generated from the normal distribution with mean $\mu$ and variance 1 . $\mathrm{H}_{0}: \mu_{1}=\mu_{2}$ vs $\mathrm{H}_{1}: \mu_{1} \neq \mu_{2}$. Let $\mu_{1}=2$. To approximate the power of two sample t-test, we
 
 1) Generate 100 data sets. Each data set contains two samples. The first sample is generated from the normal distribution $\left(\mu_{1}=2, \sigma^2=1\right)$. The second sample is generated from another normal distribution $\left(\mu_{2}=3, \sigma^2=1\right)$. 

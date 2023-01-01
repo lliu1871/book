@@ -550,15 +550,15 @@ index set of the process. When <span class="math notranslate nohighlight">\(T\)<
 integers), the process is said to be a discrete time process. If <span class="math notranslate nohighlight">\(T\)</span> is an
 interval of real line, the process is said to be a continuous time
 process.</p>
-<div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="13.1">
+<p class="admonition-title"><span>Example </span> (13.1)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{t}\)</span> is the total number of customers that have entered a
 supermarket by time <span class="math notranslate nohighlight">\(t\)</span>. This is a discrete state continuous time
 stochastic process. <span class="math notranslate nohighlight">\(X_{t} = 0,1,\ldots,\)</span> and <span class="math notranslate nohighlight">\(t \ge 0\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-1">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="13.2">
+<p class="admonition-title"><span>Example </span> (13.2)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{t}\)</span> is the number of individuals in a population at each
 generation <span class="math notranslate nohighlight">\(t\)</span>, i.e., <span class="math notranslate nohighlight">\(X_{t} = 0,1,2,\ldots\)</span>, and <span class="math notranslate nohighlight">\(t = 0, 1, 2, \dots\)</span> This
@@ -574,7 +574,7 @@ is a discrete state discrete time stochastic process</p>
 <span class="math notranslate nohighlight">\(P\left( X_{n + 1} \middle| X_{n},\ldots,X_{0} \right) = P(X_{n + 1}|X_{n})\)</span>.</p>
 </div>
 <div class="proof definition admonition" id="Markov chain">
-<p class="admonition-title"><span class="caption-number">Definition 31 </span> (Markov chain)</p>
+<p class="admonition-title"><span>Definition </span> (Markov chain)</p>
 <section class="definition-content" id="proof-content">
 <p>A discrete time Markov chain <span class="math notranslate nohighlight">\(\{ X_{n},n = 0,1,2\ldots\}\)</span> is a discrete
 state discrete time stochastic process that satisfies Markov property.</p>
@@ -614,8 +614,8 @@ P_{i0}\ P_{i1}\ P_{i2}\ldots \\
 homogeneous transition probability matrix are given. The initial state
 <span class="math notranslate nohighlight">\(X_0\)</span> defines how the chain starts and the transition probability matrix
 <span class="math notranslate nohighlight">\(P\)</span> determines how the chain moves.</p>
-<div class="proof example admonition" id="example-3">
-<p class="admonition-title"><span>Example </span> (1)</p>
+<div class="proof example admonition" id="13.3">
+<p class="admonition-title"><span>Example </span> (13.3)</p>
 <section class="example-content" id="proof-content">
 <p>Suppose that a gene has two alleles <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span>. The alleles
 <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span> may mutate to another type in the next generation. The
@@ -638,20 +638,20 @@ A \\
 \alpha &amp; 1 - \alpha \\
 \end{pmatrix}\end{split}\]</div>
 </section>
-</div><div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="13.4">
+<p class="admonition-title"><span>Example </span> (13.4)</p>
 <section class="example-content" id="proof-content">
 <p>We consider a population of <span class="math notranslate nohighlight">\(N\)</span> individuals. Let <span class="math notranslate nohighlight">\(X_{n}\)</span>
 denote the number of individuals with allele A in generation <span class="math notranslate nohighlight">\(n\)</span>.
 Suppose <span class="math notranslate nohighlight">\(X_{0} = k, 0 \leq k \leq N\)</span>. Given <span class="math notranslate nohighlight">\(X_{i}\)</span> (the number of A in
-generation i), <span class="math notranslate nohighlight">\(X_{i + 1}\ \)</span>has a binomial distribution (<em>N</em>, X~i~/<em>N</em>).
+generation i), <span class="math notranslate nohighlight">\(X_{i + 1}\ \)</span>has the Binomial <span class="math notranslate nohighlight">\((N, X_i/N)\)</span>.
 The transition probabilities are independent of time n. Thus, they are
 time homogeneous transition probabilities. The one-step transition
 probability matrix is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 P = \begin{pmatrix}
-1&amp; 0 &amp; 0 &amp;ldots  \\
+1&amp; 0 &amp; 0 &amp;\ldots  \\
 B\left( 0,\frac{1}{N} \right)&amp; B\left( 1,\frac{1}{N} \right)&amp; B\left( 2,\frac{1}{N} \right) &amp; \ldots \\
 B\left( 0,\frac{2}{N} \right) &amp; B\left( 1,\frac{2}{N} \right) &amp; B\left( 3,\frac{2}{N} \right) &amp; \ldots \\
 0&amp; 0 &amp; \ldots &amp; 1 \\
@@ -660,8 +660,8 @@ B\left( 0,\frac{2}{N} \right) &amp; B\left( 1,\frac{2}{N} \right) &amp; B\left( 
 <p>where <span class="math notranslate nohighlight">\(B\left(i,\frac{j}{N}\right)\)</span> is the probability <span class="math notranslate nohighlight">\(P(X = i)\)</span> when <span class="math notranslate nohighlight">\(X\)</span> has the
 Binomial <span class="math notranslate nohighlight">\((N, p = \frac{j}{N})\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span>Example </span> (2)</p>
+</div><div class="proof example admonition" id="13.5">
+<p class="admonition-title"><span>Example </span> (13.5)</p>
 <section class="example-content" id="proof-content">
 <p>A gambling model. a gamble either wins $1 with probability
 <span class="math notranslate nohighlight">\(p\)</span> or loses $1 with probability 1-p. if the gambler quits playing either
@@ -684,8 +684,8 @@ P = \begin{pmatrix}
 <p class="admonition-title">Important</p>
 <p>States 0 and N are called <strong>absorbing states</strong>, because once the process gets into those states it will never get out.</p>
 </div>
-<div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span>Example </span> (3)</p>
+<div class="proof example admonition" id="13.6">
+<p class="admonition-title"><span>Example </span> (13.6)</p>
 <section class="example-content" id="proof-content">
 <p>In example 1, if the initial state <span class="math notranslate nohighlight">\(P(X_0) = (0.1, 0.9)\)</span> and <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span> and
 <span class="math notranslate nohighlight">\(\beta=0.2\)</span>, find <span class="math notranslate nohighlight">\(P(X_1)\)</span></p>
@@ -723,6 +723,42 @@ P\left( X_{1} = A \right) &amp;= P\left( X_{1} = A|X_{0} = a \right)P\left( X_{0
 <p>In general,</p>
 <div class="math notranslate nohighlight">
 \[P\left( X_{n} \right) = P\left( X_{0} \right)\cdot P^{n}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.9</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.9</span><span class="p">)</span>
+
+<span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">%*%</span> <span class="n">p</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability distribution of x_1 is&quot;</span><span class="p">,</span> <span class="n">x_1</span><span class="p">))</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">expm</span><span class="p">)</span>
+<span class="n">x_10</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability distribution of x_10 is&quot;</span><span class="p">,</span><span class="n">x_10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability distribution of x_1 is 0.17&quot;
+[2] &quot;the probability distribution of x_1 is 0.83&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Matrix
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;expm&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from &#39;package:Matrix&#39;:
+
+    expm
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability distribution of x_10 is 0.32674224419&quot;
+[2] &quot;the probability distribution of x_10 is 0.67325775581&quot;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="limiting-probability-distribution">
 <h3>2. Limiting probability distribution<a class="headerlink" href="#limiting-probability-distribution" title="Permalink to this headline">#</a></h3>
@@ -730,7 +766,7 @@ P\left( X_{1} = A \right) &amp;= P\left( X_{1} = A|X_{0} = a \right)P\left( X_{0
 probabilities <span class="math notranslate nohighlight">\(\lim_{n \rightarrow \infty}{P(X_{n})}\)</span>, as time <span class="math notranslate nohighlight">\(n\)</span> goes to
 infinity.</p>
 <div class="proof theorem admonition" id="theorem-7">
-<p class="admonition-title"><span class="caption-number">Theorem 8 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 5 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If the Markov chain is ergodic (irreducible, aperiodic, and
 positive recurrent), limiting probabilities <span class="math notranslate nohighlight">\(\pi\)</span> exist and satisfy the
@@ -745,9 +781,66 @@ equations</p>
 \end{equation}
 \end{split}\]</div>
 </section>
-</div><p>Note that once the chain reaches the limiting probability distribution, it will stay in
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">expm</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 10&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">10</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 20&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">20</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 30&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">30</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 40&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">40</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 50&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">50</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 60&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">60</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 10 0.32674&quot;
+[2] &quot;the probability for time = 10 0.67326&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 20 0.33315&quot;
+[2] &quot;the probability for time = 20 0.66685&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 30 0.33333&quot;
+[2] &quot;the probability for time = 30 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 40 0.33333&quot;
+[2] &quot;the probability for time = 40 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 50 0.33333&quot;
+[2] &quot;the probability for time = 50 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 60 0.33333&quot;
+[2] &quot;the probability for time = 60 0.66667&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that once the chain reaches the limiting probability distribution, it will stay in
 the limiting probability distribution. Thus, the limiting probability distribution is also
 called the stationary distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x_lim</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">60</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the limit probability is&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">x_lim</span><span class="p">,</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability after one more move is&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_lim</span> <span class="o">%*%</span> <span class="n">p</span><span class="p">,</span><span class="m">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the limit probability is 0.33333&quot; &quot;the limit probability is 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability after one more move is 0.33333&quot;
+[2] &quot;the probability after one more move is 0.66667&quot;
+</pre></div>
+</div>
+</div>
+</div>
 <p>For irreducible finite state discrete time Markov chain, the ergodic
 conditions are always satisfied. Thus, we can find the limiting
 probabilities by solving the equations</p>
@@ -760,8 +853,8 @@ probabilities by solving the equations</p>
 \end{cases}
 \end{equation}
 \end{split}\]</div>
-<div class="proof example admonition" id="example-8">
-<p class="admonition-title"><span>Example </span> (4)</p>
+<div class="proof example admonition" id="13.7">
+<p class="admonition-title"><span>Example </span> (13.7)</p>
 <section class="example-content" id="proof-content">
 <p>Consider a Markov chain of two alleles (a, A) with the one-step
 transition probability <span class="math notranslate nohighlight">\(P=\begin{pmatrix}
@@ -781,12 +874,37 @@ if the Markov chain starts with the limiting probabilities, i.e.,
 <span class="math notranslate nohighlight">\(P( X_{0}) = \left(\frac{1}{9},\frac{8}{9}\right)\)</span>, then
 <span class="math notranslate nohighlight">\(P( X_{n}) = \left(\frac{1}{9},\frac{8}{9}\right)\)</span> for all <span class="math notranslate nohighlight">\(n\)</span>.</p>
 </section>
-</div></section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.9</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the limiting probability is&quot;</span><span class="p">,</span> <span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] 1.0 0.1
+
+$vectors
+           [,1]       [,2]
+[1,] -0.1240347 -0.7071068
+[2,] -0.9922779  0.7071068
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the limiting probability is 0.111111111111111&quot;
+[2] &quot;the limiting probability is 0.888888888888889&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="continuous-time-markov-chains">
 <h2>Continuous time Markov chains<a class="headerlink" href="#continuous-time-markov-chains" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="CTMC">
-<p class="admonition-title"><span class="caption-number">Definition 32 </span> (continuous time Markov chain)</p>
+<p class="admonition-title"><span>Definition </span> (continuous time Markov chain)</p>
 <section class="definition-content" id="proof-content">
 <p>A continuous time Markov chain <span class="math notranslate nohighlight">\(\{ X_{t}\}\)</span> is a discrete
 state continuous time stochastic process that satisfies Markov property.</p>

@@ -529,6 +529,23 @@ P(\cup_{i=1}^kR_i) &amp;= 1- P(\bar{\cup_{i=1}^kR_i})\\
 <div class="math notranslate nohighlight">
 \[\alpha = \frac{0.05}{k}\]</div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pvalues</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">002</span><span class="p">,</span> <span class="n">.</span><span class="m">005</span><span class="p">,</span> <span class="n">.</span><span class="m">015</span><span class="p">,</span> <span class="n">.</span><span class="m">113</span><span class="p">,</span> <span class="n">.</span><span class="m">222</span><span class="p">,</span> <span class="n">.</span><span class="m">227</span><span class="p">,</span> <span class="n">.</span><span class="m">454</span><span class="p">,</span> <span class="n">.</span><span class="m">552</span><span class="p">,</span> <span class="n">.</span><span class="m">663</span><span class="p">,</span> <span class="n">.</span><span class="m">751</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">p.adjust</span><span class="p">(</span><span class="n">pvalues</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;bonferroni&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;adjusted pvalues:&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [1] &quot;adjusted pvalues: 0.02&quot; &quot;adjusted pvalues: 0.05&quot; &quot;adjusted pvalues: 0.15&quot;
+ [4] &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;   
+ [7] &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;   
+[10] &quot;adjusted pvalues: 1&quot;   
+</pre></div>
+</div>
+</div>
+</div>
 <p>If <span class="math notranslate nohighlight">\(k\)</span> is large, the <span class="math notranslate nohighlight">\(\alpha\)</span> level for each test is extremely small, making it very difficult to reject the null hypothesis for each test. Bonferroni correction is too conservative.</p>
 </section>
 <section id="false-discovery-rate">
@@ -548,8 +565,8 @@ re-order them from the minimum to the maximum <span class="math notranslate nohi
 <li><p>For a given <span class="math notranslate nohighlight">\(\alpha\)</span>, find the largest <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(P(k) \leq \frac{k}{n}\alpha\)</span></p></li>
 <li><p>Reject the null hypothesis (i.e. declare positive discoveries) for the hypotheses <span class="math notranslate nohighlight">\(H_i\)</span> for <span class="math notranslate nohighlight">\(i = 1, \dots, k\)</span>.</p></li>
 </ol>
-<div class="proof example admonition" id="example-1">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="7.1">
+<p class="admonition-title"><span>Example </span> (7.1)</p>
 <section class="example-content" id="proof-content">
 <p>We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed the two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06.</p>
 <p>Thus, <span class="math notranslate nohighlight">\(P_1 = 0.01, P_2 = 0.03, P_3 = 0.06\)</span>. We want to control FDR at the level of 0.05, i.e., <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>.</p>
@@ -558,7 +575,25 @@ re-order them from the minimum to the maximum <span class="math notranslate nohi
 <li><p>We reject the null hypothesis for the first two tests, and conclude that gene1 and gene2 are significantly associated with cancer.</p></li>
 </ol>
 </section>
-</div></section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pvalues</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">002</span><span class="p">,</span> <span class="n">.</span><span class="m">005</span><span class="p">,</span> <span class="n">.</span><span class="m">015</span><span class="p">,</span> <span class="n">.</span><span class="m">113</span><span class="p">,</span> <span class="n">.</span><span class="m">222</span><span class="p">,</span> <span class="n">.</span><span class="m">227</span><span class="p">,</span> <span class="n">.</span><span class="m">454</span><span class="p">,</span> <span class="n">.</span><span class="m">552</span><span class="p">,</span> <span class="n">.</span><span class="m">663</span><span class="p">,</span> <span class="n">.</span><span class="m">751</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">p.adjust</span><span class="p">(</span><span class="n">pvalues</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;BH&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;adjusted pvalues:&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [1] &quot;adjusted pvalues: 0.02&quot;              &quot;adjusted pvalues: 0.025&quot;            
+ [3] &quot;adjusted pvalues: 0.05&quot;              &quot;adjusted pvalues: 0.2825&quot;           
+ [5] &quot;adjusted pvalues: 0.378333333333333&quot; &quot;adjusted pvalues: 0.378333333333333&quot;
+ [7] &quot;adjusted pvalues: 0.648571428571429&quot; &quot;adjusted pvalues: 0.69&quot;             
+ [9] &quot;adjusted pvalues: 0.736666666666667&quot; &quot;adjusted pvalues: 0.751&quot;            
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -570,16 +605,16 @@ re-order them from the minimum to the maximum <span class="math notranslate nohi
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "r"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "ir",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ir'</script>
 
               </div>
               

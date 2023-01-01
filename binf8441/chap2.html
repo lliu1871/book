@@ -602,7 +602,7 @@ title="Print to PDF"
 <section id="random-variables">
 <h2>Random variables<a class="headerlink" href="#random-variables" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="random_variable">
-<p class="admonition-title"><span class="caption-number">Definition 10 </span> (random variable)</p>
+<p class="admonition-title"><span>Definition </span> (random variable)</p>
 <section class="definition-content" id="proof-content">
 <p>A random variable <span class="math notranslate nohighlight">\(X: \Omega\rightarrow E\)</span> is a measurable function from the set of possible outcomes <span class="math notranslate nohighlight">\(\Omega\)</span> to some set <span class="math notranslate nohighlight">\(E\)</span>.</p>
 </section>
@@ -611,8 +611,8 @@ title="Print to PDF"
 <li><p>A random variable can take on different values, each with an associated probability.</p></li>
 </ol>
 <p>The probability distribution of the random variable <span class="math notranslate nohighlight">\(x\)</span> is a list of all possible values of <span class="math notranslate nohighlight">\(x\)</span> and corresponding probabilities.</p>
-<div class="proof example admonition" id="example-1">
-<p class="admonition-title"><span class="caption-number">Example 14 </span></p>
+<div class="proof example admonition" id="2.1">
+<p class="admonition-title"><span>Example </span> (2.1)</p>
 <section class="example-content" id="proof-content">
 <p>In an experiment of flipping a fair coin, there are two possible outcomes - head or tail. Define a random variable <span class="math notranslate nohighlight">\(X=0\)</span> for head and <span class="math notranslate nohighlight">\(X=1\)</span> for tail. Then, <span class="math notranslate nohighlight">\(P(X=0)=P(head)=0.5\)</span> and <span class="math notranslate nohighlight">\(P(X=1)=P(tail)=0.5\)</span>. The probability distribution of <span class="math notranslate nohighlight">\(X\)</span> is represented by the following table.</p>
 <table class="colwidths-auto table">
@@ -639,17 +639,17 @@ title="Print to PDF"
 <h2>Discrete random variables<a class="headerlink" href="#discrete-random-variables" title="Permalink to this headline">#</a></h2>
 <p>The possible values of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> are countable (often integers). Each value of <span class="math notranslate nohighlight">\(X\)</span> has a probability measure <span class="math notranslate nohighlight">\(0 \leq p \leq 1\)</span>, and the total probability must be 1 .</p>
 <div class="proof definition admonition" id="mass_function">
-<p class="admonition-title"><span class="caption-number">Definition 11 </span> (probability mass function)</p>
+<p class="admonition-title"><span>Definition </span> (probability mass function)</p>
 <section class="definition-content" id="proof-content">
 <p>The probability mass function (PMF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is defined as <span class="math notranslate nohighlight">\(P(X=a)\)</span>.</p>
 </section>
 </div><div class="proof definition admonition" id="cumulative">
-<p class="admonition-title"><span class="caption-number">Definition 12 </span> (cumulative distribution function)</p>
+<p class="admonition-title"><span>Definition </span> (cumulative distribution function)</p>
 <section class="definition-content" id="proof-content">
 <p>The cumulative distribution function (CDF) of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is defined as <span class="math notranslate nohighlight">\(P(X \leq a)\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span class="caption-number">Example 15 </span></p>
+</div><div class="proof example admonition" id="2.2">
+<p class="admonition-title"><span>Example </span> (2.2)</p>
 <section class="example-content" id="proof-content">
 <p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table.</p>
 <table class="colwidths-auto table">
@@ -676,67 +676,193 @@ title="Print to PDF"
 <p>The cumulative probability function is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-F(a)=\left\{\begin{array}{c}
-0 \quad \text { if } a&lt;1 \\
-0.2, \text { if } 1 \leq a&lt;2 \\
-0.8, \text { if } 2 \leq a&lt;3 \\
-1, \text { if } a \geq 3
-\end{array}\right.
+F(a)=\begin{equation}
+\begin{cases}
+0 &amp; \text { if } a&lt;1 \\
+0.2 &amp; \text { if } 1 \leq a&lt;2 \\
+0.8 &amp; \text { if } 2 \leq a&lt;3 \\
+1 &amp; \text { if } a \geq 3
+\end{cases}
+\end{equation}
 \end{split}\]</div>
 </section>
-</div></section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span><span class="s">&quot;2&quot;</span><span class="o">=</span><span class="m">0.6</span><span class="p">,</span><span class="s">&quot;3&quot;</span><span class="o">=</span><span class="m">0.2</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;probability mass function&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ecdf</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">6</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">))),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap2_1_0.png" src="_images/chap2_1_0.png" />
+</div>
+</div>
+</section>
 <section id="expectations">
 <h2>Expectations<a class="headerlink" href="#expectations" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="expectation">
-<p class="admonition-title"><span class="caption-number">Definition 13 </span> (expectation)</p>
+<p class="admonition-title"><span>Definition </span> (expectation)</p>
 <section class="definition-content" id="proof-content">
 <p>For a discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, the expectation of a function <span class="math notranslate nohighlight">\(g(X)\)</span> of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[E(g(X))=\sum_{x} g(x) P(x)\]</div>
 </section>
-</div><div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span class="caption-number">Example 16 </span></p>
+</div><div class="proof example admonition" id="2.3">
+<p class="admonition-title"><span>Example </span> (2.3)</p>
 <section class="example-content" id="proof-content">
+<p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p(x)\)</span></p></td>
+<td><p>0.2</p></td>
+<td><p>0.6</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <p><span class="math notranslate nohighlight">\(E(\log (X))=\sum_{x} \log (x) P(x)=\log (1) * 0.2+\log (2) * 0.6+\log (3) * 0.2=0.6356\)</span></p>
 </section>
-</div><div class="proof definition admonition" id="mean">
-<p class="admonition-title"><span class="caption-number">Definition 14 </span> (mean)</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.6</span><span class="p">,</span><span class="m">0.2</span><span class="p">)</span>
+<span class="n">result</span><span class="o">=</span><span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the expectation is&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the expectation is 0.635610766069589&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof definition admonition" id="mean">
+<p class="admonition-title"><span>Definition </span> (mean)</p>
 <section class="definition-content" id="proof-content">
 <p>For a discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, the mean of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[E(X)=\sum_{x} x P(x)\]</div>
 </section>
-</div><div class="proof example admonition" id="example-8">
-<p class="admonition-title"><span class="caption-number">Example 17 </span></p>
+</div><div class="proof example admonition" id="2.4">
+<p class="admonition-title"><span>Example </span> (2.4)</p>
 <section class="example-content" id="proof-content">
+<p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p(x)\)</span></p></td>
+<td><p>0.2</p></td>
+<td><p>0.6</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <p><span class="math notranslate nohighlight">\(E(X)=\sum_{x} x P(x)=1 * 0.2+2 * 0.6+3 * 0.2=2\)</span></p>
 </section>
-</div><div class="proof definition admonition" id="variance">
-<p class="admonition-title"><span class="caption-number">Definition 15 </span> (variance)</p>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.6</span><span class="p">,</span><span class="m">0.2</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the mean is&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the mean is 2&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof definition admonition" id="variance">
+<p class="admonition-title"><span>Definition </span> (variance)</p>
 <section class="definition-content" id="proof-content">
 <p>For a discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, the variance of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{var}(X)=\left.E\left\{(X-E(X))^{2}\right\}\right)=\sum_{x}(x-E(X))^{2} P(x)\]</div>
 </section>
-</div><div class="proof example admonition" id="example-10">
-<p class="admonition-title"><span class="caption-number">Example 18 </span></p>
+</div><div class="proof example admonition" id="2.5">
+<p class="admonition-title"><span>Example </span> (2.5)</p>
 <section class="example-content" id="proof-content">
+<p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p(x)\)</span></p></td>
+<td><p>0.2</p></td>
+<td><p>0.6</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <p><span class="math notranslate nohighlight">\(\operatorname{var}(x)=(1-2)^{2} * 0.2+(2-2)^{2} * 0.6+(3-2)^{2} * 0.2=0.4\)</span></p>
 </section>
-</div><ol class="simple">
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.6</span><span class="p">,</span><span class="m">0.2</span><span class="p">)</span>
+<span class="n">average</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="n">variance</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">average</span><span class="p">)</span><span class="o">^</span><span class="m">2</span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;variance is&quot;</span><span class="p">,</span><span class="n">variance</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;variance is 0.4&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(E(a X+b)=a E(X)+b\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\operatorname{var}(a X+b)=a^{2} E(X)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=E\left(X^{2}\right)-(E(X))^{2}\)</span></p></li>
 </ol>
 <div class="proof definition admonition" id="moment_generating_function">
-<p class="admonition-title"><span class="caption-number">Definition 16 </span> (moment generating function)</p>
+<p class="admonition-title"><span>Definition </span> (moment generating function)</p>
 <section class="definition-content" id="proof-content">
 <p>Definition: For a discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, the moment generating function of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[E\left(e^{t X}\right)=\sum_{x} e^{t x} P(x)\]</div>
 </section>
-</div><div class="proof example admonition" id="example-12">
-<p class="admonition-title"><span class="caption-number">Example 19 </span></p>
+</div><div class="proof example admonition" id="2.6">
+<p class="admonition-title"><span>Example </span> (2.6)</p>
 <section class="example-content" id="proof-content">
 <p>The moment generating function is <span class="math notranslate nohighlight">\(M(t) = E\left(e^{t X}\right)=0.2 e^{t}+0.6 e^{2 t}+0.2 e^{3 t}\)</span></p>
 </section>
@@ -757,7 +883,7 @@ F(a)=\left\{\begin{array}{c}
 </section>
 </div><p>The <span class="math notranslate nohighlight">\(r^{th}\)</span> moment of a discrete probability distribution is defined as <span class="math notranslate nohighlight">\(E\left(X^{r}\right)=\)</span> <span class="math notranslate nohighlight">\(\sum_{x} x^{r} P(x)\)</span>. Note that the first moment is <span class="math notranslate nohighlight">\(E(X)\)</span>.</p>
 <div class="proof definition admonition" id="prob_gen_function">
-<p class="admonition-title"><span class="caption-number">Definition 17 </span> (probability generating function)</p>
+<p class="admonition-title"><span>Definition </span> (probability generating function)</p>
 <section class="definition-content" id="proof-content">
 <p>For a discrete random variable, the probability generating function is defined as</p>
 <div class="math notranslate nohighlight">
@@ -772,8 +898,20 @@ F(a)=\left\{\begin{array}{c}
 <ul class="simple">
 <li><p>The probablity mass function is given by <span class="math notranslate nohighlight">\(P(X=x)=p^{x}(1-p)^{1-x}\)</span>, for <span class="math notranslate nohighlight">\(x=0,1\)</span>.</p></li>
 <li><p>The expectation of <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(E(X)=p\)</span></p></li>
-<li><p>The variance is <span class="math notranslate nohighlight">\(\operatorname{var}(X)=p(1-p)\)</span>.</p></li>
+<li><p>The variance is <span class="math notranslate nohighlight">\(\operatorname{var}(X)=p(1-p)\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span><span class="s">&quot;1&quot;</span><span class="o">=</span><span class="m">0.5</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;probability mass function&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ecdf</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap2_9_0.png" src="_images/chap2_9_0.png" />
+</div>
+</div>
 </section>
 <section id="binomial-random-variable">
 <h3>Binomial random variable<a class="headerlink" href="#binomial-random-variable" title="Permalink to this headline">#</a></h3>
@@ -784,24 +922,66 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
 <li><p>The expectation is <span class="math notranslate nohighlight">\(E(X)=np\)</span></p></li>
 <li><p>The variance is <span class="math notranslate nohighlight">\(\operatorname{var}(X)=np(1-p)\)</span>.</p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">dbinom</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="m">0</span><span class="o">:</span><span class="m">5</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;probability mass function&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ecdf</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">p</span><span class="p">)),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap2_11_0.png" src="_images/chap2_11_0.png" />
+</div>
+</div>
 </section>
 <section id="geometric-random-variable">
 <h3>Geometric random variable<a class="headerlink" href="#geometric-random-variable" title="Permalink to this headline">#</a></h3>
 <p>The random variable <span class="math notranslate nohighlight">\(X\)</span> denotes the number of failures before observing the first success</p>
 <ul class="simple">
-<li><p>The probability mass function is <span class="math notranslate nohighlight">\(P(X=x)=p(1-p)^{x-1}\)</span>, for <span class="math notranslate nohighlight">\(x=1,2, \ldots\)</span>.</p></li>
-<li><p>The expectation is <span class="math notranslate nohighlight">\(E(X)=\frac{1}{p}\)</span></p></li>
+<li><p>The probability mass function is <span class="math notranslate nohighlight">\(P(X=x)=p(1-p)^{x}\)</span>, for <span class="math notranslate nohighlight">\(x=0,1,2, \ldots\)</span>.</p></li>
+<li><p>The expectation is <span class="math notranslate nohighlight">\(E(X)=\frac{1-p}{p}\)</span></p></li>
 <li><p>The variance is <span class="math notranslate nohighlight">\(\operatorname{var}(X)=\frac{1-p}{p^{2}}\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">dgeom</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="m">0.2</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="m">0</span><span class="o">:</span><span class="m">10</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;probability mass function&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ecdf</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">p</span><span class="p">)),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap2_13_0.png" src="_images/chap2_13_0.png" />
+</div>
+</div>
 </section>
 <section id="negative-binomial-random-variable">
 <h3>Negative binomial random variable<a class="headerlink" href="#negative-binomial-random-variable" title="Permalink to this headline">#</a></h3>
 <p>The random variable <span class="math notranslate nohighlight">\(X\)</span> denotes the number of failures before observing the <span class="math notranslate nohighlight">\(r^{th}\)</span> success. Let <span class="math notranslate nohighlight">\(p\)</span> be the probability of a success and <span class="math notranslate nohighlight">\(r\)</span> is the predefined number of successes.</p>
 <ul class="simple">
-<li><p>The probability mass function is <span class="math notranslate nohighlight">\(P(X=x)=\left(\begin{array}{c}x+r-1 \\ x\end{array}\right)(1-p)^{x} p^{r}\)</span>,</p></li>
-<li><p><span class="math notranslate nohighlight">\(E(X)=\frac{p r}{1-p}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=\frac{pr}{(1-p)^{2}}\)</span></p></li>
+<li><p>The probability mass function is <span class="math notranslate nohighlight">\(P(X=x)=\left(\begin{array}{c}x+r-1 \\ x\end{array}\right)p^{r}(1-p)^{x}\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\frac{r(1-p)}{p}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=\frac{r(1-p)}{p^{2}}\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">dnbinom</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">25</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">0.5</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="m">0</span><span class="o">:</span><span class="m">25</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;probability mass function&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ecdf</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">25</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">p</span><span class="p">)),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap2_15_0.png" src="_images/chap2_15_0.png" />
+</div>
+</div>
 </section>
 <section id="discrete-uniform-random-variable">
 <h3>Discrete uniform random variable<a class="headerlink" href="#discrete-uniform-random-variable" title="Permalink to this headline">#</a></h3>
@@ -810,6 +990,20 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
 <li><p><span class="math notranslate nohighlight">\(E(X)=\sum a_{i} * \frac{1}{n}=\frac{1}{n} \sum a_{i}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\operatorname{var}(x)=\sum\left(a_{i}-\bar{a}\right)^{2} * \frac{1}{n}\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;probability mass function&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ecdf</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap2_17_0.png" src="_images/chap2_17_0.png" />
+</div>
+</div>
 </section>
 <section id="poisson-random-variable">
 <h3>Poisson random variable<a class="headerlink" href="#poisson-random-variable" title="Permalink to this headline">#</a></h3>
@@ -819,12 +1013,26 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
 <li><p><span class="math notranslate nohighlight">\(E(X)=\lambda\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=\lambda\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="n">p</span> <span class="o">=</span> <span class="nf">dpois</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="m">0.5</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">=</span> <span class="m">0</span><span class="o">:</span><span class="m">10</span>
+<span class="nf">barplot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;probability mass function&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">ecdf</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="n">p</span><span class="p">)),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;cumulative distribution function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap2_19_0.png" src="_images/chap2_19_0.png" />
+</div>
+</div>
 </section>
 </section>
 <section id="transformation">
 <h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
-<div class="proof example admonition" id="example-15">
-<p class="admonition-title"><span class="caption-number">Example 20 </span></p>
+<div class="proof example admonition" id="2.7">
+<p class="admonition-title"><span>Example </span> (2.7)</p>
 <section class="example-content" id="proof-content">
 <p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table.</p>
 <table class="colwidths-auto table">
@@ -871,8 +1079,8 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
 </tbody>
 </table>
 </section>
-</div><div class="proof example admonition" id="example-16">
-<p class="admonition-title"><span class="caption-number">Example 21 </span></p>
+</div><div class="proof example admonition" id="2.8">
+<p class="admonition-title"><span>Example </span> (2.8)</p>
 <section class="example-content" id="proof-content">
 <p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table</p>
 <table class="colwidths-auto table">
@@ -928,16 +1136,16 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "r"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "ir",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ir'</script>
 
               </div>
               

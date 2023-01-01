@@ -538,13 +538,13 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\(P(A\cup B) = P(A)+P(B)-P(A\cap B)\)</span></p></li>
 <li><p>If two events <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are disjoint, then <span class="math notranslate nohighlight">\(P(A\cap B) = 0\)</span></p></li>
 </ul>
-<div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span class="caption-number">Example 7 </span> (Flipping a coin, if the probability of head is 0.47, what is the probability of tail?)</p>
+<div class="proof example admonition" id="1.1">
+<p class="admonition-title"><span>Example </span> (1.1)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(P(tail) = 1-P(head) = 1-0.47 = 0.53\)</span></p>
 </section>
-</div><div class="proof example admonition" id="example-1">
-<p class="admonition-title"><span class="caption-number">Example 8 </span> (What is the probability <span class="math notranslate nohighlight">\(P(head \cup tail)\)</span>?)</p>
+</div><div class="proof example admonition" id="1.2">
+<p class="admonition-title"><span>Example </span> (1.2)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(P(head \cup tail) = P(head) + P(tail) - P(head\cap tail) = 0.47 + 0.53 - 0 = 1\)</span></p>
 </section>
@@ -552,7 +552,7 @@ title="Print to PDF"
 <section id="conditional-probabilities">
 <h2>Conditional probabilities<a class="headerlink" href="#conditional-probabilities" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="conditional_probability">
-<p class="admonition-title"><span class="caption-number">Definition 8 </span> (conditional probability)</p>
+<p class="admonition-title"><span>Definition </span> (conditional probability)</p>
 <section class="definition-content" id="proof-content">
 <p>For two events <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, the probability of <span class="math notranslate nohighlight">\(A\)</span> given that the event <span class="math notranslate nohighlight">\(B\)</span> occurs is called the conditional probability of <span class="math notranslate nohighlight">\(A\)</span> conditional on the event <span class="math notranslate nohighlight">\(B\)</span>, denoted by <span class="math notranslate nohighlight">\(P(A|B)\)</span>.</p>
 </section>
@@ -560,14 +560,14 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\(P(A|B)=\frac{P(A \cap B)}{P(B)}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(P(A\cap B) = P(A)P(B|A) = P(B)P(A|B)\)</span></p></li>
 </ul>
-<div class="proof example admonition" id="example-3">
-<p class="admonition-title"><span class="caption-number">Example 9 </span> (If <span class="math notranslate nohighlight">\(A\)</span> is a subset of <span class="math notranslate nohighlight">\(B\)</span>, show that <span class="math notranslate nohighlight">\(P(B|A)=1\)</span>)</p>
+<div class="proof example admonition" id="1.3">
+<p class="admonition-title"><span>Example </span> (1.3)</p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(P(B|A)=\frac{P(A \cap B)}{P(A)}=\frac{P(A)}{P(A)}=1\)</span></p>
 </section>
 </div><a class="reference internal image-reference" href="_images/diag_prob.png"><img alt="_images/diag_prob.png" src="_images/diag_prob.png" style="height: 250px;" /></a>
-<div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span class="caption-number">Example 10 </span></p>
+<div class="proof example admonition" id="1.4">
+<p class="admonition-title"><span>Example </span> (1.4)</p>
 <section class="example-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(H=home\)</span>, <span class="math notranslate nohighlight">\(R=restaurant\)</span>, <span class="math notranslate nohighlight">\(C=chicken\)</span>, and <span class="math notranslate nohighlight">\(V=veg\)</span>. From the diagram, we know that <span class="math notranslate nohighlight">\(P(H)=0.8\)</span>, <span class="math notranslate nohighlight">\(P(R=0.2)\)</span>, <span class="math notranslate nohighlight">\(P(C|H)=0.4\)</span>, <span class="math notranslate nohighlight">\(P(V|H)=0.6\)</span>, <span class="math notranslate nohighlight">\(P(C|R)=0.9\)</span>, <span class="math notranslate nohighlight">\(P(V|R)=0.1\)</span>.</p>
 <p>What is the probability of having chicken at home?
@@ -581,22 +581,22 @@ title="Print to PDF"
 <section id="independent-events">
 <h2>Independent events<a class="headerlink" href="#independent-events" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="independence">
-<p class="admonition-title"><span class="caption-number">Definition 9 </span> (independence)</p>
+<p class="admonition-title"><span>Definition </span> (independence)</p>
 <section class="definition-content" id="proof-content">
 <p>Two sets (events) <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are independent if and only if <span class="math notranslate nohighlight">\(P(A \cap B)=P(A) P(B)\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span class="caption-number">Example 11 </span> (If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are independent, then <span class="math notranslate nohighlight">\(P(A|B) = P(A)\)</span>)</p>
+</div><div class="proof example admonition" id="1.5">
+<p class="admonition-title"><span>Example </span> (1.5)</p>
 <section class="example-content" id="proof-content">
 <p>By definition, the conditional probability is <span class="math notranslate nohighlight">\(P(A|B) = \frac{P(A\cap B)}{P(B)}\)</span>. Since <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are independent, <span class="math notranslate nohighlight">\(P(A\cap B) = P(A)P(B)\)</span>. Thus, <span class="math notranslate nohighlight">\(P(A|B) = \frac{P(A)P(B)}{P(B)} = P(A)\)</span></p>
 </section>
-</div><div class="proof example admonition" id="example-7">
-<p class="admonition-title"><span class="caption-number">Example 12 </span> (Show that if <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are two disjoint sets and <span class="math notranslate nohighlight">\(P(A)&gt;0\)</span> and <span class="math notranslate nohighlight">\(P(B)&gt;0\)</span>, then <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are not independent.)</p>
+</div><div class="proof example admonition" id="1.6">
+<p class="admonition-title"><span>Example </span> (1.6)</p>
 <section class="example-content" id="proof-content">
 <p>We show it by contradiction. Suppose <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are independent. Then, <span class="math notranslate nohighlight">\(P(A\cap B) = P(A)P(B)&gt;0\)</span>. However, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are disjoint and thus <span class="math notranslate nohighlight">\(P(A\cap B) = 0\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-8">
-<p class="admonition-title"><span class="caption-number">Example 13 </span> (Flipping a fair coin 3 times, what is the probability of three heads)</p>
+</div><div class="proof example admonition" id="1.7">
+<p class="admonition-title"><span>Example </span> (1.7)</p>
 <section class="example-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X_1, X_2, X_3\)</span> be the outcomes of three flips. The probability of three heads is</p>
 <div class="math notranslate nohighlight">

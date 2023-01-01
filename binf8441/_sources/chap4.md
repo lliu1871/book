@@ -27,7 +27,9 @@ kernelspec:
 ## Discrete cases
 Considering two discrete random variables $X$ and $Y$ with a joint probability mass function (pmf) $P(X=x, Y=y)$ or simply $P(x,y)$.
 
-````{prf:example}
+````\{prf:example\} 4.1
+:nonumber:
+:label: 4.1
 :nonumber:
 The joint pmf can be represented by a table. The following table indicates $P(X=1,Y=0)=0.1$, $P(X=1,Y=1)=0.3$, $P(X=2,Y=0)=0.2$, $P(X=2,Y=1)=0.4$. The total probability is $0.1+0.2+0.3+0.4=1$.
 
@@ -39,6 +41,7 @@ The joint pmf can be represented by a table. The following table indicates $P(X=
 ````
 
 ````{prf:definition} marginal pmf
+:nonumber:
 :label: marginal
 The marginal pmf of $X$ is
 
@@ -61,6 +64,7 @@ P(x \mid y)=\frac{P(x, y)}{P(y)}
 $$
 
 ````{prf:definition}
+:nonumber:
 :label: joint_expectation
 The expectation of a function of $X$ and $Y$ is defined as
 
@@ -75,7 +79,9 @@ $$
 E(X \mid Y=y)=\sum_{x} x P(x \mid y)
 $$
 
-````{prf:example}
+````\{prf:example\} 4.2
+:nonumber:
+:label: 4.2
 :nonumber:
 The joint pmf of two random variables $X$ and $Y$ is given in the following table
 
@@ -211,7 +217,9 @@ $$
 f\left(X_{1},\dots, X_{n}\right)=\prod_{i=1}^nf\left(X_{i}\right)
 $$
 
-````{prf:example}
+````\{prf:example\} 4.3
+:nonumber:
+:label: 4.3
 :nonumber:
 $\left(X_{1}, X_{2}, \ldots, X_{n}\right) \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$. The joint density function of $X_{1}, X_{2}, \ldots, X_{n}$ is
 
@@ -230,7 +238,9 @@ $$
 The joint density function of data $\left(X_1,\dots,X_n\right)$ is also called the **likelihood** function. The likelihood function measures the likelihood of the observed data $\left(X_1,\dots,X_n\right)$ given the parameters. When we estimate the parameter values from data, we choose the parameter values such that they can maximize the likelihood of the observed data; this is called "maximum likelihood estimate"
 ```
 
-````{prf:example}
+````\{prf:example\} 4.4
+:nonumber:
+:label: 4.4
 :nonumber:
 
 $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)$. The joint density function is
@@ -246,7 +256,9 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n} = x_{n} \mid \lambda\right) &=\pr
 $$
 ````
 
-````{prf:example}
+````\{prf:example\} 4.5
+:nonumber:
+:label: 4.5
 :nonumber:
 
 $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Exponential}(\lambda)$. The joint density function is
@@ -304,7 +316,9 @@ $$
 G_{S_{n}}(t)=(G(t))^{n}
 $$
 
-````{prf:example}
+````\{prf:example\} 4.6
+:nonumber:
+:label: 4.6
 :nonumber:
 $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)$ and $G(t)=e^{\lambda(t-1)}$
 
@@ -315,7 +329,9 @@ $$
 Thus, $S_{n}$ is a Poisson random variable with mean $\lambda^{*}=n \lambda$.
 ````
 
-````{prf:example}
+````\{prf:example\} 4.7
+:nonumber:
+:label: 4.7
 :nonumber:
 $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Bernoulli}(\lambda), G(t)=(1-p)+p t$
 
@@ -351,7 +367,9 @@ We can show that
 3. The moment generating function for the gamma distribution is $(1-t / \alpha)^{-\beta}$
 ```
 
-````{prf:example} 1
+````\{prf:example\} 4.8
+:nonumber:
+:label: 4.8
 :nonumber:
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, find the probability distribution of the sum $S_{n}=\sum_{i=1}^{n} X_{i}$.
 
@@ -362,7 +380,9 @@ $$M_{S_{n}}(t)=(M(t))^{n}=\left(e^{u t+\sigma^{2} t^{2} / 2}\right)^{n}=\left(e^
 Thus, the sum $S_{n}$ follows the normal distribution with mean $n \mu$ and variance $n \sigma^{2}$
 ````
 
-````{prf:example} 2
+````\{prf:example\} 4.9
+:nonumber:
+:label: 4.9
 :nonumber:
 Given a random sample $X_{1}, \dots, X_{n} \sim \exp (\lambda)$, find the probability distribution of the sum $S_{n}=\sum_{i=1}^{n} X_{i}$.
 
@@ -375,7 +395,9 @@ Thus, $S_{n}$ follows the Gamma distribution with $\alpha=\lambda$ and $\beta=n$
 
 Alternatively, we may find the CDF of the statistic.
 
-````{prf:example} 3
+````\{prf:example\} 4.10
+:nonumber:
+:label: 4.10
 :nonumber:
 Find the distribution of $\max \left\{X_{1}, X_{2}, \ldots, X_{n}\right\}$
 

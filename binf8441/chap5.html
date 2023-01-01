@@ -568,8 +568,8 @@ title="Print to PDF"
 <section id="sufficient-statistics">
 <h2>Sufficient statistics<a class="headerlink" href="#sufficient-statistics" title="Permalink to this headline">#</a></h2>
 <p>A statistic is a function <span class="math notranslate nohighlight">\(T=g\left(X_{1}, \dots, X_{n}\right)\)</span> of the random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span> generated from a probability distribution with density <span class="math notranslate nohighlight">\(f(X \mid \theta)\)</span>.</p>
-<div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="chap5_1">
+<p class="admonition-title"><span>Example </span> (5.1)</p>
 <section class="example-content" id="proof-content">
 <p>The followings are statistics,</p>
 <ul class="simple">
@@ -580,7 +580,7 @@ title="Print to PDF"
 </section>
 </div><p>We use statistics to estimate unknown parameters. <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> is a sufficient statistic if the statistician who knows the value of <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> can do just as good a job of estimating the unknown parameter <span class="math notranslate nohighlight">\(\theta\)</span> as the statistician who knows the entire random sample.</p>
 <div class="proof definition admonition" id="sufficient">
-<p class="admonition-title"><span class="caption-number">Definition 23 </span> (sufficient statistics)</p>
+<p class="admonition-title"><span>Definition </span> (sufficient statistics)</p>
 <section class="definition-content" id="proof-content">
 <p>A statistic <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> is sufficient for parameter <span class="math notranslate nohighlight">\(\theta\)</span> if the conditional distribution of a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span>, given <span class="math notranslate nohighlight">\(\mathrm{T}\)</span>, does not depend on <span class="math notranslate nohighlight">\(\theta\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
@@ -596,8 +596,8 @@ f\left(X_{1}, \dots, X_{n} \mid T, \theta\right)=f\left(X_{1}, \dots, X_{n} \mid
 \[f(X \mid \theta)=h(x) g(T, \theta)\]</div>
 </section>
 </div><p>If <span class="math notranslate nohighlight">\(z(x)\)</span> is a one-to-one function and <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> is a sufficient statistic, then <span class="math notranslate nohighlight">\(z(T)\)</span> is a sufficient statistic. For example, if the statistic <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> is sufficient, then <span class="math notranslate nohighlight">\(\mathrm{2T}\)</span> is also a sufficient statistic.</p>
-<div class="proof example admonition" id="example-3">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="chap5_2">
+<p class="admonition-title"><span>Example </span> (5.2)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Bernoulli}(p)\)</span> , find the sufficient statistic for <span class="math notranslate nohighlight">\(p\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -611,8 +611,8 @@ f\left(X_{1},\dots, X_{n}|p\right) &amp;=\prod p^{x_{i}}(1-p)^{1-x_{i}}\\
 \end{split}\]</div>
 <p>Thus the sufficient statistic for <span class="math notranslate nohighlight">\(p\)</span> is <span class="math notranslate nohighlight">\(\sum x_{i}\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="chap5_3">
+<p class="admonition-title"><span>Example </span> (5.3)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, find the sufficient statistics for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 <p>The joint density function of <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span> is</p>
@@ -629,8 +629,8 @@ f\left(X_{1}=x_{1}, \dots, X_{n}=x_{n} \mid \mu, \sigma^{2}\right) &amp;=\prod_{
 \end{split}\]</div>
 <p>Thus, the sufficient statistics for <span class="math notranslate nohighlight">\(\left(\mu, \sigma^{2}\right)\)</span> are <span class="math notranslate nohighlight">\(\left(\sum_{i=1}^{n} x_{i}, \sum_{i=1}^{n} x_{i}^{2}\right)\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="chap5_4">
+<p class="admonition-title"><span>Example </span> (5.4)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1},\dots, X_{n} \sim\)</span> Poisson <span class="math notranslate nohighlight">\((\lambda)\)</span>, find the sufficient statistic for <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -645,8 +645,8 @@ f\left(X_{1}=x_{1}, \dots, X_{n}=x_{n} \mid \lambda\right) &amp;= \prod_{i=1}^{n
 \end{split}\]</div>
 <p>Thus, the sufficient statistic for <span class="math notranslate nohighlight">\(\lambda\)</span> is <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} x_{i}\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="chap5_5">
+<p class="admonition-title"><span>Example </span> (5.5)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim\)</span> Exponential <span class="math notranslate nohighlight">\((\lambda)\)</span>, find the sufficient statistic for <span class="math notranslate nohighlight">\(\lambda\)</span></p>
 <div class="math notranslate nohighlight">
@@ -661,8 +661,8 @@ f\left(X_{1}=x_{1}, \dots, X_{n}=x_{n} \mid \lambda\right) &amp;=\prod_{i=1}^{n}
 \end{split}\]</div>
 <p>Thus, the sufficient statistic for <span class="math notranslate nohighlight">\(\lambda\)</span> is <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} x_{i}\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-7">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="chap5_6">
+<p class="admonition-title"><span>Example </span> (5.6)</p>
 <section class="example-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X_{(1)}, \dots, X_{(n)}\)</span> be the order statistics of a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim f(x \mid \theta)\)</span>. Given the order statistics, the distribution of data <span class="math notranslate nohighlight">\(X_1, \dots, X_n\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
@@ -673,12 +673,12 @@ f\left(X_{1}=x_{1}, \dots, X_{n}=x_{n} \mid \lambda\right) &amp;=\prod_{i=1}^{n}
 <section id="unbiased-estimator">
 <h2>Unbiased estimator<a class="headerlink" href="#unbiased-estimator" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="unbiased">
-<p class="admonition-title"><span class="caption-number">Definition 24 </span> (unbiased estimator)</p>
+<p class="admonition-title"><span>Definition </span> (unbiased estimator)</p>
 <section class="definition-content" id="proof-content">
 <p>An estimator <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> is unbiased if and only if <span class="math notranslate nohighlight">\(E(\hat{\theta})=\theta\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-9">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="chap5_7">
+<p class="admonition-title"><span>Example </span> (5.7)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, the sample average <span class="math notranslate nohighlight">\(\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i\)</span> is an unbiased estimator of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -693,8 +693,8 @@ E(\bar{X}) &amp;= E(\frac{1}{n}\sum_{i=1}^nX_i)\\
 \end{split}\]</div>
 </section>
 </div><p><span class="math notranslate nohighlight">\(\left(X_{1}+X_{2}\right) / 2\)</span> is another unbiased estimator of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
-<div class="proof example admonition" id="example-10">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="chap5_8">
+<p class="admonition-title"><span>Example </span> (5.8)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim\)</span> Exponential <span class="math notranslate nohighlight">\((\lambda)\)</span>, the sample average is an unbiased estimator of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -738,8 +738,8 @@ E\left[(\hat{\theta}-\theta)^{2}\right]=(E(\hat{\theta})-\theta)^{2}+\operatorna
 <li><p><span class="math notranslate nohighlight">\(\hat{E\left(X^{2}\right)}=\frac{1}{n} \sum_{i=1}^{n} x_{i}^{2}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\hat{E\left(X^{k}\right)}=\frac{1}{n} \sum_{i=1}^{n} x_{i}{ }^{k}\)</span></p></li>
 </ul>
-<div class="proof example admonition" id="example-13">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="chap5_9">
+<p class="admonition-title"><span>Example </span> (5.9)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, find the moment estimators of the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 <p>Because <span class="math notranslate nohighlight">\(E(X)=\mu\)</span>, the parameter <span class="math notranslate nohighlight">\(\mu\)</span> is the population mean. Thus, the moment estimate of <span class="math notranslate nohighlight">\(\mu\)</span> is the sample average</p>
@@ -775,8 +775,8 @@ E\left[(\hat{\theta}-\theta)^{2}\right]=(E(\hat{\theta})-\theta)^{2}+\operatorna
 <p>We estimate <span class="math notranslate nohighlight">\(\theta\)</span> by the value that can maximize the likelihood of the observed data <span class="math notranslate nohighlight">\(X_{1}, \ldots, X_{n}\)</span>. This is called the maximum likelihood estimator of <span class="math notranslate nohighlight">\(\theta\)</span>. Thus, <span class="math notranslate nohighlight">\(\hat{\theta}=2\)</span>.</p>
 </div>
 <p>For continuous random variables, the likelihood function is the joint density function of data.The maximum likelihood estimator is the value of parameter that can maximize the likelihood function.</p>
-<div class="proof example admonition" id="example-15">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="chap5_10">
+<p class="admonition-title"><span>Example </span> (5.10)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, find the MLE of the population mean <span class="math notranslate nohighlight">\(\mu\)</span>, assuming the variance <span class="math notranslate nohighlight">\(\sigma^2\)</span> is given.</p>
 <p>We first find the likelihood function which is just the joint density function of <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span></p>
@@ -802,8 +802,8 @@ log(L(\mu)) = -\frac{n}{2}log\left(2 \pi \sigma^{2} \right) - \frac{\sum_{i=1}^{
 \]</div>
 <p>Solving the equation, we find <span class="math notranslate nohighlight">\(\mu = \frac{1}{n}\sum_{i=1}^n x_i\)</span>. Thus, the maximum likelihood estimate of <span class="math notranslate nohighlight">\(\mu\)</span> is the sample average, i.e., <span class="math notranslate nohighlight">\(\hat{\mu}_{MLE} = \frac{1}{n}\sum_{i=1}^n x_i\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-16">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="chap5_11">
+<p class="admonition-title"><span>Example </span> (5.11)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Poisson}(\lambda)\)</span>, find the maximum likelihood estimate of the parameter <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <p>We first find the likelihood function which is just the joint density function of <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span>.</p>
@@ -829,8 +829,8 @@ log(L(\lambda)) = \sum_{i=1}^{n}x_{i}log(\lambda) - n\lambda - log\left(\prod_{i
 \]</div>
 <p>Solving the equation, we find <span class="math notranslate nohighlight">\(\lambda = \frac{1}{n}\sum_{i=1}^n x_i\)</span>. Thus, the maximum likelihood estimate of <span class="math notranslate nohighlight">\(\lambda\)</span> is the sample average, i.e., <span class="math notranslate nohighlight">\(\hat{\lambda}_{MLE} = \frac{1}{n}\sum_{i=1}^n x_i\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-17">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="chap5_12">
+<p class="admonition-title"><span>Example </span> (5.12)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim\)</span> Exponential <span class="math notranslate nohighlight">\((\lambda)\)</span>, find the maximum likelihood estimate of the parameter <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <p>We first find the likelihood function which is just the joint density function of <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span>.</p>
@@ -869,8 +869,8 @@ log(L(\lambda)) = -nlog(\lambda) - \frac{\sum_{i=1}^{n}x_{i}}{\lambda}
 <p class="admonition-title">Important</p>
 <p>We would like to construct the 95% confidence interval.</p>
 </div>
-<div class="proof example admonition" id="example-19">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="chap5_13">
+<p class="admonition-title"><span>Example </span> (5.13)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, find the 95% confidence interval <span class="math notranslate nohighlight">\([a, b]\)</span> such that <span class="math notranslate nohighlight">\(P(a \leq \mu \leq b)=0.95\)</span>.</p>
 <p>The sample average <span class="math notranslate nohighlight">\(\bar{x}\)</span> has the normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^{2} / n\)</span>. Thus, <span class="math notranslate nohighlight">\(\frac{\sqrt{n}(\bar{x}-\mu)}{\sigma}\)</span> has a standard normal distribution.</p>
@@ -885,7 +885,7 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 </section>
 </div><p>The above example can be generalized to the construction of 95% CI for any parameter using its maximum likelihood estimate, as demonstrated by the following theorem.</p>
 <div class="proof theorem admonition" id="theorem-20">
-<p class="admonition-title"><span class="caption-number">Theorem 5 </span></p>
+<p class="admonition-title"><span>Theorem </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If the sample size is large, the 95% CI for a parameter <span class="math notranslate nohighlight">\(\theta\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -897,22 +897,29 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 </section>
 <section id="convergence-theorems">
 <h2>Convergence Theorems<a class="headerlink" href="#convergence-theorems" title="Permalink to this headline">#</a></h2>
-<div class="proof definition admonition" id="definition-21">
-<p class="admonition-title"><span class="caption-number">Definition 25 </span> (convergence almost surely)</p>
+<div class="proof definition admonition" id="5.5">
+<p class="admonition-title"><span>Definition </span> (convergence almost surely)</p>
 <section class="definition-content" id="proof-content">
-<p>Convergence almost surely: To say that a sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables converges almost surely towards <span class="math notranslate nohighlight">\(X\)</span> means that <span class="math notranslate nohighlight">\(P\left(\lim _{n \rightarrow \infty} X_{n}=X\right)=1\)</span>.</p>
+<p>To say that a sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables converges almost surely towards <span class="math notranslate nohighlight">\(X\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[P\left(\lim_{n \rightarrow \infty} X_{n}=X\right)=1\]</div>
 </section>
-</div><div class="proof definition admonition" id="definition-22">
-<p class="admonition-title"><span class="caption-number">Definition 26 </span> (convergence in probability)</p>
+</div><div class="proof definition admonition" id="5.6">
+<p class="admonition-title"><span>Definition </span> (convergence in probability)</p>
 <section class="definition-content" id="proof-content">
-<p>Convergence in probability: A sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables converges in probability towards the random variable <span class="math notranslate nohighlight">\(X\)</span> if for all <span class="math notranslate nohighlight">\(\varepsilon&gt;0, \lim _{n \rightarrow \infty} P\left(\left|X_{n}-X\right| \leq \varepsilon\right)=1\)</span>.</p>
+<p>A sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables converges in probability towards the random variable <span class="math notranslate nohighlight">\(X\)</span> if for all <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n \rightarrow \infty} P\left(\left|X_{n}-X\right| \leq \varepsilon\right)=1\]</div>
 </section>
-</div><div class="proof definition admonition" id="definition-23">
-<p class="admonition-title"><span class="caption-number">Definition 27 </span> (convergence in distribution)</p>
+</div><div class="proof definition admonition" id="5.7">
+<p class="admonition-title"><span>Definition </span> (convergence in distribution)</p>
 <section class="definition-content" id="proof-content">
-<p>Convergence in distribution: A sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables is said to converge in distribution to a random variable <span class="math notranslate nohighlight">\(X\)</span> if <span class="math notranslate nohighlight">\(\lim _{n \rightarrow \infty} F_{n}(x)=F(x)\)</span>, where <span class="math notranslate nohighlight">\(F_{n}(x)\)</span> is the probability distribution function of <span class="math notranslate nohighlight">\(X_{n}\)</span>.</p>
+<p>A sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables is said to converge in distribution to a random variable <span class="math notranslate nohighlight">\(X\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[\lim _{n \rightarrow \infty} F_{n}(x)=F(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(F_{n}(x)\)</span> is the probability distribution function of <span class="math notranslate nohighlight">\(X_{n}\)</span>.</p>
 </section>
-</div><p>Convergence a.s <span class="math notranslate nohighlight">\(\Rightarrow&gt;\)</span> Convergence in probability <span class="math notranslate nohighlight">\(\Rightarrow&gt;\)</span> convergence in distribution But the reverse is not necessarily correct. Inequality</p>
+</div><p>Convergence a.s <span class="math notranslate nohighlight">\(\Rightarrow\)</span> Convergence in probability <span class="math notranslate nohighlight">\(\Rightarrow\)</span> convergence in distribution. But the reverse is not correct.</p>
 <div class="proof proposition admonition" id="proposition-24">
 <p class="admonition-title"><span class="caption-number">Proposition 1 </span> (Markov inequality)</p>
 <section class="proposition-content" id="proof-content">
@@ -925,7 +932,7 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 </section>
 </div><p>These inequalities are satisfied for all probability distributions. When the underlying probability distribution is given, we can exactly calculate <span class="math notranslate nohighlight">\(P(|X-u| \geq d)\)</span>; then there is no need to find the upper limit given by the Chebyshev’s inequality.</p>
 <div class="proof theorem admonition" id="theorem-26">
-<p class="admonition-title"><span class="caption-number">Theorem 6 </span> (The weak Law of large numbers)</p>
+<p class="admonition-title"><span>Theorem </span> (The weak Law of large numbers)</p>
 <section class="theorem-content" id="proof-content">
 <p>The sample average converges in probability to the population mean as the sample size <span class="math notranslate nohighlight">\(n\)</span> goes to infinity, regardless of the underlying probability distribution.</p>
 <div class="math notranslate nohighlight">
@@ -934,7 +941,7 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 \]</div>
 </section>
 </div><div class="proof theorem admonition" id="theorem-27">
-<p class="admonition-title"><span class="caption-number">Theorem 7 </span> (Central limit theorem)</p>
+<p class="admonition-title"><span>Theorem </span> (Central Limit Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>The sample average converges in distribution to a normal random variable <span class="math notranslate nohighlight">\(X\)</span>, regardless of the underlying probability distribution</p>
 <div class="math notranslate nohighlight">

@@ -539,7 +539,7 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte carlo simulation</a></p></li>
 </ul>
 </div>
-<div class="proof definition admonition" id="definition-0">
+<div class="proof definition admonition" id="10.1">
 <p class="admonition-title"><span>Definition </span> (Monte Carlo simulation)</p>
 <section class="definition-content" id="proof-content">
 <p>Monte Carlo simulation is a computational technique that rely on repeated random samplings to obtain numerical results.</p>
@@ -568,8 +568,8 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 <li><p>Calculate the average <span class="math notranslate nohighlight">\(\frac{1}{n} \sum_{i=1}^{n} k(x_i)/f(x_i)\)</span></p></li>
 </ol>
 </section>
-</div><div class="proof example admonition" id="example-2">
-<p class="admonition-title"><span>Example </span></p>
+</div><div class="proof example admonition" id="10.1">
+<p class="admonition-title"><span>Example </span> (10.1)</p>
 <section class="example-content" id="proof-content">
 <p>Calculate <span class="math notranslate nohighlight">\(\int_{0}^{\infty}log(x) e^{-x} d x\)</span></p>
 <p>Note that <span class="math notranslate nohighlight">\(e^{-x}\)</span> is the exponential density function with mean <span class="math notranslate nohighlight">\(=1\)</span>. Thus, the integral is the expectation <span class="math notranslate nohighlight">\(E(\log (x))\)</span>. Monte Carlo approximation to the integral includes the following steps</p>
@@ -586,10 +586,10 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">-0.565989906387934</div></div>
+<div class="output text_html">-0.604079783627019</div></div>
 </div>
-<div class="proof example admonition" id="example-3">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="10.2">
+<p class="admonition-title"><span>Example </span> (10.2)</p>
 <section class="example-content" id="proof-content">
 <p>Calculate <span class="math notranslate nohighlight">\(\int_{1}^{5} \frac{2 \log (x)}{x^{2}} d x\)</span>. Note that <span class="math notranslate nohighlight">\(\int_{1}^{5} \frac{2 \log (x)}{x^{2}} d x=\int_{1}^{5} \frac{8 \log (x)}{x^{2}} \frac{1}{4} d x\)</span> and <span class="math notranslate nohighlight">\(\frac{1}{4}\)</span> is the density of uniform (1,5). The integral <span class="math notranslate nohighlight">\(\int_{1}^{5} \frac{2 \log (x)}{x^{2}} d x=E(g(X))\)</span>, in which <span class="math notranslate nohighlight">\(g(x)=\frac{8 \log (x)}{x^{2}}\)</span> and the density <span class="math notranslate nohighlight">\(f(x)=\frac{1}{4}\)</span>.</p>
 </section>
@@ -601,7 +601,7 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">1.07267599148808</div></div>
+<div class="output text_html">1.07535449265372</div></div>
 </div>
 </section>
 <section id="simulation-based-inference">
@@ -610,8 +610,8 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 <section id="calculating-the-variance-of-an-estimator">
 <h3>1. Calculating the variance of an estimator<a class="headerlink" href="#calculating-the-variance-of-an-estimator" title="Permalink to this headline">#</a></h3>
 <p>Suppose <span class="math notranslate nohighlight">\(\left(x_{1}, \ldots, x_{n}\right)\)</span> is a random sample generated from a given probability distribution with a given parameter <span class="math notranslate nohighlight">\(\theta\)</span>. Let <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> be the estimator of <span class="math notranslate nohighlight">\(\theta\)</span>. The variance of <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> can be approximated by the sample variance of <span class="math notranslate nohighlight">\(\hat{\theta}\)</span>.</p>
-<div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="10.3">
+<p class="admonition-title"><span>Example </span> (10.3)</p>
 <section class="example-content" id="proof-content">
 <p>A random sample of size 10 are generated from the normal distribution with mean 1 and variance 1 . Find the variance of <span class="math notranslate nohighlight">\(\hat{\theta}=\frac{x_{\min }+x_{\max }}{2}\)</span>.</p>
 <p>We use Monte Carlo simulation to approximate <span class="math notranslate nohighlight">\(var\left(\hat{\theta}\right)\)</span></p>
@@ -636,14 +636,14 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.167861586747882</div></div>
+<div class="output text_html">0.160887519451602</div></div>
 </div>
 </section>
 <section id="comparing-the-performance-of-estimators">
 <h3>2. Comparing the performance of estimators<a class="headerlink" href="#comparing-the-performance-of-estimators" title="Permalink to this headline">#</a></h3>
 <p>The mean squared error <span class="math notranslate nohighlight">\(E\left[(\hat{\theta}-\theta)^{2}\right]\)</span> of the estimator <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> of the parameter <span class="math notranslate nohighlight">\(\theta\)</span> can be approximated by simulation. When the true <span class="math notranslate nohighlight">\(\theta\)</span> is given, the expectation <span class="math notranslate nohighlight">\(E\left[(\hat{\theta}-\theta)^{2}\right]\)</span> can be approximated by the sample average of <span class="math notranslate nohighlight">\(\left(\widehat{\theta}_{i}-\theta\right)^{2}\)</span>, in which <span class="math notranslate nohighlight">\(\widehat{\theta}_{i}\)</span> is calculated from the sample <span class="math notranslate nohighlight">\(i\)</span> generated from the probability distribution.</p>
-<div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="10.4">
+<p class="admonition-title"><span>Example </span> (10.4)</p>
 <section class="example-content" id="proof-content">
 <p>A random sample of size 10 is generated from the normal distribution with the unknown mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance 1. We want to compare the mean squared errors of two estimators, the sample median <span class="math notranslate nohighlight">\(\tilde{x}\)</span> and the sample average <span class="math notranslate nohighlight">\(\bar{x}\)</span>, of the population mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <p>We use Monte Carlo simulation to approximate the mean squared error.</p>
@@ -687,8 +687,8 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 <section id="approximate-the-power-of-hypothesis-tests">
 <h3>3. Approximate the power of hypothesis tests<a class="headerlink" href="#approximate-the-power-of-hypothesis-tests" title="Permalink to this headline">#</a></h3>
 <p>The power is <span class="math notranslate nohighlight">\(P\left(\right.\)</span> reject <span class="math notranslate nohighlight">\(\left.H_{0} \mid H_{1}\right)\)</span>, which can be approximated by simulation, when the alternative probability distribution under <span class="math notranslate nohighlight">\(\mathrm{H}_{1}\)</span> is given. We generate samples under <span class="math notranslate nohighlight">\(\mathrm{H}_{1}\)</span>. The power of a test, i.e., the probability of rejecting <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span>, is approximated by the proportion of samples for which <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span> is rejected by the test. If the alternative hypothesis is an interval of parameter <span class="math notranslate nohighlight">\(\theta\)</span>, we need to calculate the power for each value of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
-<div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span class="caption-number">Example 25 </span></p>
+<div class="proof example admonition" id="10.5">
+<p class="admonition-title"><span>Example </span> (10.5)</p>
 <section class="example-content" id="proof-content">
 <p>We want to calculate the power of the two sample t-test. Suppose the samples are generated from the normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance 1 . <span class="math notranslate nohighlight">\(\mathrm{H}_{0}: \mu_{1}=\mu_{2}\)</span> vs <span class="math notranslate nohighlight">\(\mathrm{H}_{1}: \mu_{1} \neq \mu_{2}\)</span>. Let <span class="math notranslate nohighlight">\(\mu_{1}=2\)</span>. To approximate the power of two sample t-test, we</p>
 <ol class="simple">

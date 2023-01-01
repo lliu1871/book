@@ -560,7 +560,7 @@ title="Print to PDF"
 </ul>
 </div>
 <div class="proof definition admonition" id="cdf">
-<p class="admonition-title"><span class="caption-number">Definition 18 </span> (cumulative probability function)</p>
+<p class="admonition-title"><span>Definition </span> (cumulative probability function)</p>
 <section class="definition-content" id="proof-content">
 <p>The cumulative distribution function (CDF) of a real-valued random variable <span class="math notranslate nohighlight">\(X\)</span>, evaluated at <span class="math notranslate nohighlight">\(x\)</span>, is the probability that <span class="math notranslate nohighlight">\(X\)</span> will take a value less than or equal to <span class="math notranslate nohighlight">\(x\)</span></p>
 <div class="math notranslate nohighlight">
@@ -572,8 +572,35 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\(\lim_{x\rightarrow -\infty} F(x) = P(X&lt;-\infty) = 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\lim_{x\rightarrow \infty} F(x) = P(X&lt;\infty) = 1\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="c1"># plot normal CDF</span>
+<span class="nf">curve</span><span class="p">(</span><span class="n">pnorm</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="m">-10</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;normal CDF&quot;</span><span class="p">)</span>
+<span class="c1"># plot normal density</span>
+<span class="nf">curve</span><span class="p">(</span><span class="n">dnorm</span><span class="p">,</span> <span class="n">from</span><span class="o">=</span><span class="m">-4</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;normal density curve&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="c1"># shade the area under the curve</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">den</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">value1</span><span class="o">=</span><span class="m">-2</span>
+<span class="n">value2</span><span class="o">=</span><span class="m">2</span>
+<span class="nf">polygon</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span><span class="n">den</span><span class="o">$</span><span class="n">x</span><span class="p">[</span><span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">value1</span> <span class="o">&amp;</span> <span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">value2</span><span class="p">],</span><span class="n">value2</span><span class="p">),</span>
+        <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">den</span><span class="o">$</span><span class="n">y</span><span class="p">[</span><span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">value1</span> <span class="o">&amp;</span> <span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">value2</span> <span class="p">],</span><span class="m">0</span><span class="p">),</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;slateblue1&quot;</span><span class="p">,</span> <span class="n">border</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="m">-1.2</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="s">&quot;p(-2&lt;x&lt;2)&quot;</span><span class="p">,</span> <span class="n">text.col</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">,</span> <span class="n">box.col</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_1_0.png" src="_images/chap3_1_0.png" />
+</div>
+</div>
 <div class="proof definition admonition" id="pdf">
-<p class="admonition-title"><span class="caption-number">Definition 19 </span> (probability density function)</p>
+<p class="admonition-title"><span>Definition </span> (probability density function)</p>
 <section class="definition-content" id="proof-content">
 <p>The probability density function <span class="math notranslate nohighlight">\(f(x)\)</span> is the derivate of the CDF at <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
@@ -588,7 +615,7 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[P(a&lt;X&lt;b) = \int_a^b f(x)dx\]</div>
 <div class="proof definition admonition" id="expectation2">
-<p class="admonition-title"><span class="caption-number">Definition 20 </span> (expectation)</p>
+<p class="admonition-title"><span>Definition </span> (expectation)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(f(x)\)</span> be the density function of a random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
@@ -611,16 +638,28 @@ title="Print to PDF"
 <h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{b-a}\)</span>, for <span class="math notranslate nohighlight">\(x \in[a, b]\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} d y\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} d y\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\int_{a}^{b} x f(x) d x=\frac{a+b}{2}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=E\left(X^{2}\right)-\{E(X)\}^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=E\left(X^{2}\right)-\{E(X)\}^{2}\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dunif</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;uniform&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="m">-4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;normal&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_3_0.png" src="_images/chap3_3_0.png" />
+</div>
+</div>
 </section>
 <section id="normal-distribution">
 <h3>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}\)</span>, for <span class="math notranslate nohighlight">\(x \in[-\infty, \infty]\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E(X)=u\)</span> and <span class="math notranslate nohighlight">\(\operatorname{var}(X)=\sigma^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=u\)</span> and <span class="math notranslate nohighlight">\(var(X)=\sigma^{2}\)</span></p></li>
 </ul>
 <p>If random variable <span class="math notranslate nohighlight">\(X\)</span> has the normal distribution with mean <span class="math notranslate nohighlight">\(u\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^{2}, Y=aX+b\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(a u+b\)</span> and variance <span class="math notranslate nohighlight">\(a^{2} \sigma^{2}\)</span>. To calculate the probability, we first standardize the random variable and then use the standard normal distribution to calculate probabilities,</p>
 <div class="math notranslate nohighlight">
@@ -631,15 +670,28 @@ title="Print to PDF"
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\lambda} e^{-\frac{x}{\lambda}}\)</span>, for <span class="math notranslate nohighlight">\(x&gt;0\)</span> and <span class="math notranslate nohighlight">\(\lambda&gt;0 . F(x)=1-e^{-\frac{x}{\lambda}}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\lambda\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=\lambda^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\lambda^{2}\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dexp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rate</span><span class="o">=</span><span class="m">4</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;exponential&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dbeta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;beta&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;gamma&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_5_0.png" src="_images/chap3_5_0.png" />
+</div>
+</div>
 </section>
 <section id="beta-distribution">
 <h3>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}, 0 \leq x \leq 1, \alpha&gt;0, \beta&gt;0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\frac{\alpha}{\alpha+\beta}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}\)</span></p></li>
 </ul>
 </section>
 <section id="gamma-distribution">
@@ -647,7 +699,7 @@ title="Print to PDF"
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\Gamma(\alpha) \beta^{\alpha}} x^{\alpha-1} e^{-\frac{x}{\beta}}, x&gt;0, \alpha&gt;0, \beta&gt;0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\alpha \beta\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=\alpha \beta^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\alpha \beta^{2}\)</span></p></li>
 </ul>
 </section>
 </section>
@@ -684,8 +736,8 @@ f_{Y}(a)=-F^{\prime}{ }_{X}\left(g^{-1}(a)\right)=-f_{X}\left(g^{-1}(a)\right) *
 \[
 f_{Y}(y)=f_{X}\left(g^{-1}(y)\right) *\left|\frac{d g^{-1}(y)}{d y}\right|
 \]</div>
-<div class="proof example admonition" id="example-3">
-<p class="admonition-title"><span class="caption-number">Example 22 </span></p>
+<div class="proof example admonition" id="3.1">
+<p class="admonition-title"><span>Example </span> (3.1)</p>
 <section class="example-content" id="proof-content">
 <p>The random variable <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with density function <span class="math notranslate nohighlight">\(f(x)=\lambda e^{-\lambda x}\)</span>. Find the distribution of <span class="math notranslate nohighlight">\(Y=X+2\)</span>. The inverse function is <span class="math notranslate nohighlight">\(X=Y-2\)</span>. Thus, for <span class="math notranslate nohighlight">\(y&gt;2\)</span></p>
 <div class="math notranslate nohighlight">
@@ -698,10 +750,10 @@ f_{y}(y)=\lambda e^{-\lambda(y-2)}\left|\frac{d(y-2)}{d y}\right|=\lambda e^{-\l
 \[
 M_{X+Y}(t)=M_{X}(t) M_{Y}(t)
 \]</div>
-<div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span class="caption-number">Example 23 </span></p>
+<div class="proof example admonition" id="3.2">
+<p class="admonition-title"><span>Example </span> (3.2)</p>
 <section class="example-content" id="proof-content">
-<p>The MGF of a normal random variable is <span class="math notranslate nohighlight">\(e^{u t+\sigma^{2} t^{2} / 2}\)</span>. Suppose <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> <span class="math notranslate nohighlight">\(\sim \operatorname{Normal}\left(u, \sigma^{2}\right)\)</span>. Find the probability distribution of the sample average <span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^{n} X_{i}}{n}\)</span>.</p>
+<p>The MGF of a normal random variable is <span class="math notranslate nohighlight">\(e^{u t+\sigma^{2} t^{2} / 2}\)</span>. Suppose <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> <span class="math notranslate nohighlight">\(\sim Normal\left(u, \sigma^{2}\right)\)</span>. Find the probability distribution of the sample average <span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^{n} X_{i}}{n}\)</span>.</p>
 <p>We first find the MGF of the sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span>, which is equal to</p>
 <div class="math notranslate nohighlight">
 \[
@@ -725,16 +777,16 @@ M_{X+Y}(t)=M_{X}(t) M_{Y}(t)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "r"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "ir",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ir'</script>
 
               </div>
               

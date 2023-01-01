@@ -680,8 +680,8 @@ title="Print to PDF"
 <li><p>The test statistic should be a function of the estimators of parameters in the hypotheses.</p></li>
 <li><p>The rejection region consists of values of test statistic for rejecting the null hypothesis.</p></li>
 </ol>
-<div class="proof example admonition" id="example-0">
-<p class="admonition-title"><span class="caption-number">Example 24 </span></p>
+<div class="proof example admonition" id="6.1">
+<p class="admonition-title"><span>Example </span> (6.1)</p>
 <section class="example-content" id="proof-content">
 <p>A pharmaceutical company is testing if a new drug is effective. In this case, we should formulate the hypotheses as follows</p>
 <p>H0: the drug is not effective</p>
@@ -717,7 +717,7 @@ title="Print to PDF"
 </tbody>
 </table>
 <div class="proof definition admonition" id="Type I error">
-<p class="admonition-title"><span class="caption-number">Definition 28 </span> (Type I and II error)</p>
+<p class="admonition-title"><span>Definition </span> (Type I and II error)</p>
 <section class="definition-content" id="proof-content">
 <p>Type I error <span class="math notranslate nohighlight">\(=\mathrm{P}\left(\right.\)</span> rejection region <span class="math notranslate nohighlight">\(\left.\mid \mathrm{H}_{0}\right)\)</span></p>
 <p>Type II error <span class="math notranslate nohighlight">\(=\mathrm{P}\left(\right.\)</span> acceptance region <span class="math notranslate nohighlight">\(\left.\mid \mathrm{H}_{1}\right)\)</span></p>
@@ -760,6 +760,28 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 <div class="math notranslate nohighlight">
 \[ pvalue = P(\text{rejection region} | H_0)\]</div>
 <p>where the critical value <span class="math notranslate nohighlight">\(a\)</span> in the rejection region is replaced by the test statistic calculated from data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&quot;less&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
+
+data:  data
+t = -3.5068, df = 19, p-value = 0.001179
+alternative hypothesis: true mean is less than 3
+95 percent confidence interval:
+     -Inf 2.569649
+sample estimates:
+mean of x 
+ 2.151056 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="two-sided-tests">
 <h3>two-sided tests<a class="headerlink" href="#two-sided-tests" title="Permalink to this headline">#</a></h3>
@@ -769,6 +791,28 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 \]</div>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=\frac{\bar{x}-1} {sd(\bar{x})}\)</span>. The null distribution of <span class="math notranslate nohighlight">\(t\)</span> is the student <span class="math notranslate nohighlight">\(t\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\((n-1)\)</span>.</p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> or <span class="math notranslate nohighlight">\(t&lt;b\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 97.5% quantile and <span class="math notranslate nohighlight">\(b\)</span> is the 2.5% quantile of the null distribution of the test statistic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
+
+data:  data
+t = -6.2752, df = 19, p-value = 5.03e-06
+alternative hypothesis: true mean is not equal to 3
+95 percent confidence interval:
+ 1.428471 2.214598
+sample estimates:
+mean of x 
+ 1.821535 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="two-sample-t-test">
@@ -789,6 +833,31 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &lt; \mu_2
 \]</div>
 <p>Test-stat: the same</p>
 <p>Rejection region: we reject the null if the test statistic is <span class="math notranslate nohighlight">\(t&lt;a\)</span> where the critical value <span class="math notranslate nohighlight">\(a\)</span> is the 5% quantile of the t distribution with <span class="math notranslate nohighlight">\(n_1+n_2-2\)</span> degrees of freedom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">group1</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">group2</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">group1</span><span class="p">,</span><span class="n">group2</span><span class="p">))</span>
+<span class="nf">t.test</span><span class="p">(</span><span class="n">group1</span><span class="p">,</span> <span class="n">group2</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&quot;greater&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  group1 and group2
+t = -3.0707, df = 37.963, p-value = 0.998
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -1.613454       Inf
+sample estimates:
+mean of x mean of y 
+ 1.751626  2.793201 
+</pre></div>
+</div>
+<img alt="_images/chap6_5_1.png" src="_images/chap6_5_1.png" />
+</div>
+</div>
 </section>
 <section id="id2">
 <h3>two-sided tests<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
@@ -798,6 +867,27 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 \]</div>
 <p>Test-stat: the same</p>
 <p>Rejection region: we reject the null if the test statistic is <span class="math notranslate nohighlight">\(t&lt;a\)</span> or <span class="math notranslate nohighlight">\(t&gt;b\)</span> where the critical values <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are the 97.5% and 2.5% quantile of the t distribution with <span class="math notranslate nohighlight">\(n_1+n_2-2\)</span> degrees of freedom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">group1</span><span class="p">,</span> <span class="n">group2</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  group1 and group2
+t = -3.0707, df = 37.963, p-value = 0.003934
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.728259 -0.354891
+sample estimates:
+mean of x mean of y 
+ 1.751626  2.793201 
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="f-test-for-more-than-two-samples">
@@ -807,6 +897,30 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 \[ H_0: \mu_1 = \dots = \mu_k \text{ versus } H_1: \text{at least two means are not equal}\]</div>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t\)</span> = variation between sample means / variation within the samples</p>
 <p>Rejection region: We reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the F distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">group1</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">group2</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">3.2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">group3</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">group1</span><span class="p">,</span><span class="n">group2</span><span class="p">,</span><span class="n">group3</span><span class="p">)</span>
+<span class="n">group</span><span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;group1&quot;</span><span class="p">,</span><span class="m">20</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;group2&quot;</span><span class="p">,</span><span class="m">20</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;group3&quot;</span><span class="p">,</span><span class="m">20</span><span class="p">))</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">~</span><span class="n">group</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">aov</span><span class="p">(</span><span class="n">data</span><span class="o">~</span><span class="n">group</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+group        2  67.14   33.57   33.58 2.31e-10 ***
+Residuals   57  56.98    1.00                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</pre></div>
+</div>
+<img alt="_images/chap6_9_1.png" src="_images/chap6_9_1.png" />
+</div>
+</div>
 </section>
 <section id="association-test-contingency-table">
 <h2>Association test (contingency table):<a class="headerlink" href="#association-test-contingency-table" title="Permalink to this headline">#</a></h2>
@@ -826,6 +940,33 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=\sum_{i=1}^{4} \frac{\left(o_{i}-e_{i}\right)^{2}}{e_{i}}\)</span>.</p>
 <p>The null distribution of the test statistic is asymptotically (sample size is large) the chi-square distribution with <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span> degrees of freedom, in which <span class="math notranslate nohighlight">\(r\)</span> is the number of rows and <span class="math notranslate nohighlight">\(c\)</span> is the number of columns.</p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the chi-square distribution with <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span> degrees of freedom.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">9</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">contingency_table</span> <span class="o">=</span> <span class="nf">as.table</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">chisq.test</span><span class="p">(</span><span class="n">contingency_table</span><span class="p">)</span>
+<span class="n">result</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the expected count is &quot;</span><span class="p">,</span><span class="n">result</span><span class="o">$</span><span class="n">expected</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in chisq.test(contingency_table):
+&quot;Chi-squared approximation may be incorrect&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Pearson&#39;s Chi-squared test with Yates&#39; continuity correction
+
+data:  contingency_table
+X-squared = 3.0387, df = 1, p-value = 0.0813
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the expected count is  3.6&quot; &quot;the expected count is  5.4&quot;
+[3] &quot;the expected count is  4.4&quot; &quot;the expected count is  6.6&quot;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="likelihood-ratio-test">
 <h2>Likelihood ratio test<a class="headerlink" href="#likelihood-ratio-test" title="Permalink to this headline">#</a></h2>
@@ -834,8 +975,8 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <p><span class="math notranslate nohighlight">\(\mathrm{H}_{0}: \theta=\theta_{0}\)</span> vs <span class="math notranslate nohighlight">\(\mathrm{H}_{1}: \theta=\theta_{1}\)</span></p>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=\frac{l_{0}}{l_{1}}\)</span>, or equivalently, <span class="math notranslate nohighlight">\(t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)\)</span>, where <span class="math notranslate nohighlight">\(l_{0}\)</span> is the likelihood under the null hypothesis and <span class="math notranslate nohighlight">\(l_{1}\)</span> is the likelihood under the alternative hypothesis.</p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the null distribution of the test statistic.</p>
-<div class="proof example admonition" id="example-2">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="6.2">
+<p class="admonition-title"><span>Example </span> (6.2)</p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}=1\right)\)</span>, we want to test if <span class="math notranslate nohighlight">\(\mu=1\)</span> or <span class="math notranslate nohighlight">\(\mu=2\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -860,7 +1001,24 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 <p>The null distribution of <span class="math notranslate nohighlight">\(t\)</span> is normal with mean <span class="math notranslate nohighlight">\(-n \mu+\frac{3 n}{2}\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span>.</p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the null distribution of the test statistic <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </section>
-</div><div class="proof lemma admonition" id="lemma-3">
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">loglike0</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">loglike1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="m">2</span><span class="o">*</span><span class="n">loglike1</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span><span class="n">loglike0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nf">qchisq</span><span class="p">(</span><span class="m">0.95</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the test statistic is&quot;</span><span class="p">,</span><span class="n">t</span><span class="p">,</span> <span class="s">&quot;and the critical value a =&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -15.7834818482396 and the critical value a = 3.84145882069412&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof lemma admonition" id="lemma-3">
 <p class="admonition-title"><span class="caption-number">Lemma 1 </span> (Neyman-Pearson lemma)</p>
 <section class="lemma-content" id="proof-content">
 <p>The likelihood ratio test for two simple hypotheses is the most powerful test.</p>
@@ -878,6 +1036,23 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)\)</span>, where <span class="math notranslate nohighlight">\(l_{0}=\max _{\theta \in \mathrm{M}_{0}}\{l(\theta)\}\)</span> is the maximum likelihood score under the null hypothesis and <span class="math notranslate nohighlight">\(l_{1}\)</span> is the maximum likelihood score <span class="math notranslate nohighlight">\(l_{1}=\)</span> <span class="math notranslate nohighlight">\(\max _{\theta \in \mathrm{M}_{1}}\{l(\theta)\}\)</span> under the alternative hypothesis.</p>
 <p>The null distribution of the test statistic is asymptotically the chi-square distribution with <span class="math notranslate nohighlight">\(\mathrm{df}=\left(\right.\)</span> number of free parameters in <span class="math notranslate nohighlight">\(\mathrm{H}_{1}-\)</span> number of free parameters in <span class="math notranslate nohighlight">\(\left.\mathrm{H}_{0}\right)\)</span></p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the chi-square distribution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">loglike0</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">1.2</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">loglike1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">t</span> <span class="o">=</span> <span class="m">2</span><span class="o">*</span><span class="n">loglike1</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span><span class="n">loglike0</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nf">qchisq</span><span class="p">(</span><span class="m">0.95</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the test statistic is&quot;</span><span class="p">,</span><span class="n">t</span><span class="p">,</span> <span class="s">&quot;and the critical value a =&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 31.6859472709826 and the critical value a = 3.84145882069412&quot;
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="mann-whitney-test-nonparametric-test-for-two-samples">
@@ -890,8 +1065,8 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 <p>Test-stat: Ranking all observations from the minimum to the maximum. If several sample values are exactly equal to each other (tied), assign to each the average rank. Let <span class="math notranslate nohighlight">\(\mathrm{R}\left(\mathrm{X}_{\mathrm{i}}\right)\)</span> denote the ranks of <span class="math notranslate nohighlight">\(\mathrm{X}_{\mathrm{i}}\)</span>. The test statistic is <span class="math notranslate nohighlight">\(T=\sum_{i=1}^{n} R\left(X_{i}\right)\)</span>.</p>
 <p>Under the null hypothesis that two samples are generated from the same population, the ranks of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are totally random. Thus, the ranks of <span class="math notranslate nohighlight">\(X\)</span> (assuming no ties) are <span class="math notranslate nohighlight">\(n\)</span> numbers chosen at random without replacement from <span class="math notranslate nohighlight">\((1,2, \ldots, n+m)\)</span>. The null distribution of <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> can be derived for small <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{m}\)</span> (table). For large <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{m}\)</span>, we can use simulation to calculate the null distribution of <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <p>Rejection region: we reject the null hypothesis if <span class="math notranslate nohighlight">\(t&gt;a\)</span> or <span class="math notranslate nohighlight">\(t&lt;b\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 97.5% quantile of the null distribution of the test statistic, and <span class="math notranslate nohighlight">\(b\)</span> is the 2.5% quantile of the null distribution of the test statistic.</p>
-<div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="6.3">
+<p class="admonition-title"><span>Example </span> (6.3)</p>
 <section class="example-content" id="proof-content">
 <p>Data is given in the table</p>
 <div class="math notranslate nohighlight">
@@ -902,32 +1077,26 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 \hline
 \end{array}
 \end{split}\]</div>
-<p>Test-stat: <span class="math notranslate nohighlight">\(t=5+1+3+4=13\)</span></p>
+<p>Test-stat: Let <span class="math notranslate nohighlight">\(R_i\)</span> be the sum of the ranks in group <span class="math notranslate nohighlight">\(i\)</span>. Define <span class="math notranslate nohighlight">\(U_i=n_1n_2+\frac{n_i(n_i+1)}{2}-R_i\)</span>. The test statistic is the smaller of <span class="math notranslate nohighlight">\(U_1\)</span> and <span class="math notranslate nohighlight">\(U_2\)</span>.</p>
 <p>Rejection region: we reject the null hypothesis if <span class="math notranslate nohighlight">\(t&gt;a\)</span> or <span class="math notranslate nohighlight">\(t&lt;b\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 97.5% quantile of the null distribution of the test statistic, and <span class="math notranslate nohighlight">\(b\)</span> is the 2.5% quantile of the null distribution of the test statistic.</p>
-<p>Because the data set contains 9 observations, the ranks of observations are from 1 to 9 . Under the null hypothesis, the ranks of the observations in the <span class="math notranslate nohighlight">\(X\)</span> sample consist of 4 numbers selected at random from 1-9. The test statistic <span class="math notranslate nohighlight">\(t\)</span> is the sum of 4 numbers. We can use simulation to approximate the null distribution of the test statistic (see below).</p>
-<p>Since <span class="math notranslate nohighlight">\(a=27\)</span> and <span class="math notranslate nohighlight">\(b=12\)</span>, we do not reject the null.</p>
 </section>
 </div><div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nsim</span> <span class="o">=</span> <span class="m">1000</span>
-<span class="n">t</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">nsim</span>
-
-<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nsim</span><span class="p">){</span>
-  <span class="n">rank</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">9</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span>
-  <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="nf">quantile</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">probs</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.025</span><span class="p">,</span><span class="m">0.975</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2.3</span><span class="p">,</span><span class="m">1.4</span><span class="p">,</span><span class="m">1.6</span><span class="p">,</span><span class="m">1.8</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="m">3.7</span><span class="p">,</span><span class="m">3.2</span><span class="p">,</span><span class="m">2.8</span><span class="p">,</span><span class="m">3.3</span><span class="p">)</span>
+<span class="nf">wilcox.test</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style>
-.dl-inline {width: auto; margin:0; padding: 0}
-.dl-inline>dt, .dl-inline>dd {float: none; width: auto; display: inline-block}
-.dl-inline>dt::after {content: ":\0020"; padding-right: .5ex}
-.dl-inline>dt:not(:first-of-type) {padding-left: .5ex}
-</style><dl class=dl-inline><dt>2.5%</dt><dd>12</dd><dt>97.5%</dt><dd>28</dd></dl>
-</div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Wilcoxon rank sum exact test
+
+data:  x and y
+W = 3, p-value = 0.1111
+alternative hypothesis: true location shift is not equal to 0
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>

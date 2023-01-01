@@ -29,8 +29,11 @@ kernelspec:
 
 A statistic is a function $T=g\left(X_{1}, \dots, X_{n}\right)$ of the random sample $X_{1}, \dots, X_{n}$ generated from a probability distribution with density $f(X \mid \theta)$. 
 
-````{prf:example}
+````\{prf:example\} 5.1
 :nonumber:
+:label: 5.1
+:nonumber:
+:label: chap5_1
 The followings are statistics, 
 - sample average: $T=\frac{1}{n} \sum X_{i}$
 - sample median: $T= median \left(X_{1}, \dots, X_{n}\right)$
@@ -40,6 +43,7 @@ The followings are statistics,
 We use statistics to estimate unknown parameters. $\mathrm{T}$ is a sufficient statistic if the statistician who knows the value of $\mathrm{T}$ can do just as good a job of estimating the unknown parameter $\theta$ as the statistician who knows the entire random sample. 
 
 ````{prf:definition} sufficient statistics
+:nonumber:
 :label: sufficient
 A statistic $\mathrm{T}$ is sufficient for parameter $\theta$ if the conditional distribution of a random sample $X_{1}, \dots, X_{n}$, given $\mathrm{T}$, does not depend on $\theta$, i.e.,
 
@@ -58,8 +62,11 @@ $$f(X \mid \theta)=h(x) g(T, \theta)$$
 
 If $z(x)$ is a one-to-one function and $\mathrm{T}$ is a sufficient statistic, then $z(T)$ is a sufficient statistic. For example, if the statistic $\mathrm{T}$ is sufficient, then $\mathrm{2T}$ is also a sufficient statistic.
 
-````{prf:example}
+````\{prf:example\} 5.2
 :nonumber:
+:label: 5.2
+:nonumber:
+:label: chap5_2
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Bernoulli}(p)$ , find the sufficient statistic for $p$. 
 
 $$
@@ -74,8 +81,12 @@ $$
 Thus the sufficient statistic for $p$ is $\sum x_{i}$.
 ````
 
-````{prf:example}
+````\{prf:example\} 5.3
 :nonumber:
+:label: 5.3
+:nonumber:
+:label: chap5_3
+
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, find the sufficient statistics for $\mu$ and $\sigma^2$.
 
 The joint density function of $X_{1}, \dots, X_{n}$ is
@@ -94,8 +105,12 @@ $$
 Thus, the sufficient statistics for $\left(\mu, \sigma^{2}\right)$ are $\left(\sum_{i=1}^{n} x_{i}, \sum_{i=1}^{n} x_{i}^{2}\right)$.
 ````
 
-````{prf:example}
+````\{prf:example\} 5.4
 :nonumber:
+:label: 5.4
+:nonumber:
+:label: chap5_4
+
 Given a random sample $X_{1},\dots, X_{n} \sim$ Poisson $(\lambda)$, find the sufficient statistic for $\lambda$.
 
 $$
@@ -111,8 +126,12 @@ $$
 Thus, the sufficient statistic for $\lambda$ is $\sum_{i=1}^{n} x_{i}$.
 ````
 
-````{prf:example}
+````\{prf:example\} 5.5
 :nonumber:
+:label: 5.5
+:nonumber:
+:label: chap5_5
+
 Given a random sample $X_{1}, \dots, X_{n} \sim$ Exponential $(\lambda)$, find the sufficient statistic for $\lambda$
 
 $$
@@ -128,8 +147,11 @@ $$
 Thus, the sufficient statistic for $\lambda$ is $\sum_{i=1}^{n} x_{i}$.
 ````
 
-````{prf:example}
+````\{prf:example\} 5.6
 :nonumber:
+:label: 5.6
+:nonumber:
+:label: chap5_6
 
 Let $X_{(1)}, \dots, X_{(n)}$ be the order statistics of a random sample $X_{1}, \dots, X_{n} \sim f(x \mid \theta)$. Given the order statistics, the distribution of data $X_1, \dots, X_n$, i.e., 
 
@@ -140,12 +162,17 @@ is a discrete uniform distribution, which does not depend on parameters $\theta$
 
 ## Unbiased estimator
 ````{prf:definition} unbiased estimator
+:nonumber:
 :label: unbiased
 An estimator $\hat{\theta}$ is unbiased if and only if $E(\hat{\theta})=\theta$.
 ````
 
-````{prf:example}
+````\{prf:example\} 5.7
 :nonumber:
+:label: 5.7
+:nonumber:
+:label: chap5_7
+
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, the sample average $\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$ is an unbiased estimator of $\mu$.
 
 $$ 
@@ -161,8 +188,12 @@ $$
 
 $\left(X_{1}+X_{2}\right) / 2$ is another unbiased estimator of $\mu$.
 
-````{prf:example}
+````\{prf:example\} 5.8
 :nonumber:
+:label: 5.8
+:nonumber:
+:label: chap5_8
+
 Given a random sample $X_{1}, \dots, X_{n} \sim$ Exponential $(\lambda)$, the sample average is an unbiased estimator of $\lambda$.
 
 $$ 
@@ -179,7 +210,6 @@ $$
 ````{prf:theorem}
 :nonumber:
 Given a random sample $X_{1}, \dots, X_{n}$, the sample average $\bar{X}$ is an unbiased estimator of the population mean $\theta$.
-
 ````
 
 ## Mean squared errors
@@ -208,8 +238,12 @@ By the law of large numbers, the sample average is a good estimator of the popul
 - $\hat{E\left(X^{k}\right)}=\frac{1}{n} \sum_{i=1}^{n} x_{i}{ }^{k}$
 
 
-````{prf:example}
+````\{prf:example\} 5.9
 :nonumber:
+:label: 5.9
+:nonumber:
+:label: chap5_9
+
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, find the moment estimators of the parameters $\mu$ and $\sigma^2$.
 
 Because $E(X)=\mu$, the parameter $\mu$ is the population mean. Thus, the moment estimate of $\mu$ is the sample average 
@@ -229,6 +263,7 @@ $$
 Let $X_{1}, \dots, X_{n}$ is a random sample generated from a discrete probability distribution with the probability mass function $P(x \mid \theta)$. We want to estimate parameter $\theta$. 
 
 ````{prf:definition} likelihood
+:nonumber:
 :label: likelihood
 :nonumber:
 
@@ -254,8 +289,12 @@ We estimate $\theta$ by the value that can maximize the likelihood of the observ
 For continuous random variables, the likelihood function is the joint density function of data.The maximum likelihood estimator is the value of parameter that can maximize the likelihood function.
 
 
-````{prf:example}
+````\{prf:example\} 5.10
 :nonumber:
+:label: 5.10
+:nonumber:
+:label: chap5_10
+
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, find the MLE of the population mean $\mu$, assuming the variance $\sigma^2$ is given. 
 
 We first find the likelihood function which is just the joint density function of $X_{1}, \dots, X_{n}$
@@ -286,8 +325,12 @@ Solving the equation, we find $\mu = \frac{1}{n}\sum_{i=1}^n x_i$. Thus, the max
 
 ````
 
-````{prf:example}
+````\{prf:example\} 5.11
 :nonumber:
+:label: 5.11
+:nonumber:
+:label: chap5_11
+
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Poisson}(\lambda)$, find the maximum likelihood estimate of the parameter $\lambda$.
 
 We first find the likelihood function which is just the joint density function of $X_{1}, \dots, X_{n}$.
@@ -318,8 +361,11 @@ Solving the equation, we find $\lambda = \frac{1}{n}\sum_{i=1}^n x_i$. Thus, the
 
 ````
 
-````{prf:example}
+````\{prf:example\} 5.12
 :nonumber:
+:label: 5.12
+:nonumber:
+:label: chap5_12
 
 Given a random sample $X_{1}, \dots, X_{n} \sim$ Exponential $(\lambda)$, find the maximum likelihood estimate of the parameter $\lambda$.
 
@@ -353,6 +399,7 @@ Solving the equation, we find $\lambda = \frac{1}{n}\sum_{i=1}^n x_i$. Thus, the
 
 ## Confidence intervals
 ````{prf:definition} confidence interval
+:nonumber:
 :label: confidence_interval
 :nonumber:
 An interval $[a,b]$ is said to be the $\alpha \%$ ($0\le \alpha \le 100$) confidence interval for the parameter $\theta$, if $P(a<\theta<b) = \alpha \%$.
@@ -363,8 +410,11 @@ We hope to find an interval with a high confidence level. The confidence level i
 We would like to construct the 95% confidence interval.
 ``` 
 
-````{prf:example}
+````\{prf:example\} 5.13
 :nonumber:
+:label: 5.13
+:nonumber:
+:label: chap5_13
 
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, find the 95% confidence interval $[a, b]$ such that $P(a \leq \mu \leq b)=0.95$. 
 
@@ -385,6 +435,8 @@ Thus, the 95% confidence interval for $\mu$ is $\left[\bar{x}-\frac{2 \sigma}{\s
 The above example can be generalized to the construction of 95% CI for any parameter using its maximum likelihood estimate, as demonstrated by the following theorem.
 
 ````{prf:theorem}
+:nonumber:
+
 If the sample size is large, the 95% CI for a parameter $\theta$ is
 
 $$
@@ -397,18 +449,32 @@ Note that confidence intervals are random variables. Different samples generate 
 ## Convergence Theorems
 
 ````{prf:definition} convergence almost surely
-Convergence almost surely: To say that a sequence $\left\{X_{n}\right\}$ of random variables converges almost surely towards $X$ means that $P\left(\lim _{n \rightarrow \infty} X_{n}=X\right)=1$.
+:label: 5.5
+:nonumber:
+To say that a sequence $\left\{X_{n}\right\}$ of random variables converges almost surely towards $X$ if 
+
+$$P\left(\lim_{n \rightarrow \infty} X_{n}=X\right)=1$$
 ````
 
 ````{prf:definition} convergence in probability
-Convergence in probability: A sequence $\left\{X_{n}\right\}$ of random variables converges in probability towards the random variable $X$ if for all $\varepsilon>0, \lim _{n \rightarrow \infty} P\left(\left|X_{n}-X\right| \leq \varepsilon\right)=1$.
+:label: 5.6
+:nonumber:
+A sequence $\left\{X_{n}\right\}$ of random variables converges in probability towards the random variable $X$ if for all $\varepsilon>0$, 
+
+$$\lim_{n \rightarrow \infty} P\left(\left|X_{n}-X\right| \leq \varepsilon\right)=1$$
 ````
 
 ````{prf:definition} convergence in distribution
-Convergence in distribution: A sequence $\left\{X_{n}\right\}$ of random variables is said to converge in distribution to a random variable $X$ if $\lim _{n \rightarrow \infty} F_{n}(x)=F(x)$, where $F_{n}(x)$ is the probability distribution function of $X_{n}$.
+:label: 5.7
+:nonumber:
+A sequence $\left\{X_{n}\right\}$ of random variables is said to converge in distribution to a random variable $X$ if 
+
+$$\lim _{n \rightarrow \infty} F_{n}(x)=F(x)$$
+
+where $F_{n}(x)$ is the probability distribution function of $X_{n}$.
 ````
 
-Convergence a.s $\Rightarrow>$ Convergence in probability $\Rightarrow>$ convergence in distribution But the reverse is not necessarily correct. Inequality
+Convergence a.s $\Rightarrow$ Convergence in probability $\Rightarrow$ convergence in distribution. But the reverse is not correct. 
 
 ````{prf:proposition} Markov inequality
 If $X$ is a non-negative random variable and $a>0$, then $P(X \geq a) \leq \frac{E(X)}{a}$. 
@@ -420,6 +486,8 @@ $P(|X-u| \geq d) \leq \frac{\sigma^{2}}{d^2}$
 These inequalities are satisfied for all probability distributions. When the underlying probability distribution is given, we can exactly calculate $P(|X-u| \geq d)$; then there is no need to find the upper limit given by the Chebyshev's inequality.
 
 ````{prf:theorem} The weak Law of large numbers
+:nonumber:
+
 The sample average converges in probability to the population mean as the sample size $n$ goes to infinity, regardless of the underlying probability distribution.
 
 
@@ -428,7 +496,9 @@ $$
 $$
 ````
 
-````{prf:theorem} Central limit theorem
+````{prf:theorem} Central Limit Theorem
+:nonumber:
+
 The sample average converges in distribution to a normal random variable $X$, regardless of the underlying probability distribution
 
 $$

@@ -8,9 +8,9 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
+  display_name: R
+  language: R
+  name: ir
 ---
 
 
@@ -53,12 +53,19 @@ If the overall $\alpha$ level is 0.05, then the Bonferroni correction for indivi
  $$\alpha = \frac{0.05}{k}$$ 
 ```
 
+```{code-cell}
+pvalues <- c(.002, .005, .015, .113, .222, .227, .454, .552, .663, .751)
+result = p.adjust(pvalues,method="bonferroni")
+print(paste("adjusted pvalues:",result))
+```
+
 If $k$ is large, the $\alpha$ level for each test is extremely small, making it very difficult to reject the null hypothesis for each test. Bonferroni correction is too conservative.
 
 ## False discovery rate 
 The above section indicates that it is difficult to control the overall type I error. In this section, we introduce a new criterion, false discovery rate, to perform the tests.
 
 ````{prf:definition} false discovery rate
+:nonumber:
 :label: fdr
 :nonumber:
 
@@ -74,7 +81,9 @@ re-order them from the minimum to the maximum $P_1,\dots, P_n$.
 1. For a given $\alpha$, find the largest $k$ such that $P(k) \leq \frac{k}{n}\alpha$
 2. Reject the null hypothesis (i.e. declare positive discoveries) for the hypotheses $H_i$ for $i = 1, \dots, k$.
 
-````{prf:example}
+````\{prf:example\} 7.1
+:nonumber:
+:label: 7.1
 :nonumber:
 
 We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed the two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06.
@@ -84,3 +93,9 @@ Thus, $P_1 = 0.01, P_2 = 0.03, P_3 = 0.06$. We want to control FDR at the level 
 1. Find the largest $k$ such that $P_k \le \frac{k}{n}\alpha$. We first try $k = 3$, but $P_3 > 0.05$. Then, we try $k = 2$ and $P_2 < 2*0.05/3$. Thus, $k=2$.
 2. We reject the null hypothesis for the first two tests, and conclude that gene1 and gene2 are significantly associated with cancer. 
 ````
+
+```{code-cell}
+pvalues <- c(.002, .005, .015, .113, .222, .227, .454, .552, .663, .751)
+result = p.adjust(pvalues,method="BH")
+print(paste("adjusted pvalues:",result))
+```

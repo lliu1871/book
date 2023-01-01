@@ -29,6 +29,7 @@ kernelspec:
 
 ### Derivative
 ````{prf:definition} derivative
+:nonumber:
 :label: derivative
 The derivative $f^{\prime}(x)$ of a differentiable function $f(x)$ at $x$ is defined as the limit
  
@@ -75,14 +76,24 @@ $$D_a(cf)=cD_af$$
 - $(\cos x)^\prime=-\sin x$
 ```
 
-````{prf:example} Find the derivative $\frac{de^{2x}}{dx}$
+````\{prf:example\} 0.1
+:nonumber:
+:label: 0.1
+:nonumber:
+
+Find the derivative $\frac{de^{2x}}{dx}$
+
 Let $y=2x$ and by the chain rule we have
 $\frac{de^{2x}}{dx}=\frac{(de^y)}{dy}\frac{dy}{dx}=e^{y}*2=2e^{2x}$
 ````
 
 Derivatives can be used to minimize or maximize a differentiable function $f(x)$. To find the value of $x$ that can maximize or minimize the function $f(x)$, we set the first derivative to be 0, i.e., $f^{\prime}(x)=0$ and check the second derivative of $f(x)$.
 
-````{prf:example} Find the value of $x$ that can minimize $f(x)=x^2$
+````\{prf:example\} 0.2
+:nonumber:
+:label: 0.2
+:nonumber:
+Find the value of $x$ that can minimize $f(x)=x^2$
 Set the first derivate to be 0, i.e., $f^{\prime}(x)=0$, which indicates that $2x=0$ or $x=0$. Since the second derivative $f^{''} (x)=2$ is greater than 0, the value $x=0$ minimizes the function $f(x)=x^2$.
 ````
 
@@ -113,7 +124,12 @@ The continuous functions can be approximated by polynomial functions, which is c
 
 $$f(x)=f(a)+f^{'} (a)(x-a)+\frac{(f^{''} (a) (x-a)^2)}{2}+\frac{(f^{'''}(a)(x-a)^3)}{3!}+\dots+\frac{f^{n}(a)(x-a)^n}{n!}+\dots$$
 
-````{prf:example} Find the Taylor series of $f(x)=e^x$ near $x=0$
+````\{prf:example\} 0.3
+:nonumber:
+:label: 0.3
+:nonumber:
+Find the Taylor series of $f(x)=e^x$ near $x=0$
+
 Because $a=0$, $f(a)=e^a=e^0=1$ and $f^n(a)=e^0=1$. It follows from the above equation that the Taylor series of $e^x$ near $x=0$ is given by 
 
 $$e^x=1+x+\frac{x^2}{2}+\frac{x^3}{3!}+\dots+\frac{x^n}{n!}+...$$
@@ -123,22 +139,30 @@ $$e^x=1+x+\frac{x^2}{2}+\frac{x^3}{3!}+\dots+\frac{x^n}{n!}+...$$
 ### Dot product
 
 ````{prf:definition} dot product
+:nonumber:
 :label: dot_product
 The dot product of two vectors $a=(a_1,…,a_n)$ and $b=(b_1,…,b_n)$ is given by 
 
 $$a\cdot b=\sum_{i=1}^na_ib_i$$
 ````
 
-````{prf:example}
+````\{prf:example\} 0.4
+:nonumber:
+:label: 0.4
+:nonumber:
 The dot product of two vectors $(1, 2, 3)$ and $(0, 1, 2)$ is $1*0+2*1+3*2=8$. Note that two vectors must have the same length.
 ````
 
 ````{prf:definition} orthogonal
+:nonumber:
 :label: orthogonal
 Two vectors $a=(a_1,…,a_n)$ and $b=(b_1,…,b_n)$ are orthogonal (perpendicular) if $a\cdot b=0$. 
 ````
 
-````{prf:example}
+````\{prf:example\} 0.5
+:nonumber:
+:label: 0.5
+:nonumber:
 Two vectors $(0, 1)$ and $(1, 0)$ are orthogonal because their dot product is equal to 0, i.e., $(0, 1)\cdot (1, 0) = 0$
 ````
 
@@ -148,6 +172,7 @@ $$\begin{pmatrix} 1 & 2\\ 3 & 4\\ 5 & 6 \end{pmatrix} \begin{pmatrix} 1&1\\2&2\e
 	
 ### Linear independent
 ````{prf:definition} linear independent
+:nonumber:
 :label: linear_independent
 Let $\left(a_1,\dots,a_n\right)$ denote the $n$ column vectors of matrix $A$. Those vectors are linearly dependent if and only if there is a non-zero vector $(x_1,\dots,x_n)$ such that 
 
@@ -161,6 +186,7 @@ For example, in the matrix $A=\begin{pmatrix} 1&0\\0&1\end{pmatrix}$, the column
 
 ### Basis
 ````{prf:definition} basis
+:nonumber:
 :label: basis
 A set of vectors in a vector space $V$ is called a basis, or a set of basis vectors, if the vectors are linearly independent and every vector in the vector space is a linear combination of this set. 
 ````
@@ -176,6 +202,7 @@ The basis vectors are not unique, for example, $(-1, 1)$ and $(1, 1)$ are basis 
 
 ### Eigenvector
 ````{prf:definition} eigenvector
+:nonumber:
 :label: eigenvector
 Let $A$ be a square matrix. If we can find a non-zero vector $x$ and a number $\lambda$ such that $Ax=\lambda x$, the vector $x$ is an eigenvector and the number $\lambda$ is an eigenvalue.
 ````
@@ -183,6 +210,7 @@ Let $A$ be a square matrix. If we can find a non-zero vector $x$ and a number $\
 We need to find $x$ and $\lambda$ such that $(A-\lambda I)x=0$. Since $x$ is a non-zero vector, it indicates that $A-λI$ is not invertible, i.e., $\det⁡(A-\lambda I)=0$. 
 
 ````{prf:definition} diagonalizable
+:nonumber:
 :label: diagonalizable
 A square matrix $A$ be a square matrix is diagonalizable if it can be written as $A=PDP^{-1}$, in which the column vectors of $P$ are eigenvectors of $A$ and $D$ is a diagonal matrix of eigenvalues.
 ````
@@ -200,7 +228,10 @@ The ultimate goal of statistical inference is to understand the unknown **popula
 :align: center
 ```
 
-````{prf:example}
+````\{prf:example\} 0.6
+:nonumber:
+:label: 0.6
+:nonumber:
 We want to know the average weight of UGA students. We take a random sample of 100 students and calculate their average weight, which is 135 pounds. We conclude that the average weight of UGA students is 135 pounds.
 
 - Population: all UGA students
