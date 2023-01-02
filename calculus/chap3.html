@@ -1,0 +1,836 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 3: Derivative &#8212; Univariate Calculus</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 4: Integral" href="chap4.html" />
+    <link rel="prev" title="Chapter 2: Continuous functions" href="chap2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Univariate Calculus</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Limit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Continuous functions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 3: Derivative
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Integral
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap3.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap3.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap3.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties">
+   Properties
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#higher-order-derivatives">
+   Higher Order Derivatives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concave-and-convex">
+     Concave and Convex
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extrema">
+   Extrema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   Applications
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-s-method">
+     Newton’s Method
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 3: Derivative</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties">
+   Properties
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#higher-order-derivatives">
+   Higher Order Derivatives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concave-and-convex">
+     Concave and Convex
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extrema">
+   Extrema
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#applications">
+   Applications
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-s-method">
+     Newton’s Method
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-derivative">
+<h1>Chapter 3: Derivative<a class="headerlink" href="#chapter-3-derivative" title="Permalink to this headline">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Derivative">Derivative at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.derivative-calculator.net/">Derivative calculator</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Real_number">Youtube</a></p></li>
+</ul>
+</div>
+<div class="proof definition admonition" id="derivative">
+<p class="admonition-title"><span>Definition </span> (derivative)</p>
+<section class="definition-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(y=f(x)\)</span> then the derivative is defined to be <span class="math notranslate nohighlight">\(f^{\prime}(x)=\lim _{h \rightarrow 0} \frac{f(x+h)-f(x)}{h}\)</span>.</p>
+</section>
+</div><p>The derivative <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> is the instantaneous rate of change of <span class="math notranslate nohighlight">\(y=f(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span>. If <span class="math notranslate nohighlight">\(f(x)\)</span> is the position of an object at  time <span class="math notranslate nohighlight">\(x\)</span> then the derivate <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> is the velocity of the object at <span class="math notranslate nohighlight">\(x=a\)</span>.</p>
+<p>Geometrically, the derivate of <span class="math notranslate nohighlight">\(f(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span> is the slope of the tangent line of the graph <span class="math notranslate nohighlight">\(y=f(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span>. The equation of the tangent line is given by</p>
+<div class="math notranslate nohighlight">
+\[y=f(a)+f^{\prime}(a)(x-a)\]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.50</span><span class="p">,</span> <span class="mf">3.50</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.autolayout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">],[</span><span class="n">f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;slope of tangent line&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_1_0.png" src="_images/chap3_1_0.png" />
+</div>
+</div>
+<p>A function <span class="math notranslate nohighlight">\(f(x)\)</span> is said to be differentiable at <span class="math notranslate nohighlight">\(x=a\)</span> if the derivative <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> exists. If <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable at any point in an open set <span class="math notranslate nohighlight">\(D\subset\mathbb{R}\)</span>, we say that <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable on <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<div class="admonition-notation admonition">
+<p class="admonition-title">Notation</p>
+<p>If <span class="math notranslate nohighlight">\(y=f(x)\)</span>, then all of the following are equivalent notations for the derivative. <span class="math notranslate nohighlight">\(f^{\prime}(x)=y^{\prime}=\frac{d f}{d x}=\frac{d y}{d x}=\frac{d}{d x}(f(x))=D_xf\)</span></p>
+<p>If <span class="math notranslate nohighlight">\(y=f(x)\)</span>, then all of the following are equivalent notations for derivative evaluated at <span class="math notranslate nohighlight">\(x=a\)</span>. <span class="math notranslate nohighlight">\(f^{\prime}(a)=\left.y^{\prime}\right|_{x=a}=\left.\frac{d f}{d x}\right|_{x=a}=\left.\frac{d y}{d x}\right|_{x=a}=D_af\)</span></p>
+</div>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">#</a></h2>
+<p>If <span class="math notranslate nohighlight">\(f\)</span> is a constant function, then its derivative is equal to 0. Moreover, the derivate <span class="math notranslate nohighlight">\(D_af\)</span> is a linear operator. Let <span class="math notranslate nohighlight">\(\Omega\)</span> be the set of all functions differentiable at <span class="math notranslate nohighlight">\(x=a\)</span>.</p>
+<div class="proof theorem admonition" id="thm3.1">
+<p class="admonition-title"><span class="caption-number">Theorem 7 </span> (linearity of derivative)</p>
+<section class="theorem-content" id="proof-content">
+<p>Given <span class="math notranslate nohighlight">\(f,g\in\Omega\)</span> and <span class="math notranslate nohighlight">\(c\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(D_a(f+g)=D_af+D_ag\)</span> and <span class="math notranslate nohighlight">\(D_a(cf)=cD_af\)</span>.</p>
+</section>
+</div><ul class="simple">
+<li><p><strong>The product rule</strong>: <span class="math notranslate nohighlight">\((f g)^{\prime}=f^{\prime} g+f g^{\prime}\)</span></p></li>
+<li><p><strong>The quotient rule</strong>: <span class="math notranslate nohighlight">\(\left(\frac{f}{g}\right)^{\prime}=\frac{f^{\prime} g-f g^{\prime}}{g^{2}}-\)</span></p></li>
+<li><p><strong>The power rule</strong>: <span class="math notranslate nohighlight">\(\frac{d}{d x}\left(x^{n}\right)=n x^{n-1}\)</span></p></li>
+<li><p><strong>The chain rule</strong>: <span class="math notranslate nohighlight">\(\frac{d}{d x}(f(g(x)))=f^{\prime}(g(x)) g^{\prime}(x)\)</span></p></li>
+</ul>
+<div class="admonition-common-derivatives admonition">
+<p class="admonition-title">Common Derivatives</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((x)^\prime=1\)</span>, <span class="math notranslate nohighlight">\(\left(a^{x}\right)^\prime=a^{x} \ln (a)\)</span>, <span class="math notranslate nohighlight">\(\left(e^x\right)^\prime=e^x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((\ln x)^\prime=\frac{1}{x}\)</span>, <span class="math notranslate nohighlight">\((\ln |x|)^\prime=\frac{1}{x}\)</span>, <span class="math notranslate nohighlight">\(\left(\log_{a}x\right)^\prime=\frac{1}{x \ln a}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((\sin x)^\prime=\cos x\)</span>, <span class="math notranslate nohighlight">\((\cos x)^\prime=-\sin x\)</span>, <span class="math notranslate nohighlight">\(\left(\sin ^{-1} x\right)^\prime=\frac{1}{\sqrt{1-x^{2}}}\)</span>, <span class="math notranslate nohighlight">\(\left(\cos ^{-1} x\right)^\prime=-\frac{1}{\sqrt{1-x^{2}}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((\tan x)^\prime=\sec ^{2} x\)</span>, <span class="math notranslate nohighlight">\(\left(\tan ^{-1} x\right)^\prime=\frac{1}{1+x^{2}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((\csc x)^\prime=-\csc x \cot x\)</span>, <span class="math notranslate nohighlight">\((\cot x)^\prime=-\csc ^{2} x\)</span>, <span class="math notranslate nohighlight">\((\sec x)^\prime=\sec x \tan x\)</span></p></li>
+</ul>
+</div>
+<p>The derivative <span class="math notranslate nohighlight">\(f^\prime(a)\)</span> characterizes the local behavior of the function <span class="math notranslate nohighlight">\(f(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is increasing on the interval <span class="math notranslate nohighlight">\(I\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is decreasing on the interval <span class="math notranslate nohighlight">\(I\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)=0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is constant on the interval <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<div class="proof theorem admonition" id="thm3.2">
+<p class="admonition-title"><span class="caption-number">Theorem 8 </span> (Mean Value Theorem)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a, b]\)</span> and differentiable on the open interval <span class="math notranslate nohighlight">\((a, b)\)</span> then there is a number <span class="math notranslate nohighlight">\(a&lt;c&lt;b\)</span> such that <span class="math notranslate nohighlight">\(f^{\prime}(c)=\frac{f(b)-f(a)}{b-a}\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 1 </span></p>
+<section class="example-content" id="proof-content">
+<p>The distance between store A and store B is 10 miles. It took me 10 min to drive from A to B. My overall speed is 1 mile per minute. Although my instantaneuou speed varies, there must be a point between A and B at which my instantaneous speed is exactly 1 mile per minute.</p>
+</section>
+</div><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7.50</span><span class="p">,</span> <span class="mf">3.50</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.autolayout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="n">derivative</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">-</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">derivative</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">],[</span><span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">],[</span><span class="n">f</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">+</span><span class="n">derivative</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">point</span><span class="p">),</span><span class="n">f</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">+</span><span class="n">derivative</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">point</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;mean value theorem&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_3_0.png" src="_images/chap3_3_0.png" />
+</div>
+</div>
+<div class="proof theorem admonition" id="thm3.3">
+<p class="admonition-title"><span class="caption-number">Theorem 9 </span> (implicit function theorem)</p>
+<section class="theorem-content" id="proof-content">
+<p>Given a graph <span class="math notranslate nohighlight">\(f(x,y)=0\)</span>, we want to find the derivative of the inverse function <span class="math notranslate nohighlight">\(y^{\prime}(x)\)</span> if it exists.</p>
+<div class="math notranslate nohighlight">
+\[df(x,y)=0 \Rightarrow f_xdx+f_ydy=0 \Rightarrow \frac{dy}{dx} = -\frac{f_x}{f_y}\]</div>
+<p>Thus, if <span class="math notranslate nohighlight">\(f_y\ne 0\)</span>, the derivative <span class="math notranslate nohighlight">\(y^\prime(x)\)</span> exists and equals <span class="math notranslate nohighlight">\(y^\prime(x) = -\frac{f_x}{f_y}\)</span>.</p>
+</section>
+</div><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.50</span><span class="p">,</span> <span class="mf">5.50</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.autolayout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">point</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="mi">33</span><span class="p">]</span>
+<span class="n">derivative</span> <span class="o">=</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+
+<span class="n">a</span><span class="o">=-</span><span class="mi">1</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">],[</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">+</span><span class="n">derivative</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">point</span><span class="p">)),</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">point</span><span class="p">)</span><span class="o">+</span><span class="n">derivative</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">point</span><span class="p">))])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;mean value theorem&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_5_0.png" src="_images/chap3_5_0.png" />
+</div>
+</div>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 10 </span> (inverse function theorem)</p>
+<section class="theorem-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(y = f(x)\)</span> be a differentiable function on an open set <span class="math notranslate nohighlight">\(\Phi\)</span>. Its inverse function <span class="math notranslate nohighlight">\(f^{-1}(x)\)</span> exists if <span class="math notranslate nohighlight">\(f^{\prime}(x) \ne 0\)</span> for all <span class="math notranslate nohighlight">\(x\in\Phi\)</span>.</p>
+</section>
+</div><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.figsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.50</span><span class="p">,</span> <span class="mf">3.50</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">&quot;figure.autolayout&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;inverse function theorem&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_7_0.png" src="_images/chap3_7_0.png" />
+</div>
+</div>
+<div class="admonition-example1 admonition">
+<p class="admonition-title">Example1</p>
+<p>Given <span class="math notranslate nohighlight">\(\mathbf{e}^{2 x-9 y}+x^{3} y^{2}=\sin (y)+11 x\)</span>, we want to find <span class="math notranslate nohighlight">\(y^\prime(x)\)</span>. We first find two partial derivatives <span class="math notranslate nohighlight">\(
+f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math notranslate nohighlight">\(f_y = 2 x^{3} y-9 \mathbf{e}^{2 x-9 y}-\cos y\)</span>. Thus,</p>
+<div class="math notranslate nohighlight">
+\[y^\prime = \frac{11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}}{2 x^{3} y-9 \mathbf{e}^{2 x-9 y}-\cos (y)}\]</div>
+</div>
+</section>
+<section id="higher-order-derivatives">
+<h2>Higher Order Derivatives<a class="headerlink" href="#higher-order-derivatives" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="second_derivative">
+<p class="admonition-title"><span>Definition </span> (second derivative)</p>
+<section class="definition-content" id="proof-content">
+<p>The second derivative is defined as <span class="math notranslate nohighlight">\(f^{\prime \prime}(x)=\left(f^{\prime}(x)\right)^{\prime}\)</span>, i.e. the derivative of first derivative <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span>.</p>
+</section>
+</div><p>The <span class="math notranslate nohighlight">\(n^{th}\)</span> derivative is denoted as <span class="math notranslate nohighlight">\(f^{(n)}(x)=\frac{d^{n} f}{d x^{n}}\)</span> and is defined as <span class="math notranslate nohighlight">\(f^{(n)}(x)=\left(f^{(n-1)}(x)\right)^{\prime}\)</span> i.e. the derivative of the <span class="math notranslate nohighlight">\((n-1)^{\text {st }}\)</span> derivative.</p>
+<section id="concave-and-convex">
+<h3>Concave and Convex<a class="headerlink" href="#concave-and-convex" title="Permalink to this headline">#</a></h3>
+<div class="proof definition admonition" id="def3.3">
+<p class="admonition-title"><span>Definition </span> (critical point)</p>
+<section class="definition-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime}(c)=0\)</span> or <span class="math notranslate nohighlight">\(f^{\prime}(c)\)</span> doesn’t exist.</p>
+</section>
+</div><ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(f^{\prime \prime}(x)&gt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is <strong>convex</strong> on the interval <span class="math notranslate nohighlight">\(I\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f^{\prime \prime}(x)&lt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is <strong>concave</strong> on the interval <span class="math notranslate nohighlight">\(I\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x=c\)</span> is a <strong>inflection point</strong> of <span class="math notranslate nohighlight">\(f(x)\)</span> if the concavity changes at <span class="math notranslate nohighlight">\(x=c\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="extrema">
+<h2>Extrema<a class="headerlink" href="#extrema" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="def3.4">
+<p class="admonition-title"><span>Definition </span> (Absolute Extrema)</p>
+<section class="definition-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(x=c\)</span> is an absolute maximum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \geq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in the domain.
+<span class="math notranslate nohighlight">\(x=c\)</span> is an absolute minimum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \leq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in the domain.</p>
+</section>
+</div><div class="proof theorem admonition" id="thm3.4">
+<p class="admonition-title"><span class="caption-number">Theorem 11 </span> (Fermat’s Theorem)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f(x)\)</span> has a relative (or local) extrema at <span class="math notranslate nohighlight">\(x=c\)</span>, then <span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
+</section>
+</div><div class="proof theorem admonition" id="thm3.5">
+<p class="admonition-title"><span class="caption-number">Theorem 12 </span> (Extreme Value Theorem)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a, b]\)</span> then there exist numbers <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> so that,</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(a \leq c, d \leq b\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f(c)\)</span> is the abs. max. in <span class="math notranslate nohighlight">\([a, b]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f(d)\)</span> is the abs. min. in <span class="math notranslate nohighlight">\([a, b]\)</span></p></li>
+</ol>
+</section>
+</div><p>To find the absolute extrema of the continuous function <span class="math notranslate nohighlight">\(f(x)\)</span> on the interval <span class="math notranslate nohighlight">\([a, b]\)</span> use the following process.</p>
+<ol class="simple">
+<li><p>Find all critical points of <span class="math notranslate nohighlight">\(f(x)\)</span> in <span class="math notranslate nohighlight">\([a, b]\)</span>.</p></li>
+<li><p>Evaluate <span class="math notranslate nohighlight">\(f(x)\)</span> at all points found in Step 1 .</p></li>
+<li><p>Evaluate <span class="math notranslate nohighlight">\(f(a)\)</span> and <span class="math notranslate nohighlight">\(f(b)\)</span>.</p></li>
+<li><p>Identify the max and min from the evaluations in steps <span class="math notranslate nohighlight">\(2 \&amp; 3\)</span>.</p></li>
+</ol>
+<div class="proof definition admonition" id="def3.5">
+<p class="admonition-title"><span>Definition </span> (Relative (local) Extrema)</p>
+<section class="definition-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(x=c\)</span> is a relative (or local) maximum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \geq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> near <span class="math notranslate nohighlight">\(c\)</span>.
+<span class="math notranslate nohighlight">\(x=c\)</span> is a relative (or local) minimum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \leq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> near <span class="math notranslate nohighlight">\(c\)</span>.</p>
+</section>
+</div><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>First derivative test</strong>: If <span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span> then <span class="math notranslate nohighlight">\(x=c\)</span> is</p>
+<ol class="simple">
+<li><p>a rel. max. of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span> to the left of <span class="math notranslate nohighlight">\(x=c\)</span> and <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span> to the right of <span class="math notranslate nohighlight">\(x=c\)</span>.</p></li>
+<li><p>a rel. min. of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span> to the left of <span class="math notranslate nohighlight">\(x=c\)</span> and <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span> to the right of <span class="math notranslate nohighlight">\(x=c\)</span>.</p></li>
+<li><p>not a relative extrema of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span> is the same sign on both sides of <span class="math notranslate nohighlight">\(x=c\)</span>.</p></li>
+</ol>
+<p><strong>Second derivative test</strong>: If <span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span> such that <span class="math notranslate nohighlight">\(f^{\prime}(c)=0\)</span> then <span class="math notranslate nohighlight">\(x=c\)</span></p>
+<ol class="simple">
+<li><p>is a relative maximum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime \prime}(c)&lt;0\)</span>.</p></li>
+<li><p>is a relative minimum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime \prime}(c)&gt;0\)</span>.</p></li>
+<li><p>may be a relative maximum, relative minimum, or neither if <span class="math notranslate nohighlight">\(f^{\prime \prime}(c)=0\)</span>.</p></li>
+</ol>
+</div>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">#</a></h2>
+<section id="newton-s-method">
+<h3>Newton’s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">#</a></h3>
+<p>If <span class="math notranslate nohighlight">\(x_{n}\)</span> is the <span class="math notranslate nohighlight">\(n^{\text {th }}\)</span> guess for the root/solution of <span class="math notranslate nohighlight">\(f(x)=0\)</span> then <span class="math notranslate nohighlight">\((n+1)^{\text {st }}\)</span> guess is <span class="math notranslate nohighlight">\(x_{n+1}=x_{n}-\frac{f\left(x_{n}\right)}{f^{\prime}\left(x_{n}\right)}\)</span> provided <span class="math notranslate nohighlight">\(f^{\prime}\left(x_{n}\right)\)</span> exists.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+   <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+     <span class="k">return</span> <span class="s2">&quot;the input must be positive&quot;</span>
+   <span class="k">elif</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+     <span class="k">return</span> <span class="mi">0</span>
+   <span class="k">else</span><span class="p">:</span>
+     <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="mi">2</span>
+     <span class="n">error</span> <span class="o">=</span> <span class="mf">1.0</span>
+     <span class="k">while</span> <span class="n">error</span> <span class="o">&gt;</span> <span class="mf">0.001</span><span class="p">:</span>
+       <span class="n">x_new</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+       <span class="n">error</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_new</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+       <span class="n">x</span> <span class="o">=</span> <span class="n">x_new</span>
+   <span class="k">return</span> <span class="n">x</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.4142135623746899
+</pre></div>
+</div>
+</div>
+</div>
+<div class="proof example admonition" id="ex3.1">
+<p class="admonition-title"><span>Example </span> (3.1)</p>
+<section class="example-content" id="proof-content">
+<p>maximize <span class="math notranslate nohighlight">\(xy\)</span> subject to <span class="math notranslate nohighlight">\(x+2y=500\)</span></p>
+<p>To maximize <span class="math notranslate nohighlight">\(xy = (500-2y)y = 500y-2y^2\)</span>, we differentiate the function with respect to <span class="math notranslate nohighlight">\(y\)</span> and get <span class="math notranslate nohighlight">\(500-4y = 0\)</span>, indicating <span class="math notranslate nohighlight">\(y=125\)</span> and <span class="math notranslate nohighlight">\(x=250\)</span>.</p>
+</section>
+</div></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chap2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 2: Continuous functions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 4: Integral</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
