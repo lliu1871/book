@@ -1,0 +1,41 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Chapter 16: Baire category theory
+
+```{epigraph}
+*"Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step."*
+
+-- Lao Tzu
+```
+
+```{seealso}
+- [Baire category theorem at Wikipedia](https://en.wikipedia.org/wiki/Baire_category_theorem)
+```
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-12-17T15:17:54.343Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\&quot; version=\&quot;20.7.3\&quot; etag=\&quot;9Y61t3Gd9ufk8A8Dwo-1\&quot; type=\&quot;dropbox\&quot;&gt;&lt;diagram id=\&quot;T1ApiqqQV8SgEloS3N-o\&quot; name=\&quot;Page-1\&quot;&gt;5VnRkps2FP0aP3YGJMD4MXG2zUyayU73IZ2+yXBtlMpcRoi13a+vAGEMYr1sYwfXebHhIIF0zr1HVzCjy+3+N8my5DPGIGbEifcz+mFGSOgE+rcEDjXge7QGNpLHNeS2wBP/BwzoGLTgMeSdhgpRKJ51wQjTFCLVwZiUuOs2W6PoPjVjG7CAp4gJG/3KY5WYaflOi38EvkmaJ7uOubJlTWMD5AmLcXcC0YcZXUpEVR9t90sQJXcNL3W/X1+4ehyYhFSN6fD49cvyz29/fKafnr7A48rN3+Ffv7jz+jbPTBRmxma06tBQALFmxJyiVAluMGXioUXfSyzSGMrnOPqsbfM7YqZBV4PfQKmDkZcVCjWUqK0wV+tnlg96cXIGyrGQEZybkQkSJjegzrQLjhLo0AXcgpIH3U+CYIo/d8fBTBBtju1anvWBofoNtBP/Z6Wd0Cl5dy3aI9xmAhSUGasfwaNyshnTc+3r0bJdUrdLuIKnqiH9sNPW12V2zYVYokBZ9aXrMIIo0niuJP4NJ1dWoe/5zlGLZ5AK9ufVsMkzHWhgrMZ4LWm8aNc6l9vYUXLiWk2/i/NNLb5hm6lyyDxVILlmoU+ztsmsPExgz3Q0a2Yy3VAPB2SLPjYQGSPFHpqFZUCa2Icw9oakCcmKBsFlpPFJVxrq+bY0zoA09FrSuHYuTGFBuXYM9a5cqDWQYgqXtaVgpC1N6kqhpcSay1yVVQ1TsMFqKHmxykHllkavRH/Xtfq2tF6TYVuKg1XgXyj2j7VcE/t0altyb2P5vXLsN7S/GvzhpKWQcxNaXJJ3MpJ3dzFpLUQs4hVm2gI2XG9//sdlUN9v/PnkfmPHeJFyXdwQB9fV5rVIFVuJQ7VvTMu/FHcJyLIsjSHNy3/MID2zDtxn3dTX0vNGahleTcvgJvwK0viKK8doB3OG1RvtYKbrI+r9wInq8xcyuLlFPQPT6/Sdxys3oovejeoZWjeqIuM4n/8eLHasvGc5r9L6pLRTCaCErR1GQvAsL7VtkjsSWMRvtl1wdbLOh1J1Ecwpu1Cq0j7X7uSpahfWd5eq4chM/d7XXcP5dSzlG837S+jYRLX2x/0bXTlRm8i4oyp0MTIyXkrrH1SFLizic4gwjVk1iLvYAHs3V5AS++WPhJzHRV343w3T3uSvGshtlIsXNBZCxxqLN6WxEPvdc/XOWbuLOr/16m+4hlLhu3bBPyQV/N7SPP3HgDoeOooYqn+KrWyw6AkyUB+HA3p4b9dDn7bflesSqf04Tx/+BQ==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+
+---
+
+
+```{admonition} Baire Category Theorem
+Let $X$ be either a complete metric space or a locally compact Hausdorff space. Then the union of countably many nowhere dense subsets of $X$ has empty interior.
+```
+
+
+````{prf:definition} Baire space
+:label: Baire_space
+A Baire space is a topological space $X$ in which every countable intersection of open dense sets is dense in $X$. 
+````

@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 14: Topological groups &#8212; Topology</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 15: Covex bodies" href="chap15.html" />
+    <link rel="prev" title="Chapter 13: Homotopy" href="chap13.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Topology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  GENERAL TOPOLOGY
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Metric spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Topological spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Subspaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Connectivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Separation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Nets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Compact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: Product spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Metrization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Locally compact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Paracompact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Quotient spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Homotopy
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 14: Topological groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Covex bodies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap16.html">
+   Chapter 16: Baire category theory
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  differential manifolds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="manifold.html">
+   Manifold
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap14.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap14.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap14.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap14.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 14: Topological groups</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-14-topological-groups">
+<h1>Chapter 14: Topological groups<a class="headerlink" href="#chapter-14-topological-groups" title="Permalink to this headline">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Topological_group">Topological group at Wikipedia</a></p></li>
+</ul>
+</div>
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-12-17T15:25:32.160Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\&quot; version=\&quot;20.7.3\&quot; etag=\&quot;bkerDrsIg9soUQEsGcLf\&quot; type=\&quot;dropbox\&quot;&gt;&lt;diagram id=\&quot;uex-_djcYV4pW9uQENv0\&quot; name=\&quot;Page-1\&quot;&gt;5VrLcpswFP0aL9sBBJgsWydpFu20nSyarjoyCFADXEaI2O7XVzKSMchOaG0HJ7EXRlfve859SHiCZvnyE8Nl+gUikk0cK1pO0OXEcWwXueJHSlaNZOp6jSBhNFKNWsEt/UOU0FLSmkak6jTkABmnZVcYQlGQkHdkmDFYdJvFkHVnLXFCDMFtiDNT+oNGPG2kgWe18htCk1TPbFuqJse6sRJUKY5gsSVCVxM0YwC8ecqXM5JJ5Wm9NP2u99RuFsZIwYd0iO04rb8+FL+Wd+8iWv68q77P3il0HnBWqw2rxfKV1gCJhEJUERhPIYECZ1et9CODuoiInMYSpbbNZ4BSCG0h/E04Xyl0cc1BiFKeZ6q24pjxDxItISigkIM265CT792vElVQs5A8skm1JzFJQvgj7dAGFUFnAjnhbCX6MZJhTh+668CKV8mmXat68aC0/w9I2AYSN7iuImBxvOZ8CRkkVBBT7rjEYsN9oFoYpE4XKeXkdt0QXS6EcXZVHtMsm4kh2bovioOQhOEaCgb3ZKtmHniuZ20AeSCMk+XjkJgq1B0CZQvKGTjajBatadnaXtIts/KtE2l9ehb8PyLX0UCu+2NyHRla7/I7ERotDSCeYHSX/qPw252eG79t0628cIIPdea2tRuqZ/LmzlvV+8Woaj+PfEYol63uZP/3ni7+3K67XKrBm9JKlcYwE+9AvFTXb0DFEjeeEPUivT31ukM0C1O9eqhvlvH/RDDNT8UUK6/l4SGjIadQyAUVURtxLFqIAFCta3q0Eel7KR9TssSCDQKtkjAq1klYK/2mRc6QDGxJ9IFnR8SKPBJE7q6IFThz5PvHiVjI7UUs14xYwa6A5e1nxEEW7J2JAUenO47oY+xTpumcxjL7iAe93KNZv2GZxkCu88RAJzZx+9Xl7v5Qnz1q8u4baq/q+Qky9jh2dmfskT/3vSP5P79vDaNn7BeGejMSS7PjDBeVBPiR4FQyCElVPR185ji8T9b6/1rzjBZ7ghB2LMuRKUwMBe+CIz67wPGvLfE5UnC66IKDpmODo28lt9Bh62nfIjwbWzkfeMzsQSd2KeTiy8qUVvkbwQf1ArQ9um+zTef2wkO2PThmB2PGbHtH0F7lOeaMhnut4XWddPwh3sp6VmsIDFAKOe8cWAogT6VzXNHKwOege/5Rsir3YmzP45gG8MI9jzP4GDnqRageeEvxIeSCrjJnerHvsXqJqT96ZNV0ftWvD1HPhXtodLWfx3XVMd2KNdStHHo9dZjizYMYXt/m6mtdkLTHBvX1caC5+h1oGa/0eOA9nxMTxfaPLs0FYPt3IXT1Fw==&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+<hr class="docutils" />
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 43 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A topological group is a Hausdorff topological space <span class="math notranslate nohighlight">\(G\)</span> together with a group structure on <span class="math notranslate nohighlight">\(G\)</span> such that:</p>
+<ol class="simple">
+<li><p>group multiplication <span class="math notranslate nohighlight">\((g, h) \mapsto g h\)</span> of <span class="math notranslate nohighlight">\(G \times G \rightarrow G\)</span> is continuous; and</p></li>
+<li><p>group inversion <span class="math notranslate nohighlight">\(g \mapsto g^{-1}\)</span> of <span class="math notranslate nohighlight">\(G \rightarrow G\)</span> is continuous.</p></li>
+</ol>
+</section>
+</div><div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 44 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A subgroup <span class="math notranslate nohighlight">\(H\)</span> of a topological group <span class="math notranslate nohighlight">\(G\)</span> is a subspace which is also a subgroup in the algebraic sense.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 45 </span></p>
+<section class="definition-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(G^{\prime}\)</span> are topological groups then a homomorphism <span class="math notranslate nohighlight">\(f: G \rightarrow G^{\prime}\)</span> is a group homomorphism which is also continuous.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-3">
+<p class="admonition-title"><span class="caption-number">Definition 46 </span></p>
+<section class="definition-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(G\)</span> is a topological group and <span class="math notranslate nohighlight">\(g \in G\)</span>, then left translation by <span class="math notranslate nohighlight">\(g\)</span> is the map <span class="math notranslate nohighlight">\(L_g: G \rightarrow G\)</span> given by <span class="math notranslate nohighlight">\(L_g(h)=g h\)</span>. Similarly right translation by <span class="math notranslate nohighlight">\(g\)</span> is the map <span class="math notranslate nohighlight">\(R_g: G \rightarrow G\)</span> given by <span class="math notranslate nohighlight">\(R_g(h)=h g^{-1}\)</span>.</p>
+</section>
+</div><div class="proof proposition admonition" id="proposition-4">
+<p class="admonition-title"><span class="caption-number">Proposition 10 </span></p>
+<section class="proposition-content" id="proof-content">
+<p>In a topological group <span class="math notranslate nohighlight">\(G\)</span> we have <span class="math notranslate nohighlight">\(L_g L_k=L_{g h}\)</span> and <span class="math notranslate nohighlight">\(R_g \circ R_k=R_{g h}\)</span> Moreover, both <span class="math notranslate nohighlight">\(L_g\)</span> and <span class="math notranslate nohighlight">\(R_g\)</span> are homeomorphisms as is conjugation by <span class="math notranslate nohighlight">\(g\left(h \mapsto g h g^{-1}\right)\)</span> and inversion <span class="math notranslate nohighlight">\(\left(h \mapsto h^{-1}\right)\)</span>.</p>
+</section>
+</div><p>Proof. The first statement is a trivial computation, and implies that <span class="math notranslate nohighlight">\(L_{g^{-1}}=\)</span> <span class="math notranslate nohighlight">\(L_g^{-1}\)</span> and similarly for right translation, and it follows that these are homeomorphisms. Conjugation <span class="math notranslate nohighlight">\(h \mapsto g h g^{-1}\)</span> is the same as <span class="math notranslate nohighlight">\(R_g \circ L_g\)</span> and so is a homeomorphism. Inversion is continuous by assumption and is its own inverse, and thus is a homeomorphism.</p>
+<p>In a topological group <span class="math notranslate nohighlight">\(G\)</span>, if <span class="math notranslate nohighlight">\(A, B\)</span> are subsets then we let <span class="math notranslate nohighlight">\(A B=\{a b \mid a \in A\)</span>, <span class="math notranslate nohighlight">\(b \in B\}\)</span> and <span class="math notranslate nohighlight">\(A^{-1}=\left\{a^{-1} \mid a \in A\right\}\)</span></p>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span class="caption-number">Definition 47 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A subset <span class="math notranslate nohighlight">\(A\)</span> of a topological group is called symmetric if <span class="math notranslate nohighlight">\(A=A^{-1}\)</span></p>
+</section>
+</div><div class="proof proposition admonition" id="proposition-6">
+<p class="admonition-title"><span class="caption-number">Proposition 11 </span></p>
+<section class="proposition-content" id="proof-content">
+<p>In a topological group <span class="math notranslate nohighlight">\(G\)</span> with unity element <span class="math notranslate nohighlight">\(e\)</span>, the symmetric neighborhoods of <span class="math notranslate nohighlight">\(e\)</span> form a neighborhood basis at <span class="math notranslate nohighlight">\(e\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 48 </span></p>
+<section class="definition-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(G\)</span> is a topological group and <span class="math notranslate nohighlight">\(X\)</span> is space, then an action of <span class="math notranslate nohighlight">\(G\)</span> on <span class="math notranslate nohighlight">\(X\)</span> is a map <span class="math notranslate nohighlight">\(G \times X \rightarrow X\)</span>, with the image of <span class="math notranslate nohighlight">\((g, x)\)</span> being denoted by <span class="math notranslate nohighlight">\(g(x)\)</span>, such that:</p>
+<div class="math notranslate nohighlight">
+\[(g h)(x)=g(h(x)) \text{ and } e(x)=x\]</div>
+</section>
+</div><p>For a point <span class="math notranslate nohighlight">\(x \in X\)</span>, the set <span class="math notranslate nohighlight">\(G(x)=\{g(x) \mid g \in G\}\)</span> is called the orbit of <span class="math notranslate nohighlight">\(x\)</span>, and the subgroup <span class="math notranslate nohighlight">\(G_x=\{g \in G \mid g(x)=x\}\)</span> is called the isotropy or stability group at <span class="math notranslate nohighlight">\(x\)</span>. The action is said to be transitive if there is only one orbit, the whole space <span class="math notranslate nohighlight">\(X\)</span>. The action is said to be effective if <span class="math notranslate nohighlight">\((g(x)=x\)</span> for all <span class="math notranslate nohighlight">\(x) \Rightarrow g=e\)</span>, the identity element of <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>Note that, in describing <span class="math notranslate nohighlight">\(G \times X \rightarrow X\)</span> as a “map,” we are assuming it to be continuous. The following, then, is the general setting in which our comments on <span class="math notranslate nohighlight">\(\mathbf{O}(n)\)</span> acting on <span class="math notranslate nohighlight">\(\mathbf{S}^{n-1}\)</span> lie.</p>
+<div class="proof proposition admonition" id="proposition-8">
+<p class="admonition-title"><span class="caption-number">Proposition 12 </span></p>
+<section class="proposition-content" id="proof-content">
+<p>If G is a compact topological group acting on the Hausdorff space <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(G_x\)</span> is the isotropy group at <span class="math notranslate nohighlight">\(x\)</span>, then the map <span class="math notranslate nohighlight">\(\phi: G / G_x \rightarrow G(x)\)</span> given by <span class="math notranslate nohighlight">\(g G_x \mapsto g(x)\)</span> is a homeomorphism.</p>
+</section>
+</div></section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chap13.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 13: Homotopy</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap15.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 15: Covex bodies</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

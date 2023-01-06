@@ -1,0 +1,77 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Chapter 9: Metrization
+
+```{epigraph}
+*"Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step."*
+
+-- Lao Tzu
+```
+
+```{seealso}
+- [Metriable spaces at Wikipedia](https://en.wikipedia.org/wiki/Metrizable_space)
+```
+
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-12-17T16:03:51.605Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\&quot; etag=\&quot;3iWFhWAFR0Oq14j2zc5A\&quot; version=\&quot;20.7.3\&quot; type=\&quot;dropbox\&quot;&gt;&lt;diagram id=\&quot;bJLUXkAC_UWaK8B3ZpU6\&quot; name=\&quot;Page-1\&quot;&gt;5VjbcpswEP0aP2YGEDL4sbVzaSZpM5NM+9iRYQMkAlEhYjtfX2EkAxZ2nKk9dpon4Gh12XN2pRUDNE7nl5zk8S0LgQ4cK5wP0GTgOLaLXPmokEWNeC6ugYgnoTJqgPvkFRRoKbRMQig6hoIxKpK8CwYsyyAQHYxwzmZds0dGu7PmJAIDuA8INdFfSSjiGvWx1eBXkESxntm2VEtKtLECipiEbNaC0PkAjTljon5L52OgFXmal7rfxYbW1cI4ZGKXDpMfnldcL/6ko5/i26/n3+n04fJsWI/yQmipHFaLFQvNAISSEPXJuIhZxDJCzxv0K2dlFkI1jSW/GpsbxnIJ2hJ8AiEWSl1SCiahWKRUtZquKO8KVvIAtqxfhwThEYgtdiroKl9aEyiiLoGlIPhCGnCgRCQvXfGJiqFoZdfQLF8U0+9g3TZYr8ZNgsrjnEiH1zVoGK7omsWJgPulIZrMZN512XxMKB0zyviyL3r0AwgCiReCs2dotUx97GJrG/8vwAXMtzKmWtFQhbnKc6QzZNZkja1TIW5ljO63d5Idg+SApTkFYdIrUzOvXmOYExm5kpEceCKXAbxB7zTk7CLBHPRm1iNJiMEP3T5JfGeKhsP9SOJZa5K4piR+jyLoUIogQxHBBKG0WvNURfgnlcbfTRr3UNJ4H/wcwDueA+ikzgH/k7DunBTrtrkP/Z+026fFO+49kIks2mW1vL3+eWNP75ZHR6l/sIOPV/883Kb0zL3Ov19cBTY+exo5k7inyDxGlBcySsWX6iImgYxlsKJ7LSrfTIVeJ51dU+GYgT8ylChA3lfD5bW1zASZSq7lvArRRapcXVRSwj/wrcBer3OOfivQe2JLjBuYQhGVFeMU0pSYaUJpkhdV5OpqNKCsDN/NOdiyuvT6OB8NPUT2VFtiu8u501P2224P596hdiKT8uV2/1rH/Ucp+A0FenTaKMpKhFUiYFMUq0cUfChRTqMIgizcy+Gwbd9tHw6b4/MfDgfV9Y4lmWhJjjbc8fQQ9fpVr/aPu7WBjF8r6wPVDhoDLcNi5U9fpMjP5v9jbd78xUXnfwE=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+
+---
+
+
+## Complete metric space
+
+````{prf:definition} Cauchy sequence
+:label: Cauchy sequence
+A Cauchy sequence in a metric space is a sequence $x_1, x_2, x_3, \ldots$ such that $\forall \epsilon>0, \exists N>0 \ni n, m>N \Rightarrow \operatorname{dist}\left(x_n, x_m\right)<\epsilon$.
+````
+Every Cauchy sequence in a metric space $X$ has a limit. If the limit is not in $X$, then the sequence does not converge in $X$. This would not occur in a complete metric space in which all Cauchy sequences converge in the space. 
+
+````{prf:definition} complete metric space
+:label: complete space
+A metric space $X$ is called complete if every Cauchy sequence in $X$ converges in $X$.
+````
+
+
+
+````{prf:definition} totally bounded space
+:label: totally bounded space
+A metric space $X$ is totally bounded if, for each $\epsilon>0$, $X$ can be covered by a finite number of $\epsilon$-balls.
+````
+ 
+In a metric space $X$ the following conditions are equivalent:
+1. $X$ is compact.
+2. Each sequence in $X$ has a convergent subsequence.
+3. $X$ is complete and totally bounded.
+
+## Metrizable space
+````{prf:definition} metrizable space
+:label: metrizable space
+A topological space $(X,\tau)$ is said to be metrizable if there is a metric $d:X\times X\to [0,\infty )$ such that the topology induced by $d$ is $\tau$.
+````
+
+````{prf:theorem} Urysohn's metrization theorem. 
+Every Hausdorff second-countable regular space is metrizable
+````
+
+- A compact Hausdorff space is metrizable if and only if it is second-countable
+
+```{admonition} $\sigma$-locally finite base
+A $\sigma$-locally finite base is a base which is a union of countably many locally finite collections of open sets
+```
+
+````{prf:theorem} Nagata–Smirnov metrization theorem 
+A topological space is metrizable if and only if it is regular, Hausdorff and has a σ-locally finite base. 
+````

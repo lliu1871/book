@@ -1,0 +1,58 @@
+---
+jupytext:
+  cell_metadata_filter: -all
+  formats: md:myst
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.11.5
+kernelspec:
+  display_name: Python 3
+  language: python
+  name: python3
+---
+
+# Chapter 6: Nets
+
+```{epigraph}
+*"Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step."*
+
+-- Lao Tzu
+```
+
+```{seealso}
+- [Net at Wikipedia](https://en.wikipedia.org/wiki/Net_(mathematics))
+```
+
+The concept of a net generalizes the notion of a sequence in topology by allowing the equivalence of two conditions for all maps between topological spaces: 
+
+1. continuity in the topological sense 
+2. the convergence of the composition of a map with any sequence converging to a point in the domain space to the image of that point under the map (continuity in the sequential sense). 
+
+These conditions are equivalent for metric spaces, but not equivalent for maps between topological spaces that are not first-countable. A net is defined on an arbitrary directed set, rather than a countable linearly ordered set like a sequence. This allows for the equivalence of the aforementioned conditions to hold for topological spaces that do not necessarily have a countable or linearly ordered basis of neighborhoods around a point. The term "net" was coined by John L. Kelley and the concept was first introduced by E. H. Moore and Herman L. Smith in 1922.
+
+
+## Directed sets
+```{admonition} Directed property
+For any two elements $a$ and $b$ in a nonempty set $A$, there exists some element $c\in A$ such that $ a\leq c$ and $ b\leq c$
+```
+This property means that given any two elements, there is always some element that is "above" both of them, which generalizes the notion of "a direction".
+
+````{prf:definition} directed set
+A directed set is a non-empty set $A$ together with a preorder, denoted by $\leq$, with the directed property. 
+````
+
+## Net
+Any function whose domain is a directed set is called a net
+
+````{prf:definition} net
+a net in $X$ is a function of the form $ f:A\to X$ where $ A$ is some directed set.
+````
+
+````{prf:definition}  covergence
+:label: convergence
+A function $f: X \to Y$ between two topological spaces is
+continuous if and only if for every net $\Phi$ in $X$ converging to $x\in X$, the net $f\circ\Phi$ in $Y$ converges to $f(x)$.
+````
+

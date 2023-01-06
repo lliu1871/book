@@ -1,0 +1,842 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proof Index &#8212; Topology</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+
+    <script>
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Topology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  GENERAL TOPOLOGY
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Metric spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Topological spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Subspaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Connectivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Separation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Nets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Compact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: Product spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Metrization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Locally compact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Paracompact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Quotient spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Homotopy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   Chapter 14: Topological groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Covex bodies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap16.html">
+   Chapter 16: Baire category theory
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  differential manifolds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="manifold.html">
+   Manifold
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprf-prf.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+
+   <h1>Proof Index</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-Baire_space"><strong>Baire_space</strong></a> | 
+   <a href="#cap-Cauchy sequence"><strong>Cauchy sequence</strong></a> | 
+   <a href="#cap-basis"><strong>basis</strong></a> | 
+   <a href="#cap-boundary"><strong>boundary</strong></a> | 
+   <a href="#cap-compact"><strong>compact</strong></a> | 
+   <a href="#cap-complete space"><strong>complete space</strong></a> | 
+   <a href="#cap-continuity"><strong>continuity</strong></a> | 
+   <a href="#cap-convergence"><strong>convergence</strong></a> | 
+   <a href="#cap-definition-0"><strong>definition-0</strong></a> | 
+   <a href="#cap-definition-1"><strong>definition-1</strong></a> | 
+   <a href="#cap-definition-10"><strong>definition-10</strong></a> | 
+   <a href="#cap-definition-2"><strong>definition-2</strong></a> | 
+   <a href="#cap-definition-3"><strong>definition-3</strong></a> | 
+   <a href="#cap-definition-5"><strong>definition-5</strong></a> | 
+   <a href="#cap-definition-7"><strong>definition-7</strong></a> | 
+   <a href="#cap-definition-8"><strong>definition-8</strong></a> | 
+   <a href="#cap-dense_subset"><strong>dense_subset</strong></a> | 
+   <a href="#cap-equivalent_metrics"><strong>equivalent_metrics</strong></a> | 
+   <a href="#cap-example-1"><strong>example-1</strong></a> | 
+   <a href="#cap-example-3"><strong>example-3</strong></a> | 
+   <a href="#cap-homeomorphism"><strong>homeomorphism</strong></a> | 
+   <a href="#cap-local_compact_space"><strong>local_compact_space</strong></a> | 
+   <a href="#cap-metric_space"><strong>metric_space</strong></a> | 
+   <a href="#cap-metrizable space"><strong>metrizable space</strong></a> | 
+   <a href="#cap-neighborhood"><strong>neighborhood</strong></a> | 
+   <a href="#cap-open_ball"><strong>open_ball</strong></a> | 
+   <a href="#cap-open_function"><strong>open_function</strong></a> | 
+   <a href="#cap-open_sets"><strong>open_sets</strong></a> | 
+   <a href="#cap-product space"><strong>product space</strong></a> | 
+   <a href="#cap-proper"><strong>proper</strong></a> | 
+   <a href="#cap-proposition-0"><strong>proposition-0</strong></a> | 
+   <a href="#cap-proposition-1"><strong>proposition-1</strong></a> | 
+   <a href="#cap-proposition-2"><strong>proposition-2</strong></a> | 
+   <a href="#cap-proposition-4"><strong>proposition-4</strong></a> | 
+   <a href="#cap-proposition-6"><strong>proposition-6</strong></a> | 
+   <a href="#cap-proposition-8"><strong>proposition-8</strong></a> | 
+   <a href="#cap-regular_sub"><strong>regular_sub</strong></a> | 
+   <a href="#cap-remark-3"><strong>remark-3</strong></a> | 
+   <a href="#cap-second_countability"><strong>second_countability</strong></a> | 
+   <a href="#cap-subspace"><strong>subspace</strong></a> | 
+   <a href="#cap-theorem-1"><strong>theorem-1</strong></a> | 
+   <a href="#cap-theorem-3"><strong>theorem-3</strong></a> | 
+   <a href="#cap-theorem-4"><strong>theorem-4</strong></a> | 
+   <a href="#cap-theorem-5"><strong>theorem-5</strong></a> | 
+   <a href="#cap-theorem-6"><strong>theorem-6</strong></a> | 
+   <a href="#cap-topo_continuity"><strong>topo_continuity</strong></a> | 
+   <a href="#cap-topo_neighborhood"><strong>topo_neighborhood</strong></a> | 
+   <a href="#cap-topological_space"><strong>topological_space</strong></a> | 
+   <a href="#cap-totally bounded space"><strong>totally bounded space</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Baire_space"><td></td><td>
+       <strong>Baire_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap16.html#Baire_space"><code class="xref">Baire_space</code></a> <em>(chap16)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Cauchy sequence"><td></td><td>
+       <strong>Cauchy sequence</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap9.html#Cauchy sequence"><code class="xref">Cauchy sequence</code></a> <em>(chap9)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-basis"><td></td><td>
+       <strong>basis</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#basis"><code class="xref">basis</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-boundary"><td></td><td>
+       <strong>boundary</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#boundary"><code class="xref">boundary</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-compact"><td></td><td>
+       <strong>compact</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#compact"><code class="xref">compact</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-complete space"><td></td><td>
+       <strong>complete space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap9.html#complete space"><code class="xref">complete space</code></a> <em>(chap9)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-continuity"><td></td><td>
+       <strong>continuity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#continuity"><code class="xref">continuity</code></a> <em>(chap1)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-convergence"><td></td><td>
+       <strong>convergence</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#convergence"><code class="xref">convergence</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-0"><td></td><td>
+       <strong>definition-0</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap12.html#definition-0"><code class="xref">definition-0</code></a> <em>(chap12)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-1"><td></td><td>
+       <strong>definition-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap12.html#definition-1"><code class="xref">definition-1</code></a> <em>(chap12)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-10"><td></td><td>
+       <strong>definition-10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#definition-10"><code class="xref">definition-10</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-2"><td></td><td>
+       <strong>definition-2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap12.html#definition-2"><code class="xref">definition-2</code></a> <em>(chap12)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-3"><td></td><td>
+       <strong>definition-3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap12.html#definition-3"><code class="xref">definition-3</code></a> <em>(chap12)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-5"><td></td><td>
+       <strong>definition-5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap14.html#definition-5"><code class="xref">definition-5</code></a> <em>(chap14)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-7"><td></td><td>
+       <strong>definition-7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap14.html#definition-7"><code class="xref">definition-7</code></a> <em>(chap14)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-definition-8"><td></td><td>
+       <strong>definition-8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#definition-8"><code class="xref">definition-8</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-dense_subset"><td></td><td>
+       <strong>dense_subset</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#dense_subset"><code class="xref">dense_subset</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-equivalent_metrics"><td></td><td>
+       <strong>equivalent_metrics</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#equivalent_metrics"><code class="xref">equivalent_metrics</code></a> <em>(chap1)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-1"><td></td><td>
+       <strong>example-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap8.html#example-1"><code class="xref">example-1</code></a> <em>(chap8)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-example-3"><td></td><td>
+       <strong>example-3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#example-3"><code class="xref">example-3</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-homeomorphism"><td></td><td>
+       <strong>homeomorphism</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#homeomorphism"><code class="xref">homeomorphism</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-local_compact_space"><td></td><td>
+       <strong>local_compact_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap10.html#local_compact_space"><code class="xref">local_compact_space</code></a> <em>(chap10)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-metric_space"><td></td><td>
+       <strong>metric_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#metric_space"><code class="xref">metric_space</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-metrizable space"><td></td><td>
+       <strong>metrizable space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap9.html#metrizable space"><code class="xref">metrizable space</code></a> <em>(chap9)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-neighborhood"><td></td><td>
+       <strong>neighborhood</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#neighborhood"><code class="xref">neighborhood</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-open_ball"><td></td><td>
+       <strong>open_ball</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#open_ball"><code class="xref">open_ball</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-open_function"><td></td><td>
+       <strong>open_function</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#open_function"><code class="xref">open_function</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-open_sets"><td></td><td>
+       <strong>open_sets</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#open_sets"><code class="xref">open_sets</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-product space"><td></td><td>
+       <strong>product space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap8.html#product space"><code class="xref">product space</code></a> <em>(chap8)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proper"><td></td><td>
+       <strong>proper</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#proper"><code class="xref">proper</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-0"><td></td><td>
+       <strong>proposition-0</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#proposition-0"><code class="xref">proposition-0</code></a> <em>(chap5)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-1"><td></td><td>
+       <strong>proposition-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap15.html#proposition-1"><code class="xref">proposition-1</code></a> <em>(chap15)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-2"><td></td><td>
+       <strong>proposition-2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap15.html#proposition-2"><code class="xref">proposition-2</code></a> <em>(chap15)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-4"><td></td><td>
+       <strong>proposition-4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap14.html#proposition-4"><code class="xref">proposition-4</code></a> <em>(chap14)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-6"><td></td><td>
+       <strong>proposition-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap14.html#proposition-6"><code class="xref">proposition-6</code></a> <em>(chap14)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-proposition-8"><td></td><td>
+       <strong>proposition-8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap14.html#proposition-8"><code class="xref">proposition-8</code></a> <em>(chap14)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-regular_sub"><td></td><td>
+       <strong>regular_sub</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#regular_sub"><code class="xref">regular_sub</code></a> <em>(chap5)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-remark-3"><td></td><td>
+       <strong>remark-3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#remark-3"><code class="xref">remark-3</code></a> <em>(chap1)</em></td><td>
+       <em>remark</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-second_countability"><td></td><td>
+       <strong>second_countability</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#second_countability"><code class="xref">second_countability</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-subspace"><td></td><td>
+       <strong>subspace</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#subspace"><code class="xref">subspace</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-1"><td></td><td>
+       <strong>theorem-1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap11.html#theorem-1"><code class="xref">theorem-1</code></a> <em>(chap11)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-3"><td></td><td>
+       <strong>theorem-3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap11.html#theorem-3"><code class="xref">theorem-3</code></a> <em>(chap11)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-4"><td></td><td>
+       <strong>theorem-4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap9.html#theorem-4"><code class="xref">theorem-4</code></a> <em>(chap9)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-5"><td></td><td>
+       <strong>theorem-5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap10.html#theorem-5"><code class="xref">theorem-5</code></a> <em>(chap10)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-6"><td></td><td>
+       <strong>theorem-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap10.html#theorem-6"><code class="xref">theorem-6</code></a> <em>(chap10)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-topo_continuity"><td></td><td>
+       <strong>topo_continuity</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#topo_continuity"><code class="xref">topo_continuity</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-topo_neighborhood"><td></td><td>
+       <strong>topo_neighborhood</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#topo_neighborhood"><code class="xref">topo_neighborhood</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-topological_space"><td></td><td>
+       <strong>topological_space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#topological_space"><code class="xref">topological_space</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-totally bounded space"><td></td><td>
+       <strong>totally bounded space</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap9.html#totally bounded space"><code class="xref">totally bounded space</code></a> <em>(chap9)</em></td><td>
+       <em>definition</em></td></tr>
+   </table>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

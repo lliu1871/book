@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 2: Topological spaces &#8212; Topology</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 3: Subspaces" href="chap3.html" />
+    <link rel="prev" title="Chapter 1: Metric spaces" href="chap1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Topology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  GENERAL TOPOLOGY
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Metric spaces
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 2: Topological spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Subspaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Connectivity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Separation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Nets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Compact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: Product spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Metrization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Locally compact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Paracompact spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Quotient spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Homotopy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   Chapter 14: Topological groups
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Covex bodies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap16.html">
+   Chapter 16: Baire category theory
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  differential manifolds
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="manifold.html">
+   Manifold
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap2.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neighborhood">
+   Neighborhood
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#countability">
+   Countability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuity">
+   Continuity
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 2: Topological spaces</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neighborhood">
+   Neighborhood
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#countability">
+   Countability
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuity">
+   Continuity
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-2-topological-spaces">
+<h1>Chapter 2: Topological spaces<a class="headerlink" href="#chapter-2-topological-spaces" title="Permalink to this headline">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Topological_space">Topological spaces at Wikipedia</a></p></li>
+</ul>
+</div>
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-12-17T15:43:15.552Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36\&quot; etag=\&quot;3Ymu-j8wWpgF5lGTqtet\&quot; version=\&quot;20.7.3\&quot; type=\&quot;dropbox\&quot;&gt;&lt;diagram id=\&quot;R2lEEEUBdFMjLlhIrx00\&quot; name=\&quot;Page-1\&quot;&gt;5Vtdd7MoEP41uWyPChpz2e+92O52txfbvDd7iKKyVfEgaZP31y9ErB+YvGkbE5O0PacyIOI8Mw/DgCNwkyweGMqiR+rjeGQZ/mIEbkeWZUIAxT8pWRaSMbQLQciIrxpVgmfyEyuhoaRz4uO80ZBTGnOSNYUeTVPs8YYMMUbfm80CGjefmqEQa4JnD8W69B/i86iQurZRyX/DJIzKJ5uGqklQ2VgJ8gj59L0hwgt+T1OuhviEWYJSnHJR84jYK2Yj+y7iXL7p1ci6F3+BbH0ZUhrGGGUkv/RoIsReLprcByghsVRzraNr1ZF4HLgbgRtGKS+uksUNjiVWJQzFmO7X1H7ogcl+t7ghuHKur6bTi1tA/01+3vz1RH+gC2tcdPOG4rlSsFIOX5Yax74AQBUp4xENaYriu0p6zeg89bF8jiFKVZvfKc2E0BTC/zDnS2VNaM6pEEU8iVWteAW2fJH3X9plcVqvu12ozovSUpV0HSi15HTOPLzhxUvTRSzEfEM7oAzDb1il0vADpgkW4xENGI4RJ29NI0XKkMKPdurWK8bQstYgo0RaXQ0+cVHrvxKtQP0EwKaGL6cZjWlIhEtJRWVI6KkNeQWoROA9Ihw/rxqC23dBK03wAhLHN6JLtroXBK6HPU/Ic87oK67VzFwb2hthe8OM48VGRata4djFLYrGIFBIvVekYJZuHdUIwTHWY9NQ/mc1ba3T9FJTr2CeTF5GeIGEowiNZJgRMQzMKulTKbK2gWCBS67ugMS3sevDLkhcawYcZ0eQAPfSboIy0UFxbB0T2Bsm7iDo7es0BbakKbhrmvqW2oGmdZrhVL4vViy3M7IJAqubbHxn5ti7suwW2QB4aLKBmoYT+dgZZRGl/gmo2Do4n0Od0A8SGi0IfymDH3E9raIkUariIln4VFiUvMwuHv6+9tjUnz2a/sXLc/7H1nzTT1iULJ5kIFRZBQQtxxuDZhfFC6m7dh89Qd3PTt8G7C1twDyMDUB7vzZgTQZhA1+PISaH8ulv0a+u9RnKyTFGD26Lw2x9Zpt0TGz9BcXOkRt0mYr6pUVbg7Loctg1vQeE5ZLqPKFMjmYkJvxsVovjplvYHWvFzoDP7s0v7GP3i22TWgPzCz1HlWOPpv55OoYJh+YYpr4SmqckoCwZyXE4sRjA9YyJq1BeCejE24Y47UgsniZkcNJavHZBBvY5xwPdp46My3ae0Vqzupi0ozO32UVBpr2tLsAwJp0DbMBAfbLqXI7ufLLqNgTbaRqC6YL9GsIwovIBG8K+8g2Gc1BDMPWcUzBPPU7oKoN+pPt17SyOYNoDRzXWMHJ7X3ccS/eb7nbl4YZhhPuWvgz2KGI5Xq2E1+6ZHl2eB451C3f3uvmpb8OdqIHvfGb4nt712DsgaWHe+mrpdAze7qD0vRo8ONfDTMDd0lPgzqeCPR9ngsPgtA+IzTrANbz3AvGm3bvel0ulKa3blet7uaSf7DmNg22OPbSDbUDfijuzk23OeHAn26AeZJwHEcKOzb9NR1l6J8KWv2pHVHomQqgvp477sF2bAPd62G5T4knXcJmX0dVc8mDGqIflxwC/UvUMea/hCpw/5zwWy4VuCJBlGJZ0LvnhQRMa8dMFjXNviJ8PaDQcOtBaCw2wm5N+eWzhYMhYGjJeTHNh3ueHDZw4w8JmGPnszklgZ2cj10fge0g+bBpkI7mWcpLO6Vx4gpGg7GwcAhqtoA3YZimpe4VhdsRtoCd89O2+iCbil2URyZNzgaZ9pLPHNY4oVt/YFUFX9WEkuPsf&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+<hr class="docutils" />
+<div class="proof definition admonition" id="topological_space">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (topological space)</p>
+<section class="definition-content" id="proof-content">
+<p>A topological space is a set <span class="math notranslate nohighlight">\(X\)</span> together with a collection of
+subsets of <span class="math notranslate nohighlight">\(X\)</span> called open sets such that:</p>
+<ol class="simple">
+<li><p>the intersection of two open sets is open;</p></li>
+<li><p>the union of any collection of open sets is open;</p></li>
+<li><p>the empty set 0 and whole space X are open.</p></li>
+</ol>
+</section>
+</div><ul class="simple">
+<li><p>A subset <span class="math notranslate nohighlight">\(U\subset X\)</span> is called “closed” if its complement <span class="math notranslate nohighlight">\(X-C\)</span> is open.</p></li>
+</ul>
+<section id="neighborhood">
+<h2>Neighborhood<a class="headerlink" href="#neighborhood" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="topo_neighborhood">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (topological neighborhood)</p>
+<section class="definition-content" id="proof-content">
+<p>A subset <span class="math notranslate nohighlight">\(N\)</span> of a topological space <span class="math notranslate nohighlight">\(X\)</span> is called
+a neighborhood of a point <span class="math notranslate nohighlight">\(x\in X\)</span> if there is an open set <span class="math notranslate nohighlight">\(U\subset N\)</span> with <span class="math notranslate nohighlight">\(x\in U\)</span>.</p>
+</section>
+</div><p>A collection <span class="math notranslate nohighlight">\(B(x)\)</span> of neighborhoods of a point <span class="math notranslate nohighlight">\(x\)</span> in a topological space <span class="math notranslate nohighlight">\(X\)</span> is called a <strong>neighborhood basis</strong> if each neighborhood of <span class="math notranslate nohighlight">\(x\)</span> subsets of <span class="math notranslate nohighlight">\(X\)</span> contains some element of <span class="math notranslate nohighlight">\(B(x)\)</span>.</p>
+<div class="proof definition admonition" id="basis">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (basis)</p>
+<section class="definition-content" id="proof-content">
+<p>If X is a topological space and B is a collection of subsets
+of X, then B is called a basis for the topology of X if the open sets are
+precisely the unions of members of B. (In particular, the members of Bare
+open.)</p>
+</section>
+</div><p>A collection S of subsets of <span class="math notranslate nohighlight">\(X\)</span> is called a <strong>subbasis</strong> for the topology of
+X if the set <span class="math notranslate nohighlight">\(B\)</span> of finite intersections of members of <span class="math notranslate nohighlight">\(S\)</span> is a basis.</p>
+<div class="proof example admonition" id="example-3">
+<p class="admonition-title"><span class="caption-number">Example 1 </span></p>
+<section class="example-content" id="proof-content">
+<p>In a metric space the collection of <span class="math notranslate nohighlight">\(\epsilon\)</span>-balls, for all <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>, is a basis, So is the collection of <span class="math notranslate nohighlight">\(\epsilon\)</span>-balls for <span class="math notranslate nohighlight">\(E = 1, 1/2, 1/3,\dots\)</span>.</p>
+</section>
+</div></section>
+<section id="countability">
+<h2>Countability<a class="headerlink" href="#countability" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (first countability)</p>
+<section class="definition-content" id="proof-content">
+<p>A topological space is said to be first countable if each point
+has a countable neighborhood basis.</p>
+</section>
+</div><div class="proof definition admonition" id="second_countability">
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (second countability)</p>
+<section class="definition-content" id="proof-content">
+<p>A topological space is said to be second countable if its
+topology has a countable basis.</p>
+</section>
+</div></section>
+<section id="continuity">
+<h2>Continuity<a class="headerlink" href="#continuity" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="topo_continuity">
+<p class="admonition-title"><span class="caption-number">Definition 10 </span> (topological continuity)</p>
+<section class="definition-content" id="proof-content">
+<p>A map <span class="math notranslate nohighlight">\(f: X \rightarrow Y\)</span> from a topological space <span class="math notranslate nohighlight">\(X\)</span> to a topological space <span class="math notranslate nohighlight">\(Y\)</span>  is said to be continuous if <span class="math notranslate nohighlight">\(f^{-1}(U)\)</span> is open for each open set <span class="math notranslate nohighlight">\(U\subset Y\)</span>.
+A map is a continuous function.</p>
+</section>
+</div><div class="proof definition admonition" id="homeomorphism">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (homeomorphism)</p>
+<section class="definition-content" id="proof-content">
+<p>A continuous function <span class="math notranslate nohighlight">\(f: X \rightarrow Y\)</span> between topological spaces is called a
+homeomorphism if its inverse <span class="math notranslate nohighlight">\(f^{-1}: Y \rightarrow X\)</span> exists and continuous.</p>
+<p>If such a function exist, we say that <span class="math notranslate nohighlight">\(X\)</span> is homoeomorphic to <span class="math notranslate nohighlight">\(Y\)</span>, denoted by <span class="math notranslate nohighlight">\(X ~ Y\)</span>.</p>
+</section>
+</div><p>Homeomorphic spaces are considered as essentially the same.
+One of the main problems in topology is to find methods of deciding when
+two spaces are homeomorphic or not.</p>
+<div class="proof definition admonition" id="definition-8">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (uniform convergence)</p>
+<section class="definition-content" id="proof-content">
+<p>A sequence <span class="math notranslate nohighlight">\(f_1, f_2, ...\)</span> of functions from a topological space
+<span class="math notranslate nohighlight">\(X\)</span> to a metric space <span class="math notranslate nohighlight">\(Y\)</span> is said to converge uniformly to a function <span class="math notranslate nohighlight">\(f: X \rightarrow Y\)</span> if, for each <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>, there is a number <span class="math notranslate nohighlight">\(n\)</span> such that when <span class="math notranslate nohighlight">\(i&gt;n\)</span>, <span class="math notranslate nohighlight">\(d(f_i(x), f(x)) &lt; \epsilon\)</span> for all <span class="math notranslate nohighlight">\(x\in X\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="open_function">
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (open functions)</p>
+<section class="definition-content" id="proof-content">
+<p>A function <span class="math notranslate nohighlight">\(f: X \rightarrow Y\)</span> between topological spaces is said to
+be open if <span class="math notranslate nohighlight">\(f(U)\)</span> is open in <span class="math notranslate nohighlight">\(Y\)</span> for all open <span class="math notranslate nohighlight">\(U\subset X\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-10">
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (closed functions)</p>
+<section class="definition-content" id="proof-content">
+<p>A function <span class="math notranslate nohighlight">\(f: X \rightarrow Y\)</span> between topological spaces is said to
+be closed if <span class="math notranslate nohighlight">\(f(U)\)</span> is closed in <span class="math notranslate nohighlight">\(Y\)</span> for all closed <span class="math notranslate nohighlight">\(U\subset X\)</span>.</p>
+</section>
+</div><p>A topology <span class="math notranslate nohighlight">\(T^*\)</span> of a topological space <span class="math notranslate nohighlight">\(X\)</span>, whose open sets satisfy a presribed condition, is said to be the <strong>coarsest</strong> topology if for any
+topology <span class="math notranslate nohighlight">\(T\)</span> whose open sets satisfy the condition, the <span class="math notranslate nohighlight">\(T^*\)</span>-open sets are
+also <span class="math notranslate nohighlight">\(T\)</span>-open, i.e., <span class="math notranslate nohighlight">\(T^* \subset T\)</span>. On the other hand, if <span class="math notranslate nohighlight">\(T\subset T^*\)</span>, then <span class="math notranslate nohighlight">\(T^*\)</span> is the <strong>finest</strong> topology satisfying the condition.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chap1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 1: Metric spaces</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 3: Subspaces</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
