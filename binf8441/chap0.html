@@ -609,6 +609,19 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[y=f(a)+f^{\prime}(a)(x-a)\]</div>
 <p>A function <span class="math notranslate nohighlight">\(f(x)\)</span> is said to be differentiable at <span class="math notranslate nohighlight">\(x=a\)</span> if the derivative <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> exists. If <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable at any point in an open set <span class="math notranslate nohighlight">\(D\subset\mathbb{R}\)</span>, we say that <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable on <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="m">2</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="m">-1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap0_1_0.png" src="_images/chap0_1_0.png" />
+</div>
+</div>
 <div class="admonition-notation admonition">
 <p class="admonition-title">Notation</p>
 <p>If <span class="math notranslate nohighlight">\(y=f(x)\)</span>, then all of the following are equivalent notations for the derivative. <span class="math notranslate nohighlight">\(f^{\prime}(x)=y^{\prime}=\frac{d f}{d x}=\frac{d y}{d x}=\frac{d}{d x}(f(x))=D_xf\)</span></p>
@@ -642,6 +655,35 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\((\sin x)^\prime=\cos x\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\((\cos x)^\prime=-\sin x\)</span></p></li>
 </ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="c1">#polynomial</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="m">3</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;polynomial&quot;</span><span class="p">)</span>
+
+<span class="c1">#exponential</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;exponential&quot;</span><span class="p">)</span>
+
+<span class="c1">#logrithm</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0.01</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;log&quot;</span><span class="p">)</span>
+
+<span class="c1">#trig</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&quot;sin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap0_3_0.png" src="_images/chap0_3_0.png" />
+</div>
 </div>
 <div class="proof example admonition" id="0.1">
 <p class="admonition-title"><span>Example </span> (0.1)</p>
@@ -696,7 +738,26 @@ Set the first derivate to be 0, i.e., <span class="math notranslate nohighlight"
 <div class="math notranslate nohighlight">
 \[e^x=1+x+\frac{x^2}{2}+\frac{x^3}{3!}+\dots+\frac{x^n}{n!}+...\]</div>
 </section>
-</div></section>
+</div><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y1</span> <span class="o">=</span> <span class="nf">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="m">1</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="o">/</span><span class="m">2</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="m">1</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="o">/</span><span class="m">2</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="m">3</span><span class="o">/</span><span class="m">6</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="m">4</span><span class="o">/</span><span class="m">24</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;f(x)&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y3</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;green&quot;</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topleft&quot;</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;exp(x)&quot;</span><span class="p">,</span><span class="s">&quot;1+x+x^2/2&quot;</span><span class="p">,</span><span class="s">&quot;1+x+x^2/2+x^3/6+x^4/24&quot;</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="s">&quot;red&quot;</span><span class="p">,</span><span class="s">&quot;green&quot;</span><span class="p">),</span><span class="n">pch</span><span class="o">=</span><span class="m">15</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap0_5_0.png" src="_images/chap0_5_0.png" />
+</div>
+</div>
+<p><a class="reference external" href="https://www.math-exercises.com/limits-derivatives-integrals/derivative-of-a-function">Exercise in Calculus</a></p>
+</section>
 </section>
 <section id="linear-algebra">
 <h2>Linear algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">#</a></h2>
@@ -730,17 +791,21 @@ Set the first derivate to be 0, i.e., <span class="math notranslate nohighlight"
 </section>
 <section id="linear-independent">
 <h3>Linear independent<a class="headerlink" href="#linear-independent" title="Permalink to this headline">#</a></h3>
-<div class="proof definition admonition" id="linear_independent">
-<p class="admonition-title"><span>Definition </span> (linear independent)</p>
+<div class="proof definition admonition" id="linear_dependent">
+<p class="admonition-title"><span>Definition </span> (linear dependent)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\left(a_1,\dots,a_n\right)\)</span> denote the <span class="math notranslate nohighlight">\(n\)</span> column vectors of matrix <span class="math notranslate nohighlight">\(A\)</span>. Those vectors are linearly dependent if and only if there is a non-zero vector <span class="math notranslate nohighlight">\((x_1,\dots,x_n)\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[x_1 a_1+\dots+x_n a_n=0\]</div>
 </section>
 </div><p>In the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix} 1&amp;2\\1&amp;2\end{pmatrix}\)</span>, the column vectors <span class="math notranslate nohighlight">\((1, 1)\)</span> and <span class="math notranslate nohighlight">\((2, 2)\)</span> are linearly dependent because <span class="math notranslate nohighlight">\(2*(1, 1)-(2, 2) = 0\)</span>.</p>
-<p>The column vectors are linearly independent if and only if the zero vector is the only solution to <span class="math notranslate nohighlight">\(x_1 a_1+\dots+x_n a_n=0\)</span>.
-For example, in the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix} 1&amp;0\\0&amp;1\end{pmatrix}\)</span>, the column vectors <span class="math notranslate nohighlight">\((1, 0)\)</span> and <span class="math notranslate nohighlight">\((0, 1)\)</span> are linearly independent, because if <span class="math notranslate nohighlight">\(x_1 (1, 0)+x_2 (0, 1)=(0, 0)\)</span>, then <span class="math notranslate nohighlight">\(x_1=0\)</span> and <span class="math notranslate nohighlight">\(x_2=0\)</span>.</p>
+<p>The column vectors are <strong>linearly independent</strong> if and only if the zero vector is the only solution to <span class="math notranslate nohighlight">\(x_1 a_1+\dots+x_n a_n=0\)</span>.</p>
+<div class="proof example admonition" id="0.6">
+<p class="admonition-title"><span>Example </span> (0.6)</p>
+<section class="example-content" id="proof-content">
+<p>In the matrix <span class="math notranslate nohighlight">\(A=\begin{pmatrix} 1&amp;0\\0&amp;1\end{pmatrix}\)</span>, the column vectors <span class="math notranslate nohighlight">\((1, 0)\)</span> and <span class="math notranslate nohighlight">\((0, 1)\)</span> are linearly independent, because if <span class="math notranslate nohighlight">\(x_1 (1, 0)+x_2 (0, 1)=(0, 0)\)</span>, then <span class="math notranslate nohighlight">\(x_1=0\)</span> and <span class="math notranslate nohighlight">\(x_2=0\)</span>.</p>
 </section>
+</div></section>
 <section id="basis">
 <h3>Basis<a class="headerlink" href="#basis" title="Permalink to this headline">#</a></h3>
 <div class="proof definition admonition" id="basis">
@@ -773,14 +838,15 @@ For example, in the matrix <span class="math notranslate nohighlight">\(A=\begin
 </div><p>If a square matrix <span class="math notranslate nohighlight">\(A\)</span> is diagonalizable, then it is straightforward to calculate <span class="math notranslate nohighlight">\(A^2\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[A^2 = PDP^{-1}PDP^{-1}=PD^2P^{-1}\]</div>
+<p><a class="reference external" href="https://www.math-exercises.com/matrices">Exercise in linear algebra</a></p>
 </section>
 </section>
 <section id="statistics">
 <h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">#</a></h2>
 <p>The ultimate goal of statistical inference is to understand the unknown <strong>population</strong> through the <strong>samples</strong> generated from the population. The population is characterized by so called <strong>parameters</strong>. We often calculate <strong>statistics</strong> from samples to estimate parameters.</p>
 <a class="reference internal image-reference" href="_images/population.png"><img alt="population" class="align-center" src="_images/population.png" style="width: 600px;" /></a>
-<div class="proof example admonition" id="0.6">
-<p class="admonition-title"><span>Example </span> (0.6)</p>
+<div class="proof example admonition" id="0.7">
+<p class="admonition-title"><span>Example </span> (0.7)</p>
 <section class="example-content" id="proof-content">
 <p>We want to know the average weight of UGA students. We take a random sample of 100 students and calculate their average weight, which is 135 pounds. We conclude that the average weight of UGA students is 135 pounds.</p>
 <ul class="simple">
@@ -820,16 +886,16 @@ A statistic is any function of the sample</p></li>
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "r"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "ir",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'ir'</script>
 
               </div>
               
