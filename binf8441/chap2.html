@@ -604,13 +604,13 @@ title="Print to PDF"
 <div class="proof definition admonition" id="random_variable">
 <p class="admonition-title"><span>Definition </span> (random variable)</p>
 <section class="definition-content" id="proof-content">
-<p>A random variable <span class="math notranslate nohighlight">\(X: \Omega\rightarrow E\)</span> is a measurable function from the set of possible outcomes <span class="math notranslate nohighlight">\(\Omega\)</span> to some set <span class="math notranslate nohighlight">\(E\)</span>.</p>
+<p>A random variable <span class="math notranslate nohighlight">\(X: \Omega\rightarrow E\)</span> is a measurable function from a set <span class="math notranslate nohighlight">\(\Omega\)</span> of outcomes to some set <span class="math notranslate nohighlight">\(E\)</span> of numbers.</p>
 </section>
 </div><ol class="simple">
-<li><p>A random variable is a mapping from outcomes to real numbers</p></li>
-<li><p>A random variable can take on different values, each with an associated probability.</p></li>
+<li><p>A random variable is a mapping from outcomes to numbers</p></li>
+<li><p>A random variable can take on different values, each with a probability.</p></li>
 </ol>
-<p>The probability distribution of the random variable <span class="math notranslate nohighlight">\(x\)</span> is a list of all possible values of <span class="math notranslate nohighlight">\(x\)</span> and corresponding probabilities.</p>
+<p>The probability distribution of a random variable <span class="math notranslate nohighlight">\(X\)</span> is a list of all possible values of <span class="math notranslate nohighlight">\(X\)</span> and corresponding probabilities.</p>
 <div class="proof example admonition" id="2.1">
 <p class="admonition-title"><span>Example </span> (2.1)</p>
 <section class="example-content" id="proof-content">
@@ -799,6 +799,7 @@ F(a)=\begin{equation}
 </div>
 </div>
 </div>
+<p>The mean <span class="math notranslate nohighlight">\(E(X)\)</span> of a random variable <span class="math notranslate nohighlight">\(X\)</span> represents the <strong>center</strong> of the population. The variance of the random variable <span class="math notranslate nohighlight">\(X\)</span> is defined as the average squared distance between each point and the center of the population. The variance represents the <strong>spread</strong> of the population.</p>
 <div class="proof definition admonition" id="variance">
 <p class="admonition-title"><span>Definition </span> (variance)</p>
 <section class="definition-content" id="proof-content">
@@ -849,12 +850,49 @@ F(a)=\begin{equation}
 </div>
 </div>
 </div>
+<div class="proof theorem admonition" id="theorem-11">
+<p class="admonition-title"><span>Theorem </span></p>
+<section class="theorem-content" id="proof-content">
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(E(a X+b)=a E(X)+b\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\operatorname{var}(a X+b)=a^{2} E(X)\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=E\left(X^{2}\right)-(E(X))^{2}\)</span></p></li>
 </ol>
-<div class="proof definition admonition" id="moment_generating_function">
+<p>Proof:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+E(aX+b) &amp;= \sum_x(ax+b)P(x) \\
+&amp;= \sum_xaxP(x)+\sum_xbP(x) \\
+&amp;= a\sum_xxP(x)+b\sum_xP(x) \\
+&amp;= aE(X)+b
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+var(aX+b) &amp;= E[(ax+b-(aE(x)+b))^2]\\
+&amp; = E[a^2(x-E(x))^2]\\
+&amp; = a^2var(X)
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+var(X) &amp;= E[(x-E(x))^2] \\
+&amp;= E(x^2-2xE(x)+(E(x))^2)\\
+&amp;=E(x^2-2E(x)E(x)+(E(x))^2)\\
+&amp;=E\left(X^{2}\right)-(E(X))^{2}
+\end{split}
+\end{equation}
+\end{split}\]</div>
+</section>
+</div><div class="proof definition admonition" id="moment_generating_function">
 <p class="admonition-title"><span>Definition </span> (moment generating function)</p>
 <section class="definition-content" id="proof-content">
 <p>Definition: For a discrete random variable <span class="math notranslate nohighlight">\(X\)</span>, the moment generating function of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
@@ -864,9 +902,30 @@ F(a)=\begin{equation}
 </div><div class="proof example admonition" id="2.6">
 <p class="admonition-title"><span>Example </span> (2.6)</p>
 <section class="example-content" id="proof-content">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p(x)\)</span></p></td>
+<td><p>0.2</p></td>
+<td><p>0.6</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <p>The moment generating function is <span class="math notranslate nohighlight">\(M(t) = E\left(e^{t X}\right)=0.2 e^{t}+0.6 e^{2 t}+0.2 e^{3 t}\)</span></p>
 </section>
-</div><div class="proof theorem admonition" id="theorem-13">
+</div><div class="proof theorem admonition" id="theorem-14">
 <p class="admonition-title"><span class="caption-number">Theorem 3 </span> (<span class="math notranslate nohighlight">\(E(X) = \frac{\partial M(t)}{\partial t}|_{t=0}\)</span>)</p>
 <section class="theorem-content" id="proof-content">
 <div class="math notranslate nohighlight">
@@ -882,12 +941,74 @@ F(a)=\begin{equation}
 <p>When <span class="math notranslate nohighlight">\(t=0\)</span>, <span class="math notranslate nohighlight">\(\sum_{x} xe^{t x}P(x) = \sum_{x} xP(x) = E(X)\)</span>. Thus, <span class="math notranslate nohighlight">\(E(X) = \frac{\partial M(t)}{\partial t}|_{t=0}\)</span>.</p>
 </section>
 </div><p>The <span class="math notranslate nohighlight">\(r^{th}\)</span> moment of a discrete probability distribution is defined as <span class="math notranslate nohighlight">\(E\left(X^{r}\right)=\)</span> <span class="math notranslate nohighlight">\(\sum_{x} x^{r} P(x)\)</span>. Note that the first moment is <span class="math notranslate nohighlight">\(E(X)\)</span>.</p>
-<div class="proof definition admonition" id="prob_gen_function">
+<div class="proof example admonition" id="2.7">
+<p class="admonition-title"><span>Example </span> (2.7)</p>
+<section class="example-content" id="proof-content">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p(x)\)</span></p></td>
+<td><p>0.2</p></td>
+<td><p>0.6</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+E(X) &amp;= \frac{\partial M(t)}{\partial t}|_{t=0}\\
+&amp; = (0.2 e^{t}+0.6 e^{2 t}+0.2 e^{3 t})'|_{t=0} \\
+&amp; = (0.2 e^{t}+0.6*2e^{2 t}+0.2*3e^{3 t})|_{t=0} \\
+&amp; = 0.2+1.2+0.6 = 2 
+\end{split}
+\end{equation}
+\end{split}\]</div>
+</section>
+</div><div class="proof definition admonition" id="prob_gen_function">
 <p class="admonition-title"><span>Definition </span> (probability generating function)</p>
 <section class="definition-content" id="proof-content">
 <p>For a discrete random variable, the probability generating function is defined as</p>
 <div class="math notranslate nohighlight">
 \[E\left(t^{X}\right)=\sum_{x} t^{x} P(x)\]</div>
+</section>
+</div><div class="proof example admonition" id="2.8">
+<p class="admonition-title"><span>Example </span> (2.8)</p>
+<section class="example-content" id="proof-content">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(x\)</span></p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p(x)\)</span></p></td>
+<td><p>0.2</p></td>
+<td><p>0.6</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>The probability generating function is <span class="math notranslate nohighlight">\(E\left(t^{X}\right)=0.2t+0.6t^2+0.2t^3\)</span></p>
 </section>
 </div></section>
 <section id="discrete-probability-distributions">
