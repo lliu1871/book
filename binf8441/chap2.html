@@ -876,6 +876,7 @@ E(aX+b) &amp;= \sum_x(ax+b)P(x) \\
 \begin{split}
 var(aX+b) &amp;= E[(ax+b-(aE(x)+b))^2]\\
 &amp; = E[a^2(x-E(x))^2]\\
+&amp; = a^2E[(x-E(x))^2]\\
 &amp; = a^2var(X)
 \end{split}
 \end{equation}
@@ -886,7 +887,7 @@ var(aX+b) &amp;= E[(ax+b-(aE(x)+b))^2]\\
 \begin{split}
 var(X) &amp;= E[(x-E(x))^2] \\
 &amp;= E(x^2-2xE(x)+(E(x))^2)\\
-&amp;=E(x^2-2E(x)E(x)+(E(x))^2)\\
+&amp;=E(x^2)-2E(x)E(x)+(E(x))^2\\
 &amp;=E\left(X^{2}\right)-(E(X))^{2}
 \end{split}
 \end{equation}
@@ -940,7 +941,7 @@ var(X) &amp;= E[(x-E(x))^2] \\
 \end{split}\]</div>
 <p>When <span class="math notranslate nohighlight">\(t=0\)</span>, <span class="math notranslate nohighlight">\(\sum_{x} xe^{t x}P(x) = \sum_{x} xP(x) = E(X)\)</span>. Thus, <span class="math notranslate nohighlight">\(E(X) = \frac{\partial M(t)}{\partial t}|_{t=0}\)</span>.</p>
 </section>
-</div><p>The <span class="math notranslate nohighlight">\(r^{th}\)</span> moment of a discrete probability distribution is defined as <span class="math notranslate nohighlight">\(E\left(X^{r}\right)=\)</span> <span class="math notranslate nohighlight">\(\sum_{x} x^{r} P(x)\)</span>. Note that the first moment is <span class="math notranslate nohighlight">\(E(X)\)</span>.</p>
+</div><p>The <span class="math notranslate nohighlight">\(r^{th}\)</span> moment of a discrete probability distribution is defined as <span class="math notranslate nohighlight">\(E\left(X^{r}\right)=\sum_{x} x^{r} P(x)\)</span>. Note that the first moment is <span class="math notranslate nohighlight">\(E(X)\)</span>. It can be shown that <span class="math notranslate nohighlight">\(E(X^r)=\frac{\partial^r M(t)}{\partial t^r}|_{t=0}\)</span></p>
 <div class="proof example admonition" id="2.7">
 <p class="admonition-title"><span>Example </span> (2.7)</p>
 <section class="example-content" id="proof-content">
@@ -1152,8 +1153,8 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
 </section>
 <section id="transformation">
 <h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
-<div class="proof example admonition" id="2.7">
-<p class="admonition-title"><span>Example </span> (2.7)</p>
+<div class="proof example admonition" id="2.9">
+<p class="admonition-title"><span>Example </span> (2.9)</p>
 <section class="example-content" id="proof-content">
 <p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table.</p>
 <table class="colwidths-auto table">
@@ -1200,8 +1201,8 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
 </tbody>
 </table>
 </section>
-</div><div class="proof example admonition" id="2.8">
-<p class="admonition-title"><span>Example </span> (2.8)</p>
+</div><div class="proof example admonition" id="2.01">
+<p class="admonition-title"><span>Example </span> (2.10)</p>
 <section class="example-content" id="proof-content">
 <p>The probability mass function of a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> is given in the following table</p>
 <table class="colwidths-auto table">
