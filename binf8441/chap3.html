@@ -480,6 +480,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#transformation">
    Transformation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cdf">
+     CDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pdf">
+     PDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mgf-moment-generating-function">
+     MGF (moment generating function)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -536,6 +553,23 @@ title="Print to PDF"
   <a class="reference internal nav-link" href="#transformation">
    Transformation
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cdf">
+     CDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pdf">
+     PDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mgf-moment-generating-function">
+     MGF (moment generating function)
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -560,7 +594,7 @@ title="Print to PDF"
 </ul>
 </div>
 <div class="proof definition admonition" id="cdf">
-<p class="admonition-title"><span>Definition </span> (cumulative probability function)</p>
+<p class="admonition-title"><span>Definition </span> (cumulative distribution function)</p>
 <section class="definition-content" id="proof-content">
 <p>The cumulative distribution function (CDF) of a real-valued random variable <span class="math notranslate nohighlight">\(X\)</span>, evaluated at <span class="math notranslate nohighlight">\(x\)</span>, is the probability that <span class="math notranslate nohighlight">\(X\)</span> will take a value less than or equal to <span class="math notranslate nohighlight">\(x\)</span></p>
 <div class="math notranslate nohighlight">
@@ -572,7 +606,7 @@ title="Print to PDF"
 <li><p><span class="math notranslate nohighlight">\(\lim_{x\rightarrow -\infty} F(x) = P(X&lt;-\infty) = 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(\lim_{x\rightarrow \infty} F(x) = P(X&lt;\infty) = 1\)</span></p></li>
 </ul>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
 <span class="c1"># plot normal CDF</span>
@@ -629,24 +663,65 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[var(X) = E(X-E(X))^2\]</div>
 <ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(sd(X) = \sqrt{var(X)}\)</span></p></li>
+</ul>
+<div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span class="caption-number">Theorem 4 </span></p>
+<section class="theorem-content" id="proof-content">
+<ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(E(aX+b) = aE(X)+b\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(var(aX+b) = a^2var(x)\)</span></p></li>
-</ul>
-<section id="continuous-probability-distributions">
+<li><p><span class="math notranslate nohighlight">\(var(X) = E(X^2) - \left(E(X)\right)^2\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+  E(aX+b) &amp;= \int_{-\infty}^{\infty}(ax+b)f(x)dx \\
+  &amp;= \int_{-\infty}^{\infty}axf(x)dx + \int_{-\infty}^{\infty}bf(x)dx\\
+  &amp;= a\int_{-\infty}^{\infty}xf(x)dx + b\int_{-\infty}^{\infty}f(x)dx\\
+  &amp;= aE(X)+b
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+  var(aX+b) &amp;= \int_{-\infty}^{\infty}\left(ax+b-(aE(x)+b)\right)^2f(x)dx \\
+  &amp;= \int_{-\infty}^{\infty}a^2(x-E(x))^2f(x)dx\\
+  &amp;= a^2var(X)
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+  var(X) &amp;= \int_{-\infty}^{\infty}\left(x-E(x)\right)^2f(x)dx \\
+  &amp;= \int_{-\infty}^{\infty}(x^2-2xE(x)+E(x)^2)f(x)dx\\
+  &amp;= \int_{-\infty}^{\infty}x^2f(x)dx-2E(x)\int_{-\infty}^{\infty}xf(x)dx+E(x)^2\int_{-\infty}^{\infty}f(x)dx\\
+  &amp;= E(X^2) - \left(E(X)\right)^2
+\end{split}
+\end{equation}
+\end{split}\]</div>
+</section>
+</div><section id="continuous-probability-distributions">
 <h2>Continuous probability distributions<a class="headerlink" href="#continuous-probability-distributions" title="Permalink to this headline">#</a></h2>
 <section id="uniform-distribution">
 <h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">#</a></h3>
+<p>The uniform random variable represents the random numbers in an interval <span class="math notranslate nohighlight">\([a,b]\)</span>.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{b-a}\)</span>, for <span class="math notranslate nohighlight">\(x \in[a, b]\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(F(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} d y\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} dy = \frac{x-a}{b-a}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\int_{a}^{b} x f(x) d x=\frac{a+b}{2}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(X)=E\left(X^{2}\right)-\{E(X)\}^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\frac{(b-a)^2}{12}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
-<span class="nf">curve</span><span class="p">(</span><span class="nf">dunif</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;uniform&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
-<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="m">-4</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;normal&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dunif</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Uniform PDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">punif</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Uniform CDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -654,30 +729,25 @@ title="Print to PDF"
 <img alt="_images/chap3_3_0.png" src="_images/chap3_3_0.png" />
 </div>
 </div>
+<div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>The random variable <span class="math notranslate nohighlight">\(X\)</span> follows the uniform [2,4] distribution. Find <span class="math notranslate nohighlight">\(E(X)\)</span>, <span class="math notranslate nohighlight">\(var(X)\)</span>, and <span class="math notranslate nohighlight">\(P(X&lt;2.7)\)</span></p>
+<p><span class="math notranslate nohighlight">\(E(X)=(b+a)/2=3\)</span> and <span class="math notranslate nohighlight">\(var(X) = (b-a)^2/12 = 1/3\)</span> and <span class="math notranslate nohighlight">\(P(X&lt;2.7) = (x-a)/(b-a) = 0.7/2=0.35\)</span></p>
 </section>
+</div></section>
 <section id="normal-distribution">
 <h3>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">#</a></h3>
+<p>The normal random variables represents the mean effect of many equally likely random variables. For example, the human body weight (or height) is a normal random variable because weight (or height) is the mean effect of many factors.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}\)</span>, for <span class="math notranslate nohighlight">\(x \in[-\infty, \infty]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=u\)</span> and <span class="math notranslate nohighlight">\(var(X)=\sigma^{2}\)</span></p></li>
 </ul>
-<p>If random variable <span class="math notranslate nohighlight">\(X\)</span> has the normal distribution with mean <span class="math notranslate nohighlight">\(u\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^{2}, Y=aX+b\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(a u+b\)</span> and variance <span class="math notranslate nohighlight">\(a^{2} \sigma^{2}\)</span>. To calculate the probability, we first standardize the random variable and then use the standard normal distribution to calculate probabilities,</p>
-<div class="math notranslate nohighlight">
-\[P(X&lt;d)=P\left(\frac{X-u}{\sigma}&lt;\frac{d-u}{\sigma}\right) = P\left(Z&lt;\frac{d-u}{\sigma}\right)\]</div>
-</section>
-<section id="exponential-distribution">
-<h3>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this headline">#</a></h3>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\lambda} e^{-\frac{x}{\lambda}}\)</span>, for <span class="math notranslate nohighlight">\(x&gt;0\)</span> and <span class="math notranslate nohighlight">\(\lambda&gt;0 . F(x)=1-e^{-\frac{x}{\lambda}}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E(X)=\lambda\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(X)=\lambda^{2}\)</span></p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
-<span class="nf">curve</span><span class="p">(</span><span class="nf">dexp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rate</span><span class="o">=</span><span class="m">4</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;exponential&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
-<span class="nf">curve</span><span class="p">(</span><span class="nf">dbeta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;beta&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
-<span class="nf">curve</span><span class="p">(</span><span class="nf">dgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;gamma&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">-4</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Standard Normal PDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pnorm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">-4</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Standard Normal CDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -685,33 +755,101 @@ title="Print to PDF"
 <img alt="_images/chap3_5_0.png" src="_images/chap3_5_0.png" />
 </div>
 </div>
+<p>If random variable <span class="math notranslate nohighlight">\(X\)</span> has the normal distribution with mean <span class="math notranslate nohighlight">\(u\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^{2}, Y=aX+b\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(a u+b\)</span> and variance <span class="math notranslate nohighlight">\(a^{2} \sigma^{2}\)</span>.</p>
+<p>To calculate the normal probabilities, we first standardize the normal random variable <span class="math notranslate nohighlight">\(\frac{X-E(X)}{sd(X)}\)</span> and then use the standard normal distribution to calculate probabilities,</p>
+<div class="math notranslate nohighlight">
+\[P(X&lt;d)=P\left(\frac{X-u}{\sigma}&lt;\frac{d-u}{\sigma}\right) = P\left(Z&lt;\frac{d-u}{\sigma}\right)\]</div>
+</section>
+<section id="exponential-distribution">
+<h3>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this headline">#</a></h3>
+<p>The exponential random variable often represents the waiting time until the next event. For example, the waiting time until the next phone call follows the exponential distribution.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\lambda} e^{-\frac{x}{\lambda}}\)</span>, for <span class="math notranslate nohighlight">\(x&gt;0\)</span> and <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=1-e^{-\frac{x}{\lambda}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\lambda\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\lambda^{2}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dexp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rate</span><span class="o">=</span><span class="m">4</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Exponential PDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pexp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rate</span><span class="o">=</span><span class="m">4</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Exponential CDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_7_0.png" src="_images/chap3_7_0.png" />
+</div>
+</div>
 </section>
 <section id="beta-distribution">
 <h3>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this headline">#</a></h3>
+<p>We often use the Beta distribution to model probabilities.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}, 0 \leq x \leq 1, \alpha&gt;0, \beta&gt;0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\frac{\alpha}{\alpha+\beta}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(var(X)=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dbeta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Beta PDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pbeta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Beta CDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_9_0.png" src="_images/chap3_9_0.png" />
+</div>
+</div>
 </section>
 <section id="gamma-distribution">
 <h3>Gamma distribution<a class="headerlink" href="#gamma-distribution" title="Permalink to this headline">#</a></h3>
+<p>We often use the Gamma distribution to model ratios, for example, mutation rates.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\Gamma(\alpha) \beta^{\alpha}} x^{\alpha-1} e^{-\frac{x}{\beta}}, x&gt;0, \alpha&gt;0, \beta&gt;0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\alpha \beta\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(var(X)=\alpha \beta^{2}\)</span></p></li>
 </ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Gamma PDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Gamma CDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_11_0.png" src="_images/chap3_11_0.png" />
+</div>
+</div>
 </section>
 </section>
 <section id="transformation">
 <h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
-<p>Three techniques:</p>
-<p>(1) CDF: Suppose <span class="math notranslate nohighlight">\(Y=g(X)\)</span> and we want to find the probability distribution of Y.</p>
+<p>Three commonly used techniques can be used to find the probability distribution of a transformed continuous random variable.</p>
+<section id="cdf">
+<h3>CDF<a class="headerlink" href="#cdf" title="Permalink to this headline">#</a></h3>
+<p>Suppose <span class="math notranslate nohighlight">\(Y=g(X)\)</span> and we want to find the probability distribution of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
 P(Y \leq a)=P(g(X) \leq a)=\int_{g(x) \leq a} f(x) d x
 \]</div>
-<p>(2) PDF: Suppose that the inverse function <span class="math notranslate nohighlight">\(g^{-1}(X)\)</span> exists and is an increasing function.</p>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>Suppose <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with a density <span class="math notranslate nohighlight">\(e^{-x}\)</span>. Find the probability distribution of <span class="math notranslate nohighlight">\(Y=2X\)</span></p>
+<div class="math notranslate nohighlight">
+\[P(Y\le a) = P(2X \le a) = P(X\le a/2) = 1-e^{-a/2}\]</div>
+<p>The density function is the derivative of the CDF <span class="math notranslate nohighlight">\(1-e^{-a/2}\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[(1-e^{-a/2})'=\frac{1}{2}e^{-\frac{a}{2}}\]</div>
+<p>This is an exponential density with <span class="math notranslate nohighlight">\(\lambda = 2\)</span>.</p>
+</section>
+</div></section>
+<section id="pdf">
+<h3>PDF<a class="headerlink" href="#pdf" title="Permalink to this headline">#</a></h3>
+<p>Suppose that the inverse function <span class="math notranslate nohighlight">\(g^{-1}(X)\)</span> exists and is an increasing function.</p>
 <div class="math notranslate nohighlight">
 \[
 P(Y \leq a)=P(g(X) \leq a)=P\left(X \leq g^{-1}(a)\right)=F_{X}\left(g^{-1}(a)\right)
@@ -745,7 +883,10 @@ f_{Y}(y)=f_{X}\left(g^{-1}(y)\right) *\left|\frac{d g^{-1}(y)}{d y}\right|
 f_{y}(y)=\lambda e^{-\lambda(y-2)}\left|\frac{d(y-2)}{d y}\right|=\lambda e^{-\lambda(y-2)}
 \]</div>
 </section>
-</div><p>(3) MGF: If two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, we can show that</p>
+</div></section>
+<section id="mgf-moment-generating-function">
+<h3>MGF (moment generating function)<a class="headerlink" href="#mgf-moment-generating-function" title="Permalink to this headline">#</a></h3>
+<p>If two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, we can show that</p>
 <div class="math notranslate nohighlight">
 \[
 M_{X+Y}(t)=M_{X}(t) M_{Y}(t)
@@ -766,6 +907,7 @@ M_{X+Y}(t)=M_{X}(t) M_{Y}(t)
 <p>Thus, the sample average <span class="math notranslate nohighlight">\(\frac{1}{n}\sum_{i=1}^{n} X_{i}\)</span> has a normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\frac{\sigma^{2}}{n}\)</span>.</p>
 </section>
 </div></section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
