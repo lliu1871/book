@@ -1078,18 +1078,18 @@ E(X) &amp;= \frac{\partial M(t)}{\partial t}|_{t=0}\\
 <p>The proportions of A, C, G, T in a genome are 25%, 25%, 25%, 25%, respectively. We randomly select two nucleotides. Let <span class="math notranslate nohighlight">\(X\)</span> be the count of A. Find the probability distribution of <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <p>Let <span class="math notranslate nohighlight">\(X_1\)</span> denote the outcome of the first selection and <span class="math notranslate nohighlight">\(X_2\)</span> be the outcome of the second selection. Both <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> are Bernoulli random variables with <span class="math notranslate nohighlight">\(p=0.25\)</span>. Let “A=1” and “not A = 0”. Then, <span class="math notranslate nohighlight">\(X = X_1 + X_2\)</span>.</p>
 <p>To find the probability distribution of <span class="math notranslate nohighlight">\(X\)</span>, we first figure out the possible values that <span class="math notranslate nohighlight">\(X\)</span> may take and then find the corresponding probabilities. It is trivial that <span class="math notranslate nohighlight">\(X = 0, 1, 2\)</span>. Next, we find the corresponding probabilies,</p>
-<p><span class="math notranslate nohighlight">\(P(X=0) = P(X_1=0 and X_2=0) = P(X_1=0)P(X_2=0) = 0.75^2=0.5625\)</span></p>
+<p><span class="math notranslate nohighlight">\(P(X=0) = P(X_1=0 \text{ and } X_2=0) = P(X_1=0)P(X_2=0) = 0.75^2=0.5625\)</span></p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
 \begin{split}
-P(X=1) &amp;= P(X_1=0 and X_2=1) + P(X_1=1 and X_2=0) \\
+P(X=1) &amp;= P(X_1=0\text{ and } X_2=1) + P(X_1=1\text{ and } X_2=0) \\
 &amp; = P(X_1=0)P(X_2=1) + P(X_1=1)P(X_2=0) \\
 &amp; = 0.25*0.75+0.75*0.25=0.375
 \end{split}
 \end{equation}
 \end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(P(X=2) = P(X_1=1 and X_2=1) = 0.25^2=0.0625\)</span></p>
+<p><span class="math notranslate nohighlight">\(P(X=2) = P(X_1=1\text{ and } X_2=1) = 0.25^2=0.0625\)</span></p>
 <p>Thus, the probability distribution of <span class="math notranslate nohighlight">\(X\)</span> is given in the table</p>
 <table class="colwidths-auto table">
 <thead>
@@ -1207,7 +1207,7 @@ n \\x \end{array}\right) p^{x}(1-p)^{n-x}\)</span> for <span class="math notrans
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(P(X=x)=\frac{1}{n}\)</span>, for <span class="math notranslate nohighlight">\(x=a 1, a 2, \ldots\)</span>, an</p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\sum a_{i} * \frac{1}{n}=\frac{1}{n} \sum a_{i}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(x)=\sum\left(a_{i}-\bar{a}\right)^{2} * \frac{1}{n}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\operatorname{var}(X)=\sum\left(a_{i}-\bar{a}\right)^{2} * \frac{1}{n}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
