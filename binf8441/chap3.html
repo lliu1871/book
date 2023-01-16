@@ -712,7 +712,7 @@ title="Print to PDF"
 <h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">#</a></h3>
 <p>The uniform random variable represents the random numbers in an interval <span class="math notranslate nohighlight">\([a,b]\)</span>.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{b-a}\)</span>, for <span class="math notranslate nohighlight">\(x \in[a, b]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f(x|a,b)=\frac{1}{b-a}\)</span>, for <span class="math notranslate nohighlight">\(x \in[a, b]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(F(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} dy = \frac{x-a}{b-a}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=\int_{a}^{b} x f(x) d x=\frac{a+b}{2}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(var(X)=\frac{(b-a)^2}{12}\)</span></p></li>
@@ -740,7 +740,7 @@ title="Print to PDF"
 <h3>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">#</a></h3>
 <p>The normal random variables represents the mean effect of many equally likely random variables. For example, the human body weight (or height) is a normal random variable because weight (or height) is the mean effect of many factors.</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}\)</span>, for <span class="math notranslate nohighlight">\(x \in[-\infty, \infty]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(f(x|\mu,\sigma^2)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}\)</span>, for <span class="math notranslate nohighlight">\(x \in[-\infty, \infty]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=u\)</span> and <span class="math notranslate nohighlight">\(var(X)=\sigma^{2}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
@@ -755,11 +755,25 @@ title="Print to PDF"
 <img alt="_images/chap3_5_0.png" src="_images/chap3_5_0.png" />
 </div>
 </div>
-<p>If random variable <span class="math notranslate nohighlight">\(X\)</span> has the normal distribution with mean <span class="math notranslate nohighlight">\(u\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^{2}, Y=aX+b\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(a u+b\)</span> and variance <span class="math notranslate nohighlight">\(a^{2} \sigma^{2}\)</span>.</p>
+<p>If a random variable <span class="math notranslate nohighlight">\(X \sim Normal(\mu,\sigma^{2})\)</span>, then <span class="math notranslate nohighlight">\(Y=aX+b\)</span> follows <span class="math notranslate nohighlight">\(Normal(a\mu+b,a^{2} \sigma^{2})\)</span>.</p>
 <p>To calculate the normal probabilities, we first standardize the normal random variable <span class="math notranslate nohighlight">\(\frac{X-E(X)}{sd(X)}\)</span> and then use the standard normal distribution to calculate probabilities,</p>
 <div class="math notranslate nohighlight">
 \[P(X&lt;d)=P\left(\frac{X-u}{\sigma}&lt;\frac{d-u}{\sigma}\right) = P\left(Z&lt;\frac{d-u}{\sigma}\right)\]</div>
+<div class="admonition-rule admonition">
+<p class="admonition-title">67-95-99 rule</p>
+<ol class="simple">
+<li><p>68% of the population is within 1 standard deviation of the mean.</p></li>
+<li><p>95% of the population is within 2 standard deviation of the mean.</p></li>
+<li><p>99% of the population is within 3 standard deviation of the mean.</p></li>
+</ol>
+</div>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(X \sim Normal(\mu=1,\sigma^2=1)\)</span>, find <span class="math notranslate nohighlight">\(E(X^2)\)</span> and <span class="math notranslate nohighlight">\(P(X&gt;2)\)</span></p>
+<p><span class="math notranslate nohighlight">\(E(X^2) = var(X)+(E(X))^2 = 1+1 = 2\)</span> and <span class="math notranslate nohighlight">\(P(X&gt;2) = P\left(\frac{X-\mu}{\sigma}&gt;\frac{2-1}{1}\right)= P(Z&gt;1)\)</span> where <span class="math notranslate nohighlight">\(Z \sim Normal(0,1)\)</span>. We know from the 67-95-99 rule that <span class="math notranslate nohighlight">\(P(-1&lt;Z&lt;1) \approx 0.68\)</span>. Thus, <span class="math notranslate nohighlight">\(P(Z&gt;1) = (1 - 0.68)/2 = 0.16\)</span>.</p>
 </section>
+</div></section>
 <section id="exponential-distribution">
 <h3>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this headline">#</a></h3>
 <p>The exponential random variable often represents the waiting time until the next event. For example, the waiting time until the next phone call follows the exponential distribution.</p>
@@ -835,7 +849,7 @@ title="Print to PDF"
 \[
 P(Y \leq a)=P(g(X) \leq a)=\int_{g(x) \leq a} f(x) d x
 \]</div>
-<div class="proof example admonition" id="example-5">
+<div class="proof example admonition" id="example-6">
 <p class="admonition-title"><span>Example </span></p>
 <section class="example-content" id="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with a density <span class="math notranslate nohighlight">\(e^{-x}\)</span>. Find the probability distribution of <span class="math notranslate nohighlight">\(Y=2X\)</span></p>
