@@ -16,7 +16,7 @@ kernelspec:
 
 # Lab 1: Introduction to R 
 
-Please read the document [R-intro.pdf](https://cran.r-project.org/manuals.html). In this lab, we will go through the following topics in R. 
+Please read the document [R-intro.pdf](https://cran.r-project.org/manuals.html). A good tutorial on R is available at [www3](https://www.w3schools.com/r/). In this lab, we will go through the following topics in R. 
 
 - Getting help: google, manual, or ? 
 - Numbers, vectors, and matrix, list 

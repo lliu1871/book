@@ -771,13 +771,13 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -3.5068, df = 19, p-value = 0.001179
+t = -5.8842, df = 19, p-value = 5.746e-06
 alternative hypothesis: true mean is less than 3
 95 percent confidence interval:
-     -Inf 2.569649
+     -Inf 2.096763
 sample estimates:
 mean of x 
- 2.151056 
+ 1.720877 
 </pre></div>
 </div>
 </div>
@@ -802,13 +802,13 @@ mean of x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -6.2752, df = 19, p-value = 5.03e-06
+t = -5.6539, df = 19, p-value = 1.886e-05
 alternative hypothesis: true mean is not equal to 3
 95 percent confidence interval:
- 1.428471 2.214598
+ 1.327700 2.231324
 sample estimates:
 mean of x 
- 1.821535 
+ 1.779512 
 </pre></div>
 </div>
 </div>
@@ -846,13 +846,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &lt; \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -3.0707, df = 37.963, p-value = 0.998
+t = -4.6131, df = 37.245, p-value = 1
 alternative hypothesis: true difference in means is greater than 0
 95 percent confidence interval:
- -1.613454       Inf
+ -1.72697      Inf
 sample estimates:
 mean of x mean of y 
- 1.751626  2.793201 
+ 2.014769  3.279339 
 </pre></div>
 </div>
 <img alt="_images/chap6_5_1.png" src="_images/chap6_5_1.png" />
@@ -877,13 +877,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -3.0707, df = 37.963, p-value = 0.003934
+t = -4.6131, df = 37.245, p-value = 4.574e-05
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.728259 -0.354891
+ -1.8198804 -0.7092597
 sample estimates:
 mean of x mean of y 
- 1.751626  2.793201 
+ 2.014769  3.279339 
 </pre></div>
 </div>
 </div>
@@ -912,8 +912,8 @@ mean of x mean of y
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-group        2  67.14   33.57   33.58 2.31e-10 ***
-Residuals   57  56.98    1.00                     
+group        2  30.29  15.145   14.37 8.86e-06 ***
+Residuals   57  60.09   1.054                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
@@ -1013,7 +1013,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -15.7834818482396 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -10.1585574219134 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
@@ -1048,7 +1048,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 31.6859472709826 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 5.0960317540838 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>

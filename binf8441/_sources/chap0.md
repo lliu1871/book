@@ -8,9 +8,9 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
+  display_name: R
+  language: R
+  name: ir
 ---
 
 # Chapter 0: Prerequisites
@@ -41,7 +41,14 @@ Geometrically, the derivate of $f(x)$ at $x=a$ is the slope of the tangent line 
 
 $$y=f(a)+f^{\prime}(a)(x-a)$$
 
-A function $f(x)$ is said to be differentiable at $x=a$ if the derivative $f^{\prime}(a)$ exists. If $f(x)$ is differentiable at any point in an open set $D\subset\mathbb{R}$, we say that $f(x)$ is differentiable on $D$.  
+A function $f(x)$ is said to be differentiable at $x=a$ if the derivative $f^{\prime}(a)$ exists. If $f(x)$ is differentiable at any point in an open set $D\subset\mathbb{R}$, we say that $f(x)$ is differentiable on $D$.
+
+```{code-cell}
+x = seq(-2,2,by=0.01)
+y = x^2
+plot(x,y,type="l",col="blue")
+abline(a=-1,b=2,col="red")
+```
 
 ```{admonition} Notation
 If $y=f(x)$, then all of the following are equivalent notations for the derivative. $f^{\prime}(x)=y^{\prime}=\frac{d f}{d x}=\frac{d y}{d x}=\frac{d}{d x}(f(x))=D_xf$ 
@@ -74,6 +81,30 @@ $$D_a(cf)=cD_af$$
 - $(\ln x)^\prime=\frac{1}{x}$
 - $(\sin x)^\prime=\cos x$
 - $(\cos x)^\prime=-\sin x$
+```
+
+```{code-cell}
+par(mfrow=c(2,2))
+#polynomial
+x = seq(-10,10,0.01)
+y = x^3
+plot(x,y,type="l",col="blue",main="polynomial")
+
+#exponential
+x = seq(-10,10,0.01)
+y = exp(x)
+plot(x,y,type="l",col="blue",main="exponential")
+
+#logrithm
+x = seq(0.01,10,0.01)
+y = log(x)
+plot(x,y,type="l",col="blue",main="log")
+
+#trig
+x = seq(-10,10,0.01)
+y = sin(x)
+plot(x,y,type="l",col="blue",main="sin")
+
 ```
 
 ````\{prf:example\} 0.1
@@ -134,6 +165,22 @@ Because $a=0$, $f(a)=e^a=e^0=1$ and $f^n(a)=e^0=1$. It follows from the above eq
 
 $$e^x=1+x+\frac{x^2}{2}+\frac{x^3}{3!}+\dots+\frac{x^n}{n!}+...$$
 ````
+
+```{code-cell}
+:tags: ["hide-input"]
+x = seq(-2,2,0.01)
+y1 = exp(x)
+y2 = 1 + x + x^2/2
+y3 = 1 + x + x^2/2 + x^3/6 + x^4/24
+
+plot(x,y1,type="l",ylab="f(x)",col="blue")
+lines(x,y2,col="red")
+lines(x,y3,col="green")
+legend("topleft",legend=c("exp(x)","1+x+x^2/2","1+x+x^2/2+x^3/6+x^4/24"),col=c("blue","red","green"),pch=15)
+```
+
+[Exercise in Calculus](https://www.math-exercises.com/limits-derivatives-integrals/derivative-of-a-function)
+
 ## Linear algebra
 
 ### Dot product
@@ -171,9 +218,9 @@ Matrices multiplication: $A_{n×k} B_{k×m}=C_{n×m}$, in which $c_{ij}=∑_{w=1
 $$\begin{pmatrix} 1 & 2\\ 3 & 4\\ 5 & 6 \end{pmatrix} \begin{pmatrix} 1&1\\2&2\end{pmatrix} = \begin{pmatrix} 5&5\\11&11\\17&17\end{pmatrix}$$
 	
 ### Linear independent
-````{prf:definition} linear independent
+````{prf:definition} linear dependent
 :nonumber:
-:label: linear_independent
+:label: linear_dependent
 Let $\left(a_1,\dots,a_n\right)$ denote the $n$ column vectors of matrix $A$. Those vectors are linearly dependent if and only if there is a non-zero vector $(x_1,\dots,x_n)$ such that 
 
 $$x_1 a_1+\dots+x_n a_n=0$$ 
@@ -181,8 +228,13 @@ $$x_1 a_1+\dots+x_n a_n=0$$
 
 In the matrix $A=\begin{pmatrix} 1&2\\1&2\end{pmatrix}$, the column vectors $(1, 1)$ and $(2, 2)$ are linearly dependent because $2*(1, 1)-(2, 2) = 0$.
 
-The column vectors are linearly independent if and only if the zero vector is the only solution to $x_1 a_1+\dots+x_n a_n=0$.
-For example, in the matrix $A=\begin{pmatrix} 1&0\\0&1\end{pmatrix}$, the column vectors $(1, 0)$ and $(0, 1)$ are linearly independent, because if $x_1 (1, 0)+x_2 (0, 1)=(0, 0)$, then $x_1=0$ and $x_2=0$.
+The column vectors are **linearly independent** if and only if the zero vector is the only solution to $x_1 a_1+\dots+x_n a_n=0$.
+
+````{prf:example} 0.6
+:nonumber:
+:label: 0.6
+In the matrix $A=\begin{pmatrix} 1&0\\0&1\end{pmatrix}$, the column vectors $(1, 0)$ and $(0, 1)$ are linearly independent, because if $x_1 (1, 0)+x_2 (0, 1)=(0, 0)$, then $x_1=0$ and $x_2=0$.
+````
 
 ### Basis
 ````{prf:definition} basis
@@ -219,6 +271,8 @@ If a square matrix $A$ is diagonalizable, then it is straightforward to calculat
 
 $$A^2 = PDP^{-1}PDP^{-1}=PD^2P^{-1}$$
 
+[Exercise in linear algebra](https://www.math-exercises.com/matrices)
+
 ## Statistics
 The ultimate goal of statistical inference is to understand the unknown **population** through the **samples** generated from the population. The population is characterized by so called **parameters**. We often calculate **statistics** from samples to estimate parameters. 
 
@@ -228,15 +282,15 @@ The ultimate goal of statistical inference is to understand the unknown **popula
 :align: center
 ```
 
-````\{prf:example\} 0.6
+````\{prf:example\} 0.7
 :nonumber:
-:label: 0.6
+:label: 0.7
 :nonumber:
 We want to know the average weight of UGA students. We take a random sample of 100 students and calculate their average weight, which is 135 pounds. We conclude that the average weight of UGA students is 135 pounds.
 
-- Population: all UGA students
+- Population: the weights of all UGA students
 - Parameter: the mean weight; population mean
-- Sample: 100 students
+- Sample: 100 students' weights
 - Statistic: the sample average
 ````
 
@@ -244,7 +298,7 @@ We use the sample average to estimate the population mean. Does it make sense? W
 
 Converting a real problem to a mathematical problem
 1. How do we denote a population in math?
-population = probability distribution $f(x \mid \theta)$
+a population = a probability distribution $f(x \mid \theta)$
 
 2. How do we denote parameter in math?
 The parameter is a constant $\theta=g($ population), which is a function of the population
@@ -255,9 +309,10 @@ They are random numbers generated from the probability distribution, i.e., $\bol
 4. How do we denote a statistic in math?
 A statistic is any function of the sample
 
-Important conclusions
-1. If we know the population, i.e., the probability distribution, we do not need to generate real data in the wet lab. We can use computer to simulate data from the probability distribution.
+```{admonition} Important conclusions
+1. If we know the population, i.e., the probability distribution, we do not need to generate real data in the wet lab. We can use computers to simulate data from the probability distribution.
 2. If we have data, we can make inference about the population (i.e., the probability distribution) from data.
+```
 
 ```{image} ./images/inference.png
 :alt: inference

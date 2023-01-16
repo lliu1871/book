@@ -52,6 +52,7 @@ $$P\left(\cup_{i=1}^{\infty} E_{i}\right)=\sum_{i=1}^{\infty} P\left(E_{i}\right
 :nonumber:
 :label: 1.1
 :nonumber:
+Flipping a coin, the probabiliy of a head is 0.47.
 
 $P(tail) = 1-P(head) = 1-0.47 = 0.53$
 ````
@@ -77,6 +78,8 @@ For two events $A$ and $B$, the probability of $A$ given that the event $B$ occu
 :nonumber:
 :label: 1.3
 :nonumber:
+If A is a subset of B, then $P(B|A) = 1$
+
 $P(B|A)=\frac{P(A \cap B)}{P(A)}=\frac{P(A)}{P(A)}=1$
 ````
 
@@ -94,10 +97,10 @@ What is the probability of having chicken at home?
 $P(H \cap C) = P(C|H)P(H) = 0.4\times 0.8 = 0.32$
 
 What is the probability of having chicken?
-$P(C) = P(C\cap H)+P(C\cap R) = P(C|H)P(H)+P(C|R)P(R) = 0.4\times 0.8 + 0.9\times 0.2 = 0.32+0.18=0.4$
+$P(C) = P(C\cap H)+P(C\cap R) = P(C|H)P(H)+P(C|R)P(R) = 0.4\times 0.8 + 0.9\times 0.2 = 0.32+0.18=0.5$
 
 If John is having chicken, what is the probability that he is having chicken at home?
-$P(H|C) = \frac{P(H\cap C)}{P(C)} = \frac{0.4\times 0.8}{0.4} = 0.8$
+$P(H|C) = \frac{P(H\cap C)}{P(C)} = \frac{0.4\times 0.8}{0.5} = 0.64$
 
 ````
 
@@ -113,6 +116,8 @@ Two sets (events) $A$ and $B$ are independent if and only if $P(A \cap B)=P(A) P
 :nonumber:
 :label: 1.5
 :nonumber:
+Show that if two event A and B are independent of each other, then $P(A|B) = P(A)$
+
 By definition, the conditional probability is $P(A|B) = \frac{P(A\cap B)}{P(B)}$. Since $A$ and $B$ are independent, $P(A\cap B) = P(A)P(B)$. Thus, $P(A|B) = \frac{P(A)P(B)}{P(B)} = P(A)$
 ```` 
 
@@ -120,6 +125,7 @@ By definition, the conditional probability is $P(A|B) = \frac{P(A\cap B)}{P(B)}$
 :nonumber:
 :label: 1.6
 :nonumber:
+Show that two disjoint events A and B with positive probabilities, i.e., $P(A)>0$ and $P(B)>0$, must be dependent of each other. 
 
 We show it by contradiction. Suppose $A$ and $B$ are independent. Then, $P(A\cap B) = P(A)P(B)>0$. However, $A$ and $B$ are disjoint and thus $P(A\cap B) = 0$. 
 
