@@ -161,7 +161,7 @@ The random variable $X$ follows the uniform [2,4] distribution. Find $E(X)$, $va
 $E(X)=(b+a)/2=3$ and $var(X) = (b-a)^2/12 = 1/3$ and $P(X<2.7) = (x-a)/(b-a) = 0.7/2=0.35$
 ````
 ### Normal distribution
-The normal random variables represents the mean effect of many equally likely random variables. For example, the human body weight (or height) is a normal random variable because weight (or height) is the mean effect of many factors.
+The normal random variable represents the mean effect of many equally likely random variables. For example, the human body weight (or height) is a normal random variable because weight (or height) is the mean effect of many factors.
 
 - $f(x|\mu,\sigma^2)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}$, for $x \in[-\infty, \infty]$
 - $E(X)=u$ and $var(X)=\sigma^{2}$
@@ -178,7 +178,7 @@ To calculate the normal probabilities, we first standardize the normal random va
 
 $$P(X<d)=P\left(\frac{X-u}{\sigma}<\frac{d-u}{\sigma}\right) = P\left(Z<\frac{d-u}{\sigma}\right)$$
 
-```{admonition} 67-95-99 rule
+```{admonition} 68-95-99 rule
 1. 68% of the population is within 1 standard deviation of the mean.
 2. 95% of the population is within 2 standard deviation of the mean.
 3. 99% of the population is within 3 standard deviation of the mean.
@@ -188,7 +188,7 @@ $$P(X<d)=P\left(\frac{X-u}{\sigma}<\frac{d-u}{\sigma}\right) = P\left(Z<\frac{d-
 :nonumber:
 If $X \sim Normal(\mu=1,\sigma^2=1)$, find $E(X^2)$ and $P(X>2)$
 
-$E(X^2) = var(X)+(E(X))^2 = 1+1 = 2$ and $P(X>2) = P\left(\frac{X-\mu}{\sigma}>\frac{2-1}{1}\right)= P(Z>1)$ where $Z \sim Normal(0,1)$. We know from the 67-95-99 rule that $P(-1<Z<1) \approx 0.68$. Thus, $P(Z>1) = (1 - 0.68)/2 = 0.16$.
+$E(X^2) = var(X)+(E(X))^2 = 1+1 = 2$ and $P(X>2) = P\left(\frac{X-\mu}{\sigma}>\frac{2-1}{1}\right)= P(Z>1)$ where $Z \sim Normal(0,1)$. We know from the 68-95-99 rule that $P(-1<Z<1) \approx 0.68$. Thus, $P(Z>1) = (1 - 0.68)/2 = 0.16$.
 ````
 
 ### Exponential distribution

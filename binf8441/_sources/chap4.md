@@ -63,6 +63,21 @@ $$
 P(x \mid y)=\frac{P(x, y)}{P(y)}
 $$
 
+````{prf:example}
+:nonumber:
+
+|     |X=1  |X=2 | sum |
+| --- | --- | --- | --- |
+| Y=0 |0.1  | 0.2  | 0.3 |
+| Y=1 |0.3  | 0.4  | 0.7 |
+| sum |   0.4  | 0.6 | 1 |
+| | | | |
+
+The conditional probability distribution of $X$ given $Y=0$ is $P(X=1|Y=0) = 0.1/0.3 = 1/3$ and $P(X=1|Y=0) = 0.2/0.3 = 2/3$
+
+The conditional probability distribution of $X$ given $Y=1$ is $P(X=1|Y=1) = 0.3/0.7 = 3/7$ and $P(X=1|Y=1) = 0.4/0.7 = 4/7$
+````
+
 ````{prf:definition}
 :nonumber:
 :label: joint_expectation
@@ -125,7 +140,7 @@ The conditional expectation of $X$ given $Y=1$ is $E(X \mid Y=1)=1 * \frac{1}{3}
 
 ## Continuous cases
 
-### 1. Joint, marginal, conditional densities
+### Joint, marginal, conditional densities
 Let $f(x, y)$ be the joint density function of two continuous random variables $X$ and $Y$. The marginal density of $X$ is given by
 
 $$
@@ -144,7 +159,7 @@ $$
 f(X=x \mid Y=y)=\frac{f(x, y)}{f(y)}
 $$
 
-### 2. Joint probabilities and expectations
+### Joint probabilities and expectations
 We use the double integral to calculate the joint probability $P(x<a, y<b)$.
 
 $$
@@ -177,7 +192,7 @@ $$
 $$
 ```
 
-### 3. Covariance and correlation
+### Covariance and correlation
 The covariance of $X_{1}$ and $X_{2}$ is defined as
 
 $$
@@ -278,7 +293,7 @@ $$
 
 The sum of independent random variables is an important statistic in statistical inference. To understand its statistical properties, it is of great interest to find its probability distribution. Here, we demonstrate an elegant way of deriving the probability distribution of the sum of independent random variables. 
 
-### 1. Discrete cases
+### Discrete cases
 Recall that if a discrete random variable $X$ take values of nonnegative integers, the probability generating function (PGF) of $X$ is defined as
 
 $$
@@ -342,7 +357,7 @@ $$
 Thus, the sum $S_{n}$ follows a Binomial distribution with parameters $(n, p)$.
 ````
 
-### 2. Continuous cases
+### Continuous cases
 The PGF cannot be applied to the continuous random variables, because the continuous random variables do not have point probabilities. Instead, we will use the moment generating function to derive the probability distribution of the sum.
 
 Let $X_{1}, X_{2}, \ldots, X_{n}$ be independent random variables with moment generating functions $M_{1}(t), \ldots, M_{n}(t)$. Then, the moment generating function of $S_{n}=\sum_{i=1}^{n} X_{i}$ is given by
@@ -397,7 +412,7 @@ Alternatively, we may find the CDF of the statistic.
 
 ````\{prf:example\} 4.10
 :nonumber:
-:label: 4.10
+:label: 4.01
 :nonumber:
 Find the distribution of $\max \left\{X_{1}, X_{2}, \ldots, X_{n}\right\}$
 
@@ -407,11 +422,13 @@ $P\left(X_{\max } \leq a\right)=P\left(X_{1} \leq a, X_{2} \leq a, \ldots, X_{n}
 
 ## Mutivariate probability distributions
 
-### 1. Multinomial distribution
+### Multinomial distribution
 
 The multinomial distribution is an extension of the binomial distribution. In the Binomial distribution, there are two possible outcomes. But the multinomial distribution is dealing with multiple $(>2)$ outcomes.
 
-Suppose the proportions of $A, C, G, T$ in the genome are $p_{A}, p_{c}, p_{G}, p_{T}$. We select $n$ nucleotides at random from the genome. Let $X_{A}, X_{C}, X_{G}, X_{T}$ be the number of $A$, $C, G, T$, respectively. $X_{A}, X_{C}, X_{G}, X_{T}$ are random variables and the sum of $X_{A}, X_{C}, X_{G}$, $X_{T}$ is $n .\left\{X_{A}, X_{C}, X_{G}, X_{T}\right\}$ follow the multinomial distribution with joint probability mass function
+````{prf:example}
+:nonumber:
+Suppose the proportions of $A, C, G, T$ in the genome are $p_{A}=0.2, p_{c}=0.3, p_{G}=0.2, p_{T}=0.3$. We select $n=100$ nucleotides at random from the genome. Let $X_{A}, X_{C}, X_{G}, X_{T}$ be the number of $A, C, G, T$, respectively. $X_{A}, X_{C}, X_{G}, X_{T}$ are random variables and the sum of $X_{A}, X_{C}, X_{G}$, $X_{T}$ is $n$. $\left\{X_{A}, X_{C}, X_{G}, X_{T}\right\}$ follow the multinomial distribution with joint probability mass function
 
 $$
 P\left(X_{A}=x_{A}, X_{C}=x_{C}, X_{G}=x_{G}, X_{T}=x_{T}\right)=\frac{n !}{x_{A} ! x_{C} ! x_{G} ! x_{T} !}\left(p_{A}\right)^{x_{A}}\left(p_{C}\right)^{x_{C}}\left(p_{G}\right)^{x_{G}}\left(p_{T}\right)^{x_{T}}
@@ -419,9 +436,10 @@ $$
 
 where $x_{A}+x_{C}+x_{G}+x_{T}=n$ and $p_{A}+p_{C}+p_{G}+p_{T}=1$
 
-It can be shown that the marginal distribution of $X_{A}$ is the $\operatorname{Binomial}\left(n, P_{A}\right)$. Thus, $E\left(X_{A}\right)=$ $nP_{A}$.
+It can be shown that the marginal distribution of $X_{A}$ is the $\operatorname{Binomial}\left(n, P_{A}\right)$. Thus, $E\left(X_{A}\right)=$ $nP_{A} = 100*0.2=20$.
+````
 
-### 2. Multivariate normal distribution
+### Multivariate normal distribution
 The multivariate normal density function is given by
 
 $$

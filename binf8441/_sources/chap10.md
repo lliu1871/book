@@ -60,9 +60,9 @@ It indicates that we can generate a ransom sample $\left(x_{1}, \ldots, x_{n}\ri
 
 ```
 
-````\{prf:example\} 10.1
+````{prf:example} 10.1
 :nonumber:
-:label: 10.1
+:label: 10.6
 :nonumber:
 Calculate $\int_{0}^{\infty}log(x) e^{-x} d x$
 
@@ -77,7 +77,7 @@ x = rexp(10000)
 mean(log(x))
 ```
 
-````\{prf:example\} 10.2
+````{prf:example} 10.2
 :nonumber:
 :label: 10.2
 :nonumber:
@@ -95,7 +95,7 @@ If the population (or the probability distribution) is given, we can generate ra
 ### 1. Calculating the variance of an estimator 
 Suppose $\left(x_{1}, \ldots, x_{n}\right)$ is a random sample generated from a given probability distribution with a given parameter $\theta$. Let $\hat{\theta}$ be the estimator of $\theta$. The variance of $\hat{\theta}$ can be approximated by the sample variance of $\hat{\theta}$. 
 
-````\{prf:example\} 10.3
+````{prf:example} 10.3
 :nonumber:
 :label: 10.3
 :nonumber:
@@ -126,7 +126,7 @@ var(theta_hat)
 
 The mean squared error $E\left[(\hat{\theta}-\theta)^{2}\right]$ of the estimator $\hat{\theta}$ of the parameter $\theta$ can be approximated by simulation. When the true $\theta$ is given, the expectation $E\left[(\hat{\theta}-\theta)^{2}\right]$ can be approximated by the sample average of $\left(\widehat{\theta}_{i}-\theta\right)^{2}$, in which $\widehat{\theta}_{i}$ is calculated from the sample $i$ generated from the probability distribution.
 
-````\{prf:example\} 10.4
+````{prf:example} 10.4
 :nonumber:
 :label: 10.4
 :nonumber:
@@ -171,7 +171,7 @@ legend("topleft", legend=c("mse_median", "mse_average"), fill = c("red","blue"))
 
 The power is $P\left(\right.$ reject $\left.H_{0} \mid H_{1}\right)$, which can be approximated by simulation, when the alternative probability distribution under $\mathrm{H}_{1}$ is given. We generate samples under $\mathrm{H}_{1}$. The power of a test, i.e., the probability of rejecting $\mathrm{H}_{0}$, is approximated by the proportion of samples for which $\mathrm{H}_{0}$ is rejected by the test. If the alternative hypothesis is an interval of parameter $\theta$, we need to calculate the power for each value of $\theta$.
 
-````\{prf:example\} 10.5
+````{prf:example} 10.5
 :nonumber:
 :label: 10.5
 :nonumber:

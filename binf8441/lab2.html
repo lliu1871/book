@@ -55,6 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 3: The law of large numbers" href="lab3.html" />
     <link rel="prev" title="Lab 1: Introduction to R" href="lab1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -223,6 +224,71 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: GenBank
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Maixmum Likelihood Estimates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
   </a>
  </li>
 </ul>
@@ -541,7 +607,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">1</div></div>
+<div class="output text_html">3</div></div>
 </div>
 <p>To select two numbers at random from (1,2,3) without replacement, we do</p>
 <div class="cell docutils container">
@@ -556,7 +622,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3</li><li>1</li></ol>
+<ol class=list-inline><li>1</li><li>2</li></ol>
 </div></div>
 </div>
 <p>To select two numbers at random from (1,2,3) with replacement, we do</p>
@@ -567,7 +633,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">1</div></div>
+<div class="output text_html">2</div></div>
 </div>
 <div class="admonition-exercise-1 admonition">
 <p class="admonition-title">Exercise 1</p>
@@ -605,8 +671,8 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>0</li><li>1</li><li>0</li><li>0</li><li>0</li></ol>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The count of heads is 1&quot;
+<ol class=list-inline><li>1</li><li>0</li><li>0</li><li>1</li><li>0</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The count of heads is 2&quot;
 </pre></div>
 </div>
 </div>
@@ -631,7 +697,7 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 32 149 327 310 149  33 
+ 35 164 306 307 151  37 
 </pre></div>
 </div>
 <img alt="_images/lab2_9_1.png" src="_images/lab2_9_1.png" />
@@ -649,7 +715,7 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 28 161 296 313 170  32 
+ 32 159 299 308 168  34 
 </pre></div>
 </div>
 <img alt="_images/lab2_11_1.png" src="_images/lab2_11_1.png" />
@@ -707,14 +773,14 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>'T'</li><li>'T'</li><li>'C'</li><li>'C'</li><li>'C'</li><li>'T'</li><li>'T'</li><li>'A'</li><li>'G'</li><li>'G'</li></ol>
+<ol class=list-inline><li>'T'</li><li>'C'</li><li>'G'</li><li>'G'</li><li>'C'</li><li>'C'</li><li>'C'</li><li>'G'</li><li>'C'</li><li>'T'</li></ol>
 </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 10 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.1</div><div class="output text_html">0.3</div><div class="output text_html">0.2</div><div class="output text_html">0.4</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
+<div class="output text_html">0</div><div class="output text_html">0.5</div><div class="output text_html">0.3</div><div class="output text_html">0.2</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.22</div><div class="output text_html">0.35</div><div class="output text_html">0.23</div><div class="output text_html">0.2</div></div>
+<div class="output text_html">0.22</div><div class="output text_html">0.33</div><div class="output text_html">0.23</div><div class="output text_html">0.22</div></div>
 </div>
 <p>To generate a random number from the binomial distribution</p>
 <div class="cell docutils container">
@@ -729,7 +795,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>2</li><li>5</li><li>2</li><li>1</li><li>1</li><li>1</li><li>1</li><li>1</li><li>3</li></ol>
+<ol class=list-inline><li>4</li><li>1</li><li>4</li><li>2</li><li>1</li><li>2</li><li>3</li><li>2</li><li>5</li><li>2</li></ol>
 </div></div>
 </div>
 <p>to generate a random number from the Poisson distribution</p>
@@ -745,7 +811,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3</li><li>7</li><li>3</li><li>3</li><li>2</li><li>5</li><li>3</li><li>2</li><li>4</li><li>3</li></ol>
+<ol class=list-inline><li>4</li><li>3</li><li>4</li><li>2</li><li>2</li><li>3</li><li>5</li><li>4</li><li>4</li><li>5</li></ol>
 </div></div>
 </div>
 </section>
@@ -759,7 +825,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.182896078098565</div></div>
+<div class="output text_html">1.25624482380226</div></div>
 </div>
 <p>Or generate 10 random numbers from the interval [2, 10]</p>
 <div class="cell docutils container">
@@ -774,7 +840,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>4.91482282429934</li><li>2.65893549658358</li><li>2.13526984117925</li><li>5.0437794085592</li><li>4.37651682458818</li><li>7.25542332604527</li><li>5.05572610907257</li><li>8.53876264020801</li><li>4.94744814746082</li><li>5.07301021553576</li></ol>
+<ol class=list-inline><li>4.65436875633895</li><li>9.36995267681777</li><li>8.556072358042</li><li>4.29266740567982</li><li>8.57309349998832</li><li>7.49321645498276</li><li>4.9463406894356</li><li>5.21113450080156</li><li>8.48597253859043</li><li>5.51667669601738</li></ol>
 </div></div>
 </div>
 <p>We may generate 10 random numbers from the normal distribution with mean = 4.5 and variance = 2 and then calculate the sample average.</p>
@@ -792,8 +858,8 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>5.70036464859989</li><li>5.78045504666947</li><li>2.7417779858376</li><li>3.54636564401577</li><li>4.34181625576548</li><li>6.55997941057979</li><li>5.4579947145633</li><li>-0.141388555318635</li><li>4.66128167367753</li><li>5.22976327161558</li></ol>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 4.38784100960058&quot;
+<ol class=list-inline><li>4.41432881739206</li><li>3.40340718903434</li><li>4.03331253619019</li><li>4.32580693245129</li><li>3.82407775572167</li><li>5.97044868646156</li><li>4.50478560326093</li><li>4.18018013641269</li><li>6.0222783217109</li><li>5.1519783057896</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 4.58306042844252&quot;
 </pre></div>
 </div>
 </div>
@@ -901,6 +967,13 @@ title="Print to PDF"
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Lab 1: Introduction to R</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="lab3.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 3: The law of large numbers</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

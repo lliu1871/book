@@ -55,6 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 2: Generating random numbers" href="lab2.html" />
     <link rel="prev" title="Chapter 15: Phylogenetic models" href="chap15.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -218,6 +219,76 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Lab 1: Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: GenBank
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Maixmum Likelihood Estimates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
   </a>
  </li>
 </ul>
@@ -796,7 +867,7 @@ title="Print to PDF"
 <h2>Reading data from files<a class="headerlink" href="#reading-data-from-files" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;Lab 1 - data.csv&quot;</span><span class="p">)</span> 
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://book.phylolab.net/binf8441/data/lab1_data.csv&quot;</span><span class="p">)</span> 
 <span class="n">data</span>
 <span class="n">data</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span> <span class="o">*</span> <span class="m">10</span> 
 <span class="nf">write.csv</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="s">&quot;newdata.csv&quot;</span><span class="p">,</span> <span class="n">row.names</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span> 
@@ -883,8 +954,8 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>0.603933725506067</li><li>0.707989612128586</li><li>0.911851469194517</li><li>0.464594220742583</li><li>0.714766429038718</li><li>0.605738523881882</li><li>0.770683117443696</li><li>0.351201799465343</li><li>0.670357176335528</li><li>0.536818868480623</li></ol>
-</div><div class="output text_html">6.33793494221754</div></div>
+<ol class=list-inline><li>0.183623474324122</li><li>0.721224032342434</li><li>0.429296288639307</li><li>0.519429026404396</li><li>0.924249132862315</li><li>0.929801273392513</li><li>0.332206782884896</li><li>0.997456242097542</li><li>0.780861223815009</li><li>0.197461204137653</li></ol>
+</div><div class="output text_html">6.01560868090019</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -989,6 +1060,13 @@ title="Print to PDF"
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Chapter 15: Phylogenetic models</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="lab2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 2: Generating random numbers</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>

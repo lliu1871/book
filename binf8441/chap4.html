@@ -221,6 +221,76 @@ const thebe_selector_output = ".output, .cell_output"
    Lab 1: Introduction to R
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: GenBank
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Maixmum Likelihood Estimates
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -456,17 +526,17 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#joint-marginal-conditional-densities">
-     1. Joint, marginal, conditional densities
+     Joint, marginal, conditional densities
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#joint-probabilities-and-expectations">
-     2. Joint probabilities and expectations
+     Joint probabilities and expectations
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#covariance-and-correlation">
-     3. Covariance and correlation
+     Covariance and correlation
     </a>
    </li>
   </ul>
@@ -483,12 +553,12 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     1. Discrete cases
+     Discrete cases
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     2. Continuous cases
+     Continuous cases
     </a>
    </li>
   </ul>
@@ -500,12 +570,12 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multinomial-distribution">
-     1. Multinomial distribution
+     Multinomial distribution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multivariate-normal-distribution">
-     2. Multivariate normal distribution
+     Multivariate normal distribution
     </a>
    </li>
   </ul>
@@ -541,17 +611,17 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#joint-marginal-conditional-densities">
-     1. Joint, marginal, conditional densities
+     Joint, marginal, conditional densities
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#joint-probabilities-and-expectations">
-     2. Joint probabilities and expectations
+     Joint probabilities and expectations
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#covariance-and-correlation">
-     3. Covariance and correlation
+     Covariance and correlation
     </a>
    </li>
   </ul>
@@ -568,12 +638,12 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
-     1. Discrete cases
+     Discrete cases
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     2. Continuous cases
+     Continuous cases
     </a>
    </li>
   </ul>
@@ -585,12 +655,12 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multinomial-distribution">
-     1. Multinomial distribution
+     Multinomial distribution
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#multivariate-normal-distribution">
-     2. Multivariate normal distribution
+     Multivariate normal distribution
     </a>
    </li>
   </ul>
@@ -666,7 +736,44 @@ P(y)=\sum_{x} P(x, y)
 \[
 P(x \mid y)=\frac{P(x, y)}{P(y)}
 \]</div>
-<div class="proof definition admonition" id="joint_expectation">
+<div class="proof example admonition" id="example-2">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>X=1</p></th>
+<th class="head"><p>X=2</p></th>
+<th class="head"><p>sum</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Y=0</p></td>
+<td><p>0.1</p></td>
+<td><p>0.2</p></td>
+<td><p>0.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Y=1</p></td>
+<td><p>0.3</p></td>
+<td><p>0.4</p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-even"><td><p>sum</p></td>
+<td><p>0.4</p></td>
+<td><p>0.6</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>The conditional probability distribution of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y=0\)</span> is <span class="math notranslate nohighlight">\(P(X=1|Y=0) = 0.1/0.3 = 1/3\)</span> and <span class="math notranslate nohighlight">\(P(X=1|Y=0) = 0.2/0.3 = 2/3\)</span></p>
+<p>The conditional probability distribution of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y=1\)</span> is <span class="math notranslate nohighlight">\(P(X=1|Y=1) = 0.3/0.7 = 3/7\)</span> and <span class="math notranslate nohighlight">\(P(X=1|Y=1) = 0.4/0.7 = 4/7\)</span></p>
+</section>
+</div><div class="proof definition admonition" id="joint_expectation">
 <p class="admonition-title"><span>Definition </span></p>
 <section class="definition-content" id="proof-content">
 <p>The expectation of a function of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is defined as</p>
@@ -720,7 +827,7 @@ E(X \mid Y=y)=\sum_{x} x P(x \mid y)
 <section id="continuous-cases">
 <h2>Continuous cases<a class="headerlink" href="#continuous-cases" title="Permalink to this headline">#</a></h2>
 <section id="joint-marginal-conditional-densities">
-<h3>1. Joint, marginal, conditional densities<a class="headerlink" href="#joint-marginal-conditional-densities" title="Permalink to this headline">#</a></h3>
+<h3>Joint, marginal, conditional densities<a class="headerlink" href="#joint-marginal-conditional-densities" title="Permalink to this headline">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(f(x, y)\)</span> be the joint density function of two continuous random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. The marginal density of <span class="math notranslate nohighlight">\(X\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -738,7 +845,7 @@ f(X=x \mid Y=y)=\frac{f(x, y)}{f(y)}
 \]</div>
 </section>
 <section id="joint-probabilities-and-expectations">
-<h3>2. Joint probabilities and expectations<a class="headerlink" href="#joint-probabilities-and-expectations" title="Permalink to this headline">#</a></h3>
+<h3>Joint probabilities and expectations<a class="headerlink" href="#joint-probabilities-and-expectations" title="Permalink to this headline">#</a></h3>
 <p>We use the double integral to calculate the joint probability <span class="math notranslate nohighlight">\(P(x&lt;a, y&lt;b)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -769,7 +876,7 @@ E(X)=E_{Y}(E(X \mid Y))
 </div>
 </section>
 <section id="covariance-and-correlation">
-<h3>3. Covariance and correlation<a class="headerlink" href="#covariance-and-correlation" title="Permalink to this headline">#</a></h3>
+<h3>Covariance and correlation<a class="headerlink" href="#covariance-and-correlation" title="Permalink to this headline">#</a></h3>
 <p>The covariance of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -861,7 +968,7 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n}=x_{n} \mid \lambda\right) &amp;= 
 <h2>The sum of independent random variables<a class="headerlink" href="#the-sum-of-independent-random-variables" title="Permalink to this headline">#</a></h2>
 <p>The sum of independent random variables is an important statistic in statistical inference. To understand its statistical properties, it is of great interest to find its probability distribution. Here, we demonstrate an elegant way of deriving the probability distribution of the sum of independent random variables.</p>
 <section id="id1">
-<h3>1. Discrete cases<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Discrete cases<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Recall that if a discrete random variable <span class="math notranslate nohighlight">\(X\)</span> take values of nonnegative integers, the probability generating function (PGF) of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[
@@ -884,7 +991,7 @@ G^{\prime \prime}(t=0)=p(2)
 <li><p>The probability generating function for the binomial distribution is <span class="math notranslate nohighlight">\((1-p+pt)^{n}\)</span></p></li>
 <li><p>The probability generating function for the Poisson distribution is <span class="math notranslate nohighlight">\(e^{\lambda(t-1)}\)</span></p></li>
 </ol>
-<div class="proof theorem admonition" id="theorem-7">
+<div class="proof theorem admonition" id="theorem-8">
 <p class="admonition-title"><span class="caption-number">Theorem 5 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> be independent discrete random variables with the probability generating functions <span class="math notranslate nohighlight">\(G_{1}(t), \ldots, G_{n}(t)\)</span>. Then, the probability generating function of <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span> is given by</p>
@@ -920,7 +1027,7 @@ G_{S_{n}}(t)=(G(t))^{n}=(1-p+p t)^{n}
 </section>
 </div></section>
 <section id="id2">
-<h3>2. Continuous cases<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3>Continuous cases<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>The PGF cannot be applied to the continuous random variables, because the continuous random variables do not have point probabilities. Instead, we will use the moment generating function to derive the probability distribution of the sum.</p>
 <p>Let <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> be independent random variables with moment generating functions <span class="math notranslate nohighlight">\(M_{1}(t), \ldots, M_{n}(t)\)</span>. Then, the moment generating function of <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span> is given by</p>
 <div class="math notranslate nohighlight">
@@ -960,7 +1067,7 @@ M_{S_{n}}(t)=(M(t))^{n}
 <p>Thus, <span class="math notranslate nohighlight">\(S_{n}\)</span> follows the Gamma distribution with <span class="math notranslate nohighlight">\(\alpha=\lambda\)</span> and <span class="math notranslate nohighlight">\(\beta=n\)</span>.</p>
 </section>
 </div><p>Alternatively, we may find the CDF of the statistic.</p>
-<div class="proof example admonition" id="4.1">
+<div class="proof example admonition" id="4.01">
 <p class="admonition-title"><span>Example </span> (4.10)</p>
 <section class="example-content" id="proof-content">
 <p>Find the distribution of <span class="math notranslate nohighlight">\(\max \left\{X_{1}, X_{2}, \ldots, X_{n}\right\}\)</span></p>
@@ -971,18 +1078,22 @@ M_{S_{n}}(t)=(M(t))^{n}
 <section id="mutivariate-probability-distributions">
 <h2>Mutivariate probability distributions<a class="headerlink" href="#mutivariate-probability-distributions" title="Permalink to this headline">#</a></h2>
 <section id="multinomial-distribution">
-<h3>1. Multinomial distribution<a class="headerlink" href="#multinomial-distribution" title="Permalink to this headline">#</a></h3>
+<h3>Multinomial distribution<a class="headerlink" href="#multinomial-distribution" title="Permalink to this headline">#</a></h3>
 <p>The multinomial distribution is an extension of the binomial distribution. In the Binomial distribution, there are two possible outcomes. But the multinomial distribution is dealing with multiple <span class="math notranslate nohighlight">\((&gt;2)\)</span> outcomes.</p>
-<p>Suppose the proportions of <span class="math notranslate nohighlight">\(A, C, G, T\)</span> in the genome are <span class="math notranslate nohighlight">\(p_{A}, p_{c}, p_{G}, p_{T}\)</span>. We select <span class="math notranslate nohighlight">\(n\)</span> nucleotides at random from the genome. Let <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}, X_{T}\)</span> be the number of <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(C, G, T\)</span>, respectively. <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}, X_{T}\)</span> are random variables and the sum of <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}\)</span>, <span class="math notranslate nohighlight">\(X_{T}\)</span> is <span class="math notranslate nohighlight">\(n .\left\{X_{A}, X_{C}, X_{G}, X_{T}\right\}\)</span> follow the multinomial distribution with joint probability mass function</p>
+<div class="proof example admonition" id="example-14">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>Suppose the proportions of <span class="math notranslate nohighlight">\(A, C, G, T\)</span> in the genome are <span class="math notranslate nohighlight">\(p_{A}=0.2, p_{c}=0.3, p_{G}=0.2, p_{T}=0.3\)</span>. We select <span class="math notranslate nohighlight">\(n=100\)</span> nucleotides at random from the genome. Let <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}, X_{T}\)</span> be the number of <span class="math notranslate nohighlight">\(A, C, G, T\)</span>, respectively. <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}, X_{T}\)</span> are random variables and the sum of <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}\)</span>, <span class="math notranslate nohighlight">\(X_{T}\)</span> is <span class="math notranslate nohighlight">\(n\)</span>. <span class="math notranslate nohighlight">\(\left\{X_{A}, X_{C}, X_{G}, X_{T}\right\}\)</span> follow the multinomial distribution with joint probability mass function</p>
 <div class="math notranslate nohighlight">
 \[
 P\left(X_{A}=x_{A}, X_{C}=x_{C}, X_{G}=x_{G}, X_{T}=x_{T}\right)=\frac{n !}{x_{A} ! x_{C} ! x_{G} ! x_{T} !}\left(p_{A}\right)^{x_{A}}\left(p_{C}\right)^{x_{C}}\left(p_{G}\right)^{x_{G}}\left(p_{T}\right)^{x_{T}}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(x_{A}+x_{C}+x_{G}+x_{T}=n\)</span> and <span class="math notranslate nohighlight">\(p_{A}+p_{C}+p_{G}+p_{T}=1\)</span></p>
-<p>It can be shown that the marginal distribution of <span class="math notranslate nohighlight">\(X_{A}\)</span> is the <span class="math notranslate nohighlight">\(\operatorname{Binomial}\left(n, P_{A}\right)\)</span>. Thus, <span class="math notranslate nohighlight">\(E\left(X_{A}\right)=\)</span> <span class="math notranslate nohighlight">\(nP_{A}\)</span>.</p>
+<p>It can be shown that the marginal distribution of <span class="math notranslate nohighlight">\(X_{A}\)</span> is the <span class="math notranslate nohighlight">\(\operatorname{Binomial}\left(n, P_{A}\right)\)</span>. Thus, <span class="math notranslate nohighlight">\(E\left(X_{A}\right)=\)</span> <span class="math notranslate nohighlight">\(nP_{A} = 100*0.2=20\)</span>.</p>
 </section>
+</div></section>
 <section id="multivariate-normal-distribution">
-<h3>2. Multivariate normal distribution<a class="headerlink" href="#multivariate-normal-distribution" title="Permalink to this headline">#</a></h3>
+<h3>Multivariate normal distribution<a class="headerlink" href="#multivariate-normal-distribution" title="Permalink to this headline">#</a></h3>
 <p>The multivariate normal density function is given by</p>
 <div class="math notranslate nohighlight">
 \[

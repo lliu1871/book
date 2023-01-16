@@ -105,12 +105,10 @@ toupper(x)
 tolower(x)
 ``` 
 
- 
-
 ## Reading data from files 
 
 ```{code-cell}
-data=read.csv("Lab 1 - data.csv") 
+data=read.csv("https://book.phylolab.net/binf8441/data/lab1_data.csv") 
 data
 data[,1] = data[,1] * 10 
 write.csv(data,"newdata.csv", row.names=F) 
