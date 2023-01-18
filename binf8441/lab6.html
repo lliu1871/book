@@ -51,10 +51,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lab 7: Multiple tests" href="lab7.html" />
-    <link rel="prev" title="Lab 5: Maixmum Likelihood Estimates" href="lab5.html" />
+    <link rel="prev" title="Lab 5: Optimization algorithms" href="lab5.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -231,12 +233,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab4.html">
-   Lab 4: GenBank
+   Lab 4: BLAST
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab5.html">
-   Lab 5: Maixmum Likelihood Estimates
+   Lab 5: Optimization algorithms
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -490,12 +492,66 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-sample-t-test">
+   Two sample t-test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-of-variance-anova">
+   Analysis of Variance (ANOVA)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f-test-to-compare-two-variances">
+   F-test to compare two variances
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#association-chi-square-test">
+   Association chi-square test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonparametric-test-mann-whitney-for-two-samples">
+   Nonparametric test (Mann-Whitney) for two samples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#likelihood-ratio-test-lrt">
+   Likelihood Ratio Test (LRT)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normality-test-sapiro-wilk-test">
+   Normality test (Sapiro-Wilk test)
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -507,6 +563,49 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#two-sample-t-test">
+   Two sample t-test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analysis-of-variance-anova">
+   Analysis of Variance (ANOVA)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#f-test-to-compare-two-variances">
+   F-test to compare two variances
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#association-chi-square-test">
+   Association chi-square test
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonparametric-test-mann-whitney-for-two-samples">
+   Nonparametric test (Mann-Whitney) for two samples
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#likelihood-ratio-test-lrt">
+   Likelihood Ratio Test (LRT)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#normality-test-sapiro-wilk-test">
+   Normality test (Sapiro-Wilk test)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -516,6 +615,353 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lab-6-hypothesis-testing">
 <h1>Lab 6: Hypothesis testing<a class="headerlink" href="#lab-6-hypothesis-testing" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p>Two sample t-test</p></li>
+<li><p>ANOVA for multiple samples</p></li>
+<li><p>F-test for equal variance</p></li>
+<li><p>Association chi-square test</p></li>
+<li><p>Nonparametric test (Mann-Whitney) for two samples</p></li>
+<li><p>Likelihood ratio test</p></li>
+<li><p>Normality test</p></li>
+</ul>
+<section id="two-sample-t-test">
+<h2>Two sample t-test<a class="headerlink" href="#two-sample-t-test" title="Permalink to this headline">#</a></h2>
+<p>We first generate data in R. The observations in the control group are simulated from <span class="math notranslate nohighlight">\(Normal(1,1)\)</span>. The treatment group is simulated from <span class="math notranslate nohighlight">\(Normal(2,1)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">control</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">treatment</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;brown&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab6_1_0.png" src="_images/lab6_1_0.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\mu_1\)</span>: the population mean of the control population <br />
+<span class="math notranslate nohighlight">\(\mu_2\)</span>: the population mean of the treatment population</p>
+<p><span class="math notranslate nohighlight">\(H_0: \mu_1 = \mu_2\)</span> and <span class="math notranslate nohighlight">\(H_1: \mu_1\ne \mu_2\)</span></p>
+<p>We perform the two sample t-test in R. This is a two-sided test.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">control</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">treatment</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
+
+data:  control and treatment
+t = -2.3986, df = 46.28, p-value = 0.02055
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.1734934 -0.1026854
+sample estimates:
+mean of x mean of y 
+ 1.115875  1.753965 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because pvalue &lt; 0.05, we reject the null and accept the alternative hypothesis that the control and treatment groups are significantly different from each other.</p>
+</section>
+<section id="analysis-of-variance-anova">
+<h2>Analysis of Variance (ANOVA)<a class="headerlink" href="#analysis-of-variance-anova" title="Permalink to this headline">#</a></h2>
+<p>We generate multiple samples from the normal distributions with the same variance, and combine the samples as a data.frame in R. The first column is data and the second column denotes groups.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">12</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">12</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="o">=</span> <span class="m">1</span>
+<span class="n">data</span><span class="p">[</span><span class="m">13</span><span class="o">:</span><span class="m">20</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">13</span><span class="o">:</span><span class="m">20</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="o">=</span> <span class="m">2</span>
+<span class="n">data</span><span class="p">[</span><span class="m">21</span><span class="o">:</span><span class="m">30</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">21</span><span class="o">:</span><span class="m">30</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="m">3</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;bloodtest&quot;</span><span class="p">,</span><span class="s">&quot;group&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">group</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">group</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">bloodtest</span> <span class="o">~</span> <span class="n">data</span><span class="o">$</span><span class="n">group</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;darkorange&quot;</span><span class="p">,</span><span class="s">&quot;brown&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab6_5_0.png" src="_images/lab6_5_0.png" />
+</div>
+</div>
+<p>We perform ANOVA in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="nf">aov</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">bloodtest</span><span class="o">~</span><span class="n">data</span><span class="o">$</span><span class="n">group</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)
+data$group   2   0.44  0.2206   0.183  0.834
+Residuals   27  32.60  1.2073               
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we generate multiple samples from the normal distributions with different means.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">12</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">12</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="o">=</span> <span class="m">1</span>
+<span class="n">data</span><span class="p">[</span><span class="m">13</span><span class="o">:</span><span class="m">20</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">13</span><span class="o">:</span><span class="m">20</span><span class="p">,</span><span class="m">2</span><span class="p">]</span><span class="o">=</span> <span class="m">2</span>
+<span class="n">data</span><span class="p">[</span><span class="m">21</span><span class="o">:</span><span class="m">30</span><span class="p">,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">3</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="m">21</span><span class="o">:</span><span class="m">30</span><span class="p">,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="m">3</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;bloodtest&quot;</span><span class="p">,</span><span class="s">&quot;group&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data</span><span class="o">$</span><span class="n">group</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">group</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">bloodtest</span> <span class="o">~</span> <span class="n">data</span><span class="o">$</span><span class="n">group</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;darkorange&quot;</span><span class="p">,</span><span class="s">&quot;brown&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab6_9_0.png" src="_images/lab6_9_0.png" />
+</div>
+</div>
+<p>We perform ANOVA in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">fit</span> <span class="o">=</span> <span class="nf">aov</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">bloodtest</span><span class="o">~</span><span class="n">data</span><span class="o">$</span><span class="n">group</span><span class="p">)</span>
+<span class="nf">summary</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+data$group   2  24.98   12.49   13.43 8.94e-05 ***
+Residuals   27  25.11    0.93                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="f-test-to-compare-two-variances">
+<h2>F-test to compare two variances<a class="headerlink" href="#f-test-to-compare-two-variances" title="Permalink to this headline">#</a></h2>
+<p>We generate the control and treatment groups from two normal distributions with the same variance, and perform the F test to compare the two population variances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">control</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">treatment</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;brown&quot;</span><span class="p">))</span>
+<span class="nf">var.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">control</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">treatment</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
+
+data:  control and treatment
+F = 0.79127, num df = 19, denom df = 29, p-value = 0.6025
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.3546275 1.9005876
+sample estimates:
+ratio of variances 
+          0.791271 
+</pre></div>
+</div>
+<img alt="_images/lab6_13_1.png" src="_images/lab6_13_1.png" />
+</div>
+</div>
+<p>Then, we generate the control and treatment groups from two normal distributions with unequal variances.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">control</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
+<span class="n">treatment</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;brown&quot;</span><span class="p">))</span>
+<span class="nf">var.test</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">control</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">treatment</span><span class="p">,</span> <span class="n">alternative</span> <span class="o">=</span> <span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
+
+data:  control and treatment
+F = 24.101, num df = 19, denom df = 29, p-value = 1.372e-12
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 10.80132 57.88852
+sample estimates:
+ratio of variances 
+          24.10071 
+</pre></div>
+</div>
+<img alt="_images/lab6_15_1.png" src="_images/lab6_15_1.png" />
+</div>
+</div>
+</section>
+<section id="association-chi-square-test">
+<h2>Association chi-square test<a class="headerlink" href="#association-chi-square-test" title="Permalink to this headline">#</a></h2>
+<p>A contingency table is generated from an R build-in dataset <strong>survey</strong> using an R function <strong>table()</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>       <span class="c1"># load the MASS package </span>
+<span class="n">tbl</span> <span class="o">=</span> <span class="nf">table</span><span class="p">(</span><span class="n">survey</span><span class="o">$</span><span class="n">Smoke</span><span class="p">,</span> <span class="n">survey</span><span class="o">$</span><span class="n">Exer</span><span class="p">)</span> 
+<span class="n">tbl</span>     <span class="c1">#the contingency table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       
+        Freq None Some
+  Heavy    7    1    3
+  Never   87   18   84
+  Occas   12    3    4
+  Regul    9    1    7
+</pre></div>
+</div>
+</div>
+</div>
+<p>We perform the chi-square test to test if smoking is associated with exercise.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">chisq.test</span><span class="p">(</span><span class="n">tbl</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in chisq.test(tbl):
+&quot;Chi-squared approximation may be incorrect&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Pearson&#39;s Chi-squared test
+
+data:  tbl
+X-squared = 5.4885, df = 6, p-value = 0.4828
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="nonparametric-test-mann-whitney-for-two-samples">
+<h2>Nonparametric test (Mann-Whitney) for two samples<a class="headerlink" href="#nonparametric-test-mann-whitney-for-two-samples" title="Permalink to this headline">#</a></h2>
+<p>Nonparametric tests do not assume underlying probability distributions. We first generate two samples from the exponential distributions with different rates.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">control</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">treatment</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
+<span class="nf">boxplot</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="n">treatment</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="s">&quot;brown&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab6_21_0.png" src="_images/lab6_21_0.png" />
+</div>
+</div>
+<p>We perform the nonparametric test</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">wilcox.test</span><span class="p">(</span><span class="n">control</span><span class="p">,</span><span class="n">treatment</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Wilcoxon rank sum exact test
+
+data:  control and treatment
+W = 446, p-value = 0.003328
+alternative hypothesis: true location shift is not equal to 0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="likelihood-ratio-test-lrt">
+<h2>Likelihood Ratio Test (LRT)<a class="headerlink" href="#likelihood-ratio-test-lrt" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>we calculate the loglikelihood score log_L0 for the null hypothesis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">log_L0</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We calculate the loglikelihood score log_L1 for the alternative hypothesis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mu_hat</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
+<span class="n">log_L1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">mean</span><span class="o">=</span><span class="n">mu_hat</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We calculate the LRT statistic and find the pvalue</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="m">-2</span><span class="o">*</span><span class="p">(</span><span class="n">log_L0</span> <span class="o">-</span> <span class="n">log_L1</span><span class="p">)</span>
+<span class="n">critical_value</span> <span class="o">=</span> <span class="nf">qchisq</span><span class="p">(</span><span class="m">0.95</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="n">pvalue</span> <span class="o">=</span> <span class="m">1</span><span class="o">-</span><span class="nf">pchisq</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">df</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;pvalue =&quot;</span><span class="p">,</span><span class="n">pvalue</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 6.32295249491932e-09&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="normality-test-sapiro-wilk-test">
+<h2>Normality test (Sapiro-Wilk test)<a class="headerlink" href="#normality-test-sapiro-wilk-test" title="Permalink to this headline">#</a></h2>
+<p>We simulate data from the exponential distribution with rate = 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The Q-Q plot can illustrate if the dataset follows the normal distribution. It is a scatter plot of the sample quantiles generated from data versus the quantiles expected from the normal distribution. If the dataset follows the normal distribution, the points should be close to the straight line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">)</span>
+<span class="nf">qqnorm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">)</span>
+<span class="nf">qqline</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab6_35_0.png" src="_images/lab6_35_0.png" />
+</div>
+</div>
+<p>The Sapiro-Wilk test is widely used to check normality.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">shapiro.test</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
+
+data:  data
+W = 0.79003, p-value = 1.238e-10
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -549,7 +995,7 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lab 5: Maixmum Likelihood Estimates</p>
+            <p class="prev-next-title">Lab 5: Optimization algorithms</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="lab7.html" title="next page">
