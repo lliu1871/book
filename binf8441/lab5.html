@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lab 5: Maixmum Likelihood Estimates &#8212; Statistical Inference in Bioinformatics</title>
+    <title>Lab 5: Optimization algorithms &#8212; Statistical Inference in Bioinformatics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -51,10 +51,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lab 6: Hypothesis testing" href="lab6.html" />
-    <link rel="prev" title="Lab 4: GenBank" href="lab4.html" />
+    <link rel="prev" title="Lab 4: BLAST" href="lab4.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -231,12 +233,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab4.html">
-   Lab 4: GenBank
+   Lab 4: BLAST
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lab 5: Maixmum Likelihood Estimates
+   Lab 5: Optimization algorithms
   </a>
  </li>
  <li class="toctree-l1">
@@ -490,23 +492,70 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#newton-raphson-algorithms">
+   Newton-Raphson algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-in-r">
+   Optimization in R
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 5: Maixmum Likelihood Estimates</h1>
+                <h1>Lab 5: Optimization algorithms</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#newton-raphson-algorithms">
+   Newton-Raphson algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optimization-in-r">
+   Optimization in R
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -514,8 +563,157 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-5-maixmum-likelihood-estimates">
-<h1>Lab 5: Maixmum Likelihood Estimates<a class="headerlink" href="#lab-5-maixmum-likelihood-estimates" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-5-optimization-algorithms">
+<h1>Lab 5: Optimization algorithms<a class="headerlink" href="#lab-5-optimization-algorithms" title="Permalink to this headline">#</a></h1>
+<p>In statistical analysis, it often requires to maximize or minimize a target function <span class="math notranslate nohighlight">\(f(x)\)</span> with respect to <span class="math notranslate nohighlight">\(x\)</span>. For example, if the likelihood function <span class="math notranslate nohighlight">\(L(\theta)=P(D|\theta)\)</span> is given, the maximum likelihood estimate of <span class="math notranslate nohighlight">\(\theta\)</span> is obtained by maximizing the likelihood function
+<span class="math notranslate nohighlight">\(L(\theta)\)</span>. For the least square estimates, when the error function is given, we estimate parameters by minimizing the sum of squared errors. In mathematics, those problems are called optimization problems, which may not have analytic solutions.</p>
+<p>If the likelihood function or the error function is continuous and differentiable with respect to <span class="math notranslate nohighlight">\(\theta\)</span>, then the optimizer is the solution to the equation</p>
+<div class="math notranslate nohighlight">
+\[\frac{dL(\theta)}{d\theta}=0\]</div>
+<div class="proof example admonition" id="example-0">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(x_1,\dots,x_n\sim Exponential (\lambda)\)</span> and we want to find the maximum likelihood estimate of <span class="math notranslate nohighlight">\(\lambda\)</span>. The likelihood function is given by</p>
+<div class="math notranslate nohighlight">
+\[L(\lambda)=f(x_1,\dots,x_n|\lambda)=\prod_{i=1}^nf(x_i|\lambda)=\prod_{i=1}^n\frac{1}{\lambda}e^{-\frac{x_i}{\lambda}}=\frac{1}{\lambda^n}e^{−\frac{\sum_ix_i}{\lambda}}\]</div>
+<p>The loglikelihood function is given by</p>
+<div class="math notranslate nohighlight">
+\[logL(\lambda)=−n\log\lambda−\frac{\sum_ix_i}{\lambda}\]</div>
+<p>Setting the first derivate of the loglikelihood function to be 0,</p>
+<div class="math notranslate nohighlight">
+\[−\frac{n}{\lambda}+\frac{\sum_ix_i}{\lambda^2}=0 \Rightarrow \lambda=\bar{x}\]</div>
+</section>
+</div><p>What if there is no analytic solution? We may use numerical approaches to solve optimization problems.</p>
+<section id="newton-raphson-algorithms">
+<h2>Newton-Raphson algorithms<a class="headerlink" href="#newton-raphson-algorithms" title="Permalink to this headline">#</a></h2>
+<p>If <span class="math notranslate nohighlight">\(g(x)\)</span> is a differentiable function, we want to find the solution <span class="math notranslate nohighlight">\(x^∗\)</span> such that
+<span class="math notranslate nohighlight">\(g(x^∗)=0\)</span>. When <span class="math notranslate nohighlight">\(x\)</span> is close to <span class="math notranslate nohighlight">\(x^∗\)</span>, we have the following approximation</p>
+<div class="math notranslate nohighlight">
+\[\frac{g(x)−g(x^∗)}{x−x^∗}\approx g'(x)\]</div>
+<p>The Newton-Raphson algorithm uses a recursive function to iteratively update the value of <span class="math notranslate nohighlight">\(x\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[x^∗=x−\frac{g(x)}{g'(x)}\]</div>
+<div class="proof algorithm admonition" id="Newton">
+<p class="admonition-title"><span class="caption-number">Algorithm 2 </span> (Newton-Raphson)</p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Inputs</strong> Given a target function <span class="math notranslate nohighlight">\(G=(x)\)</span> with or without constraints, its derivative <span class="math notranslate nohighlight">\(g'(x)\)</span>, and a small <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p>
+<p><strong>Output</strong> the maximum or minimum value.</p>
+<ol class="simple">
+<li><p>Set an initial value <span class="math notranslate nohighlight">\(x_0\)</span></p></li>
+<li><p>Update <span class="math notranslate nohighlight">\(x_{n+1} = x_n - \frac{g(x_n)}{g'(x_n)}\)</span></p></li>
+<li><p>Stop if <span class="math notranslate nohighlight">\(|x_{n+1}-x_n|&lt;\epsilon\)</span></p></li>
+</ol>
+</section>
+</div><p>We may use the NR algorithm to calculate <span class="math notranslate nohighlight">\(\sqrt{2}\)</span>. This is equivalent to finding the solution to the equation <span class="math notranslate nohighlight">\(x^2 - 2 = 0\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">epsilon</span> <span class="o">=</span> <span class="m">1e-5</span>
+<span class="n">error</span> <span class="o">=</span> <span class="m">1</span>
+<span class="n">x_old</span> <span class="o">=</span> <span class="m">2</span>
+<span class="nf">while</span><span class="p">(</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">){</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x_old</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_old</span><span class="o">^</span><span class="m">2-2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">x_old</span><span class="p">)</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="nf">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_old</span><span class="p">)</span>
+    <span class="n">x_old</span> <span class="o">=</span> <span class="n">x</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the squre root of 2 is&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the error is&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the squre root of 2 is 1.41421356237469&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the error is 2.12389982001682e-06&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We may generalize this algorithm to calculate the square root of any positive number <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">my_sqrt</span> <span class="o">=</span> <span class="nf">function </span><span class="p">(</span><span class="n">a</span><span class="p">){</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="m">1e-5</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="m">1</span>
+    <span class="n">x_old</span> <span class="o">=</span> <span class="n">a</span>
+    <span class="nf">while</span><span class="p">(</span><span class="n">error</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">){</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x_old</span> <span class="o">-</span> <span class="p">(</span><span class="n">x_old</span><span class="o">^</span><span class="m">2</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">x_old</span><span class="p">)</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="nf">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_old</span><span class="p">)</span>
+        <span class="n">x_old</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="p">}</span>
+    <span class="nf">return</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">error</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="m">9</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">my_sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the squre root of&quot;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="s">&quot;is&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="m">1</span><span class="p">]))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the error is&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="m">2</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the squre root of 9 is 3&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the error is 1.39698386192322e-09&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="optimization-in-r">
+<h2>Optimization in R<a class="headerlink" href="#optimization-in-r" title="Permalink to this headline">#</a></h2>
+<p>Generate 10 random numbers from the exponential distribution with <span class="math notranslate nohighlight">\(\lambda=1/3\)</span> and find the maximum likelihood estimate of <span class="math notranslate nohighlight">\(\lambda\)</span>. We plot the loglikelihood as a function of <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="m">10</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="m">3</span><span class="p">)</span> <span class="c1">#rate = 1/lambda</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">rate</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">15</span><span class="p">,</span><span class="m">0.1</span><span class="p">)</span>
+
+<span class="n">loglike</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">rate</span><span class="p">)){</span>
+    <span class="n">loglike</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dexp</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">rate</span><span class="p">[</span><span class="n">i</span><span class="p">])))</span>
+<span class="p">}</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">rate</span><span class="p">,</span><span class="n">loglike</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/lab5_5_0.png" src="_images/lab5_5_0.png" />
+</div>
+</div>
+<p>In theory, the MLE of <span class="math notranslate nohighlight">\(\lambda\)</span> is the sample average. Here, we use the optimization function <strong>optim()</strong> to find the MLE of <span class="math notranslate nohighlight">\(\lambda\)</span> in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#the optimization funciton optim minimizes a target function</span>
+<span class="c1">#therefore, we calculate -loglike</span>
+<span class="n">loglikelihood</span> <span class="o">=</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">data</span><span class="p">){</span>
+    <span class="n">loglike</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dexp</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">x</span><span class="p">)))</span>
+    <span class="o">-</span><span class="n">loglike</span> 
+<span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="nf">optim</span><span class="p">(</span><span class="n">par</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="n">loglikelihood</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the maximum likelihood estimate of lambda is&quot;</span><span class="p">,</span> <span class="m">1</span><span class="o">/</span><span class="n">result</span><span class="o">$</span><span class="n">par</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the sample average is&quot;</span><span class="p">,</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message in optim(par = 1, fn = loglikelihood, data = data):
+&quot;one-dimensional optimization by Nelder-Mead is unreliable:
+use &quot;Brent&quot; or optimize() directly&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the maximum likelihood estimate of lambda is 0.332294911734164&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 0.332283679657988&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -549,7 +747,7 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lab 4: GenBank</p>
+            <p class="prev-next-title">Lab 4: BLAST</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="lab6.html" title="next page">
