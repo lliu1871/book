@@ -653,13 +653,13 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  control and treatment
-t = -2.3986, df = 46.28, p-value = 0.02055
+t = -3.8442, df = 32.355, p-value = 0.0005345
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.1734934 -0.1026854
+ -1.9201094 -0.5904227
 sample estimates:
 mean of x mean of y 
- 1.115875  1.753965 
+0.8921278 2.1473939 
 </pre></div>
 </div>
 </div>
@@ -698,9 +698,11 @@ mean of x mean of y
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)
-data$group   2   0.44  0.2206   0.183  0.834
-Residuals   27  32.60  1.2073               
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+data$group   2  3.282  1.6411   2.611 0.0919 .
+Residuals   27 16.968  0.6284                 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
 </div>
 </div>
@@ -736,8 +738,8 @@ Residuals   27  32.60  1.2073
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-data$group   2  24.98   12.49   13.43 8.94e-05 ***
-Residuals   27  25.11    0.93                     
+data$group   2  29.20  14.603   17.88 1.13e-05 ***
+Residuals   27  22.05   0.817                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
@@ -761,13 +763,13 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 0.79127, num df = 19, denom df = 29, p-value = 0.6025
+F = 0.83495, num df = 19, denom df = 29, p-value = 0.6925
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 0.3546275 1.9005876
+ 0.374202 2.005495
 sample estimates:
 ratio of variances 
-          0.791271 
+         0.8349472 
 </pre></div>
 </div>
 <img alt="_images/lab6_13_1.png" src="_images/lab6_13_1.png" />
@@ -787,13 +789,13 @@ ratio of variances
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 24.101, num df = 19, denom df = 29, p-value = 1.372e-12
+F = 72.564, num df = 19, denom df = 29, p-value &lt; 2.2e-16
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 10.80132 57.88852
+  32.52145 174.29520
 sample estimates:
 ratio of variances 
-          24.10071 
+          72.56426 
 </pre></div>
 </div>
 <img alt="_images/lab6_15_1.png" src="_images/lab6_15_1.png" />
@@ -869,7 +871,7 @@ X-squared = 5.4885, df = 6, p-value = 0.4828
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Wilcoxon rank sum exact test
 
 data:  control and treatment
-W = 446, p-value = 0.003328
+W = 373, p-value = 0.1523
 alternative hypothesis: true location shift is not equal to 0
 </pre></div>
 </div>
@@ -914,7 +916,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 6.32295249491932e-09&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 1.74135452479796e-06&quot;
 </pre></div>
 </div>
 </div>
@@ -937,7 +939,7 @@ alternative hypothesis: true location shift is not equal to 0
 <span class="nf">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">)</span>
 <span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">)</span>
 <span class="nf">qqnorm</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">)</span>
-<span class="nf">qqline</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">qqline</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;brown&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -956,7 +958,7 @@ alternative hypothesis: true location shift is not equal to 0
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  data
-W = 0.79003, p-value = 1.238e-10
+W = 0.79054, p-value = 1.282e-10
 </pre></div>
 </div>
 </div>

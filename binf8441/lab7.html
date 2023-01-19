@@ -231,12 +231,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab4.html">
-   Lab 4: GenBank
+   Lab 4: BLAST
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab5.html">
-   Lab 5: Maixmum Likelihood Estimates
+   Lab 5: Optimization algorithms
   </a>
  </li>
  <li class="toctree-l1">
@@ -490,12 +490,46 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonferroni-correction">
+   Bonferroni correction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#false-discovery-rate-fdr">
+   False Discovery Rate (FDR)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microarray-gene-expression-analysis">
+   Microarray gene expression analysis
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -507,6 +541,29 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonferroni-correction">
+   Bonferroni correction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#false-discovery-rate-fdr">
+   False Discovery Rate (FDR)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microarray-gene-expression-analysis">
+   Microarray gene expression analysis
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -516,6 +573,285 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lab-7-multiple-tests">
 <h1>Lab 7: Multiple tests<a class="headerlink" href="#lab-7-multiple-tests" title="Permalink to this headline">#</a></h1>
+<p>We generate gene expression data for 4 genes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">)),</span> 
+                  <span class="n">gene1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene3</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene4</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 20 × 5</caption>
+<thead>
+	<tr><th scope=col>group</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>gene3</th><th scope=col>gene4</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>0</td><td>-1.03238458</td><td>-0.42503639</td><td>-0.44822913</td><td> 0.71085872</td></tr>
+	<tr><td>0</td><td> 0.14528811</td><td> 0.98226897</td><td>-0.03020016</td><td> 0.82218010</td></tr>
+	<tr><td>0</td><td> 2.15064107</td><td> 1.59408044</td><td>-1.48925496</td><td> 1.40495852</td></tr>
+	<tr><td>0</td><td> 0.62535287</td><td> 1.12618456</td><td>-0.15470593</td><td> 0.55140541</td></tr>
+	<tr><td>0</td><td>-0.06570887</td><td> 0.55635149</td><td> 0.13253821</td><td>-0.67132402</td></tr>
+	<tr><td>0</td><td>-0.79517218</td><td> 1.52841560</td><td> 0.32289562</td><td> 1.77821686</td></tr>
+	<tr><td>0</td><td>-0.29945969</td><td>-0.62349988</td><td>-0.22879719</td><td> 1.43321021</td></tr>
+	<tr><td>0</td><td> 0.36940108</td><td> 1.71392372</td><td> 0.16480312</td><td> 0.02409250</td></tr>
+	<tr><td>0</td><td> 0.99340449</td><td> 0.48825878</td><td>-0.63577663</td><td> 1.17134133</td></tr>
+	<tr><td>0</td><td> 0.91913140</td><td> 0.03564712</td><td>-1.65652838</td><td>-0.04132662</td></tr>
+	<tr><td>1</td><td> 1.89977399</td><td> 0.50476975</td><td>-1.41730416</td><td> 0.40311487</td></tr>
+	<tr><td>1</td><td> 2.15749856</td><td>-0.60559672</td><td>-0.20134966</td><td> 1.31223422</td></tr>
+	<tr><td>1</td><td> 3.02466305</td><td> 0.83032835</td><td> 0.63388787</td><td> 4.00250746</td></tr>
+	<tr><td>1</td><td> 1.63409937</td><td>-1.10658423</td><td> 1.03768381</td><td> 1.97431421</td></tr>
+	<tr><td>1</td><td> 0.56410113</td><td> 0.48685591</td><td>-1.83983113</td><td> 3.17109171</td></tr>
+	<tr><td>1</td><td> 3.70210084</td><td>-0.46453354</td><td> 0.81491027</td><td> 2.24170119</td></tr>
+	<tr><td>1</td><td> 2.76278659</td><td> 0.79314928</td><td> 1.07662597</td><td> 3.07003673</td></tr>
+	<tr><td>1</td><td> 1.39400490</td><td> 0.47661460</td><td> 1.20212238</td><td> 3.99319243</td></tr>
+	<tr><td>1</td><td> 2.93969519</td><td>-0.59240237</td><td> 1.31783984</td><td> 2.30495492</td></tr>
+	<tr><td>1</td><td> 2.44276603</td><td> 0.30446966</td><td>-0.43320647</td><td> 3.55057960</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="bonferroni-correction">
+<h2>Bonferroni correction<a class="headerlink" href="#bonferroni-correction" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">numtest</span> <span class="o">=</span> <span class="m">4</span>
+<span class="n">pvalue</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">numtest</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">numtest</span><span class="p">){</span>
+    <span class="n">pvalue</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">t.test</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span><span class="n">i</span><span class="m">+1</span><span class="p">]</span> <span class="o">~</span> <span class="n">data</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span><span class="o">$</span><span class="n">p.value</span>
+<span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the Bonferroni adjusted pvalues&quot;</span><span class="p">)</span>
+<span class="n">pvalue</span><span class="o">*</span><span class="n">numtest</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the Bonferroni adjusted pvalues&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.000703150293053058</li><li>0.322873059346649</li><li>0.636393949267428</li><li>0.00267063888683321</li></ol>
+</div></div>
+</div>
+</section>
+<section id="false-discovery-rate-fdr">
+<h2>False Discovery Rate (FDR)<a class="headerlink" href="#false-discovery-rate-fdr" title="Permalink to this headline">#</a></h2>
+<p>To perform the FDR analysis in R, we need to install the package <strong>fuzzySim</strong> by typing <strong>install.packages(“fuzzySim”)</strong> in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">fuzzySim</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">)),</span> 
+                  <span class="n">gene1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene3</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene4</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">data</span>
+
+<span class="nf">FDR</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">sp.cols</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">var.cols</span> <span class="o">=</span> <span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;gaussian&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 20 × 5</caption>
+<thead>
+	<tr><th scope=col>group</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>gene3</th><th scope=col>gene4</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>0</td><td>-0.52791788</td><td> 0.93240030</td><td>-0.11107409</td><td>-0.9055331</td></tr>
+	<tr><td>0</td><td>-0.05227709</td><td> 1.75517986</td><td> 0.36321186</td><td> 0.8380502</td></tr>
+	<tr><td>0</td><td>-1.83074806</td><td> 2.08543152</td><td>-0.43684675</td><td>-0.6063752</td></tr>
+	<tr><td>0</td><td> 0.05847577</td><td> 0.65427853</td><td>-0.72269910</td><td>-1.1657216</td></tr>
+	<tr><td>0</td><td> 0.90380270</td><td> 1.32319574</td><td> 0.76583036</td><td> 1.5643994</td></tr>
+	<tr><td>0</td><td> 0.52457138</td><td> 2.12821359</td><td> 0.74258073</td><td> 0.4320006</td></tr>
+	<tr><td>0</td><td>-0.55398556</td><td>-0.37620509</td><td> 0.48640448</td><td> 0.2498392</td></tr>
+	<tr><td>0</td><td> 0.35214575</td><td>-0.72696286</td><td> 0.08542106</td><td> 1.0955950</td></tr>
+	<tr><td>0</td><td> 0.34095127</td><td>-0.01543681</td><td> 0.60669584</td><td>-2.3063691</td></tr>
+	<tr><td>0</td><td> 1.14435515</td><td> 0.46046509</td><td> 0.31008892</td><td>-0.1885710</td></tr>
+	<tr><td>1</td><td> 3.37823873</td><td>-1.48382599</td><td> 0.20315789</td><td> 3.5788870</td></tr>
+	<tr><td>1</td><td> 1.95385233</td><td> 0.58214776</td><td>-0.76890757</td><td> 1.8983790</td></tr>
+	<tr><td>1</td><td> 0.72497822</td><td>-1.59891259</td><td> 0.36689596</td><td> 3.0473609</td></tr>
+	<tr><td>1</td><td> 2.61255244</td><td> 0.86307768</td><td>-1.70896610</td><td> 1.9255491</td></tr>
+	<tr><td>1</td><td> 1.49191184</td><td> 1.39226786</td><td>-1.00006344</td><td> 4.0527619</td></tr>
+	<tr><td>1</td><td> 2.39617492</td><td> 0.11443173</td><td>-1.54420641</td><td>-0.3463967</td></tr>
+	<tr><td>1</td><td> 3.50641167</td><td> 0.30148281</td><td> 3.77878605</td><td> 2.3217531</td></tr>
+	<tr><td>1</td><td> 1.29336285</td><td>-1.63019450</td><td> 0.15657073</td><td> 0.7972220</td></tr>
+	<tr><td>1</td><td> 2.63777701</td><td> 4.84287772</td><td> 1.75678022</td><td> 0.6224570</td></tr>
+	<tr><td>1</td><td>-0.27910814</td><td>-0.14597155</td><td> 0.92181408</td><td> 2.0839010</td></tr>
+</tbody>
+</table>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bivariate p-values adjusted with &#39;fdr&#39; correction;
+2 variable(s) excluded, 2 selected (with q = 0.05)
+</pre></div>
+</div>
+<div class="output text_html"><dl>
+	<dt>$exclude</dt>
+		<dd><table class="dataframe">
+<caption>A data.frame: 2 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>bivariate.coeff</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>p.value</th><th scope=col>p.adjusted</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>gene2</th><td>-0.05748661</td><td>34.45036</td><td>36.44182</td><td>0.4662515</td><td>0.6216686</td></tr>
+	<tr><th scope=row>gene3</th><td> 0.00133241</td><td>35.03146</td><td>37.02293</td><td>0.9894974</td><td>0.9894974</td></tr>
+</tbody>
+</table>
+</dd>
+	<dt>$select</dt>
+		<dd><table class="dataframe">
+<caption>A data.frame: 2 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>bivariate.coeff</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>p.value</th><th scope=col>p.adjusted</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>gene1</th><td>0.2547891</td><td>21.43929</td><td>23.43075</td><td>2.848638e-05</td><td>0.0001139455</td></tr>
+	<tr><th scope=row>gene4</th><td>0.2049155</td><td>23.79625</td><td>25.78771</td><td>2.300817e-04</td><td>0.0004601634</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div></div>
+</div>
+</section>
+<section id="microarray-gene-expression-analysis">
+<h2>Microarray gene expression analysis<a class="headerlink" href="#microarray-gene-expression-analysis" title="Permalink to this headline">#</a></h2>
+<p>To analyze gene expression data, we need to install Bioconductor packages. To install Bioconductor packages, type the following in an R command window:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (!require(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(c(&quot;affy&quot;,&quot;limma&quot;,&quot;arrays&quot;))
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>We first import data from the package <strong>arrays</strong>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">affy</span><span class="p">)</span>   <span class="c1"># Affymetrix pre-processing</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">limma</span><span class="p">)</span>  <span class="c1"># two-color pre-processing; differential</span>
+                  <span class="c1"># expression</span>
+                
+<span class="c1">## import &quot;phenotype&quot; data, describing the experimental design</span>
+<span class="n">phenoData</span> <span class="o">&lt;-</span> <span class="nf">read.AnnotatedDataFrame</span><span class="p">(</span><span class="nf">system.file</span><span class="p">(</span><span class="s">&quot;extdata&quot;</span><span class="p">,</span> <span class="s">&quot;pData.txt&quot;</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;arrays&quot;</span><span class="p">))</span>
+<span class="n">celfiles</span> <span class="o">&lt;-</span> <span class="nf">system.file</span><span class="p">(</span><span class="s">&quot;extdata&quot;</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;arrays&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: BiocGenerics
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;BiocGenerics&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Biobase
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;limma&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from &#39;package:BiocGenerics&#39;:
+
+    plotMA
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>RMA normalization for microarray expression data</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">eset</span> <span class="o">&lt;-</span> <span class="nf">justRMA</span><span class="p">(</span><span class="n">phenoData</span><span class="o">=</span><span class="n">phenoData</span><span class="p">,</span> <span class="n">celfile.path</span><span class="o">=</span><span class="n">celfiles</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;replacing previous import &#39;AnnotationDbi::tail&#39; by &#39;utils::tail&#39; when loading &#39;hgfocuscdf&#39;&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;replacing previous import &#39;AnnotationDbi::head&#39; by &#39;utils::head&#39; when loading &#39;hgfocuscdf&#39;&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Identify differentially expressed genes</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">combn</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="nf">pData</span><span class="p">(</span><span class="n">phenoData</span><span class="p">)[,</span><span class="m">1</span><span class="p">],</span> <span class="nf">pData</span><span class="p">(</span><span class="n">phenoData</span><span class="p">)[,</span><span class="m">2</span><span class="p">],</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;_&quot;</span><span class="p">))</span>
+<span class="n">design</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="n">combn</span><span class="p">)</span> <span class="c1"># describe model to be fit</span>
+
+<span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">lmFit</span><span class="p">(</span><span class="n">eset</span><span class="p">,</span> <span class="n">design</span><span class="p">)</span>  <span class="c1"># fit each probeset to model</span>
+<span class="n">efit</span> <span class="o">&lt;-</span> <span class="nf">eBayes</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>        <span class="c1"># empirical Bayes adjustment</span>
+<span class="nf">topTable</span><span class="p">(</span><span class="n">efit</span><span class="p">,</span> <span class="n">coef</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>      <span class="c1"># table of differentially expressed probesets</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 6</caption>
+<thead>
+	<tr><th></th><th scope=col>logFC</th><th scope=col>AveExpr</th><th scope=col>t</th><th scope=col>P.Value</th><th scope=col>adj.P.Val</th><th scope=col>B</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>204582_s_at</th><td> 3.468416</td><td>10.150533</td><td> 39.03471</td><td>1.969915e-14</td><td>1.732146e-10</td><td>19.86082</td></tr>
+	<tr><th scope=row>211548_s_at</th><td>-2.325670</td><td> 7.178610</td><td>-22.73165</td><td>1.541158e-11</td><td>6.775701e-08</td><td>15.88709</td></tr>
+	<tr><th scope=row>216598_s_at</th><td> 1.936306</td><td> 7.692822</td><td> 21.73818</td><td>2.658881e-11</td><td>7.793180e-08</td><td>15.48223</td></tr>
+	<tr><th scope=row>211110_s_at</th><td> 3.157766</td><td> 7.909391</td><td> 21.19204</td><td>3.625216e-11</td><td>7.969130e-08</td><td>15.24728</td></tr>
+	<tr><th scope=row>206001_at</th><td>-1.590732</td><td>12.402722</td><td>-18.64398</td><td>1.715422e-10</td><td>3.016740e-07</td><td>14.01955</td></tr>
+	<tr><th scope=row>202409_at</th><td> 3.274118</td><td> 6.704989</td><td> 17.72512</td><td>3.156709e-10</td><td>4.626157e-07</td><td>13.51659</td></tr>
+	<tr><th scope=row>221019_s_at</th><td> 2.251730</td><td> 7.104012</td><td> 16.34552</td><td>8.353283e-10</td><td>1.049292e-06</td><td>12.69145</td></tr>
+	<tr><th scope=row>204688_at</th><td> 1.813001</td><td> 7.125307</td><td> 14.75281</td><td>2.834343e-09</td><td>3.115297e-06</td><td>11.61959</td></tr>
+	<tr><th scope=row>205489_at</th><td> 1.240713</td><td> 7.552260</td><td> 13.62265</td><td>7.264649e-09</td><td>7.097562e-06</td><td>10.76948</td></tr>
+	<tr><th scope=row>209288_s_at</th><td>-1.226421</td><td> 7.603917</td><td>-13.32681</td><td>9.401074e-09</td><td>7.784531e-06</td><td>10.53327</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

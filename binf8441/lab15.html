@@ -230,12 +230,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab4.html">
-   Lab 4: GenBank
+   Lab 4: BLAST
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab5.html">
-   Lab 5: Maixmum Likelihood Estimates
+   Lab 5: Optimization algorithms
   </a>
  </li>
  <li class="toctree-l1">
@@ -489,12 +489,61 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-files">
+   Data files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distance-methods">
+   Distance methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parsimony-methods">
+   Parsimony methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihood">
+   Maximum likelihood
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tree-distance">
+   Tree distance
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -506,6 +555,44 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-files">
+   Data files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#distance-methods">
+   Distance methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parsimony-methods">
+   Parsimony methods
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#maximum-likelihood">
+   Maximum likelihood
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tree-distance">
+   Tree distance
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -515,6 +602,70 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lab-15-phylogenetic-tree-reconstruction">
 <h1>Lab 15: Phylogenetic tree reconstruction<a class="headerlink" href="#lab-15-phylogenetic-tree-reconstruction" title="Permalink to this headline">#</a></h1>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Download the R package phybase at <a class="reference external" href="https://github.com/lliu1871/phybase">https://github.com/lliu1871/phybase</a> and install it on your laptop by typing in Terminal (Mac) or the CMD window (Windows)</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">R</span> <span class="n">CMD</span> <span class="n">install</span> <span class="n">phybase</span><span class="o">.</span><span class="n">zip</span> 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Download Phylip (distance and parsimony methods) at <a class="reference external" href="https://evolution.genetics.washington.edu/phylip/getme-new1.html">https://evolution.genetics.washington.edu/phylip/getme-new1.html</a></p></li>
+<li><p>Download RAxML (Maximum likelihood) at <a class="reference external" href="https://cme.h-its.org/exelixis/web/software/raxml/index.html">https://cme.h-its.org/exelixis/web/software/raxml/index.html</a></p></li>
+<li><p>Download Figtree (tree visualization program) at <a class="reference external" href="https://github.com/rambaut/figtree/releases">https://github.com/rambaut/figtree/releases</a></p></li>
+</ul>
+</section>
+<section id="data-files">
+<h2>Data files<a class="headerlink" href="#data-files" title="Permalink to this headline">#</a></h2>
+<p>Download the data files (<a class="reference external" href="https://book.phylolab.net/binf8441/data/lab15_primates.nex">lab15_primates.nex</a> and <a class="reference external" href="https://book.phylolab.net/binf8441/data/lab15_primates.phy">lab15_primates.phy</a>) of DNA alignments in Phylip and Nexus format. You may convert a format to another format in R using the packages <strong>ape</strong> and <strong>phybase</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>library(phybase)
+data = read.dna.seq(&quot;primates.nex&quot;)
+write.dna.seq(data$seq, data$name, file=&quot;primates.phy&quot;, format=&quot;phylip&quot;)
+</pre></div>
+</div>
+</section>
+<section id="distance-methods">
+<h2>Distance methods<a class="headerlink" href="#distance-methods" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Given the DNA alignments, calculate the pairwise distances in phylip using the subroutine <strong>dnadist</strong></p></li>
+<li><p>Reconstructing the UPGMA and NJ trees from pairwise distances in phylip using the subroutine <strong>neighbor</strong></p></li>
+<li><p>Performing the bootstrap analysis using the subroutine <strong>seqboot</strong></p></li>
+<li><p>building a consensus tree from the bootstrap trees using the subroutine <strong>consense</strong></p></li>
+</ol>
+</section>
+<section id="parsimony-methods">
+<h2>Parsimony methods<a class="headerlink" href="#parsimony-methods" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Given the DNA alignments, find the most parsimonious tree in phylip using the subroutine <strong>dnapars</strong></p></li>
+</ol>
+</section>
+<section id="maximum-likelihood">
+<h2>Maximum likelihood<a class="headerlink" href="#maximum-likelihood" title="Permalink to this headline">#</a></h2>
+<p>Find the maximum likelihood tree using <strong>RAxML</strong> with the command line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">raxmlHPC</span>  <span class="o">-</span><span class="n">p7635673</span>  <span class="o">-</span><span class="n">s</span> <span class="n">inputfile</span>  <span class="o">-</span><span class="n">mGTRGAMMA</span> <span class="o">-</span><span class="n">n</span> <span class="n">outputfile</span>
+</pre></div>
+</div>
+<p>Perform the bootstrap analysis with 100 replicates</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">raxmlHPC</span>   <span class="o">-</span><span class="n">b14635</span>  <span class="o">-</span><span class="n">p7635673</span> <span class="o">-</span><span class="n">N100</span>  <span class="o">-</span><span class="n">s</span> <span class="n">inputfile</span> <span class="o">-</span><span class="n">mGTRGAMMA</span> <span class="o">-</span><span class="n">n</span> <span class="n">outputfile</span>
+</pre></div>
+</div>
+<p>Build the majority rule consensus tree from bootstrap trees</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">raxmlHPC</span>   <span class="o">-</span><span class="n">J</span> <span class="n">MRE</span>  <span class="o">-</span><span class="n">z</span> <span class="n">treefile</span>  <span class="o">-</span><span class="n">mGTRGAMMA</span>  <span class="o">-</span><span class="n">n</span> <span class="n">outputfile</span>
+</pre></div>
+</div>
+</section>
+<section id="tree-distance">
+<h2>Tree distance<a class="headerlink" href="#tree-distance" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Calculate tree distances using the R function <strong>dist.topo()</strong> in <strong>ape</strong></p></li>
+<li><p>Calculate tree distances using the python package <strong>dendropy</strong>. To install dendropy please visit <a class="reference external" href="https://dendropy.org/">https://dendropy.org/</a></p></li>
+<li><p>The python program <strong><a class="reference external" href="http://sumtrees.py">sumtrees.py</a></strong>, which is available in the package dendropy, can build a consensus tree from a set of trees. The command line is</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sumtrees</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">f</span> <span class="mi">0</span> <span class="o">-</span><span class="n">o</span> <span class="n">output</span><span class="o">.</span><span class="n">con</span><span class="o">.</span><span class="n">tre</span> <span class="o">-</span><span class="n">p</span>  <span class="n">input_treefile</span> <span class="o">--</span><span class="n">to</span><span class="o">-</span><span class="n">phylip</span>  <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">summary</span><span class="o">-</span><span class="n">metadata</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

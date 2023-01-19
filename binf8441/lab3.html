@@ -238,7 +238,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab5.html">
-   Lab 5: Maixmum Likelihood Estimates
+   Lab 5: Optimization algorithms
   </a>
  </li>
  <li class="toctree-l1">
@@ -600,11 +600,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 4.7&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 4.1&quot;
 </pre></div>
 </div>
-<div class="output text_html">2.31180545125329</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   2.00    3.00    4.50    4.70    5.75   10.00 
+<div class="output text_html">2.46981780704569</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2.00    2.25    3.50    4.10    4.75   10.00 
 </pre></div>
 </div>
 <div class="output text_html"><style>
@@ -612,7 +612,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>3</li><li>3</li><li>3</li><li>4</li><li>5</li><li>5</li><li>6</li><li>6</li><li>10</li></ol>
+<ol class=list-inline><li>2</li><li>2</li><li>2</li><li>3</li><li>3</li><li>4</li><li>4</li><li>5</li><li>6</li><li>10</li></ol>
 </div><div class="output text_html">10</div><div class="output text_html">2</div><div class="output text_html"><strong>95%:</strong> 8.2</div><img alt="_images/lab3_1_7.png" src="_images/lab3_1_7.png" />
 </div>
 </div>
@@ -661,11 +661,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 2.83503615965923&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 3.32894164340221&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.615698888703875</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  1.686   2.736   2.851   2.835   3.187   3.853 
+<div class="output text_html">1.31546101454002</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.8226  2.4725  3.2899  3.3289  4.4368  5.1258 
 </pre></div>
 </div>
 <div class="output text_html"><style>
@@ -673,8 +673,8 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>1.68559589372427</li><li>2.03673530235251</li><li>2.71614377588318</li><li>2.79594422874584</li><li>2.80899172480339</li><li>2.89250873579796</li><li>3.05950251663109</li><li>3.23009836230411</li><li>3.27174150058527</li><li>3.85309955576468</li></ol>
-</div><div class="output text_html">3.85309955576468</div><div class="output text_html">1.68559589372427</div><div class="output text_html"><strong>95%:</strong> 3.59148843093395</div><img alt="_images/lab3_5_7.png" src="_images/lab3_5_7.png" />
+<ol class=list-inline><li>0.822626587057909</li><li>2.28996894664597</li><li>2.32932921880703</li><li>2.90219333914887</li><li>3.16959557717375</li><li>3.41022123547365</li><li>4.01215133637097</li><li>4.57838835060642</li><li>4.64913977994647</li><li>5.12580206279103</li></ol>
+</div><div class="output text_html">5.12580206279103</div><div class="output text_html">0.822626587057909</div><div class="output text_html"><strong>95%:</strong> 4.91130403551097</div><img alt="_images/lab3_5_7.png" src="_images/lab3_5_7.png" />
 </div>
 </div>
 <p>Then we increase the sample size <span class="math notranslate nohighlight">\(n\)</span> from 100, 200, up to 100,000 and recalculate the sample average. By the law of large numbers, we expect that the sample average gets closer to the true population mean 2.7 as the sample size increases.</p>

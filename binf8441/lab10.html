@@ -51,6 +51,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lab 11: Bootstrap" href="lab11.html" />
@@ -231,12 +233,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab4.html">
-   Lab 4: GenBank
+   Lab 4: BLAST
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab5.html">
-   Lab 5: Maixmum Likelihood Estimates
+   Lab 5: Optimization algorithms
   </a>
  </li>
  <li class="toctree-l1">
@@ -490,12 +492,46 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulation-for-integrals">
+   Monte carlo simulation for integrals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulation-for-variance">
+   Monte carlo simulation for variance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic">
+   Monte carlo simulation for the null distribution of a test statistic
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -507,6 +543,29 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulation-for-integrals">
+   Monte carlo simulation for integrals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulation-for-variance">
+   Monte carlo simulation for variance
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic">
+   Monte carlo simulation for the null distribution of a test statistic
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -516,6 +575,162 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lab-10-monte-carlo-simulation">
 <h1>Lab 10: Monte Carlo simulation<a class="headerlink" href="#lab-10-monte-carlo-simulation" title="Permalink to this headline">#</a></h1>
+<p>In statistical inference, it is essential to calculate probabilities and expectations. Given a probability density function <span class="math notranslate nohighlight">\(f(x)\)</span>, the probability <span class="math notranslate nohighlight">\(P(a&lt;X&lt;b)\)</span> is given by an integral</p>
+<div class="math notranslate nohighlight">
+\[P(a&lt;X&lt;b)=\int_a^bf(x)dx \]</div>
+<p>Similarly, the expectation of a function <span class="math notranslate nohighlight">\(g(x)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[E(g(X))=\int_{-\infty}{\infty}g(x)f(x)dx\]</div>
+<p>Both calculations involve integrals with respect to the probability density function <span class="math notranslate nohighlight">\(f(x)\)</span>. However, there is often no analytic solution to these integrals. We will use numerical approaches to approximate the integrals.</p>
+<section id="monte-carlo-simulation-for-integrals">
+<h2>Monte carlo simulation for integrals<a class="headerlink" href="#monte-carlo-simulation-for-integrals" title="Permalink to this headline">#</a></h2>
+<p>The integral can be approximated by Monte Carlo simulation, where the integral is treated as an expectation <span class="math notranslate nohighlight">\(E(g(X))\)</span> of a function <span class="math notranslate nohighlight">\(g(X)\)</span>. By the law of large numbers, the expectation <span class="math notranslate nohighlight">\(E(g(X))\)</span> can be approximated by the sample average <span class="math notranslate nohighlight">\(\overline{g(X)}\)</span>. Monte Carlo simulation involves the following steps</p>
+<div class="proof algorithm admonition" id="algorithm-0">
+<p class="admonition-title"><span class="caption-number">Algorithm 3 </span></p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Input:</strong> the target function <span class="math notranslate nohighlight">\(g(x)\)</span> and the density function <span class="math notranslate nohighlight">\(f(x)\)</span></p>
+<p><strong>Output:</strong> approximation to the integral</p>
+<ol class="simple">
+<li><p>Convert the integral to an expectation with respect to a probability density function <span class="math notranslate nohighlight">\(f(x)\)</span>, i.e. <span class="math notranslate nohighlight">\(\int_a^b k(x) d x=\int_a^b g(x) f(x) d x=E(g(x))\)</span></p></li>
+<li><p>Generate a random sample <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span> from the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p>Calculate the sample average of <span class="math notranslate nohighlight">\(\overline{g(x)}=\frac{g\left(x_1\right)+\cdots+g\left(x_n\right)}{n}\)</span></p></li>
+</ol>
+</section>
+</div><div class="proof example admonition" id="example-1">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>Calculate <span class="math notranslate nohighlight">\(\int_0^2 \log (x) e^{2x} dx\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+\int_0^2 \log (x) e^{2x} * \frac{1}{2}*2 dx &amp;=\int_0^2 2 \log (x) e^{2x} * \frac{1}{2} dx \\
+&amp;=\int_0^2 2\log (x) e^{2x}*f(x) dx \\
+&amp;=E(g(x))
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(g(x)=2 \log (x) e^{2 x}\)</span> and <span class="math notranslate nohighlight">\(f(x)=\frac{1}{2}\)</span> is the density function of Uniform(0, 2). Therefore, Monte Carlo simulation involves the following steps</p>
+<ol class="simple">
+<li><p>generate a random sample <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span> from Uniform <span class="math notranslate nohighlight">\((0,2)\)</span></p></li>
+<li><p>calculate <span class="math notranslate nohighlight">\(g\left(x_1\right), \ldots, g\left(x_n\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int_0^{2} \log (x) e^{2 x} d x \approx \frac{g\left(x_1\right)+\cdots+g\left(x_n\right)}{n}\)</span></p></li>
+</ol>
+<p>A large sample size <span class="math notranslate nohighlight">\(n\)</span> indicates more accurate approximation</p>
+</section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_size</span> <span class="o">=</span> <span class="m">100</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+<span class="n">gfunction</span> <span class="o">=</span> <span class="m">2</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="nf">exp</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">g_average</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">gfunction</span><span class="p">)</span>
+<span class="n">g_average</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">11.5209924641</div></div>
+</div>
+</section>
+<section id="monte-carlo-simulation-for-variance">
+<h2>Monte carlo simulation for variance<a class="headerlink" href="#monte-carlo-simulation-for-variance" title="Permalink to this headline">#</a></h2>
+<p>We can use Monte Carlo simulation to calculate the variance of an arbitrary estimator <span class="math notranslate nohighlight">\(\hat{\theta}=\)</span> <span class="math notranslate nohighlight">\(g\left(x_1, \ldots, x_n\right)\)</span>, where <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span> is a random sample generated from a probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>. Suppose the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span> is given and the sample size <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> is given. Monte Carlo simulation for calculating <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta})\)</span> involves the following steps</p>
+<div class="proof algorithm admonition" id="algorithm-2">
+<p class="admonition-title"><span class="caption-number">Algorithm 4 </span></p>
+<section class="algorithm-content" id="proof-content">
+<ol>
+<li><p>generate multiple random samples from the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>; each sample contains <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> observations</p>
+<p>sample 1: <span class="math notranslate nohighlight">\(x_1^{(1)}, \ldots, x_n^{(1)}\)</span> <br />
+sample 2: <span class="math notranslate nohighlight">\(x_1^{(2)}, \ldots, x_n^{(2)}\)</span> <br />
+Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(k)}\)</span></p>
+</li>
+<li><p>for each sample, we calculate <span class="math notranslate nohighlight">\(\hat{\theta}\)</span></p>
+<p>sample 1: <span class="math notranslate nohighlight">\(x_1^{(1)}, \ldots, x_n^{(1)}=&gt;\widehat{\theta_1}\)</span> <br />
+sample 2: <span class="math notranslate nohighlight">\(x_1^{(2)}, \ldots, x_n^{(2)}=&gt;\widehat{\theta_2}\)</span> <br />
+Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(k)}=&gt;\widehat{\theta_k}\)</span></p>
+</li>
+<li><p>finally, <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta}) \approx\)</span> the sample variance of <span class="math notranslate nohighlight">\(\widehat{\theta_1}, \ldots, \widehat{\theta_k}=\frac{1}{k-1} \sum_{i=1}^k\left(\widehat{\theta_t}-\overline{\hat{\theta}}\right)^2\)</span> where <span class="math notranslate nohighlight">\(\overline{\hat{\theta}}=\)</span> <span class="math notranslate nohighlight">\(\frac{\widehat{\theta_1}+\cdots+\widehat{\theta_k}}{k}\)</span></p></li>
+</ol>
+</section>
+</div><p>As an example, we use simulation to calculate the variance of the sample average for the data generated from the exponential distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_size</span> <span class="o">=</span> <span class="m">10</span>
+<span class="n">k</span> <span class="o">=</span> <span class="m">1000</span>
+<span class="n">statistic</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+	<span class="n">sample</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="m">1</span><span class="o">/</span><span class="m">5</span><span class="p">)</span>
+	<span class="n">statistic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nf">var</span><span class="p">(</span><span class="n">statistic</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">2.38970328860107</div></div>
+</div>
+</section>
+<section id="monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic">
+<h2>Monte carlo simulation for the null distribution of a test statistic<a class="headerlink" href="#monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic" title="Permalink to this headline">#</a></h2>
+<p>We can use Monte Carlo simulation to approximate the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span>. Let <span class="math notranslate nohighlight">\(f(x)\)</span> be the density function of the null model. If the density function <span class="math notranslate nohighlight">\(f(x)\)</span> involves unknown parameters, those unknown parameters are replaced by their estimates, i.e., maximum likelihood estimates, such that we can generate random samples from the null model <span class="math notranslate nohighlight">\(f(x)\)</span>. Monte Carlo Simulation for approximating the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span> involves following steps.</p>
+<div class="proof algorithm admonition" id="algorithm-3">
+<p class="admonition-title"><span class="caption-number">Algorithm 5 </span></p>
+<section class="algorithm-content" id="proof-content">
+<p><strong>Input</strong>: the test statistic and the null hypothesis</p>
+<p><strong>Output</strong>: the null distribution of the test statistic</p>
+<ol>
+<li><p>generate multiple random samples from the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>; each sample contains <span class="math notranslate nohighlight">\(n\)</span> observations</p>
+<p>sample <span class="math notranslate nohighlight">\(1: x_1^{(1)}, \ldots, x_n^{(1)}\)</span> <br />
+sample <span class="math notranslate nohighlight">\(2: x_1^{(2)}, \ldots, x_n^{(2)}\)</span> <br />
+…. <br />
+sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(k)}\)</span></p>
+</li>
+<li><p>for each sample, we calculate <span class="math notranslate nohighlight">\(t\)</span></p>
+<p>sample <span class="math notranslate nohighlight">\(1: x_1^{(1)}, \ldots, x_n^{(1)}=&gt;t_1\)</span> <br />
+sample <span class="math notranslate nohighlight">\(2: x_1^{(2)}, \ldots, x_n^{(2)}=&gt;t_2\)</span> <br />
+Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(k)}=&gt;t_k\)</span></p>
+</li>
+<li><p>The null distribution of <span class="math notranslate nohighlight">\(t\)</span> is approximated by <span class="math notranslate nohighlight">\(t_1, \ldots, t_k\)</span>. For example, the <span class="math notranslate nohighlight">\(95 \%\)</span> quantile of the null distribution of <span class="math notranslate nohighlight">\(t\)</span> is approximately equal to the <span class="math notranslate nohighlight">\(95 \%\)</span> quantile of <span class="math notranslate nohighlight">\(t_1, \ldots, t_k\)</span></p></li>
+</ol>
+</section>
+</div><p>Data are generated from the exponential distribution with <span class="math notranslate nohighlight">\(\lambda = 5\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">rate</span> <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We want to test if the population mean <span class="math notranslate nohighlight">\(\lambda\)</span> is equal to 3.</p>
+<p><span class="math notranslate nohighlight">\(H_0: \lambda = 3\)</span> and <span class="math notranslate nohighlight">\(H_1: \lambda &gt; 3\)</span></p>
+<p>The test statistic is the sample average <span class="math notranslate nohighlight">\(\bar{x}\)</span>. We use MC simulation to find the null distribution of the test statistic. The pvalue is equal to the</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_size</span> <span class="o">=</span> <span class="m">20</span>
+<span class="n">lambda</span> <span class="o">=</span> <span class="m">3</span>
+<span class="n">k</span> <span class="o">=</span> <span class="m">1000</span>
+<span class="n">teststat</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+	<span class="n">sample</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="m">1</span><span class="o">/</span><span class="n">lambda</span><span class="p">)</span>
+	<span class="n">teststat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">teststat</span><span class="p">)</span>
+
+<span class="n">pvalue</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">teststat</span><span class="o">&gt;</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">teststat</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;pvalue =&quot;</span><span class="p">,</span> <span class="n">pvalue</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.011&quot;
+</pre></div>
+</div>
+<img alt="_images/lab10_7_1.png" src="_images/lab10_7_1.png" />
+</div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

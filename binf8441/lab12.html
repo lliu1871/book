@@ -231,12 +231,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab4.html">
-   Lab 4: GenBank
+   Lab 4: BLAST
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="lab5.html">
-   Lab 5: Maixmum Likelihood Estimates
+   Lab 5: Optimization algorithms
   </a>
  </li>
  <li class="toctree-l1">
@@ -490,12 +490,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-phylogenetic-inference">
+   Bayesian phylogenetic inference
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -507,6 +531,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian-phylogenetic-inference">
+   Bayesian phylogenetic inference
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -516,6 +553,14 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lab-12-markov-chain-monte-carlo-algorithm">
 <h1>Lab 12: Markov Chain Monte Carlo algorithm<a class="headerlink" href="#lab-12-markov-chain-monte-carlo-algorithm" title="Permalink to this headline">#</a></h1>
+<section id="bayesian-phylogenetic-inference">
+<h2>Bayesian phylogenetic inference<a class="headerlink" href="#bayesian-phylogenetic-inference" title="Permalink to this headline">#</a></h2>
+<p>Preparation: Download MrBayes at <a class="reference external" href="http://nbisweden.github.io/MrBayes/download.html">http://nbisweden.github.io/MrBayes/download.html</a>
+Then, unzip the downloaded file MrBayes-3.2.7a.zip and navigate into the unzipped folder by typing cd ./MrBayes-3.2.7a in the terminal window.</p>
+<p>To install MrBayes on your laptop, type ./configure and then type make. The executable mb is located in the src folder. To run MrBayes interactively, type ./mb. Alternatively, you may run MrBayes using a batch file.</p>
+<p>The data file finch.nex is available in the example folder. We will run MrBayes on this data set. We first add a MrBayes block in the data file and then run MrBayes by typing ../src/mb -i finch.nex.</p>
+<p>We will discuss the output files in this lab.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
