@@ -658,7 +658,7 @@ title="Print to PDF"
 f\left(X_{1}, \dots, X_{n} \mid T, \theta\right)=f\left(X_{1}, \dots, X_{n} \mid T\right)
 \]</div>
 </section>
-</div><div class="proof theorem admonition" id="5.1">
+</div><div class="proof theorem admonition" id="theorem-2">
 <p class="admonition-title"><span>Theorem </span> (Factorization theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If the probability density function of data <span class="math notranslate nohighlight">\(X\)</span> is <span class="math notranslate nohighlight">\(f(X \mid \theta)\)</span>, then <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> is sufficient for <span class="math notranslate nohighlight">\(\theta\)</span> if and only if nonnegative functions <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> can be found such that</p>
@@ -778,7 +778,7 @@ E(\bar{X}) &amp;= E(\frac{1}{n}\sum_{i=1}^nX_i)\\
 \end{equation}
 \end{split}\]</div>
 </section>
-</div><div class="proof theorem admonition" id="5.2">
+</div><div class="proof theorem admonition" id="theorem-11">
 <p class="admonition-title"><span>Theorem </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span>, the sample average <span class="math notranslate nohighlight">\(\bar{X}\)</span> is an unbiased estimator of the population mean <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
@@ -789,7 +789,7 @@ E(\bar{X}) &amp;= E(\frac{1}{n}\sum_{i=1}^nX_i)\\
 <p>We introduce the mean squared error (MSE) to evaluate the performance of an estimator. A good estimator should have a small MSE.</p>
 <div class="math notranslate nohighlight">
 \[MSE = E\left[(\hat{\theta}-\theta)^{2}\right]\]</div>
-<div class="proof theorem admonition" id="5.3">
+<div class="proof theorem admonition" id="theorem-12">
 <p class="admonition-title"><span>Theorem </span></p>
 <section class="theorem-content" id="proof-content">
 <p>The MSE is the sum of the bias and variance.</p>
@@ -954,7 +954,7 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 <p>Thus, the 95% confidence interval for <span class="math notranslate nohighlight">\(\mu\)</span> is <span class="math notranslate nohighlight">\(\left[\bar{x}-\frac{2 \sigma}{\sqrt{n}}, \bar{x}+\frac{2 \sigma}{\sqrt{n}}\right]\)</span>, in which the population standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> can be replaced by its maximum likelihood estimate - the sample standard deviation <span class="math notranslate nohighlight">\(\hat{\sigma} = \sqrt{\frac{1}{n-1}\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}\)</span>.</p>
 </section>
 </div><p>The above example can be generalized to the construction of 95% CI for any parameter using its maximum likelihood estimate, as demonstrated by the following theorem.</p>
-<div class="proof theorem admonition" id="5.4">
+<div class="proof theorem admonition" id="theorem-20">
 <p class="admonition-title"><span>Theorem </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If the sample size is large, the 95% CI for a parameter <span class="math notranslate nohighlight">\(\theta\)</span> is</p>
@@ -967,14 +967,14 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 </section>
 <section id="convergence-theorems">
 <h2>Convergence Theorems<a class="headerlink" href="#convergence-theorems" title="Permalink to this headline">#</a></h2>
-<div class="proof definition admonition" id="def_5.5">
+<div class="proof definition admonition" id="5.5">
 <p class="admonition-title"><span>Definition </span> (convergence almost surely)</p>
 <section class="definition-content" id="proof-content">
 <p>To say that a sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables converges almost surely towards <span class="math notranslate nohighlight">\(X\)</span> if</p>
 <div class="math notranslate nohighlight">
 \[P\left(\lim_{n \rightarrow \infty} X_{n}=X\right)=1\]</div>
 </section>
-</div><div class="proof definition admonition" id="def_5.6">
+</div><div class="proof definition admonition" id="5.6">
 <p class="admonition-title"><span>Definition </span> (convergence in probability)</p>
 <section class="definition-content" id="proof-content">
 <p>A sequence <span class="math notranslate nohighlight">\(\left\{X_{n}\right\}\)</span> of random variables converges in probability towards the random variable <span class="math notranslate nohighlight">\(X\)</span> if for all <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span>,</p>
@@ -1001,7 +1001,7 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 <p><span class="math notranslate nohighlight">\(P(|X-u| \geq d) \leq \frac{\sigma^{2}}{d^2}\)</span></p>
 </section>
 </div><p>These inequalities are satisfied for all probability distributions. When the underlying probability distribution is given, we can exactly calculate <span class="math notranslate nohighlight">\(P(|X-u| \geq d)\)</span>; then there is no need to find the upper limit given by the Chebyshev’s inequality.</p>
-<div class="proof theorem admonition" id="the_5.5">
+<div class="proof theorem admonition" id="theorem-26">
 <p class="admonition-title"><span>Theorem </span> (The weak Law of large numbers)</p>
 <section class="theorem-content" id="proof-content">
 <p>The sample average converges in probability to the population mean as the sample size <span class="math notranslate nohighlight">\(n\)</span> goes to infinity, regardless of the underlying probability distribution.</p>
@@ -1010,7 +1010,7 @@ P\left(\bar{x}-\frac{2 \sigma}{\sqrt{n}} \leq \mu \leq \bar{x}+\frac{2 \sigma}{\
 \bar{X} \stackrel{\text { in prob }}{\longrightarrow} \mu \text { as } n \rightarrow \infty
 \]</div>
 </section>
-</div><div class="proof theorem admonition" id="the_5.6">
+</div><div class="proof theorem admonition" id="theorem-27">
 <p class="admonition-title"><span>Theorem </span> (Central Limit Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>The sample average converges in distribution to a normal random variable <span class="math notranslate nohighlight">\(X\)</span>, regardless of the underlying probability distribution</p>

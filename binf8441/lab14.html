@@ -521,10 +521,37 @@ title="Print to PDF"
     \(P(t)\)
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-the-transition-probability-matrix">
+     Calculate the transition probability matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-probability-distribution-pi-t-at-time-t">
+     Find the probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_t\)
+     </span>
+     at time
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-limiting-probability-distribution-pi-infty">
+     Find the limiting probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_{\infty}\)
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-rate-matrix-that-can-produce-an-arbitrary-limiting-distribution-pi-infty">
-   The rate matrix that can produce an arbitrary limiting distribution
+  <a class="reference internal nav-link" href="#an-arbitrary-limiting-distribution-pi-infty">
+   An arbitrary limiting distribution
    <span class="math notranslate nohighlight">
     \(\pi_{\infty}\)
    </span>
@@ -561,10 +588,37 @@ title="Print to PDF"
     \(P(t)\)
    </span>
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-the-transition-probability-matrix">
+     Calculate the transition probability matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-probability-distribution-pi-t-at-time-t">
+     Find the probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_t\)
+     </span>
+     at time
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-limiting-probability-distribution-pi-infty">
+     Find the limiting probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_{\infty}\)
+     </span>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-rate-matrix-that-can-produce-an-arbitrary-limiting-distribution-pi-infty">
-   The rate matrix that can produce an arbitrary limiting distribution
+  <a class="reference internal nav-link" href="#an-arbitrary-limiting-distribution-pi-infty">
+   An arbitrary limiting distribution
    <span class="math notranslate nohighlight">
     \(\pi_{\infty}\)
    </span>
@@ -587,10 +641,13 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="lab-14-substitution-models">
 <h1>Lab 14: Substitution models<a class="headerlink" href="#lab-14-substitution-models" title="Permalink to this headline">#</a></h1>
-<p>The evolution of a single nucleotide is modeled by a continuous Markov chain which is defined by the initial probability distribution <span class="math notranslate nohighlight">\(\pi_0=\left(p_A, p_C, p_G, p_T\right)\)</span> and the rate matrix <span class="math notranslate nohighlight">\(Q\)</span>. Note that in the rate matrix, the off-diagonal values are mutation rates and the diagonal values are negative numbers because the row sum is equal to 0 .</p>
+<p>The evolution of a single nucleotide is modeled by a continuous Markov chain which is defined by the initial probability distribution <span class="math notranslate nohighlight">\(\pi_0=\left(p_A, p_C, p_G, p_T\right)\)</span> and the rate matrix <span class="math notranslate nohighlight">\(Q\)</span>. Note that in the rate matrix, the off-diagonal values are substitution rates and the diagonal values are negative numbers because the row sum must be 0 .</p>
 <section id="the-transition-probability-matrix-p-t">
 <h2>The transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span><a class="headerlink" href="#the-transition-probability-matrix-p-t" title="Permalink to this headline">#</a></h2>
-<p>Given the rate matrix <span class="math notranslate nohighlight">\(Q\)</span>, the transition probability matrix is <span class="math notranslate nohighlight">\(P(t)=e^{Q t}\)</span>. The probability distribution of the nucleotide at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(\pi_t=\pi_0 P(t)\)</span>. The limiting probability distribution is given by solving the following equations <span class="math notranslate nohighlight">\(\left\{\begin{array}{l}\pi_{\infty} Q=0 \\ \sum \pi_{\infty}=1\end{array}\right.\)</span>. For the Jukes-Cantor model, the equations are</p>
+<p>Given the rate matrix <span class="math notranslate nohighlight">\(Q\)</span>, the transition probability matrix is given by <span class="math notranslate nohighlight">\(P(t)=e^{Qt}\)</span>. The probability distribution of the nucleotide at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(\pi_t=\pi_0 P(t)\)</span>. The limiting probability distribution is given by solving the following equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{l}\pi_{\infty} Q=0 \\ \sum \pi_{\infty}=1\end{array}\right.\end{split}\]</div>
+<p>For the Jukes-Cantor model, the equations are</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \left\{\begin{array}{c}
@@ -602,65 +659,57 @@ p_A+p_C+p_G+p_T=1
 \end{array}\right.
 \end{split}\]</div>
 <p>The solution is <span class="math notranslate nohighlight">\(\pi_{\infty}=(0.25,0.25,0.25,0.25)\)</span>.</p>
-<ol class="simple">
-<li><p>Using <span class="math notranslate nohighlight">\(R\)</span> to calculate the transition probability matrix given the rate matrix <span class="math notranslate nohighlight">\(Q\)</span></p></li>
-<li><p>Using <span class="math notranslate nohighlight">\(R\)</span> to find the probability distribution of the nucleotide at time <span class="math notranslate nohighlight">\(t\)</span></p></li>
-<li><p>Using <span class="math notranslate nohighlight">\(R\)</span> to approximate the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span> as time <span class="math notranslate nohighlight">\(t\)</span> goes to infinity and compare it with the true <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span></p></li>
-<li><p>Changing the initial probability distribution <span class="math notranslate nohighlight">\(\pi_0=(0.7,0,1,0.1,0.1)\)</span> and recalculating the limiting probability distribution. What do you find? distribution. What do you find?</p></li>
-<li><p>Now changing the rate matrix Q=(█(-6    1   2   3&#64;1  -10  4  5&#64;2  4  -12  6&#64;3  5  6 -14)) and recalculating the limiting probability distribution. What do you find?</p></li>
-</ol>
-</section>
-<section id="the-rate-matrix-that-can-produce-an-arbitrary-limiting-distribution-pi-infty">
-<h2>The rate matrix that can produce an arbitrary limiting distribution <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span><a class="headerlink" href="#the-rate-matrix-that-can-produce-an-arbitrary-limiting-distribution-pi-infty" title="Permalink to this headline">#</a></h2>
-<p>We can show that if the rate matrix <span class="math notranslate nohighlight">\(Q=\left(\begin{array}{cccc}- &amp; \pi_C a &amp; \pi_G b &amp; \pi_T c \\ \pi_A a &amp; - &amp; \pi_G d &amp; \pi_T e \\ \pi_A b &amp; \pi_C d &amp; - &amp; \pi_T f \\ \pi_A c &amp; \pi_C e &amp; \pi_G f &amp; -\end{array}\right)\)</span> will produce the limiting distribution <span class="math notranslate nohighlight">\(\pi_{\infty}=\left(\pi_A, \pi_C, \pi_G, \pi_T\right)\)</span></p>
-</section>
-<section id="simulating-dna-sequences">
-<h2>Simulating DNA sequences<a class="headerlink" href="#simulating-dna-sequences" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
-<li><p>Downloading seq-gen at <a class="reference external" href="https://github.com/rambaut/Seq-Gen/releases/tag/1.3.4">https://github.com/rambaut/Seq-Gen/releases/tag/1.3.4</a></p></li>
-<li><p>Add seq-gen to the “bin” folder</p></li>
-<li><p>Type seq-gen -help in Terminal on Mac or CMD on windows</p></li>
-<li><p>Save ((A:0.1,B:0.1):0.1,C:0.2,D:0.3); to a file called tree.tre</p></li>
-<li><p>seq-gen -l1000 -mGTR -f0.1, 0.2, 0.3, 0.4 -r1.6 1.3 2.5 0.7 3.8 &lt;tree.tre &gt; seq.txt</p></li>
-</ol>
+<section id="calculate-the-transition-probability-matrix">
+<h3>Calculate the transition probability matrix<a class="headerlink" href="#calculate-the-transition-probability-matrix" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span>
-
 <span class="n">pi_0</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.3</span><span class="p">,</span><span class="m">0.4</span><span class="p">)</span>
 <span class="n">Q_matrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
 <span class="nf">diag</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span> <span class="o">=</span> <span class="m">-3</span>
 
-<span class="c1">#calculate pi_t, the probability distribution of the nucleotide at time t = 0.1 myr</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The rate matrix&quot;</span><span class="p">)</span>
+<span class="n">Q_matrix</span>
+
 <span class="n">t</span> <span class="o">=</span> <span class="m">0.1</span>
 <span class="n">P_t</span> <span class="o">=</span> <span class="nf">expm</span><span class="p">(</span><span class="n">Q_matrix</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
-<span class="n">pi_t</span> <span class="o">=</span> <span class="n">pi_0</span> <span class="o">%*%</span> <span class="n">P_t</span>
-<span class="n">pi_t</span>
-
-
-<span class="c1">#calculate the limiting probability as time t goes to infinity</span>
-<span class="n">t</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.5</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1.5</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2.5</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">3.5</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
-
-<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">t</span><span class="p">)){</span>
-  <span class="n">P_t</span> <span class="o">=</span> <span class="nf">expm</span><span class="p">(</span><span class="n">Q_matrix</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-  <span class="n">pi_t</span> <span class="o">=</span> <span class="n">pi_0</span> <span class="o">%*%</span> <span class="n">P_t</span>
-  <span class="nf">print</span><span class="p">(</span><span class="n">pi_t</span><span class="p">)</span>
-<span class="p">}</span>
-
-
-<span class="c1">#produce an arbitrary limiting distribution</span>
-<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">*</span><span class="m">0.1</span>
-<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="m">0.2</span>
-<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span><span class="o">*</span><span class="m">0.3</span>
-<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span><span class="o">*</span><span class="m">0.4</span>
-<span class="n">Q_matrix</span>
-
-<span class="nf">diag</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.9</span><span class="p">,</span><span class="m">-0.8</span><span class="p">,</span><span class="m">-0.7</span><span class="p">,</span><span class="m">-0.6</span><span class="p">)</span>
-<span class="n">Q_matrix</span>
-
-<span class="n">t</span> <span class="o">=</span> <span class="m">4</span>
-<span class="n">P_t</span> <span class="o">=</span> <span class="nf">expm</span><span class="p">(</span><span class="n">Q_matrix</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
-<span class="n">pi_t</span> <span class="o">=</span> <span class="n">pi_0</span> <span class="o">%*%</span> <span class="n">P_t</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The transition probability matrix&quot;</span><span class="p">)</span>
+<span class="n">P_t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The rate matrix&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<tbody>
+	<tr><td>-3</td><td> 1</td><td> 1</td><td> 1</td></tr>
+	<tr><td> 1</td><td>-3</td><td> 1</td><td> 1</td></tr>
+	<tr><td> 1</td><td> 1</td><td>-3</td><td> 1</td></tr>
+	<tr><td> 1</td><td> 1</td><td> 1</td><td>-3</td></tr>
+</tbody>
+</table>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The transition probability matrix&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 x 4 Matrix of class &quot;dgeMatrix&quot;
+           [,1]       [,2]       [,3]       [,4]
+[1,] 0.75274003 0.08241999 0.08241999 0.08241999
+[2,] 0.08241999 0.75274003 0.08241999 0.08241999
+[3,] 0.08241999 0.08241999 0.75274003 0.08241999
+[4,] 0.08241999 0.08241999 0.08241999 0.75274003
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="find-the-probability-distribution-pi-t-at-time-t">
+<h3>Find the probability distribution <span class="math notranslate nohighlight">\(\pi_t\)</span> at time <span class="math notranslate nohighlight">\(t\)</span><a class="headerlink" href="#find-the-probability-distribution-pi-t-at-time-t" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pi_t</span> <span class="o">=</span> <span class="n">pi_0</span> <span class="o">%*%</span> <span class="n">P_t</span>
 <span class="n">pi_t</span>
 </pre></div>
 </div>
@@ -671,45 +720,108 @@ p_A+p_C+p_G+p_T=1
 [1,] 0.149452 0.216484 0.283516 0.350548
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 x 4 Matrix of class &quot;dgeMatrix&quot;
-         [,1]     [,2]     [,3]     [,4]
-[1,] 0.149452 0.216484 0.283516 0.350548
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-          [,1]      [,2]      [,3]      [,4]
-[1,] 0.2296997 0.2432332 0.2567668 0.2703003
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-          [,1]      [,2]      [,3]      [,4]
-[1,] 0.2472527 0.2490842 0.2509158 0.2527473
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-          [,1]      [,2]      [,3]      [,4]
-[1,] 0.2496282 0.2498761 0.2501239 0.2503718
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-          [,1]      [,2]      [,3]      [,4]
-[1,] 0.2499497 0.2499832 0.2500168 0.2500503
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-          [,1]      [,2]      [,3]      [,4]
-[1,] 0.2499932 0.2499977 0.2500023 0.2500068
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-          [,1]      [,2]      [,3]      [,4]
-[1,] 0.2499991 0.2499997 0.2500003 0.2500009
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-          [,1] [,2] [,3]      [,4]
-[1,] 0.2499999 0.25 0.25 0.2500001
-1 x 4 Matrix of class &quot;dgeMatrix&quot;
-     [,1] [,2] [,3] [,4]
-[1,] 0.25 0.25 0.25 0.25
+</div>
+</div>
+</section>
+<section id="find-the-limiting-probability-distribution-pi-infty">
+<h3>Find the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span><a class="headerlink" href="#find-the-limiting-probability-distribution-pi-infty" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="kc">pi</span> <span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The limiting probabilities&quot;</span><span class="p">)</span>
+<span class="kc">pi</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="kc">pi</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] -1.110223e-16 -4.000000e+00 -4.000000e+00 -4.000000e+00
+
+$vectors
+     [,1]       [,2]       [,3]       [,4]
+[1,] -0.5  0.0000000  0.8660254  0.0000000
+[2,] -0.5  0.7713586 -0.2886751 -0.2677175
+[3,] -0.5 -0.6175294 -0.2886751 -0.5341574
+[4,] -0.5 -0.1538291 -0.2886751  0.8018748
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The limiting probabilities&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.25</li><li>0.25</li><li>0.25</li><li>0.25</li></ol>
+</div></div>
+</div>
+<p>Now changing the rate matrix <span class="math notranslate nohighlight">\(Q=\left(\begin{array}{cccc} -6 &amp;    1 &amp;  2  &amp; 3 \\ 1 &amp; -10 &amp; 4 &amp; 5 \\ 2 &amp; 4 &amp; -12 &amp; 6 \\ 3&amp;  5&amp;  6&amp; -14\end{array}\right)\)</span> and recalculating the limiting probability distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">qmatrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">-6</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">-10</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">-12</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">-14</span><span class="p">),</span><span class="n">nrow</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">qmatrix</span><span class="p">))</span>
+<span class="n">x</span>
+<span class="kc">pi</span> <span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The limiting probabilities&quot;</span><span class="p">)</span>
+<span class="kc">pi</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="kc">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] -2.486900e-14 -7.694618e+00 -1.487637e+01 -1.942901e+01
+
+$vectors
+     [,1]       [,2]       [,3]        [,4]
+[1,] -0.5  0.8503837  0.1374446  0.08919974
+[2,] -0.5 -0.4319122  0.7234454  0.20019631
+[3,] -0.5 -0.2462510 -0.6392151  0.52987214
+[4,] -0.5 -0.1722205 -0.2216749 -0.81926819
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The limiting probabilities&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.250000000000001</li><li>0.25</li><li>0.25</li><li>0.25</li></ol>
+</div></div>
+</div>
+</section>
+</section>
+<section id="an-arbitrary-limiting-distribution-pi-infty">
+<h2>An arbitrary limiting distribution <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span><a class="headerlink" href="#an-arbitrary-limiting-distribution-pi-infty" title="Permalink to this headline">#</a></h2>
+<p>We can show that the rate matrix <span class="math notranslate nohighlight">\(Q=\left(\begin{array}{cccc}- &amp; \pi_C a &amp; \pi_G b &amp; \pi_T c \\ \pi_A a &amp; - &amp; \pi_G d &amp; \pi_T e \\ \pi_A b &amp; \pi_C d &amp; - &amp; \pi_T f \\ \pi_A c &amp; \pi_C e &amp; \pi_G f &amp; -\end{array}\right)\)</span> will produce the limiting distribution <span class="math notranslate nohighlight">\(\pi_{\infty}=\left(\pi_A, \pi_C, \pi_G, \pi_T\right)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Q_matrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+<span class="nf">diag</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span> <span class="o">=</span> <span class="m">-3</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">*</span><span class="m">0.1</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="m">0.2</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span><span class="o">*</span><span class="m">0.3</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span><span class="o">*</span><span class="m">0.4</span>
+<span class="nf">diag</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.9</span><span class="p">,</span><span class="m">-0.8</span><span class="p">,</span><span class="m">-0.7</span><span class="p">,</span><span class="m">-0.6</span><span class="p">)</span>
+<span class="n">Q_matrix</span>
+
+<span class="c1">#find the limiting probabilities</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">))</span>
+<span class="n">x</span>
+<span class="kc">pi</span> <span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The limiting probabilities&quot;</span><span class="p">)</span>
+<span class="kc">pi</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="kc">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
 <div class="output text_html"><table class="dataframe">
-<caption>A matrix: 4 × 4 of type dbl</caption>
-<tbody>
-	<tr><td>-0.3</td><td> 0.2</td><td> 0.3</td><td> 0.4</td></tr>
-	<tr><td> 0.1</td><td>-0.6</td><td> 0.3</td><td> 0.4</td></tr>
-	<tr><td> 0.1</td><td> 0.2</td><td>-0.9</td><td> 0.4</td></tr>
-	<tr><td> 0.1</td><td> 0.2</td><td> 0.3</td><td>-1.2</td></tr>
-</tbody>
-</table>
-</div><div class="output text_html"><table class="dataframe">
 <caption>A matrix: 4 × 4 of type dbl</caption>
 <tbody>
 	<tr><td>-0.9</td><td> 0.2</td><td> 0.3</td><td> 0.4</td></tr>
@@ -718,12 +830,39 @@ p_A+p_C+p_G+p_T=1
 	<tr><td> 0.1</td><td> 0.2</td><td> 0.3</td><td>-0.6</td></tr>
 </tbody>
 </table>
-</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 x 4 Matrix of class &quot;dgeMatrix&quot;
-     [,1] [,2] [,3] [,4]
-[1,]  0.1  0.2  0.3  0.4
+</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] -1.000000e+00 -1.000000e+00 -1.000000e+00  1.249001e-16
+
+$vectors
+            [,1]       [,2]        [,3]      [,4]
+[1,]  0.05983331 -0.8581163 -0.06419778 0.1825742
+[2,]  0.78228180  0.1906925  0.69985777 0.3651484
+[3,] -0.54327913  0.2860388  0.07207123 0.5477226
+[4,] -0.29883598  0.3813850 -0.70773122 0.7302967
 </pre></div>
 </div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The limiting probabilities&quot;
+</pre></div>
 </div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.1</li><li>0.2</li><li>0.3</li><li>0.4</li></ol>
+</div></div>
+</div>
+</section>
+<section id="simulating-dna-sequences">
+<h2>Simulating DNA sequences<a class="headerlink" href="#simulating-dna-sequences" title="Permalink to this headline">#</a></h2>
+<p>Download and install the simulation program <a class="reference external" href="https://github.com/rambaut/Seq-Gen/releases/tag/1.3.4">seq-gen</a> on the local computer. Type seq-gen -help in Terminal (Mac) or the CMD window (Windows)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="o">-</span><span class="n">gen</span> <span class="o">-</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>Download the tree file <a class="reference external" href="https://book.phylolab.net/binf8441/data/lab14_tree.tre">lab14_tree.tre</a> and run the following command line to generate the sequence alignment of 1000 base pairs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="o">-</span><span class="n">gen</span> <span class="o">-</span><span class="n">l1000</span> <span class="o">-</span><span class="n">mGTR</span> <span class="o">-</span><span class="n">f</span> <span class="mf">0.1</span> <span class="mf">0.2</span> <span class="mf">0.3</span> <span class="mf">0.4</span> <span class="o">-</span><span class="n">r</span> <span class="mf">1.6</span> <span class="mf">1.3</span> <span class="mf">2.5</span> <span class="mf">0.7</span> <span class="mf">3.8</span> <span class="mi">1</span> <span class="n">lab14_tree</span><span class="o">.</span><span class="n">tre</span> <span class="o">&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
 </div>
 </section>
 </section>

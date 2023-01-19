@@ -653,13 +653,13 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  control and treatment
-t = -3.8442, df = 32.355, p-value = 0.0005345
+t = -3.0036, df = 36.453, p-value = 0.004801
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.9201094 -0.5904227
+ -1.376501 -0.267149
 sample estimates:
 mean of x mean of y 
-0.8921278 2.1473939 
+ 1.358896  2.180721 
 </pre></div>
 </div>
 </div>
@@ -698,11 +698,9 @@ mean of x mean of y
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)  
-data$group   2  3.282  1.6411   2.611 0.0919 .
-Residuals   27 16.968  0.6284                 
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)
+data$group   2   1.03  0.5129    0.34  0.715
+Residuals   27  40.74  1.5089               
 </pre></div>
 </div>
 </div>
@@ -738,8 +736,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-data$group   2  29.20  14.603   17.88 1.13e-05 ***
-Residuals   27  22.05   0.817                     
+data$group   2  48.26  24.131   29.88 1.43e-07 ***
+Residuals   27  21.80   0.807                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
@@ -763,13 +761,13 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 0.83495, num df = 19, denom df = 29, p-value = 0.6925
+F = 0.60108, num df = 19, denom df = 29, p-value = 0.2498
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 0.374202 2.005495
+ 0.2693902 1.4437677
 sample estimates:
 ratio of variances 
-         0.8349472 
+         0.6010833 
 </pre></div>
 </div>
 <img alt="_images/lab6_13_1.png" src="_images/lab6_13_1.png" />
@@ -789,13 +787,13 @@ ratio of variances
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 72.564, num df = 19, denom df = 29, p-value &lt; 2.2e-16
+F = 15.404, num df = 19, denom df = 29, p-value = 4.309e-10
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
-  32.52145 174.29520
+  6.903883 37.000617
 sample estimates:
 ratio of variances 
-          72.56426 
+          15.40445 
 </pre></div>
 </div>
 <img alt="_images/lab6_15_1.png" src="_images/lab6_15_1.png" />
@@ -871,7 +869,7 @@ X-squared = 5.4885, df = 6, p-value = 0.4828
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Wilcoxon rank sum exact test
 
 data:  control and treatment
-W = 373, p-value = 0.1523
+W = 428, p-value = 0.01064
 alternative hypothesis: true location shift is not equal to 0
 </pre></div>
 </div>
@@ -916,7 +914,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 1.74135452479796e-06&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 9.89143113305779e-07&quot;
 </pre></div>
 </div>
 </div>
@@ -958,7 +956,7 @@ alternative hypothesis: true location shift is not equal to 0
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  data
-W = 0.79054, p-value = 1.282e-10
+W = 0.85737, p-value = 2.242e-08
 </pre></div>
 </div>
 </div>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lab 3: The law of large numbers &#8212; Statistical Inference in Bioinformatics</title>
+    <title>Chapter 7: Multiple tests &#8212; Statistical Inference in Bioinformatics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lab 4: BLAST" href="lab4.html" />
-    <link rel="prev" title="Lab 2: Generating random numbers" href="lab2.html" />
+    <link rel="next" title="Chapter 8: RNA-seq analysis" href="chap8.html" />
+    <link rel="prev" title="Chapter 6: Hypothesis testing" href="chap6.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -128,7 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
   Lecture
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="chap0.html">
    Chapter 0: Prerequisites
@@ -164,8 +164,8 @@ const thebe_selector_output = ".output, .cell_output"
    Chapter 6: Hypothesis testing
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap7.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Chapter 7: Multiple tests
   </a>
  </li>
@@ -215,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
   Lab
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="lab1.html">
    Lab 1: Introduction to R
@@ -226,8 +226,8 @@ const thebe_selector_output = ".output, .cell_output"
    Lab 2: Generating random numbers
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
    Lab 3: The law of large numbers
   </a>
  </li>
@@ -350,7 +350,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab3.md"
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap7.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -410,7 +410,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab3.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap7.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -438,7 +438,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/lab3.ipynb"
+        <a href="_sources/chap7.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -455,7 +455,7 @@ title="Download notebook file"
       </li>
       
       <li>
-        <a href="_sources/lab3.md"
+        <a href="_sources/chap7.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -515,18 +515,13 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-discrete-case-poisson-distribution">
-   A discrete case (Poisson distribution)
+  <a class="reference internal nav-link" href="#bonferroni-correction">
+   Bonferroni correction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-continuous-case-normal-distribution">
-   A continuous case (Normal distribution)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise">
-   Exercise
+  <a class="reference internal nav-link" href="#false-discovery-rate">
+   False discovery rate
   </a>
  </li>
 </ul>
@@ -538,7 +533,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 3: The law of large numbers</h1>
+                <h1>Chapter 7: Multiple tests</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -549,18 +544,13 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-discrete-case-poisson-distribution">
-   A discrete case (Poisson distribution)
+  <a class="reference internal nav-link" href="#bonferroni-correction">
+   Bonferroni correction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-continuous-case-normal-distribution">
-   A continuous case (Normal distribution)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exercise">
-   Exercise
+  <a class="reference internal nav-link" href="#false-discovery-rate">
+   False discovery rate
   </a>
  </li>
 </ul>
@@ -573,138 +563,106 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-3-the-law-of-large-numbers">
-<h1>Lab 3: The law of large numbers<a class="headerlink" href="#lab-3-the-law-of-large-numbers" title="Permalink to this headline">#</a></h1>
-<p>The law of large numbers states that as the sample size <span class="math notranslate nohighlight">\(n\)</span> goes to infinity the sample average <span class="math notranslate nohighlight">\(\bar{X}\)</span>  converges to the true population mean <span class="math notranslate nohighlight">\(\mu\)</span> , i.e., as <span class="math notranslate nohighlight">\(n\rightarrow \infty\)</span> , <span class="math notranslate nohighlight">\(\bar{X}\rightarrow \mu\)</span> . In this lab, we will simulate data to demonstrate the law of large numbers.</p>
-<section id="a-discrete-case-poisson-distribution">
-<h2>A discrete case (Poisson distribution)<a class="headerlink" href="#a-discrete-case-poisson-distribution" title="Permalink to this headline">#</a></h2>
-<p>The population mean of the Poisson distribution <span class="math notranslate nohighlight">\((\lambda=5)\)</span> is <span class="math notranslate nohighlight">\(E(X)=\lambda=5\)</span>. We simulate <span class="math notranslate nohighlight">\(n=10\)</span> observations from the Poisson distribution and calculate the sample average.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-7-multiple-tests">
+<h1>Chapter 7: Multiple tests<a class="headerlink" href="#chapter-7-multiple-tests" title="Permalink to this headline">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">Multiple tests problems</a></p></li>
+</ul>
+</div>
+<p>Statistical analysis may involve multiple tests. Although the <span class="math notranslate nohighlight">\(\alpha\)</span> level of each test is 0.05, the overall <span class="math notranslate nohighlight">\(\alpha\)</span> level is much greater than 0.05 when multiple tests are involved. Therefore, correction is needed in order to control the overall <span class="math notranslate nohighlight">\(\alpha\)</span> at the level of 5%.</p>
+<section id="bonferroni-correction">
+<h2>Bonferroni correction<a class="headerlink" href="#bonferroni-correction" title="Permalink to this headline">#</a></h2>
+<p>Suppose there are <span class="math notranslate nohighlight">\(k\)</span>  tests and they are independent of each other. Let <span class="math notranslate nohighlight">\(R_i\)</span> be the rejection region for the test <span class="math notranslate nohighlight">\(i\)</span>. The overall type I error is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+P(\cup_{i=1}^kR_i) &amp;= 1- P(\bar{\cup_{i=1}^kR_i})\\
+&amp;= 1- P(\cap_{i=1}^k\bar{R_i})\\ 
+&amp;= 1-\prod_{i=1}^kP(\bar{R_i}) \\
+&amp;= 1-\prod_{i=1}^k\left(1-P(R_i)\right)\\ 
+&amp;= 1-\prod_{i=1}^k(1-\alpha)\\ 
+&amp;= 1-(1-\alpha)^k \approx 1-(1-k\alpha) = k\alpha
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<p>The overall <span class="math notranslate nohighlight">\(\alpha\)</span>-level <span class="math notranslate nohighlight">\(\theta = k\alpha\)</span> where <span class="math notranslate nohighlight">\(\alpha\)</span> is the <span class="math notranslate nohighlight">\(\alpha\)</span> level of each test. Or <span class="math notranslate nohighlight">\(\alpha = \frac{\theta}{k}\)</span>.</p>
+<div class="admonition-bonferroni-correction admonition">
+<p class="admonition-title">Bonferroni correction</p>
+<p>If the overall <span class="math notranslate nohighlight">\(\alpha\)</span> level is 0.05, then the Bonferroni correction for individual tests is</p>
+<div class="math notranslate nohighlight">
+\[\alpha = \frac{0.05}{k}\]</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="m">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nf">rpois</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">lambda</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the sample average is&quot;</span><span class="p">,</span><span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
-<span class="nf">sd</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">summary</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">quantile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span>
-
-<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pvalues</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">002</span><span class="p">,</span> <span class="n">.</span><span class="m">005</span><span class="p">,</span> <span class="n">.</span><span class="m">015</span><span class="p">,</span> <span class="n">.</span><span class="m">113</span><span class="p">,</span> <span class="n">.</span><span class="m">222</span><span class="p">,</span> <span class="n">.</span><span class="m">227</span><span class="p">,</span> <span class="n">.</span><span class="m">454</span><span class="p">,</span> <span class="n">.</span><span class="m">552</span><span class="p">,</span> <span class="n">.</span><span class="m">663</span><span class="p">,</span> <span class="n">.</span><span class="m">751</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">p.adjust</span><span class="p">(</span><span class="n">pvalues</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;bonferroni&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;adjusted pvalues:&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 5.8&quot;
-</pre></div>
-</div>
-<div class="output text_html">2.0976176963403</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   3.00    4.00    5.50    5.80    7.75    9.00 
-</pre></div>
-</div>
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>3</li><li>4</li><li>4</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>8</li><li>9</li></ol>
-</div><div class="output text_html">9</div><div class="output text_html">3</div><div class="output text_html"><strong>95%:</strong> 8.55</div><img alt="_images/lab3_1_7.png" src="_images/lab3_1_7.png" />
-</div>
-</div>
-<p>Then we increase the sample size <span class="math notranslate nohighlight">\(n\)</span> from 100, 200, up to 100,000 and recalculate the sample average. By the law of large numbers, we expect that the sample average gets closer to the true population mean 5 as the sample size increases.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nsim</span> <span class="o">=</span> <span class="m">1000</span>
-<span class="n">sample_size</span> <span class="o">=</span> <span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nsim</span><span class="p">)</span><span class="o">*</span><span class="m">100</span>
-<span class="n">sample_average</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">nsim</span>
-<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nsim</span><span class="p">){</span>
-	<span class="n">data</span> <span class="o">=</span> <span class="nf">rpois</span><span class="p">(</span><span class="n">sample_size</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">lambda</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
-	<span class="n">sample_average</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sample_average</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">)</span>
-<span class="nf">abline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [1] &quot;adjusted pvalues: 0.02&quot; &quot;adjusted pvalues: 0.05&quot; &quot;adjusted pvalues: 0.15&quot;
+ [4] &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;   
+ [7] &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;    &quot;adjusted pvalues: 1&quot;   
+[10] &quot;adjusted pvalues: 1&quot;   
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/lab3_3_0.png" src="_images/lab3_3_0.png" />
 </div>
-</div>
+<p>If <span class="math notranslate nohighlight">\(k\)</span> is large, the <span class="math notranslate nohighlight">\(\alpha\)</span> level for each test is extremely small, making it very difficult to reject the null hypothesis for each test. Bonferroni correction is too conservative.</p>
 </section>
-<section id="a-continuous-case-normal-distribution">
-<h2>A continuous case (Normal distribution)<a class="headerlink" href="#a-continuous-case-normal-distribution" title="Permalink to this headline">#</a></h2>
-<p>In this case, the population is a normal distribution with mean 2.7 and variance 1.6. We simulate data from <span class="math notranslate nohighlight">\(Normal(\mu=2.7, \sigma^2=1.6)\)</span> and calculate the sample average.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="m">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.7</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1.6</span><span class="p">))</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the sample average is&quot;</span><span class="p">,</span><span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
-<span class="nf">sd</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">summary</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">sort</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">quantile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="m">0.95</span><span class="p">)</span>
-
-<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
-<span class="nf">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="nf">boxplot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 2.64493149442576&quot;
-</pre></div>
-</div>
-<div class="output text_html">1.58000041711162</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 0.1863  1.8307  2.3399  2.6449  3.3053  5.9195 
-</pre></div>
-</div>
-<div class="output text_html"><style>
-.list-inline {list-style: none; margin:0; padding: 0}
-.list-inline>li {display: inline-block}
-.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
-</style>
-<ol class=list-inline><li>0.18634281593006</li><li>1.43554286360131</li><li>1.76773345968365</li><li>2.01972889593728</li><li>2.12982343501959</li><li>2.54989841391319</li><li>2.90689893626157</li><li>3.43806804263048</li><li>4.09573334125713</li><li>5.91954474002332</li></ol>
-</div><div class="output text_html">5.91954474002332</div><div class="output text_html">0.18634281593006</div><div class="output text_html"><strong>95%:</strong> 5.09882961057853</div><img alt="_images/lab3_5_7.png" src="_images/lab3_5_7.png" />
-</div>
-</div>
-<p>Then we increase the sample size <span class="math notranslate nohighlight">\(n\)</span> from 100, 200, up to 100,000 and recalculate the sample average. By the law of large numbers, we expect that the sample average gets closer to the true population mean 2.7 as the sample size increases.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_size</span> <span class="o">=</span> <span class="m">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="nf">rpois</span><span class="p">(</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">lambda</span><span class="o">=</span><span class="m">5</span><span class="p">)</span>
-<span class="n">sample_average</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-<span class="n">nsim</span> <span class="o">=</span> <span class="m">1000</span>
-<span class="n">sample_size</span> <span class="o">=</span> <span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">nsim</span><span class="p">)</span><span class="o">*</span><span class="m">100</span>
-<span class="n">sample_average</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">nsim</span>
-<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nsim</span><span class="p">){</span>
-	<span class="n">data</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">sample_size</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">mean</span><span class="o">=</span><span class="m">2.7</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">1.6</span><span class="p">))</span>
-	<span class="n">sample_average</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="p">}</span>
-
-<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">sample_size</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sample_average</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">)</span>
-<span class="nf">abline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="m">2.7</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/lab3_7_0.png" src="_images/lab3_7_0.png" />
-</div>
-</div>
+<section id="false-discovery-rate">
+<h2>False discovery rate<a class="headerlink" href="#false-discovery-rate" title="Permalink to this headline">#</a></h2>
+<p>The above section indicates that it is difficult to control the overall type I error. In this section, we introduce a new criterion, false discovery rate, to perform the tests.</p>
+<div class="proof definition admonition" id="fdr">
+<p class="admonition-title"><span>Definition </span> (false discovery rate)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(W\)</span> be the number of wrong rejections among a total of <span class="math notranslate nohighlight">\(Y\)</span> rejections. False discovery rate is equal to the expectation of <span class="math notranslate nohighlight">\(\frac{W}{Y}\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[FDR = E\left(\frac{W}{Y}\right)\]</div>
 </section>
-<section id="exercise">
-<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
-<p>Demonstrate the law of large numbers for the Binomial distribution, the Exponential distribution, and the Gamma distribution.</p>
+</div><p>In practise, it is difficult to calculate FDR. The Benjamin–Hochberg procedure (BH step-up procedure) is a numerical approach to control the false discovery rate.</p>
+<p>The BH procedure works as follows: calculate the pvalue for each test and
+re-order them from the minimum to the maximum <span class="math notranslate nohighlight">\(P_1,\dots, P_n\)</span>.</p>
+<ol class="simple">
+<li><p>For a given <span class="math notranslate nohighlight">\(\alpha\)</span>, find the largest <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(P(k) \leq \frac{k}{n}\alpha\)</span></p></li>
+<li><p>Reject the null hypothesis (i.e. declare positive discoveries) for the hypotheses <span class="math notranslate nohighlight">\(H_i\)</span> for <span class="math notranslate nohighlight">\(i = 1, \dots, k\)</span>.</p></li>
+</ol>
+<div class="proof example admonition" id="7.1">
+<p class="admonition-title"><span>Example </span> (7.1)</p>
+<section class="example-content" id="proof-content">
+<p>We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed the two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06.</p>
+<p>Thus, <span class="math notranslate nohighlight">\(P_1 = 0.01, P_2 = 0.03, P_3 = 0.06\)</span>. We want to control FDR at the level of 0.05, i.e., <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>.</p>
+<ol class="simple">
+<li><p>Find the largest <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(P_k \le \frac{k}{n}\alpha\)</span>. We first try <span class="math notranslate nohighlight">\(k = 3\)</span>, but <span class="math notranslate nohighlight">\(P_3 &gt; 0.05\)</span>. Then, we try <span class="math notranslate nohighlight">\(k = 2\)</span> and <span class="math notranslate nohighlight">\(P_2 &lt; 2*0.05/3\)</span>. Thus, <span class="math notranslate nohighlight">\(k=2\)</span>.</p></li>
+<li><p>We reject the null hypothesis for the first two tests, and conclude that gene1 and gene2 are significantly associated with cancer.</p></li>
+</ol>
+</section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pvalues</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">.</span><span class="m">002</span><span class="p">,</span> <span class="n">.</span><span class="m">005</span><span class="p">,</span> <span class="n">.</span><span class="m">015</span><span class="p">,</span> <span class="n">.</span><span class="m">113</span><span class="p">,</span> <span class="n">.</span><span class="m">222</span><span class="p">,</span> <span class="n">.</span><span class="m">227</span><span class="p">,</span> <span class="n">.</span><span class="m">454</span><span class="p">,</span> <span class="n">.</span><span class="m">552</span><span class="p">,</span> <span class="n">.</span><span class="m">663</span><span class="p">,</span> <span class="n">.</span><span class="m">751</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">p.adjust</span><span class="p">(</span><span class="n">pvalues</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s">&quot;BH&quot;</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;adjusted pvalues:&quot;</span><span class="p">,</span><span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> [1] &quot;adjusted pvalues: 0.02&quot;              &quot;adjusted pvalues: 0.025&quot;            
+ [3] &quot;adjusted pvalues: 0.05&quot;              &quot;adjusted pvalues: 0.2825&quot;           
+ [5] &quot;adjusted pvalues: 0.378333333333333&quot; &quot;adjusted pvalues: 0.378333333333333&quot;
+ [7] &quot;adjusted pvalues: 0.648571428571429&quot; &quot;adjusted pvalues: 0.69&quot;             
+ [9] &quot;adjusted pvalues: 0.736666666666667&quot; &quot;adjusted pvalues: 0.751&quot;            
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -735,17 +693,17 @@ title="Print to PDF"
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lab2.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="chap6.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lab 2: Generating random numbers</p>
+            <p class="prev-next-title">Chapter 6: Hypothesis testing</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="lab4.html" title="next page">
+    <a class='right-next' id="next-link" href="chap8.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lab 4: BLAST</p>
+        <p class="prev-next-title">Chapter 8: RNA-seq analysis</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
