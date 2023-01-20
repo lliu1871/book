@@ -628,12 +628,18 @@ title="Print to PDF"
 <p>To select two numbers at random from (1,2,3) with replacement, we do</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">3</div></div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>2</li><li>2</li></ol>
+</div></div>
 </div>
 <div class="admonition-exercise-1 admonition">
 <p class="admonition-title">Exercise 1</p>
@@ -671,7 +677,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>1</li><li>0</li><li>1</li><li>0</li><li>0</li></ol>
+<ol class=list-inline><li>0</li><li>1</li><li>1</li><li>0</li><li>0</li></ol>
 </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The count of heads is 2&quot;
 </pre></div>
 </div>
@@ -697,7 +703,7 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 34 149 320 314 148  35 
+ 32 144 297 338 164  25 
 </pre></div>
 </div>
 <img alt="_images/lab2_9_1.png" src="_images/lab2_9_1.png" />
@@ -715,7 +721,7 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 33 166 300 327 137  37 
+ 42 157 303 306 160  32 
 </pre></div>
 </div>
 <img alt="_images/lab2_11_1.png" src="_images/lab2_11_1.png" />
@@ -773,14 +779,14 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>'C'</li><li>'G'</li><li>'T'</li><li>'G'</li><li>'A'</li><li>'G'</li><li>'C'</li><li>'C'</li><li>'A'</li><li>'T'</li></ol>
+<ol class=list-inline><li>'A'</li><li>'C'</li><li>'G'</li><li>'G'</li><li>'G'</li><li>'G'</li><li>'A'</li><li>'C'</li><li>'A'</li><li>'C'</li></ol>
 </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 10 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.2</div><div class="output text_html">0.3</div><div class="output text_html">0.3</div><div class="output text_html">0.2</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
+<div class="output text_html">0.3</div><div class="output text_html">0.3</div><div class="output text_html">0.4</div><div class="output text_html">0</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.23</div><div class="output text_html">0.47</div><div class="output text_html">0.17</div><div class="output text_html">0.13</div></div>
+<div class="output text_html">0.16</div><div class="output text_html">0.41</div><div class="output text_html">0.24</div><div class="output text_html">0.19</div></div>
 </div>
 <p>To generate a random number from the binomial distribution</p>
 <div class="cell docutils container">
@@ -795,7 +801,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>2</li><li>3</li><li>3</li><li>1</li><li>2</li><li>2</li><li>2</li><li>2</li><li>2</li></ol>
+<ol class=list-inline><li>3</li><li>2</li><li>3</li><li>2</li><li>5</li><li>3</li><li>3</li><li>4</li><li>2</li><li>2</li></ol>
 </div></div>
 </div>
 <p>to generate a random number from the Poisson distribution</p>
@@ -811,7 +817,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3</li><li>4</li><li>4</li><li>1</li><li>3</li><li>3</li><li>1</li><li>0</li><li>2</li><li>4</li></ol>
+<ol class=list-inline><li>1</li><li>6</li><li>3</li><li>2</li><li>4</li><li>3</li><li>4</li><li>1</li><li>0</li><li>7</li></ol>
 </div></div>
 </div>
 </section>
@@ -825,7 +831,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.50383041985333</div></div>
+<div class="output text_html">1.82687930064276</div></div>
 </div>
 <p>Or generate 10 random numbers from the interval [2, 10]</p>
 <div class="cell docutils container">
@@ -840,7 +846,7 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>8.96226572617888</li><li>2.17075529322028</li><li>3.51122960075736</li><li>5.57689969427884</li><li>2.29612926766276</li><li>8.52774138189852</li><li>6.34708897583187</li><li>6.70231223292649</li><li>5.66945047490299</li><li>2.59968923218548</li></ol>
+<ol class=list-inline><li>9.30970490351319</li><li>5.8052236456424</li><li>8.13584990799427</li><li>9.51973284967244</li><li>4.78485547378659</li><li>4.18709930218756</li><li>9.79118226841092</li><li>8.37523015029728</li><li>9.32188565470278</li><li>9.3424394633621</li></ol>
 </div></div>
 </div>
 <p>We may generate 10 random numbers from the normal distribution with mean = 4.5 and variance = 2 and then calculate the sample average.</p>
@@ -858,8 +864,8 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3.80642692602169</li><li>3.92004890540967</li><li>0.635564855720776</li><li>3.39732142016654</li><li>5.21994504634689</li><li>3.99216594227002</li><li>3.26607894636377</li><li>3.96198889006194</li><li>6.02622680136881</li><li>5.99619556825265</li></ol>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 4.02219633019828&quot;
+<ol class=list-inline><li>4.2820389639767</li><li>5.67374339966582</li><li>2.63266023013258</li><li>5.97203463076997</li><li>4.56325391430062</li><li>3.38754898748452</li><li>6.54454925810042</li><li>5.38305879983186</li><li>5.11557072991186</li><li>6.50727622905147</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 5.00617351432258&quot;
 </pre></div>
 </div>
 </div>

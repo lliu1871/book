@@ -556,7 +556,7 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="lab-12-markov-chain-monte-carlo-algorithm">
 <h1>Lab 12: Markov Chain Monte Carlo algorithm<a class="headerlink" href="#lab-12-markov-chain-monte-carlo-algorithm" title="Permalink to this headline">#</a></h1>
 <p><span class="math notranslate nohighlight">\((x_{1},\ldots,x_{n})\)</span> is a random sample generated from the
-exponential distribution with mean <span class="math notranslate nohighlight">\(1/\lambda\)</span>. The prior of <span class="math notranslate nohighlight">\(\lambda\)</span>
+exponential distribution with rate <span class="math notranslate nohighlight">\(\lambda\)</span>. The prior of <span class="math notranslate nohighlight">\(\lambda\)</span>
 is the exponential distribution with mean 1/2. The posterior
 distribution of <span class="math notranslate nohighlight">\(\lambda\)</span> given <span class="math notranslate nohighlight">\((x_{1},\ldots,x_{n})\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -641,10 +641,10 @@ and (4) a function for accepting or rejecting the proposed
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;MCMC estimate of lambda: 0.817221050511557&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;MCMC estimate of lambda: 0.863543204812288&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Bayesian estimate of lambda: 0.782448239359334&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;Bayesian estimate of lambda: 0.942957969541686&quot;
 </pre></div>
 </div>
 <img alt="_images/lab12_1_2.png" src="_images/lab12_1_2.png" />
@@ -654,9 +654,11 @@ and (4) a function for accepting or rejecting the proposed
 <h2>Bayesian phylogenetic inference<a class="headerlink" href="#bayesian-phylogenetic-inference" title="Permalink to this headline">#</a></h2>
 <p>Preparation: Download MrBayes at <a class="reference external" href="http://nbisweden.github.io/MrBayes/download.html">http://nbisweden.github.io/MrBayes/download.html</a>
 Then, unzip the downloaded file MrBayes-3.2.7a.zip and navigate into the unzipped folder by typing cd ./MrBayes-3.2.7a in the terminal window.</p>
-<p>To install MrBayes on your laptop, type ./configure and then type make. The executable mb is located in the src folder. To run MrBayes interactively, type ./mb. Alternatively, you may run MrBayes using a batch file.</p>
-<p>The data file finch.nex is available in the example folder. We will run MrBayes on this data set. We first add a MrBayes block in the data file and then run MrBayes by typing ../src/mb -i finch.nex.</p>
-<p>We will discuss the output files in this lab.</p>
+<p>To install MrBayes on your laptop, type <strong>./configure</strong> and then type make. The executable <strong>mb</strong> is located in the src folder. To run MrBayes interactively, type ./mb. Alternatively, you may run MrBayes using a batch file.</p>
+<p>The data file finch.nex is available in the example folder. We will run MrBayes on this data set. We first add a MrBayes block in the data file and then run MrBayes by the command line</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">../</span><span class="n">src</span><span class="o">/</span><span class="n">mb</span> <span class="o">-</span><span class="n">i</span> <span class="n">finch</span><span class="o">.</span><span class="n">nex</span>
+</pre></div>
+</div>
 </section>
 </section>
 

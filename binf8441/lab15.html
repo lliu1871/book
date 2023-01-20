@@ -617,30 +617,10 @@ title="Print to PDF"
 <ul class="simple">
 <li><p>Install the R package phybase hosted at <a class="reference external" href="https://github.com/lliu1871/phybase">Github</a>. The <strong>devtools</strong> package provides <strong>install_github()</strong> that enables installing R packages from GitHub.</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span>    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;devtools&quot;</span><span class="p">)</span>
-    <span class="nf">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
-    <span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;lliu1871/phybase&quot;</span><span class="p">)</span> 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s2">&quot;devtools&quot;</span><span class="p">)</span>
+    <span class="n">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
+    <span class="n">install_github</span><span class="p">(</span><span class="s2">&quot;lliu1871/phybase&quot;</span><span class="p">)</span> 
 </pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>package &#39;devtools&#39; successfully unpacked and MD5 sums checked
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The downloaded binary packages are in
-	C:\Users\liuliang_2\AppData\Local\Temp\Rtmp4e7JNi\downloaded_packages
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: usethis
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Skipping install of &#39;phybase&#39; from a github remote, the SHA1 (6f7961a4) has not changed since last install.
-  Use `force = TRUE` to force installation
-</pre></div>
-</div>
-</div>
 </div>
 <ul class="simple">
 <li><p>Download Phylip at <a class="reference external" href="https://evolution.genetics.washington.edu/phylip/getme-new1.html">https://evolution.genetics.washington.edu/phylip/getme-new1.html</a></p></li>
@@ -720,7 +700,7 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">phybase</span><span class="p">)</span>
-<span class="n">trees</span> <span class="o">=</span> <span class="nf">read.tree</span><span class="p">(</span><span class="s">&quot;data/lab15_trees.tre&quot;</span><span class="p">)</span>
+<span class="n">trees</span> <span class="o">=</span> <span class="nf">read.tree</span><span class="p">(</span><span class="s">&quot;https://book.phylolab.net/binf8441/data/lab15_trees.tre&quot;</span><span class="p">)</span>
 <span class="nf">dist.topo</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
 </pre></div>
 </div>
