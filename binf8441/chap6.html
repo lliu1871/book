@@ -535,13 +535,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#one-sided-tests">
-     one-sided tests
+    <a class="reference internal nav-link" href="#one-sided-t-test">
+     One-sided t-test
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-sided-tests">
-     two-sided tests
+    <a class="reference internal nav-link" href="#two-sided-t-test">
+     Two-sided t-test
     </a>
    </li>
   </ul>
@@ -552,13 +552,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     one-sided tests
+    <a class="reference internal nav-link" href="#one-sided-test">
+     One-sided test
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     two-sided tests
+    <a class="reference internal nav-link" href="#two-sided-test">
+     Two-sided test
     </a>
    </li>
   </ul>
@@ -640,13 +640,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#one-sided-tests">
-     one-sided tests
+    <a class="reference internal nav-link" href="#one-sided-t-test">
+     One-sided t-test
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#two-sided-tests">
-     two-sided tests
+    <a class="reference internal nav-link" href="#two-sided-t-test">
+     Two-sided t-test
     </a>
    </li>
   </ul>
@@ -657,13 +657,13 @@ title="Print to PDF"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     one-sided tests
+    <a class="reference internal nav-link" href="#one-sided-test">
+     One-sided test
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id2">
-     two-sided tests
+    <a class="reference internal nav-link" href="#two-sided-test">
+     Two-sided test
     </a>
    </li>
   </ul>
@@ -816,8 +816,8 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 </section>
 <section id="one-sample-t-test">
 <h2>One sample t-test<a class="headerlink" href="#one-sample-t-test" title="Permalink to this headline">#</a></h2>
-<section id="one-sided-tests">
-<h3>one-sided tests<a class="headerlink" href="#one-sided-tests" title="Permalink to this headline">#</a></h3>
+<section id="one-sided-t-test">
+<h3>One-sided t-test<a class="headerlink" href="#one-sided-t-test" title="Permalink to this headline">#</a></h3>
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, we want to test if the population mean is <span class="math notranslate nohighlight">\(\mu=1\)</span> or <span class="math notranslate nohighlight">\(\mu&gt;1\)</span>. This is called the one-sided test. If the alternative hypothesis is <span class="math notranslate nohighlight">\(\mu\ne 1\)</span>, it is called the two-sided test.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -841,20 +841,20 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -5.9201, df = 19, p-value = 5.321e-06
+t = -4.1813, df = 19, p-value = 0.0002533
 alternative hypothesis: true mean is less than 3
 95 percent confidence interval:
-    -Inf 2.07928
+     -Inf 2.565906
 sample estimates:
 mean of x 
- 1.699405 
+ 2.259803 
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="two-sided-tests">
-<h3>two-sided tests<a class="headerlink" href="#two-sided-tests" title="Permalink to this headline">#</a></h3>
+<section id="two-sided-t-test">
+<h3>Two-sided t-test<a class="headerlink" href="#two-sided-t-test" title="Permalink to this headline">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 \mathrm{H}_{0}: \mu=1 \text{ versus } \mathrm{H}_{1}: \mu\ne 1
@@ -872,13 +872,13 @@ mean of x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -2.8727, df = 19, p-value = 0.009746
+t = -2.5323, df = 19, p-value = 0.02031
 alternative hypothesis: true mean is not equal to 3
 95 percent confidence interval:
- 1.580938 2.777192
+ 1.710743 2.877569
 sample estimates:
 mean of x 
- 2.179065 
+ 2.294156 
 </pre></div>
 </div>
 </div>
@@ -888,8 +888,8 @@ mean of x
 <section id="two-sample-t-test">
 <h2>Two sample t-test<a class="headerlink" href="#two-sample-t-test" title="Permalink to this headline">#</a></h2>
 <p>The two-sample t-test is used to determine if two population means <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are equal.</p>
-<section id="id1">
-<h3>one-sided tests<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<section id="one-sided-test">
+<h3>One-sided test<a class="headerlink" href="#one-sided-test" title="Permalink to this headline">#</a></h3>
 <p>The test is one-sided, if the alternative hypothesis is one-sided.</p>
 <div class="math notranslate nohighlight">
 \[
@@ -916,21 +916,21 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &lt; \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -1.514, df = 37.976, p-value = 0.9309
+t = -2.2525, df = 36.8, p-value = 0.9848
 alternative hypothesis: true difference in means is greater than 0
 95 percent confidence interval:
- -0.9909843        Inf
+ -0.9493856        Inf
 sample estimates:
 mean of x mean of y 
- 2.194308  2.663177 
+ 1.857914  2.400706 
 </pre></div>
 </div>
 <img alt="_images/chap6_5_1.png" src="_images/chap6_5_1.png" />
 </div>
 </div>
 </section>
-<section id="id2">
-<h3>two-sided tests<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<section id="two-sided-test">
+<h3>Two-sided test<a class="headerlink" href="#two-sided-test" title="Permalink to this headline">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
@@ -947,13 +947,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -1.514, df = 37.976, p-value = 0.1383
+t = -2.2525, df = 36.8, p-value = 0.03034
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.0957974  0.1580602
+ -1.031131 -0.054453
 sample estimates:
 mean of x mean of y 
- 2.194308  2.663177 
+ 1.857914  2.400706 
 </pre></div>
 </div>
 </div>
@@ -982,8 +982,8 @@ mean of x mean of y
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-group        2  34.27  17.134   25.15 1.48e-08 ***
-Residuals   57  38.83   0.681                     
+group        2  74.44   37.22   35.13 1.15e-10 ***
+Residuals   57  60.39    1.06                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
@@ -1083,7 +1083,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -32.8168728764403 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -26.1758345529017 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
@@ -1118,7 +1118,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 7.78309523176563 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 18.3115124914632 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>

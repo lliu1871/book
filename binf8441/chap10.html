@@ -526,17 +526,17 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#calculating-the-variance-of-an-estimator">
-     1. Calculating the variance of an estimator
+     Calculating the variance of an estimator
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#comparing-the-performance-of-estimators">
-     2. Comparing the performance of estimators
+     Comparing the performance of estimators
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#approximate-the-power-of-hypothesis-tests">
-     3. Approximate the power of hypothesis tests
+     Approximate the power of hypothesis tests
     </a>
    </li>
   </ul>
@@ -572,17 +572,17 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#calculating-the-variance-of-an-estimator">
-     1. Calculating the variance of an estimator
+     Calculating the variance of an estimator
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#comparing-the-performance-of-estimators">
-     2. Comparing the performance of estimators
+     Comparing the performance of estimators
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#approximate-the-power-of-hypothesis-tests">
-     3. Approximate the power of hypothesis tests
+     Approximate the power of hypothesis tests
     </a>
    </li>
   </ul>
@@ -656,7 +656,7 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">-0.558375443459334</div></div>
+<div class="output text_html">-0.571904199976237</div></div>
 </div>
 <div class="proof example admonition" id="10.2">
 <p class="admonition-title"><span>Example </span> (10.2)</p>
@@ -671,14 +671,14 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">1.07418766632462</div></div>
+<div class="output text_html">1.07503048699929</div></div>
 </div>
 </section>
 <section id="simulation-based-inference">
 <h2>Simulation-based inference<a class="headerlink" href="#simulation-based-inference" title="Permalink to this headline">#</a></h2>
 <p>If the population (or the probability distribution) is given, we can generate random samples from the probability distribution. The random samples generated from computers are called simulated data which can be used to perform a wide range of statistical inference</p>
 <section id="calculating-the-variance-of-an-estimator">
-<h3>1. Calculating the variance of an estimator<a class="headerlink" href="#calculating-the-variance-of-an-estimator" title="Permalink to this headline">#</a></h3>
+<h3>Calculating the variance of an estimator<a class="headerlink" href="#calculating-the-variance-of-an-estimator" title="Permalink to this headline">#</a></h3>
 <p>Suppose <span class="math notranslate nohighlight">\(\left(x_{1}, \ldots, x_{n}\right)\)</span> is a random sample generated from a given probability distribution with a given parameter <span class="math notranslate nohighlight">\(\theta\)</span>. Let <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> be the estimator of <span class="math notranslate nohighlight">\(\theta\)</span>. The variance of <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> can be approximated by the sample variance of <span class="math notranslate nohighlight">\(\hat{\theta}\)</span>.</p>
 <div class="proof example admonition" id="10.3">
 <p class="admonition-title"><span>Example </span> (10.3)</p>
@@ -706,11 +706,11 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.183611435318894</div></div>
+<div class="output text_html">0.172900637733849</div></div>
 </div>
 </section>
 <section id="comparing-the-performance-of-estimators">
-<h3>2. Comparing the performance of estimators<a class="headerlink" href="#comparing-the-performance-of-estimators" title="Permalink to this headline">#</a></h3>
+<h3>Comparing the performance of estimators<a class="headerlink" href="#comparing-the-performance-of-estimators" title="Permalink to this headline">#</a></h3>
 <p>The mean squared error <span class="math notranslate nohighlight">\(E\left[(\hat{\theta}-\theta)^{2}\right]\)</span> of the estimator <span class="math notranslate nohighlight">\(\hat{\theta}\)</span> of the parameter <span class="math notranslate nohighlight">\(\theta\)</span> can be approximated by simulation. When the true <span class="math notranslate nohighlight">\(\theta\)</span> is given, the expectation <span class="math notranslate nohighlight">\(E\left[(\hat{\theta}-\theta)^{2}\right]\)</span> can be approximated by the sample average of <span class="math notranslate nohighlight">\(\left(\widehat{\theta}_{i}-\theta\right)^{2}\)</span>, in which <span class="math notranslate nohighlight">\(\widehat{\theta}_{i}\)</span> is calculated from the sample <span class="math notranslate nohighlight">\(i\)</span> generated from the probability distribution.</p>
 <div class="proof example admonition" id="10.4">
 <p class="admonition-title"><span>Example </span> (10.4)</p>
@@ -755,7 +755,7 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </section>
 <section id="approximate-the-power-of-hypothesis-tests">
-<h3>3. Approximate the power of hypothesis tests<a class="headerlink" href="#approximate-the-power-of-hypothesis-tests" title="Permalink to this headline">#</a></h3>
+<h3>Approximate the power of hypothesis tests<a class="headerlink" href="#approximate-the-power-of-hypothesis-tests" title="Permalink to this headline">#</a></h3>
 <p>The power is <span class="math notranslate nohighlight">\(P\left(\right.\)</span> reject <span class="math notranslate nohighlight">\(\left.H_{0} \mid H_{1}\right)\)</span>, which can be approximated by simulation, when the alternative probability distribution under <span class="math notranslate nohighlight">\(\mathrm{H}_{1}\)</span> is given. We generate samples under <span class="math notranslate nohighlight">\(\mathrm{H}_{1}\)</span>. The power of a test, i.e., the probability of rejecting <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span>, is approximated by the proportion of samples for which <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span> is rejected by the test. If the alternative hypothesis is an interval of parameter <span class="math notranslate nohighlight">\(\theta\)</span>, we need to calculate the power for each value of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
 <div class="proof example admonition" id="10.5">
 <p class="admonition-title"><span>Example </span> (10.5)</p>
