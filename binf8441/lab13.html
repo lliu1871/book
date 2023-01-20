@@ -567,17 +567,173 @@ title="Print to PDF"
 <h1>Lab 13: Markov chains<a class="headerlink" href="#lab-13-markov-chains" title="Permalink to this headline">#</a></h1>
 <section id="discrete-time-markov-chain">
 <h2>Discrete time Markov chain<a class="headerlink" href="#discrete-time-markov-chain" title="Permalink to this headline">#</a></h2>
-<p>Example 1: Consider a random walk <span class="math notranslate nohighlight">\(\left\{X_n\right\}\)</span> with a finite state space <span class="math notranslate nohighlight">\(X_n=\{-1,0,1\}\)</span>. The initial state is 0 , i.e., <span class="math notranslate nohighlight">\(\pi_0=\left(\begin{array}{lll}0 &amp; 1 &amp; 0\end{array}\right)\)</span>. Suppose the one-step transition probability matrix is <span class="math notranslate nohighlight">\(P=\)</span> <span class="math notranslate nohighlight">\(\left(\begin{array}{ccc}0 &amp; 0.5 &amp; 0.5 \\ 0.5 &amp; 0 &amp; 0.5 \\ 0.1 &amp; 0.1 &amp; 0.8\end{array}\right)\)</span>.
-We first find the probability distribution of <span class="math notranslate nohighlight">\(X_1\)</span> after the first step, i.e., <span class="math notranslate nohighlight">\(\pi_1=\pi_0 P=\)</span> <span class="math notranslate nohighlight">\(\left(\begin{array}{lll}0 &amp; 1 &amp; 0\end{array}\right)\left(\begin{array}{ccc}0 &amp; 0.5 &amp; 0.5 \\ 0.5 &amp; 0 &amp; 0.5 \\ 0.1 &amp; 0.1 &amp; 0.8\end{array}\right)=\left(\begin{array}{lll}0.5 &amp; 0 &amp; 0.5\end{array}\right)\)</span>. The probability distribution of <span class="math notranslate nohighlight">\(X_2\)</span> after two steps is given by <span class="math notranslate nohighlight">\(\pi_2=\pi_1 P=\left(\begin{array}{lll}0.5 &amp; 0 &amp; 0.5\end{array}\right)\left(\begin{array}{ccc}0 &amp; 0.5 &amp; 0.5 \\ 0.5 &amp; 0 &amp; 0.5 \\ 0.1 &amp; 0.1 &amp; 0.8\end{array}\right)=\left(\begin{array}{lll}0.05 &amp; 0.3 &amp; 0.65\end{array}\right)\)</span></p>
+<p>Consider a random walk <span class="math notranslate nohighlight">\(\left\{X_n\right\}\)</span> with a finite state space <span class="math notranslate nohighlight">\(X_n=\{-1,0,1\}\)</span>. The initial state is 0, i.e., <span class="math notranslate nohighlight">\(\pi_0=(0,1,0)\)</span>. Suppose the one-step transition probability matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P=\left(\begin{array}{ccc}0 &amp; 0.5 &amp; 0.5 \\ 0.5 &amp; 0 &amp; 0.5 \\ 0.1 &amp; 0.1 &amp; 0.8\end{array}\right)\end{split}\]</div>
+<p>We first find the probability distribution of <span class="math notranslate nohighlight">\(X_1\)</span> after the first step, i.e., <span class="math notranslate nohighlight">\(\pi_1=\pi_0 P\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pi_0</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+<span class="n">pmatrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.5</span><span class="p">,</span><span class="m">0.5</span><span class="p">,</span><span class="m">0.5</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0.5</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.8</span><span class="p">),</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">pi_1</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="n">pi_0</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">pmatrix</span>
+<span class="n">pi_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<tbody>
+	<tr><td>0.5</td><td>0</td><td>0.5</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>The probability distribution of <span class="math notranslate nohighlight">\(X_2\)</span> after two steps is given by <span class="math notranslate nohighlight">\(\pi_2=\pi_1 P\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pi_2</span> <span class="o">=</span> <span class="n">pi_1</span> <span class="o">%*%</span> <span class="n">pmatrix</span>
+<span class="n">pi_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<tbody>
+	<tr><td>0.05</td><td>0.3</td><td>0.65</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
 <p>Similarly, we can find <span class="math notranslate nohighlight">\(\pi_n=\pi_0 P^n\)</span>. To calculate <span class="math notranslate nohighlight">\(P^n\)</span>, suppose <span class="math notranslate nohighlight">\(\mathrm{P}\)</span> is expressed as <span class="math notranslate nohighlight">\(P=E V E^{-1}\)</span> where <span class="math notranslate nohighlight">\(E\)</span> is the eigen vector matrix and <span class="math notranslate nohighlight">\(V\)</span> is the diagonal matrix of eigen values. Then <span class="math notranslate nohighlight">\(P^n=\)</span> <span class="math notranslate nohighlight">\(E V^n E^{-1}\)</span>.</p>
-<p>In addition, we can find the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_{\infty}=\left(\begin{array}{lll}a 1 &amp; a 2 &amp; a 3\end{array}\right)\)</span> by solving the equations <span class="math notranslate nohighlight">\(\pi_{\infty}=\pi_{\infty} P\)</span> and <span class="math notranslate nohighlight">\(\sum \pi_{\infty}=1\)</span>. Thus, ( <span class="math notranslate nohighlight">\(\left(\begin{array}{lll}a 1 &amp; a 2 &amp; a 3\end{array}\right)=\left(\begin{array}{lll}a 1 &amp; a 2 &amp; a 3\end{array}\right)\left(\begin{array}{ccc}0 &amp; 0.5 &amp; 0.5 \\ 0.5 &amp; 0 &amp; 0.5 \\ 0.1 &amp; 0.1 &amp; 0.8\end{array}\right)\)</span> and <span class="math notranslate nohighlight">\(a 1+a 2+a 3=1\)</span>. The solution is <span class="math notranslate nohighlight">\(\pi_{\infty}=\left(\begin{array}{lll}0.143 &amp; 0.143 &amp; 0.714\end{array}\right)\)</span>. Note that <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span> is the normalized (the sum is 1 ) eigen vector with eigen value 1 of the transpose <span class="math notranslate nohighlight">\(P\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="m">10</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="n">pmatrix</span><span class="p">)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">vectors</span>
+<span class="n">V</span> <span class="o">=</span> <span class="nf">diag</span><span class="p">(</span><span class="n">x</span><span class="o">$</span><span class="n">values</span><span class="p">)</span>
+<span class="n">pi_n</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="n">pi_0</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">E</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">V</span><span class="o">^</span><span class="n">n</span><span class="p">)</span> <span class="o">%*%</span> <span class="nf">solve</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+<span class="n">pi_n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 1 × 3 of type dbl</caption>
+<tbody>
+	<tr><td>0.142371</td><td>0.1433475</td><td>0.7142815</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<p>In addition, we can find the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_{\infty}=\left(\begin{array}{lll}a 1 &amp; a 2 &amp; a 3\end{array}\right)\)</span> by solving the equations <span class="math notranslate nohighlight">\(\pi_{\infty}=\pi_{\infty} P\)</span> and <span class="math notranslate nohighlight">\(\sum \pi_{\infty}=1\)</span>. Thus, <span class="math notranslate nohighlight">\(\pi_\infty\)</span> is the eigenvector of the transition probability matrix <span class="math notranslate nohighlight">\(P\)</span> with the eigenvalue = 1.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the limiting probability distribution&quot;</span><span class="p">)</span>
+<span class="n">E</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">E</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1]  1.0 -0.5  0.3
+
+$vectors
+          [,1]          [,2]       [,3]
+[1,] 0.5773503  7.071068e-01 -0.6804138
+[2,] 0.5773503 -7.071068e-01 -0.6804138
+[3,] 0.5773503 -1.214306e-17  0.2721655
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the limiting probability distribution&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.333333333333333</li><li>0.333333333333333</li><li>0.333333333333334</li></ol>
+</div></div>
+</div>
 </section>
 <section id="continuous-time-markov-chain">
 <h2>Continuous time Markov chain<a class="headerlink" href="#continuous-time-markov-chain" title="Permalink to this headline">#</a></h2>
-<p>Consider a continuous time Markov chain for nucleotides with 4 states <span class="math notranslate nohighlight">\(\{A, C, G, T\}\)</span>. We
-We first find the <span class="math notranslate nohighlight">\(\mathrm{t}\)</span>-transition probability matrix <span class="math notranslate nohighlight">\(P(t)=e^{Q t}\)</span>. The definition of <span class="math notranslate nohighlight">\(e^A\)</span> where <span class="math notranslate nohighlight">\(\mathrm{A}\)</span> is a square matrix is <span class="math notranslate nohighlight">\(e^A=I+A+\frac{A^2}{2 !}+\frac{A^3}{3 !}+\cdots\)</span>. If <span class="math notranslate nohighlight">\(\mathrm{A}\)</span> is diagonalizable, <span class="math notranslate nohighlight">\(A=E V E^{-1}\)</span>, then <span class="math notranslate nohighlight">\(e^A=\)</span> <span class="math notranslate nohighlight">\(E e^v E^{-1}\)</span>.</p>
-<p>The probability distribution of <span class="math notranslate nohighlight">\(X_t\)</span> is <span class="math notranslate nohighlight">\(\pi_t=\pi_0 P(t)=\pi_0 e^{Q t}\)</span> which is calculable if the rate matrix <span class="math notranslate nohighlight">\(Q\)</span> and time <span class="math notranslate nohighlight">\(t\)</span> are given. For example, <span class="math notranslate nohighlight">\(\pi_{2.4}=\left(\begin{array}{llll}1 &amp; 0 &amp; 0 &amp; 0\end{array}\right)\left(\begin{array}{llll}0.25 &amp; 0.25 &amp; 0.25 &amp; 0.25 \\ 0.25 &amp; 0.25 &amp; 0.25 &amp; 0.25 \\ 0.25 &amp; 0.25 &amp; 0.25 &amp; 0.25 \\ 0.25 &amp; 0.25 &amp; 0.25 &amp; 0.25\end{array}\right)=\)</span> <span class="math notranslate nohighlight">\(\left(\begin{array}{llll}0.25 &amp; 0.25 &amp; 0.25 &amp; 0.25\end{array}\right)\)</span>
-The limiting probability distribution must satisfy <span class="math notranslate nohighlight">\(\pi_{\infty} Q=0\)</span> and <span class="math notranslate nohighlight">\(\sum \pi_{\infty}=1\)</span>. Thus, <span class="math notranslate nohighlight">\(\pi_{\infty}=\)</span> <span class="math notranslate nohighlight">\(\left(\begin{array}{llll}0.25 &amp; 0.25 &amp; 0.25 &amp; 0.25\end{array}\right)\)</span>.</p>
+<p>Consider a continuous time Markov chain for two alleles A and a. The initial allele at time 0 is <span class="math notranslate nohighlight">\(a\)</span>, i.e., <span class="math notranslate nohighlight">\(\pi_0 = (1,0)\)</span>. Suppose the mutation rate from A to a is 0.1 and the mutation rate from a to A is 0.1. The rate matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q = \left(\begin{array}{ll} -0.1 &amp; 0.1 \\ 0.1 &amp; -0.1\end{array}\right)\end{split}\]</div>
+<p>We find the transition probability matrix <span class="math notranslate nohighlight">\(P(t)=e^{Qt}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span>
+<span class="n">pi_0</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="m">0.5</span>
+<span class="n">qmatrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">-0.1</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">-0.1</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">pmatrix</span> <span class="o">=</span> <span class="nf">expm</span><span class="p">(</span><span class="n">qmatrix</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">pmatrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 x 2 Matrix of class &quot;dgeMatrix&quot;
+           [,1]       [,2]
+[1,] 0.95241871 0.04758129
+[2,] 0.04758129 0.95241871
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probability distribution <span class="math notranslate nohighlight">\(\pi_t\)</span> of alleles at time <span class="math notranslate nohighlight">\(t\)</span> is given by</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pi_t</span> <span class="o">=</span> <span class="nf">t</span><span class="p">(</span><span class="n">pi_0</span><span class="p">)</span> <span class="o">%*%</span> <span class="n">pmatrix</span>
+<span class="n">pi_t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 x 2 Matrix of class &quot;dgeMatrix&quot;
+          [,1]       [,2]
+[1,] 0.9524187 0.04758129
+</pre></div>
+</div>
+</div>
+</div>
+<p>The limiting probability distribution satisfies the equations <span class="math notranslate nohighlight">\(\pi_{\infty}Q=0\)</span> and <span class="math notranslate nohighlight">\(\sum \pi_{\infty}=1\)</span>. Thus, <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span> is the eigenvector of the rate matrix <span class="math notranslate nohighlight">\(Q\)</span> with the eigenvalue 0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="n">qmatrix</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the limiting probabilities&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1]  0.0 -0.2
+
+$vectors
+          [,1]       [,2]
+[1,] 0.7071068  0.7071068
+[2,] 0.7071068 -0.7071068
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the limiting probabilities&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.5</li><li>0.5</li></ol>
+</div></div>
+</div>
 </section>
 </section>
 

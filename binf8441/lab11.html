@@ -576,32 +576,182 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="lab-11-bootstrap">
 <h1>Lab 11: Bootstrap<a class="headerlink" href="#lab-11-bootstrap" title="Permalink to this headline">#</a></h1>
 <p>Suppose <span class="math notranslate nohighlight">\(x_1, \ldots, x_{10} \sim \operatorname{Normal}\left(\mu, \sigma^2\right)\)</span>. Let <span class="math notranslate nohighlight">\(\hat{\mu}\)</span> be an estimator of <span class="math notranslate nohighlight">\(\mu\)</span>. It could be the sample mean, sample median, maximum likelihood estimator, or any point estimator. We will calculate <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\mu})\)</span> using bootstrap samples.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<span class="n">sample_median</span> <span class="o">=</span> <span class="nf">median</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">sample_median</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">5.5970763760309</div></div>
+</div>
 <section id="parametric-bootstrap">
 <h2>Parametric bootstrap:<a class="headerlink" href="#parametric-bootstrap" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
-<li><p>Use data to estimate the unknown parameters, <span class="math notranslate nohighlight">\(\hat{\mu}_{MLE}=\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\widehat{\sigma^2}_{MLE}=\)</span> sample variance</p></li>
-<li><p>Generate <span class="math notranslate nohighlight">\(k\)</span> bootstrap samples from the <span class="math notranslate nohighlight">\(Normal(\hat{\mu}_{MLE}, \widehat{\sigma^2}_{MLE})\)</span> and calculate <span class="math notranslate nohighlight">\(\hat{\mu}\)</span> for each bootstrap sample, <span class="math notranslate nohighlight">\(\left\{\widehat{\mu_1}, \ldots, \widehat{\mu_k}\right\}\)</span></p></li>
-<li><p>Calculate the sample variance <span class="math notranslate nohighlight">\(S^2\)</span> of <span class="math notranslate nohighlight">\(\left\{\widehat{\mu_1}, \ldots, \widehat{\mu_k}\right\}\)</span>, i.e., <span class="math notranslate nohighlight">\(\frac{1}{k-1} \sum_{i=1}^k\left(\widehat{\mu_i}-\widehat{\mu}\right)^2\)</span> and <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\mu}) \approx S^2\)</span></p></li>
-</ol>
+<p>We estimate the unknown parameters, <span class="math notranslate nohighlight">\(\hat{\mu}_{MLE}=\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\widehat{\sigma^2}_{MLE}=\)</span> sample variance</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mu_hat</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">var_hat</span> <span class="o">=</span> <span class="nf">var</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Generate <span class="math notranslate nohighlight">\(k\)</span> bootstrap samples from the <span class="math notranslate nohighlight">\(Normal(\hat{\mu}_{MLE}, \widehat{\sigma^2}_{MLE})\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="m">100</span>
+<span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+  <span class="n">bootstrap_sample</span><span class="p">[,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="n">mu_hat</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">var_hat</span><span class="p">))</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate <span class="math notranslate nohighlight">\(\hat{\mu}\)</span>, i.e., the sample median for each bootstrap sample, <span class="math notranslate nohighlight">\(\left\{\widehat{\mu_1}, \ldots, \widehat{\mu_k}\right\}\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_median</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+  <span class="n">sample_median</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">median</span><span class="p">(</span><span class="n">bootstrap_sample</span><span class="p">[,</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+<span class="n">sample_median</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>4.64886055287303</li><li>4.72490657003574</li><li>6.1688615194135</li><li>6.2253778478202</li><li>3.41537510527707</li><li>5.32085980563689</li><li>5.2604928965091</li><li>5.72191431395261</li><li>6.21684973802945</li><li>4.77955001769818</li><li>5.51388771968766</li><li>5.28878641995261</li><li>5.91042208492764</li><li>4.71538722245059</li><li>5.65315238661297</li><li>4.71197420401904</li><li>5.75960926102235</li><li>3.93008402884604</li><li>4.31973561048784</li><li>5.19603762927364</li><li>4.32642880415915</li><li>6.44324626482035</li><li>4.5605167412921</li><li>5.26888363996687</li><li>7.50995643762353</li><li>5.44132396362354</li><li>5.26311480792979</li><li>4.11455346588849</li><li>3.72583336761471</li><li>6.56991878052385</li><li>5.23852307232301</li><li>4.68940909435061</li><li>4.06109458252463</li><li>5.32909523484278</li><li>5.27202751193275</li><li>4.91258100773425</li><li>4.77720605560362</li><li>5.1547264872186</li><li>4.77934497330795</li><li>4.80031323019184</li><li>5.02305337201316</li><li>5.34244676430531</li><li>6.04140624154559</li><li>4.94200401451906</li><li>4.62194719498176</li><li>4.74420588893938</li><li>5.15885231709924</li><li>5.79278520757346</li><li>4.03491906405149</li><li>4.30225654728659</li><li>6.82263917054705</li><li>4.7856782590179</li><li>4.57904676258107</li><li>5.26544705177694</li><li>5.91839238095952</li><li>5.39932962715788</li><li>4.06918723024514</li><li>4.95557208945169</li><li>4.18253908104376</li><li>5.81628984613574</li><li>5.02866936724689</li><li>5.47256428788763</li><li>6.00387119019785</li><li>6.04543582193836</li><li>5.30259997489761</li><li>6.07207024020084</li><li>6.12349492665612</li><li>5.84468166838339</li><li>4.17081897305149</li><li>5.62521272690898</li><li>6.23934580940077</li><li>5.20430182220807</li><li>5.04748699800824</li><li>6.94047183607345</li><li>5.69494063003553</li><li>4.46387368792741</li><li>5.57388788064915</li><li>5.38899191121009</li><li>5.7030497837489</li><li>5.45288861785762</li><li>4.98323933666277</li><li>4.82533664062263</li><li>4.93328315874643</li><li>3.82021878843267</li><li>5.94671219605732</li><li>5.0057169602092</li><li>5.19311092646478</li><li>5.40316576144276</li><li>4.33966507840663</li><li>5.6221990735436</li><li>6.30930458625286</li><li>2.59062006175987</li><li>3.62386482627392</li><li>4.39667996680349</li><li>6.47178467646445</li><li>5.55920012474352</li><li>4.31928394195022</li><li>4.34308461598847</li><li>5.30324854923597</li><li>5.68842257856998</li></ol>
+</div></div>
+</div>
+<p>Calculate the sample variance <span class="math notranslate nohighlight">\(S^2\)</span> of <span class="math notranslate nohighlight">\(\left\{\widehat{\mu_1}, \ldots, \widehat{\mu_k}\right\}\)</span>, i.e., <span class="math notranslate nohighlight">\(\frac{1}{k-1} \sum_{i=1}^k\left(\widehat{\mu_i}-\widehat{\mu}\right)^2\)</span> and <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\mu}) \approx S^2\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="n">sample_median</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">0.662673058410036</div></div>
+</div>
 </section>
 <section id="nonparametric-bootstrap">
 <h2>Nonparametric bootstrap<a class="headerlink" href="#nonparametric-bootstrap" title="Permalink to this headline">#</a></h2>
-<p>We generate bootstrap samples by resampling the original data with replacement.
-Algorithm
-Sample 1: randomly generate 10 numbers from data with replacement <span class="math notranslate nohighlight">\(\Rightarrow\)</span> calculate <span class="math notranslate nohighlight">\(\widehat{\theta_1}\)</span>
-Sample 2: randomly generate 10 numbers from data with replacement <span class="math notranslate nohighlight">\(\Rightarrow\)</span> calculate <span class="math notranslate nohighlight">\(\widehat{\theta_2}\)</span>
-…
-Sample k: randomly generate 10 numbers from data with replacement <span class="math notranslate nohighlight">\(\Rightarrow\)</span> calculate <span class="math notranslate nohighlight">\(\widehat{\theta_k}\)</span>
-The we calculate the sample variance <span class="math notranslate nohighlight">\(S^2\)</span> of <span class="math notranslate nohighlight">\(\left\{\widehat{\theta_1}, \ldots, \widehat{\theta_k}\right\}\)</span>, i.e., <span class="math notranslate nohighlight">\(\frac{1}{k-1} \sum_{i=1}^k\left(\widehat{\theta_t}-\widehat{\theta}\right)^2\)</span> and <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta}) \approx S^2\)</span></p>
+<p>We generate bootstrap samples by resampling the original data with replacement.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+  <span class="n">bootstrap_sample</span><span class="p">[,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We calculate the sample median for each bootstrap sample</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_median</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">){</span>
+  <span class="n">sample_median</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">median</span><span class="p">(</span><span class="n">bootstrap_sample</span><span class="p">[,</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+<span class="n">sample_median</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>5.5970763760309</li><li>6.64427338651501</li><li>5.93514047270266</li><li>6.67004436601387</li><li>4.55110774890748</li><li>5.61218241772481</li><li>6.64427338651501</li><li>5.93514047270266</li><li>5.5970763760309</li><li>4.55110774890748</li><li>6.25809852768051</li><li>3.52383773664096</li><li>5.61218241772481</li><li>6.25809852768051</li><li>4.97819889079254</li><li>4.99330493248644</li><li>5.92003443100876</li><li>5.61218241772481</li><li>4.37442744724808</li><li>4.12760918018542</li><li>4.37442744724808</li><li>3.94733630536302</li><li>3.94733630536302</li><li>6.25809852768051</li><li>5.93514047270266</li><li>5.93514047270266</li><li>3.94733630536302</li><li>3.94733630536302</li><li>6.64427338651501</li><li>5.581970334337</li><li>5.92003443100876</li><li>5.5970763760309</li><li>3.06787977717196</li><li>4.55110774890748</li><li>4.55110774890748</li><li>4.88917184557924</li><li>7.67636435530522</li><li>7.70213533480407</li><li>3.94733630536302</li><li>4.56621379060139</li><li>4.56621379060139</li><li>2.67324802603384</li><li>5.5970763760309</li><li>5.92003443100876</li><li>5.3162629874643</li><li>5.92003443100876</li><li>4.97819889079254</li><li>5.93514047270266</li><li>5.93514047270266</li><li>4.37442744724808</li><li>7.70213533480407</li><li>5.61218241772481</li><li>4.55110774890748</li><li>5.61218241772481</li><li>5.3162629874643</li><li>5.581970334337</li><li>5.61218241772481</li><li>3.94733630536302</li><li>5.93514047270266</li><li>5.92003443100876</li><li>7.67636435530522</li><li>5.5970763760309</li><li>4.37442744724808</li><li>5.581970334337</li><li>6.96723144149287</li><li>5.581970334337</li><li>3.94733630536302</li><li>4.99330493248644</li><li>4.97819889079254</li><li>4.97819889079254</li><li>4.99330493248644</li><li>5.93514047270266</li><li>6.96723144149287</li><li>5.61218241772481</li><li>6.25809852768051</li><li>5.5970763760309</li><li>3.94733630536302</li><li>6.96723144149287</li><li>5.61218241772481</li><li>4.97819889079254</li><li>8.14554552813892</li><li>6.67004436601387</li><li>6.67004436601387</li><li>5.5970763760309</li><li>6.25809852768051</li><li>5.93514047270266</li><li>5.5970763760309</li><li>5.5970763760309</li><li>5.5970763760309</li><li>5.5970763760309</li><li>6.25809852768051</li><li>5.581970334337</li><li>6.96723144149287</li><li>2.67324802603384</li><li>5.3162629874643</li><li>5.581970334337</li><li>4.97819889079254</li><li>3.94733630536302</li><li>5.93514047270266</li><li>5.581970334337</li></ol>
+</div></div>
+</div>
+<p>We calculate the sample variance <span class="math notranslate nohighlight">\(S^2\)</span> of <span class="math notranslate nohighlight">\(\left\{\widehat{\theta_1}, \ldots, \widehat{\theta_k}\right\}\)</span>, i.e., <span class="math notranslate nohighlight">\(\frac{1}{k-1} \sum_{i=1}^k\left(\widehat{\theta_t}-\widehat{\theta}\right)^2\)</span> and <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta}) \approx S^2\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">var</span><span class="p">(</span><span class="n">sample_median</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1.13793927485669</div></div>
+</div>
 </section>
 <section id="building-bootstrap-phylogenetic-trees">
 <h2>Building bootstrap phylogenetic trees<a class="headerlink" href="#building-bootstrap-phylogenetic-trees" title="Permalink to this headline">#</a></h2>
-<ol class="simple">
-<li><p>The DNA alignment file test.phy is available on eLC.</p></li>
-<li><p>We build the maximum likelihood tree using RAxML, which is available at the web server <a class="reference external" href="https://bioinformatics.phylolab.net">https://bioinformatics.phylolab.net</a> <span class="math notranslate nohighlight">\(\Rightarrow\)</span> phylogeny <span class="math notranslate nohighlight">\(\Rightarrow\)</span> maximum likelihood.</p></li>
-<li><p>We build 100 bootstrap trees and summarize them by a majority consensus tree</p></li>
-<li><p>We use FigTree (available at <a class="reference external" href="http://tree.bio.ed.ac.uk/software/figtree/">http://tree.bio.ed.ac.uk/software/figtree/</a>) to show the consensus tree</p></li>
-</ol>
+<p>We build a distance phylogenetic tree using the DNA alignment in test.phy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">phybase</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nf">read.dna.seq</span><span class="p">(</span><span class="s">&quot;./data/lab15_primates.phy&quot;</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s">&quot;phylip&quot;</span><span class="p">)</span>
+<span class="n">seq</span> <span class="o">=</span> <span class="n">data</span><span class="o">$</span><span class="n">seq</span>
+<span class="n">d</span> <span class="o">=</span> <span class="nf">dist.dna</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span><span class="o">$</span><span class="n">name</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">nj</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: ape
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Matrix
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;phybase&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:ape&#39;:
+
+    dist.dna, node.height
+</pre></div>
+</div>
+<img alt="_images/lab11_17_4.png" src="_images/lab11_17_4.png" />
+</div>
+</div>
+<p>We generate 100 nonparametric boostrap samples, i.e., resampling columns of the DNA alignment with replacement. Then, we build a tree for each bootstrap sample.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">ncol</span> <span class="o">=</span> <span class="nf">dim</span><span class="p">(</span><span class="n">seq</span><span class="p">)[</span><span class="m">2</span><span class="p">]</span>
+<span class="n">nbootstrap</span> <span class="o">=</span> <span class="m">100</span>
+<span class="n">bootstrap_tree</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">nbootstrap</span><span class="p">)</span>
+
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nbootstrap</span><span class="p">){</span>
+  <span class="n">columns</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="n">ncol</span><span class="p">,</span><span class="n">ncol</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+  <span class="n">bootstrap_sample</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[,</span><span class="n">columns</span><span class="p">]</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="nf">dist.dna</span><span class="p">(</span><span class="n">bootstrap_sample</span><span class="p">)</span>
+  <span class="nf">rownames</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span><span class="o">$</span><span class="n">name</span>
+  <span class="n">bootstrap_tree</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">write.tree</span><span class="p">(</span><span class="nf">nj</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="n">trees</span> <span class="o">=</span> <span class="nf">read.tree</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">bootstrap_tree</span><span class="p">)</span>
+<span class="n">trees</span>
+
+<span class="nf">plot</span><span class="p">(</span><span class="n">trees</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">trees</span><span class="p">[</span><span class="m">2</span><span class="p">])</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">trees</span><span class="p">[</span><span class="m">3</span><span class="p">])</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">trees</span><span class="p">[</span><span class="m">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100 phylogenetic trees
+</pre></div>
+</div>
+<img alt="_images/lab11_19_1.png" src="_images/lab11_19_1.png" />
+<img alt="_images/lab11_19_2.png" src="_images/lab11_19_2.png" />
+<img alt="_images/lab11_19_3.png" src="_images/lab11_19_3.png" />
+<img alt="_images/lab11_19_4.png" src="_images/lab11_19_4.png" />
+</div>
+</div>
 </section>
 </section>
 
