@@ -770,8 +770,47 @@ P(x \mid y)=\frac{P(x, y)}{P(y)}
 </tr>
 </tbody>
 </table>
+<p>The marginal probability distribution of <span class="math notranslate nohighlight">\(X\)</span> is given by</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>X</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>2</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>P</p></td>
+<td><p>0.4</p></td>
+<td><p>0.6</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>The marginal probability distribution of <span class="math notranslate nohighlight">\(Y\)</span> is given by</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Y</p></th>
+<th class="head"><p>0</p></th>
+<th class="head"><p>1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>P</p></td>
+<td><p>0.3</p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <p>The conditional probability distribution of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y=0\)</span> is <span class="math notranslate nohighlight">\(P(X=1|Y=0) = 0.1/0.3 = 1/3\)</span> and <span class="math notranslate nohighlight">\(P(X=1|Y=0) = 0.2/0.3 = 2/3\)</span></p>
 <p>The conditional probability distribution of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y=1\)</span> is <span class="math notranslate nohighlight">\(P(X=1|Y=1) = 0.3/0.7 = 3/7\)</span> and <span class="math notranslate nohighlight">\(P(X=1|Y=1) = 0.4/0.7 = 4/7\)</span></p>
+<p>In addition, <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are not independent because <span class="math notranslate nohighlight">\(P(X=1 and Y=0) \ne P(X=1)P(Y=0)\)</span></p>
 </section>
 </div><div class="proof definition admonition" id="joint_expectation">
 <p class="admonition-title"><span>Definition </span></p>
@@ -1116,7 +1155,39 @@ f_{\mathbf{x}}\left(x_{1}, \ldots, x_{n}\right)=\frac{1}{\sqrt{(2 \pi)^{k}|\math
 <li><p>The conditional distribution of <span class="math notranslate nohighlight">\(X_{i}\)</span> given <span class="math notranslate nohighlight">\(X_{j}\)</span> for <span class="math notranslate nohighlight">\(j \neq i\)</span> is normal</p></li>
 <li><p>Any linear combination of <span class="math notranslate nohighlight">\(X_1,\dots, X_n\)</span>, i.e., <span class="math notranslate nohighlight">\(\sum_{i=1}^na_iX_i\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(\sum_{i=1}^na_i\mu_i\)</span> and variance <span class="math notranslate nohighlight">\(a^{t}\Sigma a\)</span> where <span class="math notranslate nohighlight">\(a=(a_1,\dots,a_n)\)</span> and <span class="math notranslate nohighlight">\(a^t\)</span> is the transpose of the vector <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
 </ul>
+<div class="proof example admonition" id="example_4.14">
+<p class="admonition-title"><span>Example </span> (4.14)</p>
+<section class="example-content" id="proof-content">
+<p>Suppose three random variables <span class="math notranslate nohighlight">\((X_1, X_2, X_3)\)</span> follow a Multivariate normal distribution with the mean vector <span class="math notranslate nohighlight">\(\mu=(1.2, 3.4, 0.4)\)</span> and the covariance matrix <span class="math notranslate nohighlight">\(\begin{pmatrix} 0.1&amp;   0.2&amp;  -0.4\\ 0.2 &amp;     1.3 &amp;    1.8\\ -0.4 &amp;   1.8  &amp;  1.1\end{pmatrix}\)</span>.</p>
+<p>a) What is the probability density function of <span class="math notranslate nohighlight">\(X_1\)</span>?<br />
+<span class="math notranslate nohighlight">\(E(X_1) = 1.2\)</span> and <span class="math notranslate nohighlight">\(var(X_1)=0.1\)</span>. Thus, <span class="math notranslate nohighlight">\(X_1\)</span> follows <span class="math notranslate nohighlight">\(Normal(1.2, 0.1)\)</span>.</p>
+<p>b) Find <span class="math notranslate nohighlight">\(E(X_2)\)</span> and <span class="math notranslate nohighlight">\(var(X_3)\)</span> <br />
+<span class="math notranslate nohighlight">\(E(X_2) = 3.4\)</span> and <span class="math notranslate nohighlight">\(var(X_3) = 1.1\)</span></p>
+<p>c) Find <span class="math notranslate nohighlight">\(E(2X_1-X_2-4X_3)\)</span> and <span class="math notranslate nohighlight">\(var(X_1+X_2+X_3)\)</span>\</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split} 
+E(2X_1-X_2-4X_3)$ &amp;= 2E(X_1)-E(X_2)-4E(X_3) \\
+&amp;=2*1.2-3.4-4*0.4 \\
+&amp;=-2.6
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split} 
+var(X_1+X_2+X_3) &amp;= var(X_1)+var(X_2)+var(X_3)+2cov(X_1,X_2)+2cov(X_1,X_3)+2cov(X_2,X_3) \\
+&amp;=0.1+1.3+1.1+2*0.2+2*(-1.4)+2*1.8 \\
+&amp;=3.7
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<p>d) Let <span class="math notranslate nohighlight">\(Y = X_1+X_2+X_3\)</span>. Find the probability density function of <span class="math notranslate nohighlight">\(Y\)</span>   <br />
+<span class="math notranslate nohighlight">\(E(X_1+X_2+X_3)=1.2+3.4+0.4=5\)</span> and <span class="math notranslate nohighlight">\(var(X_1+X_2+X_3) = 3.7\)</span>. Thus, <span class="math notranslate nohighlight">\(Y\)</span> follows <span class="math notranslate nohighlight">\(Normal(5, 3.7)\)</span>.</p>
 </section>
+</div></section>
 </section>
 </section>
 
