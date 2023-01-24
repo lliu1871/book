@@ -907,7 +907,23 @@ E(X \mid Y=y)=\int_{-\infty}^{\infty} x f(x \mid y) d x
 \[
 E(X)=E_{Y}(E(X \mid Y))
 \]</div>
-<p>and</p>
+<p>because</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+E_{Y}(E(X \mid Y)) &amp;= \int_{-\infty}^{\infty} (E(X \mid Y) f(y)dy\\
+&amp;=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f(x \mid y) d x\right) f(y)dy\\
+&amp;=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x \frac{f(x,y)}{f(y)} d x\right) f(y)dy\\
+&amp;=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f(x,y) d x\right) dy\\
+&amp;=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f(x,y) dy\right) dx\\
+&amp;=\int_{-\infty}^{\infty} x \left(\int_{-\infty}^{\infty} f(x,y) dy\right) dx\\
+&amp;=\int_{-\infty}^{\infty} xf(x) dx\\
+&amp;=E(X)
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<p>Similarly, we can show</p>
 <div class="math notranslate nohighlight">
 \[
 \operatorname{var}(X)=\operatorname{var}_{Y}(E(X \mid Y))+E_{Y}(\operatorname{var}(X \mid Y))
@@ -919,7 +935,7 @@ E(X)=E_{Y}(E(X \mid Y))
 <p>The covariance of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[
-\operatorname{cov}(X 1, X 2)=E((X 1-u 1)(X 2-u 2))
+\operatorname{cov}(X_1, X_2)=E((X_1-u_1)(X_2-u_2))
 \]</div>
 <p>When <span class="math notranslate nohighlight">\(X_{1}=X_{2}\)</span>, the covariance of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -927,13 +943,13 @@ E(X)=E_{Y}(E(X \mid Y))
 E\left(\left(X_{1}-u_{1}\right)\left(X_{1}-u_{1}\right)\right)=E\left[\left(X_{1}-u_{1}\right)^{2}\right]=\operatorname{var}\left(X_{1}\right)
 \]</div>
 <ul class="simple">
-<li><p>variance is a special case of covariance</p></li>
+<li><p>Variance is a special case of covariance</p></li>
 <li><p>Covariance could be any real number, but variance must be non-negative.</p></li>
 </ul>
 <p>The correlation of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
-\operatorname{corr}(X 1, X 2)=\frac{E((X 1-u 1)(X 2-u 2))}{\sqrt{\operatorname{var}(X 1)} \sqrt{\operatorname{var}(X 2)}}
+\operatorname{corr}(X_1, X_2)=\frac{E((X_1-u_1)(X_2-u_2))}{\sqrt{\operatorname{var}(X_1)} \sqrt{\operatorname{var}(X_2)}}
 \]</div>
 <ul class="simple">
 <li><p>Correlation is the standardized covariance</p></li>
@@ -1043,7 +1059,7 @@ G_{s_{n}}(t)=\prod_{i=1}^{n} G_{i}(t)
 <p class="admonition-title"><span>Example </span> (4.7)</p>
 <section class="example-content" id="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(X_{1} \sim Poisson(\lambda_1)\)</span> and <span class="math notranslate nohighlight">\(X_2 \sim Poisson(\lambda_2)\)</span>. Find the probability distribution of <span class="math notranslate nohighlight">\(X_1+X_2\)</span>.</p>
-<p>The MGF of <span class="math notranslate nohighlight">\(X_1\)</span> is <span class="math notranslate nohighlight">\(G_{X_1}(t) = e^{\lambda_1(t-1)}\)</span> and the MGF of <span class="math notranslate nohighlight">\(X_2\)</span> is <span class="math notranslate nohighlight">\(G_{X_2}(t) = e^{\lambda_2(t-1)}\)</span>. Thus,</p>
+<p>The PGF of <span class="math notranslate nohighlight">\(X_1\)</span> is <span class="math notranslate nohighlight">\(G_{X_1}(t) = e^{\lambda_1(t-1)}\)</span> and the PGF of <span class="math notranslate nohighlight">\(X_2\)</span> is <span class="math notranslate nohighlight">\(G_{X_2}(t) = e^{\lambda_2(t-1)}\)</span>. Thus,</p>
 <div class="math notranslate nohighlight">
 \[
 G_{X_1+X_2}(t)=G_{X_1}(t)G_{X_2}(t)=e^{(\lambda_1+\lambda_2)(t-1)}
