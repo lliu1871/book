@@ -829,9 +829,43 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 \[
 \mathrm{H}_{0}: \mu=1 \text{ versus } \mathrm{H}_{1}: \mu&gt;1
 \]</div>
+<p>The Wald statistic takes the following form <span class="math notranslate nohighlight">\(W=\frac{\hat{\mu}-\mu_0}{\operatorname{sd}(\hat{\mu})}\)</span> where <span class="math notranslate nohighlight">\(\hat{\mu}\)</span> is the estimate of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\mu_0\)</span> is the expected value of <span class="math notranslate nohighlight">\(\mu\)</span> under the null hypothesis. In the one sample t-test, the estimate of <span class="math notranslate nohighlight">\(\mu\)</span> is the sample average <span class="math notranslate nohighlight">\(\bar{X}\)</span> and the expected value of <span class="math notranslate nohighlight">\(\mu\)</span> under the null hypothesis is <span class="math notranslate nohighlight">\(\mu_0=1\)</span>.</p>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=\frac{\bar{x}-1} {sd(\bar{x})}\)</span>. The null distribution of <span class="math notranslate nohighlight">\(t\)</span> is the student <span class="math notranslate nohighlight">\(t\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\((n-1)\)</span>.</p>
-<p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the null distribution of the test statistic.</p>
+<p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span>. We find the value of <span class="math notranslate nohighlight">\(a\)</span> by controling the type I error at the level of 5%, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[P(t&gt;a|H_0) = 0.05\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the null distribution of the test statistic <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="n">.</span><span class="m">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;the null distribution of test statistic t&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.4</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">2.3</span><span class="p">,</span><span class="m">0.005</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;5%&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.15</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;95%&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap6_1_0.png" src="_images/chap6_1_0.png" />
+</div>
+</div>
 <p>If the alternative is H1: <span class="math notranslate nohighlight">\(\mu&lt;1\)</span>, we only need to change the rejection region and we reject the null if <span class="math notranslate nohighlight">\(t&lt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 5% quantile of the null distribution of the test statistic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="n">.</span><span class="m">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;the null distribution of test statistic t&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">-2</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.4</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">-2.3</span><span class="p">,</span><span class="m">0.005</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;5%&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.15</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;95%&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap6_3_0.png" src="_images/chap6_3_0.png" />
+</div>
+</div>
 <p>Here, we use the rejection region to make decisions. Alternatively, we may calculate the pvalue and reject the null if <span class="math notranslate nohighlight">\(\text{pvalue}\le 0.05\)</span>. The pvalue is an estimate of the Type I error, defined as</p>
 <div class="math notranslate nohighlight">
 \[ pvalue = P(\text{rejection region} | H_0)\]</div>
@@ -847,13 +881,13 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -4.3178, df = 19, p-value = 0.0001855
+t = -4.7965, df = 19, p-value = 6.273e-05
 alternative hypothesis: true mean is less than 3
 95 percent confidence interval:
-     -Inf 2.463242
+     -Inf 2.192702
 sample estimates:
 mean of x 
-  2.10471 
+ 1.737612 
 </pre></div>
 </div>
 </div>
@@ -869,6 +903,23 @@ mean of x
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> or <span class="math notranslate nohighlight">\(t&lt;b\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 97.5% quantile and <span class="math notranslate nohighlight">\(b\)</span> is the 2.5% quantile of the null distribution of the test statistic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="n">.</span><span class="m">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;l&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;the null distribution of test statistic t&quot;</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;t&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">2.5</span><span class="p">,</span><span class="m">2.5</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.4</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">lines</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">-2.5</span><span class="p">,</span><span class="m">-2.5</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.4</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">2.7</span><span class="p">,</span><span class="m">0.005</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;2.5%&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">-2.7</span><span class="p">,</span><span class="m">0.005</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;2.5%&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0.15</span><span class="p">,</span><span class="n">labels</span><span class="o">=</span><span class="s">&quot;95%&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap6_7_0.png" src="_images/chap6_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 <span class="nf">t.test</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">mu</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">alternative</span><span class="o">=</span><span class="s">&quot;two.sided&quot;</span><span class="p">)</span>
 </pre></div>
@@ -878,13 +929,13 @@ mean of x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -3.7972, df = 19, p-value = 0.001217
+t = -4.0028, df = 19, p-value = 0.0007613
 alternative hypothesis: true mean is not equal to 3
 95 percent confidence interval:
- 1.639641 2.606414
+ 1.338459 2.479451
 sample estimates:
 mean of x 
- 2.123027 
+ 1.908955 
 </pre></div>
 </div>
 </div>
@@ -929,16 +980,16 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &lt; \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -4.6576, df = 37.367, p-value = 1
+t = -1.2316, df = 37.951, p-value = 0.8872
 alternative hypothesis: true difference in means is greater than 0
 95 percent confidence interval:
- -1.893748       Inf
+ -1.012075       Inf
 sample estimates:
 mean of x mean of y 
- 1.710340  3.100625 
+ 2.389405  2.816632 
 </pre></div>
 </div>
-<img alt="_images/chap6_5_1.png" src="_images/chap6_5_1.png" />
+<img alt="_images/chap6_10_1.png" src="_images/chap6_10_1.png" />
 </div>
 </div>
 </section>
@@ -960,13 +1011,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -4.6576, df = 37.367, p-value = 3.967e-05
+t = -1.2316, df = 37.951, p-value = 0.2257
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.9948940 -0.7856743
+ -1.1294855  0.2750311
 sample estimates:
 mean of x mean of y 
- 1.710340  3.100625 
+ 2.389405  2.816632 
 </pre></div>
 </div>
 </div>
@@ -1005,13 +1056,13 @@ mean of x mean of y
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-group        2  38.05  19.024   19.87 2.84e-07 ***
-Residuals   57  54.58   0.958                     
+group        2  34.59  17.293   20.81 1.64e-07 ***
+Residuals   57  47.36   0.831                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
 </div>
-<img alt="_images/chap6_9_1.png" src="_images/chap6_9_1.png" />
+<img alt="_images/chap6_14_1.png" src="_images/chap6_14_1.png" />
 </div>
 </div>
 </section>
@@ -1114,7 +1165,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -9.34749303795088 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -34.631359173196 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
@@ -1149,7 +1200,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 10.132803346555 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 17.3215346675591 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
