@@ -580,17 +580,17 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#two-points-hypothesis">
-     1. Two points hypothesis
+     Two points hypothesis
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-hypotheses-are-intervals">
-     2. The hypotheses are intervals
+    <a class="reference internal nav-link" href="#interval-hypotheses">
+     Interval hypotheses
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nested-hypotheses-the-null-hypothesis-is-nested-in-the-alternative-hypothesis">
-     3. Nested hypotheses (the null hypothesis is nested in the alternative hypothesis)
+    <a class="reference internal nav-link" href="#nested-hypotheses">
+     Nested hypotheses
     </a>
    </li>
   </ul>
@@ -685,17 +685,17 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#two-points-hypothesis">
-     1. Two points hypothesis
+     Two points hypothesis
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-hypotheses-are-intervals">
-     2. The hypotheses are intervals
+    <a class="reference internal nav-link" href="#interval-hypotheses">
+     Interval hypotheses
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nested-hypotheses-the-null-hypothesis-is-nested-in-the-alternative-hypothesis">
-     3. Nested hypotheses (the null hypothesis is nested in the alternative hypothesis)
+    <a class="reference internal nav-link" href="#nested-hypotheses">
+     Nested hypotheses
     </a>
    </li>
   </ul>
@@ -847,13 +847,13 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -5.4438, df = 19, p-value = 1.49e-05
+t = -4.3178, df = 19, p-value = 0.0001855
 alternative hypothesis: true mean is less than 3
 95 percent confidence interval:
-     -Inf 2.247082
+     -Inf 2.463242
 sample estimates:
 mean of x 
- 1.896603 
+  2.10471 
 </pre></div>
 </div>
 </div>
@@ -878,13 +878,13 @@ mean of x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -5.1449, df = 19, p-value = 5.758e-05
+t = -3.7972, df = 19, p-value = 0.001217
 alternative hypothesis: true mean is not equal to 3
 95 percent confidence interval:
- 1.378344 2.316225
+ 1.639641 2.606414
 sample estimates:
 mean of x 
- 1.847285 
+ 2.123027 
 </pre></div>
 </div>
 </div>
@@ -929,13 +929,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &lt; \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -2.8896, df = 31.508, p-value = 0.9965
+t = -4.6576, df = 37.367, p-value = 1
 alternative hypothesis: true difference in means is greater than 0
 95 percent confidence interval:
- -1.44786      Inf
+ -1.893748       Inf
 sample estimates:
 mean of x mean of y 
- 2.101888  3.014514 
+ 1.710340  3.100625 
 </pre></div>
 </div>
 <img alt="_images/chap6_5_1.png" src="_images/chap6_5_1.png" />
@@ -960,13 +960,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -2.8896, df = 31.508, p-value = 0.006925
+t = -4.6576, df = 37.367, p-value = 3.967e-05
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.5563502 -0.2689017
+ -1.9948940 -0.7856743
 sample estimates:
 mean of x mean of y 
- 2.101888  3.014514 
+ 1.710340  3.100625 
 </pre></div>
 </div>
 </div>
@@ -1005,8 +1005,8 @@ mean of x mean of y
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-group        2  26.79  13.395    16.1 2.87e-06 ***
-Residuals   57  47.43   0.832                     
+group        2  38.05  19.024   19.87 2.84e-07 ***
+Residuals   57  54.58   0.958                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
@@ -1072,7 +1072,7 @@ X-squared = 3.0387, df = 1, p-value = 0.0813
 <p>The likelihood ratio test can test which hypothesis (null or alternative) has a better fit to the real data. The test assumes that the likelihood function is given.</p>
 </div>
 <section id="two-points-hypothesis">
-<h3>1. Two points hypothesis<a class="headerlink" href="#two-points-hypothesis" title="Permalink to this headline">#</a></h3>
+<h3>Two points hypothesis<a class="headerlink" href="#two-points-hypothesis" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(\mathrm{H}_{0}: \theta=\theta_{0}\)</span> vs <span class="math notranslate nohighlight">\(\mathrm{H}_{1}: \theta=\theta_{1}\)</span></p>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=\frac{l_{0}}{l_{1}}\)</span>, or equivalently, <span class="math notranslate nohighlight">\(t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)\)</span>, where <span class="math notranslate nohighlight">\(l_{0}\)</span> is the likelihood under the null hypothesis and <span class="math notranslate nohighlight">\(l_{1}\)</span> is the likelihood under the alternative hypothesis.</p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the null distribution of the test statistic.</p>
@@ -1114,7 +1114,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -31.4368699656314 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -9.34749303795088 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
@@ -1125,15 +1125,15 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 <p>The likelihood ratio test for two simple hypotheses is the most powerful test.</p>
 </section>
 </div></section>
-<section id="the-hypotheses-are-intervals">
-<h3>2. The hypotheses are intervals<a class="headerlink" href="#the-hypotheses-are-intervals" title="Permalink to this headline">#</a></h3>
+<section id="interval-hypotheses">
+<h3>Interval hypotheses<a class="headerlink" href="#interval-hypotheses" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(\mathrm{H}_{0}: \theta \in \Theta_{0}\)</span> vs <span class="math notranslate nohighlight">\(\mathrm{H}_{1}: \theta \in \Theta_{1}\)</span></p>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)\)</span>, where <span class="math notranslate nohighlight">\(l_{0}=\max _{\theta \in \Theta_{0}}\{l(\theta)\}\)</span> is the maximum likelihood score under the null hypothesis and <span class="math notranslate nohighlight">\(l_{1}\)</span> is the maximum likelihood score <span class="math notranslate nohighlight">\(l_{1}=\)</span> <span class="math notranslate nohighlight">\(\max _{\theta \in \Theta_{1}}\{l(\theta)\}\)</span> under the alternative hypothesis.</p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the null distribution of the test statistic.</p>
 </section>
-<section id="nested-hypotheses-the-null-hypothesis-is-nested-in-the-alternative-hypothesis">
-<h3>3. Nested hypotheses (the null hypothesis is nested in the alternative hypothesis)<a class="headerlink" href="#nested-hypotheses-the-null-hypothesis-is-nested-in-the-alternative-hypothesis" title="Permalink to this headline">#</a></h3>
-<p><span class="math notranslate nohighlight">\(\mathrm{H}_{0}: \mathrm{M}_{0}\)</span> vs <span class="math notranslate nohighlight">\(\mathrm{H}_{1}: \mathrm{M}_{1}\)</span></p>
+<section id="nested-hypotheses">
+<h3>Nested hypotheses<a class="headerlink" href="#nested-hypotheses" title="Permalink to this headline">#</a></h3>
+<p><span class="math notranslate nohighlight">\(H_{0}: M_{0}\)</span> vs <span class="math notranslate nohighlight">\(H_{1}: M_{1}\)</span> where the null model <span class="math notranslate nohighlight">\(M_0\)</span> is a special case (nested) of the alternative model <span class="math notranslate nohighlight">\(M_1\)</span>.</p>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)\)</span>, where <span class="math notranslate nohighlight">\(l_{0}=\max _{\theta \in \mathrm{M}_{0}}\{l(\theta)\}\)</span> is the maximum likelihood score under the null hypothesis and <span class="math notranslate nohighlight">\(l_{1}\)</span> is the maximum likelihood score <span class="math notranslate nohighlight">\(l_{1}=\)</span> <span class="math notranslate nohighlight">\(\max _{\theta \in \mathrm{M}_{1}}\{l(\theta)\}\)</span> under the alternative hypothesis.</p>
 <p>The null distribution of the test statistic is asymptotically the chi-square distribution with <span class="math notranslate nohighlight">\(\mathrm{df}=\left(\right.\)</span> number of free parameters in <span class="math notranslate nohighlight">\(\mathrm{H}_{1}-\)</span> number of free parameters in <span class="math notranslate nohighlight">\(\left.\mathrm{H}_{0}\right)\)</span></p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the chi-square distribution</p>
@@ -1149,7 +1149,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 17.20619071751 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 10.132803346555 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
