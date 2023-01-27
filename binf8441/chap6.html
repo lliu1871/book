@@ -816,6 +816,12 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 </section>
 <section id="one-sample-t-test">
 <h2>One sample t-test<a class="headerlink" href="#one-sample-t-test" title="Permalink to this headline">#</a></h2>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p>The one-sample t-test is used to determine if the population mean <span class="math notranslate nohighlight">\(\mu\)</span> is equal to a constant. The test assumes that the sample follows the normal distributions, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[X_1,\dots,X_n \sim Normal(\mu, \sigma^2)\]</div>
+</div>
 <section id="one-sided-t-test">
 <h3>One-sided t-test<a class="headerlink" href="#one-sided-t-test" title="Permalink to this headline">#</a></h3>
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, we want to test if the population mean is <span class="math notranslate nohighlight">\(\mu=1\)</span> or <span class="math notranslate nohighlight">\(\mu&gt;1\)</span>. This is called the one-sided test. If the alternative hypothesis is <span class="math notranslate nohighlight">\(\mu\ne 1\)</span>, it is called the two-sided test.</p>
@@ -841,13 +847,13 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -4.1813, df = 19, p-value = 0.0002533
+t = -5.4438, df = 19, p-value = 1.49e-05
 alternative hypothesis: true mean is less than 3
 95 percent confidence interval:
-     -Inf 2.565906
+     -Inf 2.247082
 sample estimates:
 mean of x 
- 2.259803 
+ 1.896603 
 </pre></div>
 </div>
 </div>
@@ -872,13 +878,13 @@ mean of x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -2.5323, df = 19, p-value = 0.02031
+t = -5.1449, df = 19, p-value = 5.758e-05
 alternative hypothesis: true mean is not equal to 3
 95 percent confidence interval:
- 1.710743 2.877569
+ 1.378344 2.316225
 sample estimates:
 mean of x 
- 2.294156 
+ 1.847285 
 </pre></div>
 </div>
 </div>
@@ -887,10 +893,17 @@ mean of x
 </section>
 <section id="two-sample-t-test">
 <h2>Two sample t-test<a class="headerlink" href="#two-sample-t-test" title="Permalink to this headline">#</a></h2>
-<p>The two-sample t-test is used to determine if two population means <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are equal.</p>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p>The two-sample t-test is used to determine if two population means <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> are equal. The test assumes that the two samples follow the normal distributions, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[X_1,\dots,X_n \sim Normal(\mu_1, \sigma^2)\]</div>
+<div class="math notranslate nohighlight">
+\[Y_1,\dots,Y_m \sim Normal(\mu_2, \sigma^2)\]</div>
+</div>
 <section id="one-sided-test">
 <h3>One-sided test<a class="headerlink" href="#one-sided-test" title="Permalink to this headline">#</a></h3>
-<p>The test is one-sided, if the alternative hypothesis is one-sided.</p>
+<p>The test is one-sided if the alternative hypothesis is one-sided.</p>
 <div class="math notranslate nohighlight">
 \[
 H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &gt; \mu_2
@@ -916,13 +929,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &lt; \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -2.2525, df = 36.8, p-value = 0.9848
+t = -2.8896, df = 31.508, p-value = 0.9965
 alternative hypothesis: true difference in means is greater than 0
 95 percent confidence interval:
- -0.9493856        Inf
+ -1.44786      Inf
 sample estimates:
 mean of x mean of y 
- 1.857914  2.400706 
+ 2.101888  3.014514 
 </pre></div>
 </div>
 <img alt="_images/chap6_5_1.png" src="_images/chap6_5_1.png" />
@@ -947,13 +960,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -2.2525, df = 36.8, p-value = 0.03034
+t = -2.8896, df = 31.508, p-value = 0.006925
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.031131 -0.054453
+ -1.5563502 -0.2689017
 sample estimates:
 mean of x mean of y 
- 1.857914  2.400706 
+ 2.101888  3.014514 
 </pre></div>
 </div>
 </div>
@@ -962,7 +975,17 @@ mean of x mean of y
 </section>
 <section id="f-test-for-more-than-two-samples">
 <h2>F-test for more than two samples<a class="headerlink" href="#f-test-for-more-than-two-samples" title="Permalink to this headline">#</a></h2>
-<p>The F-test (ANOVA) can determine whether multiple group means are equal. Let <span class="math notranslate nohighlight">\(\mu_1,\dots,\mu_k\)</span> be the means of <span class="math notranslate nohighlight">\(k\)</span> populations.</p>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p>The F-test (ANOVA) can determine whether multiple population means <span class="math notranslate nohighlight">\(\mu_1,\dots,\mu_k\)</span> are equal. The test assumes that the samples follow the normal distributions, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[X_{11},\dots,X_{1n_1} \sim Normal(\mu_1, \sigma^2)\]</div>
+<div class="math notranslate nohighlight">
+\[X_{21},\dots,X_{2n_2} \sim Normal(\mu_2, \sigma^2)\]</div>
+<p>…</p>
+<div class="math notranslate nohighlight">
+\[X_{k1},\dots,X_{kn_k} \sim Normal(\mu_k, \sigma^2)\]</div>
+</div>
 <div class="math notranslate nohighlight">
 \[ H_0: \mu_1 = \dots = \mu_k \text{ versus } H_1: \text{at least two means are not equal}\]</div>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t\)</span> = variation between sample means / variation within the samples</p>
@@ -982,8 +1005,8 @@ mean of x mean of y
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-group        2  74.44   37.22   35.13 1.15e-10 ***
-Residuals   57  60.39    1.06                     
+group        2  26.79  13.395    16.1 2.87e-06 ***
+Residuals   57  47.43   0.832                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
@@ -994,7 +1017,11 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </section>
 <section id="association-test-contingency-table">
 <h2>Association test (contingency table):<a class="headerlink" href="#association-test-contingency-table" title="Permalink to this headline">#</a></h2>
-<p>The association test can determine whether there is association between two variables, for instance, smoking and gender. We randomly take 20 people (12 female and 8 male) and count the number of people who smoke. We want to know if smoking is associated with gender.</p>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p>The association test can determine whether there is association between two variables, for instance, smoking and gender. The test assumes that the counts follow the Poisson distribution.</p>
+</div>
+<p>We randomly take 20 people (12 female and 8 male) and count the number of people who smoke. We want to know if smoking is associated with gender.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{|l|l|l|l|}
@@ -1006,7 +1033,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 \end{array}
 \end{split}\]</div>
 <p><span class="math notranslate nohighlight">\(H_0\)</span> : gender and smoking are independent versus <span class="math notranslate nohighlight">\(H_1\)</span> : not independent</p>
-<p>If the null hypothesis is true, then <span class="math notranslate nohighlight">\(P(M\cap S))=P(M)) * P(S)=8 / 20 * 9 / 20\)</span>. Thus, under the null hypothesis, the expected number of male who smoke is <span class="math notranslate nohighlight">\(8 / 20 * 9 / 20 * 20=3.6\)</span>. Similarly, the expected number of female who smoke is <span class="math notranslate nohighlight">\(12 / 20 * 9 / 20 * 20=5.4\)</span>. The expected number of male who do not smoke is <span class="math notranslate nohighlight">\(8 / 20 * 11 / 20 * 20=4.4\)</span>. The expected number of female who do not smoke is <span class="math notranslate nohighlight">\(12 / 20 * 11 / 20 * 20=6.6\)</span>.</p>
+<p>If the null hypothesis is true, then <span class="math notranslate nohighlight">\(P(M\cap S)=P(M) * P(S)=8 / 20 * 9 / 20\)</span>. Thus, under the null hypothesis, the expected number of male who smoke is <span class="math notranslate nohighlight">\(8 / 20 * 9 / 20 * 20=3.6\)</span>. Similarly, the expected number of female who smoke is <span class="math notranslate nohighlight">\(12 / 20 * 9 / 20 * 20=5.4\)</span>. The expected number of male who do not smoke is <span class="math notranslate nohighlight">\(8 / 20 * 11 / 20 * 20=4.4\)</span>. The expected number of female who do not smoke is <span class="math notranslate nohighlight">\(12 / 20 * 11 / 20 * 20=6.6\)</span>.</p>
 <p>Test-stat: <span class="math notranslate nohighlight">\(t=\sum_{i=1}^{4} \frac{\left(o_{i}-e_{i}\right)^{2}}{e_{i}}\)</span>.</p>
 <p>The null distribution of the test statistic is asymptotically (sample size is large) the chi-square distribution with <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span> degrees of freedom, in which <span class="math notranslate nohighlight">\(r\)</span> is the number of rows and <span class="math notranslate nohighlight">\(c\)</span> is the number of columns.</p>
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the chi-square distribution with <span class="math notranslate nohighlight">\((r-1)(c-1)\)</span> degrees of freedom.</p>
@@ -1040,6 +1067,10 @@ X-squared = 3.0387, df = 1, p-value = 0.0813
 </section>
 <section id="likelihood-ratio-test">
 <h2>Likelihood ratio test<a class="headerlink" href="#likelihood-ratio-test" title="Permalink to this headline">#</a></h2>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p>The likelihood ratio test can test which hypothesis (null or alternative) has a better fit to the real data. The test assumes that the likelihood function is given.</p>
+</div>
 <section id="two-points-hypothesis">
 <h3>1. Two points hypothesis<a class="headerlink" href="#two-points-hypothesis" title="Permalink to this headline">#</a></h3>
 <p><span class="math notranslate nohighlight">\(\mathrm{H}_{0}: \theta=\theta_{0}\)</span> vs <span class="math notranslate nohighlight">\(\mathrm{H}_{1}: \theta=\theta_{1}\)</span></p>
@@ -1083,7 +1114,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -26.1758345529017 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -31.4368699656314 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
@@ -1118,7 +1149,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 18.3115124914632 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 17.20619071751 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
@@ -1127,6 +1158,10 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </section>
 <section id="mann-whitney-test-nonparametric-test-for-two-samples">
 <h2>Mann-Whitney test (nonparametric test for two samples)<a class="headerlink" href="#mann-whitney-test-nonparametric-test-for-two-samples" title="Permalink to this headline">#</a></h2>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p>The Mann-Whitney test can test if two populations have the same median. The test does not assume any underlying probability distribution. This is a nonparametric test.</p>
+</div>
 <p>The data consist of two random samples. Let <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n}\)</span> be the sample generated from population 1 and <span class="math notranslate nohighlight">\(Y_{1}, \dots, Y_{m}\)</span> be the sample from population 2. We want to test if two samples are from the same population, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
