@@ -575,15 +575,15 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">Multiple tests problems</a></p></li>
 </ul>
 </div>
-<p>Statistical analysis may involve multiple tests. Although the <span class="math notranslate nohighlight">\(\alpha\)</span> level of each test is 0.05, the overall <span class="math notranslate nohighlight">\(\alpha\)</span> level is much greater than 0.05 when multiple tests are involved. Therefore, correction is needed in order to control the overall <span class="math notranslate nohighlight">\(\alpha\)</span> at the level of 5%.</p>
+<p>Statistical analysis may involve multiple tests. Although the <span class="math notranslate nohighlight">\(\alpha\)</span> level (Type I error) of each test is 0.05, the overall <span class="math notranslate nohighlight">\(\alpha\)</span> level is much greater than 0.05 when multiple tests are involved. Therefore, correction is needed in order to control the overall <span class="math notranslate nohighlight">\(\alpha\)</span> at the level of 5%.</p>
 <section id="bonferroni-correction">
 <h2>Bonferroni correction<a class="headerlink" href="#bonferroni-correction" title="Permalink to this headline">#</a></h2>
-<p>Suppose there are <span class="math notranslate nohighlight">\(k\)</span>  tests and they are independent of each other. Let <span class="math notranslate nohighlight">\(R_i\)</span> be the rejection region for the test <span class="math notranslate nohighlight">\(i\)</span>. The overall type I error is given by</p>
+<p>Suppose there are <span class="math notranslate nohighlight">\(k\)</span>  tests and they are independent of each other. Let <span class="math notranslate nohighlight">\(R_i\)</span> be the rejection region for the test <span class="math notranslate nohighlight">\(i\)</span>. The overall type I error, the probability of at least one test rejecting the null hypothesis, is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
 \begin{split}
-P(\cup_{i=1}^kR_i) &amp;= 1- P(\bar{\cup_{i=1}^kR_i})\\
+P(\cup_{i=1}^kR_i) &amp;= 1- P(\overline{\cup_{i=1}^kR_i})\\
 &amp;= 1- P(\cap_{i=1}^k\bar{R_i})\\ 
 &amp;= 1-\prod_{i=1}^kP(\bar{R_i}) \\
 &amp;= 1-\prod_{i=1}^k\left(1-P(R_i)\right)\\ 
