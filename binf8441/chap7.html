@@ -630,9 +630,9 @@ P(\cup_{i=1}^kR_i) &amp;= 1- P(\overline{\cup_{i=1}^kR_i})\\
 </section>
 </div><p>In practise, it is difficult to calculate FDR. The Benjamin–Hochberg procedure (BH step-up procedure) is a numerical approach to control the false discovery rate.</p>
 <p>The BH procedure works as follows: calculate the pvalue for each test and
-re-order them from the minimum to the maximum <span class="math notranslate nohighlight">\(P_1,\dots, P_n\)</span>.</p>
+re-order them from the minimum to the maximum <span class="math notranslate nohighlight">\(P_{(1)},\dots, P_{(n)}\)</span>.</p>
 <ol class="simple">
-<li><p>For a given <span class="math notranslate nohighlight">\(\alpha\)</span>, find the largest <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(P(k) \leq \frac{k}{n}\alpha\)</span></p></li>
+<li><p>For a given <span class="math notranslate nohighlight">\(\alpha\)</span>, find the largest <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(P_{(k)} \leq \frac{k}{n}\alpha\)</span></p></li>
 <li><p>Reject the null hypothesis (i.e. declare positive discoveries) for the hypotheses <span class="math notranslate nohighlight">\(H_i\)</span> for <span class="math notranslate nohighlight">\(i = 1, \dots, k\)</span>.</p></li>
 </ol>
 <div class="proof example admonition" id="7.1">
