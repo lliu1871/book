@@ -795,7 +795,7 @@ title="Print to PDF"
 <h2>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this headline">#</a></h2>
 <p>Simple linear regression is a linear model with a single explanatory variable <span class="math notranslate nohighlight">\(x\)</span>. The model assumes a linear relationship between the response variable <span class="math notranslate nohighlight">\(y\)</span> and the explanatory variable <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
 <p><span class="math notranslate nohighlight">\(y_{i}=\beta_0+\beta_1 x_{i}+\epsilon_{i}\)</span></p>
-<p><span class="math notranslate nohighlight">\(x\)</span> : the explanatary variable. <span class="math notranslate nohighlight">\(X\)</span> is fixed.</p>
+<p><span class="math notranslate nohighlight">\(x\)</span> : the explanatary variable. <span class="math notranslate nohighlight">\(x_i's\)</span> are fixed.</p>
 <p><span class="math notranslate nohighlight">\(y\)</span>: the response variable.</p>
 <p><span class="math notranslate nohighlight">\(\epsilon\)</span> : the error term. The model assumes that <span class="math notranslate nohighlight">\(\epsilon_{i}{ }^{\prime} s\)</span> are iid random variables with the normal <span class="math notranslate nohighlight">\(\left(0, \sigma^{2}\right)\)</span> density.</p>
 <div class="cell docutils container">
@@ -823,7 +823,7 @@ title="Print to PDF"
 </table>
 </div></div>
 </div>
-<p>The probability distribution of <span class="math notranslate nohighlight">\(y_{i}\)</span> is <span class="math notranslate nohighlight">\(\operatorname{Normal}\left(\beta_0+\beta_1 X_{i}, \sigma^{2}\right)\)</span>. The expectation of <span class="math notranslate nohighlight">\(y\)</span> is a linear function of <span class="math notranslate nohighlight">\(x\)</span>, i.e., <span class="math notranslate nohighlight">\(E(y)\)</span> and <span class="math notranslate nohighlight">\(x\)</span> has a linear relationship,</p>
+<p>The probability distribution of <span class="math notranslate nohighlight">\(y_{i}\)</span> is <span class="math notranslate nohighlight">\(\operatorname{Normal}\left(\beta_0+\beta_1 x_{i}, \sigma^{2}\right)\)</span>. The expectation of <span class="math notranslate nohighlight">\(y\)</span> is a linear function of <span class="math notranslate nohighlight">\(x\)</span>, i.e., <span class="math notranslate nohighlight">\(E(y)\)</span> and <span class="math notranslate nohighlight">\(x\)</span> has a linear relationship,</p>
 <div class="math notranslate nohighlight" id="equation-1">
 <span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation">#</a></span>\[E(y) = \beta_0+\beta_1x\]</div>
 <div class="cell docutils container">
