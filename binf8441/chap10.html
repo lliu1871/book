@@ -656,7 +656,7 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">-0.577887702480302</div></div>
+<div class="output text_html">-0.57425617392158</div></div>
 </div>
 <div class="proof example admonition" id="10.2">
 <p class="admonition-title"><span>Example </span> (10.2)</p>
@@ -671,7 +671,7 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.95992428849955</div></div>
+<div class="output text_html">0.959102325247383</div></div>
 </div>
 </section>
 <section id="simulation-based-inference">
@@ -706,7 +706,7 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.168229878349828</div></div>
+<div class="output text_html">0.224835890188884</div></div>
 </div>
 </section>
 <section id="comparing-the-performance-of-estimators">
@@ -718,8 +718,8 @@ E(g(x)) \approx \frac{1}{n} \sum_{i=1}^{n} g\left(x_{i}\right)
 <p>A random sample of size 10 is generated from the normal distribution with the unknown mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance 1. We want to compare the mean squared errors of two estimators, the sample median <span class="math notranslate nohighlight">\(\tilde{x}\)</span> and the sample average <span class="math notranslate nohighlight">\(\bar{x}\)</span>, of the population mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 <p>We use Monte Carlo simulation to approximate the mean squared error.</p>
 <ol class="simple">
-<li><p>Generate 100 samples of size 10 from the normal distribution <span class="math notranslate nohighlight">\((\mu,\sigma^2=1)\)</span>.</p></li>
-<li><p>For each sample, calculate the mean squared error <span class="math notranslate nohighlight">\(m=(\tilde{x}-\mu)^{2}\)</span> of the sample median <span class="math notranslate nohighlight">\(\tilde{x}\)</span>. Now, we have 100 MSEs.</p></li>
+<li><p>Generate 100 samples of size 10 from the normal distribution <span class="math notranslate nohighlight">\((\mu=a,\sigma^2=1)\)</span>.</p></li>
+<li><p>For each sample, calculate the squared error <span class="math notranslate nohighlight">\(m=(\tilde{x}-a)^{2}\)</span> of the sample median <span class="math notranslate nohighlight">\(\tilde{x}\)</span>. Now, we have 100 errors.</p></li>
 <li><p><span class="math notranslate nohighlight">\(E\left[(\tilde{x}-\mu)^{2}\right] \approx\)</span> the average of <span class="math notranslate nohighlight">\(\left(m_{1}, \ldots, m_{100}\right)\)</span>.</p></li>
 </ol>
 <p>Similarly, we calculate the mean squared error of <span class="math notranslate nohighlight">\(\tilde{x}\)</span> for other values of <span class="math notranslate nohighlight">\(\mu\)</span>. We can make a plot of the mean squared error of the sample median <span class="math notranslate nohighlight">\(\tilde{x}\)</span> for a range of values of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
