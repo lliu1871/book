@@ -649,9 +649,13 @@ is a discrete state discrete time stochastic process</p>
 <p>A discrete time Markov chain <span class="math notranslate nohighlight">\(\{ X_{n},n = 0,1,2\ldots\}\)</span> is a discrete
 state discrete time stochastic process that satisfies Markov property.</p>
 </section>
-</div><p>Suppose that <span class="math notranslate nohighlight">\(\{ X_{n}\}\)</span> can take on non-negative integers, i.e., the
+</div><p>Suppose that <span class="math notranslate nohighlight">\(\{X_{n}\}\)</span> can take on non-negative integers, i.e., the
 state space is <span class="math notranslate nohighlight">\(\{0, 1, 2, \dots\}\)</span>. If <span class="math notranslate nohighlight">\(X_{n} = i\)</span>, we say that the process
 is in state <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<div class="admonition-how-do-we-define-a-dtmc admonition">
+<p class="admonition-title">How do we define a DTMC?</p>
+<p>For a discrete time MC <span class="math notranslate nohighlight">\(\{X_{n}\}\)</span>, the goal is to find the probability distribution <span class="math notranslate nohighlight">\(\pi_n\)</span> of the random variable <span class="math notranslate nohighlight">\(X_n\)</span> at time <span class="math notranslate nohighlight">\(n\)</span>. The DTMC is determined if we know where the chain begins and how the chain moves, i.e., if the initial state <span class="math notranslate nohighlight">\(\pi_0\)</span> at time 0 is given and the transition probabilities <span class="math notranslate nohighlight">\(P(X_{n+1}|X_n)\)</span> from time <span class="math notranslate nohighlight">\(n\)</span> to time <span class="math notranslate nohighlight">\(n+1\)</span> is given.</p>
+</div>
 <section id="one-step-transition-probability-matrix">
 <h3>One-step transition probability matrix<a class="headerlink" href="#one-step-transition-probability-matrix" title="Permalink to this headline">#</a></h3>
 <p>The one-step (from time <span class="math notranslate nohighlight">\(n\)</span> to time <span class="math notranslate nohighlight">\(n+1\)</span>) transition probability from state
