@@ -653,18 +653,18 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  control and treatment
-t = -2.3213, df = 45.555, p-value = 0.0248
+t = -2.3565, df = 47.264, p-value = 0.02264
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.30969018 -0.09302753
+ -1.303490 -0.102972
 sample estimates:
 mean of x mean of y 
- 1.390804  2.092163 
+ 1.000217  1.703448 
 </pre></div>
 </div>
 </div>
 </div>
-<p>Because pvalue &lt; 0.05, we reject the null and accept the alternative hypothesis that the control and treatment groups are significantly different from each other.</p>
+<p>Because pvalue &lt; 0.05, we reject the null and accept the alternative hypothesis that two population means (control and treatment) are not equal to each other.</p>
 </section>
 <section id="analysis-of-variance-anova">
 <h2>Analysis of Variance (ANOVA)<a class="headerlink" href="#analysis-of-variance-anova" title="Permalink to this headline">#</a></h2>
@@ -689,6 +689,7 @@ mean of x mean of y
 <img alt="_images/lab6_5_0.png" src="_images/lab6_5_0.png" />
 </div>
 </div>
+<p><span class="math notranslate nohighlight">\(H_0: \mu_1=\mu_2=\mu_3\)</span> and <span class="math notranslate nohighlight">\(H_1\)</span>: at least two population means are not equal</p>
 <p>We perform ANOVA in R.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -699,13 +700,13 @@ mean of x mean of y
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)
-data$group   2  1.787  0.8934   0.986  0.386
-Residuals   27 24.464  0.9061               
+data$group   2  1.007  0.5033   0.593   0.56
+Residuals   27 22.922  0.8490               
 </pre></div>
 </div>
 </div>
 </div>
-<p>Next, we generate multiple samples from the normal distributions with different means.</p>
+<p>Because pvalue &gt; 0.05, we cannot reject the null hypothesis. Next, we generate multiple samples from the normal distributions with different means.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="m">30</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
@@ -735,9 +736,9 @@ Residuals   27 24.464  0.9061
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
-data$group   2  15.01   7.506   6.334 0.00555 **
-Residuals   27  31.99   1.185                   
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+data$group   2  61.75  30.875   32.98 5.64e-08 ***
+Residuals   27  25.28   0.936                     
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 </pre></div>
@@ -748,6 +749,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <section id="f-test-to-compare-two-variances">
 <h2>F-test to compare two variances<a class="headerlink" href="#f-test-to-compare-two-variances" title="Permalink to this headline">#</a></h2>
 <p>We generate the control and treatment groups from two normal distributions with the same variance, and perform the F test to compare the two population variances.</p>
+<p><span class="math notranslate nohighlight">\(H_0:\sigma_1^2 = \sigma_2^2\)</span> and <span class="math notranslate nohighlight">\(H_0:\sigma_1^2 \ne \sigma_2^2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">control</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
@@ -761,13 +763,13 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 1.2411, num df = 19, denom df = 29, p-value = 0.5861
+F = 0.87037, num df = 19, denom df = 29, p-value = 0.7655
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 0.5562146 2.9809721
+ 0.3900781 2.0905816
 sample estimates:
 ratio of variances 
-          1.241067 
+         0.8703712 
 </pre></div>
 </div>
 <img alt="_images/lab6_13_1.png" src="_images/lab6_13_1.png" />
@@ -787,13 +789,13 @@ ratio of variances
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 23.254, num df = 19, denom df = 29, p-value = 2.196e-12
+F = 40.818, num df = 19, denom df = 29, p-value = 1.11e-15
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 10.42179 55.85443
+ 18.29352 98.04216
 sample estimates:
 ratio of variances 
-          23.25386 
+          40.81786 
 </pre></div>
 </div>
 <img alt="_images/lab6_15_1.png" src="_images/lab6_15_1.png" />
@@ -822,6 +824,7 @@ ratio of variances
 </div>
 </div>
 </div>
+<p><span class="math notranslate nohighlight">\(H_0\)</span>: smoking and exercise are independent and <span class="math notranslate nohighlight">\(H_1\)</span>: not independent</p>
 <p>We perform the chi-square test to test if smoking is associated with exercise.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -845,7 +848,8 @@ X-squared = 5.4885, df = 6, p-value = 0.4828
 </section>
 <section id="nonparametric-test-mann-whitney-for-two-samples">
 <h2>Nonparametric test (Mann-Whitney) for two samples<a class="headerlink" href="#nonparametric-test-mann-whitney-for-two-samples" title="Permalink to this headline">#</a></h2>
-<p>Nonparametric tests do not assume underlying probability distributions. We first generate two samples from the exponential distributions with different rates.</p>
+<p>Because two sample t-test assumes that data follow the normal distribution. If the normality assumption is not satisfied, it is not appropriate to use two sample t-test. But we may use nonparametric tests, because nonparametric tests do not assume underlying probability distributions. In this example, we generate two samples from the exponential distributions with different means. Let <span class="math notranslate nohighlight">\(\mu_1\)</span> and <span class="math notranslate nohighlight">\(\mu_2\)</span> be two population means. In this case, <span class="math notranslate nohighlight">\(\mu_1=1/2\)</span> and <span class="math notranslate nohighlight">\(\mu_2=1/5\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(H_0: pop_1=pop_2\)</span> and <span class="math notranslate nohighlight">\(H_1:pop_1\ne pop_2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">control</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
@@ -869,36 +873,37 @@ X-squared = 5.4885, df = 6, p-value = 0.4828
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Wilcoxon rank sum exact test
 
 data:  control and treatment
-W = 386, p-value = 0.09057
+W = 463, p-value = 0.0009506
 alternative hypothesis: true location shift is not equal to 0
 </pre></div>
 </div>
 </div>
 </div>
+<p>If the sample size is small (&lt;5), it is not appropriate to use two sample t-test to compare two samples. But we can use nonparametric tests to compare two samples with a small sample size.</p>
 </section>
 <section id="likelihood-ratio-test-lrt">
 <h2>Likelihood Ratio Test (LRT)<a class="headerlink" href="#likelihood-ratio-test-lrt" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span> <span class="n">sd</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>we calculate the loglikelihood score log_L0 for the null hypothesis</p>
+<p><span class="math notranslate nohighlight">\(H_0: \mu = 1\)</span> and <span class="math notranslate nohighlight">\(H_1:\mu\ne 1\)</span></p>
+<p>We assume that the variance <span class="math notranslate nohighlight">\(\sigma^2=1\)</span> is given and calculate the loglikelihood score log_L0 for the null hypothesis <span class="math notranslate nohighlight">\(\mu=1\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">log_L0</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">log_L0</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>We calculate the loglikelihood score log_L1 for the alternative hypothesis</p>
+<p>We calculate the loglikelihood score log_L1 for the alternative hypothesis. Because the alternative hypothesis does not specify the value of <span class="math notranslate nohighlight">\(\mu\)</span>, we use the maximum likelihood estimate (i.e., the sample average) of <span class="math notranslate nohighlight">\(\mu\)</span> to calculate the loglikelihood score.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mu_hat</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
-<span class="n">log_L1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span><span class="n">mean</span><span class="o">=</span><span class="n">mu_hat</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mu_hat</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">log_L1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span><span class="o">=</span><span class="n">mu_hat</span><span class="p">,</span><span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -914,7 +919,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.00132198529892535&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.644147773025881&quot;
 </pre></div>
 </div>
 </div>
@@ -922,7 +927,7 @@ alternative hypothesis: true location shift is not equal to 0
 </section>
 <section id="normality-test-sapiro-wilk-test">
 <h2>Normality test (Sapiro-Wilk test)<a class="headerlink" href="#normality-test-sapiro-wilk-test" title="Permalink to this headline">#</a></h2>
-<p>We simulate data from the exponential distribution with rate = 1.</p>
+<p>Sapiro-Wilk test can be used to test if the real data follow the normal distribution or not. We simulate data from the exponential distribution with rate = 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rexp</span><span class="p">(</span><span class="m">100</span><span class="p">)</span>
@@ -930,6 +935,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 </div>
 </div>
+<p><span class="math notranslate nohighlight">\(H_0:\)</span> the normal distribution and <span class="math notranslate nohighlight">\(H_1:\)</span> not the normal distribution</p>
 <p>The Q-Q plot can illustrate if the dataset follows the normal distribution. It is a scatter plot of the sample quantiles generated from data versus the quantiles expected from the normal distribution. If the dataset follows the normal distribution, the points should be close to the straight line.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -956,7 +962,7 @@ alternative hypothesis: true location shift is not equal to 0
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  data
-W = 0.82595, p-value = 1.686e-09
+W = 0.87772, p-value = 1.456e-07
 </pre></div>
 </div>
 </div>
