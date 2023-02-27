@@ -391,6 +391,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient">
+   Gradient
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cylindrical-and-spherical-coordinates">
+     Cylindrical and spherical coordinates
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#integral-curves">
    Integral curves
   </a>
@@ -440,6 +452,18 @@ title="Print to PDF"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gradient">
+   Gradient
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cylindrical-and-spherical-coordinates">
+     Cylindrical and spherical coordinates
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#integral-curves">
    Integral curves
   </a>
@@ -482,41 +506,44 @@ title="Print to PDF"
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Implicit_function_theorem">Implicit function theorem</a></p></li>
 </ul>
 </div>
-<p>The derivative of a univariable function at a point <span class="math notranslate nohighlight">\(a\)</span> is defined as <span class="math notranslate nohighlight">\(f'(a)=\lim_{h\rightarrow 0}\frac{f(a+h)-f(a)}{h}\)</span>. This definition cannot be generalized to multivariable cases because the division <span class="math notranslate nohighlight">\(\frac{f(a+h)-f(a)}{h}\)</span> by a vector <span class="math notranslate nohighlight">\(h\)</span> is not defined.</p>
-<div class="proof definition admonition" id="differentiable_function">
-<p class="admonition-title"><span class="caption-number">Definition 27 </span> (differetiable function)</p>
-<section class="definition-content" id="proof-content">
-<p>A continuous mapping <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}^m\)</span> from <span class="math notranslate nohighlight">\(A\subset \mathbb{R}^n\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span> is differentiable at an interial point <span class="math notranslate nohighlight">\(a\in A^{\mathrm{o}}\)</span>, if there exists a linear mapping <span class="math notranslate nohighlight">\(T_a: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span> satisfying the condition</p>
-<div class="math notranslate nohighlight">
-\[
-f(a+h)-f(a)-T_a(h) = o(h)
-\]</div>
-</section>
-</div><p>The linear map <span class="math notranslate nohighlight">\(T_a\)</span> is called the <strong>derivative</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>, written <span class="math notranslate nohighlight">\(D f_a\)</span> or <span class="math notranslate nohighlight">\((D f)_a\)</span>. The matrix of the linear map <span class="math notranslate nohighlight">\(D f_a\)</span> is written <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> and is called the <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>.</p>
-<p>The derivative of a multivariable function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at a point <span class="math notranslate nohighlight">\(a\)</span> is a linear map which can approximate the function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at the point <span class="math notranslate nohighlight">\(a\)</span>. The entries of the matrix of the linear map are partial derivatives <span class="math notranslate nohighlight">\(f_i'(x)\)</span> which is defined below.</p>
-<ul class="simple">
-<li><p>The linear map <span class="math notranslate nohighlight">\(T_a\)</span>, if exists, is unique.</p></li>
-</ul>
+<p>The derivative of a univariable function at a point <span class="math notranslate nohighlight">\(a\)</span> is defined as <span class="math notranslate nohighlight">\(f'(a)=\lim_{h\rightarrow 0}\frac{f(a+h)-f(a)}{h}\)</span>. This definition can be generalized to partial derivatives for multivariable cases where the partial derivative is taken with respect to a single variable keeping other variables fixed.</p>
 <div class="proof definition admonition" id="partial_derivative">
-<p class="admonition-title"><span class="caption-number">Definition 28 </span> (partial derivative)</p>
+<p class="admonition-title"><span class="caption-number">Definition 27 </span> (partial derivative)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a subset of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, The continuous mapping <span class="math notranslate nohighlight">\(f\)</span> : <span class="math notranslate nohighlight">\(A \rightarrow \mathbb{R}\)</span> is differentiable at an interior point <span class="math notranslate nohighlight">\(a\in A^{\mathrm{o}}\)</span>. Fix <span class="math notranslate nohighlight">\(j \in\{1, \ldots, n\}\)</span>. Define</p>
 <div class="math notranslate nohighlight">
 \[
 \varphi(t)=f\left(a_1, \ldots, a_{j-1}, t, a_{j+1}, \ldots, a_n\right) \text { for } t \text { near } a_j .
 \]</div>
-<p>Then the <span class="math notranslate nohighlight">\(j\)</span> th partial derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> is defined as</p>
+<p>Then the <span class="math notranslate nohighlight">\(j\)</span> th partial derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> is defined as <span class="math notranslate nohighlight">\(D_jf(a) = f_j'(a)=\varphi^{\prime}\left(a_j\right)\)</span>.</p>
+</section>
+</div><p>However, this definition cannot be generalized to the derivative of multiple variables because the division <span class="math notranslate nohighlight">\(\frac{f(a+h)-f(a)}{h}\)</span> by a vector <span class="math notranslate nohighlight">\(h\)</span> is not defined. Therefore, we define the derivative of multiple variables as a linear map.</p>
+<div class="proof definition admonition" id="differentiable_function">
+<p class="admonition-title"><span class="caption-number">Definition 28 </span> (differetiable function)</p>
+<section class="definition-content" id="proof-content">
+<p>A continuous mapping <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}^m\)</span> from <span class="math notranslate nohighlight">\(A\subset \mathbb{R}^n\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span> is differentiable at an interial point <span class="math notranslate nohighlight">\(a\in A^{\mathrm{o}}\)</span>, if there exists a linear mapping <span class="math notranslate nohighlight">\(T_a: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span> satisfying the condition</p>
 <div class="math notranslate nohighlight">
 \[
-D_j f(a)=\varphi^{\prime}\left(a_j\right)
+f(a+h)=f(a)+T_a(h)+\epsilon(h)
 \]</div>
+<p>where the error <span class="math notranslate nohighlight">\(\epsilon(h) = o(\|h\|)\)</span> and <span class="math notranslate nohighlight">\(o\)</span> is little-<span class="math notranslate nohighlight">\(o\)</span> notation and indicates that <span class="math notranslate nohighlight">\(\epsilon(h)\)</span> is much smaller than
+<span class="math notranslate nohighlight">\(\|h\|\)</span> as <span class="math notranslate nohighlight">\(h\rightarrow 0\)</span>.</p>
 </section>
-</div><p>If the function <span class="math notranslate nohighlight">\(f\)</span> is differentiable at the point <span class="math notranslate nohighlight">\(a\)</span>, then all partial derivatives of <span class="math notranslate nohighlight">\(f\)</span> at the point <span class="math notranslate nohighlight">\(a\)</span> exist. However, if all partial derivatives exist, the funtion may not be differentiable. But if all partial derivatives exist and continuous at the point <span class="math notranslate nohighlight">\(a\)</span>, then the function is differentiable at the point <span class="math notranslate nohighlight">\(a\)</span>.</p>
+</div><p>The linear map <span class="math notranslate nohighlight">\(T_a\)</span> is called the total <strong>derivative</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>, written <span class="math notranslate nohighlight">\(D f_a\)</span> or <span class="math notranslate nohighlight">\((D f)_a\)</span>. The matrix of the linear map <span class="math notranslate nohighlight">\(D f_a\)</span> is written <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> and is called the <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<ul class="simple">
+<li><p>The linear map <span class="math notranslate nohighlight">\(T_a\)</span>, if exists, is unique.</p></li>
+<li><p>If the function <span class="math notranslate nohighlight">\(f\)</span> is differentiable at the point <span class="math notranslate nohighlight">\(a\)</span>, then all partial derivatives of <span class="math notranslate nohighlight">\(f\)</span> at the point <span class="math notranslate nohighlight">\(a\)</span> exist.</p></li>
+<li><p>If all partial derivatives exist and continuous at the point <span class="math notranslate nohighlight">\(a\)</span>, then the function is differentiable at the point <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
+</ul>
 <p>With this definition, we can check if a function is differentiable, and if a function is differentiable we can calculate its derivative. We begin with two examples to demonstrate how to find the derivative of a differentiable function.</p>
 <ul class="simple">
 <li><p>Let <span class="math notranslate nohighlight">\(C: A \rightarrow \mathbb{R}^m\)</span> (where <span class="math notranslate nohighlight">\(A \subset \mathbb{R}^n\)</span> be the constant mapping <span class="math notranslate nohighlight">\(C(x)=c\)</span> for all <span class="math notranslate nohighlight">\(x \in A\)</span>, where <span class="math notranslate nohighlight">\(c\)</span> is some fixed value in <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span>. Then the derivative of <span class="math notranslate nohighlight">\(C\)</span> at any interior point a of <span class="math notranslate nohighlight">\(A\)</span> is the zero mapping.</p></li>
 <li><p>The derivative of a linear mapping <span class="math notranslate nohighlight">\(T: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span> at any point <span class="math notranslate nohighlight">\(a \in \mathbb{R}^n\)</span> is again <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
 </ul>
+<div class="admonition-jacobian-matrix admonition">
+<p class="admonition-title">Jacobian matrix</p>
+<p>The derivative of a multivariable function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at a point <span class="math notranslate nohighlight">\(a\)</span> is a linear map which can approximate the function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at the point <span class="math notranslate nohighlight">\(a\)</span>. The entries of the matrix of the linear map are partial derivatives <span class="math notranslate nohighlight">\(f_i'(x)\)</span>.</p>
+</div>
 <p>Since the derivatives are the linear maps, they have the linearity property, i.e., <span class="math notranslate nohighlight">\(D(f+g)_a = Df_a+Dg_a\)</span> and <span class="math notranslate nohighlight">\(D(cf)_a=cDf_a\)</span> as described in the following theorem.</p>
 <div class="proof theorem admonition" id="linearity_derivative_theorem">
 <p class="admonition-title"><span class="caption-number">Theorem 11 </span> (linearity of the derivative)</p>
@@ -621,49 +648,83 @@ D_{n 1} f(a) &amp; \cdots &amp; D_{n n} f(a)
 <p>Let <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(A \subset\)</span> <span class="math notranslate nohighlight">\(\left.\mathbb{R}^n\right)\)</span> be a function, let a be an interior point of <span class="math notranslate nohighlight">\(A\)</span>, and let <span class="math notranslate nohighlight">\(d \in \mathbb{R}^n\)</span> be a unit vector. The directional derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> in the <span class="math notranslate nohighlight">\(d\)</span> direction is</p>
 <div class="math notranslate nohighlight">
 \[
-D_d f(a)=\lim _{t \rightarrow 0} \frac{f(a+t d)-f(a)}{t},
+D_d f(a)=\lim _{t \rightarrow 0} \frac{f(a+t d)-f(a)}{t}
 \]</div>
-<p>if this limit exists.</p>
 </section>
-</div><p>The derivative matrix <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> of a scalar-valued function <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> is often called the gradient of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> and written <span class="math notranslate nohighlight">\(\nabla f(a)\)</span>. That is,</p>
+</div><p>Let the function <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(A \subset \mathbb{R}^n\)</span> ) be differentiable at <span class="math notranslate nohighlight">\(a\)</span>, and <span class="math notranslate nohighlight">\(d \in \mathbb{R}^n\)</span> is a unit vector. Then the directional derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> in the <span class="math notranslate nohighlight">\(d\)</span> direction exists, and it is equal to</p>
 <div class="math notranslate nohighlight">
 \[
-\nabla f(a)=f^{\prime}(a)=\left[D_1 f(a), \ldots, D_n f(a)\right]
+D_d f(a) =\sum_{j=1}^n D_j f(a) d_j = Df_a(d) 
 \]</div>
-<div class="proof theorem admonition" id="theorem-12">
-<p class="admonition-title"><span class="caption-number">Theorem 16 </span> (Directional Derivative and Gradient)</p>
-<section class="theorem-content" id="proof-content">
-<p>Let the function <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(A \subset \mathbb{R}^n\)</span> ) be differentiable at <span class="math notranslate nohighlight">\(a\)</span>, and let <span class="math notranslate nohighlight">\(d \in \mathbb{R}^n\)</span> be a unit vector. Then the directional derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> in the d direction exists, and it is equal to</p>
+</section>
+<section id="gradient">
+<h2>Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="definition-12">
+<p class="admonition-title"><span class="caption-number">Definition 32 </span> (Gradient)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(f\)</span> be a scalar-valued differentiable function of several variables. The gradient <span class="math notranslate nohighlight">\(\nabla f\)</span> of <span class="math notranslate nohighlight">\(f\)</span> at a point <span class="math notranslate nohighlight">\(p\)</span> is a vector of the direction and rate of fastest increase.</p>
+</section>
+</div><p>When a coordinate system is used in which the basis vectors are not functions of position, the gradient is given by the vector whose components are the partial derivatives of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(p\)</span>. That is, for <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \rightarrow \mathbb{R}\)</span>, its gradient <span class="math notranslate nohighlight">\(\nabla f: \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span> is defined at the point <span class="math notranslate nohighlight">\(p=\left(x_1, \ldots, x_n\right)\)</span> in <span class="math notranslate nohighlight">\(n\)</span>-dimensional space as the vector</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-\begin{aligned}
-D_d f(a) &amp;=\sum_{j=1}^n D_j f(a) d_j \\
-&amp;=\langle\nabla f(a), d\rangle \\
-&amp;=|\nabla f(a)| \cos \theta_{\nabla f(a), d} .
-\end{aligned}
+\nabla f(p)=\left[\begin{array}{c}
+\frac{\partial f}{\partial x_1}(p) \\
+\vdots \\
+\frac{\partial f}{\partial x_n}(p)
+\end{array}\right] .
+\end{split}\]</div>
+<p>If the gradient of a function is non-zero at a point <span class="math notranslate nohighlight">\(p\)</span>, the direction of the gradient <span class="math notranslate nohighlight">\(\nabla f\)</span> is the direction in which the function increases most quickly from <span class="math notranslate nohighlight">\(p\)</span>, and the magnitude <span class="math notranslate nohighlight">\(\|\nabla f\|\)</span> is the rate of increase in that direction, the greatest absolute directional derivative.</p>
+<p>The rate of increase of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> in the <span class="math notranslate nohighlight">\(d\)</span> direction varies with <span class="math notranslate nohighlight">\(d\)</span>, from <span class="math notranslate nohighlight">\(-\|\nabla f(a)\|\)</span> when <span class="math notranslate nohighlight">\(d\)</span> points in the direction opposite to <span class="math notranslate nohighlight">\(\nabla f(a)\)</span>, to <span class="math notranslate nohighlight">\(\|\nabla f(a)\|\)</span> when <span class="math notranslate nohighlight">\(d\)</span> points in the same direction as <span class="math notranslate nohighlight">\(\nabla f(a)\)</span>. Also, the directions orthogonal to <span class="math notranslate nohighlight">\(\nabla f(a)\)</span> are the directions in which <span class="math notranslate nohighlight">\(f\)</span> neither increases nor decreases at <span class="math notranslate nohighlight">\(a\)</span>.</p>
+<div class="proof example admonition" id="example-13">
+<p class="admonition-title"><span class="caption-number">Example 4 </span></p>
+<section class="example-content" id="proof-content">
+<p>The gradient of the function <span class="math notranslate nohighlight">\(f(x, y, z)=2 x+3 y^2-\sin (z)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\nabla f(p)=\left[\begin{array}{c}
+2 \\
+6y\\
+-cos(z)
+\end{array}\right]
 \end{split}\]</div>
 </section>
-</div><ul class="simple">
-<li><p>The rate of increase of <span class="math notranslate nohighlight">\(f\)</span> at a in the <span class="math notranslate nohighlight">\(d\)</span> direction varies with <span class="math notranslate nohighlight">\(d\)</span>, from <span class="math notranslate nohighlight">\(-|\nabla f(a)|\)</span> when <span class="math notranslate nohighlight">\(d\)</span> points in the direction opposite to <span class="math notranslate nohighlight">\(\nabla f(a)\)</span>, to <span class="math notranslate nohighlight">\(|\nabla f(a)|\)</span> when <span class="math notranslate nohighlight">\(d\)</span> points in the same direction as <span class="math notranslate nohighlight">\(\nabla f(a)\)</span>.</p></li>
-<li><p>In particular, the vector <span class="math notranslate nohighlight">\(\nabla f(a)\)</span> points in the direction of greatest increase of <span class="math notranslate nohighlight">\(f\)</span> at a, and its modulus <span class="math notranslate nohighlight">\(|\nabla f(a)|\)</span> is precisely this greatest rate.</p></li>
-<li><p>Also, the directions orthogonal to <span class="math notranslate nohighlight">\(\nabla f(a)\)</span> are the directions in which <span class="math notranslate nohighlight">\(f\)</span> neither increases nor decreases at a.</p></li>
-</ul>
+</div><p>The gradient is dual to the total derivative <span class="math notranslate nohighlight">\(d f\)</span> : the value of the gradient at a point is a tangent vector - a vector at each point; while the value of the derivative at a point is a cotangent vector - a linear functional on vectors. <span class="math notranslate nohighlight">\({ }^{[c]}\)</span> They are related in that the dot product of the gradient of <span class="math notranslate nohighlight">\(f\)</span> at a point <span class="math notranslate nohighlight">\(p\)</span> with another tangent vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> equals the directional derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(p\)</span> of the function along <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>; that is,</p>
+<div class="math notranslate nohighlight">
+\[\nabla f(p) \cdot \mathbf{v}=\frac{\partial f}{\partial \mathbf{v}}(p)=d f_p(\mathbf{v})\]</div>
+<section id="cylindrical-and-spherical-coordinates">
+<h3>Cylindrical and spherical coordinates<a class="headerlink" href="#cylindrical-and-spherical-coordinates" title="Permalink to this headline">#</a></h3>
+<p>In cylindrical coordinates with a Euclidean metric, the gradient is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla f(\rho, \varphi, z)=\frac{\partial f}{\partial \rho} \mathbf{e}_\rho+\frac{1}{\rho} \frac{\partial f}{\partial \varphi} \mathbf{e}_{\varphi}+\frac{\partial f}{\partial z} \mathbf{e}_z
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho\)</span> is the axial distance, <span class="math notranslate nohighlight">\(\varphi\)</span> is the azimuthal or azimuth angle, <span class="math notranslate nohighlight">\(z\)</span> is the axial coordinate, and <span class="math notranslate nohighlight">\(\mathbf{e}_\rho, \mathbf{e}_{\varphi}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{e}_z\)</span> are unit vectors pointing along the coordinate directions.</p>
+<p>In spherical coordinates, the gradient is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla f(r, \theta, \varphi)=\frac{\partial f}{\partial r} \mathbf{e}_r+\frac{1}{r} \frac{\partial f}{\partial \theta} \mathbf{e}_\theta+\frac{1}{r \sin \theta} \frac{\partial f}{\partial \varphi} \mathbf{e}_{\varphi}
+\]</div>
+</section>
 </section>
 <section id="integral-curves">
 <h2>Integral curves<a class="headerlink" href="#integral-curves" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="definition-14">
+<p class="admonition-title"><span class="caption-number">Definition 33 </span> (Integral curve)</p>
+<section class="definition-content" id="proof-content">
 <p>If a function <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \longrightarrow \mathbb{R}\)</span> has a continuous gradient, then from any starting point <span class="math notranslate nohighlight">\(a \in \mathbb{R}^n\)</span> where the gradient <span class="math notranslate nohighlight">\(\nabla f(a)\)</span> is nonzero, there is a path of steepest ascent of <span class="math notranslate nohighlight">\(f\)</span> (called an <strong>integral curve</strong> of <span class="math notranslate nohighlight">\(\nabla f\)</span> ) starting at <span class="math notranslate nohighlight">\(a\)</span>.</p>
-<p>If <span class="math notranslate nohighlight">\(n=2\)</span> and the graph of <span class="math notranslate nohighlight">\(f\)</span> is seen as a surface in 3-space, then the integral curve from the point <span class="math notranslate nohighlight">\((a, b) \in \mathbb{R}^2\)</span> is the shadow of the path followed by a particle climbing the graph, starting at <span class="math notranslate nohighlight">\((a, b, f(a, b))\)</span>. If <span class="math notranslate nohighlight">\(n=2\)</span> or <span class="math notranslate nohighlight">\(n=3\)</span> and <span class="math notranslate nohighlight">\(f\)</span> is viewed as temperature, then the integral curve is the path followed by a heat-seeking bug.</p>
+</section>
+</div><p>If <span class="math notranslate nohighlight">\(n=2\)</span> and the graph of <span class="math notranslate nohighlight">\(f\)</span> is seen as a surface in 3-space, then the integral curve from the point <span class="math notranslate nohighlight">\((a, b) \in \mathbb{R}^2\)</span> is the shadow of the path followed by a particle climbing the graph, starting at <span class="math notranslate nohighlight">\((a, b, f(a, b))\)</span>. If <span class="math notranslate nohighlight">\(n=2\)</span> or <span class="math notranslate nohighlight">\(n=3\)</span> and <span class="math notranslate nohighlight">\(f\)</span> is viewed as temperature, then the integral curve is the path followed by a heat-seeking bug.</p>
 <p>To find the integral curve, we set up an equation that describes it. The idea is to treat the gradient vector as a divining rod and follow it starting at <span class="math notranslate nohighlight">\(a\)</span>. Doing so produces a path in <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> that describes time-dependent motion, always in the direction of the gradient, and always with speed equal to the modulus of the gradient. Computing the path amounts to finding an interval <span class="math notranslate nohighlight">\(I \subset \mathbb{R}\)</span> containing 0 and <span class="math notranslate nohighlight">\(a\)</span> mapping</p>
 <div class="math notranslate nohighlight">
 \[
 \gamma: I \rightarrow \mathbb{R}^n
 \]</div>
-<p>that satisfies the differential equation with initial conditions <span class="math notranslate nohighlight">\(\gamma^{\prime}(t)=\nabla f(\gamma(t)), \quad \gamma(0)=a\)</span></p>
+<p>that satisfies the differential equation with initial conditions <span class="math notranslate nohighlight">\(\gamma^{\prime}(t)=\nabla f(\gamma(t))\)</span> and <span class="math notranslate nohighlight">\(\gamma(0)=a\)</span>.</p>
 </section>
 <section id="inverse-function-theorem">
 <h2>Inverse function theorem<a class="headerlink" href="#inverse-function-theorem" title="Permalink to this headline">#</a></h2>
 <div class="proof theorem admonition" id="inverse_function_theorem">
-<p class="admonition-title"><span class="caption-number">Theorem 17 </span> (inverse function theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 16 </span> (inverse function theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}^n\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^n\right)\)</span> be a mapping, let <span class="math notranslate nohighlight">\(a\)</span> be an interior point of <span class="math notranslate nohighlight">\(A\)</span>, and let <span class="math notranslate nohighlight">\(f\)</span> be continuously differentiable on some <span class="math notranslate nohighlight">\(\varepsilon\)</span>-ball about a. (Continuous differentiability on a ball means first that the derivative mapping <span class="math notranslate nohighlight">\(D f_x\)</span> exists for each <span class="math notranslate nohighlight">\(x\)</span> in the ball, and second that the entries of the derivative matrix <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span>, i.e., the partial derivatives <span class="math notranslate nohighlight">\(D_j f_i(x)\)</span>, are continuous functions of <span class="math notranslate nohighlight">\(x\)</span> on the ball.) Suppose that <span class="math notranslate nohighlight">\(\operatorname{det} f^{\prime}(a) \neq 0\)</span>. Then there is an open set <span class="math notranslate nohighlight">\(V \subset A\)</span> containing <span class="math notranslate nohighlight">\(a\)</span> and an open set <span class="math notranslate nohighlight">\(W \subset \mathbb{R}^n\)</span> containing <span class="math notranslate nohighlight">\(f(a)\)</span> such that <span class="math notranslate nohighlight">\(f: V \rightarrow W\)</span> has a continuously differentiable inverse <span class="math notranslate nohighlight">\(f^{-1}: W \rightarrow V\)</span>. For each <span class="math notranslate nohighlight">\(y=f(x) \in W\)</span>, the derivative of the inverse is the inverse of the derivative,</p>
 <div class="math notranslate nohighlight">
@@ -675,7 +736,7 @@ D\left(f^{-1}\right)_y=\left(D f_x\right)^{-1} .
 <section id="implicit-function-theorem">
 <h2>Implicit function theorem<a class="headerlink" href="#implicit-function-theorem" title="Permalink to this headline">#</a></h2>
 <div class="proof theorem admonition" id="implicit_function_theorem">
-<p class="admonition-title"><span class="caption-number">Theorem 18 </span> (implicit funciton theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 17 </span> (implicit funciton theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(n\)</span> be positive integers with <span class="math notranslate nohighlight">\(n&gt;c\)</span>, and let <span class="math notranslate nohighlight">\(r=n-c\)</span>. Let <span class="math notranslate nohighlight">\(A\)</span> be an open subset of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, and let <span class="math notranslate nohighlight">\(g: A \longrightarrow \mathbb{R}^c\)</span> have continuous partial derivatives at every point of <span class="math notranslate nohighlight">\(A\)</span>. Consider the level set</p>
 <div class="math notranslate nohighlight">
@@ -699,12 +760,12 @@ L=\left\{v \in A: g(v)=0_c\right\} .
 <h2>Lagrange multiplier<a class="headerlink" href="#lagrange-multiplier" title="Permalink to this headline">#</a></h2>
 <p>We aim to find maxima and minima of a function <span class="math notranslate nohighlight">\(f(x, y)\)</span> in the presence of a constraint <span class="math notranslate nohighlight">\(g(x, y)=\)</span> 0 . A necessary condition for a critical point is that the gradients of <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are parallel because otherwise the we can move along the curve <span class="math notranslate nohighlight">\(g\)</span> and increase <span class="math notranslate nohighlight">\(f\)</span>. The directional derivative of <span class="math notranslate nohighlight">\(f\)</span> in the direction tangent to the level curve is zero if and only if the tangent vector to <span class="math notranslate nohighlight">\(g\)</span> is perpendicular to the gradient of <span class="math notranslate nohighlight">\(f\)</span> or if there is no tangent vector.</p>
 <div class="proof definition admonition" id="Lagrange_multiplier">
-<p class="admonition-title"><span class="caption-number">Definition 32 </span> (Lagrange multiplier)</p>
+<p class="admonition-title"><span class="caption-number">Definition 34 </span> (Lagrange multiplier)</p>
 <section class="definition-content" id="proof-content">
 <p>The system of equations <span class="math notranslate nohighlight">\(\begin{equation}\begin{cases}\nabla f(x, y) =\lambda \nabla g(x, y)\\ g(x, y)=0\end{cases}\end{equation}\)</span> for the three unknowns <span class="math notranslate nohighlight">\(x, y, \lambda\)</span> are called Lagrange equations. The variable <span class="math notranslate nohighlight">\(\lambda\)</span> is a Lagrange multiplier.</p>
 </section>
-</div><div class="proof theorem admonition" id="theorem-16">
-<p class="admonition-title"><span class="caption-number">Theorem 19 </span> (Lagrange theorem)</p>
+</div><div class="proof theorem admonition" id="theorem-18">
+<p class="admonition-title"><span class="caption-number">Theorem 18 </span> (Lagrange theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Extrema of <span class="math notranslate nohighlight">\(f(x, y)\)</span> on the curve <span class="math notranslate nohighlight">\(g(x, y)=c\)</span> are either solutions of the Lagrange equations or critical points of <span class="math notranslate nohighlight">\(g\)</span>.</p>
 </section>

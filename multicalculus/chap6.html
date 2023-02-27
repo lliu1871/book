@@ -485,7 +485,7 @@ title="Print to PDF"
 <h2>Vector field<a class="headerlink" href="#vector-field" title="Permalink to this headline">#</a></h2>
 <p>A vector field in the plane is a map assigning to each point <span class="math notranslate nohighlight">\((x, y)\)</span> a vector <span class="math notranslate nohighlight">\(\vec{F}(x, y)=\langle P(x, y), Q(x, y)\rangle\)</span>. Similarly, a vector field in space assigns to each point <span class="math notranslate nohighlight">\((x, y, z)\)</span> in space a vector <span class="math notranslate nohighlight">\(\vec{F}(x, y, z)=\langle P(x, y, z), Q(x, y, z), R(x, y, z)\rangle\)</span>.</p>
 <div class="proof definition admonition" id="vector_field">
-<p class="admonition-title"><span class="caption-number">Definition 41 </span> (vector field)</p>
+<p class="admonition-title"><span class="caption-number">Definition 43 </span> (vector field)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be an open subset of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. A mapping <span class="math notranslate nohighlight">\(F: A \longrightarrow \mathbb{R}^n\)</span> is called a vector field on <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </section>
@@ -494,13 +494,13 @@ title="Print to PDF"
 <section id="line-integral-flow-integral">
 <h2>Line integral (flow integral)<a class="headerlink" href="#line-integral-flow-integral" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="flow">
-<p class="admonition-title"><span class="caption-number">Definition 42 </span> (flow)</p>
+<p class="admonition-title"><span class="caption-number">Definition 44 </span> (flow)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(\gamma: I \rightarrow A\)</span> be a curve in <span class="math notranslate nohighlight">\(A\subset \mathbb{R}^n\)</span>. The flow of a vector field <span class="math notranslate nohighlight">\(F\)</span> along <span class="math notranslate nohighlight">\(\gamma\)</span> at <span class="math notranslate nohighlight">\(u\in I\)</span> is the scalar component of <span class="math notranslate nohighlight">\(F(\gamma(u))\)</span> tangent to <span class="math notranslate nohighlight">\(\gamma\)</span> at <span class="math notranslate nohighlight">\(\gamma(u)\)</span>.</p>
 </section>
 </div><p>Integrals involving the flow of a vector field arise naturally in physics. If <span class="math notranslate nohighlight">\(F\)</span> is a force field then its flow integrals, also called line integrals, measure the work of moving along curves <span class="math notranslate nohighlight">\(\gamma\)</span> in <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <div class="proof definition admonition" id="line_integral">
-<p class="admonition-title"><span class="caption-number">Definition 43 </span> (line integral)</p>
+<p class="admonition-title"><span class="caption-number">Definition 45 </span> (line integral)</p>
 <section class="definition-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\vec{F}\)</span> is a vector field and <span class="math notranslate nohighlight">\(C: t \mapsto \vec{r}(t)\)</span> is a curve defined on the interval <span class="math notranslate nohighlight">\([a, b]\)</span>, then the line integral of <span class="math notranslate nohighlight">\(\vec{F}\)</span> along the curve <span class="math notranslate nohighlight">\(C\)</span> is defined by</p>
 <div class="math notranslate nohighlight">
@@ -510,7 +510,7 @@ title="Print to PDF"
 </section>
 </div><p>The following theorem regarding line integrals generalizes the fundamental theorem of calculus to higher dimensions.</p>
 <div class="proof theorem admonition" id="high_dimension_fundamental_theorem_calculus">
-<p class="admonition-title"><span class="caption-number">Theorem 24 </span> (higher dimension fundamental theorem of calculus)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 23 </span> (higher dimension fundamental theorem of calculus)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\vec{F}=\nabla f\)</span>, then</p>
 <div class="math notranslate nohighlight">
@@ -522,21 +522,21 @@ title="Print to PDF"
 <section id="curl">
 <h2>Curl<a class="headerlink" href="#curl" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="curl">
-<p class="admonition-title"><span class="caption-number">Definition 44 </span> (curl)</p>
+<p class="admonition-title"><span class="caption-number">Definition 46 </span> (curl)</p>
 <section class="definition-content" id="proof-content">
 <p>The curl of a vector field <span class="math notranslate nohighlight">\(\vec{F}\)</span> is the cross product of the nabla operator <span class="math notranslate nohighlight">\(\nabla\)</span> and the vector field <span class="math notranslate nohighlight">\(\vec{F}\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{curl}(\vec{F})=\nabla\times \vec{F}\]</div>
 </section>
 </div><div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span class="caption-number">Example 6 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 7 </span></p>
 <section class="example-content" id="proof-content">
 <p>In <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>, the curl of a vector field <span class="math notranslate nohighlight">\(\vec{F}(x, y)=\langle P(x, y), Q(x, y)\rangle\)</span> is a scalar field</p>
 <div class="math notranslate nohighlight">
 \[\operatorname{curl}(\vec{F})(x, y)=Q_x(x, y)-P_y(x, y)\]</div>
 </section>
 </div><div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span class="caption-number">Example 7 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 8 </span></p>
 <section class="example-content" id="proof-content">
 <p>In <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>, the curl of a vector field <span class="math notranslate nohighlight">\(\vec{F}=\langle P, Q, R\rangle\)</span> is the vector field</p>
 <div class="math notranslate nohighlight">
@@ -549,7 +549,7 @@ P &amp; Q &amp; R
 \end{split}\]</div>
 </section>
 </div><div class="proof theorem admonition" id="Green">
-<p class="admonition-title"><span class="caption-number">Theorem 25 </span> (Green’s theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 24 </span> (Green’s theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\vec{F}(x, y)=\langle P(x, y), Q(x, y)\rangle\)</span> is a vector field and <span class="math notranslate nohighlight">\(G\)</span> is a region for which the boundary <span class="math notranslate nohighlight">\(C\)</span> is parametrized so that <span class="math notranslate nohighlight">\(G\)</span> is to the left, then</p>
 <div class="math notranslate nohighlight">
@@ -562,7 +562,7 @@ P &amp; Q &amp; R
 <section id="flux-integral">
 <h2>Flux integral<a class="headerlink" href="#flux-integral" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="flux">
-<p class="admonition-title"><span class="caption-number">Definition 45 </span> (flux)</p>
+<p class="admonition-title"><span class="caption-number">Definition 47 </span> (flux)</p>
 <section class="definition-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\Phi: D \rightarrow A\)</span> is an <span class="math notranslate nohighlight">\((n-1)\)</span>-surface in <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(u\)</span> is a point of <span class="math notranslate nohighlight">\(D\)</span>, then the <strong>flux</strong> of <span class="math notranslate nohighlight">\(F\)</span> through <span class="math notranslate nohighlight">\(\Phi\)</span> at <span class="math notranslate nohighlight">\(u\)</span> is the scalar component of <span class="math notranslate nohighlight">\(F\)</span> normal to <span class="math notranslate nohighlight">\(\Phi\)</span> at <span class="math notranslate nohighlight">\(\Phi(u)\)</span>.</p>
 </section>
@@ -572,7 +572,7 @@ P &amp; Q &amp; R
 </div>
 <p>The flux integral is <span class="math notranslate nohighlight">\(\iint_S \vec{F} \cdot \vec{dS}=\iint \vec{F} \cdot \vec{n} dS\)</span> where <span class="math notranslate nohighlight">\(dS=\left|\vec{r}_u \times \vec{r}_v\right| dudv\)</span>. It weights each area element <span class="math notranslate nohighlight">\(d S\)</span> with the normal component <span class="math notranslate nohighlight">\(\vec{F}(\vec{r}(u, v) \cdot \vec{n}(\vec{r}(u, v))\)</span> of the vector field.</p>
 <div class="proof definition admonition" id="flux_integral">
-<p class="admonition-title"><span class="caption-number">Definition 46 </span> (flux integral)</p>
+<p class="admonition-title"><span class="caption-number">Definition 48 </span> (flux integral)</p>
 <section class="definition-content" id="proof-content">
 <p>If a surface <span class="math notranslate nohighlight">\(S\)</span> is parametrized as <span class="math notranslate nohighlight">\(\vec{r}(u, v)=\langle x(u, v), y(u, v), z(u, v)\rangle\)</span> over a domain <span class="math notranslate nohighlight">\(G\)</span> in the <span class="math notranslate nohighlight">\(u v\)</span>-plane and <span class="math notranslate nohighlight">\(\vec{F}\)</span> is a vector field, then the flux integral of <span class="math notranslate nohighlight">\(\vec{F}\)</span> through <span class="math notranslate nohighlight">\(S\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -586,7 +586,7 @@ P &amp; Q &amp; R
 </div>
 <p>The boundary of a surface is a curve oriented so that the surface is to the “left” if the normal vector to the surface is pointing “up”. In other words, the velocity vector <span class="math notranslate nohighlight">\(v\)</span>, a vector <span class="math notranslate nohighlight">\(w\)</span> pointing towards the surface and the normal vector <span class="math notranslate nohighlight">\(n\)</span> to the surface form a right handed coordinate system.</p>
 <div class="proof theorem admonition" id="stokes_theorem">
-<p class="admonition-title"><span class="caption-number">Theorem 26 </span> (Stokes)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 25 </span> (Stokes)</p>
 <section class="theorem-content" id="proof-content">
 <p>Stokes theorem: Let <span class="math notranslate nohighlight">\(S\)</span> be a surface bounded by a curve <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(\vec{F}\)</span> be a vector field. Then</p>
 <div class="math notranslate nohighlight">
@@ -598,7 +598,7 @@ P &amp; Q &amp; R
 <section id="divergence">
 <h2>Divergence<a class="headerlink" href="#divergence" title="Permalink to this headline">#</a></h2>
 <div class="proof definition admonition" id="divergence">
-<p class="admonition-title"><span class="caption-number">Definition 47 </span> (diverence)</p>
+<p class="admonition-title"><span class="caption-number">Definition 49 </span> (diverence)</p>
 <section class="definition-content" id="proof-content">
 <p>The divergence of a vector field <span class="math notranslate nohighlight">\(\vec{F}=\langle P, Q, R\rangle\)</span> is the scalar field</p>
 <div class="math notranslate nohighlight">
@@ -614,7 +614,7 @@ P &amp; Q &amp; R
 <p>Because <span class="math notranslate nohighlight">\(\nabla \cdot \nabla \times \vec{F}=0\)</span> and <span class="math notranslate nohighlight">\(\nabla \times \nabla \vec{F}=\vec{0}\)</span>, it follows <span class="math notranslate nohighlight">\(\operatorname{div}(\operatorname{curl}(\vec{F}))=0\)</span> and <span class="math notranslate nohighlight">\(\operatorname{curl}(\operatorname{grad}(\vec{F}))=\vec{0}\)</span>.</p>
 </div>
 <div class="proof theorem admonition" id="divergence_theorem">
-<p class="admonition-title"><span class="caption-number">Theorem 27 </span> (divergence)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 26 </span> (divergence)</p>
 <section class="theorem-content" id="proof-content">
 <p>Divergence Theorem. Let <span class="math notranslate nohighlight">\(E\)</span> be a solid with boundary surface <span class="math notranslate nohighlight">\(S\)</span> oriented so that the normal vector points outside. Let <span class="math notranslate nohighlight">\(\vec{F}\)</span> be a vector field. Then</p>
 <div class="math notranslate nohighlight">
