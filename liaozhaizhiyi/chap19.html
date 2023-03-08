@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第19章 鸦头 &#8212; 聊斋志异</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第20章 封三娘" href="chap20.html" />
+    <link rel="prev" title="第18章 促织" href="chap18.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">聊斋志异</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    聊斋志异目录
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   自序
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   第1章 画壁
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   第2章 劳山道士
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   第3章 娇娜
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   第4章 青凤
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   第5章 画皮
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   第6章 陆判
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   第7章 婴宁
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   第8章 聂小倩
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   第9章 莲香
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   第10章 阿宝
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   第11章 红玉
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   第12章 连琐
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   第13章 夜叉国
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   第14章 连城
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   第15章 雷曹
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap16.html">
+   第16章 罗刹海市
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap17.html">
+   第17章 田七郎
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap18.html">
+   第18章 促织
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   第19章 鸦头
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap20.html">
+   第20章 封三娘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap21.html">
+   第21章 颜氏
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap22.html">
+   第22章 小谢
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap23.html">
+   第23章 狼（三则）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap24.html">
+   第24章 鸽异
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap25.html">
+   第25章 二商
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap26.html">
+   第26章 仙人岛
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap27.html">
+   第27章 胡四娘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap28.html">
+   第28章 宦娘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap29.html">
+   第29章 小翠
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap30.html">
+   第30章 金和尚
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap31.html">
+   第31章 局诈（三则）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap32.html">
+   第32章 霍女
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap33.html">
+   第33章 于去恶
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap34.html">
+   第34章 大鼠
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap35.html">
+   第35章 席方平
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap36.html">
+   第36章 贾奉雉
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap37.html">
+   第37章 瑞云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap38.html">
+   第38章 葛巾
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap39.html">
+   第39章 黄英
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap40.html">
+   第40章 书痴
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap41.html">
+   第41章 晚霞
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap42.html">
+   第42章 白秋练
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap43.html">
+   第43章 王者
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap44.html">
+   第44章 竹青
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap45.html">
+   第45章 香玉
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap46.html">
+   第46章 石清虚
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap47.html">
+   第47章 粉蝶
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap48.html">
+   第48章 丐仙
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap49.html">
+   第49章 人妖
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap19.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap19.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap19.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap19.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>第19章 鸦头</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第19章 鸦头<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>诸生王文，东昌人，少诚笃。薄游于楚，过六河，休于旅舍。闲步门外，遇里戚赵东楼，大贾也，常数年不归；见王，执手甚欢，便邀临存。至其所，有美人坐室中，愕怪却步。赵曳之，又隔窗呼妮子去，王乃入。赵具酒馔，话温凉。王问：“此何处所？”答云：“此是小勾栏。余因久客，暂假床寝。”话间，妮子频来出入。王局促不安，离席告别。赵强捉令坐。俄见一少女经门外过，望见王，秋波频顾，眉目含情，仪度娴婉，实神仙也。王素方直，至此惘然若失，便问：“丽者何人？”赵曰：“此媪次女，小字鸦头，年十四矣。缠头者屡以重金啖媪，女执不愿，致母鞭楚，女以齿稚哀免。今尚待聘耳。”王闻言，俯首默然痴坐，酬应悉乖。赵戏之曰：“君倘垂意，当作冰斧。”王怃然曰：“此念所不敢存。”然日向夕，绝不言去。赵又戏请之。王曰：“雅意极所感佩，囊涩奈何！”赵知女性激烈，必当不允，故许以十金为助。王拜谢趋出，罄资而至，得五数，强赵致媪。媪果少之。鸦头言于母曰：“母日责我不作钱树子，今请得如母所愿。我初学做人，报母有日，勿以区区放却财神去。”媪以女性拗执，但得允从，即甚欢喜，遂诺之。使婢邀王郎。赵难中悔，加金付媪。王与女欢爱甚至。既，谓王曰：“妾烟花下流，不堪匹敌。既蒙缱绻，义即至重。君倾囊博此一宵欢，明日如何？”王泫然悲哽。女曰：“勿悲。妾委风尘，实非所愿。顾未有敦笃可托如君者。请以宵遁。”王喜，遽起；女亦起。听谯鼓已三下矣。女急易男装，草草偕出，叩主人扉。王故从双卫，托以急务，命仆便发。女以符系仆股并驴耳上。纵辔极驰，目不容启，耳后但闻风鸣。平明，至汉江口，税屋而止。王惊其异。女曰：“言之，得无惧乎？妾非人，狐耳。母贪淫，日遭虐遇，心所积懑。今幸脱苦海。百里外，即非所知，可幸无恙。”王略无疑贰，从容曰：“室对芙蓉，家徒四壁，实难自慰，恐终见弃置。”女曰：“何为此虑。今市货皆可居，三数口，淡薄亦可自给。可鬻驴子作资本。”王如言，即门前设小肆，王与仆人躬同操作，卖酒贩浆其中。女作披肩，刺荷囊，日获赢余，顾膳甚优。积年余，渐能蓄婢媪。王自是不着犊鼻。但课督而已。</p>
+<p>女一日悄然忽悲，曰：“今夜合有难作，奈何！”王问之，女曰：“母已知妾消息，必见凌逼。若遣姊来，吾无忧；恐母自至耳。”夜已央，自庆曰：“不妨，阿姊来矣。”居无何，妮子排闼入，女笑逆之。妮子骂曰：“婢子不羞，随人逃匿！老母令我缚去。”即出索子絷女颈。女怒曰：“从一者得何罪？”妮子益忿，捽女断衿。家中婢媪皆集。妮子惧，奔出。女曰：“姊归，母必自至。大祸不远，可速作计。”乃急办装，将更播迁。媪忽掩入，怒容可掬，曰：“我固知婢子无礼，须自来也！”女迎跪哀啼。媪不言，揪发提去。王徘徊怆恻，眠食都废。急诣六河，冀得贿赎。至则门庭如故，人物已非。问之居人，俱不知所徙。悼丧而返。于是俵散客旅，囊资东归。</p>
+<p>后数年，偶入燕都，过育婴堂，见一儿，七八岁。仆人怪似其主，反复凝注之。王问：“看儿何说？”仆笑以对。王亦笑。细视儿，风度磊落。自念乏嗣，因其肖己，爱而赎之。诘其名，自称王孜。王曰：“子弃之襁褓，何知姓氏？”曰：“本师尝言，得我时，胸前有字，书山东王文之子。”王大骇曰：“我即王文，乌得有子？”念必同己姓名者，心窍喜，甚爱惜之。及归，见者不问而知为王生子。孜渐长，孔武有力，喜田猎，不务生产，乐斗好杀。王亦不能钳制之。又自言能见鬼狐，悉不之信。会里中有患狐者，请孜往觇之。至则指狐隐处，令数人随指处击之，即闻狐鸣，毛血交落，自是遂安。由是人益异之。王一日游市廛，忽遇赵东楼，巾袍不整，形色枯黯。惊问所来。赵惨然请间。王乃偕归，命酒。赵曰：“媪得鸦头，横施楚掠。既北徙，又欲夺其志。女矢死不二，因囚置之。生一男，弃诸曲巷；闻在育婴堂，想已长成。此君遗体也。”王出涕曰：“天幸孽儿已归。”因述本末。问：“君何落拓至此？”叹曰：“今而知青楼之好，不可过认真也。夫何言！”先是，媪北徙，赵以负贩从之。货重难迁者，悉以贱售。途中脚直供亿，烦费不赀，因大亏损。妮子索取尤奢。数年，万金荡然。媪见床头金尽，旦夕加白眼。妮子渐寄贵家宿，恒数夕不归。赵愤激不可耐，然无奈之。适媪他出，鸦头自窗中呼赵曰：“勾栏中原无情好，所绸缪者，钱耳。君依恋不去，将掇奇祸。”赵惧，如梦初醒。临行，窃往视女。女授书使达王，赵乃归。因以此情为王述之。即出鸦头书。书云：“知孜儿已在膝下矣。妾之厄难，东楼君自能缅悉。前世之孽，夫何可言！妾幽室之中，暗无天日。鞭创裂肤，饥火煎心，易一晨昏，如历年岁。君如不忘汉上雪夜单衾，迭互暖抱时，当与儿谋，必能脱妾于厄。母姊虽忍，要是骨肉，但嘱勿致伤残，是所愿耳。”王读之，泣不自禁。以金帛赠赵而去。时孜年十八矣。王为述前后，因示母书。孜怒皆欲裂，即日赴都，询吴媪居，则马车方盈。孜直入，妮子方与湖客饮，望见孜，愕立变色。孜骤进杀之，宾客大骇，以为寇。及视女尸，已化为狐。孜持刃径入，见媪督婢作羹。孜奔近室门，媪忽不见。孜四顾，急抽矢，望屋梁射之；一狐贯心而堕，遂决其首。寻得母所，投石破扃，母子各失声。母问媪，曰：“已诛之。”母怨曰：“儿何不听吾言！”命持葬郊野。孜伪诺之，削其皮而藏之。捡媪箱箧，尽卷金资，奉母而归。夫妇重谐，悲喜交至。既问吴媪。孜言：“在吾囊中。”惊问之，出两革以献。母怒，骂曰：“忤逆儿！何得此为！”号恸自挝，转侧欲死。王极力抚慰，叱儿瘗革。孜忿曰：“今得安乐所，顿忘挞楚耶？”母益怒，啼不止。孜葬皮反报，始稍释。王自女归，家益盛。心德赵，报以巨金。赵始知母子皆狐也。孜承奉甚孝；然误触之，则恶声暴吼。女谓王曰：“儿有拗筋，不刺去之，终当杀人倾产。”夜伺孜睡，潜絷其手足。孜醒曰：“我无罪。”母曰：“将医尔虐，其勿苦。”孜大叫，转侧不可开。女以巨针刺踝骨侧，深三四分许，用刀掘断，崩然有声。又于肘间脑际并如之。已，乃释缚，拍令安卧。天明，奔候父母，涕泣曰：“儿早夜忆昔所行，都非人类！”父母大喜，从此温和如处女，乡里贤之。</p>
+<p>异史氏曰：“妓尽狐也。不谓有狐而妓者；至狐而鸨，则兽而禽矣。灭理伤伦，其何足怪？至百折千磨，之死靡他，此人类所难，而乃于狐也得之乎？唐太宗谓魏徵更饶妩媚，吾于鸦头亦云。”</p>
+<p>[今译]</p>
+<p>秀才王文是山东东昌人，从小就很诚实忠厚。他到楚地游学，路过六河镇，住进一家旅馆。闲时出门散步，遇见同乡赵东楼。赵是个大商人，在外做买卖，经常数年不回家。他见到王文，心里很高兴，握手寒暄了几句，就邀请王文到他的住处去，王文来到赵东楼的住处，看见一位美貌的女子坐在屋里，心里一愣，停住脚不敢进去。赵东楼却不在意，热情地拉他进屋，又隔着窗户叫那女子回避，王文才跟着进去。赵东楼摆上酒菜，和王文问长问短。王文问：“这是什么地方？”赵东楼回答说：“这是一间小妓院。我因为常年在外，暂借这里住宿。”说话间，那美貌的女子多次出出进进。王文觉到局促不安，便要起身告别。赵东楼硬拉住他，叫他坐下。</p>
+<p>这样又过了一会儿，一个少女从门外经过，当她扭头看见王文时，那水灵灵的眼睛一次次地打量他，眉目含情，体态容貌娴雅俊美，如同仙女下凡。王文一向耿直正派，到这时也不觉心动如飞。于是问道：“这个美丽的姑娘是谁？”赵东楼说：“这是妓院老鸨的二女儿，小名叫鸦头，今年十四岁了。嫖客多次出重金买动老鸨，但鸦头执意不从，以致经常遭受鸨母的打骂。鸦头一再说自己年幼，苦苦哀求，才免于接客，如今还没接过客呢！”王文听了这话，低着头，默然呆坐，问答前言不对后语。见此情形，赵东楼开玩笑说：“你如果对她有意，我愿给你做个媒人。”王文茫然若失，说：“这个念头，我实在不敢想。”话虽这么说，但天色已晚，却一点也没有要走的意思。赵东楼又用做媒的话挑逗他。王文这才说出心里话：“你的好意我十分感激，但我腰包里空空，怎么办呢？”赵东楼认为鸦头性情刚烈，一定不会同意，就故作大方地答应拿十两银子帮助他。</p>
+<p>王文拜谢了赵东楼，急忙回去，将自己所有的钱凑起来，共有五两银子，硬要赵东楼去向老太婆商量。老太婆嫌钱少。鸦头却对母亲说：“母亲每天责备我不做摇钱树，今天我愿意满足母亲的心愿。我初学做人，报答母亲的日子还长着呢！别嫌他给的钱少，把财神放走。”老太婆因为鸦头性情执拗，什么事只要依了她，她就十分高兴。于是就答应下来，并打发丫鬟去请王文。赵东楼也不好中途反悔，只得加了些银子交给老太婆。</p>
+<p>王文和鸦头情投意合，欢爱备至。随后鸦头对王文说：“我是个烟花柳巷的卑贱女子，本来与你不配。承蒙你如此爱怜，可说是义重情深。你不惜拿出所有的钱，换取这一夜的欢娱，到了明天怎么办呢？”王文一想，不禁流泪悲泣。鸦头急忙劝慰说：“不要难过。我沦落到这种地步，实在并不心甘情愿，只是没有遇到像你这样敦厚老实，可以托付终身的人。现在我愿意与你一起连夜私逃！”王文听了，十分高兴，急忙起床。鸦头也跟着起来。</p>
+<p>这时听城楼上已打了三更，鸦头赶紧换成男装，两人急急忙忙一道走出妓院，来到王文的住处敲开店门。王文离家时，带着两头毛驴，推说有急事，叫仆人尽快备驴出发。鸦头用几道符箓分别系在仆人的腿上和驴子的耳朵上，然后放开缰绳，那驴子便飞快地向前跑。快得连眼睛都睁不开，只听得耳边风声呼呼直响。跑到天亮，他们已到汉口，便租了房子住下来。王文对鸦头的奇异本领十分吃惊。鸦头说：“我如实说了，你不害怕吗？我并不是人，是个狐。母亲贪图赚钱，我天天遭受虐待，心里早积下满腹怨恨。如今幸亏脱离了苦海。逃出百里之外，她已无法知道我的下落，今后可以平安无事了。”王文听了，毫无疑忌之心，从容地说：“面对着比荷花还美的姑娘，我却家徒四壁，实在难以自我宽慰，恐怕你终究要离开我。”鸦头说：“你何必顾虑那么多。现在做什么买卖都可赚钱，三口人，粗茶淡饭，还是可以自给的。咱们可以先把驴卖了做点本钱。”王文按照鸦头所说的，在门前搭了个小店铺，和仆人一起干活，贩卖茶酒豆浆。鸦头做披肩，绣荷包，每天都赚一些钱，吃、喝、穿、戴都很有余。这样积累了一年多，逐渐可以雇用婢女和仆妇了。从此以后，王文也不必亲自操作了，只管检查和督促。</p>
+<p>一天，鸦头忽然暗暗悲伤起来，说：“今晚当有大难临头，怎么办？”王文问她是怎么回事，她说：“母亲已经知道我的下落，必然逼迫我回去。若是派姐姐妮子来，我倒不十分担心，就怕母亲自己来呀！”转眼到了半夜，鸦头庆幸地说：“不要紧啦，是姐姐来了。”过了一会儿，王文当年在客舍见到的那个女子推门闯了进来。鸦头笑着迎接她。那女子骂道：“你这丫头真不知羞，竟敢跟着男人私奔，藏到这里来了。母亲叫我把你捆回去！”说着就拿出绳子要捆鸦头的脖子。鸦头愤怒地说：“我只嫁一个人，犯了什么罪？”那女子见妹妹顶撞她，更加愤怒，揪住鸦头，衣服都撕破了。这时家里的佣人闻声赶来，那女子害怕，就逃走了。鸦头见姐姐一走，便对王文说：“姐姐回去后，母亲必定亲自来，大祸不远了，得赶快想办法。”于是，鸦头急忙收拾行装，打算向远处逃难。老太婆突然闯了进来。她满脸怒气，说：“我就知道你这个丫头不懂规矩，非得我亲自来不可！”鸦头赶紧迎面跪下，啼哭哀求。可是，老太婆连句话也不说，揪住鸦头的头发，狠狠地把她拎走了。</p>
+<p>王文急得在屋里团团转，悲痛得不吃不睡。他急速赶到六河镇，希望花钱能赎回鸦头。但到那里一看，门庭院落如旧，住户却不是原来的人了。王文到处打听，都不知鸦头一家搬到哪里去了。王文悲伤地返回汉口。于是，他遣散了店里的伙计，处理了物品，带着钱回山东老家了。</p>
+<p>几年以后，王文偶然到北京办事，路过育婴堂时，看见一个七八岁的小孩。他的仆人见这个小孩长得很像自己的主人，觉得很奇怪，不住地用眼睛打量他。王文问：“为什么老看这个孩子？”仆人笑着回了话，王文也笑了。仔细看这个小孩，磊落大方，一点也不扭捏胆怯。王文正愁自己没有儿子，见那小孩像自己，挺喜欢他，就拿钱把他赎了出来。问小孩姓名，他说叫王孜。王文说：“你刚出世就被丢弃，怎么知道自己的姓名呢？”小孩回答说：“我听老师说过，捡到我的时候，胸前有字，写着：‘山东王文之子’。”王文听了不禁大吃一惊，说：“我就是王文，哪里会有儿子呢？”转念一想，也许是同名同姓吧。心里暗自高兴，对小孩格外爱惜。回到家，看见小孩的人，不用问姓名，都以为是王文的亲生骨肉。</p>
+<p>王孜逐渐长大，腰粗体壮，筋骨有力，喜欢打猎，不喜欢经营庄稼，乐斗好杀。王文也管不住他。王孜还说能看见鬼狐，不过大家都不大相信。恰巧，乡里有人遭了狐的祸害，就请王孜去看。王孜一入门，就指着狐精的隐身处，教人随着他指点的地方狠狠打去。立刻便听到狐狸呜呜直叫，流了一地血，掉了一堆毛。从此，就平安无事了。因为这件事，人们越发把王孜看成奇异的人物。</p>
+<p>有一天，王文在街市闲游，忽然遇见赵东楼，见他衣帽不整，面黄肌瘦。王文吃惊地问他从哪儿来，赵东楼神态凄惨，要王文找个地方说话。王文便把赵东楼领到家，摆上酒菜招待他。赵东楼说：“那个老婆子把鸦头抓回去后，没头没脑打了一顿，又往北搬家，又逼她接客。鸦头誓死不从。所以被囚禁起来。生了一个小男孩，被扔在偏僻的小巷里。听说收在育婴堂抚养，想必已经长大。他可是你留下的根苗啊！”王文流着泪说：“幸亏老天爷开眼，这个苦命的孩子已经回到我身边了。”王文就把情况从头到尾说了一遍。接着，王文问：“你怎么落魄到这个样子呢？”赵东楼叹口气说：“今天才知道，和那些妓女相好，是不能过于痴情的！还有什么可说呢！”</p>
+<p>原来，那老太婆往北搬家时，赵东楼跟着去做买卖，就把那些难以搬运的货物统统低价出卖了；途中又花了不少车脚费，加上种种开销，亏损很大。妮子索取的钱财又特别多，几年工夫，万贯家产荡然一空。老太婆见他钱财花光了，早晚竟以白眼相待。这时，那妮子便逐渐到富贵人家过夜，经常几个晚上都不回来。赵东楼虽然气愤得难以忍受，却也无可奈何。一天，恰好老太婆外出了，鸦头从窗户里呼唤赵东楼，提醒他说：“妓院里本来就没有什么真情实意，她们之所以和你亲热，不过是图你的钱财罢了。如果现在你还留恋着不走，将要遭到大祸呀！”赵东楼害怕了，这才如梦初醒。临走时，赵东楼偷偷去探望鸦头。鸦头交给他一封信，托他转交给王文。赵东楼这才回到家乡。赵东楼给王文讲了自己的遭遇，接着拿出鸦头的书信。信上说：“知道孜儿已经在你身边了。我遭受的灾难，东楼想必会当面给你细说。这是前世造下的孽，没什么可说的！我被关闭在阴暗的小屋里，难见天日，鞭子把我打得皮开肉绽，饥火煎心，真是度日如年！你如果没有忘记咱们在汉口的日子，雪夜单被，互相拥抱取暖的恩爱，该和儿子商量个办法，定能把我救出火坑。母亲和姐姐对我虽然很残忍，但毕竟还是亲骨肉，望你嘱咐儿子，不要伤害她们。这是我的最大心愿。”</p>
+<p>王文读完信，不禁泣不成声。拿些钱物送给赵东楼，赵东楼就辞别走了。</p>
+<p>这时，王孜已经十八岁了。王文把实情告诉了他，拿母亲的信给他看。王孜气得眼眶都要瞪裂了。当天便赶赴京城。他打听到老太婆的住处。到那里一看，车马盈门。王孜直闯进去，妮子正和湖广的嫖客共饮，看见王孜，惊愕地站起来，吓得面无人色。王孜猛冲过去，一刀把她杀死。宾客大吃一惊，以为来了强盗。可是看看妓女的尸首，已经变成狐狸。王孜又拿着刀，径直往里闯，见老太婆在督促佣人做菜调汤。王孜刚到屋门口，老太婆忽然不见了。王孜四处察看，急忙抽箭搭弓朝屋梁射去，只见一只狐狸被箭头射穿心脏掉了下来。王孜挥手一刀割下了狐狸的脑袋。王孜找到囚禁母亲的房子，立刻用石头砸开房门，母子相见，痛哭失声。母亲问起她娘，王孜说：“已经杀了！”母亲埋怨说：“孩儿怎么不听我的话呢！”事已至此，只得叫儿子把尸首扛到野外埋了。王孜假装答应，却把那死狐狸的皮剥下，藏了起来。又去搜查老太婆的箱柜，取走了全部金银财宝，护送母亲回了家。</p>
+<p>王文夫妻俩重新团聚，悲喜交集。随后询问老太婆的下落，王孜说：“在我的背囊里呢。”王文吃惊地问怎么回事，王孜从背囊里拿出两张狐狸皮献上。母亲一见大怒，骂道：“你这个忤逆儿！怎么能这样做！”说完就号啕大哭，捶胸顿足，翻来覆去想要寻死。王文极力劝慰她，呵叱儿子胡闹，要他把狐狸皮埋葬掉。王孜气愤地说：“母亲现在到了安乐的地方，立刻就忘掉挨打的苦楚啦？”母亲听了这话更加生气，啼哭不止。直到王孜埋葬了狐狸皮，回来告诉她，她的怒气才消了一点。王文自从鸦头归来，家业日益兴盛。心里感激赵东楼，拿了许多金银酬谢他。赵东楼才知道老太婆母女原来都是狐狸。</p>
+<p>王孜侍奉父母特别孝顺，但偶尔不小心惹着他，就会暴跳如雷。鸦头对王文说：“儿子身上有拗筋，不把它割掉，终究会惹出人命官司，弄得倾家荡产。”一天夜晚，等王孜睡熟，他们就偷偷地捆住他的手脚。王孜醒来说：“我没有罪。”鸦头说：“要给你治暴虐病，你要暂时忍点疼痛。”王孜大喊大叫，可怎么也挣脱不开绳索。鸦头拿来一根大针，对准王孜的踝骨侧面，扎进去三四分深，用力挑断拗筋，发出嘣嘣的声音。又在肘间和脑后也照样挑断了筋。挑完就解开绳子，拍拍肩膀，叫他安睡。天亮以后，王孜跑来问候父母，哭着说：“孩儿昨晚回忆过去的所作所为，认识到都不是人应该做的！”父母听了十分高兴。从此以后，王孜像姑娘那样温顺，乡里的人都夸他品德好。</p>
+<p>异史氏说：“妓女尽是狐精，没想到真有狐精做妓女的；至于狐精成了妓院的鸨母，那更是地道的禽兽了，干出伤天害理、灭绝人伦的事，又有什么奇怪呢？至于受到千百次的折磨，到死没有二心，这是人类也难以做到的，竟然出在一个狐女身上，谁能想到呢？唐太宗说魏征敢于直谏，举止更为妩媚可爱，我说鸦头也是这样的。”</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chap18.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">第18章 促织</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap20.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第20章 封三娘</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

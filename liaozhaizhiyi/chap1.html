@@ -1,0 +1,676 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第1章 画壁 &#8212; 聊斋志异</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第2章 劳山道士" href="chap2.html" />
+    <link rel="prev" title="自序" href="preface.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">聊斋志异</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    聊斋志异目录
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   自序
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   第1章 画壁
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   第2章 劳山道士
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   第3章 娇娜
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   第4章 青凤
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   第5章 画皮
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   第6章 陆判
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   第7章 婴宁
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   第8章 聂小倩
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   第9章 莲香
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   第10章 阿宝
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   第11章 红玉
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   第12章 连琐
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   第13章 夜叉国
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   第14章 连城
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   第15章 雷曹
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap16.html">
+   第16章 罗刹海市
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap17.html">
+   第17章 田七郎
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap18.html">
+   第18章 促织
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap19.html">
+   第19章 鸦头
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap20.html">
+   第20章 封三娘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap21.html">
+   第21章 颜氏
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap22.html">
+   第22章 小谢
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap23.html">
+   第23章 狼（三则）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap24.html">
+   第24章 鸽异
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap25.html">
+   第25章 二商
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap26.html">
+   第26章 仙人岛
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap27.html">
+   第27章 胡四娘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap28.html">
+   第28章 宦娘
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap29.html">
+   第29章 小翠
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap30.html">
+   第30章 金和尚
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap31.html">
+   第31章 局诈（三则）
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap32.html">
+   第32章 霍女
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap33.html">
+   第33章 于去恶
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap34.html">
+   第34章 大鼠
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap35.html">
+   第35章 席方平
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap36.html">
+   第36章 贾奉雉
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap37.html">
+   第37章 瑞云
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap38.html">
+   第38章 葛巾
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap39.html">
+   第39章 黄英
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap40.html">
+   第40章 书痴
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap41.html">
+   第41章 晚霞
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap42.html">
+   第42章 白秋练
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap43.html">
+   第43章 王者
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap44.html">
+   第44章 竹青
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap45.html">
+   第45章 香玉
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap46.html">
+   第46章 石清虚
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap47.html">
+   第47章 粉蝶
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap48.html">
+   第48章 丐仙
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap49.html">
+   第49章 人妖
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap1.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap1.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap1.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>第1章 画壁</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第1章 画壁<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p><img alt="" src="_images/cover.jpg" /></p>
+<p>江西孟龙潭，与朱孝廉客都中。偶涉一兰若，殿宇禅舍，俱不甚弘敞，唯一老僧挂褡其中。见客入，肃衣出迓，导与随喜。殿中塑志公像，两壁画绘精妙，人物如生。东壁画散花天女，内一垂髫者，拈花微笑，樱唇欲动，眼波将流。朱注目久，不觉神摇意夺，恍然凝想。身忽飘飘，如驾云雾，已到壁上。见殿阁重重，非复人世。一老僧说法座上，偏袒绕视者甚众，朱亦杂立其中。少间，似有人暗牵其裾。回顾，则垂髫儿，冁然竟去。履即从之。过曲栏，入一小舍，朱次且不敢前。女回首，举手中花，遥遥作招状，乃趋之。舍内寂无人。遽拥之，亦不甚拒，遂与狎好。既而闭户去，嘱勿咳，夜乃复至。如此二日。女伴觉之，共搜得生，戏谓女曰：“腹内小郎已许大，尚发蓬蓬学处子耶？”共捧簪珥，促令上鬟。女含羞不语。一女曰：“妹妹姐姐，吾等勿久住，恐人不欢。”群笑而去。生视女，髻云高簇，鬟凤低垂，比垂髫时尤艳绝也。四顾无人，渐入猥亵，兰麝熏心，乐方未艾。忽闻吉莫靴铿铿甚厉，缧锁锵然，旋有纷嚣腾辨之声。女惊起，与生窃窥，则见一金甲使者，黑面如漆，绾锁挈槌，众女环绕之。使者曰：“全未？”答言：“已全。”使者曰：“如有藏匿下界人，即共出首，勿贻伊戚。”又同声言：“无。”使者反身鹗顾，似将搜匿。女大惧，面如死灰，张皇谓朱曰：“可急匿榻下。”乃启壁上小扉，猝遁去。</p>
+<p>朱伏，不敢少息。俄闻靴声至房内，复出。未几，烦喧渐远，心稍安；然户外辄有往来语论者。朱跼蹐既久，觉耳际蝉鸣，目中火出，景状殆不可忍，惟静听以待女归，竟不复忆身之何自来也。时孟龙潭在殿中，转瞬不见朱，疑以问僧。僧笑曰：“往听说法去矣。”问：“何处？”曰：“不远。”少时，以指弹壁而呼曰：“朱檀越！何久游不归？”旋见壁间画有朱像，倾耳伫立，若有听察。僧又呼曰：“游侣久待矣。”遂飘忽自壁而下，灰心木立，目瞪足软。孟大骇，从容问之。盖方伏榻下，闻扣声如雷，故出房窥听也。共视拈花人，螺髻翘然，不复垂髫矣。朱惊拜老僧，而问其故。僧笑曰：“幻由人生，贫道何能解！”朱气结而不扬，孟心骇而无主。即起，历阶而出。</p>
+<p>异史氏曰：“‘幻由人生’，此言类有道者。人有淫心，是生亵境；人有亵心，是生怖境。菩萨点化愚蒙，千幻并作，皆人心所自动耳。老僧婆心切，惜不闻其言下大悟，披发入山也。”</p>
+<p>[今译]</p>
+<p>江西的孟龙潭曾和一位姓朱的举人一起客居京城。有一天，他俩偶然走进一座寺庙里闲逛。这庙的佛殿和禅房都不太宽阔明亮，只有一个老和尚暂住在里面。老和尚见客人进来，便整衣相迎，领着他们在庙里各处参观。</p>
+<p>佛殿里供奉着一尊志公塑像，两边的墙壁上画着精美绝伦的壁画，人物形象栩栩如生。东墙上画着散花天女。里面有个披着头发的少女，纤纤细手捏着一朵花，脸上露出甜蜜的笑容，樱桃小嘴微微张开，好像要说话，明亮的眼波像流动的清水一般。</p>
+<p>朱举人一下子被这个仙女迷住了，久久注视着，不觉神魂颠倒，恍恍惚惚，想入非非。突然间，身体好像变得很轻很轻，腾云驾雾似的飞到墙上壁画里去了。这时，只见重重的殿阁楼台，已不是人间景象。有一个老和尚坐在佛堂上讲经说法，周围站着许多听讲的人。朱生也混杂在里面站立倾听。过了一会儿，他感觉到好像有人在偷偷地拉他的衣襟。回头一看，原来就是那位少女，她对着他妩媚一笑，转身就走。朱生立即迈步跟了过去，转过弯弯曲曲的回廊，那少女走进一间小屋。这时，他有点犹豫，徘徊不敢跟进。那少女回过头来，举起手里的花朵，远远地向他招呼。这样，他才放心大胆跟了进去。房子里没有人，朱生冲上去拥抱她，她也半依半就，于是就趁机欢好相亲。</p>
+<p>事后少女关上门离去。临走时，吩咐朱生不要弄出声响，夜里她会再来。这样暗中来往，连续两天，终于被少女的女伴们发现了。她们跑到少女的小屋里，搜出了朱生，跟少女开玩笑说：“肚子里小郎君已经好大啦，干吗还要蓬散着头发充大姑娘？”她们捧来金簪和玉珥，催促少女把头发梳成高高的发髻。少女低着头，含羞不语。一个女伴说：“姐妹们，我们不要停留过久，再待下去人家恐怕不高兴了。”说完，大家嘻嘻哈哈地一一道别而去。</p>
+<p>朱生再看少女，发髻如同一簇乌云，高高地盘结在头顶上，发型像只展翅低飞的凤凰，比起头发纷披时更加艳丽动人。看看四周无人，两人又亲昵起来。兰麝的芳香，沁人心脾，欢娱之情，越来越浓。</p>
+<p>正当两人难舍难分之际，忽然外面传来嗒嗒哒的靴子声和哗啦啦的铁链声。紧接着又传来纷扰喧哗、争辩不休的声音。少女吃惊地爬起来，跟朱生一起往窗外偷看，只见一个面色漆黑的金甲使者，手执铜锤铁链，被众女伴围着。金甲使者说：“都来了吗？”众女子回答说：“已经全到了。”金甲使者又说：“如果有谁私下藏匿着下界的凡人，大家要立即告发，千万不要给自己找麻烦！”众女伴又齐声说：“没有。”金甲使者转过身来，像老鹰搜寻猎物一样四处扫视，好像要立即搜索一样。少女非常害怕，吓得脸如死灰，惊惶失措，悄悄对朱生说：“赶快藏到床底下去！”说完，就打开墙壁上的一扇小门，逃走了。朱生趴在床底下，吓得不敢大口喘气。过了一会，听见嗒嗒哒的靴子声传进屋里，随后又转了出去。再过一会儿，嘈杂的声音才渐渐远去，朱生怦然跳动的心才稍微安定。可是，他侧耳细听，屋外面还有来往说话的人。朱生忐忑不安地趴了很长时间，耳朵里如同蝉鸣般嗡嗡作响，眼冒金星，这种情景，实在难以忍受。但也不敢乱动，只有等待着女郎回来。朱生遭此惊吓，竟然都不记得自己是从哪里来的了。</p>
+<p>这时，孟龙潭正在佛殿上参观，转眼之间找不到朱生，心里很奇怪，就问老和尚。老和尚笑着说：“他听讲经说法去了。”孟生又问：“在什么地方？”答道：“不远。”稍等了片刻，老和尚用手弹弹壁画，大声喊道：“朱施主，你怎么游了这么长时间还不回来呀！”顿时，就见墙上显现出朱生的画像，侧着耳朵站着，似乎在倾听什么。老和尚又大声呼喊：“你的同伴等你好久啦！”话音刚落，忽见朱生从壁画上轻轻飘落下来。到了地上，心如死灰，呆如木偶，直瞪着眼，腿足酸软。孟生见他这般模样，吓了一跳，就问他怎么回事，才知道朱生刚才正趴在床底下，听到敲击声像雷声一样，所以就冲出屋子探听。看壁画上那位手举鲜花的少女，发现她头上那螺形的发髻高高地翘起，已经再不是原先双鬟下垂的少女发式了。朱生惊讶地问老和尚这是什么缘故。老和尚笑笑说：“幻境是由人的内心产生的，贫僧怎能知道呢？”朱生心里郁闷，愁眉苦脸；孟生也心中骇怕，六神无主。于是两人马上起身沿着一级一级的台阶，走出了寺院。</p>
+<p>异史氏说：“幻境是由人的内心产生的，说出这话的，像是一位深通哲理的人。一个人有了淫心，就会产生下流的幻境；一个人有了下流的心思，就会出现可怖的幻境。菩萨为了启发愚昧无知的人，显现千般幻境，实际上都是人的内心世界主动追求才产生的。老和尚苦口婆心很是诚恳，可惜朱孟二人没有听了他的话而大彻大悟，选择披发入山修养心性的道路。”</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="preface.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">自序</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap2.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第2章 劳山道士</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
