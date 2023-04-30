@@ -105,6 +105,8 @@ toupper(x)
 tolower(x)
 ``` 
 
+ 
+
 ## Reading data from files 
 
 ```{code-cell}
@@ -118,7 +120,6 @@ write.csv(data,"newdata.csv", row.names=F)
 
 ```{code-cell}
 x=1 
-
 y=2 
 
 x==y 

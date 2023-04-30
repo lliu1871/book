@@ -107,7 +107,7 @@ plot(x,y,type="l",col="blue",main="sin")
 
 ```
 
-````\{prf:example\} 0.1
+````{prf:example} 0.1
 :nonumber:
 :label: 0.1
 :nonumber:
@@ -120,7 +120,7 @@ $\frac{de^{2x}}{dx}=\frac{(de^y)}{dy}\frac{dy}{dx}=e^{y}*2=2e^{2x}$
 
 Derivatives can be used to minimize or maximize a differentiable function $f(x)$. To find the value of $x$ that can maximize or minimize the function $f(x)$, we set the first derivative to be 0, i.e., $f^{\prime}(x)=0$ and check the second derivative of $f(x)$.
 
-````\{prf:example\} 0.2
+````{prf:example} 0.2
 :nonumber:
 :label: 0.2
 :nonumber:
@@ -155,7 +155,7 @@ The continuous functions can be approximated by polynomial functions, which is c
 
 $$f(x)=f(a)+f^{'} (a)(x-a)+\frac{(f^{''} (a) (x-a)^2)}{2}+\frac{(f^{'''}(a)(x-a)^3)}{3!}+\dots+\frac{f^{n}(a)(x-a)^n}{n!}+\dots$$
 
-````\{prf:example\} 0.3
+````{prf:example} 0.3
 :nonumber:
 :label: 0.3
 :nonumber:
@@ -193,7 +193,7 @@ The dot product of two vectors $a=(a_1,…,a_n)$ and $b=(b_1,…,b_n)$ is given 
 $$a\cdot b=\sum_{i=1}^na_ib_i$$
 ````
 
-````\{prf:example\} 0.4
+````{prf:example} 0.4
 :nonumber:
 :label: 0.4
 :nonumber:
@@ -206,7 +206,7 @@ The dot product of two vectors $(1, 2, 3)$ and $(0, 1, 2)$ is $1*0+2*1+3*2=8$. N
 Two vectors $a=(a_1,…,a_n)$ and $b=(b_1,…,b_n)$ are orthogonal (perpendicular) if $a\cdot b=0$. 
 ````
 
-````\{prf:example\} 0.5
+````{prf:example} 0.5
 :nonumber:
 :label: 0.5
 :nonumber:
@@ -282,7 +282,7 @@ The ultimate goal of statistical inference is to understand the unknown **popula
 :align: center
 ```
 
-````\{prf:example\} 0.7
+````{prf:example} 0.7
 :nonumber:
 :label: 0.7
 :nonumber:

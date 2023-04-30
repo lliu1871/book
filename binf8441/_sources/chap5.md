@@ -29,9 +29,7 @@ kernelspec:
 
 A statistic is a function $T=g\left(X_{1}, \dots, X_{n}\right)$ of the random sample $X_{1}, \dots, X_{n}$ generated from a probability distribution with density $f(X \mid \theta)$. 
 
-````\{prf:example\} 5.1
-:nonumber:
-:label: 5.1
+````{prf:example} 5.1
 :nonumber:
 :label: chap5_1
 The followings are statistics, 
@@ -52,9 +50,9 @@ f\left(X_{1}, \dots, X_{n} \mid T, \theta\right)=f\left(X_{1}, \dots, X_{n} \mid
 $$
 ````
 
-
 ````{prf:theorem} Factorization theorem
 :nonumber:
+:label: 5.1
 If the probability density function of data $X$ is $f(X \mid \theta)$, then $\mathrm{T}$ is sufficient for $\theta$ if and only if nonnegative functions $g$ and $h$ can be found such that 
 
 $$f(X \mid \theta)=h(x) g(T, \theta)$$
@@ -62,9 +60,7 @@ $$f(X \mid \theta)=h(x) g(T, \theta)$$
 
 If $z(x)$ is a one-to-one function and $\mathrm{T}$ is a sufficient statistic, then $z(T)$ is a sufficient statistic. For example, if the statistic $\mathrm{T}$ is sufficient, then $\mathrm{2T}$ is also a sufficient statistic.
 
-````\{prf:example\} 5.2
-:nonumber:
-:label: 5.2
+````{prf:example} 5.2
 :nonumber:
 :label: chap5_2
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Bernoulli}(p)$ , find the sufficient statistic for $p$. 
@@ -81,9 +77,7 @@ $$
 Thus the sufficient statistic for $p$ is $\sum x_{i}$.
 ````
 
-````\{prf:example\} 5.3
-:nonumber:
-:label: 5.3
+````{prf:example} 5.3
 :nonumber:
 :label: chap5_3
 
@@ -105,9 +99,7 @@ $$
 Thus, the sufficient statistics for $\left(\mu, \sigma^{2}\right)$ are $\left(\sum_{i=1}^{n} x_{i}, \sum_{i=1}^{n} x_{i}^{2}\right)$.
 ````
 
-````\{prf:example\} 5.4
-:nonumber:
-:label: 5.4
+````{prf:example} 5.4
 :nonumber:
 :label: chap5_4
 
@@ -126,9 +118,7 @@ $$
 Thus, the sufficient statistic for $\lambda$ is $\sum_{i=1}^{n} x_{i}$.
 ````
 
-````\{prf:example\} 5.5
-:nonumber:
-:label: 5.5
+````{prf:example} 5.5
 :nonumber:
 :label: chap5_5
 
@@ -147,9 +137,7 @@ $$
 Thus, the sufficient statistic for $\lambda$ is $\sum_{i=1}^{n} x_{i}$.
 ````
 
-````\{prf:example\} 5.6
-:nonumber:
-:label: 5.6
+````{prf:example} 5.6
 :nonumber:
 :label: chap5_6
 
@@ -167,9 +155,7 @@ is a discrete uniform distribution, which does not depend on parameters $\theta$
 An estimator $\hat{\theta}$ is unbiased if and only if $E(\hat{\theta})=\theta$.
 ````
 
-````\{prf:example\} 5.7
-:nonumber:
-:label: 5.7
+````{prf:example} 5.7
 :nonumber:
 :label: chap5_7
 
@@ -188,9 +174,7 @@ $$
 
 $\left(X_{1}+X_{2}\right) / 2$ is another unbiased estimator of $\mu$.
 
-````\{prf:example\} 5.8
-:nonumber:
-:label: 5.8
+````{prf:example} 5.8
 :nonumber:
 :label: chap5_8
 
@@ -209,6 +193,7 @@ $$
 
 ````{prf:theorem}
 :nonumber:
+:label: 5.2
 Given a random sample $X_{1}, \dots, X_{n}$, the sample average $\bar{X}$ is an unbiased estimator of the population mean $\theta$.
 ````
 
@@ -220,6 +205,7 @@ $$MSE = E\left[(\hat{\theta}-\theta)^{2}\right]$$
 
 ````{prf:theorem}
 :nonumber:
+:label: 5.3
 
 The MSE is the sum of the bias and variance. 
 
@@ -238,9 +224,7 @@ By the law of large numbers, the sample average is a good estimator of the popul
 - $\hat{E\left(X^{k}\right)}=\frac{1}{n} \sum_{i=1}^{n} x_{i}{ }^{k}$
 
 
-````\{prf:example\} 5.9
-:nonumber:
-:label: 5.9
+````{prf:example} 5.9
 :nonumber:
 :label: chap5_9
 
@@ -289,9 +273,7 @@ We estimate $\theta$ by the value that can maximize the likelihood of the observ
 For continuous random variables, the likelihood function is the joint density function of data.The maximum likelihood estimator is the value of parameter that can maximize the likelihood function.
 
 
-````\{prf:example\} 5.10
-:nonumber:
-:label: 5.10
+````{prf:example} 5.10
 :nonumber:
 :label: chap5_10
 
@@ -325,9 +307,7 @@ Solving the equation, we find $\mu = \frac{1}{n}\sum_{i=1}^n x_i$. Thus, the max
 
 ````
 
-````\{prf:example\} 5.11
-:nonumber:
-:label: 5.11
+````{prf:example} 5.11
 :nonumber:
 :label: chap5_11
 
@@ -361,9 +341,7 @@ Solving the equation, we find $\lambda = \frac{1}{n}\sum_{i=1}^n x_i$. Thus, the
 
 ````
 
-````\{prf:example\} 5.12
-:nonumber:
-:label: 5.12
+````{prf:example} 5.12
 :nonumber:
 :label: chap5_12
 
@@ -410,9 +388,7 @@ We hope to find an interval with a high confidence level. The confidence level i
 We would like to construct the 95% confidence interval.
 ``` 
 
-````\{prf:example\} 5.13
-:nonumber:
-:label: 5.13
+````{prf:example} 5.13
 :nonumber:
 :label: chap5_13
 
@@ -436,6 +412,7 @@ The above example can be generalized to the construction of 95% CI for any param
 
 ````{prf:theorem}
 :nonumber:
+:label: 5.4
 
 If the sample size is large, the 95% CI for a parameter $\theta$ is
 
@@ -449,7 +426,7 @@ Note that confidence intervals are random variables. Different samples generate 
 ## Convergence Theorems
 
 ````{prf:definition} convergence almost surely
-:label: 5.5
+:label: def_5.5
 :nonumber:
 To say that a sequence $\left\{X_{n}\right\}$ of random variables converges almost surely towards $X$ if 
 
@@ -457,7 +434,7 @@ $$P\left(\lim_{n \rightarrow \infty} X_{n}=X\right)=1$$
 ````
 
 ````{prf:definition} convergence in probability
-:label: 5.6
+:label: def_5.6
 :nonumber:
 A sequence $\left\{X_{n}\right\}$ of random variables converges in probability towards the random variable $X$ if for all $\varepsilon>0$, 
 
@@ -487,7 +464,7 @@ These inequalities are satisfied for all probability distributions. When the und
 
 ````{prf:theorem} The weak Law of large numbers
 :nonumber:
-
+:label: the_5.5
 The sample average converges in probability to the population mean as the sample size $n$ goes to infinity, regardless of the underlying probability distribution.
 
 
@@ -498,6 +475,7 @@ $$
 
 ````{prf:theorem} Central Limit Theorem
 :nonumber:
+:label: the_5.6
 
 The sample average converges in distribution to a normal random variable $X$, regardless of the underlying probability distribution
 

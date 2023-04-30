@@ -27,10 +27,10 @@ kernelspec:
 ## Discrete cases
 Considering two discrete random variables $X$ and $Y$ with a joint probability mass function (pmf) $P(X=x, Y=y)$ or simply $P(x,y)$.
 
-````\{prf:example\} 4.1
+````{prf:example} 4.1
 :nonumber:
-:label: 4.1
-:nonumber:
+:label: example_4.1
+
 The joint pmf can be represented by a table. The following table indicates $P(X=1,Y=0)=0.1$, $P(X=1,Y=1)=0.3$, $P(X=2,Y=0)=0.2$, $P(X=2,Y=1)=0.4$. The total probability is $0.1+0.2+0.3+0.4=1$.
 
 |     |X=1  |X=2 |
@@ -63,8 +63,9 @@ $$
 P(x \mid y)=\frac{P(x, y)}{P(y)}
 $$
 
-````{prf:example}
+````{prf:example} 4.2
 :nonumber:
+:label: example_4.2
 
 |     |X=1  |X=2 | sum |
 | --- | --- | --- | --- |
@@ -73,9 +74,23 @@ $$
 | sum |   0.4  | 0.6 | 1 |
 | | | | |
 
+The marginal probability distribution of $X$ is given by
+|  X   |1  |2 |
+| --- | --- | --- |
+| P |0.4  | 0.6  |
+| | | |
+
+The marginal probability distribution of $Y$ is given by
+|  Y   |0  |1 |
+| --- | --- | --- |
+| P |0.3  | 0.7  |
+| | | |
+
 The conditional probability distribution of $X$ given $Y=0$ is $P(X=1|Y=0) = 0.1/0.3 = 1/3$ and $P(X=1|Y=0) = 0.2/0.3 = 2/3$
 
 The conditional probability distribution of $X$ given $Y=1$ is $P(X=1|Y=1) = 0.3/0.7 = 3/7$ and $P(X=1|Y=1) = 0.4/0.7 = 4/7$
+
+In addition, $X$ and $Y$ are not independent because $P(X=1, Y=0) \ne P(X=1)P(Y=0)$
 ````
 
 ````{prf:definition}
@@ -94,10 +109,10 @@ $$
 E(X \mid Y=y)=\sum_{x} x P(x \mid y)
 $$
 
-````\{prf:example\} 4.2
+````{prf:example} 4.3
 :nonumber:
-:label: 4.2
-:nonumber:
+:label: example_4.3
+
 The joint pmf of two random variables $X$ and $Y$ is given in the following table
 
 $$
@@ -133,9 +148,9 @@ The expectation of $X$ is $E(X)=1 * 0.5+2 * 0.5=1.5$
 
 The expectation of $Y$ is $E(Y)=0 * 0.3+1 * 0.2+2 * 0.2+3 * 0.3=1.5$ 
 
-The conditional distribution of $X$ given $Y=1$ is $P(X=1 \mid Y=1)=\frac{1}{3}$ and $P(X=2 \mid Y=1)=\frac{2}{3}$
+The conditional distribution of $X$ given $Y=0$ is $P(X=1 \mid Y=0)=\frac{1}{3}$ and $P(X=2 \mid Y=0)=\frac{2}{3}$
 
-The conditional expectation of $X$ given $Y=1$ is $E(X \mid Y=1)=1 * \frac{1}{3}+2 * \frac{2}{3}=\frac{5}{3}$.
+The conditional expectation of $X$ given $Y=0$ is $E(X \mid Y=0)=1 * \frac{1}{3}+2 * \frac{2}{3}=\frac{5}{3}$.
 ````
 
 ## Continuous cases
@@ -185,7 +200,24 @@ $$
 E(X)=E_{Y}(E(X \mid Y))
 $$
 
-and
+because
+
+$$
+\begin{equation}
+\begin{split}
+E_{Y}(E(X \mid Y)) &= \int_{-\infty}^{\infty} (E(X \mid Y) f(y)dy\\
+&=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f(x \mid y) d x\right) f(y)dy\\
+&=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x \frac{f(x,y)}{f(y)} d x\right) f(y)dy\\
+&=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f(x,y) d x\right) dy\\
+&=\int_{-\infty}^{\infty} \left(\int_{-\infty}^{\infty} x f(x,y) dy\right) dx\\
+&=\int_{-\infty}^{\infty} x \left(\int_{-\infty}^{\infty} f(x,y) dy\right) dx\\
+&=\int_{-\infty}^{\infty} xf(x) dx\\
+&=E(X)
+\end{split}
+\end{equation}
+$$
+
+Similarly, we can show 
 
 $$
 \operatorname{var}(X)=\operatorname{var}_{Y}(E(X \mid Y))+E_{Y}(\operatorname{var}(X \mid Y))
@@ -196,7 +228,7 @@ $$
 The covariance of $X_{1}$ and $X_{2}$ is defined as
 
 $$
-\operatorname{cov}(X 1, X 2)=E((X 1-u 1)(X 2-u 2))
+\operatorname{cov}(X_1, X_2)=E((X_1-u_1)(X_2-u_2))
 $$
 
 When $X_{1}=X_{2}$, the covariance of $X_{1}$ and $X_{2}$ is
@@ -205,13 +237,13 @@ $$
 E\left(\left(X_{1}-u_{1}\right)\left(X_{1}-u_{1}\right)\right)=E\left[\left(X_{1}-u_{1}\right)^{2}\right]=\operatorname{var}\left(X_{1}\right)
 $$
 
-- variance is a special case of covariance
+- Variance is a special case of covariance
 - Covariance could be any real number, but variance must be non-negative.
 
 The correlation of $X_{1}$ and $X_{2}$ is given by
 
 $$
-\operatorname{corr}(X 1, X 2)=\frac{E((X 1-u 1)(X 2-u 2))}{\sqrt{\operatorname{var}(X 1)} \sqrt{\operatorname{var}(X 2)}}
+\operatorname{corr}(X_1, X_2)=\frac{E((X_1-u_1)(X_2-u_2))}{\sqrt{\operatorname{var}(X_1)} \sqrt{\operatorname{var}(X_2)}}
 $$
 
 - Correlation is the standardized covariance
@@ -232,10 +264,10 @@ $$
 f\left(X_{1},\dots, X_{n}\right)=\prod_{i=1}^nf\left(X_{i}\right)
 $$
 
-````\{prf:example\} 4.3
+````{prf:example} 4.4
 :nonumber:
-:label: 4.3
-:nonumber:
+:label: example_4.4
+
 $\left(X_{1}, X_{2}, \ldots, X_{n}\right) \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$. The joint density function of $X_{1}, X_{2}, \ldots, X_{n}$ is
 
 $$
@@ -253,10 +285,9 @@ $$
 The joint density function of data $\left(X_1,\dots,X_n\right)$ is also called the **likelihood** function. The likelihood function measures the likelihood of the observed data $\left(X_1,\dots,X_n\right)$ given the parameters. When we estimate the parameter values from data, we choose the parameter values such that they can maximize the likelihood of the observed data; this is called "maximum likelihood estimate"
 ```
 
-````\{prf:example\} 4.4
+````{prf:example} 4.5
 :nonumber:
-:label: 4.4
-:nonumber:
+:label: example_4.5
 
 $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)$. The joint density function is
 
@@ -271,10 +302,9 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n} = x_{n} \mid \lambda\right) &=\pr
 $$
 ````
 
-````\{prf:example\} 4.5
+````{prf:example} 4.6
 :nonumber:
-:label: 4.5
-:nonumber:
+:label: example_4.6
 
 $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Exponential}(\lambda)$. The joint density function is
 
@@ -325,16 +355,32 @@ G_{s_{n}}(t)=\prod_{i=1}^{n} G_{i}(t)
 $$
 ````
 
+````{prf:example} 4.7
+:nonumber:
+:label: example_4.7
+
+Suppose $X_{1} \sim Poisson(\lambda_1)$ and $X_2 \sim Poisson(\lambda_2)$. Find the probability distribution of $X_1+X_2$.
+
+The PGF of $X_1$ is $G_{X_1}(t) = e^{\lambda_1(t-1)}$ and the PGF of $X_2$ is $G_{X_2}(t) = e^{\lambda_2(t-1)}$. Thus, 
+
+$$
+G_{X_1+X_2}(t)=G_{X_1}(t)G_{X_2}(t)=e^{(\lambda_1+\lambda_2)(t-1)}
+$$
+
+Thus, $X_1+X_2$ is a Poisson random variable with mean $\lambda^{*}=\lambda_1+\lambda_2$.
+
+````
+
 If $X_{1},\ldots, X_{n}$ are identically and independently distributed (iid) with the same probability distribution, then the PGF of their sum is given by
 
 $$
 G_{S_{n}}(t)=(G(t))^{n}
 $$
 
-````\{prf:example\} 4.6
+````{prf:example} 4.8
 :nonumber:
-:label: 4.6
-:nonumber:
+:label: example_4.8
+
 $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)$ and $G(t)=e^{\lambda(t-1)}$
 
 $$
@@ -344,11 +390,11 @@ $$
 Thus, $S_{n}$ is a Poisson random variable with mean $\lambda^{*}=n \lambda$.
 ````
 
-````\{prf:example\} 4.7
+````{prf:example} 4.9
 :nonumber:
-:label: 4.7
-:nonumber:
-$X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Bernoulli}(\lambda), G(t)=(1-p)+p t$
+:label: example_4.9
+
+$X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Bernoulli}(p), G(t)=(1-p)+p t$
 
 $$
 G_{S_{n}}(t)=(G(t))^{n}=(1-p+p t)^{n}
@@ -382,10 +428,10 @@ We can show that
 3. The moment generating function for the gamma distribution is $(1-t / \alpha)^{-\beta}$
 ```
 
-````\{prf:example\} 4.8
+````{prf:example} 4.10
 :nonumber:
-:label: 4.8
-:nonumber:
+:label: example_4.10
+
 Given a random sample $X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, find the probability distribution of the sum $S_{n}=\sum_{i=1}^{n} X_{i}$.
 
 Since $X_i's$ have the same normal distribution with the MGF $M(t)=e^{u t+\sigma^{2} t^{2} / 2}$, the MGF of the sum $S_{n}$ is 
@@ -395,10 +441,10 @@ $$M_{S_{n}}(t)=(M(t))^{n}=\left(e^{u t+\sigma^{2} t^{2} / 2}\right)^{n}=\left(e^
 Thus, the sum $S_{n}$ follows the normal distribution with mean $n \mu$ and variance $n \sigma^{2}$
 ````
 
-````\{prf:example\} 4.9
+````{prf:example} 4.11
 :nonumber:
-:label: 4.9
-:nonumber:
+:label: example_4.11
+
 Given a random sample $X_{1}, \dots, X_{n} \sim \exp (\lambda)$, find the probability distribution of the sum $S_{n}=\sum_{i=1}^{n} X_{i}$.
 
 Since $X_i's$ have the same exponential distribution with the MGF $M(t)=(1-t / \lambda)^{-1}$, the MGF of the sum $S_{n}$ is 
@@ -410,10 +456,10 @@ Thus, $S_{n}$ follows the Gamma distribution with $\alpha=\lambda$ and $\beta=n$
 
 Alternatively, we may find the CDF of the statistic.
 
-````\{prf:example\} 4.10
+````{prf:example} 4.12
 :nonumber:
-:label: 4.01
-:nonumber:
+:label: example_4.12
+
 Find the distribution of $\max \left\{X_{1}, X_{2}, \ldots, X_{n}\right\}$
 
 $P\left(X_{\max } \leq a\right)=P\left(X_{1} \leq a, X_{2} \leq a, \ldots, X_{n} \leq a\right)=\prod P\left(X_{i} \leq a\right)=(F(a))^{n}$. Thus, the probability density function is $f\left(X_{\max }=a\right)=n(F(a))^{n-1} f(a)$
@@ -426,8 +472,10 @@ $P\left(X_{\max } \leq a\right)=P\left(X_{1} \leq a, X_{2} \leq a, \ldots, X_{n}
 
 The multinomial distribution is an extension of the binomial distribution. In the Binomial distribution, there are two possible outcomes. But the multinomial distribution is dealing with multiple $(>2)$ outcomes.
 
-````{prf:example}
+````{prf:example} 4.13
 :nonumber:
+:label: example_4.13
+
 Suppose the proportions of $A, C, G, T$ in the genome are $p_{A}=0.2, p_{c}=0.3, p_{G}=0.2, p_{T}=0.3$. We select $n=100$ nucleotides at random from the genome. Let $X_{A}, X_{C}, X_{G}, X_{T}$ be the number of $A, C, G, T$, respectively. $X_{A}, X_{C}, X_{G}, X_{T}$ are random variables and the sum of $X_{A}, X_{C}, X_{G}$, $X_{T}$ is $n$. $\left\{X_{A}, X_{C}, X_{G}, X_{T}\right\}$ follow the multinomial distribution with joint probability mass function
 
 $$
@@ -451,3 +499,43 @@ where $\Sigma$ is the covariance matrix and $\mu$ is the mean vector.
 - The marginal distribution of $X_{i}$ is normal $\left(\mu_{i}, \sigma_{i}^{2}\right)$.
 - The conditional distribution of $X_{i}$ given $X_{j}$ for $j \neq i$ is normal
 - Any linear combination of $X_1,\dots, X_n$, i.e., $\sum_{i=1}^na_iX_i$ follows the normal distribution with mean $\sum_{i=1}^na_i\mu_i$ and variance $a^{t}\Sigma a$ where $a=(a_1,\dots,a_n)$ and $a^t$ is the transpose of the vector $a$.
+
+
+````{prf:example} 4.14
+:nonumber:
+:label: example_4.14
+
+Suppose three random variables $(X_1, X_2, X_3)$ follow a Multivariate normal distribution with the mean vector $\mu=(1.2, 3.4, 0.4)$ and the covariance matrix $\begin{pmatrix} 0.1&   0.2&  -0.4\\ 0.2 &     1.3 &    1.8\\ -0.4 &   1.8  &  1.1\end{pmatrix}$.
+
+a) What is the probability density function of $X_1$?\
+$E(X_1) = 1.2$ and $var(X_1)=0.1$. Thus, $X_1$ follows $Normal(1.2, 0.1)$.
+
+b) Find $E(X_2)$ and $var(X_3)$ \
+$E(X_2) = 3.4$ and $var(X_3) = 1.1$
+
+c) Find $E(2X_1-X_2-4X_3)$ and $var(X_1+X_2+X_3)$
+
+$$
+\begin{equation}
+\begin{split} 
+E(2X_1-X_2-4X_3) &= 2E(X_1)-E(X_2)-4E(X_3) \\
+&=2*1.2-3.4-4*0.4 \\
+&=-2.6
+\end{split}
+\end{equation}
+$$
+
+$$
+\begin{equation}
+\begin{split} 
+var(X_1+X_2+X_3) &= var(X_1)+var(X_2)+var(X_3)+2cov(X_1,X_2)+2cov(X_1,X_3)+2cov(X_2,X_3) \\
+&=0.1+1.3+1.1+2*0.2+2*(-1.4)+2*1.8 \\
+&=3.7
+\end{split}
+\end{equation}
+$$
+
+d) Let $Y = X_1+X_2+X_3$. Find the probability density function of $Y$   \
+$E(X_1+X_2+X_3)=1.2+3.4+0.4=5$ and $var(X_1+X_2+X_3) = 3.7$. Thus, $Y$ follows $Normal(5, 3.7)$.
+
+````

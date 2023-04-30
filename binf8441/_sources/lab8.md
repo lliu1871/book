@@ -15,3 +15,77 @@ kernelspec:
 
 
 # Lab 8: RNA-seq analysis
+
+In this lab, we use [TopHat](https://ccb.jhu.edu/software/tophat/index.shtml) (a spliced read mapper for RNA-Seq) and [Cufflinks](http://cole-trapnell-lab.github.io/cufflinks/) to analyze RNA-seq data. TopHat is a program (written in C++) that aligns RNA-Seq reads to a genome and identifies exon-exon splice junctions. It is built on the ultrafast short read mapping program [Bowtie](https://bowtie-bio.sourceforge.net/index.shtml).
+
+Cufflinks assembles transcripts, estimates their abundances, and tests for differential expression and regulation in RNA-Seq samples. It accepts aligned RNA-Seq reads and assembles the alignments into a parsimonious set of transcripts. Cufflinks then estimates the relative abundances of these transcripts based on how many reads support each one, taking into account biases in library preparation protocols (from Cufflinks website)
+
+## TopHat
+
+- Download TopHat from [Github](https://github.com/infphilo/tophat)
+- Manual is available at https://ccb.jhu.edu/software/tophat/manual.shtml 
+
+Follow the instructions at https://ccb.jhu.edu/software/tophat/tutorial.shtml to download and extract the latest Bowtie 2 (or Bowtie) releases. After Bowtie is install on your computer, you may install the downloaded TopHat package. 
+
+### Test data
+
+After you installed Bowtie/Bowtie2 and TopHat programs, you could test the pipeline on a simple test data set, which you can download [here](https://ccb.jhu.edu/software/tophat/downloads/test_data.tar.gz). This data is not meant to exhaustively test all the features of TopHat. It's just to verify that the installation worked. Unzip the data, change to the test_data directory and then run tophat:
+
+```{code}
+tar zxvf test_data.tar.gz
+cd test_data
+tophat -r 20 test_ref reads_1.fq reads_2.fq
+```
+
+### Preparing the reference genome
+
+To run Tophat, we need to generate a Bowtie index file (.ebwt) for the organism in the RNA-Seq experiment, or we may download the [pre-built indices](https://bowtie-bio.sourceforge.net/tutorial.shtml) for human, mouse, fruit fly, and others. If there's no index for the organism of interest, we may build an index file using [Bowtie](https://bowtie-bio.sourceforge.net/tutorial.shtml). 
+
+
+TopHat also requires a fasta file (.fa) for your reference. If this file is not found alongside the other index files, the program will use the Bowtie index you give it to build this file and save it to the output directory. This step can take up to an hour for a human-sized genome. To skip this step in future runs, you can move the fasta file from the tophat_out directory to the directory containing the Bowtie index files.
+
+
+### Preparing reads files
+
+TopHat currently accepts reads in FASTA or FASTQ format, though FASTQ is recommended. You may need to convert your reads from another format to one of these. Maq's fq_all2std.pl converts many formats into FASTQ. 
+
+Note: TopHat does not support mixing FASTA and FASTQ reads in the same input file, so don't run TopHat on FASTQ and FASTA files in the same run.
+
+
+### Running TopHat
+
+TopHat will map your reads first by running Bowtie to identify places where reads map end to end. Since your reads came from spliced transcripts in an RNA-Seq experiment, Bowtie will identify "islands" in your reference genomewhere reads piled up. Many of these islands will be exons.
+
+TopHat will then run a program to find splice junctions using the reads that did not get mapped to an island. So to identify junctions, you do not need to run Bowtie yourself, as TopHat will do it for you.
+
+TopHat needs you specify a path to the index files and an input file containing your reads. The first argument should be the full path to the directory containing the index plus the prefix of the index files. To start the TopHat pipeline, enter the command:
+
+```{code}
+tophat /path/to/h_sapiens reads1.fq,reads2.fq,reads3.fq
+```
+
+Be sure to check out the TopHat manual, as the pipeline has a few options you might want to use to get better results or get them more quickly.
+
+
+### Output files
+
+TopHat produces several files of output. Because TopHat reports output in widely adopted formats, you can import it directly into a number of genome browsers and data viewers, including IGV, IGB, and the UCSC genome browser. TopHat can be run on free servers through Galaxy, which also provides a web-based genome/track browser for mapped reads produced from TopHat.
+
+
+
+## Cufflinks
+
+- Download Cufflinks from [Github](https://github.com/cole-trapnell-lab/cufflinks)
+- Manual is available [here](http://cole-trapnell-lab.github.io/cufflinks/manual/)
+
+
+Follow the [instruction](http://cole-trapnell-lab.github.io/cufflinks/getting_started/) to install and run Cufflinks.
+
+
+### Testing the installation
+Download the [test data](http://cole-trapnell-lab.github.io/cufflinks/assets/downloads/test_data.sam). In the directory where you placed the test file, run Cufflinks
+
+```{code}
+cufflinks ./test_data.sam
+```
+

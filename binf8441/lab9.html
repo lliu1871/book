@@ -736,18 +736,18 @@ lm(formula = data$y ~ data$x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.1841 -1.3553  0.1055  1.0396  5.0395 
+-6.9398 -1.2352  0.1792  1.3012  4.7372 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   2.2062     0.5874   3.756 0.000293 ***
-data$x        1.1270     0.1873   6.017 3.08e-08 ***
+(Intercept)   2.4892     0.6751   3.687 0.000372 ***
+data$x        1.1985     0.2112   5.675 1.41e-07 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 1.824 on 98 degrees of freedom
-Multiple R-squared:  0.2698,	Adjusted R-squared:  0.2623 
-F-statistic:  36.2 on 1 and 98 DF,  p-value: 3.081e-08
+Residual standard error: 2.143 on 98 degrees of freedom
+Multiple R-squared:  0.2473,	Adjusted R-squared:  0.2397 
+F-statistic:  32.2 on 1 and 98 DF,  p-value: 1.411e-07
 </pre></div>
 </div>
 </div>
@@ -785,7 +785,7 @@ F-statistic:  36.2 on 1 and 98 DF,  p-value: 3.081e-08
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  result$residuals
-W = 0.98707, p-value = 0.4427
+W = 0.98784, p-value = 0.4962
 </pre></div>
 </div>
 </div>
@@ -802,7 +802,7 @@ W = 0.98707, p-value = 0.4427
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><strong>(Intercept):</strong> 2.99511368631807</div></div>
+<div class="output text_html"><strong>(Intercept):</strong> 3.32812678696507</div></div>
 </div>
 </section>
 <section id="fitting-quadratic-relationships">
@@ -823,18 +823,18 @@ lm(formula = data$y ~ data$x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.6294 -1.4591 -0.0991  1.2172  7.3414 
+-8.1514 -1.7992 -0.3077  1.3229  9.2510 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   2.9358     0.2186  13.427   &lt;2e-16 ***
-data$x        0.3204     0.2304   1.391    0.167    
+(Intercept)   3.6770     0.3038   12.10  &lt; 2e-16 ***
+data$x       -0.9102     0.2827   -3.22  0.00174 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 2.176 on 98 degrees of freedom
-Multiple R-squared:  0.01936,	Adjusted R-squared:  0.009351 
-F-statistic: 1.935 on 1 and 98 DF,  p-value: 0.1674
+Residual standard error: 3.022 on 98 degrees of freedom
+Multiple R-squared:  0.09569,	Adjusted R-squared:  0.08646 
+F-statistic: 10.37 on 1 and 98 DF,  p-value: 0.001738
 </pre></div>
 </div>
 </div>
@@ -878,19 +878,19 @@ lm(formula = y ~ x1 + x2, data = data)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.1902 -1.0047 -0.0066  1.1784  4.0028 
+-5.1494 -1.4407 -0.2341  1.2179  6.0370 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  1.69038    0.58033   2.913  0.00445 ** 
-x1           1.47782    0.17717   8.341 5.03e-13 ***
-x2          -3.04049    0.08767 -34.679  &lt; 2e-16 ***
+(Intercept)   1.7919     0.7456   2.403   0.0181 *  
+x1            1.2750     0.2340   5.448 3.86e-07 ***
+x2           -2.9844     0.1131 -26.396  &lt; 2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 1.778 on 97 degrees of freedom
-Multiple R-squared:  0.9282,	Adjusted R-squared:  0.9267 
-F-statistic: 627.2 on 2 and 97 DF,  p-value: &lt; 2.2e-16
+Residual standard error: 2.386 on 97 degrees of freedom
+Multiple R-squared:  0.8802,	Adjusted R-squared:  0.8777 
+F-statistic: 356.3 on 2 and 97 DF,  p-value: &lt; 2.2e-16
 </pre></div>
 </div>
 </div>
@@ -926,7 +926,7 @@ F-statistic: 627.2 on 2 and 97 DF,  p-value: &lt; 2.2e-16
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  result$residuals
-W = 0.98792, p-value = 0.5024
+W = 0.98335, p-value = 0.2402
 </pre></div>
 </div>
 </div>
@@ -963,22 +963,22 @@ glm(formula = y ~ age, family = &quot;binomial&quot;)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.3215  -0.8111  -0.6360   1.1557   2.0957  
+-1.1141  -0.8027  -0.5246  -0.4119   2.1439  
 
 Coefficients:
             Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -2.88158    0.77035  -3.741 0.000184 ***
-age          0.04018    0.01425   2.819 0.004822 ** 
+(Intercept) -3.12023    0.80674  -3.868  0.00011 ***
+age          0.03712    0.01400   2.651  0.00802 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 120.43  on 99  degrees of freedom
-Residual deviance: 111.69  on 98  degrees of freedom
-AIC: 115.69
+    Null deviance: 107.86  on 99  degrees of freedom
+Residual deviance: 100.03  on 98  degrees of freedom
+AIC: 104.03
 
-Number of Fisher Scoring iterations: 3
+Number of Fisher Scoring iterations: 4
 </pre></div>
 </div>
 </div>

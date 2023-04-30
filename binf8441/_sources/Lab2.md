@@ -39,7 +39,7 @@ sample(x=1:3, size = 2, replace=FALSE, prob = c(1/3,1/3,1/3))
 To select two numbers at random from (1,2,3) with replacement, we do
 
 ```{code-cell}
-sample(x=1:3, size = 1, replace=TRUE, prob = c(1/3,1/3,1/3))
+sample(x=1:3, size = 2, replace=TRUE, prob = c(1/3,1/3,1/3))
 ```
 
 ```{admonition} Exercise 1

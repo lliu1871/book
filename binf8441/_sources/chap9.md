@@ -31,7 +31,7 @@ Simple linear regression is a linear model with a single explanatory variable $x
 
 $y_{i}=\beta_0+\beta_1 x_{i}+\epsilon_{i}$
 
-$x$ : the explanatary variable. $X$ is fixed.
+$x$ : the explanatary variable. $x_i's$ are fixed.
 
 $y$: the response variable.
 
@@ -42,7 +42,7 @@ data(trees)
 head(trees)
 ```
 
-The probability distribution of $y_{i}$ is $\operatorname{Normal}\left(\beta_0+\beta_1 X_{i}, \sigma^{2}\right)$. The expectation of $y$ is a linear function of $x$, i.e., $E(y)$ and $x$ has a linear relationship,
+The probability distribution of $y_{i}$ is $\operatorname{Normal}\left(\beta_0+\beta_1 x_{i}, \sigma^{2}\right)$. The expectation of $y$ is a linear function of $x$, i.e., $E(y)$ and $x$ has a linear relationship,
 
 $$E(y) = \beta_0+\beta_1x$$(1)
 
@@ -56,7 +56,7 @@ The intercept $\beta_0$ and slope $\beta_1$ are two parameters to estimate from 
 $$y_{new} = \beta_0+\beta_1x_{new}$$(2)
 
 
-### 1. Least square estimates
+### Least square estimates
 
 We estimate $\beta_0$ and $\beta_1$ by minimizing the sum of squared errors with respect to $\beta_0$ and $\beta_1$,
 
@@ -101,7 +101,7 @@ beta0
 beta1
 ```
 
-### 2. Maximum likelihood estimates 
+### Maximum likelihood estimates 
 
 We first find the likelihood function
 
@@ -117,7 +117,7 @@ $$
 
 The log-likelihood is maximized if $\sum_{i=1}^{n}\left(y_{i}-\left(\beta_0+\beta_1 x_{i}\right)\right)^{2}$ is minimized. Thus, the maximum likelihood estimates are identical with the least square estimates of $\beta_0$ and $\beta_1$.
 
-### 3. Testing the linear relationship
+### Testing the linear relationship
 ```{important}
 If $\beta_1=0$, we say that $Y$ and $X$ do not have the linear relationship
 
@@ -175,14 +175,14 @@ $$
 
 where $\mathrm{Y}$ is a vector of size $n$, $\mathrm{X}$ is a $n \times(p+1)$ matrix, and $\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)$ is a vector of size $(p+1)$.
 
-### 1. Least square estimates of $\beta$ 
+### Least square estimates of $\beta$ 
 We estimate $\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)$ by minimizing the sum of squared errors
 
 $$
 \sum_{i=1}^{n}\left(y_{i}-\left(\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}\right)\right)^{2}
 $$
 
-### 2. Maximum likelihood estimates
+### Maximum likelihood estimates
 The likelihood function is given by 
 
 $$
@@ -238,7 +238,7 @@ $$
 
 The model under $H_{0}$ is called reduced model with $p_{s}+1$ coefficients $\beta$ and the model under $H_{1}$ is called full model with $(p+1)$ coefficients $\beta$. Note that $p_{s}<p$, and the null model is nested in the alternative model.
 
-### 1. F-test 
+### F-test 
 
 The residual sum-of-squares $\operatorname{RSS}(\beta)$ is defined as:
 
@@ -254,7 +254,7 @@ $$
 
 Under the normal assumption, the null distribution of $\mathrm{F}$ test statistic is the $\mathrm{F}$ distribution with degrees of freedom $\left(p_{1}-p_{0}\right)$ and $\left(n-p_{1}-1\right)$. Thus, we reject $\mathrm{H}_{0}$ if $F>$ a, where $\mathrm{a}$ is the $(1-\alpha)$ quantile of the $\mathrm{F}$ distribution with degrees of freedom $\left(p_{1}-p_{0}\right)$ and $\left(n-p_{1}-1\right)$.
 
-### 2. Likelihood ratio test (LRT)
+### Likelihood ratio test (LRT)
 
 Let $\mathrm{L}_{1}$ be the maximum value of the likelihood of the full model. Let $\mathrm{L}_{0}$ be the maximum value of the likelihood of the nested model. The likelihood ratio test statistic is
 
@@ -264,7 +264,7 @@ $$
 
 The null distribution of test statistic $t$ is asymptotically $\chi^{2}$ distribution with $\left(p_{1}-p_{0}\right)$ degrees of freedom where $p_1$ is the number of parameters in the alternative model and $p_0$ is the number of parameters in the null model. Thus, we reject $\mathrm{H}_{0}$ if $t>\mathrm{a}$, where $a$ is the $(1-\alpha)$ quantile of the $\chi^{2}$ distribution with $\left(p_{1}-p_{0}\right)$ degrees of freedom.
 
-### 3. Akaike Information Criterion (AIC)
+### Akaike Information Criterion (AIC)
 
 The LRT can only be applied to the nested models. In addition, the LRT tends to favor the complex model, because LRT is solely based on the likelihood score and the complex model always has a higher likelihood score. AIC is a more general measure of "model fit" by penalizing the complexity of the model to avoid overfitting the data,
 
@@ -274,7 +274,7 @@ $$
 
 where $p$ is the number of parameters, measuring the complexity of the model, and loglikelihood measures the goodness of fit of the model to the data. Given a collection of putative models, the best model is the one with the lowest $A I C$.
 
-### 4. Bayes Information Criterion (BIC)
+### Bayes Information Criterion (BIC)
 
 AIC tends to overfit models when the sample size is small. Another information criterion which penalizes complex models more severely is 
 
@@ -284,7 +284,7 @@ $$
 
 Given a collection of putative models, the best model is the one with the lowest BIC.
 
-### 5. Algorithms for variable selection
+### Algorithms for variable selection
 
 An exhaustive search for the subset may not be feasible if $p$ is very large. There are two main alternatives:
 
@@ -304,7 +304,7 @@ The algorithm minimizes the residual sum-of-square $\operatorname{RSS}(\beta)=\s
 
 In linear regression model, the dependent variable $\mathrm{Y}$ is assumed to have a normal distribution with mean $X \beta$. In generalized linear regression, the normality assumption is relaxed to allow $Y$ to have other probability distributions (binomial, Poisson, etc).
 
-### 1. Logistic model
+### Logistic model
 
 $Y_{i}=(0,1)$ is a Bernoulli random variable with probability $p_{i}$ satisfying $\log \left(\frac{p_{i}}{1-p_{i}}\right)=X_{i} \beta$, which is called the link function. It indicates that $p_{i}=\frac{e^{X_{i} \beta}}{1+e^{X_{i} \beta}}$. 
 
@@ -333,7 +333,7 @@ newdata1 <- data.frame(gre = 590, gpa = 3.9, rank = 1)
 predict(result, newdata = newdata1, type = "response")
 ```
 
-### 2. Loglinear model (counts)
+### Loglinear model (counts)
 
 $Y_{i}$ is a Poisson random variable with $\log \left(E\left(Y_{i}\right)\right)=X_{i} \beta$. It indicates that $Y_{\mathrm{i}}$ is a Poisson random variable with mean $\lambda_{i}=e^{X_{i} \beta}$. Thus, the likelihood function is given by
 

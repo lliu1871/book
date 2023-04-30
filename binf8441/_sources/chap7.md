@@ -26,16 +26,16 @@ kernelspec:
 - [Multiple tests problems](https://en.wikipedia.org/wiki/Multiple_comparisons_problem)
 ```
 
-Statistical analysis may involve multiple tests. Although the $\alpha$ level of each test is 0.05, the overall $\alpha$ level is much greater than 0.05 when multiple tests are involved. Therefore, correction is needed in order to control the overall $\alpha$ at the level of 5%. 
+Statistical analysis may involve multiple tests. Although the $\alpha$ level (Type I error) of each test is 0.05, the overall $\alpha$ level is much greater than 0.05 when multiple tests are involved. Therefore, correction is needed in order to control the overall $\alpha$ at the level of 5%. 
 
 ## Bonferroni correction
 
-Suppose there are $k$  tests and they are independent of each other. Let $R_i$ be the rejection region for the test $i$. The overall type I error is given by
+Suppose there are $k$  tests and they are independent of each other. Let $R_i$ be the rejection region for the test $i$. The overall type I error, the probability of at least one test rejecting the null hypothesis, is given by
 
 $$
 \begin{equation}
 \begin{split}
-P(\cup_{i=1}^kR_i) &= 1- P(\bar{\cup_{i=1}^kR_i})\\
+P(\cup_{i=1}^kR_i) &= 1- P(\overline{\cup_{i=1}^kR_i})\\
 &= 1- P(\cap_{i=1}^k\bar{R_i})\\ 
 &= 1-\prod_{i=1}^kP(\bar{R_i}) \\
 &= 1-\prod_{i=1}^k\left(1-P(R_i)\right)\\ 
@@ -73,24 +73,24 @@ Let $W$ be the number of wrong rejections among a total of $Y$ rejections. False
 
 $$FDR = E\left(\frac{W}{Y}\right)$$
 ````
-In practise, it is difficult to calculate FDR. The Benjamin--Hochberg procedure (BH step-up procedure) is a numerical approach to control the false discovery rate. 
+In practise, it is difficult to calculate FDR. The Benjamin--Hochberg procedure (BH step-up procedure) is a numerical approach to control the false discovery rate at the level of $\alpha$ (typically, $\alpha=0.05$). 
 
 The BH procedure works as follows: calculate the pvalue for each test and
-re-order them from the minimum to the maximum $P_1,\dots, P_n$.
+re-order them from the minimum to the maximum $P_{(1)},\dots, P_{(n)}$. 
 
-1. For a given $\alpha$, find the largest $k$ such that $P(k) \leq \frac{k}{n}\alpha$
-2. Reject the null hypothesis (i.e. declare positive discoveries) for the hypotheses $H_i$ for $i = 1, \dots, k$.
+1. For a given $\alpha$, find the largest $k$ such that $P_{(k)} \leq \frac{k}{n}\alpha$
+2. Reject the null hypothesis (i.e. declare positive discoveries) for the re-ordered hypotheses $H_{(i)}$ for $i = 1, \dots, k$.
 
-````\{prf:example\} 7.1
+````{prf:example} 7.1
 :nonumber:
 :label: 7.1
 :nonumber:
 
-We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed the two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06.
+We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed the two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06, and the number of tests $n=3$.
 
-Thus, $P_1 = 0.01, P_2 = 0.03, P_3 = 0.06$. We want to control FDR at the level of 0.05, i.e., $\alpha = 0.05$. 
+Thus, $P_{(1)} = 0.01, P_{(2)} = 0.03, P_{(3)} = 0.06$. We want to control the FDR at the level of 0.05, i.e., $\alpha = 0.05$. 
 
-1. Find the largest $k$ such that $P_k \le \frac{k}{n}\alpha$. We first try $k = 3$, but $P_3 > 0.05$. Then, we try $k = 2$ and $P_2 < 2*0.05/3$. Thus, $k=2$.
+1. Find the largest $k$ such that $P_{(k)} \le \frac{k}{n}\alpha$. We first try $k = 3$, but $P_{(3)} > 0.05$. Then, we try $k = 2$ and $P_{(2)} < 2*0.05/3$. Thus, $k=2$.
 2. We reject the null hypothesis for the first two tests, and conclude that gene1 and gene2 are significantly associated with cancer. 
 ````
 

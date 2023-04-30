@@ -29,7 +29,7 @@ In the Bayesian framework, probability is
 opinion, and that inference from data is nothing other than the revision
 of such opinion in the light of relevant new information.
 
-````\{prf:example\} 12.1
+````{prf:example} 12.1
 :nonumber:
 :label: 12.1
 :nonumber:
@@ -90,7 +90,7 @@ $f\left( \theta \middle| X \right)$ of $\theta$.
 
 ## Prior distribution 
 
-### 1. conjugate prior
+### Conjugate prior
 A conjugate prior is an algebraic convenience, giving a close-form expression for the posterior;
 otherwise numerical approaches may be necessary.
 
@@ -110,14 +110,14 @@ otherwise numerical approaches may be necessary.
 | | | |
   
 
-### 2. non-informative prior
+### Non-informative prior
 
 For example, the uniform prior of parameter $\theta$ is a non-informative prior, because all possible values of $\theta$ are equally likely, no preference.
 
-### 3. Empirical Bayesian
+### Empirical Bayesian
 The prior distribution $P(\theta)$ is estimated from data
 
-### 4. Sensitivity analysis
+### Sensitivity analysis
 The Bayesian inference is based on many prior distributions to see if the inference is significantly affected by different priors. If not, it indicates that the Bayesian inference is robust to the prior distribution.
 
 ## Bayesian estimation
@@ -148,7 +148,7 @@ The estimator which minimizes the posterior expected loss
 $E\left( L\left( \theta,\widehat{\theta} \right)|X \right)$ for each $X$
 also minimizes the Bayes risk and therefore is a Bayes estimator. 
 
-````\{prf:example\} 12.2
+````{prf:example} 12.2
 :nonumber:
 :label: 12.2
 :nonumber:
@@ -165,6 +165,31 @@ $$\frac{\partial E\left( L\left( \theta,\widehat{\theta} \right)|X \right)}{\par
 Thus,
 
 $${\widehat{\theta}}_{Bayes}(x) = E(\theta|x)$$
+````
+
+
+````{prf:example} 12.3
+:nonumber:
+:label: 12.3
+:nonumber:
+
+$(x_{1},\ldots,x_{n})$ is a random sample generated from the
+exponential distribution with mean $1/\lambda$. The prior of $\lambda$
+is the exponential distribution with mean 1/2. The posterior
+distribution of $\lambda$ given $(x_{1},\ldots,x_{n})$ is
+
+$$f\left( \lambda \middle| X \right) = \frac{f(X|\lambda)f(\lambda)}{f(X)} = \frac{\lambda^{n}e^{- \lambda\sum_{i = 1}^{n}x_{i}}*2e^{- 2\lambda}}{f(X)} = \frac{2\lambda^{n}e^{- \left( \sum_{i = 1}^{n}x_{i} + 2 \right)\lambda}}{f(X)}$$
+
+This is a gamma distribution with $\alpha = n + 1$ and
+$\beta = \sum_{i = 1}^{n}x_{i} + 2$. The posterior mean is
+$\frac{\alpha}{\beta} = \frac{n + 1}{\sum_{i = 1}^{n}x_{i} + 2}$. Thus,
+the Bayesian estimate of $\lambda$ is
+$\frac{n + 1}{\sum_{i = 1}^{n}x_{i} + 2}$.
+
+Suppose the data is (1.001, 0.065, 0.014, 1.601, 0.288, 0.095, 0.401,
+0.227, 0.234, 0.488). Then, the Bayesian estimate of $\lambda$ is
+
+$$\frac{n + 1}{\sum_{i = 1}^{n}x_{i} + 2} = \frac{10 + 1}{4.41 + 2} = 1.716$$
 ````
 
 ## Markov Chain Monte Carlo algorithm
@@ -193,6 +218,7 @@ Metropolis-Hastings algorithm
 :nonumber:
 
 **Input:** the likelihood and prior
+
 **Output** a sample generated from the target distribution
 
 1. An arbitrary initial value for $\theta = \theta_{0}$
@@ -221,7 +247,7 @@ Metropolis-Hastings algorithm
 4. Continue to generate $\theta$ until the algorithm converges
 ````
 
-### 1. Burnin
+### Burnin
 Many approaches have been developed for checking the convergence of the MCMC algorithms.
 A simple method is to make a log-likelihood plot. The log-likelihood
 continues to increase and then it will become stable at some point,
@@ -229,114 +255,18 @@ indicating that the MCMC algorithm has converged. The time period before
 the chain gets converged is called "burn-in". The samples generated
 during burn-in should be discarded.
 
-### 2. Subsampling
+### Subsampling
 Note that the samples generated from the MCMC algorithms are not random
 samples. They are dependent of each other, because the new value
 $\theta_{new}$ is proposed from the neighborhood of the old value $\theta_{n}$. To
 reduce dependency, we subsample $\theta$, for example, we sample every 1000 $\theta$.
 
-### 3. Bayesian inference
+### Bayesian inference
 Once we have a sample of $\theta$ generated from the posterior
 distribution, the Bayesian inference can be based on the generated
 sample. For example, the posterior mean, a Bayesian estimator of
 parameter $\theta$, is approximated by the sample average of $\theta$
 generated from the MCMC algorithm.
-
-````\{prf:example\} 12.3
-:nonumber:
-:label: 12.3
-:nonumber:
-
-$(x_{1},\ldots,x_{n})$ is a random sample generated from the
-exponential distribution with mean $1/\lambda$. The prior of $\lambda$
-is the exponential distribution with mean 1/2. The posterior
-distribution of $\lambda$ given $(x_{1},\ldots,x_{n})$ is
-
-$$f\left( \lambda \middle| X \right) = \frac{f(X|\lambda)f(\lambda)}{f(X)} = \frac{\lambda^{n}e^{- \lambda\sum_{i = 1}^{n}x_{i}}*2e^{- 2\lambda}}{f(X)} = \frac{2\lambda^{n}e^{- \left( \sum_{i = 1}^{n}x_{i} + 2 \right)\lambda}}{f(X)}$$
-
-This is a gamma distribution with $\alpha = n + 1$ and
-$\beta = \sum_{i = 1}^{n}x_{i} + 2$. The posterior mean is
-$\frac{\alpha}{\beta} = \frac{n + 1}{\sum_{i = 1}^{n}x_{i} + 2}$. Thus,
-the Bayesian estimate of $\lambda$ is
-$\frac{n + 1}{\sum_{i = 1}^{n}x_{i} + 2}$.
-
-Suppose the data is (1.001, 0.065, 0.014, 1.601, 0.288, 0.095, 0.401,
-0.227, 0.234, 0.488). Then, the Bayesian estimate of $\lambda$ is
-
-$$\frac{n + 1}{\sum_{i = 1}^{n}x_{i} + 2} = \frac{10 + 1}{4.41 + 2} = 1.716$$
-````
-
-Let's use the MCMC algorithm to approximate the posterior distribution
-$f\left( \lambda \middle| X \right)$, then calculate the posterior mean.
-
-The R code of the MCMC algorithm should have the following functions (1)
-Likelihood function, (2) Prior, (3) a function for updating $\lambda$,
-and (4) a function for accepting or rejecting the proposed
-$\lambda_{new}$.
-
-```{code-cell}
-########################################################
-# mcmc algorithm: likelihood: exp, prior: exp
-########################################################
-loglikelihood <- function (x, lambda) {
-  n <- length(x)
-  loglike <- n*log(lambda) - sum(x) * lambda
-  return (loglike)
-}
-logprior <- function(lambda, theta) {
-  logprior <- log(theta) - lambda*theta
-  return (logprior)
-}
-update_lambda<-function(lambda, window_width){
-  newlambda <- lambda + (2*runif(1)-1) * window_width
-  return (newlambda)
-}
-
-#######################################################
-# algorithm
-########################################################
-x = rexp(100)
-samplesize = length(x)
-theta <- 10 #prior of lambda
-lambda_theory = (samplesize+1)/(sum(x)+theta)
-
-totalround <- 100000
-lambda <- 1:totalround
-loglike <- 1:totalround
-window_width <- 0.05
-
-oldlambda <- 1 #initial value of lambda
-oldloglike <- loglikelihood(x, oldlambda)
-oldlogprior <- logprior(oldlambda, theta)
-
-for (i in 1:totalround)
-{
-  newlambda <- update_lambda(oldlambda, window_width)
-  if (newlambda<0) newlambda = -newlambda
-  newloglike <- loglikelihood(x, newlambda)
-  newlogprior <- logprior(newlambda, theta)
-
-  hastings_ratio <- min(exp((newloglike+newlogprior)-(oldloglike+oldlogprior)),1)
-
-  if(runif(1) < hastings_ratio){
-    lambda[i] = newlambda
-    loglike[i] = newloglike
-    oldlambda = newlambda
-    oldlogprior = newlogprior
-  }else{
-    lambda[i] = oldlambda
-    loglike[i] = oldloglike
-  }
-}
-
-plot(loglike,type="l")
-burnin = totalround/2
-
-print(paste("MCMC estimate of lambda:", mean(lambda[burnin:totalround])))
-print(paste("Bayesian estimate of lambda:",lambda_theory))
-
-```
-
 
 ## Bayesian hypothesis testing and model selection
 

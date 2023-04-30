@@ -54,7 +54,7 @@ Rejection region: we reject the null hypothesis $\mathrm{H}_{0}$ if $t$ is too l
 5. The rejection region consists of values of test statistic for rejecting the null hypothesis.
 
 
-````\{prf:example\} 6.1
+````{prf:example} 6.1
 :nonumber:
 :label: 6.1
 :nonumber:
@@ -117,19 +117,49 @@ $$
 When the alternative hypothesis $\mathrm{H}_{1}$ is an interval, the power of the test must be evaluated at each value in the interval of the parameters.
 
 ## One sample t-test
+```{admonition} Assumption
+The one-sample t-test is used to determine if the population mean $\mu$ is equal to a constant. The test assumes that the sample follows the normal distributions, i.e.,
 
-### one-sided tests
+$$X_1,\dots,X_n \sim Normal(\mu, \sigma^2)$$
+```
+
+### One-sided t-test
 Given a random sample $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)$, we want to test if the population mean is $\mu=1$ or $\mu>1$. This is called the one-sided test. If the alternative hypothesis is $\mu\ne 1$, it is called the two-sided test.
 
 $$
 \mathrm{H}_{0}: \mu=1 \text{ versus } \mathrm{H}_{1}: \mu>1
 $$
 
+The Wald statistic takes the following form $W=\frac{\hat{\mu}-\mu_0}{\operatorname{sd}(\hat{\mu})}$ where $\hat{\mu}$ is the estimate of $\mu$ and $\mu_0$ is the expected value of $\mu$ under the null hypothesis. In the one sample t-test, the estimate of $\mu$ is the sample average $\bar{X}$ and the expected value of $\mu$ under the null hypothesis is $\mu_0=1$.
+
 Test-stat: $t=\frac{\bar{x}-1} {sd(\bar{x})}$. The null distribution of $t$ is the student $t$ distribution with degrees of freedom $(n-1)$.
 
-Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the null distribution of the test statistic.
+Rejection region: we reject the null if $t>a$. We find the value of $a$ by controling the type I error at the level of 5%, i.e.,
+
+$$P(t>a|H_0) = 0.05$$
+
+Thus, $a$ is the 95% quantile of the null distribution of the test statistic $t$.
+
+```{code-cell}
+x <- seq(-3, 3, by = .1)
+y <- dnorm(x, mean = 0, sd = 1)
+plot(x,y,type="l",col="blue",ylab="the null distribution of test statistic t",xlab="t")
+lines(c(2,2),c(0,0.4),col="red")
+text(2.3,0.005,labels="5%", col="red")
+text(0,0.15,labels="95%", col="red")
+```
 
 If the alternative is H1: $\mu<1$, we only need to change the rejection region and we reject the null if $t<a$ where $a$ is the 5% quantile of the null distribution of the test statistic.
+
+```{code-cell}
+x <- seq(-3, 3, by = .1)
+y <- dnorm(x, mean = 0, sd = 1)
+plot(x,y,type="l",col="blue",ylab="the null distribution of test statistic t",xlab="t")
+lines(c(-2,-2),c(0,0.4),col="red")
+text(-2.3,0.005,labels="5%", col="red")
+text(0,0.15,labels="95%", col="red")
+```
+
 
 Here, we use the rejection region to make decisions. Alternatively, we may calculate the pvalue and reject the null if $\text{pvalue}\le 0.05$. The pvalue is an estimate of the Type I error, defined as 
 
@@ -142,7 +172,7 @@ data = rnorm(20, mean=2, sd = 1)
 t.test(data, mu = 3, alternative="less")
 ```
 
-### two-sided tests
+### Two-sided t-test
 
 $$
 \mathrm{H}_{0}: \mu=1 \text{ versus } \mathrm{H}_{1}: \mu\ne 1
@@ -153,15 +183,34 @@ Test-stat: $t=\frac{\bar{x}-1} {sd(\bar{x})}$. The null distribution of $t$ is t
 Rejection region: we reject the null if $t>a$ or $t<b$, where $a$ is the 97.5% quantile and $b$ is the 2.5% quantile of the null distribution of the test statistic.
 
 ```{code-cell}
+x <- seq(-3, 3, by = .1)
+y <- dnorm(x, mean = 0, sd = 1)
+plot(x,y,type="l",col="blue",ylab="the null distribution of test statistic t",xlab="t")
+lines(c(2.5,2.5),c(0,0.4),col="red")
+lines(c(-2.5,-2.5),c(0,0.4),col="red")
+text(2.7,0.005,labels="2.5%", col="red")
+text(-2.7,0.005,labels="2.5%", col="red")
+text(0,0.15,labels="95%", col="red")
+```
+
+
+```{code-cell}
 data = rnorm(20, mean=2, sd = 1)
 t.test(data, mu = 3, alternative="two.sided")
 ```
 
 ## Two sample t-test
-The two-sample t-test is used to determine if two population means $\mu_1$ and $\mu_2$ are equal.
 
-### one-sided tests
-The test is one-sided, if the alternative hypothesis is one-sided.
+```{admonition} Assumption
+The two-sample t-test is used to determine if two population means $\mu_1$ and $\mu_2$ are equal. The test assumes that the two samples follow the normal distributions, i.e.,
+
+$$X_1,\dots,X_n \sim Normal(\mu_1, \sigma^2)$$
+
+$$Y_1,\dots,Y_m \sim Normal(\mu_2, \sigma^2)$$
+```
+
+### One-sided test
+The test is one-sided if the alternative hypothesis is one-sided.
 
 $$
 H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 > \mu_2
@@ -186,7 +235,7 @@ boxplot(cbind(group1,group2))
 t.test(group1, group2, alternative="greater")
 ```
 
-### two-sided tests
+### Two-sided test
 
 $$
 H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
@@ -201,7 +250,18 @@ t.test(group1, group2, alternative="two.sided")
 ```
 
 ## F-test for more than two samples
-The F-test (ANOVA) can determine whether multiple group means are equal. Let $\mu_1,\dots,\mu_k$ be the means of $k$ populations. 
+```{admonition} Assumption
+The F-test (ANOVA) can determine whether multiple population means $\mu_1,\dots,\mu_k$ are equal. The test assumes that the samples follow the normal distributions, i.e.,
+
+$$X_{11},\dots,X_{1n_1} \sim Normal(\mu_1, \sigma^2)$$
+
+$$X_{21},\dots,X_{2n_2} \sim Normal(\mu_2, \sigma^2)$$
+
+...
+
+$$X_{k1},\dots,X_{kn_k} \sim Normal(\mu_k, \sigma^2)$$
+```
+
 
 $$ H_0: \mu_1 = \dots = \mu_k \text{ versus } H_1: \text{at least two means are not equal}$$
 
@@ -221,8 +281,11 @@ summary(result)
 ```
 
 ## Association test (contingency table):
+```{admonition} Assumption
+The association test can determine whether there is association between two variables, for instance, smoking and gender. The test assumes that the counts follow the Poisson distribution.
+```
 
-The association test can determine whether there is association between two variables, for instance, smoking and gender. We randomly take 20 people (12 female and 8 male) and count the number of people who smoke. We want to know if smoking is associated with gender.
+We randomly take 20 people (12 female and 8 male) and count the number of people who smoke. We want to know if smoking is associated with gender.
 
 $$
 \begin{array}{|l|l|l|l|}
@@ -236,7 +299,7 @@ $$
 
 $H_0$ : gender and smoking are independent versus $H_1$ : not independent
 
-If the null hypothesis is true, then $P(M\cap S))=P(M)) * P(S)=8 / 20 * 9 / 20$. Thus, under the null hypothesis, the expected number of male who smoke is $8 / 20 * 9 / 20 * 20=3.6$. Similarly, the expected number of female who smoke is $12 / 20 * 9 / 20 * 20=5.4$. The expected number of male who do not smoke is $8 / 20 * 11 / 20 * 20=4.4$. The expected number of female who do not smoke is $12 / 20 * 11 / 20 * 20=6.6$.
+If the null hypothesis is true, then $P(M\cap S)=P(M) * P(S)=8 / 20 * 9 / 20$. Thus, under the null hypothesis, the expected number of male who smoke is $8 / 20 * 9 / 20 * 20=3.6$. Similarly, the expected number of female who smoke is $12 / 20 * 9 / 20 * 20=5.4$. The expected number of male who do not smoke is $8 / 20 * 11 / 20 * 20=4.4$. The expected number of female who do not smoke is $12 / 20 * 11 / 20 * 20=6.6$.
 
 Test-stat: $t=\sum_{i=1}^{4} \frac{\left(o_{i}-e_{i}\right)^{2}}{e_{i}}$. 
 
@@ -253,8 +316,11 @@ print(paste("the expected count is ",result$expected))
 ```
 
 ## Likelihood ratio test
+```{admonition} Assumption
+The likelihood ratio test can test which hypothesis (null or alternative) has a better fit to the real data. The test assumes that the likelihood function is given.
+```
 
-### 1. Two points hypothesis
+### Two points hypothesis
 
 $\mathrm{H}_{0}: \theta=\theta_{0}$ vs $\mathrm{H}_{1}: \theta=\theta_{1}$ 
 
@@ -263,7 +329,7 @@ Test-stat: $t=\frac{l_{0}}{l_{1}}$, or equivalently, $t=2 \log \left(l_{1}\right
 Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the null distribution of the test statistic.
 
 
-````\{prf:example\} 6.2
+````{prf:example} 6.2
 :nonumber:
 :label: 6.2
 :nonumber:
@@ -309,7 +375,7 @@ print(paste("the test statistic is",t, "and the critical value a =",a))
 The likelihood ratio test for two simple hypotheses is the most powerful test.
 ````
 
-### 2. The hypotheses are intervals
+### Interval hypotheses 
 
 $\mathrm{H}_{0}: \theta \in \Theta_{0}$ vs $\mathrm{H}_{1}: \theta \in \Theta_{1}$ 
 
@@ -317,9 +383,9 @@ Test-stat: $t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)$, where $l_{0}
 
 Rejection region: we reject the null if $t>a$ where $a$ is the 95% quantile of the null distribution of the test statistic.
 
-### 3. Nested hypotheses (the null hypothesis is nested in the alternative hypothesis)
+### Nested hypotheses 
 
-$\mathrm{H}_{0}: \mathrm{M}_{0}$ vs $\mathrm{H}_{1}: \mathrm{M}_{1}$
+$H_{0}: M_{0}$ vs $H_{1}: M_{1}$ where the null model $M_0$ is a special case (nested) of the alternative model $M_1$.
 
 Test-stat: $t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)$, where $l_{0}=\max _{\theta \in \mathrm{M}_{0}}\{l(\theta)\}$ is the maximum likelihood score under the null hypothesis and $l_{1}$ is the maximum likelihood score $l_{1}=$ $\max _{\theta \in \mathrm{M}_{1}}\{l(\theta)\}$ under the alternative hypothesis. 
 
@@ -337,6 +403,9 @@ print(paste("the test statistic is",t, "and the critical value a =",a))
 ```
 
 ## Mann-Whitney test (nonparametric test for two samples)
+```{admonition} Assumption
+The Mann-Whitney test can test if two populations have the same median. The test does not assume any underlying probability distribution. This is a nonparametric test. 
+```
 
 The data consist of two random samples. Let $X_{1}, \dots, X_{n}$ be the sample generated from population 1 and $Y_{1}, \dots, Y_{m}$ be the sample from population 2. We want to test if two samples are from the same population, i.e.,
 
@@ -350,7 +419,7 @@ Under the null hypothesis that two samples are generated from the same populatio
 
 Rejection region: we reject the null hypothesis if $t>a$ or $t<b$, where $a$ is the 97.5% quantile of the null distribution of the test statistic, and $b$ is the 2.5% quantile of the null distribution of the test statistic.
 
-````\{prf:example\} 6.3
+````{prf:example} 6.3
 :nonumber:
 :label: 6.3
 :nonumber:

@@ -26,7 +26,7 @@ kernelspec:
 ```
 
 ````{prf:definition} Monte Carlo simulation
-:label: 10.1
+:label: 101.1
 :nonumber:
 Monte Carlo simulation is a computational technique that rely on repeated random samplings to obtain numerical results. 
 ````
@@ -62,7 +62,7 @@ It indicates that we can generate a ransom sample $\left(x_{1}, \ldots, x_{n}\ri
 
 ````{prf:example} 10.1
 :nonumber:
-:label: 10.6
+:label: 10.1
 :nonumber:
 Calculate $\int_{0}^{\infty}log(x) e^{-x} d x$
 
@@ -85,14 +85,14 @@ Calculate $\int_{1}^{5} \frac{2 \log (x)}{x^{2}} d x$. Note that $\int_{1}^{5} \
 ````
 
 ```{code-cell}
-x = runif(10000,1,4)
+x = runif(10000,1,5)
 mean(8*log(x)/x^2)
 ```
 
 ## Simulation-based inference
 If the population (or the probability distribution) is given, we can generate random samples from the probability distribution. The random samples generated from computers are called simulated data which can be used to perform a wide range of statistical inference
 
-### 1. Calculating the variance of an estimator 
+### Calculating the variance of an estimator 
 Suppose $\left(x_{1}, \ldots, x_{n}\right)$ is a random sample generated from a given probability distribution with a given parameter $\theta$. Let $\hat{\theta}$ be the estimator of $\theta$. The variance of $\hat{\theta}$ can be approximated by the sample variance of $\hat{\theta}$. 
 
 ````{prf:example} 10.3
@@ -122,7 +122,7 @@ for(i in 1:nsim){
 var(theta_hat)
 ```
 
-### 2. Comparing the performance of estimators
+### Comparing the performance of estimators
 
 The mean squared error $E\left[(\hat{\theta}-\theta)^{2}\right]$ of the estimator $\hat{\theta}$ of the parameter $\theta$ can be approximated by simulation. When the true $\theta$ is given, the expectation $E\left[(\hat{\theta}-\theta)^{2}\right]$ can be approximated by the sample average of $\left(\widehat{\theta}_{i}-\theta\right)^{2}$, in which $\widehat{\theta}_{i}$ is calculated from the sample $i$ generated from the probability distribution.
 
@@ -133,9 +133,9 @@ The mean squared error $E\left[(\hat{\theta}-\theta)^{2}\right]$ of the estimato
 A random sample of size 10 is generated from the normal distribution with the unknown mean $\mu$ and variance 1. We want to compare the mean squared errors of two estimators, the sample median $\tilde{x}$ and the sample average $\bar{x}$, of the population mean $\mu$.
 
 We use Monte Carlo simulation to approximate the mean squared error.
-1. Generate 100 samples of size 10 from the normal distribution $(\mu,\sigma^2=1)$.
+1. Generate 100 samples of size 10 from the normal distribution $(\mu=a,\sigma^2=1)$.
 
-2. For each sample, calculate the mean squared error $m=(\tilde{x}-\mu)^{2}$ of the sample median $\tilde{x}$. Now, we have 100 MSEs.
+2. For each sample, calculate the squared error $m=(\tilde{x}-a)^{2}$ of the sample median $\tilde{x}$. Now, we have 100 errors.
 
 3. $E\left[(\tilde{x}-\mu)^{2}\right] \approx$ the average of $\left(m_{1}, \ldots, m_{100}\right)$.
 
@@ -167,7 +167,7 @@ legend("topleft", legend=c("mse_median", "mse_average"), fill = c("red","blue"))
 
 ```
 
-### 3. Approximate the power of hypothesis tests
+### Approximate the power of hypothesis tests
 
 The power is $P\left(\right.$ reject $\left.H_{0} \mid H_{1}\right)$, which can be approximated by simulation, when the alternative probability distribution under $\mathrm{H}_{1}$ is given. We generate samples under $\mathrm{H}_{1}$. The power of a test, i.e., the probability of rejecting $\mathrm{H}_{0}$, is approximated by the proportion of samples for which $\mathrm{H}_{0}$ is rejected by the test. If the alternative hypothesis is an interval of parameter $\theta$, we need to calculate the power for each value of $\theta$.
 

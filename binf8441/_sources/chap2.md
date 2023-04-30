@@ -39,7 +39,7 @@ A random variable $X: \Omega\rightarrow E$ is a measurable function from a set $
 
 The probability distribution of a random variable $X$ is a list of all possible values of $X$ and corresponding probabilities.
 
-````\{prf:example\} 2.1
+````{prf:example} 2.1
 :nonumber:
 :label: 2.1
 
@@ -71,7 +71,7 @@ The probability mass function (PMF) of a discrete random variable $X$ is defined
 The cumulative distribution function (CDF) of a discrete random variable $X$ is defined as $P(X \leq a)$.
 ````
 
-````\{prf:example\} 2.2
+````{prf:example} 2.2
 :nonumber:
 :label: 2.2
 
@@ -113,7 +113,7 @@ For a discrete random variable $X$, the expectation of a function $g(X)$ of $X$ 
 $$E(g(X))=\sum_{x} g(x) P(x)$$
 ````
 
-````\{prf:example\} 2.3
+````{prf:example} 2.3
 :nonumber:
 :label: 2.3
 
@@ -143,7 +143,7 @@ For a discrete random variable $X$, the mean of $X$ is defined as
 $$E(X)=\sum_{x} x P(x)$$
 ````
 
-````\{prf:example\} 2.4
+````{prf:example} 2.4
 :nonumber:
 :label: 2.4
 
@@ -175,7 +175,7 @@ $$\operatorname{var}(X)=\left.E\left\{(X-E(X))^{2}\right\}\right)=\sum_{x}(x-E(X
 ````
 - $sd(X) = \sqrt{var(X)}$
 
-````\{prf:example\} 2.5
+````{prf:example} 2.5
 :nonumber:
 :label: 2.5
 
@@ -500,7 +500,7 @@ We have found the probability of a segment ACCTT, $P(ACCTT)=0.000936$, and $E(X)
 
 ## Transformation
 
-````\{prf:example\} 2.15
+````{prf:example} 2.15
 :nonumber:
 :label: 2.15
 
@@ -519,7 +519,7 @@ What is the probability distribution of $X^{2}$ ?
 |  |  |  |  |
 ````
 
-````\{prf:example\} 2.16
+````{prf:example} 2.16
 :nonumber:
 :label: 2.16
 

@@ -25,7 +25,7 @@ kernelspec:
 - [Markov chains](https://en.wikipedia.org/wiki/Markov_chain)
 ```
 
-A stochastic process $\{X_{n},t \in T\}$ is a collection of random
+A stochastic process $\{X_{t},t \in T\}$ is a collection of random
 variables, in which index $t$ is time. We refer to
 $X_{t}$ as the state of the process at time $t$. The set $T$ is called the
 index set of the process. When $T$ is a countable set (indexed by
@@ -33,20 +33,20 @@ integers), the process is said to be a discrete time process. If $T$ is an
 interval of real line, the process is said to be a continuous time
 process.
 
-````\{prf:example\} 13.1
+````{prf:example} 13.1
 :nonumber:
 :label: 13.1
 :nonumber:
-$X_{t}$ is the total number of customers that have entered a
+$X_{t}$ is the total number of customers who have entered a
 supermarket by time $t$. This is a discrete state continuous time
 stochastic process. $X_{t} = 0,1,\ldots,$ and $t \ge 0$.
 ````
 
-````\{prf:example\} 13.2
+````{prf:example} 13.2
 :nonumber:
 :label: 13.2
 :nonumber:
-$X_{t}$ is the number of individuals in a population at each
+$X_{t}$ is the number of individuals in a population in each
 generation $t$, i.e., $X_{t} = 0,1,2,\ldots$, and $t = 0, 1, 2, \dots$ This
 is a discrete state discrete time stochastic process
 ````
@@ -67,11 +67,16 @@ A discrete time Markov chain $\{ X_{n},n = 0,1,2\ldots\}$ is a discrete
 state discrete time stochastic process that satisfies Markov property.
 ````
 
-Suppose that $\{ X_{n}\}$ can take on non-negative integers, i.e., the
+Suppose that $\{X_{n}\}$ can take on non-negative integers, i.e., the
 state space is $\{0, 1, 2, \dots\}$. If $X_{n} = i$, we say that the process
 is in state $i$ at time $n$.
 
-### 1. One-step transition probability matrix
+```{admonition} How do we define a DTMC?
+For a discrete time MC $\{X_{n}\}$, the goal is to find the probability distribution $\pi_n$ of the random variable $X_n$ at time $n$. The DTMC is determined if we know where the chain begins and how the chain moves, i.e., if the initial state $\pi_0$ at time 0 is given and the transition probabilities $P(X_{n+1}|X_n)$ from time $n$ to time $n+1$ is given.
+
+```
+
+### One-step transition probability matrix
 
 The one-step (from time $n$ to time $n+1$) transition probability from state
 $i$ to state $j$ is defined as
@@ -109,7 +114,7 @@ homogeneous transition probability matrix are given. The initial state
 $X_0$ defines how the chain starts and the transition probability matrix
 $P$ determines how the chain moves.
 
-````\{prf:example\} 13.3
+````{prf:example} 13.3
 :nonumber:
 :label: 13.3
 :nonumber:
@@ -137,7 +142,7 @@ A \\
 \end{pmatrix}$$
 ````
 
-````\{prf:example\} 13.4
+````{prf:example} 13.4
 :nonumber:
 :label: 13.4
 :nonumber:
@@ -163,7 +168,7 @@ Binomial $(N, p = \frac{j}{N})$.
 ````
 
 
-````\{prf:example\} 13.5
+````{prf:example} 13.5
 :nonumber:
 :label: 13.5
 :nonumber:
@@ -189,7 +194,7 @@ $$
 States 0 and N are called **absorbing states**, because once the process gets into those states it will never get out.
 ```
 
-````\{prf:example\} 13.6
+````{prf:example} 13.6
 :nonumber:
 :label: 13.6
 :nonumber:
@@ -246,7 +251,7 @@ library(expm)
 x_10 = x_0 %*% (p %^% 10)
 print(paste("the probability distribution of x_10 is",x_10))
 ```
-### 2. Limiting probability distribution
+### Limiting probability distribution
 Another major goal of the Markov chain theory is to find the limiting
 probabilities $\lim_{n \rightarrow \infty}{P(X_{n})}$, as time $n$ goes to
 infinity.
@@ -300,7 +305,7 @@ $$
 $$
 
 
-````\{prf:example\} 13.7
+````{prf:example} 13.7
 :nonumber:
 :label: 13.7
 :nonumber:
@@ -357,7 +362,7 @@ independent of $s$, the continuous time Markov chain is said to have
 stationary or homogeneous transition probabilities, denoted by $P_{ij}(t)$,
 the probability of transition from state $i$ to state j in time t.
 
-### finite state space 
+### Finite state space 
 
 Suppose there are $n$ states. The transition probabilities $P_{ij}(t)$ can be represented by a $n\times n$ matrix
 $P(t)$. Given the transition probability matrix $P(t)$, the probability distribution $\pi_t$ of
