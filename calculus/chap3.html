@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 3: Derivative &#8212; Univariate Calculus</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,417 +64,323 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap3';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Chapter 4: Integral" href="chap4.html" />
     <link rel="prev" title="Chapter 2: Continuous functions" href="chap2.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Univariate Calculus</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap1.html">
-   Chapter 1: Limit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap2.html">
-   Chapter 2: Continuous functions
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 3: Derivative
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap4.html">
-   Chapter 4: Integral
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Limit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Continuous functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 3: Derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Integral</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap3.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap3.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/chap3.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/chap3.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#properties">
-   Properties
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#higher-order-derivatives">
-   Higher Order Derivatives
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#concave-and-convex">
-     Concave and Convex
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extrema">
-   Extrema
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applications">
-   Applications
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#newton-s-method">
-     Newton’s Method
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 3: Derivative</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#properties">
-   Properties
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#higher-order-derivatives">
-   Higher Order Derivatives
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#concave-and-convex">
-     Concave and Convex
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extrema">
-   Extrema
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#applications">
-   Applications
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#newton-s-method">
-     Newton’s Method
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 3: Derivative</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-derivatives">Higher Order Derivatives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concave-and-convex">Concave and Convex</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extrema">Extrema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-method">Newton’s Method</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-derivative">
-<h1>Chapter 3: Derivative<a class="headerlink" href="#chapter-3-derivative" title="Permalink to this headline">#</a></h1>
+<h1>Chapter 3: Derivative<a class="headerlink" href="#chapter-3-derivative" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
 <div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
 <p class="attribution">—Lao Tzu</p>
@@ -477,7 +394,7 @@ title="Print to PDF"
 </ul>
 </div>
 <div class="proof definition admonition" id="derivative">
-<p class="admonition-title"><span>Definition </span> (derivative)</p>
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (derivative)</p>
 <section class="definition-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(y=f(x)\)</span> then the derivative is defined to be <span class="math notranslate nohighlight">\(f^{\prime}(x)=\lim _{h \rightarrow 0} \frac{f(x+h)-f(x)}{h}\)</span>.</p>
 </section>
@@ -486,6 +403,11 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[y=f(a)+f^{\prime}(a)(x-a)\]</div>
 <div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -507,8 +429,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/chap3_1_0.png" src="_images/chap3_1_0.png" />
+<img alt="_images/923b85a3b52ba6146b95d7bd1da7c0ecb991384a1ba989a89eeab01139e9c953.png" src="_images/923b85a3b52ba6146b95d7bd1da7c0ecb991384a1ba989a89eeab01139e9c953.png" />
 </div>
 </div>
 <p>A function <span class="math notranslate nohighlight">\(f(x)\)</span> is said to be differentiable at <span class="math notranslate nohighlight">\(x=a\)</span> if the derivative <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> exists. If <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable at any point in an open set <span class="math notranslate nohighlight">\(D\subset\mathbb{R}\)</span>, we say that <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable on <span class="math notranslate nohighlight">\(D\)</span>.</p>
@@ -518,7 +441,7 @@ title="Print to PDF"
 <p>If <span class="math notranslate nohighlight">\(y=f(x)\)</span>, then all of the following are equivalent notations for derivative evaluated at <span class="math notranslate nohighlight">\(x=a\)</span>. <span class="math notranslate nohighlight">\(f^{\prime}(a)=\left.y^{\prime}\right|_{x=a}=\left.\frac{d f}{d x}\right|_{x=a}=\left.\frac{d y}{d x}\right|_{x=a}=D_af\)</span></p>
 </div>
 <section id="properties">
-<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">#</a></h2>
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h2>
 <p>If <span class="math notranslate nohighlight">\(f\)</span> is a constant function, then its derivative is equal to 0. Moreover, the derivate <span class="math notranslate nohighlight">\(D_af\)</span> is a linear operator. Let <span class="math notranslate nohighlight">\(\Omega\)</span> be the set of all functions differentiable at <span class="math notranslate nohighlight">\(x=a\)</span>.</p>
 <div class="proof theorem admonition" id="thm3.1">
 <p class="admonition-title"><span class="caption-number">Theorem 7 </span> (linearity of derivative)</p>
@@ -527,7 +450,7 @@ title="Print to PDF"
 </section>
 </div><ul class="simple">
 <li><p><strong>The product rule</strong>: <span class="math notranslate nohighlight">\((f g)^{\prime}=f^{\prime} g+f g^{\prime}\)</span></p></li>
-<li><p><strong>The quotient rule</strong>: <span class="math notranslate nohighlight">\(\left(\frac{f}{g}\right)^{\prime}=\frac{f^{\prime} g-f g^{\prime}}{g^{2}}-\)</span></p></li>
+<li><p><strong>The quotient rule</strong>: <span class="math notranslate nohighlight">\(\left(\frac{f}{g}\right)^{\prime}=\frac{f^{\prime} g-f g^{\prime}}{g^{2}}\)</span></p></li>
 <li><p><strong>The power rule</strong>: <span class="math notranslate nohighlight">\(\frac{d}{d x}\left(x^{n}\right)=n x^{n-1}\)</span></p></li>
 <li><p><strong>The chain rule</strong>: <span class="math notranslate nohighlight">\(\frac{d}{d x}(f(g(x)))=f^{\prime}(g(x)) g^{\prime}(x)\)</span></p></li>
 </ul>
@@ -542,17 +465,30 @@ title="Print to PDF"
 </ul>
 </div>
 <p>The derivative <span class="math notranslate nohighlight">\(f^\prime(a)\)</span> characterizes the local behavior of the function <span class="math notranslate nohighlight">\(f(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is increasing on the interval <span class="math notranslate nohighlight">\(I\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is decreasing on the interval <span class="math notranslate nohighlight">\(I\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)=0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is constant on the interval <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<div class="proof theorem admonition" id="theorem-2">
+<p class="admonition-title"><span class="caption-number">Theorem 8 </span> (Rolle theorem)</p>
+<section class="theorem-content" id="proof-content">
+<p>If a real-valued function <span class="math notranslate nohighlight">\(f\)</span> is continuous on a proper closed interval <span class="math notranslate nohighlight">\([a, b]\)</span>, differentiable on the open interval <span class="math notranslate nohighlight">\((a, b)\)</span>, and <span class="math notranslate nohighlight">\(f(a) = f(b)\)</span>, then there exists at least one <span class="math notranslate nohighlight">\(c\)</span> in the open interval <span class="math notranslate nohighlight">\((a, b)\)</span> such that <span class="math notranslate nohighlight">\(f'(c)=0\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Given that <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on the interval <span class="math notranslate nohighlight">\([a,b]\)</span> and <span class="math notranslate nohighlight">\(f(a)=f(b)\)</span>, it achieves either a maximum or a minimum at <span class="math notranslate nohighlight">\(x=c\)</span>, where <span class="math notranslate nohighlight">\(a&lt;c&lt;b\)</span>. If <span class="math notranslate nohighlight">\(f(c)=f(a)\)</span>, then <span class="math notranslate nohighlight">\(f(x)\)</span> is constant on <span class="math notranslate nohighlight">\([a,b]\)</span>, implying <span class="math notranslate nohighlight">\(f'(c)=0\)</span>. When <span class="math notranslate nohighlight">\(f(c)&gt;f(a)\)</span>, <span class="math notranslate nohighlight">\(f(c)\)</span> becomes a maximum. Consequently, for any real number <span class="math notranslate nohighlight">\(h\)</span> such that <span class="math notranslate nohighlight">\(c + h\)</span> lies in <span class="math notranslate nohighlight">\([a, b]\)</span>, we have <span class="math notranslate nohighlight">\(\frac{f(c+h)-f(c)}{h}\le 0\)</span>. This leads to <span class="math notranslate nohighlight">\(f'(c^+)=\lim_{h\rightarrow 0^+}\frac{f(c+h)-f(c)}{h}\le 0\)</span>. Similarly, it can be demonstrated that <span class="math notranslate nohighlight">\(f'(c^-)\ge 0\)</span>. Since <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable at <span class="math notranslate nohighlight">\(c\)</span>, we conclude that <span class="math notranslate nohighlight">\(f'(c^+)=f'(c^-)=0\)</span>. In the scenario where <span class="math notranslate nohighlight">\(f(c)&lt;f(a)\)</span>, <span class="math notranslate nohighlight">\(f(c)\)</span> represents a minimum, and the proof can be extended to show that <span class="math notranslate nohighlight">\(f'(c^+)=f'(c^-)=0\)</span>. This concludes the proof.</p>
+</div>
 <div class="proof theorem admonition" id="thm3.2">
-<p class="admonition-title"><span class="caption-number">Theorem 8 </span> (Mean Value Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 9 </span> (Mean Value Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a, b]\)</span> and differentiable on the open interval <span class="math notranslate nohighlight">\((a, b)\)</span> then there is a number <span class="math notranslate nohighlight">\(a&lt;c&lt;b\)</span> such that <span class="math notranslate nohighlight">\(f^{\prime}(c)=\frac{f(b)-f(a)}{b-a}\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example-3">
+</div><div class="proof example admonition" id="example-4">
 <p class="admonition-title"><span class="caption-number">Example 1 </span></p>
 <section class="example-content" id="proof-content">
 <p>The distance between store A and store B is 10 miles. It took me 10 min to drive from A to B. My overall speed is 1 mile per minute. Although my instantaneuou speed varies, there must be a point between A and B at which my instantaneous speed is exactly 1 mile per minute.</p>
 </section>
 </div><div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -579,12 +515,13 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/chap3_3_0.png" src="_images/chap3_3_0.png" />
+<img alt="_images/384c8efdd6c95fdaf3a90a47ea99765e8ad095f1ccd292660f5ca92c2171dbcd.png" src="_images/384c8efdd6c95fdaf3a90a47ea99765e8ad095f1ccd292660f5ca92c2171dbcd.png" />
 </div>
 </div>
 <div class="proof theorem admonition" id="thm3.3">
-<p class="admonition-title"><span class="caption-number">Theorem 9 </span> (implicit function theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 10 </span> (Implicit function theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Given a graph <span class="math notranslate nohighlight">\(f(x,y)=0\)</span>, we want to find the derivative of the inverse function <span class="math notranslate nohighlight">\(y^{\prime}(x)\)</span> if it exists.</p>
 <div class="math notranslate nohighlight">
@@ -592,6 +529,11 @@ title="Print to PDF"
 <p>Thus, if <span class="math notranslate nohighlight">\(f_y\ne 0\)</span>, the derivative <span class="math notranslate nohighlight">\(y^\prime(x)\)</span> exists and equals <span class="math notranslate nohighlight">\(y^\prime(x) = -\frac{f_x}{f_y}\)</span>.</p>
 </section>
 </div><div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -614,16 +556,22 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/chap3_5_0.png" src="_images/chap3_5_0.png" />
+<img alt="_images/f3fd342618f6b6346e2134c278e24fe8410869223c723b442264b24c5ffe5359.png" src="_images/f3fd342618f6b6346e2134c278e24fe8410869223c723b442264b24c5ffe5359.png" />
 </div>
 </div>
-<div class="proof theorem admonition" id="theorem-5">
-<p class="admonition-title"><span class="caption-number">Theorem 10 </span> (inverse function theorem)</p>
+<div class="proof theorem admonition" id="theorem-6">
+<p class="admonition-title"><span class="caption-number">Theorem 11 </span> (Inverse function theorem)</p>
 <section class="theorem-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(y = f(x)\)</span> be a differentiable function on an open set <span class="math notranslate nohighlight">\(\Phi\)</span>. Its inverse function <span class="math notranslate nohighlight">\(f^{-1}(x)\)</span> exists if <span class="math notranslate nohighlight">\(f^{\prime}(x) \ne 0\)</span> for all <span class="math notranslate nohighlight">\(x\in\Phi\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(y = f(x)\)</span> be a continuously differentiable function on an open set <span class="math notranslate nohighlight">\(\Phi\)</span>. Its inverse function <span class="math notranslate nohighlight">\(f^{-1}(x)\)</span> exists if <span class="math notranslate nohighlight">\(f^{\prime}(x) \ne 0\)</span> for all <span class="math notranslate nohighlight">\(x\in\Phi\)</span>.</p>
 </section>
 </div><div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -640,8 +588,9 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/chap3_7_0.png" src="_images/chap3_7_0.png" />
+<img alt="_images/0baf8bcbafe8b143274359ae8216ca85f4263c1187229313989b046995c2d029.png" src="_images/0baf8bcbafe8b143274359ae8216ca85f4263c1187229313989b046995c2d029.png" />
 </div>
 </div>
 <div class="admonition-example1 admonition">
@@ -653,15 +602,15 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
 </div>
 </section>
 <section id="higher-order-derivatives">
-<h2>Higher Order Derivatives<a class="headerlink" href="#higher-order-derivatives" title="Permalink to this headline">#</a></h2>
+<h2>Higher Order Derivatives<a class="headerlink" href="#higher-order-derivatives" title="Permalink to this heading">#</a></h2>
 <div class="proof definition admonition" id="second_derivative">
-<p class="admonition-title"><span>Definition </span> (second derivative)</p>
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (second derivative)</p>
 <section class="definition-content" id="proof-content">
 <p>The second derivative is defined as <span class="math notranslate nohighlight">\(f^{\prime \prime}(x)=\left(f^{\prime}(x)\right)^{\prime}\)</span>, i.e. the derivative of first derivative <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span>.</p>
 </section>
 </div><p>The <span class="math notranslate nohighlight">\(n^{th}\)</span> derivative is denoted as <span class="math notranslate nohighlight">\(f^{(n)}(x)=\frac{d^{n} f}{d x^{n}}\)</span> and is defined as <span class="math notranslate nohighlight">\(f^{(n)}(x)=\left(f^{(n-1)}(x)\right)^{\prime}\)</span> i.e. the derivative of the <span class="math notranslate nohighlight">\((n-1)^{\text {st }}\)</span> derivative.</p>
 <section id="concave-and-convex">
-<h3>Concave and Convex<a class="headerlink" href="#concave-and-convex" title="Permalink to this headline">#</a></h3>
+<h3>Concave and Convex<a class="headerlink" href="#concave-and-convex" title="Permalink to this heading">#</a></h3>
 <div class="proof definition admonition" id="def3.3">
 <p class="admonition-title"><span>Definition </span> (critical point)</p>
 <section class="definition-content" id="proof-content">
@@ -675,37 +624,37 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
 </section>
 </section>
 <section id="extrema">
-<h2>Extrema<a class="headerlink" href="#extrema" title="Permalink to this headline">#</a></h2>
+<h2>Extrema<a class="headerlink" href="#extrema" title="Permalink to this heading">#</a></h2>
 <div class="proof definition admonition" id="def3.4">
-<p class="admonition-title"><span>Definition </span> (Absolute Extrema)</p>
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Absolute Extrema)</p>
 <section class="definition-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(x=c\)</span> is an absolute maximum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \geq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in the domain.
 <span class="math notranslate nohighlight">\(x=c\)</span> is an absolute minimum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \leq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in the domain.</p>
 </section>
 </div><div class="proof theorem admonition" id="thm3.4">
-<p class="admonition-title"><span class="caption-number">Theorem 11 </span> (Fermat’s Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 12 </span> (Fermat’s Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(f(x)\)</span> has a relative (or local) extrema at <span class="math notranslate nohighlight">\(x=c\)</span>, then <span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 </section>
 </div><div class="proof theorem admonition" id="thm3.5">
-<p class="admonition-title"><span class="caption-number">Theorem 12 </span> (Extreme Value Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 13 </span> (Extreme Value Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a, b]\)</span> then there exist numbers <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> so that,</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(a \leq c, d \leq b\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(f(c)\)</span> is the abs. max. in <span class="math notranslate nohighlight">\([a, b]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(f(d)\)</span> is the abs. min. in <span class="math notranslate nohighlight">\([a, b]\)</span></p></li>
 </ol>
 </section>
 </div><p>To find the absolute extrema of the continuous function <span class="math notranslate nohighlight">\(f(x)\)</span> on the interval <span class="math notranslate nohighlight">\([a, b]\)</span> use the following process.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Find all critical points of <span class="math notranslate nohighlight">\(f(x)\)</span> in <span class="math notranslate nohighlight">\([a, b]\)</span>.</p></li>
 <li><p>Evaluate <span class="math notranslate nohighlight">\(f(x)\)</span> at all points found in Step 1 .</p></li>
 <li><p>Evaluate <span class="math notranslate nohighlight">\(f(a)\)</span> and <span class="math notranslate nohighlight">\(f(b)\)</span>.</p></li>
 <li><p>Identify the max and min from the evaluations in steps <span class="math notranslate nohighlight">\(2 \&amp; 3\)</span>.</p></li>
 </ol>
 <div class="proof definition admonition" id="def3.5">
-<p class="admonition-title"><span>Definition </span> (Relative (local) Extrema)</p>
+<p class="admonition-title"><span class="caption-number">Definition 8 </span> (Relative (local) Extrema)</p>
 <section class="definition-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(x=c\)</span> is a relative (or local) maximum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \geq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> near <span class="math notranslate nohighlight">\(c\)</span>.
 <span class="math notranslate nohighlight">\(x=c\)</span> is a relative (or local) minimum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \leq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> near <span class="math notranslate nohighlight">\(c\)</span>.</p>
@@ -713,13 +662,13 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
 </div><div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p><strong>First derivative test</strong>: If <span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span> then <span class="math notranslate nohighlight">\(x=c\)</span> is</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>a rel. max. of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span> to the left of <span class="math notranslate nohighlight">\(x=c\)</span> and <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span> to the right of <span class="math notranslate nohighlight">\(x=c\)</span>.</p></li>
 <li><p>a rel. min. of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span> to the left of <span class="math notranslate nohighlight">\(x=c\)</span> and <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span> to the right of <span class="math notranslate nohighlight">\(x=c\)</span>.</p></li>
 <li><p>not a relative extrema of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span> is the same sign on both sides of <span class="math notranslate nohighlight">\(x=c\)</span>.</p></li>
 </ol>
 <p><strong>Second derivative test</strong>: If <span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span> such that <span class="math notranslate nohighlight">\(f^{\prime}(c)=0\)</span> then <span class="math notranslate nohighlight">\(x=c\)</span></p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>is a relative maximum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime \prime}(c)&lt;0\)</span>.</p></li>
 <li><p>is a relative minimum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f^{\prime \prime}(c)&gt;0\)</span>.</p></li>
 <li><p>may be a relative maximum, relative minimum, or neither if <span class="math notranslate nohighlight">\(f^{\prime \prime}(c)=0\)</span>.</p></li>
@@ -727,9 +676,9 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
 </div>
 </section>
 <section id="applications">
-<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">#</a></h2>
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h2>
 <section id="newton-s-method">
-<h3>Newton’s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this headline">#</a></h3>
+<h3>Newton’s Method<a class="headerlink" href="#newton-s-method" title="Permalink to this heading">#</a></h3>
 <p>If <span class="math notranslate nohighlight">\(x_{n}\)</span> is the <span class="math notranslate nohighlight">\(n^{\text {th }}\)</span> guess for the root/solution of <span class="math notranslate nohighlight">\(f(x)=0\)</span> then <span class="math notranslate nohighlight">\((n+1)^{\text {st }}\)</span> guess is <span class="math notranslate nohighlight">\(x_{n+1}=x_{n}-\frac{f\left(x_{n}\right)}{f^{\prime}\left(x_{n}\right)}\)</span> provided <span class="math notranslate nohighlight">\(f^{\prime}\left(x_{n}\right)\)</span> exists.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -779,7 +728,7 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -787,50 +736,114 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="chap2.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Chapter 2: Continuous functions</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 2: Continuous functions</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="chap4.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="chap4.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Chapter 4: Integral</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-derivatives">Higher Order Derivatives</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concave-and-convex">Concave and Convex</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extrema">Extrema</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#newton-s-method">Newton’s Method</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

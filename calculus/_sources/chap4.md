@@ -115,7 +115,7 @@ $$\frac{d}{d x} \int_{v(x)}^{u(x)} f(t) d t=u^{\prime}(x) f[u(x)]-v^{\prime}(x) 
 ### Substitution
 The substitution $u=g(x)$ will convert $\int_{a}^{b} f(g(x)) g^{\prime}(x) d x=\int_{g(a)}^{g(b)} f(u) d u$ using $d u=g^{\prime}(x) d x$.
 
-````\{prf:example\} 4.1
+````{prf:example} 4.1
 :nonumber:
 :label: substitution
 Calculate $\int_{1}^{2} 5 x^{2} \cos \left(x^{3}\right) d x $
@@ -149,7 +149,7 @@ plt.show()
 
 $\int u d v=u v-\int v d u$ and $\int_{a}^{b} u d v=\left.u v\right|_{a} ^{b}-\int_{a}^{b} v d u$. Choose $u$ and $dv$ from integral and compute $du$ by differentiating $u$ and compute $v$ using $v=\int dv$.
 
-````\{prf:example\} 4.2
+````{prf:example} 4.2
 :nonumber:
 :label: ex4.2
 calculate $\int xe^{-x} dx$
@@ -179,7 +179,7 @@ For $\int \tan ^{n} x \sec ^{m} x d x$ we have the following:
 3. $n$ odd and $m$ even. Use either 1 . or 2 .
 4. $n$ even and $m$ odd. Each integral will be . dealt with differently.
 
-````\{prf:example\} 4.3
+````{prf:example} 4.3
 :label: ex4.3
 :nonumber:
 $$
@@ -192,7 +192,7 @@ $$
 $$
 ````
 
-````\{prf:example\} 4.4
+````{prf:example} 4.4
 :label: ex4.4
 :nonumber:
 $$
@@ -215,7 +215,7 @@ If the integral contains the following root use the given substitution and formu
 |$\sqrt{a^{2}+b^{2} x^{2}} \Rightarrow x=\frac{a}{b} \tan \theta$ | $\sec ^{2} \theta=1+\tan ^{2} \theta$ |
 
 
-````\{prf:example\} 4.5
+````{prf:example} 4.5
 :label: ex4.5
 :nonumber:
 calculate $\int \frac{16}{x^{2} \sqrt{4-9 x^{2}}} d x$
@@ -257,7 +257,7 @@ If integrating $\int \frac{P(x)}{Q(x)} d x$ where the degree of $P(x)$ is smalle
 | $a x^{2}+b x+c$ | $\frac{A x+B}{a x^{2}+b x+c}$ | $\left(a x^{2}+b x+c\right)^{k}$ | $\frac{A_{1} x+B_{1}}{a x^{2}+b x+c}+\cdots+\frac{A_{k} x+B_{k}}{\left(a x^{2}+b x+c\right)^{k}}$ |
 
 
-````\{prf:example\} 4.6
+````{prf:example} 4.6
 :label: ex4.6
 :nonumber:
 

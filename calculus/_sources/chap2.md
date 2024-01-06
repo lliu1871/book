@@ -26,9 +26,8 @@ kernelspec:
 - [Continuous function on Youtube](https://www.youtube.com/watch?v=joewRl1CTL8)
 ```
 ````{prf:definition} continuous function
-:nonumber:
-:label: continuous_function
-A function $f:D\rightarrow \mathbb{R}$ is continuous at $x_{0}\in D$ if for every $epsilon >0$, there exists a $\delta >0$ such that for all $x\in D$, 
+:label: def2.1
+A function $f:D\rightarrow \mathbb{R}$ is continuous at $x_{0}\in D$ where $D\subseteq \mathbb{R}$ if for every $\epsilon >0$, there exists a $\delta >0$ such that for all $x\in D$, 
 
 $$|x-x_{0}|<\delta ~~{\text{ implies }}~~|f(x)-f(x_{0})|<\epsilon$$
 
@@ -40,8 +39,8 @@ A list of continuous functions and the values of $x$ for which they are continuo
 
 1. Polynomials for all $x$.
 2. Rational function, except for $x$ 's that give division by zero.
-3. $\sqrt[n]{x}$ ( $n$ odd) for all $x$.
-4. $\sqrt[n]{x}$ ( $n$ even) for all $x \geq 0$.
+3. $\sqrt[n]{x}$ ($n$ odd) for all $x$.
+4. $\sqrt[n]{x}$ ($n$ even) for all $x \geq 0$.
 5. $\mathbf{e}^{x}$ for all $x$.
 6. $\ln x$ for $x>0$.
 7. $\cos (x)$ and $\sin (x)$ for all $x$.
@@ -75,7 +74,7 @@ plt.title("exponential")
 
 #plot 3:
 plt.subplot(2, 2, 3)
-plt.plot(x,np.log(x))
+plt.plot(x,np.log(x+1))
 plt.title("logrithm")
 
 #plot 4:
@@ -91,6 +90,15 @@ plt.show()
 If two functions $f$ and $g$ are continous at $a\in \mathbb{R}$, then $f+g$, $f-g$, $fg$, and $f/g$ where $g(a)\ne 0$ are continuous at $a$. 
 ````
 
+````{prf:proof}
+We can find $\delta_1$ such that $|f(x)-f(a)|<\frac{\epsilon}{2}$ for all $|x-a|<\delta_1$. Similarly, we can find $\delta_2$ such that $|g(x)-g(a)|<\frac{\epsilon}{2}$ for all $|x-a|<\delta_2$. Let $\delta = \min(\delta_1,\delta_2)$. It indicates that $|f(x)-f(a)|<\frac{\epsilon}{2}$ and $|g(x)-g(a)|<\frac{\epsilon}{2}$ for all $|x-a|<\delta$. Thus, $|x-a|<\delta$ implies
+
+$$|f(x)+g(x)-f(a)-g(a)|\le |f(x)-f(a)|+|g(x)-g(a)| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$$
+
+Similarly, we can show $f-g$, $fg$, and $f/g$ where $g(a)\ne 0$ are continuous at $a$. This completes the proof.
+
+````
+
 ````{prf:theorem}
 :label: thm2.2
 If $g$ is continuous at $a\in\mathbb{R}$ and $f$ is continuous at $g(a)$, then the composition $f\circ g$ is continuous at $a$.
@@ -100,7 +108,7 @@ If $g$ is continuous at $a\in\mathbb{R}$ and $f$ is continuous at $g(a)$, then t
 
 ````{prf:theorem} Intermediate Value Theorem
 :label: thm2.3
-Suppose that $f(x)$ is continuous on $[a, b]$ and let $M$ be any number between $f(a)$ and $f(b)$. Then there exists a number $c$ such that $a<c<b$ and $f(c)=M$. 
+If $f(x)$ is continuous on $[a, b]$ and $f(a)<M<f(b)$, then there exists a number $c$ such that $a<c<b$ and $f(c)=M$. 
 ````
 
 ```{code-cell} python
