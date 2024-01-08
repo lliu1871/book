@@ -1,0 +1,1110 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 13: Markov Chains &#8212; Statistical Inference in Bioinformatics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 14: Substitution models" href="chap14.html" />
+    <link rel="prev" title="Chapter 12: Bayesian analysis" href="chap12.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap0.html">
+   Chapter 0: Prerequisites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Probability theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Discrete random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Continuous random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Multiple random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Estimation theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Bayesian analysis
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 13: Markov Chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   Chapter 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Phylogenetic models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Optimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap13.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap13.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap13.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap13.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-time-markov-chains">
+   Discrete time Markov chains
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-step-transition-probability-matrix">
+     One-step transition probability matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limiting-probability-distribution">
+     Limiting probability distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-time-markov-chains">
+   Continuous time Markov chains
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finite-state-space">
+     Finite state space
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 13: Markov Chains</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-time-markov-chains">
+   Discrete time Markov chains
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#one-step-transition-probability-matrix">
+     One-step transition probability matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limiting-probability-distribution">
+     Limiting probability distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-time-markov-chains">
+   Continuous time Markov chains
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finite-state-space">
+     Finite state space
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-13-markov-chains">
+<h1>Chapter 13: Markov Chains<a class="headerlink" href="#chapter-13-markov-chains" title="Permalink to this headline">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Markov_chain">Markov chains</a></p></li>
+</ul>
+</div>
+<p>A stochastic process <span class="math notranslate nohighlight">\(\{X_{t},t \in T\}\)</span> is a collection of random
+variables, in which index <span class="math notranslate nohighlight">\(t\)</span> is time. We refer to
+<span class="math notranslate nohighlight">\(X_{t}\)</span> as the state of the process at time <span class="math notranslate nohighlight">\(t\)</span>. The set <span class="math notranslate nohighlight">\(T\)</span> is called the
+index set of the process. When <span class="math notranslate nohighlight">\(T\)</span> is a countable set (indexed by
+integers), the process is said to be a discrete time process. If <span class="math notranslate nohighlight">\(T\)</span> is an
+interval of real line, the process is said to be a continuous time
+process.</p>
+<div class="proof example admonition" id="13.1">
+<p class="admonition-title"><span>Example </span> (13.1)</p>
+<section class="example-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(X_{t}\)</span> is the total number of customers who have entered a
+supermarket by time <span class="math notranslate nohighlight">\(t\)</span>. This is a discrete state continuous time
+stochastic process. <span class="math notranslate nohighlight">\(X_{t} = 0,1,\ldots,\)</span> and <span class="math notranslate nohighlight">\(t \ge 0\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="13.2">
+<p class="admonition-title"><span>Example </span> (13.2)</p>
+<section class="example-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(X_{t}\)</span> is the number of individuals in a population in each
+generation <span class="math notranslate nohighlight">\(t\)</span>, i.e., <span class="math notranslate nohighlight">\(X_{t} = 0,1,2,\ldots\)</span>, and <span class="math notranslate nohighlight">\(t = 0, 1, 2, \dots\)</span> This
+is a discrete state discrete time stochastic process</p>
+</section>
+</div><section id="discrete-time-markov-chains">
+<h2>Discrete time Markov chains<a class="headerlink" href="#discrete-time-markov-chains" title="Permalink to this headline">#</a></h2>
+<div class="admonition-markov-property admonition">
+<p class="admonition-title">Markov property</p>
+<p>Given the current state <span class="math notranslate nohighlight">\(X_{n}\)</span>, the future state
+<span class="math notranslate nohighlight">\(X_{n + 1}\)</span> does not depend on the past states
+<span class="math notranslate nohighlight">\((X_{n - 1},\ X_{n - 2},\ldots,X_{0})\)</span>, i.e.,
+<span class="math notranslate nohighlight">\(P\left( X_{n + 1} \middle| X_{n},\ldots,X_{0} \right) = P(X_{n + 1}|X_{n})\)</span>.</p>
+</div>
+<div class="proof definition admonition" id="Markov chain">
+<p class="admonition-title"><span>Definition </span> (Markov chain)</p>
+<section class="definition-content" id="proof-content">
+<p>A discrete time Markov chain <span class="math notranslate nohighlight">\(\{ X_{n},n = 0,1,2\ldots\}\)</span> is a discrete
+state discrete time stochastic process that satisfies Markov property.</p>
+</section>
+</div><p>Suppose that <span class="math notranslate nohighlight">\(\{X_{n}\}\)</span> can take on non-negative integers, i.e., the
+state space is <span class="math notranslate nohighlight">\(\{0, 1, 2, \dots\}\)</span>. If <span class="math notranslate nohighlight">\(X_{n} = i\)</span>, we say that the process
+is in state <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<div class="admonition-how-do-we-define-a-dtmc admonition">
+<p class="admonition-title">How do we define a DTMC?</p>
+<p>For a discrete time MC <span class="math notranslate nohighlight">\(\{X_{n}\}\)</span>, the goal is to find the probability distribution <span class="math notranslate nohighlight">\(\pi_n\)</span> of the random variable <span class="math notranslate nohighlight">\(X_n\)</span> at time <span class="math notranslate nohighlight">\(n\)</span>. The DTMC is determined if we know where the chain begins and how the chain moves, i.e., if the initial state <span class="math notranslate nohighlight">\(\pi_0\)</span> at time 0 is given and the transition probabilities <span class="math notranslate nohighlight">\(P(X_{n+1}|X_n)\)</span> from time <span class="math notranslate nohighlight">\(n\)</span> to time <span class="math notranslate nohighlight">\(n+1\)</span> is given.</p>
+</div>
+<section id="one-step-transition-probability-matrix">
+<h3>One-step transition probability matrix<a class="headerlink" href="#one-step-transition-probability-matrix" title="Permalink to this headline">#</a></h3>
+<p>The one-step (from time <span class="math notranslate nohighlight">\(n\)</span> to time <span class="math notranslate nohighlight">\(n+1\)</span>) transition probability from state
+<span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[P_{n,n + 1}(ij) = P(X_{n + 1} = j|X_{n} = i)\]</div>
+<p>Note that</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j = 0}^{\infty}{P_{n,n + 1}(ij)} = 1\]</div>
+<p>If the one-step transition probabilities are independent of time index
+<span class="math notranslate nohighlight">\(n\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[P\left( X_{1} \middle| X_{0} \right) = P\left( X_{2} \middle| X_{1} \right) = \ldots = P(X_{n}|X_{n - 1})\]</div>
+<p>they are called time homogeneous transition probabilities and denoted by
+<span class="math notranslate nohighlight">\(P_{ij}\)</span>. Note that</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j = 0}^{\infty}P_{ij} = 1\]</div>
+<p>We use <span class="math notranslate nohighlight">\(P\)</span> to denote the matrix of time homogeneous transition
+probabilities <span class="math notranslate nohighlight">\(P_{ij}\)</span>, where <span class="math notranslate nohighlight">\(i, j = 0,1,\dots\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P = \begin{pmatrix}
+P_{00}\ P_{01}\ P_{02}\ldots \\
+P_{10}\ P_{11}\ P_{12}\ldots \\
+P_{20}\ P_{21}\ P_{22}\ldots \\
+P_{i0}\ P_{i1}\ P_{i2}\ldots \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>A discrete time Markov chain is determined if the initial state <span class="math notranslate nohighlight">\(X_0\)</span> and
+homogeneous transition probability matrix are given. The initial state
+<span class="math notranslate nohighlight">\(X_0\)</span> defines how the chain starts and the transition probability matrix
+<span class="math notranslate nohighlight">\(P\)</span> determines how the chain moves.</p>
+<div class="proof example admonition" id="13.3">
+<p class="admonition-title"><span>Example </span> (13.3)</p>
+<section class="example-content" id="proof-content">
+<p>Suppose that a gene has two alleles <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span>. The alleles
+<span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span> may mutate to another type in the next generation. The
+chance that A mutates to a is α and the chance that a mutates to A is β.
+The evolution of alleles <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span> over generations is a Markov chain
+with one-step transition probabilities</p>
+<div class="math notranslate nohighlight">
+\[P\left( X_{n + 1} = a \middle| X_{n} = A \right) = \alpha\]</div>
+<div class="math notranslate nohighlight">
+\[P\left( X_{n + 1} = A \middle| X_{n} = a \right) = \beta\]</div>
+<p>The transition probabilities are independent of time <span class="math notranslate nohighlight">\(n\)</span>. Thus, they are
+time homogeneous transition probabilities. The one-step transition
+probability matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P = \begin{matrix}
+a \\
+A \\
+\end{matrix} \begin{pmatrix}
+1 - \beta &amp; \beta \\
+\alpha &amp; 1 - \alpha \\
+\end{pmatrix}\end{split}\]</div>
+</section>
+</div><div class="proof example admonition" id="13.4">
+<p class="admonition-title"><span>Example </span> (13.4)</p>
+<section class="example-content" id="proof-content">
+<p>We consider a population of <span class="math notranslate nohighlight">\(N\)</span> individuals. Let <span class="math notranslate nohighlight">\(X_{n}\)</span>
+denote the number of individuals with allele A in generation <span class="math notranslate nohighlight">\(n\)</span>.
+Suppose <span class="math notranslate nohighlight">\(X_{0} = k, 0 \leq k \leq N\)</span>. Given <span class="math notranslate nohighlight">\(X_{i}\)</span> (the number of A in
+generation i), <span class="math notranslate nohighlight">\(X_{i + 1}\ \)</span>has the Binomial <span class="math notranslate nohighlight">\((N, X_i/N)\)</span>.
+The transition probabilities are independent of time n. Thus, they are
+time homogeneous transition probabilities. The one-step transition
+probability matrix is given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P = \begin{pmatrix}
+1&amp; 0 &amp; 0 &amp;\ldots  \\
+B\left( 0,\frac{1}{N} \right)&amp; B\left( 1,\frac{1}{N} \right)&amp; B\left( 2,\frac{1}{N} \right) &amp; \ldots \\
+B\left( 0,\frac{2}{N} \right) &amp; B\left( 1,\frac{2}{N} \right) &amp; B\left( 3,\frac{2}{N} \right) &amp; \ldots \\
+0&amp; 0 &amp; \ldots &amp; 1 \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(B\left(i,\frac{j}{N}\right)\)</span> is the probability <span class="math notranslate nohighlight">\(P(X = i)\)</span> when <span class="math notranslate nohighlight">\(X\)</span> has the
+Binomial <span class="math notranslate nohighlight">\((N, p = \frac{j}{N})\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="13.5">
+<p class="admonition-title"><span>Example </span> (13.5)</p>
+<section class="example-content" id="proof-content">
+<p>A gambling model. a gamble either wins $1 with probability
+<span class="math notranslate nohighlight">\(p\)</span> or loses $1 with probability 1-p. if the gambler quits playing either
+when he goes broke or he attains a fortune of $N, the one-step
+transition probability <span class="math notranslate nohighlight">\(P_{i,i + 1} = p\)</span> and <span class="math notranslate nohighlight">\(P_{i,i - 1} = 1 - p\)</span>, for
+<span class="math notranslate nohighlight">\(i = 1,..,N\)</span>. In addition, <span class="math notranslate nohighlight">\(P_{00} = P_{NN} = 1\)</span>. The one-step
+transition probability matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P = \begin{pmatrix}
+1&amp; 0&amp; 0 &amp; 0 &amp; \dots &amp; 0 \\
+1 - p&amp; 0&amp; p&amp; 0 &amp; 0 &amp; \dots \\
+0&amp; 1 - p&amp; 0&amp; p &amp; 0 &amp; \dots \\
+0&amp; 0&amp; 1 - p&amp; 0&amp; p &amp;\dots \\
+0&amp; 0&amp; 0 &amp; 0 &amp; \dots &amp; 1 \\
+\end{pmatrix} 
+\end{split}\]</div>
+</section>
+</div><div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>States 0 and N are called <strong>absorbing states</strong>, because once the process gets into those states it will never get out.</p>
+</div>
+<div class="proof example admonition" id="13.6">
+<p class="admonition-title"><span>Example </span> (13.6)</p>
+<section class="example-content" id="proof-content">
+<p>In example 1, if the initial state <span class="math notranslate nohighlight">\(P(X_0) = (0.1, 0.9)\)</span> and <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span> and
+<span class="math notranslate nohighlight">\(\beta=0.2\)</span>, find <span class="math notranslate nohighlight">\(P(X_1)\)</span></p>
+<p>The one-step transition probability matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+P = \begin{pmatrix}
+0.8\ \ \ 0.2 \\
+0.1\ \ \ 0.9 \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>Next, we find the probability <span class="math notranslate nohighlight">\(P(X_1)\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+P\left( X_{1} = a \right) &amp;= P\left( X_{1} = a|X_{0} = a \right)P\left( X_{0} = a \right) + P\left( X_{1} = a|X_{0} = A \right)P\left( X_{0} = A \right) \\
+&amp;= 0.1*0.8 + 0.9*0.1 = 0.17
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+P\left( X_{1} = A \right) &amp;= P\left( X_{1} = A|X_{0} = a \right)P\left( X_{0} = a \right) + P\left( X_{1} = A|X_{0} = A \right)P\left( X_{0} = A \right) \\
+&amp;= 0.1*0.2 + 0.9*0.9 = 0.83
+\end{split}
+\end{equation}
+\end{split}\]</div>
+</section>
+</div><p>We have a matrix representation for the probability distribution of <span class="math notranslate nohighlight">\(X_{1}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[P\left( X_{1} \right) = P\left( X_{0} \right)\cdot P\]</div>
+<p>In general,</p>
+<div class="math notranslate nohighlight">
+\[P\left( X_{n} \right) = P\left( X_{0} \right)\cdot P^{n}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.9</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="n">x_0</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.9</span><span class="p">)</span>
+
+<span class="n">x_1</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">%*%</span> <span class="n">p</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability distribution of x_1 is&quot;</span><span class="p">,</span> <span class="n">x_1</span><span class="p">))</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">expm</span><span class="p">)</span>
+<span class="n">x_10</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">10</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability distribution of x_10 is&quot;</span><span class="p">,</span><span class="n">x_10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability distribution of x_1 is 0.17&quot;
+[2] &quot;the probability distribution of x_1 is 0.83&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Matrix
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;expm&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from &#39;package:Matrix&#39;:
+
+    expm
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability distribution of x_10 is 0.32674224419&quot;
+[2] &quot;the probability distribution of x_10 is 0.67325775581&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="limiting-probability-distribution">
+<h3>Limiting probability distribution<a class="headerlink" href="#limiting-probability-distribution" title="Permalink to this headline">#</a></h3>
+<p>Another major goal of the Markov chain theory is to find the limiting
+probabilities <span class="math notranslate nohighlight">\(\lim_{n \rightarrow \infty}{P(X_{n})}\)</span>, as time <span class="math notranslate nohighlight">\(n\)</span> goes to
+infinity.</p>
+<div class="proof theorem admonition" id="theorem-7">
+<p class="admonition-title"><span class="caption-number">Theorem 6 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>If the Markov chain is ergodic (irreducible, aperiodic, and
+positive recurrent), limiting probabilities <span class="math notranslate nohighlight">\(\pi\)</span> exist and satisfy the
+equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{cases}
+\pi = \pi P \\  
+\sum_{i=1}^{n}\pi_{i} = 1
+\end{cases}
+\end{equation}
+\end{split}\]</div>
+</section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">expm</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 10&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">10</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 20&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">20</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 30&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">30</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 40&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">40</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 50&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">50</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability for time = 60&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">60</span><span class="p">),</span><span class="m">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 10 0.32674&quot;
+[2] &quot;the probability for time = 10 0.67326&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 20 0.33315&quot;
+[2] &quot;the probability for time = 20 0.66685&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 30 0.33333&quot;
+[2] &quot;the probability for time = 30 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 40 0.33333&quot;
+[2] &quot;the probability for time = 40 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 50 0.33333&quot;
+[2] &quot;the probability for time = 50 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability for time = 60 0.33333&quot;
+[2] &quot;the probability for time = 60 0.66667&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that once the chain reaches the limiting probability distribution, it will stay in
+the limiting probability distribution. Thus, the limiting probability distribution is also
+called the stationary distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x_lim</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">p</span> <span class="o">%^%</span> <span class="m">60</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the limit probability is&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">x_lim</span><span class="p">,</span><span class="m">5</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the probability after one more move is&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">x_lim</span> <span class="o">%*%</span> <span class="n">p</span><span class="p">,</span><span class="m">5</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the limit probability is 0.33333&quot; &quot;the limit probability is 0.66667&quot;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the probability after one more move is 0.33333&quot;
+[2] &quot;the probability after one more move is 0.66667&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>For irreducible finite state discrete time Markov chain, the ergodic
+conditions are always satisfied. Thus, we can find the limiting
+probabilities by solving the equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{cases}
+\pi = \pi P \\  
+\sum_{i=1}^{n}\pi_{i} = 1
+\end{cases}
+\end{equation}
+\end{split}\]</div>
+<div class="proof example admonition" id="13.7">
+<p class="admonition-title"><span>Example </span> (13.7)</p>
+<section class="example-content" id="proof-content">
+<p>Consider a Markov chain of two alleles (a, A) with the one-step
+transition probability <span class="math notranslate nohighlight">\(P=\begin{pmatrix}
+0.2 &amp; 0.8 \\
+0.1 &amp; 0.9 \\
+\end{pmatrix}\)</span>  What are the limiting probabilities of a and A?</p>
+<p>From the theorem, we know that the limiting probabilities, <span class="math notranslate nohighlight">\(\pi_{a}\)</span> and
+<span class="math notranslate nohighlight">\(\pi_{A}\)</span>, must satisfy the following equations,</p>
+<div class="math notranslate nohighlight">
+\[\pi_{a} = {0.2\pi}_{a} + 0.1\pi_{A}\]</div>
+<div class="math notranslate nohighlight">
+\[\pi_{A} = {0.8\pi}_{a} + 0.9\pi_{A}\]</div>
+<div class="math notranslate nohighlight">
+\[\pi_{a} + \pi_{A} = 1\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(\pi_{a} = \frac{1}{9}\)</span> and <span class="math notranslate nohighlight">\(\pi_{A} = \frac{8}{9}\)</span>. In addition,
+if the Markov chain starts with the limiting probabilities, i.e.,
+<span class="math notranslate nohighlight">\(P( X_{0}) = \left(\frac{1}{9},\frac{8}{9}\right)\)</span>, then
+<span class="math notranslate nohighlight">\(P( X_{n}) = \left(\frac{1}{9},\frac{8}{9}\right)\)</span> for all <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</section>
+</div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.9</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the limiting probability is&quot;</span><span class="p">,</span> <span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] 1.0 0.1
+
+$vectors
+           [,1]       [,2]
+[1,] -0.1240347 -0.7071068
+[2,] -0.9922779  0.7071068
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the limiting probability is 0.111111111111111&quot;
+[2] &quot;the limiting probability is 0.888888888888889&quot;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="continuous-time-markov-chains">
+<h2>Continuous time Markov chains<a class="headerlink" href="#continuous-time-markov-chains" title="Permalink to this headline">#</a></h2>
+<div class="proof definition admonition" id="CTMC">
+<p class="admonition-title"><span>Definition </span> (continuous time Markov chain)</p>
+<section class="definition-content" id="proof-content">
+<p>A continuous time Markov chain <span class="math notranslate nohighlight">\(\{ X_{t}\}\)</span> is a discrete
+state continuous time stochastic process that satisfies Markov property.</p>
+</section>
+</div><div class="admonition-markov-property-for-continuous-times admonition">
+<p class="admonition-title">Markov property for continuous times</p>
+<p>For all <span class="math notranslate nohighlight">\(s,t \geq 0\)</span>, and nonnegative integers <span class="math notranslate nohighlight">\(i, j\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[P\left( X_{t + s} = j \middle| X_{s} = i,\ X_{u},\ 0 \leq u \leq s \right) = P(X_{t + s} = j|X_{s} = i)\]</div>
+</div>
+<p>Suppose <span class="math notranslate nohighlight">\(\{ X_{t},t \geq 0\}\)</span> is a continuous time stochastic process
+taking on values in the set of nonnegative integers {0, 1, 2, …}.</p>
+<p>In addition, if <span class="math notranslate nohighlight">\(P\left( X_{t + s} = j \middle| X_{s} = i \right)\)</span> is
+independent of <span class="math notranslate nohighlight">\(s\)</span>, the continuous time Markov chain is said to have
+stationary or homogeneous transition probabilities, denoted by <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span>,
+the probability of transition from state <span class="math notranslate nohighlight">\(i\)</span> to state j in time t.</p>
+<section id="finite-state-space">
+<h3>Finite state space<a class="headerlink" href="#finite-state-space" title="Permalink to this headline">#</a></h3>
+<p>Suppose there are <span class="math notranslate nohighlight">\(n\)</span> states. The transition probabilities <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span> can be represented by a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix
+<span class="math notranslate nohighlight">\(P(t)\)</span>. Given the transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span>, the probability distribution <span class="math notranslate nohighlight">\(\pi_t\)</span> of
+<span class="math notranslate nohighlight">\(X_{t}\)</span> is equal to the initial probability <span class="math notranslate nohighlight">\(\pi_0\)</span> at time 0 multiplied by the transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_t = \pi_0P(t)
+\]</div>
+<p>The transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span> can be derived from the
+transition rate matrix <span class="math notranslate nohighlight">\(Q\)</span>. The transition rate matrix <span class="math notranslate nohighlight">\(Q\)</span> is
+equivalent to the one-step transition probability matrix in the discrete
+time Markov chain. In other words, the continuous time Markov chain is
+determined by the initial state <span class="math notranslate nohighlight">\(\pi_0\)</span> and the transition rate
+matrix <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+<p>From Kolmogorov backward equations, the transition probability matrix
+<span class="math notranslate nohighlight">\(P(t)\)</span> satisfies the differential equation</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial P(t)}{\partial t} = QP(t)\]</div>
+<p>The solution to this differential equation is</p>
+<div class="math notranslate nohighlight">
+\[P(t) = e^{Qt}\]</div>
+<div class="proof theorem admonition" id="theorem-10">
+<p class="admonition-title"><span>Theorem </span></p>
+<section class="theorem-content" id="proof-content">
+<p>The limiting probabilities
+<span class="math notranslate nohighlight">\(\pi_\infty=\lim_{t \rightarrow \infty}{P\left( X_{t} = j \middle| X_{0} = i \right)}\)</span>,
+if exist, are independent of the initial state <span class="math notranslate nohighlight">\(X_{0}\)</span>, and must satisfy the equation</p>
+<div class="math notranslate nohighlight">
+\[\pi_\infty Q = 0\]</div>
+</section>
+</div><p>From the theorem, the limiting probabilities <span class="math notranslate nohighlight">\(\pi_\infty\)</span>, if exist, can be
+found by solving the equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation} 
+\begin{cases}
+\pi_\infty Q = 0 \\ 
+\sum_{j}^{}\pi_{j} = 1
+\end{cases}
+\end{equation}
+\end{split}\]</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chap12.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 12: Bayesian analysis</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap14.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 14: Substitution models</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

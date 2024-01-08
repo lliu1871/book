@@ -1,0 +1,923 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 7: Multiple tests &#8212; Statistical Inference in Bioinformatics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 8: RNA-seq analysis" href="lab8.html" />
+    <link rel="prev" title="Lab 6: Hypothesis testing" href="lab6.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap0.html">
+   Chapter 0: Prerequisites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Probability theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Discrete random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Continuous random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Multiple random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Estimation theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Bayesian analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Markov Chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   Chapter 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Phylogenetic models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Optimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab7.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab7.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/lab7.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/lab7.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonferroni-correction">
+   Bonferroni correction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#false-discovery-rate-fdr">
+   False Discovery Rate (FDR)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microarray-gene-expression-analysis">
+   Microarray gene expression analysis
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lab 7: Multiple tests</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bonferroni-correction">
+   Bonferroni correction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#false-discovery-rate-fdr">
+   False Discovery Rate (FDR)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#microarray-gene-expression-analysis">
+   Microarray gene expression analysis
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-7-multiple-tests">
+<h1>Lab 7: Multiple tests<a class="headerlink" href="#lab-7-multiple-tests" title="Permalink to this headline">#</a></h1>
+<p>We generate gene expression data for 4 genes</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">)),</span> 
+                  <span class="n">gene1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene3</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene4</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 20 × 5</caption>
+<thead>
+	<tr><th scope=col>group</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>gene3</th><th scope=col>gene4</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>0</td><td> 0.38368255</td><td>-1.20030283</td><td> 0.2572832</td><td>-1.5429010</td></tr>
+	<tr><td>0</td><td> 1.43630777</td><td> 1.47802973</td><td> 1.7283585</td><td> 1.1215944</td></tr>
+	<tr><td>0</td><td>-0.10894568</td><td>-0.66453925</td><td> 0.1319284</td><td> 1.1544129</td></tr>
+	<tr><td>0</td><td> 0.02999506</td><td>-0.05750245</td><td> 1.5966634</td><td> 1.6782346</td></tr>
+	<tr><td>0</td><td> 0.57495730</td><td> 1.10722288</td><td> 0.4809750</td><td> 1.8755157</td></tr>
+	<tr><td>0</td><td> 0.67827521</td><td>-0.36114128</td><td> 0.1484803</td><td> 1.1348031</td></tr>
+	<tr><td>0</td><td>-1.12761164</td><td> 0.02951702</td><td> 0.7004820</td><td> 0.1158356</td></tr>
+	<tr><td>0</td><td> 1.43281087</td><td>-0.22447377</td><td> 0.3951082</td><td> 0.5565606</td></tr>
+	<tr><td>0</td><td> 1.45289960</td><td> 0.39023365</td><td> 0.6224474</td><td> 2.0515763</td></tr>
+	<tr><td>0</td><td>-0.42238353</td><td>-0.61667785</td><td>-0.8804218</td><td>-0.1224929</td></tr>
+	<tr><td>1</td><td> 2.43722305</td><td>-0.04730743</td><td>-0.3068725</td><td> 1.5711420</td></tr>
+	<tr><td>1</td><td> 1.55500867</td><td> 0.91671359</td><td> 1.2430572</td><td> 3.2495352</td></tr>
+	<tr><td>1</td><td> 0.10265706</td><td>-1.11345454</td><td> 0.2178696</td><td> 1.8328443</td></tr>
+	<tr><td>1</td><td> 2.09955924</td><td> 1.18674706</td><td>-0.7522695</td><td> 2.4995078</td></tr>
+	<tr><td>1</td><td> 2.15113854</td><td> 1.42861978</td><td> 1.5491907</td><td> 1.3854098</td></tr>
+	<tr><td>1</td><td> 3.13542877</td><td>-0.71263613</td><td>-1.8634777</td><td> 0.3119637</td></tr>
+	<tr><td>1</td><td> 1.80677242</td><td> 0.20195694</td><td> 0.8857870</td><td> 2.0802046</td></tr>
+	<tr><td>1</td><td> 1.98771098</td><td>-1.45204727</td><td> 1.2820736</td><td> 1.5871959</td></tr>
+	<tr><td>1</td><td> 2.28395563</td><td>-0.16424074</td><td> 0.9816924</td><td> 0.7144261</td></tr>
+	<tr><td>1</td><td> 2.42678898</td><td>-0.21202637</td><td>-0.8866849</td><td> 2.9173178</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+<section id="bonferroni-correction">
+<h2>Bonferroni correction<a class="headerlink" href="#bonferroni-correction" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">numtest</span> <span class="o">=</span> <span class="m">4</span>
+<span class="n">pvalue</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">numtest</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">numtest</span><span class="p">){</span>
+    <span class="n">pvalue</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">t.test</span><span class="p">(</span><span class="n">data</span><span class="p">[,</span><span class="n">i</span><span class="m">+1</span><span class="p">]</span> <span class="o">~</span> <span class="n">data</span><span class="p">[,</span><span class="m">1</span><span class="p">])</span><span class="o">$</span><span class="n">p.value</span>
+<span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;the Bonferroni adjusted pvalues&quot;</span><span class="p">)</span>
+<span class="n">pvalue</span><span class="o">*</span><span class="n">numtest</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the Bonferroni adjusted pvalues&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.00207492706899543</li><li>3.87995284663922</li><li>2.08525675528907</li><li>0.151297837797904</li></ol>
+</div></div>
+</div>
+</section>
+<section id="false-discovery-rate-fdr">
+<h2>False Discovery Rate (FDR)<a class="headerlink" href="#false-discovery-rate-fdr" title="Permalink to this headline">#</a></h2>
+<p>To perform the FDR analysis in R, we need to install the package <strong>fuzzySim</strong> by typing <strong>install.packages(“fuzzySim”)</strong> in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">fuzzySim</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">group</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">)),</span> 
+                  <span class="n">gene1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene3</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)),</span> 
+                  <span class="n">gene4</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">2.2</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="m">1</span><span class="p">)))</span>
+<span class="n">data</span>
+
+<span class="nf">FDR</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">sp.cols</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">var.cols</span> <span class="o">=</span> <span class="m">2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;gaussian&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 20 × 5</caption>
+<thead>
+	<tr><th scope=col>group</th><th scope=col>gene1</th><th scope=col>gene2</th><th scope=col>gene3</th><th scope=col>gene4</th></tr>
+	<tr><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><td>0</td><td>-1.4836304</td><td>-0.29204406</td><td> 0.8115310</td><td>-1.3285233</td></tr>
+	<tr><td>0</td><td> 2.4667778</td><td> 2.93956139</td><td>-0.1075958</td><td> 0.1601818</td></tr>
+	<tr><td>0</td><td> 0.6357290</td><td> 0.24576133</td><td>-1.4794328</td><td> 0.4958417</td></tr>
+	<tr><td>0</td><td> 1.0677016</td><td>-0.16148797</td><td>-0.6224058</td><td> 0.2732525</td></tr>
+	<tr><td>0</td><td> 1.6654709</td><td> 0.09465299</td><td>-0.2840279</td><td> 0.4730431</td></tr>
+	<tr><td>0</td><td>-0.3582700</td><td>-0.30484736</td><td>-2.3907885</td><td> 0.5620690</td></tr>
+	<tr><td>0</td><td>-0.2229971</td><td> 0.82586631</td><td> 2.0766703</td><td>-0.1518701</td></tr>
+	<tr><td>0</td><td> 2.2459287</td><td> 1.12936942</td><td> 1.2197401</td><td>-0.1411929</td></tr>
+	<tr><td>0</td><td>-0.1349941</td><td> 1.19386600</td><td> 0.2715439</td><td> 0.2396521</td></tr>
+	<tr><td>0</td><td> 0.3251509</td><td>-1.94824072</td><td> 1.5014754</td><td>-0.4937352</td></tr>
+	<tr><td>1</td><td> 2.7903208</td><td>-0.23117900</td><td> 0.7417876</td><td> 1.8496545</td></tr>
+	<tr><td>1</td><td> 3.5558088</td><td>-0.07008063</td><td> 1.9383660</td><td> 3.5516604</td></tr>
+	<tr><td>1</td><td> 2.2909710</td><td>-0.13006931</td><td> 1.2184269</td><td> 2.1592351</td></tr>
+	<tr><td>1</td><td> 2.1955948</td><td>-1.24404744</td><td>-0.8408627</td><td> 1.2053556</td></tr>
+	<tr><td>1</td><td> 2.8911825</td><td>-0.34831138</td><td> 0.1284066</td><td> 2.5806534</td></tr>
+	<tr><td>1</td><td> 3.2348626</td><td>-0.51867275</td><td> 0.4011103</td><td> 0.6583699</td></tr>
+	<tr><td>1</td><td> 1.6698425</td><td>-0.08314624</td><td> 2.4582862</td><td> 2.0478018</td></tr>
+	<tr><td>1</td><td> 2.1551708</td><td> 0.58880868</td><td>-0.3962686</td><td> 2.9778250</td></tr>
+	<tr><td>1</td><td> 1.1743424</td><td>-0.17892783</td><td> 1.5283520</td><td> 2.2524070</td></tr>
+	<tr><td>1</td><td> 2.1873761</td><td>-0.38100404</td><td>-2.8146567</td><td> 2.8366883</td></tr>
+</tbody>
+</table>
+</div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bivariate p-values adjusted with &#39;fdr&#39; correction;
+2 variable(s) excluded, 2 selected (with q = 0.05)
+</pre></div>
+</div>
+<div class="output text_html"><dl>
+	<dt>$exclude</dt>
+		<dd><table class="dataframe">
+<caption>A data.frame: 2 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>bivariate.coeff</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>p.value</th><th scope=col>p.adjusted</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>gene2</th><td>-0.17010709</td><td>32.75725</td><td>34.74872</td><td>0.1409195</td><td>0.1878926</td></tr>
+	<tr><th scope=row>gene3</th><td> 0.04330138</td><td>34.73798</td><td>36.72945</td><td>0.6058558</td><td>0.6058558</td></tr>
+</tbody>
+</table>
+</dd>
+	<dt>$select</dt>
+		<dd><table class="dataframe">
+<caption>A data.frame: 2 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>bivariate.coeff</th><th scope=col>AIC</th><th scope=col>BIC</th><th scope=col>p.value</th><th scope=col>p.adjusted</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>gene4</th><td>0.3262927</td><td> 9.65408</td><td>11.64554</td><td>1.168419e-11</td><td>4.673677e-11</td></tr>
+	<tr><th scope=row>gene1</th><td>0.2576939</td><td>22.62380</td><td>24.61526</td><td>8.365451e-05</td><td>1.673090e-04</td></tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div></div>
+</div>
+</section>
+<section id="microarray-gene-expression-analysis">
+<h2>Microarray gene expression analysis<a class="headerlink" href="#microarray-gene-expression-analysis" title="Permalink to this headline">#</a></h2>
+<p>To analyze gene expression data, we need to install Bioconductor packages. To install Bioconductor packages, type the following in an R command window:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (!require(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(c(&quot;affy&quot;,&quot;limma&quot;,&quot;arrays&quot;))
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>We first import data from the package <strong>arrays</strong>.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">affy</span><span class="p">)</span>   <span class="c1"># Affymetrix pre-processing</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">limma</span><span class="p">)</span>  <span class="c1"># two-color pre-processing; differential</span>
+                  <span class="c1"># expression</span>
+                
+<span class="c1">## import &quot;phenotype&quot; data, describing the experimental design</span>
+<span class="n">phenoData</span> <span class="o">&lt;-</span> <span class="nf">read.AnnotatedDataFrame</span><span class="p">(</span><span class="nf">system.file</span><span class="p">(</span><span class="s">&quot;extdata&quot;</span><span class="p">,</span> <span class="s">&quot;pData.txt&quot;</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;arrays&quot;</span><span class="p">))</span>
+<span class="n">celfiles</span> <span class="o">&lt;-</span> <span class="nf">system.file</span><span class="p">(</span><span class="s">&quot;extdata&quot;</span><span class="p">,</span> <span class="n">package</span><span class="o">=</span><span class="s">&quot;arrays&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: BiocGenerics
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;BiocGenerics&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:stats&#39;:
+
+    IQR, mad, sd, var, xtabs
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following objects are masked from &#39;package:base&#39;:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort,
+    table, tapply, union, unique, unsplit, which.max, which.min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading required package: Biobase
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    &#39;browseVignettes()&#39;. To cite Bioconductor, see
+    &#39;citation(&quot;Biobase&quot;)&#39;, and for packages &#39;citation(&quot;pkgname&quot;)&#39;.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Attaching package: &#39;limma&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The following object is masked from &#39;package:BiocGenerics&#39;:
+
+    plotMA
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>RMA normalization for microarray expression data</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">eset</span> <span class="o">&lt;-</span> <span class="nf">justRMA</span><span class="p">(</span><span class="n">phenoData</span><span class="o">=</span><span class="n">phenoData</span><span class="p">,</span> <span class="n">celfile.path</span><span class="o">=</span><span class="n">celfiles</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;replacing previous import &#39;AnnotationDbi::tail&#39; by &#39;utils::tail&#39; when loading &#39;hgfocuscdf&#39;&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Warning message:
+&quot;replacing previous import &#39;AnnotationDbi::head&#39; by &#39;utils::head&#39; when loading &#39;hgfocuscdf&#39;&quot;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="simple">
+<li><p>Identify differentially expressed genes</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">combn</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="nf">pData</span><span class="p">(</span><span class="n">phenoData</span><span class="p">)[,</span><span class="m">1</span><span class="p">],</span> <span class="nf">pData</span><span class="p">(</span><span class="n">phenoData</span><span class="p">)[,</span><span class="m">2</span><span class="p">],</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;_&quot;</span><span class="p">))</span>
+<span class="n">design</span> <span class="o">&lt;-</span> <span class="nf">model.matrix</span><span class="p">(</span><span class="o">~</span><span class="n">combn</span><span class="p">)</span> <span class="c1"># describe model to be fit</span>
+
+<span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">lmFit</span><span class="p">(</span><span class="n">eset</span><span class="p">,</span> <span class="n">design</span><span class="p">)</span>  <span class="c1"># fit each probeset to model</span>
+<span class="n">efit</span> <span class="o">&lt;-</span> <span class="nf">eBayes</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>        <span class="c1"># empirical Bayes adjustment</span>
+<span class="nf">topTable</span><span class="p">(</span><span class="n">efit</span><span class="p">,</span> <span class="n">coef</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>      <span class="c1"># table of differentially expressed probesets</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A data.frame: 10 × 6</caption>
+<thead>
+	<tr><th></th><th scope=col>logFC</th><th scope=col>AveExpr</th><th scope=col>t</th><th scope=col>P.Value</th><th scope=col>adj.P.Val</th><th scope=col>B</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>204582_s_at</th><td> 3.468416</td><td>10.150533</td><td> 39.03471</td><td>1.969915e-14</td><td>1.732146e-10</td><td>19.86082</td></tr>
+	<tr><th scope=row>211548_s_at</th><td>-2.325670</td><td> 7.178610</td><td>-22.73165</td><td>1.541158e-11</td><td>6.775701e-08</td><td>15.88709</td></tr>
+	<tr><th scope=row>216598_s_at</th><td> 1.936306</td><td> 7.692822</td><td> 21.73818</td><td>2.658881e-11</td><td>7.793180e-08</td><td>15.48223</td></tr>
+	<tr><th scope=row>211110_s_at</th><td> 3.157766</td><td> 7.909391</td><td> 21.19204</td><td>3.625216e-11</td><td>7.969130e-08</td><td>15.24728</td></tr>
+	<tr><th scope=row>206001_at</th><td>-1.590732</td><td>12.402722</td><td>-18.64398</td><td>1.715422e-10</td><td>3.016740e-07</td><td>14.01955</td></tr>
+	<tr><th scope=row>202409_at</th><td> 3.274118</td><td> 6.704989</td><td> 17.72512</td><td>3.156709e-10</td><td>4.626157e-07</td><td>13.51659</td></tr>
+	<tr><th scope=row>221019_s_at</th><td> 2.251730</td><td> 7.104012</td><td> 16.34552</td><td>8.353283e-10</td><td>1.049292e-06</td><td>12.69145</td></tr>
+	<tr><th scope=row>204688_at</th><td> 1.813001</td><td> 7.125307</td><td> 14.75281</td><td>2.834343e-09</td><td>3.115297e-06</td><td>11.61959</td></tr>
+	<tr><th scope=row>205489_at</th><td> 1.240713</td><td> 7.552260</td><td> 13.62265</td><td>7.264649e-09</td><td>7.097562e-06</td><td>10.76948</td></tr>
+	<tr><th scope=row>209288_s_at</th><td>-1.226421</td><td> 7.603917</td><td>-13.32681</td><td>9.401074e-09</td><td>7.784531e-06</td><td>10.53327</td></tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lab6.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lab 6: Hypothesis testing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lab8.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 8: RNA-seq analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

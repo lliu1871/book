@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 2: Generating random numbers &#8212; Statistical Inference in Bioinformatics</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,61 +64,93 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lab 3: The law of large numbers" href="lab3.html" />
     <link rel="prev" title="Lab 1: Introduction to R" href="lab1.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,468 +160,257 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lecture
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="chap0.html">
-   Chapter 0: Prerequisites
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap1.html">
-   Chapter 1: Probability theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap2.html">
-   Chapter 2: Discrete random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap3.html">
-   Chapter 3: Continuous random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap4.html">
-   Chapter 4: Multiple random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap5.html">
-   Chapter 5: Estimation theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap6.html">
-   Chapter 6: Hypothesis testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap7.html">
-   Chapter 7: Multiple tests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap8.html">
-   Chapter 8: RNA-seq analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap9.html">
-   Chapter 9: Linear regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap10.html">
-   Chapter 10: Monte Carlo simulation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap11.html">
-   Chapter 11: Bootstrap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap12.html">
-   Chapter 12: Bayesian analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap13.html">
-   Chapter 13: Markov Chains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap14.html">
-   Chapter 14: Substitution models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap15.html">
-   Chapter 15: Phylogenetic models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="chap0.html">Chapter 0: Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Probability theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Discrete random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Multiple random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Estimation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Multiple tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: RNA-seq analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Monte Carlo simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Bayesian analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Markov Chains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: Substitution models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">Chapter 15: Phylogenetic models</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lab
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="lab1.html">
-   Lab 1: Introduction to R
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lab 2: Generating random numbers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab3.html">
-   Lab 3: The law of large numbers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab4.html">
-   Lab 4: BLAST
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab5.html">
-   Lab 5: Optimization algorithms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab6.html">
-   Lab 6: Hypothesis testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab7.html">
-   Lab 7: Multiple tests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab8.html">
-   Lab 8: RNA-seq analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab9.html">
-   Lab 9: Linear regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab10.html">
-   Lab 10: Monte Carlo simulation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab11.html">
-   Lab 11: Bootstrap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab12.html">
-   Lab 12: Markov Chain Monte Carlo algorithm
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab13.html">
-   Lab 13: Markov chains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab14.html">
-   Lab 14: Substitution models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab15.html">
-   Lab 15: Phylogenetic tree reconstruction
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to R</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 2: Generating random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: The law of large numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: BLAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Optimization algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Multiple tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: RNA-seq analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Monte Carlo simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Markov Chain Monte Carlo algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Markov chains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Substitution models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab15.html">Lab 15: Phylogenetic tree reconstruction</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab2.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab2.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/lab2.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/lab2.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#discrete-probability-distributions">
-   Discrete probability distributions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#continuous-probability-distributions">
-   Continuous probability distributions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dealing-with-sequence-files">
-   Dealing with sequence files
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 2: Generating random numbers</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#discrete-probability-distributions">
-   Discrete probability distributions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#continuous-probability-distributions">
-   Continuous probability distributions
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dealing-with-sequence-files">
-   Dealing with sequence files
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 2: Generating random numbers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-probability-distributions">Discrete probability distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-probability-distributions">Continuous probability distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-sequence-files">Dealing with sequence files</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="lab-2-generating-random-numbers">
-<h1>Lab 2: Generating random numbers<a class="headerlink" href="#lab-2-generating-random-numbers" title="Permalink to this headline">#</a></h1>
+<h1>Lab 2: Generating random numbers<a class="headerlink" href="#lab-2-generating-random-numbers" title="Permalink to this heading">#</a></h1>
 <section id="discrete-probability-distributions">
-<h2>Discrete probability distributions<a class="headerlink" href="#discrete-probability-distributions" title="Permalink to this headline">#</a></h2>
+<h2>Discrete probability distributions<a class="headerlink" href="#discrete-probability-distributions" title="Permalink to this heading">#</a></h2>
 <p>In this lab, we will generate random numbers from a probability distribution. We begin with a discrete probability distribution.</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>x</p></th>
 <th class="head"><p>1</p></th>
@@ -602,7 +434,7 @@ title="Print to PDF"
 <p>The R function <em>sample()</em> can be used to generate random numbers from a discrete probability distribution. For example, the following code will randomly pick a number from (1,2,3) without replacement</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -612,7 +444,7 @@ title="Print to PDF"
 <p>To select two numbers at random from (1,2,3) without replacement, we do</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -622,13 +454,13 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>1</li></ol>
+<ol class=list-inline><li>2</li><li>3</li></ol>
 </div></div>
 </div>
 <p>To select two numbers at random from (1,2,3) with replacement, we do</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="o">/</span><span class="m">3</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -638,13 +470,13 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3</li><li>2</li></ol>
+<ol class=list-inline><li>1</li><li>3</li></ol>
 </div></div>
 </div>
 <div class="admonition-exercise-1 admonition">
 <p class="admonition-title">Exercise 1</p>
 <p>Flipping a fair coin 5 times and then we count the number of heads. Suppose head is 1 and tail is 0. Because it is a fair coin, the probability distribution of X is</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>x</p></th>
 <th class="head"><p>0</p></th>
@@ -665,9 +497,9 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">outcome</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
 <span class="n">outcome</span>
-<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;The count of heads is&quot;</span><span class="p">,</span> <span class="nf">sum</span><span class="p">(</span><span class="n">outcome</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;The count of heads is&quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">outcome</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -677,8 +509,8 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>0</li><li>0</li><li>1</li><li>0</li><li>0</li></ol>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The count of heads is 1&quot;
+<ol class=list-inline><li>1</li><li>1</li><li>0</li><li>1</li><li>0</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The count of heads is 3&quot;
 </pre></div>
 </div>
 </div>
@@ -689,11 +521,11 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nsim</span> <span class="o">=</span> <span class="m">1000</span>
-<span class="n">result</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsim</span><span class="p">)</span>
-<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nsim</span><span class="p">){</span>
-    <span class="n">outcome</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">size</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
-    <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">nsim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rep</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nsim</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nsim</span><span class="p">){</span>
+<span class="w">    </span><span class="n">outcome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="w">    </span><span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
 <span class="p">}</span>
 <span class="nf">table</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="nf">barplot</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
@@ -703,16 +535,16 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 33 164 293 320 165  25 
+ 28 169 279 319 165  40 
 </pre></div>
 </div>
-<img alt="_images/lab2_9_1.png" src="_images/lab2_9_1.png" />
+<img alt="_images/e9ef67bc357e1a2a2529d272404e5f9bb30e3423274e88bdf1709b5e8c249c44.png" src="_images/e9ef67bc357e1a2a2529d272404e5f9bb30e3423274e88bdf1709b5e8c249c44.png" />
 </div>
 </div>
 <p>Alternative, we may simulate random numbers from the binomial distribution with <span class="math notranslate nohighlight">\(n=5\)</span> and <span class="math notranslate nohighlight">\(p=0.5\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nf">rbinom</span><span class="p">(</span><span class="m">1000</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rbinom</span><span class="p">(</span><span class="m">1000</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="n">p</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
 <span class="nf">table</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="nf">barplot</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
 </pre></div>
@@ -721,16 +553,16 @@ title="Print to PDF"
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 37 164 290 334 141  34 
+ 35 159 295 326 163  22 
 </pre></div>
 </div>
-<img alt="_images/lab2_11_1.png" src="_images/lab2_11_1.png" />
+<img alt="_images/ab82fcb8d4691282c84c22b16e82069d04a9f6b5206299132b5d8916cd2396eb.png" src="_images/ab82fcb8d4691282c84c22b16e82069d04a9f6b5206299132b5d8916cd2396eb.png" />
 </div>
 </div>
 <div class="admonition-exercise-3 admonition">
 <p class="admonition-title">Exercise 3</p>
 <p>Given a DNA sequence AGCCCGGGTTTACCCTTGGGAAAATTGCCCCAGTGACCCCT,</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>calculate the proportion of A, C, G, T.</p></li>
 <li><p>Use R to randomly select a nucleotide from the DNA sequence</p></li>
 <li><p>Now we want to select 10 nucleotides without replacement. Then calculate the sample proportions of A, C, G, T among the 10 selected nucleotides and compare them with the population proportions of A, C, G, T in the DNA sequence.</p></li>
@@ -739,8 +571,8 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span> <span class="o">=</span> <span class="s">&quot;AGCCCGGGTTTACCCTTGGGAAAATTGCCCCAGTGACCCCT&quot;</span>
-<span class="n">x</span> <span class="o">=</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;AGCCCGGGTTTACCCTTGGGAAAATTGCCCCAGTGACCCCT&quot;</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))</span>
 
 <span class="c1">#proportions of A, C, G, T</span>
 <span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="s">&#39;A&#39;</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -753,8 +585,8 @@ title="Print to PDF"
 <span class="n">x</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
 
 <span class="c1">#sample 10 nucleotides without replacement</span>
-<span class="n">position</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+<span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
 <span class="n">data</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">&quot;the proportions of A, C, G, T in the sample of 10 nucleotides&quot;</span><span class="p">)</span>
 <span class="nf">sum</span><span class="p">(</span><span class="n">data</span><span class="o">==</span><span class="s">&#39;A&#39;</span><span class="p">)</span><span class="o">/</span><span class="m">10</span>
@@ -763,8 +595,8 @@ title="Print to PDF"
 <span class="nf">sum</span><span class="p">(</span><span class="n">data</span><span class="o">==</span><span class="s">&#39;T&#39;</span><span class="p">)</span><span class="o">/</span><span class="m">10</span>
 
 <span class="c1">#sample 100 nucleotides with replacement</span>
-<span class="n">position</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+<span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">size</span><span class="o">=</span><span class="m">100</span><span class="p">,</span><span class="n">replace</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">&quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;</span><span class="p">)</span>
 <span class="nf">sum</span><span class="p">(</span><span class="n">data</span><span class="o">==</span><span class="s">&#39;A&#39;</span><span class="p">)</span><span class="o">/</span><span class="m">100</span>
 <span class="nf">sum</span><span class="p">(</span><span class="n">data</span><span class="o">==</span><span class="s">&#39;C&#39;</span><span class="p">)</span><span class="o">/</span><span class="m">100</span>
@@ -779,19 +611,19 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>'C'</li><li>'C'</li><li>'G'</li><li>'G'</li><li>'T'</li><li>'C'</li><li>'T'</li><li>'A'</li><li>'A'</li><li>'G'</li></ol>
+<ol class=list-inline><li>'A'</li><li>'A'</li><li>'C'</li><li>'A'</li><li>'T'</li><li>'T'</li><li>'C'</li><li>'A'</li><li>'C'</li><li>'C'</li></ol>
 </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 10 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.2</div><div class="output text_html">0.3</div><div class="output text_html">0.3</div><div class="output text_html">0.2</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
+<div class="output text_html">0.4</div><div class="output text_html">0.4</div><div class="output text_html">0</div><div class="output text_html">0.2</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.22</div><div class="output text_html">0.34</div><div class="output text_html">0.22</div><div class="output text_html">0.22</div></div>
+<div class="output text_html">0.2</div><div class="output text_html">0.27</div><div class="output text_html">0.28</div><div class="output text_html">0.25</div></div>
 </div>
 <p>To generate a random number from the binomial distribution</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> <span class="n">prob</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rbinom</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">prob</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -801,13 +633,13 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>2</li><li>3</li><li>5</li><li>2</li><li>3</li><li>4</li><li>2</li><li>3</li><li>4</li></ol>
+<ol class=list-inline><li>3</li><li>3</li><li>3</li><li>3</li><li>4</li><li>3</li><li>4</li><li>1</li><li>4</li><li>3</li></ol>
 </div></div>
 </div>
 <p>to generate a random number from the Poisson distribution</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rpois</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">lambda</span><span class="o">=</span><span class="m">3.5</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">rpois</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="o">=</span><span class="m">3.5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -817,26 +649,26 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>8</li><li>5</li><li>8</li><li>9</li><li>5</li><li>7</li><li>0</li><li>6</li><li>8</li><li>2</li></ol>
+<ol class=list-inline><li>3</li><li>2</li><li>6</li><li>1</li><li>2</li><li>2</li><li>7</li><li>1</li><li>6</li><li>4</li></ol>
 </div></div>
 </div>
 </section>
 <section id="continuous-probability-distributions">
-<h2>Continuous probability distributions<a class="headerlink" href="#continuous-probability-distributions" title="Permalink to this headline">#</a></h2>
+<h2>Continuous probability distributions<a class="headerlink" href="#continuous-probability-distributions" title="Permalink to this heading">#</a></h2>
 <p>We may generate a random number from an interval [a, b] using the R function <strong>runif()</strong>. For example, we may generate a random number between 0 and 2,</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">min</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">max</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">runif</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.526209619361907</div></div>
+<div class="output text_html">1.05375444050878</div></div>
 </div>
 <p>Or generate 10 random numbers from the interval [2, 10]</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">min</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">max</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -846,13 +678,13 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3.96791594848037</li><li>6.18340788222849</li><li>4.05879894830287</li><li>7.61046440154314</li><li>8.70197548530996</li><li>4.83122838847339</li><li>4.51711614616215</li><li>4.23983496055007</li><li>5.44673380069435</li><li>7.03936567343771</li></ol>
+<ol class=list-inline><li>9.12366848997772</li><li>4.09784103743732</li><li>3.43644460476935</li><li>2.72581297531724</li><li>9.64273663982749</li><li>8.27481695823371</li><li>7.07577584311366</li><li>2.97197319753468</li><li>8.02136445976794</li><li>8.10603303089738</li></ol>
 </div></div>
 </div>
 <p>We may generate 10 random numbers from the normal distribution with mean = 4.5 and variance = 2 and then calculate the sample average.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="m">4.5</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">rnorm</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">mean</span><span class="o">=</span><span class="m">4.5</span><span class="p">,</span><span class="w"> </span><span class="n">sd</span><span class="o">=</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">))</span>
 <span class="n">data</span>
 <span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the sample average:&quot;</span><span class="p">,</span><span class="nf">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
 </pre></div>
@@ -864,19 +696,19 @@ title="Print to PDF"
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>4.15206000522649</li><li>4.51378484304252</li><li>3.74387967533603</li><li>3.34158990138694</li><li>5.63034411413793</li><li>6.0130654815061</li><li>2.78686438723303</li><li>4.09891804331321</li><li>4.53729462251092</li><li>4.30539891123785</li></ol>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 4.3123199984931&quot;
+<ol class=list-inline><li>5.46384659613995</li><li>5.15876617870602</li><li>4.96756008950514</li><li>2.55025674705189</li><li>3.84097563108653</li><li>3.95046054260672</li><li>5.42730933938881</li><li>4.13038467134821</li><li>3.88419246936805</li><li>5.74127887810776</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 4.51150311433091&quot;
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="dealing-with-sequence-files">
-<h2>Dealing with sequence files<a class="headerlink" href="#dealing-with-sequence-files" title="Permalink to this headline">#</a></h2>
+<h2>Dealing with sequence files<a class="headerlink" href="#dealing-with-sequence-files" title="Permalink to this heading">#</a></h2>
 <p>The R function <strong>scan()</strong> can read text files into R. FASTA format: A sequence record in a FASTA format consists of a single-line description (sequence name), followed by line(s) of sequence data. The first character of the description line is a greater-than (“&gt;”) symbol. To read FASTA file test.fasta, the R code is</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">scan</span><span class="p">(</span><span class="s">&quot;https://book.phylolab.net/binf8441/data/lab2_test.fasta&quot;</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="s">&quot;character&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">scan</span><span class="p">(</span><span class="s">&quot;https://book.phylolab.net/binf8441/data/lab2_test.fasta&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">what</span><span class="o">=</span><span class="s">&quot;character&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -885,30 +717,30 @@ title="Print to PDF"
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">#count the number of &gt;</span>
-<span class="n">index</span> <span class="o">=</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
-<span class="n">nseq</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+<span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">grep</span><span class="p">(</span><span class="s">&quot;&gt;&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">nseq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 <span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the number of sequences:&quot;</span><span class="p">,</span><span class="n">nseq</span><span class="p">))</span>
 
 <span class="c1">#get sequences</span>
 <span class="n">seq</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="nf">length</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
-<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">index</span><span class="p">)){</span>
-    <span class="nf">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="nf">length</span><span class="p">(</span><span class="n">index</span><span class="p">)){</span>
-        <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="n">x</span><span class="p">[(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="m">+1</span><span class="p">]</span><span class="m">-1</span><span class="p">)],</span><span class="n">collapse</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
-    <span class="p">}</span><span class="n">else</span><span class="p">{</span>
-        <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="n">x</span><span class="p">[(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span><span class="n">collapse</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
-    <span class="p">}</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">index</span><span class="p">)){</span>
+<span class="w">    </span><span class="nf">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nf">length</span><span class="p">(</span><span class="n">index</span><span class="p">)){</span>
+<span class="w">        </span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">x</span><span class="p">[(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="m">+1</span><span class="p">]</span><span class="m">-1</span><span class="p">)],</span><span class="n">collapse</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="n">else</span><span class="p">{</span>
+<span class="w">        </span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="n">x</span><span class="p">[(</span><span class="n">index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span><span class="n">collapse</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">#sequence length</span>
-<span class="n">seqlength</span> <span class="o">=</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
+<span class="n">seqlength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">nchar</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="m">1</span><span class="p">])</span>
 <span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;the sequence length is&quot;</span><span class="p">,</span><span class="n">seqlength</span><span class="p">))</span>
 
 <span class="c1">#proportions</span>
-<span class="n">prop</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="n">nseq</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">4</span><span class="p">)</span>
-<span class="nf">row.names</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="s">&quot;seq&quot;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="n">nseq</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
-<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nseq</span><span class="p">){</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">split</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))</span>
-    <span class="n">prop</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">),</span> <span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;c&#39;</span><span class="p">),</span> <span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;g&#39;</span><span class="p">),</span> <span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;t&#39;</span><span class="p">))</span><span class="o">/</span><span class="n">seqlength</span>
+<span class="n">prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="n">nseq</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">4</span><span class="p">)</span>
+<span class="nf">row.names</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;seq&quot;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="n">nseq</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">nseq</span><span class="p">){</span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">split</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="n">prop</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;a&#39;</span><span class="p">),</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;c&#39;</span><span class="p">),</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;g&#39;</span><span class="p">),</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">s</span><span class="o">==</span><span class="s">&#39;t&#39;</span><span class="p">))</span><span class="o">/</span><span class="n">seqlength</span>
 <span class="p">}</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">&quot;the proportions of a, c, g, t in each sequence&quot;</span><span class="p">)</span>
 <span class="n">prop</span>
@@ -952,7 +784,7 @@ title="Print to PDF"
             mode: "r"
         },
         kernelOptions: {
-            kernelName: "ir",
+            name: "ir",
             path: "./."
         },
         predefinedOutput: true
@@ -960,50 +792,107 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'ir'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lab1.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lab 1: Introduction to R</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 1: Introduction to R</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="lab3.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="lab3.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Lab 3: The law of large numbers</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-probability-distributions">Discrete probability distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-probability-distributions">Continuous probability distributions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dealing-with-sequence-files">Dealing with sequence files</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

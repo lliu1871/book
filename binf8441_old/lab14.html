@@ -1,0 +1,936 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 14: Substitution models &#8212; Statistical Inference in Bioinformatics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 15: Phylogenetic tree reconstruction" href="lab15.html" />
+    <link rel="prev" title="Lab 13: Markov chains" href="lab13.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap0.html">
+   Chapter 0: Prerequisites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Probability theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Discrete random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Continuous random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Multiple random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Estimation theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Bayesian analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Markov Chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   Chapter 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Phylogenetic models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Optimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab14.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab14.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/lab14.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/lab14.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-transition-probability-matrix-p-t">
+   The transition probability matrix
+   <span class="math notranslate nohighlight">
+    \(P(t)\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-the-transition-probability-matrix">
+     Calculate the transition probability matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-probability-distribution-pi-t-at-time-t">
+     Find the probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_t\)
+     </span>
+     at time
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-limiting-probability-distribution-pi-infty">
+     Find the limiting probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_{\infty}\)
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-arbitrary-limiting-distribution-pi-infty">
+   An arbitrary limiting distribution
+   <span class="math notranslate nohighlight">
+    \(\pi_{\infty}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulating-dna-sequences">
+   Simulating DNA sequences
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lab 14: Substitution models</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-transition-probability-matrix-p-t">
+   The transition probability matrix
+   <span class="math notranslate nohighlight">
+    \(P(t)\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculate-the-transition-probability-matrix">
+     Calculate the transition probability matrix
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-probability-distribution-pi-t-at-time-t">
+     Find the probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_t\)
+     </span>
+     at time
+     <span class="math notranslate nohighlight">
+      \(t\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-the-limiting-probability-distribution-pi-infty">
+     Find the limiting probability distribution
+     <span class="math notranslate nohighlight">
+      \(\pi_{\infty}\)
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#an-arbitrary-limiting-distribution-pi-infty">
+   An arbitrary limiting distribution
+   <span class="math notranslate nohighlight">
+    \(\pi_{\infty}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulating-dna-sequences">
+   Simulating DNA sequences
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-14-substitution-models">
+<h1>Lab 14: Substitution models<a class="headerlink" href="#lab-14-substitution-models" title="Permalink to this headline">#</a></h1>
+<p>The evolution of a single nucleotide is modeled by a continuous Markov chain which is defined by the initial probability distribution <span class="math notranslate nohighlight">\(\pi_0=\left(p_A, p_C, p_G, p_T\right)\)</span> and the rate matrix <span class="math notranslate nohighlight">\(Q\)</span>. Note that in the rate matrix, the off-diagonal values are substitution rates and the diagonal values are negative numbers because the row sum must be 0 .</p>
+<section id="the-transition-probability-matrix-p-t">
+<h2>The transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span><a class="headerlink" href="#the-transition-probability-matrix-p-t" title="Permalink to this headline">#</a></h2>
+<p>Given the rate matrix <span class="math notranslate nohighlight">\(Q\)</span>, the transition probability matrix is given by <span class="math notranslate nohighlight">\(P(t)=e^{Qt}\)</span>. The probability distribution of the nucleotide at time <span class="math notranslate nohighlight">\(t\)</span> is <span class="math notranslate nohighlight">\(\pi_t=\pi_0 P(t)\)</span>. The limiting probability distribution is given by solving the following equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left\{\begin{array}{l}\pi_{\infty} Q=0 \\ \sum \pi_{\infty}=1\end{array}\right.\end{split}\]</div>
+<p>For the Jukes-Cantor model, the equations are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left\{\begin{array}{c}
+-3 p_A+p_C+p_G+p_T=0 \\
+p_A-3 p_C+p_G+p_T=0 \\
+p_A+p_C-3 p_G+p_T=0 \\
+p_A+p_C+p_G-3 p_T=0 \\
+p_A+p_C+p_G+p_T=1
+\end{array}\right.
+\end{split}\]</div>
+<p>The solution is <span class="math notranslate nohighlight">\(\pi_{\infty}=(0.25,0.25,0.25,0.25)\)</span>.</p>
+<section id="calculate-the-transition-probability-matrix">
+<h3>Calculate the transition probability matrix<a class="headerlink" href="#calculate-the-transition-probability-matrix" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">Matrix</span><span class="p">)</span>
+<span class="n">pi_0</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.3</span><span class="p">,</span><span class="m">0.4</span><span class="p">)</span>
+<span class="n">Q_matrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+<span class="nf">diag</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span> <span class="o">=</span> <span class="m">-3</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The rate matrix&quot;</span><span class="p">)</span>
+<span class="n">Q_matrix</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="m">0.1</span>
+<span class="n">P_t</span> <span class="o">=</span> <span class="nf">expm</span><span class="p">(</span><span class="n">Q_matrix</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The transition probability matrix&quot;</span><span class="p">)</span>
+<span class="n">P_t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The rate matrix&quot;
+</pre></div>
+</div>
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<tbody>
+	<tr><td>-3</td><td> 1</td><td> 1</td><td> 1</td></tr>
+	<tr><td> 1</td><td>-3</td><td> 1</td><td> 1</td></tr>
+	<tr><td> 1</td><td> 1</td><td>-3</td><td> 1</td></tr>
+	<tr><td> 1</td><td> 1</td><td> 1</td><td>-3</td></tr>
+</tbody>
+</table>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The transition probability matrix&quot;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4 x 4 Matrix of class &quot;dgeMatrix&quot;
+           [,1]       [,2]       [,3]       [,4]
+[1,] 0.75274003 0.08241999 0.08241999 0.08241999
+[2,] 0.08241999 0.75274003 0.08241999 0.08241999
+[3,] 0.08241999 0.08241999 0.75274003 0.08241999
+[4,] 0.08241999 0.08241999 0.08241999 0.75274003
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="find-the-probability-distribution-pi-t-at-time-t">
+<h3>Find the probability distribution <span class="math notranslate nohighlight">\(\pi_t\)</span> at time <span class="math notranslate nohighlight">\(t\)</span><a class="headerlink" href="#find-the-probability-distribution-pi-t-at-time-t" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">pi_t</span> <span class="o">=</span> <span class="n">pi_0</span> <span class="o">%*%</span> <span class="n">P_t</span>
+<span class="n">pi_t</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1 x 4 Matrix of class &quot;dgeMatrix&quot;
+         [,1]     [,2]     [,3]     [,4]
+[1,] 0.149452 0.216484 0.283516 0.350548
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="find-the-limiting-probability-distribution-pi-infty">
+<h3>Find the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span><a class="headerlink" href="#find-the-limiting-probability-distribution-pi-infty" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="kc">pi</span> <span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The limiting probabilities&quot;</span><span class="p">)</span>
+<span class="kc">pi</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="kc">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] -1.110223e-16 -4.000000e+00 -4.000000e+00 -4.000000e+00
+
+$vectors
+     [,1]       [,2]       [,3]       [,4]
+[1,] -0.5  0.0000000  0.8660254  0.0000000
+[2,] -0.5  0.7713586 -0.2886751 -0.2677175
+[3,] -0.5 -0.6175294 -0.2886751 -0.5341574
+[4,] -0.5 -0.1538291 -0.2886751  0.8018748
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The limiting probabilities&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.25</li><li>0.25</li><li>0.25</li><li>0.25</li></ol>
+</div></div>
+</div>
+<p>Now changing the rate matrix <span class="math notranslate nohighlight">\(Q=\left(\begin{array}{cccc} -6 &amp;    1 &amp;  2  &amp; 3 \\ 1 &amp; -10 &amp; 4 &amp; 5 \\ 2 &amp; 4 &amp; -12 &amp; 6 \\ 3&amp;  5&amp;  6&amp; -14\end{array}\right)\)</span> and recalculating the limiting probability distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">qmatrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">-6</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">-10</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">-12</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">-14</span><span class="p">),</span><span class="n">nrow</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">qmatrix</span><span class="p">))</span>
+<span class="n">x</span>
+<span class="kc">pi</span> <span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The limiting probabilities&quot;</span><span class="p">)</span>
+<span class="kc">pi</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="kc">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] -2.486900e-14 -7.694618e+00 -1.487637e+01 -1.942901e+01
+
+$vectors
+     [,1]       [,2]       [,3]        [,4]
+[1,] -0.5  0.8503837  0.1374446  0.08919974
+[2,] -0.5 -0.4319122  0.7234454  0.20019631
+[3,] -0.5 -0.2462510 -0.6392151  0.52987214
+[4,] -0.5 -0.1722205 -0.2216749 -0.81926819
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The limiting probabilities&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.250000000000001</li><li>0.25</li><li>0.25</li><li>0.25</li></ol>
+</div></div>
+</div>
+</section>
+</section>
+<section id="an-arbitrary-limiting-distribution-pi-infty">
+<h2>An arbitrary limiting distribution <span class="math notranslate nohighlight">\(\pi_{\infty}\)</span><a class="headerlink" href="#an-arbitrary-limiting-distribution-pi-infty" title="Permalink to this headline">#</a></h2>
+<p>We can show that the rate matrix <span class="math notranslate nohighlight">\(Q=\left(\begin{array}{cccc}- &amp; \pi_C a &amp; \pi_G b &amp; \pi_T c \\ \pi_A a &amp; - &amp; \pi_G d &amp; \pi_T e \\ \pi_A b &amp; \pi_C d &amp; - &amp; \pi_T f \\ \pi_A c &amp; \pi_C e &amp; \pi_G f &amp; -\end{array}\right)\)</span> will produce the limiting distribution <span class="math notranslate nohighlight">\(\pi_{\infty}=\left(\pi_A, \pi_C, \pi_G, \pi_T\right)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Q_matrix</span> <span class="o">=</span> <span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+<span class="nf">diag</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span> <span class="o">=</span> <span class="m">-3</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">1</span><span class="p">]</span><span class="o">*</span><span class="m">0.1</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="m">0.2</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">3</span><span class="p">]</span><span class="o">*</span><span class="m">0.3</span>
+<span class="n">Q_matrix</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">Q_matrix</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span><span class="o">*</span><span class="m">0.4</span>
+<span class="nf">diag</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">)</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.9</span><span class="p">,</span><span class="m">-0.8</span><span class="p">,</span><span class="m">-0.7</span><span class="p">,</span><span class="m">-0.6</span><span class="p">)</span>
+<span class="n">Q_matrix</span>
+
+<span class="c1">#find the limiting probabilities</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">eigen</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">Q_matrix</span><span class="p">))</span>
+<span class="n">x</span>
+<span class="kc">pi</span> <span class="o">=</span> <span class="n">x</span><span class="o">$</span><span class="n">vectors</span><span class="p">[,</span><span class="m">4</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The limiting probabilities&quot;</span><span class="p">)</span>
+<span class="kc">pi</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="kc">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><table class="dataframe">
+<caption>A matrix: 4 × 4 of type dbl</caption>
+<tbody>
+	<tr><td>-0.9</td><td> 0.2</td><td> 0.3</td><td> 0.4</td></tr>
+	<tr><td> 0.1</td><td>-0.8</td><td> 0.3</td><td> 0.4</td></tr>
+	<tr><td> 0.1</td><td> 0.2</td><td>-0.7</td><td> 0.4</td></tr>
+	<tr><td> 0.1</td><td> 0.2</td><td> 0.3</td><td>-0.6</td></tr>
+</tbody>
+</table>
+</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>eigen() decomposition
+$values
+[1] -1.000000e+00 -1.000000e+00 -1.000000e+00  1.249001e-16
+
+$vectors
+            [,1]       [,2]        [,3]      [,4]
+[1,]  0.05983331 -0.8581163 -0.06419778 0.1825742
+[2,]  0.78228180  0.1906925  0.69985777 0.3651484
+[3,] -0.54327913  0.2860388  0.07207123 0.5477226
+[4,] -0.29883598  0.3813850 -0.70773122 0.7302967
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The limiting probabilities&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>0.1</li><li>0.2</li><li>0.3</li><li>0.4</li></ol>
+</div></div>
+</div>
+</section>
+<section id="simulating-dna-sequences">
+<h2>Simulating DNA sequences<a class="headerlink" href="#simulating-dna-sequences" title="Permalink to this headline">#</a></h2>
+<p>Download and install the simulation program <a class="reference external" href="https://github.com/rambaut/Seq-Gen/releases/tag/1.3.4">seq-gen</a> on the local computer. Type seq-gen -help in Terminal (Mac) or the CMD window (Windows)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="o">-</span><span class="n">gen</span> <span class="o">-</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>Download the tree file <a class="reference external" href="https://book.phylolab.net/binf8441/data/lab14_tree.tre">lab14_tree.tre</a> and run the following command line to generate the sequence alignment of 1000 base pairs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seq</span><span class="o">-</span><span class="n">gen</span> <span class="o">-</span><span class="n">l1000</span> <span class="o">-</span><span class="n">mGTR</span> <span class="o">-</span><span class="n">f</span> <span class="mf">0.1</span> <span class="mf">0.2</span> <span class="mf">0.3</span> <span class="mf">0.4</span> <span class="o">-</span><span class="n">r</span> <span class="mf">1.6</span> <span class="mf">1.3</span> <span class="mf">2.5</span> <span class="mf">0.7</span> <span class="mf">3.8</span> <span class="mi">1</span> <span class="n">lab14_tree</span><span class="o">.</span><span class="n">tre</span> <span class="o">&gt;</span> <span class="n">seq</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lab13.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lab 13: Markov chains</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lab15.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 15: Phylogenetic tree reconstruction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

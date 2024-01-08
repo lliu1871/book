@@ -1,0 +1,1063 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 3: Continuous random variables &#8212; Statistical Inference in Bioinformatics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 4: Multiple random variables" href="chap4.html" />
+    <link rel="prev" title="Chapter 2: Discrete random variables" href="chap2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap0.html">
+   Chapter 0: Prerequisites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Probability theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Discrete random variables
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 3: Continuous random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Multiple random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Estimation theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Bayesian analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Markov Chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   Chapter 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Phylogenetic models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab4.html">
+   Lab 4: BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Optimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap3.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap3.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/chap3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/chap3.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-probability-distributions">
+   Continuous probability distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uniform-distribution">
+     Uniform distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-distribution">
+     Normal distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential-distribution">
+     Exponential distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beta-distribution">
+     Beta distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gamma-distribution">
+     Gamma distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformation">
+   Transformation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cdf">
+     CDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pdf">
+     PDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mgf-moment-generating-function">
+     MGF (moment generating function)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 3: Continuous random variables</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#continuous-probability-distributions">
+   Continuous probability distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uniform-distribution">
+     Uniform distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normal-distribution">
+     Normal distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential-distribution">
+     Exponential distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#beta-distribution">
+     Beta distribution
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gamma-distribution">
+     Gamma distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformation">
+   Transformation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cdf">
+     CDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pdf">
+     PDF
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mgf-moment-generating-function">
+     MGF (moment generating function)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-3-continuous-random-variables">
+<h1>Chapter 3: Continuous random variables<a class="headerlink" href="#chapter-3-continuous-random-variables" title="Permalink to this headline">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Probability_distribution#Absolutely_continuous_probability_distribution">Continuous probability distribution</a></p></li>
+</ul>
+</div>
+<div class="proof definition admonition" id="cdf">
+<p class="admonition-title"><span>Definition </span> (cumulative distribution function)</p>
+<section class="definition-content" id="proof-content">
+<p>The cumulative distribution function (CDF) of a real-valued random variable <span class="math notranslate nohighlight">\(X\)</span>, evaluated at <span class="math notranslate nohighlight">\(x\)</span>, is the probability that <span class="math notranslate nohighlight">\(X\)</span> will take a value less than or equal to <span class="math notranslate nohighlight">\(x\)</span></p>
+<div class="math notranslate nohighlight">
+\[F(x)=P(X \leq x)\]</div>
+</section>
+</div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(0\le F(x)\le 1\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(x\le y\)</span>, then <span class="math notranslate nohighlight">\(F(x)\le F(y)\)</span>. The CDF is a monotone increasing function</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lim_{x\rightarrow -\infty} F(x) = P(X&lt;-\infty) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\lim_{x\rightarrow \infty} F(x) = P(X&lt;\infty) = 1\)</span></p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="c1"># plot normal CDF</span>
+<span class="nf">curve</span><span class="p">(</span><span class="n">pnorm</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="m">-10</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;normal CDF&quot;</span><span class="p">)</span>
+<span class="c1"># plot normal density</span>
+<span class="nf">curve</span><span class="p">(</span><span class="n">dnorm</span><span class="p">,</span> <span class="n">from</span><span class="o">=</span><span class="m">-4</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;normal density curve&quot;</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="c1"># shade the area under the curve</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="n">by</span><span class="o">=</span><span class="m">0.01</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">den</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">value1</span><span class="o">=</span><span class="m">-2</span>
+<span class="n">value2</span><span class="o">=</span><span class="m">2</span>
+<span class="nf">polygon</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span><span class="n">den</span><span class="o">$</span><span class="n">x</span><span class="p">[</span><span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">value1</span> <span class="o">&amp;</span> <span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">value2</span><span class="p">],</span><span class="n">value2</span><span class="p">),</span>
+        <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">den</span><span class="o">$</span><span class="n">y</span><span class="p">[</span><span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">value1</span> <span class="o">&amp;</span> <span class="n">den</span><span class="o">$</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">value2</span> <span class="p">],</span><span class="m">0</span><span class="p">),</span>
+        <span class="n">col</span> <span class="o">=</span> <span class="s">&quot;slateblue1&quot;</span><span class="p">,</span> <span class="n">border</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">legend</span><span class="p">(</span><span class="m">-1.2</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="s">&quot;p(-2&lt;x&lt;2)&quot;</span><span class="p">,</span> <span class="n">text.col</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">,</span> <span class="n">box.col</span><span class="o">=</span><span class="s">&quot;slateblue1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_1_0.png" src="_images/chap3_1_0.png" />
+</div>
+</div>
+<div class="proof definition admonition" id="pdf">
+<p class="admonition-title"><span>Definition </span> (probability density function)</p>
+<section class="definition-content" id="proof-content">
+<p>The probability density function <span class="math notranslate nohighlight">\(f(x)\)</span> is the derivate of the CDF at <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[f(x)=\frac{d F(x)}{d x}\]</div>
+</section>
+</div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x)\ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=\int_{-\infty}^{x} f(y) d y\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int_{-\infty}^\infty f(x)dx = 1\)</span></p></li>
+<li><p>The probability <span class="math notranslate nohighlight">\(P(a&lt;X&lt;b)\)</span> is the area under the density curve <span class="math notranslate nohighlight">\(f(x)\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>,</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[P(a&lt;X&lt;b) = \int_a^b f(x)dx\]</div>
+<div class="proof definition admonition" id="expectation2">
+<p class="admonition-title"><span>Definition </span> (expectation)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(f(x)\)</span> be the density function of a random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[E(X)=\int_{-\infty}^{\infty} x f(x) d x\]</div>
+<p>The expectation <span class="math notranslate nohighlight">\(E(X)\)</span> is also called the population mean.</p>
+</section>
+</div><p>Moreover, the expectation of the function <span class="math notranslate nohighlight">\(g(X)\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[E(g(X))=\int_{-\infty}^{\infty} g(x) f(x) d x\]</div>
+<p>The variance of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[var(X) = E(X-E(X))^2\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(sd(X) = \sqrt{var(X)}\)</span></p></li>
+</ul>
+<div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span class="caption-number">Theorem 4 </span></p>
+<section class="theorem-content" id="proof-content">
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(E(aX+b) = aE(X)+b\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(aX+b) = a^2var(x)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X) = E(X^2) - \left(E(X)\right)^2\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+  E(aX+b) &amp;= \int_{-\infty}^{\infty}(ax+b)f(x)dx \\
+  &amp;= \int_{-\infty}^{\infty}axf(x)dx + \int_{-\infty}^{\infty}bf(x)dx\\
+  &amp;= a\int_{-\infty}^{\infty}xf(x)dx + b\int_{-\infty}^{\infty}f(x)dx\\
+  &amp;= aE(X)+b
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+  var(aX+b) &amp;= \int_{-\infty}^{\infty}\left(ax+b-(aE(x)+b)\right)^2f(x)dx \\
+  &amp;= \int_{-\infty}^{\infty}a^2(x-E(x))^2f(x)dx\\
+  &amp;= a^2var(X)
+\end{split}
+\end{equation}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{split}
+  var(X) &amp;= \int_{-\infty}^{\infty}\left(x-E(x)\right)^2f(x)dx \\
+  &amp;= \int_{-\infty}^{\infty}(x^2-2xE(x)+E(x)^2)f(x)dx\\
+  &amp;= \int_{-\infty}^{\infty}x^2f(x)dx-2E(x)\int_{-\infty}^{\infty}xf(x)dx+E(x)^2\int_{-\infty}^{\infty}f(x)dx\\
+  &amp;= E(X^2) - \left(E(X)\right)^2
+\end{split}
+\end{equation}
+\end{split}\]</div>
+</section>
+</div><section id="continuous-probability-distributions">
+<h2>Continuous probability distributions<a class="headerlink" href="#continuous-probability-distributions" title="Permalink to this headline">#</a></h2>
+<section id="uniform-distribution">
+<h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this headline">#</a></h3>
+<p>The uniform random variable represents the random numbers in an interval <span class="math notranslate nohighlight">\([a,b]\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x|a,b)=\frac{1}{b-a}\)</span>, for <span class="math notranslate nohighlight">\(x \in[a, b]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} dy = \frac{x-a}{b-a}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\int_{a}^{b} x f(x) d x=\frac{a+b}{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\frac{(b-a)^2}{12}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dunif</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Uniform PDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">punif</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Uniform CDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_3_0.png" src="_images/chap3_3_0.png" />
+</div>
+</div>
+<div class="proof example admonition" id="example-4">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>The random variable <span class="math notranslate nohighlight">\(X\)</span> follows the uniform [2,4] distribution. Find <span class="math notranslate nohighlight">\(E(X)\)</span>, <span class="math notranslate nohighlight">\(var(X)\)</span>, and <span class="math notranslate nohighlight">\(P(X&lt;2.7)\)</span></p>
+<p><span class="math notranslate nohighlight">\(E(X)=(b+a)/2=3\)</span> and <span class="math notranslate nohighlight">\(var(X) = (b-a)^2/12 = 1/3\)</span> and <span class="math notranslate nohighlight">\(P(X&lt;2.7) = (x-a)/(b-a) = 0.7/2=0.35\)</span></p>
+</section>
+</div></section>
+<section id="normal-distribution">
+<h3>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this headline">#</a></h3>
+<p>The normal random variable represents the mean effect of many equally likely random variables. For example, the human body weight (or height) is a normal random variable because weight (or height) is the mean effect of many factors.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x|\mu,\sigma^2)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}\)</span>, for <span class="math notranslate nohighlight">\(x \in[-\infty, \infty]\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=u\)</span> and <span class="math notranslate nohighlight">\(var(X)=\sigma^{2}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dnorm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">-4</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Standard Normal PDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pnorm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">from</span><span class="o">=</span><span class="m">-4</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="m">4</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Standard Normal CDF&quot;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_5_0.png" src="_images/chap3_5_0.png" />
+</div>
+</div>
+<p>If a random variable <span class="math notranslate nohighlight">\(X \sim Normal(\mu,\sigma^{2})\)</span>, then <span class="math notranslate nohighlight">\(Y=aX+b\)</span> follows <span class="math notranslate nohighlight">\(Normal(a\mu+b,a^{2} \sigma^{2})\)</span>.</p>
+<p>To calculate the normal probabilities, we first standardize the normal random variable <span class="math notranslate nohighlight">\(\frac{X-E(X)}{sd(X)}\)</span> and then use the standard normal distribution to calculate probabilities,</p>
+<div class="math notranslate nohighlight">
+\[P(X&lt;d)=P\left(\frac{X-u}{\sigma}&lt;\frac{d-u}{\sigma}\right) = P\left(Z&lt;\frac{d-u}{\sigma}\right)\]</div>
+<div class="admonition-rule admonition">
+<p class="admonition-title">68-95-99 rule</p>
+<ol class="simple">
+<li><p>68% of the population is within 1 standard deviation of the mean.</p></li>
+<li><p>95% of the population is within 2 standard deviation of the mean.</p></li>
+<li><p>99% of the population is within 3 standard deviation of the mean.</p></li>
+</ol>
+</div>
+<div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(X \sim Normal(\mu=1,\sigma^2=1)\)</span>, find <span class="math notranslate nohighlight">\(E(X^2)\)</span> and <span class="math notranslate nohighlight">\(P(X&gt;2)\)</span></p>
+<p><span class="math notranslate nohighlight">\(E(X^2) = var(X)+(E(X))^2 = 1+1 = 2\)</span> and <span class="math notranslate nohighlight">\(P(X&gt;2) = P\left(\frac{X-\mu}{\sigma}&gt;\frac{2-1}{1}\right)= P(Z&gt;1)\)</span> where <span class="math notranslate nohighlight">\(Z \sim Normal(0,1)\)</span>. We know from the 68-95-99 rule that <span class="math notranslate nohighlight">\(P(-1&lt;Z&lt;1) \approx 0.68\)</span>. Thus, <span class="math notranslate nohighlight">\(P(Z&gt;1) = (1 - 0.68)/2 = 0.16\)</span>.</p>
+</section>
+</div></section>
+<section id="exponential-distribution">
+<h3>Exponential distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this headline">#</a></h3>
+<p>The exponential random variable often represents the waiting time until the next event. For example, the waiting time until the next phone call follows the exponential distribution.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\lambda} e^{-\frac{x}{\lambda}}\)</span>, for <span class="math notranslate nohighlight">\(x&gt;0\)</span> and <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=1-e^{-\frac{x}{\lambda}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\lambda\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\lambda^{2}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dexp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rate</span><span class="o">=</span><span class="m">4</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Exponential PDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pexp</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rate</span><span class="o">=</span><span class="m">4</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Exponential CDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_7_0.png" src="_images/chap3_7_0.png" />
+</div>
+</div>
+</section>
+<section id="beta-distribution">
+<h3>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this headline">#</a></h3>
+<p>We often use the Beta distribution to model probabilities.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}, 0 \leq x \leq 1, \alpha&gt;0, \beta&gt;0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\frac{\alpha}{\alpha+\beta}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dbeta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Beta PDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pbeta</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Beta CDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_9_0.png" src="_images/chap3_9_0.png" />
+</div>
+</div>
+</section>
+<section id="gamma-distribution">
+<h3>Gamma distribution<a class="headerlink" href="#gamma-distribution" title="Permalink to this headline">#</a></h3>
+<p>We often use the Gamma distribution to model ratios, for example, mutation rates.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\Gamma(\alpha) \beta^{\alpha}} x^{\alpha-1} e^{-\frac{x}{\beta}}, x&gt;0, \alpha&gt;0, \beta&gt;0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\alpha \beta\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=\alpha \beta^{2}\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">dgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Gamma PDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">curve</span><span class="p">(</span><span class="nf">pgamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">shape</span><span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="s">&quot;Gamma CDF&quot;</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/chap3_11_0.png" src="_images/chap3_11_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="transformation">
+<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
+<p>Three commonly used techniques can be used to find the probability distribution of a transformed continuous random variable.</p>
+<section id="cdf">
+<h3>CDF<a class="headerlink" href="#cdf" title="Permalink to this headline">#</a></h3>
+<p>Suppose <span class="math notranslate nohighlight">\(Y=g(X)\)</span> and we want to find the probability distribution of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+P(Y \leq a)=P(g(X) \leq a)=\int_{g(x) \leq a} f(x) d x
+\]</div>
+<div class="proof example admonition" id="example-6">
+<p class="admonition-title"><span>Example </span></p>
+<section class="example-content" id="proof-content">
+<p>Suppose <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with a density <span class="math notranslate nohighlight">\(e^{-x}\)</span>. Find the probability distribution of <span class="math notranslate nohighlight">\(Y=2X\)</span></p>
+<div class="math notranslate nohighlight">
+\[P(Y\le a) = P(2X \le a) = P(X\le a/2) = 1-e^{-a/2}\]</div>
+<p>The density function is the derivative of the CDF <span class="math notranslate nohighlight">\(1-e^{-a/2}\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[(1-e^{-a/2})'=\frac{1}{2}e^{-\frac{a}{2}}\]</div>
+<p>This is an exponential density with <span class="math notranslate nohighlight">\(\lambda = 2\)</span>.</p>
+</section>
+</div></section>
+<section id="pdf">
+<h3>PDF<a class="headerlink" href="#pdf" title="Permalink to this headline">#</a></h3>
+<p>Suppose that the inverse function <span class="math notranslate nohighlight">\(g^{-1}(X)\)</span> exists and is an increasing function.</p>
+<div class="math notranslate nohighlight">
+\[
+P(Y \leq a)=P(g(X) \leq a)=P\left(X \leq g^{-1}(a)\right)=F_{X}\left(g^{-1}(a)\right)
+\]</div>
+<p>Thus, the density function of <span class="math notranslate nohighlight">\(Y\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+f_{Y}(a)=F^{\prime}{ }_{X}\left(g^{-1}(a)\right)=f_{x}\left(g^{-1}(a)\right) * \frac{d g^{-1}(a)}{d a}
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(g^{-1}(X)\)</span> is a decreasing function, then</p>
+<div class="math notranslate nohighlight">
+\[
+P(Y \leq a)=P(g(X) \leq a)=P\left(X &gt; g^{-1}(a)\right)=1-F_{X}\left(g^{-1}(a)\right)
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+f_{Y}(a)=-F^{\prime}{ }_{X}\left(g^{-1}(a)\right)=-f_{X}\left(g^{-1}(a)\right) * \frac{d g^{-1}(a)}{d a}
+\]</div>
+<p>Combining two (increasing or decreasing), we have</p>
+<div class="math notranslate nohighlight">
+\[
+f_{Y}(y)=f_{X}\left(g^{-1}(y)\right) *\left|\frac{d g^{-1}(y)}{d y}\right|
+\]</div>
+<div class="proof example admonition" id="3.1">
+<p class="admonition-title"><span>Example </span> (3.1)</p>
+<section class="example-content" id="proof-content">
+<p>The random variable <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with density function <span class="math notranslate nohighlight">\(f(x)=\lambda e^{-\lambda x}\)</span>. Find the distribution of <span class="math notranslate nohighlight">\(Y=X+2\)</span>. The inverse function is <span class="math notranslate nohighlight">\(X=Y-2\)</span>. Thus, for <span class="math notranslate nohighlight">\(y&gt;2\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+f_{y}(y)=\lambda e^{-\lambda(y-2)}\left|\frac{d(y-2)}{d y}\right|=\lambda e^{-\lambda(y-2)}
+\]</div>
+</section>
+</div></section>
+<section id="mgf-moment-generating-function">
+<h3>MGF (moment generating function)<a class="headerlink" href="#mgf-moment-generating-function" title="Permalink to this headline">#</a></h3>
+<p>If two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, we can show that</p>
+<div class="math notranslate nohighlight">
+\[
+M_{X+Y}(t)=M_{X}(t) M_{Y}(t)
+\]</div>
+<div class="proof example admonition" id="3.2">
+<p class="admonition-title"><span>Example </span> (3.2)</p>
+<section class="example-content" id="proof-content">
+<p>The MGF of a normal random variable is <span class="math notranslate nohighlight">\(e^{u t+\sigma^{2} t^{2} / 2}\)</span>. Suppose <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> <span class="math notranslate nohighlight">\(\sim Normal\left(u, \sigma^{2}\right)\)</span>. Find the probability distribution of the sample average <span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^{n} X_{i}}{n}\)</span>.</p>
+<p>We first find the MGF of the sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span>, which is equal to</p>
+<div class="math notranslate nohighlight">
+\[
+\prod_{i=1}^{n} M(t)=e^{n u t+n \sigma^{2} t^{2} / 2}
+\]</div>
+<p>The sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span> has a normal distribution with mean <span class="math notranslate nohighlight">\(n \mu\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(Y=\sum_{i=1}^{n} X_{i}\)</span> and <span class="math notranslate nohighlight">\(Z=\frac{Y}{n}\)</span>. Then,</p>
+<div class="math notranslate nohighlight">
+\[E\left(e^{t Z}\right)=E\left(e^{\frac{t Y}{n}}\right)=e^{u t+\frac{\sigma^{2} t^{2}}{2 n}}\]</div>
+<p>Thus, the sample average <span class="math notranslate nohighlight">\(\frac{1}{n}\sum_{i=1}^{n} X_{i}\)</span> has a normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\frac{\sigma^{2}}{n}\)</span>.</p>
+</section>
+</div></section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="chap2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 2: Discrete random variables</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chap4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 4: Multiple random variables</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

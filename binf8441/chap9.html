@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 9: Linear regression &#8212; Statistical Inference in Bioinformatics</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,61 +64,93 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap9';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Chapter 10: Monte Carlo simulation" href="chap10.html" />
     <link rel="prev" title="Chapter 8: RNA-seq analysis" href="chap8.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,670 +160,281 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lecture
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="chap0.html">
-   Chapter 0: Prerequisites
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap1.html">
-   Chapter 1: Probability theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap2.html">
-   Chapter 2: Discrete random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap3.html">
-   Chapter 3: Continuous random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap4.html">
-   Chapter 4: Multiple random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap5.html">
-   Chapter 5: Estimation theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap6.html">
-   Chapter 6: Hypothesis testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap7.html">
-   Chapter 7: Multiple tests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap8.html">
-   Chapter 8: RNA-seq analysis
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 9: Linear regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap10.html">
-   Chapter 10: Monte Carlo simulation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap11.html">
-   Chapter 11: Bootstrap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap12.html">
-   Chapter 12: Bayesian analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap13.html">
-   Chapter 13: Markov Chains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap14.html">
-   Chapter 14: Substitution models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap15.html">
-   Chapter 15: Phylogenetic models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="chap0.html">Chapter 0: Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Probability theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Discrete random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Multiple random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Estimation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Multiple tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: RNA-seq analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 9: Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Monte Carlo simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Bayesian analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Markov Chains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: Substitution models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">Chapter 15: Phylogenetic models</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lab
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="lab1.html">
-   Lab 1: Introduction to R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab2.html">
-   Lab 2: Generating random numbers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab3.html">
-   Lab 3: The law of large numbers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab4.html">
-   Lab 4: BLAST
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab5.html">
-   Lab 5: Optimization algorithms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab6.html">
-   Lab 6: Hypothesis testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab7.html">
-   Lab 7: Multiple tests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab8.html">
-   Lab 8: RNA-seq analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab9.html">
-   Lab 9: Linear regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab10.html">
-   Lab 10: Monte Carlo simulation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab11.html">
-   Lab 11: Bootstrap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab12.html">
-   Lab 12: Markov Chain Monte Carlo algorithm
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab13.html">
-   Lab 13: Markov chains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab14.html">
-   Lab 14: Substitution models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab15.html">
-   Lab 15: Phylogenetic tree reconstruction
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Generating random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: The law of large numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: BLAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Optimization algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Multiple tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: RNA-seq analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Monte Carlo simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Markov Chain Monte Carlo algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Markov chains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Substitution models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab15.html">Lab 15: Phylogenetic tree reconstruction</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap9.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap9.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap9.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/chap9.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/chap9.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simple-linear-regression">
-   Simple linear regression
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#least-square-estimates">
-     Least square estimates
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maximum-likelihood-estimates">
-     Maximum likelihood estimates
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#testing-the-linear-relationship">
-     Testing the linear relationship
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multiple-linear-regression">
-   Multiple linear regression
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#least-square-estimates-of-beta">
-     Least square estimates of
-     <span class="math notranslate nohighlight">
-      \(\beta\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Maximum likelihood estimates
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformation">
-   Transformation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#variable-selection">
-   Variable selection
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#f-test">
-     F-test
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#likelihood-ratio-test-lrt">
-     Likelihood ratio test (LRT)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#akaike-information-criterion-aic">
-     Akaike Information Criterion (AIC)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bayes-information-criterion-bic">
-     Bayes Information Criterion (BIC)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#algorithms-for-variable-selection">
-     Algorithms for variable selection
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forward-stepwise-selection">
-       Forward stepwise selection
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#backward-stepwise-selection">
-       Backward stepwise selection
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forward-and-backward-stepwise-selection">
-       Forward and backward stepwise selection
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#least-absolute-shrinkage-and-selection-operator-lasso">
-       Least absolute shrinkage and selection operator (LASSO)
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generalized-linear-regression">
-   Generalized linear regression
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#logistic-model">
-     Logistic model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#loglinear-model-counts">
-     Loglinear model (counts)
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 9: Linear regression</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#simple-linear-regression">
-   Simple linear regression
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#least-square-estimates">
-     Least square estimates
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#maximum-likelihood-estimates">
-     Maximum likelihood estimates
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#testing-the-linear-relationship">
-     Testing the linear relationship
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multiple-linear-regression">
-   Multiple linear regression
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#least-square-estimates-of-beta">
-     Least square estimates of
-     <span class="math notranslate nohighlight">
-      \(\beta\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     Maximum likelihood estimates
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transformation">
-   Transformation
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#variable-selection">
-   Variable selection
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#f-test">
-     F-test
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#likelihood-ratio-test-lrt">
-     Likelihood ratio test (LRT)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#akaike-information-criterion-aic">
-     Akaike Information Criterion (AIC)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bayes-information-criterion-bic">
-     Bayes Information Criterion (BIC)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#algorithms-for-variable-selection">
-     Algorithms for variable selection
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forward-stepwise-selection">
-       Forward stepwise selection
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#backward-stepwise-selection">
-       Backward stepwise selection
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#forward-and-backward-stepwise-selection">
-       Forward and backward stepwise selection
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#least-absolute-shrinkage-and-selection-operator-lasso">
-       Least absolute shrinkage and selection operator (LASSO)
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#generalized-linear-regression">
-   Generalized linear regression
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#logistic-model">
-     Logistic model
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#loglinear-model-counts">
-     Loglinear model (counts)
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 9: Linear regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">Simple linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-square-estimates">Least square estimates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimates">Maximum likelihood estimates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-linear-relationship">Testing the linear relationship</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression">Multiple linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-square-estimates-of-beta">Least square estimates of <span class="math notranslate nohighlight">\(\beta\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Maximum likelihood estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation">Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-selection">Variable selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-test">F-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-ratio-test-lrt">Likelihood ratio test (LRT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akaike-information-criterion-aic">Akaike Information Criterion (AIC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-information-criterion-bic">Bayes Information Criterion (BIC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms-for-variable-selection">Algorithms for variable selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-stepwise-selection">Forward stepwise selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-stepwise-selection">Backward stepwise selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-and-backward-stepwise-selection">Forward and backward stepwise selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#least-absolute-shrinkage-and-selection-operator-lasso">Least absolute shrinkage and selection operator (LASSO)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-linear-regression">Generalized linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-model">Logistic model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loglinear-model-counts">Loglinear model (counts)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-9-linear-regression">
-<h1>Chapter 9: Linear regression<a class="headerlink" href="#chapter-9-linear-regression" title="Permalink to this headline">#</a></h1>
+<h1>Chapter 9: Linear regression<a class="headerlink" href="#chapter-9-linear-regression" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
 <div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
 <p class="attribution">—Lao Tzu</p>
@@ -792,7 +446,7 @@ title="Print to PDF"
 </ul>
 </div>
 <section id="simple-linear-regression">
-<h2>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this headline">#</a></h2>
+<h2>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this heading">#</a></h2>
 <p>Simple linear regression is a linear model with a single explanatory variable <span class="math notranslate nohighlight">\(x\)</span>. The model assumes a linear relationship between the response variable <span class="math notranslate nohighlight">\(y\)</span> and the explanatory variable <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
 <p><span class="math notranslate nohighlight">\(y_{i}=\beta_0+\beta_1 x_{i}+\epsilon_{i}\)</span></p>
 <p><span class="math notranslate nohighlight">\(x\)</span> : the explanatary variable. <span class="math notranslate nohighlight">\(x_i's\)</span> are fixed.</p>
@@ -828,20 +482,20 @@ title="Print to PDF"
 <span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation">#</a></span>\[E(y) = \beta_0+\beta_1x\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">Volume</span> <span class="o">~</span> <span class="n">Height</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trees</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">)</span>
-<span class="nf">abline</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span> <span class="o">~</span> <span class="n">Height</span> <span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">trees</span><span class="p">),</span> <span class="n">col</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">Volume</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Height</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trees</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="o">=</span><span class="m">16</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Height</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">trees</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/chap9_3_0.png" src="_images/chap9_3_0.png" />
+<img alt="_images/d9c244afe040eb65f8795e892be36eb065daed77634eaefaa79410883e79fb9b.png" src="_images/d9c244afe040eb65f8795e892be36eb065daed77634eaefaa79410883e79fb9b.png" />
 </div>
 </div>
 <p>The intercept <span class="math notranslate nohighlight">\(\beta_0\)</span> and slope <span class="math notranslate nohighlight">\(\beta_1\)</span> are two parameters to estimate from data. Given <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>, the equation (1) can be used to predict the value of <span class="math notranslate nohighlight">\(y\)</span> for a new value of <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight" id="equation-2">
 <span class="eqno">(2)<a class="headerlink" href="#equation-2" title="Permalink to this equation">#</a></span>\[y_{new} = \beta_0+\beta_1x_{new}\]</div>
 <section id="least-square-estimates">
-<h3>Least square estimates<a class="headerlink" href="#least-square-estimates" title="Permalink to this headline">#</a></h3>
+<h3>Least square estimates<a class="headerlink" href="#least-square-estimates" title="Permalink to this heading">#</a></h3>
 <p>We estimate <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span> by minimizing the sum of squared errors with respect to <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -870,13 +524,13 @@ title="Print to PDF"
 \end{split}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span> <span class="o">~</span> <span class="n">Height</span> <span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">trees</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Height</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">trees</span><span class="p">)</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">trees</span><span class="o">$</span><span class="n">Height</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">trees</span><span class="o">$</span><span class="n">Volume</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trees</span><span class="o">$</span><span class="n">Height</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trees</span><span class="o">$</span><span class="n">Volume</span>
 
-<span class="n">beta1</span> <span class="o">=</span> <span class="nf">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="o">/</span><span class="nf">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
-<span class="n">beta0</span> <span class="o">=</span> <span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="n">beta1</span><span class="o">*</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">beta1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)))</span><span class="o">/</span><span class="nf">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">^</span><span class="m">2</span><span class="p">)</span>
+<span class="n">beta0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">beta1</span><span class="o">*</span><span class="nf">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
 <span class="n">beta0</span>
 <span class="n">beta1</span>
@@ -896,7 +550,7 @@ Coefficients:
 </div>
 </section>
 <section id="maximum-likelihood-estimates">
-<h3>Maximum likelihood estimates<a class="headerlink" href="#maximum-likelihood-estimates" title="Permalink to this headline">#</a></h3>
+<h3>Maximum likelihood estimates<a class="headerlink" href="#maximum-likelihood-estimates" title="Permalink to this heading">#</a></h3>
 <p>We first find the likelihood function</p>
 <div class="math notranslate nohighlight">
 \[
@@ -910,7 +564,7 @@ n \log \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}}\right)-\frac{\sum\left(y_{i}-\lef
 <p>The log-likelihood is maximized if <span class="math notranslate nohighlight">\(\sum_{i=1}^{n}\left(y_{i}-\left(\beta_0+\beta_1 x_{i}\right)\right)^{2}\)</span> is minimized. Thus, the maximum likelihood estimates are identical with the least square estimates of <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>.</p>
 </section>
 <section id="testing-the-linear-relationship">
-<h3>Testing the linear relationship<a class="headerlink" href="#testing-the-linear-relationship" title="Permalink to this headline">#</a></h3>
+<h3>Testing the linear relationship<a class="headerlink" href="#testing-the-linear-relationship" title="Permalink to this heading">#</a></h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>If <span class="math notranslate nohighlight">\(\beta_1=0\)</span>, we say that <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> do not have the linear relationship</p>
@@ -936,7 +590,7 @@ n \log \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}}\right)-\frac{\sum\left(y_{i}-\lef
 <p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the chi-square distribution with 1 degree of freedom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span> <span class="o">~</span> <span class="n">Height</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">trees</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Height</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">trees</span><span class="p">)</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -954,7 +608,7 @@ Coefficients:
 (Intercept) -87.1236    29.2731  -2.976 0.005835 ** 
 Height        1.5433     0.3839   4.021 0.000378 ***
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 13.4 on 29 degrees of freedom
 Multiple R-squared:  0.3579,	Adjusted R-squared:  0.3358 
@@ -966,7 +620,7 @@ F-statistic: 16.16 on 1 and 29 DF,  p-value: 0.0003784
 </section>
 </section>
 <section id="multiple-linear-regression">
-<h2>Multiple linear regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this headline">#</a></h2>
+<h2>Multiple linear regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h2>
 <p><span class="math notranslate nohighlight">\(y_{i}=\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}+\varepsilon_{i}\)</span></p>
 <p><span class="math notranslate nohighlight">\(x_{i}\)</span> : explanatary variables. We assume <span class="math notranslate nohighlight">\(X_{i}\)</span> is fixed.</p>
 <p><span class="math notranslate nohighlight">\(y\)</span> : the response variable. random variable</p>
@@ -979,7 +633,7 @@ Y=X \beta+\epsilon
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> is a vector of size <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> is a <span class="math notranslate nohighlight">\(n \times(p+1)\)</span> matrix, and <span class="math notranslate nohighlight">\(\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)\)</span> is a vector of size <span class="math notranslate nohighlight">\((p+1)\)</span>.</p>
 <section id="least-square-estimates-of-beta">
-<h3>Least square estimates of <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#least-square-estimates-of-beta" title="Permalink to this headline">#</a></h3>
+<h3>Least square estimates of <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#least-square-estimates-of-beta" title="Permalink to this heading">#</a></h3>
 <p>We estimate <span class="math notranslate nohighlight">\(\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)\)</span> by minimizing the sum of squared errors</p>
 <div class="math notranslate nohighlight">
 \[
@@ -987,7 +641,7 @@ Y=X \beta+\epsilon
 \]</div>
 </section>
 <section id="id1">
-<h3>Maximum likelihood estimates<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3>Maximum likelihood estimates<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>The likelihood function is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -996,7 +650,7 @@ f\left(y_{1}, y_{2}, \ldots, y_{n}\right)=\prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi \
 <p>Since maximizing the likelihood function is equivalent to minimizing <span class="math notranslate nohighlight">\(\left(y_{i}-\left(\beta_{0}+\right.\right.\)</span> <span class="math notranslate nohighlight">\(\left.\left.\beta_{1} X_{1 i}+\beta_{2} X_{2 i}+\cdots+\beta_{p} X_{p i}\right)\right)^{2}\)</span>, the MLEs of <span class="math notranslate nohighlight">\(\beta\)</span> are identical with the least square estimates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span> <span class="o">~</span> <span class="n">Girth</span> <span class="o">+</span> <span class="n">Height</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trees</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Girth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Height</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trees</span><span class="p">)</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1015,7 +669,7 @@ Coefficients:
 Girth         4.7082     0.2643  17.816  &lt; 2e-16 ***
 Height        0.3393     0.1302   2.607   0.0145 *  
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 Residual standard error: 3.882 on 28 degrees of freedom
 Multiple R-squared:  0.948,	Adjusted R-squared:  0.9442 
@@ -1027,10 +681,10 @@ F-statistic:   255 on 2 and 28 DF,  p-value: &lt; 2.2e-16
 </section>
 </section>
 <section id="transformation">
-<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">#</a></h2>
+<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this heading">#</a></h2>
 <p>The response variable <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> may not have a linear relationship with <span class="math notranslate nohighlight">\(\mathrm{X}\)</span>. For example, if the true relation is <span class="math notranslate nohighlight">\(E(Y)=\beta_0+\beta_1 X^{2}\)</span>, we can transform <span class="math notranslate nohighlight">\(Z=X^{2}\)</span> and fit a linear model for <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{Z}\)</span> (or <span class="math notranslate nohighlight">\(\mathrm{X}^{2}\)</span> )</p>
 <p>In general, if <span class="math notranslate nohighlight">\(E(Y)=g(X)\)</span>, we can fit a linear model for <span class="math notranslate nohighlight">\(Y\)</span> and a function <span class="math notranslate nohighlight">\(g(X)\)</span> of <span class="math notranslate nohighlight">\(X\)</span>, where the function <span class="math notranslate nohighlight">\(g(X)\)</span> can be found by</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>The residual plots to discover the relationship between <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> and find <span class="math notranslate nohighlight">\(g(X)\)</span></p></li>
 <li><p>Log-transformation for <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span></p></li>
 <li><p>Box-Cox transformation: <span class="math notranslate nohighlight">\(Y=\left\{\begin{array}{l}\frac{Y^{\lambda}-1}{\lambda} \text {, if } \lambda \neq 0 \\ \log (Y) \text {, if } \lambda=0\end{array}\right.\)</span> and find the optimal <span class="math notranslate nohighlight">\(\lambda\)</span> using <span class="math notranslate nohighlight">\(\mathrm{R}\)</span></p></li>
@@ -1039,17 +693,17 @@ F-statistic:   255 on 2 and 28 DF,  p-value: &lt; 2.2e-16
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MASS</span><span class="p">)</span>
 
-<span class="nf">boxcox </span><span class="p">(</span><span class="n">Volume</span> <span class="o">~</span> <span class="nf">log</span><span class="p">(</span><span class="n">Height</span><span class="p">)</span><span class="o">+</span><span class="nf">log</span><span class="p">(</span><span class="n">Girth</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">trees</span><span class="p">,</span> <span class="n">lambda</span> <span class="o">=</span><span class="nf">seq</span><span class="p">(</span><span class="m">-0.25</span><span class="p">,</span><span class="m">0.25</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="m">10</span><span class="p">))</span>
+<span class="nf">boxcox </span><span class="p">(</span><span class="n">Volume</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nf">log</span><span class="p">(</span><span class="n">Height</span><span class="p">)</span><span class="o">+</span><span class="nf">log</span><span class="p">(</span><span class="n">Girth</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">trees</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">=</span><span class="nf">seq</span><span class="p">(</span><span class="m">-0.25</span><span class="p">,</span><span class="m">0.25</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="o">=</span><span class="m">10</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/chap9_11_0.png" src="_images/chap9_11_0.png" />
+<img alt="_images/272235cd5825dda3f71a883f84bc98304afb818ab9aeb47a7dda6db248552b0f.png" src="_images/272235cd5825dda3f71a883f84bc98304afb818ab9aeb47a7dda6db248552b0f.png" />
 </div>
 </div>
 </section>
 <section id="variable-selection">
-<h2>Variable selection<a class="headerlink" href="#variable-selection" title="Permalink to this headline">#</a></h2>
+<h2>Variable selection<a class="headerlink" href="#variable-selection" title="Permalink to this heading">#</a></h2>
 <p>Variable selection is intended to select the “best” subset of predictors. We want to explain the data in the simplest way. The principle is that among several plausible explanations for a phenomenon, the simplest is best. Applied to regression analysis, this implies that the smallest model that fits the data is best.</p>
 <p>Considering the linear regression model with <span class="math notranslate nohighlight">\(p\)</span> predictors <span class="math notranslate nohighlight">\(\left\{X_{1}, \ldots, X_{p}\right\}\)</span></p>
 <div class="math notranslate nohighlight">
@@ -1068,7 +722,7 @@ H_{0}: \beta_{s}=0 \text { vs } H_{1}: \beta_{s} \neq 0
 \]</div>
 <p>The model under <span class="math notranslate nohighlight">\(H_{0}\)</span> is called reduced model with <span class="math notranslate nohighlight">\(p_{s}+1\)</span> coefficients <span class="math notranslate nohighlight">\(\beta\)</span> and the model under <span class="math notranslate nohighlight">\(H_{1}\)</span> is called full model with <span class="math notranslate nohighlight">\((p+1)\)</span> coefficients <span class="math notranslate nohighlight">\(\beta\)</span>. Note that <span class="math notranslate nohighlight">\(p_{s}&lt;p\)</span>, and the null model is nested in the alternative model.</p>
 <section id="f-test">
-<h3>F-test<a class="headerlink" href="#f-test" title="Permalink to this headline">#</a></h3>
+<h3>F-test<a class="headerlink" href="#f-test" title="Permalink to this heading">#</a></h3>
 <p>The residual sum-of-squares <span class="math notranslate nohighlight">\(\operatorname{RSS}(\beta)\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1082,7 +736,7 @@ F=\frac{\left(R S S_{0}-R S S_{1}\right) /\left(p_{1}-p_{0}\right)}{R S S_{1} /\
 <p>Under the normal assumption, the null distribution of <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> test statistic is the <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> and <span class="math notranslate nohighlight">\(\left(n-p_{1}-1\right)\)</span>. Thus, we reject <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span> if <span class="math notranslate nohighlight">\(F&gt;\)</span> a, where <span class="math notranslate nohighlight">\(\mathrm{a}\)</span> is the <span class="math notranslate nohighlight">\((1-\alpha)\)</span> quantile of the <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> and <span class="math notranslate nohighlight">\(\left(n-p_{1}-1\right)\)</span>.</p>
 </section>
 <section id="likelihood-ratio-test-lrt">
-<h3>Likelihood ratio test (LRT)<a class="headerlink" href="#likelihood-ratio-test-lrt" title="Permalink to this headline">#</a></h3>
+<h3>Likelihood ratio test (LRT)<a class="headerlink" href="#likelihood-ratio-test-lrt" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(\mathrm{L}_{1}\)</span> be the maximum value of the likelihood of the full model. Let <span class="math notranslate nohighlight">\(\mathrm{L}_{0}\)</span> be the maximum value of the likelihood of the nested model. The likelihood ratio test statistic is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1091,7 +745,7 @@ t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
 <p>The null distribution of test statistic <span class="math notranslate nohighlight">\(t\)</span> is asymptotically <span class="math notranslate nohighlight">\(\chi^{2}\)</span> distribution with <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> degrees of freedom where <span class="math notranslate nohighlight">\(p_1\)</span> is the number of parameters in the alternative model and <span class="math notranslate nohighlight">\(p_0\)</span> is the number of parameters in the null model. Thus, we reject <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span> if <span class="math notranslate nohighlight">\(t&gt;\mathrm{a}\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> is the <span class="math notranslate nohighlight">\((1-\alpha)\)</span> quantile of the <span class="math notranslate nohighlight">\(\chi^{2}\)</span> distribution with <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> degrees of freedom.</p>
 </section>
 <section id="akaike-information-criterion-aic">
-<h3>Akaike Information Criterion (AIC)<a class="headerlink" href="#akaike-information-criterion-aic" title="Permalink to this headline">#</a></h3>
+<h3>Akaike Information Criterion (AIC)<a class="headerlink" href="#akaike-information-criterion-aic" title="Permalink to this heading">#</a></h3>
 <p>The LRT can only be applied to the nested models. In addition, the LRT tends to favor the complex model, because LRT is solely based on the likelihood score and the complex model always has a higher likelihood score. AIC is a more general measure of “model fit” by penalizing the complexity of the model to avoid overfitting the data,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1100,7 +754,7 @@ t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
 <p>where <span class="math notranslate nohighlight">\(p\)</span> is the number of parameters, measuring the complexity of the model, and loglikelihood measures the goodness of fit of the model to the data. Given a collection of putative models, the best model is the one with the lowest <span class="math notranslate nohighlight">\(A I C\)</span>.</p>
 </section>
 <section id="bayes-information-criterion-bic">
-<h3>Bayes Information Criterion (BIC)<a class="headerlink" href="#bayes-information-criterion-bic" title="Permalink to this headline">#</a></h3>
+<h3>Bayes Information Criterion (BIC)<a class="headerlink" href="#bayes-information-criterion-bic" title="Permalink to this heading">#</a></h3>
 <p>AIC tends to overfit models when the sample size is small. Another information criterion which penalizes complex models more severely is</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1109,35 +763,35 @@ t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
 <p>Given a collection of putative models, the best model is the one with the lowest BIC.</p>
 </section>
 <section id="algorithms-for-variable-selection">
-<h3>Algorithms for variable selection<a class="headerlink" href="#algorithms-for-variable-selection" title="Permalink to this headline">#</a></h3>
+<h3>Algorithms for variable selection<a class="headerlink" href="#algorithms-for-variable-selection" title="Permalink to this heading">#</a></h3>
 <p>An exhaustive search for the subset may not be feasible if <span class="math notranslate nohighlight">\(p\)</span> is very large. There are two main alternatives:</p>
 <section id="forward-stepwise-selection">
-<h4>Forward stepwise selection<a class="headerlink" href="#forward-stepwise-selection" title="Permalink to this headline">#</a></h4>
+<h4>Forward stepwise selection<a class="headerlink" href="#forward-stepwise-selection" title="Permalink to this heading">#</a></h4>
 <p>The algorithm begins with a naive model <span class="math notranslate nohighlight">\(y = \beta_0\)</span> that does not include any explanatary variables <span class="math notranslate nohighlight">\(x\)</span>. Then, we add one explanatary variable at a time. We always choose from the rest of the variables the one that yields the best accuracy in prediction when added to the pool of already selected variables. This accuracy can be measured by the F statistic, LRT, AIC, BIC, etc. The algorithm stops when no predictors can be added.</p>
 </section>
 <section id="backward-stepwise-selection">
-<h4>Backward stepwise selection<a class="headerlink" href="#backward-stepwise-selection" title="Permalink to this headline">#</a></h4>
+<h4>Backward stepwise selection<a class="headerlink" href="#backward-stepwise-selection" title="Permalink to this heading">#</a></h4>
 <p>The algorithm begins with the full model including all predictors and then removes one predictor at a time.</p>
 </section>
 <section id="forward-and-backward-stepwise-selection">
-<h4>Forward and backward stepwise selection<a class="headerlink" href="#forward-and-backward-stepwise-selection" title="Permalink to this headline">#</a></h4>
+<h4>Forward and backward stepwise selection<a class="headerlink" href="#forward-and-backward-stepwise-selection" title="Permalink to this heading">#</a></h4>
 <p>mixing forward and backward selection to find the optimal subset of predictors.</p>
 </section>
 <section id="least-absolute-shrinkage-and-selection-operator-lasso">
-<h4>Least absolute shrinkage and selection operator (LASSO)<a class="headerlink" href="#least-absolute-shrinkage-and-selection-operator-lasso" title="Permalink to this headline">#</a></h4>
+<h4>Least absolute shrinkage and selection operator (LASSO)<a class="headerlink" href="#least-absolute-shrinkage-and-selection-operator-lasso" title="Permalink to this heading">#</a></h4>
 <p>The algorithm minimizes the residual sum-of-square <span class="math notranslate nohighlight">\(\operatorname{RSS}(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}\)</span>, subject to <span class="math notranslate nohighlight">\(\sum_{i=1}^{p}\left|\beta_{i}\right| \leq c\)</span>, in which <span class="math notranslate nohighlight">\(\mathrm{c}\)</span> is a pre-specified parameter. This procedure can automatically shrink some <span class="math notranslate nohighlight">\(\beta\)</span> to 0 .</p>
 </section>
 </section>
 </section>
 <section id="generalized-linear-regression">
-<h2>Generalized linear regression<a class="headerlink" href="#generalized-linear-regression" title="Permalink to this headline">#</a></h2>
+<h2>Generalized linear regression<a class="headerlink" href="#generalized-linear-regression" title="Permalink to this heading">#</a></h2>
 <p>In linear regression model, the dependent variable <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> is assumed to have a normal distribution with mean <span class="math notranslate nohighlight">\(X \beta\)</span>. In generalized linear regression, the normality assumption is relaxed to allow <span class="math notranslate nohighlight">\(Y\)</span> to have other probability distributions (binomial, Poisson, etc).</p>
 <section id="logistic-model">
-<h3>Logistic model<a class="headerlink" href="#logistic-model" title="Permalink to this headline">#</a></h3>
+<h3>Logistic model<a class="headerlink" href="#logistic-model" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(Y_{i}=(0,1)\)</span> is a Bernoulli random variable with probability <span class="math notranslate nohighlight">\(p_{i}\)</span> satisfying <span class="math notranslate nohighlight">\(\log \left(\frac{p_{i}}{1-p_{i}}\right)=X_{i} \beta\)</span>, which is called the link function. It indicates that <span class="math notranslate nohighlight">\(p_{i}=\frac{e^{X_{i} \beta}}{1+e^{X_{i} \beta}}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://stats.idre.ucla.edu/stat/data/binary.csv&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://stats.idre.ucla.edu/stat/data/binary.csv&quot;</span><span class="p">)</span>
 <span class="nf">head</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1168,7 +822,7 @@ t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
 <p>The MLE of <span class="math notranslate nohighlight">\(\beta\)</span> is given by maximizing this likelihood function with respect to <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">&lt;-</span> <span class="nf">glm</span><span class="p">(</span><span class="n">admit</span> <span class="o">~</span> <span class="n">gre</span> <span class="o">+</span> <span class="n">gpa</span> <span class="o">+</span> <span class="n">rank</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&quot;binomial&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">glm</span><span class="p">(</span><span class="n">admit</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">gre</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;binomial&quot;</span><span class="p">)</span>
 <span class="nf">summary</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1189,7 +843,7 @@ gre          0.002294   0.001092   2.101  0.03564 *
 gpa          0.777014   0.327484   2.373  0.01766 *  
 rank        -0.560031   0.127137  -4.405 1.06e-05 ***
 ---
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 (Dispersion parameter for binomial family taken to be 1)
 
@@ -1205,8 +859,8 @@ Number of Fisher Scoring iterations: 4
 <p>We can predict the admission probability for a new observation <span class="math notranslate nohighlight">\(X\)</span> using the equation <span class="math notranslate nohighlight">\(p=\frac{e^{X \beta}}{1+e^{X \beta}}\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">newdata1</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">gre</span> <span class="o">=</span> <span class="m">590</span><span class="p">,</span> <span class="n">gpa</span> <span class="o">=</span> <span class="m">3.9</span><span class="p">,</span> <span class="n">rank</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
-<span class="nf">predict</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">newdata</span> <span class="o">=</span> <span class="n">newdata1</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;response&quot;</span><span class="p">)</span>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">newdata1</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">data.frame</span><span class="p">(</span><span class="n">gre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">590</span><span class="p">,</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3.9</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nf">predict</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="w"> </span><span class="n">newdata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">newdata1</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;response&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1215,7 +869,7 @@ Number of Fisher Scoring iterations: 4
 </div>
 </section>
 <section id="loglinear-model-counts">
-<h3>Loglinear model (counts)<a class="headerlink" href="#loglinear-model-counts" title="Permalink to this headline">#</a></h3>
+<h3>Loglinear model (counts)<a class="headerlink" href="#loglinear-model-counts" title="Permalink to this heading">#</a></h3>
 <p><span class="math notranslate nohighlight">\(Y_{i}\)</span> is a Poisson random variable with <span class="math notranslate nohighlight">\(\log \left(E\left(Y_{i}\right)\right)=X_{i} \beta\)</span>. It indicates that <span class="math notranslate nohighlight">\(Y_{\mathrm{i}}\)</span> is a Poisson random variable with mean <span class="math notranslate nohighlight">\(\lambda_{i}=e^{X_{i} \beta}\)</span>. Thus, the likelihood function is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1239,7 +893,7 @@ Number of Fisher Scoring iterations: 4
             mode: "r"
         },
         kernelOptions: {
-            kernelName: "ir",
+            name: "ir",
             path: "./."
         },
         predefinedOutput: true
@@ -1247,50 +901,135 @@ Number of Fisher Scoring iterations: 4
     </script>
     <script>kernelName = 'ir'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="chap8.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Chapter 8: RNA-seq analysis</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap8.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 8: RNA-seq analysis</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="chap10.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="chap10.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Chapter 10: Monte Carlo simulation</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">Simple linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-square-estimates">Least square estimates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimates">Maximum likelihood estimates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-the-linear-relationship">Testing the linear relationship</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-linear-regression">Multiple linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#least-square-estimates-of-beta">Least square estimates of <span class="math notranslate nohighlight">\(\beta\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Maximum likelihood estimates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformation">Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-selection">Variable selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-test">F-test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-ratio-test-lrt">Likelihood ratio test (LRT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#akaike-information-criterion-aic">Akaike Information Criterion (AIC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-information-criterion-bic">Bayes Information Criterion (BIC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms-for-variable-selection">Algorithms for variable selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-stepwise-selection">Forward stepwise selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-stepwise-selection">Backward stepwise selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-and-backward-stepwise-selection">Forward and backward stepwise selection</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#least-absolute-shrinkage-and-selection-operator-lasso">Least absolute shrinkage and selection operator (LASSO)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalized-linear-regression">Generalized linear regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-model">Logistic model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loglinear-model-counts">Loglinear model (counts)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

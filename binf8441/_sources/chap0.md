@@ -69,7 +69,7 @@ $$D_a(cf)=cD_af$$
 ````
 
 - **The product rule**: $(f g)^{\prime}=f^{\prime} g+f g^{\prime}$
-- **The quotient rule**: $\left(\frac{f}{g}\right)^{\prime}=\frac{f^{\prime} g-f g^{\prime}}{g^{2}}-$
+- **The quotient rule**: $\left(\frac{f}{g}\right)^{\prime}=\frac{f^{\prime} g-f g^{\prime}}{g^{2}}$
 - **The power rule**: $\frac{d}{d x}\left(x^{n}\right)=n x^{n-1}$
 - **The chain rule**: $\frac{d}{d x}(f(g(x)))=f^{\prime}(g(x)) g^{\prime}(x)$
 
@@ -264,7 +264,7 @@ We need to find $x$ and $\lambda$ such that $(A-\lambda I)x=0$. Since $x$ is a n
 ````{prf:definition} diagonalizable
 :nonumber:
 :label: diagonalizable
-A square matrix $A$ be a square matrix is diagonalizable if it can be written as $A=PDP^{-1}$, in which the column vectors of $P$ are eigenvectors of $A$ and $D$ is a diagonal matrix of eigenvalues.
+A square matrix $A$ is diagonalizable if it can be written as $A=PDP^{-1}$, in which the column vectors of $P$ are eigenvectors of $A$ and $D$ is a diagonal matrix of eigenvalues.
 ````
 
 If a square matrix $A$ is diagonalizable, then it is straightforward to calculate $A^2$,
@@ -289,25 +289,25 @@ The ultimate goal of statistical inference is to understand the unknown **popula
 We want to know the average weight of UGA students. We take a random sample of 100 students and calculate their average weight, which is 135 pounds. We conclude that the average weight of UGA students is 135 pounds.
 
 - Population: the weights of all UGA students
-- Parameter: the mean weight; population mean
+- Parameter: the mean weight or the population mean
 - Sample: 100 students' weights
-- Statistic: the sample average
+- Statistic: the average weight of the sample or the sample average
 ````
 
-We use the sample average to estimate the population mean. Does it make sense? What is the probability that the population mean is exactly equal to 135 ? How do we handle uncertainty?
+We use the sample average to estimate the population mean. Does it make sense? What is the probability that the population mean is exactly equal to 135 pounds? How do we handle uncertainty?
 
-Converting a real problem to a mathematical problem
+**Converting a real problem to a mathematical problem**
 1. How do we denote a population in math?
-a population = a probability distribution $f(x \mid \theta)$
+The population is represented by a probability distribution $f(x \mid \theta)$ where $\theta$ is the population parameter and $x$ is the random variable of interest. In the above example, the random variable $x$ denotes the weight of an individual randomly selected from the population. In other words, the probability distribution function $f(x|\theta)$ represents how the weight is distributed in the population. 
 
 2. How do we denote parameter in math?
-The parameter is a constant $\theta=g($ population), which is a function of the population
+The parameter is a constant $\theta$ characterizing the population. For example, the parameter of a population includes the population mean, the population variance, the population median, etc.
 
 3. How do we denote a sample in math?
-They are random numbers generated from the probability distribution, i.e., $\boldsymbol{x}_{\mathbf{1}}, \ldots, \boldsymbol{x}_{\boldsymbol{n}} \sim \boldsymbol{f}(\boldsymbol{x} \mid \boldsymbol{\theta})$
+The observations in a sample are random numbers generated from the probability distribution, i.e., $\boldsymbol{x}_{\mathbf{1}}, \ldots, \boldsymbol{x}_{\boldsymbol{n}} \sim \boldsymbol{f}(\boldsymbol{x} \mid \boldsymbol{\theta})$
 
 4. How do we denote a statistic in math?
-A statistic is any function of the sample
+A statistic is a function of the sample.
 
 ```{admonition} Important conclusions
 1. If we know the population, i.e., the probability distribution, we do not need to generate real data in the wet lab. We can use computers to simulate data from the probability distribution.

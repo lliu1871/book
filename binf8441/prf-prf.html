@@ -1,48 +1,59 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Proof Index &#8212; Statistical Inference in Bioinformatics</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -50,15 +61,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prf-prf';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
 
     <script>
       DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
@@ -66,366 +74,279 @@ const thebe_selector_output = ".output, .cell_output"
 
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
         <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lecture
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="chap0.html">
-   Chapter 0: Prerequisites
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap1.html">
-   Chapter 1: Probability theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap2.html">
-   Chapter 2: Discrete random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap3.html">
-   Chapter 3: Continuous random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap4.html">
-   Chapter 4: Multiple random variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap5.html">
-   Chapter 5: Estimation theory
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap6.html">
-   Chapter 6: Hypothesis testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap7.html">
-   Chapter 7: Multiple tests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap8.html">
-   Chapter 8: RNA-seq analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap9.html">
-   Chapter 9: Linear regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap10.html">
-   Chapter 10: Monte Carlo simulation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap11.html">
-   Chapter 11: Bootstrap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap12.html">
-   Chapter 12: Bayesian analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap13.html">
-   Chapter 13: Markov Chains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap14.html">
-   Chapter 14: Substitution models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap15.html">
-   Chapter 15: Phylogenetic models
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="chap0.html">Chapter 0: Prerequisites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Probability theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Discrete random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Continuous random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Multiple random variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Estimation theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Multiple tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: RNA-seq analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Monte Carlo simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Bayesian analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Markov Chains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: Substitution models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">Chapter 15: Phylogenetic models</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Lab
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="lab1.html">
-   Lab 1: Introduction to R
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab2.html">
-   Lab 2: Generating random numbers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab3.html">
-   Lab 3: The law of large numbers
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab4.html">
-   Lab 4: BLAST
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab5.html">
-   Lab 5: Optimization algorithms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab6.html">
-   Lab 6: Hypothesis testing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab7.html">
-   Lab 7: Multiple tests
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab8.html">
-   Lab 8: RNA-seq analysis
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab9.html">
-   Lab 9: Linear regression
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab10.html">
-   Lab 10: Monte Carlo simulation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab11.html">
-   Lab 11: Bootstrap
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab12.html">
-   Lab 12: Markov Chain Monte Carlo algorithm
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab13.html">
-   Lab 13: Markov chains
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab14.html">
-   Lab 14: Substitution models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab15.html">
-   Lab 15: Phylogenetic tree reconstruction
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Generating random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: The law of large numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: BLAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Optimization algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Hypothesis testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Multiple tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: RNA-seq analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Linear regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Monte Carlo simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Markov Chain Monte Carlo algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Markov chains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Substitution models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab15.html">Lab 15: Phylogenetic tree reconstruction</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprf-prf.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
 
 
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
 
-      </li>
+</div></div>
       
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprf-prf.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
+    </div>
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
 
    <h1>Proof Index</h1>
 
@@ -437,13 +358,6 @@ title="Open an issue"
    <a href="#cap-0.5"><strong>0.5</strong></a> | 
    <a href="#cap-0.6"><strong>0.6</strong></a> | 
    <a href="#cap-0.7"><strong>0.7</strong></a> | 
-   <a href="#cap-1.1"><strong>1.1</strong></a> | 
-   <a href="#cap-1.2"><strong>1.2</strong></a> | 
-   <a href="#cap-1.3"><strong>1.3</strong></a> | 
-   <a href="#cap-1.4"><strong>1.4</strong></a> | 
-   <a href="#cap-1.5"><strong>1.5</strong></a> | 
-   <a href="#cap-1.6"><strong>1.6</strong></a> | 
-   <a href="#cap-1.7"><strong>1.7</strong></a> | 
    <a href="#cap-10.1"><strong>10.1</strong></a> | 
    <a href="#cap-10.2"><strong>10.2</strong></a> | 
    <a href="#cap-10.3"><strong>10.3</strong></a> | 
@@ -464,22 +378,8 @@ title="Open an issue"
    <a href="#cap-13.5"><strong>13.5</strong></a> | 
    <a href="#cap-13.6"><strong>13.6</strong></a> | 
    <a href="#cap-13.7"><strong>13.7</strong></a> | 
-   <a href="#cap-2.01"><strong>2.01</strong></a> | 
    <a href="#cap-2.1"><strong>2.1</strong></a> | 
-   <a href="#cap-2.11"><strong>2.11</strong></a> | 
-   <a href="#cap-2.12"><strong>2.12</strong></a> | 
-   <a href="#cap-2.13"><strong>2.13</strong></a> | 
-   <a href="#cap-2.14"><strong>2.14</strong></a> | 
-   <a href="#cap-2.15"><strong>2.15</strong></a> | 
-   <a href="#cap-2.16"><strong>2.16</strong></a> | 
    <a href="#cap-2.2"><strong>2.2</strong></a> | 
-   <a href="#cap-2.3"><strong>2.3</strong></a> | 
-   <a href="#cap-2.4"><strong>2.4</strong></a> | 
-   <a href="#cap-2.5"><strong>2.5</strong></a> | 
-   <a href="#cap-2.6"><strong>2.6</strong></a> | 
-   <a href="#cap-2.7"><strong>2.7</strong></a> | 
-   <a href="#cap-2.8"><strong>2.8</strong></a> | 
-   <a href="#cap-2.9"><strong>2.9</strong></a> | 
    <a href="#cap-3.1"><strong>3.1</strong></a> | 
    <a href="#cap-3.2"><strong>3.2</strong></a> | 
    <a href="#cap-5.1"><strong>5.1</strong></a> | 
@@ -518,9 +418,17 @@ title="Open an issue"
    <a href="#cap-chap5_7"><strong>chap5_7</strong></a> | 
    <a href="#cap-chap5_8"><strong>chap5_8</strong></a> | 
    <a href="#cap-chap5_9"><strong>chap5_9</strong></a> | 
-   <a href="#cap-conditional_probability"><strong>conditional_probability</strong></a> | 
    <a href="#cap-confidence_interval"><strong>confidence_interval</strong></a> | 
-   <a href="#cap-cumulative"><strong>cumulative</strong></a> | 
+   <a href="#cap-def1.1"><strong>def1.1</strong></a> | 
+   <a href="#cap-def1.2"><strong>def1.2</strong></a> | 
+   <a href="#cap-def2.1"><strong>def2.1</strong></a> | 
+   <a href="#cap-def2.2"><strong>def2.2</strong></a> | 
+   <a href="#cap-def2.3"><strong>def2.3</strong></a> | 
+   <a href="#cap-def2.4"><strong>def2.4</strong></a> | 
+   <a href="#cap-def2.5"><strong>def2.5</strong></a> | 
+   <a href="#cap-def2.6"><strong>def2.6</strong></a> | 
+   <a href="#cap-def2.7"><strong>def2.7</strong></a> | 
+   <a href="#cap-def2.8"><strong>def2.8</strong></a> | 
    <a href="#cap-def_5.5"><strong>def_5.5</strong></a> | 
    <a href="#cap-def_5.6"><strong>def_5.6</strong></a> | 
    <a href="#cap-derivative"><strong>derivative</strong></a> | 
@@ -546,37 +454,55 @@ title="Open an issue"
    <a href="#cap-example_4.7"><strong>example_4.7</strong></a> | 
    <a href="#cap-example_4.8"><strong>example_4.8</strong></a> | 
    <a href="#cap-example_4.9"><strong>example_4.9</strong></a> | 
-   <a href="#cap-expectation"><strong>expectation</strong></a> | 
+   <a href="#cap-exp1.1"><strong>exp1.1</strong></a> | 
+   <a href="#cap-exp1.2"><strong>exp1.2</strong></a> | 
+   <a href="#cap-exp1.3"><strong>exp1.3</strong></a> | 
+   <a href="#cap-exp1.4"><strong>exp1.4</strong></a> | 
+   <a href="#cap-exp1.5"><strong>exp1.5</strong></a> | 
+   <a href="#cap-exp1.6"><strong>exp1.6</strong></a> | 
+   <a href="#cap-exp1.7"><strong>exp1.7</strong></a> | 
+   <a href="#cap-exp2.10"><strong>exp2.10</strong></a> | 
+   <a href="#cap-exp2.11"><strong>exp2.11</strong></a> | 
+   <a href="#cap-exp2.12"><strong>exp2.12</strong></a> | 
+   <a href="#cap-exp2.13"><strong>exp2.13</strong></a> | 
+   <a href="#cap-exp2.14"><strong>exp2.14</strong></a> | 
+   <a href="#cap-exp2.15"><strong>exp2.15</strong></a> | 
+   <a href="#cap-exp2.16"><strong>exp2.16</strong></a> | 
+   <a href="#cap-exp2.17"><strong>exp2.17</strong></a> | 
+   <a href="#cap-exp2.3"><strong>exp2.3</strong></a> | 
+   <a href="#cap-exp2.4"><strong>exp2.4</strong></a> | 
+   <a href="#cap-exp2.5"><strong>exp2.5</strong></a> | 
+   <a href="#cap-exp2.6"><strong>exp2.6</strong></a> | 
+   <a href="#cap-exp2.7"><strong>exp2.7</strong></a> | 
+   <a href="#cap-exp2.8"><strong>exp2.8</strong></a> | 
+   <a href="#cap-exp2.9"><strong>exp2.9</strong></a> | 
    <a href="#cap-expectation2"><strong>expectation2</strong></a> | 
    <a href="#cap-fdr"><strong>fdr</strong></a> | 
    <a href="#cap-fundamental theorem of calculus"><strong>fundamental theorem of calculus</strong></a> | 
-   <a href="#cap-independence"><strong>independence</strong></a> | 
    <a href="#cap-joint_expectation"><strong>joint_expectation</strong></a> | 
    <a href="#cap-lemma-3"><strong>lemma-3</strong></a> | 
    <a href="#cap-likelihood"><strong>likelihood</strong></a> | 
    <a href="#cap-linear_dependent"><strong>linear_dependent</strong></a> | 
    <a href="#cap-marginal"><strong>marginal</strong></a> | 
-   <a href="#cap-mass_function"><strong>mass_function</strong></a> | 
-   <a href="#cap-mean"><strong>mean</strong></a> | 
-   <a href="#cap-moment_generating_function"><strong>moment_generating_function</strong></a> | 
    <a href="#cap-orthogonal"><strong>orthogonal</strong></a> | 
    <a href="#cap-pdf"><strong>pdf</strong></a> | 
-   <a href="#cap-prob_gen_function"><strong>prob_gen_function</strong></a> | 
    <a href="#cap-proposition-24"><strong>proposition-24</strong></a> | 
    <a href="#cap-proposition-25"><strong>proposition-25</strong></a> | 
-   <a href="#cap-random_variable"><strong>random_variable</strong></a> | 
    <a href="#cap-sufficient"><strong>sufficient</strong></a> | 
    <a href="#cap-the_5.5"><strong>the_5.5</strong></a> | 
    <a href="#cap-the_5.6"><strong>the_5.6</strong></a> | 
    <a href="#cap-theorem-1"><strong>theorem-1</strong></a> | 
    <a href="#cap-theorem-10"><strong>theorem-10</strong></a> | 
-   <a href="#cap-theorem-11"><strong>theorem-11</strong></a> | 
-   <a href="#cap-theorem-15"><strong>theorem-15</strong></a> | 
+   <a href="#cap-theorem-27"><strong>theorem-27</strong></a> | 
    <a href="#cap-theorem-3"><strong>theorem-3</strong></a> | 
    <a href="#cap-theorem-7"><strong>theorem-7</strong></a> | 
    <a href="#cap-theorem-8"><strong>theorem-8</strong></a> | 
-   <a href="#cap-unbiased"><strong>unbiased</strong></a> | 
-   <a href="#cap-variance"><strong>variance</strong></a>
+   <a href="#cap-thm2.1"><strong>thm2.1</strong></a> | 
+   <a href="#cap-thm2.2"><strong>thm2.2</strong></a> | 
+   <a href="#cap-thm2.3"><strong>thm2.3</strong></a> | 
+   <a href="#cap-thm2.4"><strong>thm2.4</strong></a> | 
+   <a href="#cap-thm2.5"><strong>thm2.5</strong></a> | 
+   <a href="#cap-unbiased"><strong>unbiased</strong></a>
    </div>
 
    <table class="indextable modindextable">
@@ -635,62 +561,6 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="chap0.html#0.7"><code class="xref">0.7</code></a> <em>(chap0)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-1.1"><td></td><td>
-       <strong>1.1</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#1.1"><code class="xref">1.1</code></a> <em>(chap1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-1.2"><td></td><td>
-       <strong>1.2</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#1.2"><code class="xref">1.2</code></a> <em>(chap1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-1.3"><td></td><td>
-       <strong>1.3</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#1.3"><code class="xref">1.3</code></a> <em>(chap1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-1.4"><td></td><td>
-       <strong>1.4</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#1.4"><code class="xref">1.4</code></a> <em>(chap1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-1.5"><td></td><td>
-       <strong>1.5</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#1.5"><code class="xref">1.5</code></a> <em>(chap1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-1.6"><td></td><td>
-       <strong>1.6</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#1.6"><code class="xref">1.6</code></a> <em>(chap1)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-1.7"><td></td><td>
-       <strong>1.7</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#1.7"><code class="xref">1.7</code></a> <em>(chap1)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-10.1"><td></td><td>
@@ -853,14 +723,6 @@ title="Open an issue"
        <a href="chap13.html#13.7"><code class="xref">13.7</code></a> <em>(chap13)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.01"><td></td><td>
-       <strong>2.01</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.01"><code class="xref">2.01</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-2.1"><td></td><td>
        <strong>2.1</strong></td><td></td></tr>
      <tr>
@@ -869,116 +731,12 @@ title="Open an issue"
        <a href="chap2.html#2.1"><code class="xref">2.1</code></a> <em>(chap2)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.11"><td></td><td>
-       <strong>2.11</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.11"><code class="xref">2.11</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.12"><td></td><td>
-       <strong>2.12</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.12"><code class="xref">2.12</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.13"><td></td><td>
-       <strong>2.13</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.13"><code class="xref">2.13</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.14"><td></td><td>
-       <strong>2.14</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.14"><code class="xref">2.14</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.15"><td></td><td>
-       <strong>2.15</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.15"><code class="xref">2.15</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.16"><td></td><td>
-       <strong>2.16</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.16"><code class="xref">2.16</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-2.2"><td></td><td>
        <strong>2.2</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
        <a href="chap2.html#2.2"><code class="xref">2.2</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.3"><td></td><td>
-       <strong>2.3</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.3"><code class="xref">2.3</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.4"><td></td><td>
-       <strong>2.4</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.4"><code class="xref">2.4</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.5"><td></td><td>
-       <strong>2.5</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.5"><code class="xref">2.5</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.6"><td></td><td>
-       <strong>2.6</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.6"><code class="xref">2.6</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.7"><td></td><td>
-       <strong>2.7</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.7"><code class="xref">2.7</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.8"><td></td><td>
-       <strong>2.8</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.8"><code class="xref">2.8</code></a> <em>(chap2)</em></td><td>
-       <em>example</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-2.9"><td></td><td>
-       <strong>2.9</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#2.9"><code class="xref">2.9</code></a> <em>(chap2)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-3.1"><td></td><td>
@@ -1285,14 +1043,6 @@ title="Open an issue"
        <a href="chap5.html#chap5_9"><code class="xref">chap5_9</code></a> <em>(chap5)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-conditional_probability"><td></td><td>
-       <strong>conditional_probability</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#conditional_probability"><code class="xref">conditional_probability</code></a> <em>(chap1)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-confidence_interval"><td></td><td>
        <strong>confidence_interval</strong></td><td></td></tr>
      <tr>
@@ -1301,12 +1051,84 @@ title="Open an issue"
        <a href="chap5.html#confidence_interval"><code class="xref">confidence_interval</code></a> <em>(chap5)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-cumulative"><td></td><td>
-       <strong>cumulative</strong></td><td></td></tr>
+     <tr class="cap" id="cap-def1.1"><td></td><td>
+       <strong>def1.1</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="chap2.html#cumulative"><code class="xref">cumulative</code></a> <em>(chap2)</em></td><td>
+       <a href="chap1.html#def1.1"><code class="xref">def1.1</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.2"><td></td><td>
+       <strong>def1.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.2"><code class="xref">def1.2</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.1"><td></td><td>
+       <strong>def2.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.1"><code class="xref">def2.1</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.2"><td></td><td>
+       <strong>def2.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.2"><code class="xref">def2.2</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.3"><td></td><td>
+       <strong>def2.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.3"><code class="xref">def2.3</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.4"><td></td><td>
+       <strong>def2.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.4"><code class="xref">def2.4</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.5"><td></td><td>
+       <strong>def2.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.5"><code class="xref">def2.5</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.6"><td></td><td>
+       <strong>def2.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.6"><code class="xref">def2.6</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.7"><td></td><td>
+       <strong>def2.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.7"><code class="xref">def2.7</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.8"><td></td><td>
+       <strong>def2.8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.8"><code class="xref">def2.8</code></a> <em>(chap2)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-def_5.5"><td></td><td>
@@ -1509,13 +1331,181 @@ title="Open an issue"
        <a href="chap4.html#example_4.9"><code class="xref">example_4.9</code></a> <em>(chap4)</em></td><td>
        <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-expectation"><td></td><td>
-       <strong>expectation</strong></td><td></td></tr>
+     <tr class="cap" id="cap-exp1.1"><td></td><td>
+       <strong>exp1.1</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="chap2.html#expectation"><code class="xref">expectation</code></a> <em>(chap2)</em></td><td>
-       <em>definition</em></td></tr>
+       <a href="chap1.html#exp1.1"><code class="xref">exp1.1</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.2"><td></td><td>
+       <strong>exp1.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.2"><code class="xref">exp1.2</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.3"><td></td><td>
+       <strong>exp1.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.3"><code class="xref">exp1.3</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.4"><td></td><td>
+       <strong>exp1.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.4"><code class="xref">exp1.4</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.5"><td></td><td>
+       <strong>exp1.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.5"><code class="xref">exp1.5</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.6"><td></td><td>
+       <strong>exp1.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.6"><code class="xref">exp1.6</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.7"><td></td><td>
+       <strong>exp1.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.7"><code class="xref">exp1.7</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.10"><td></td><td>
+       <strong>exp2.10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.10"><code class="xref">exp2.10</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.11"><td></td><td>
+       <strong>exp2.11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.11"><code class="xref">exp2.11</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.12"><td></td><td>
+       <strong>exp2.12</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.12"><code class="xref">exp2.12</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.13"><td></td><td>
+       <strong>exp2.13</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.13"><code class="xref">exp2.13</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.14"><td></td><td>
+       <strong>exp2.14</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.14"><code class="xref">exp2.14</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.15"><td></td><td>
+       <strong>exp2.15</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.15"><code class="xref">exp2.15</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.16"><td></td><td>
+       <strong>exp2.16</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.16"><code class="xref">exp2.16</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.17"><td></td><td>
+       <strong>exp2.17</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.17"><code class="xref">exp2.17</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.3"><td></td><td>
+       <strong>exp2.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.3"><code class="xref">exp2.3</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.4"><td></td><td>
+       <strong>exp2.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.4"><code class="xref">exp2.4</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.5"><td></td><td>
+       <strong>exp2.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.5"><code class="xref">exp2.5</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.6"><td></td><td>
+       <strong>exp2.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.6"><code class="xref">exp2.6</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.7"><td></td><td>
+       <strong>exp2.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.7"><code class="xref">exp2.7</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.8"><td></td><td>
+       <strong>exp2.8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.8"><code class="xref">exp2.8</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.9"><td></td><td>
+       <strong>exp2.9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.9"><code class="xref">exp2.9</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-expectation2"><td></td><td>
        <strong>expectation2</strong></td><td></td></tr>
@@ -1540,14 +1530,6 @@ title="Open an issue"
        <td>
        <a href="chap0.html#fundamental theorem of calculus"><code class="xref">fundamental theorem of calculus</code></a> <em>(chap0)</em></td><td>
        <em>theorem</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-independence"><td></td><td>
-       <strong>independence</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap1.html#independence"><code class="xref">independence</code></a> <em>(chap1)</em></td><td>
-       <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-joint_expectation"><td></td><td>
        <strong>joint_expectation</strong></td><td></td></tr>
@@ -1589,30 +1571,6 @@ title="Open an issue"
        <a href="chap4.html#marginal"><code class="xref">marginal</code></a> <em>(chap4)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-mass_function"><td></td><td>
-       <strong>mass_function</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#mass_function"><code class="xref">mass_function</code></a> <em>(chap2)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-mean"><td></td><td>
-       <strong>mean</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#mean"><code class="xref">mean</code></a> <em>(chap2)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-moment_generating_function"><td></td><td>
-       <strong>moment_generating_function</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#moment_generating_function"><code class="xref">moment_generating_function</code></a> <em>(chap2)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-orthogonal"><td></td><td>
        <strong>orthogonal</strong></td><td></td></tr>
      <tr>
@@ -1627,14 +1585,6 @@ title="Open an issue"
        <td></td>
        <td>
        <a href="chap3.html#pdf"><code class="xref">pdf</code></a> <em>(chap3)</em></td><td>
-       <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-prob_gen_function"><td></td><td>
-       <strong>prob_gen_function</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#prob_gen_function"><code class="xref">prob_gen_function</code></a> <em>(chap2)</em></td><td>
        <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-proposition-24"><td></td><td>
@@ -1652,14 +1602,6 @@ title="Open an issue"
        <td>
        <a href="chap5.html#proposition-25"><code class="xref">proposition-25</code></a> <em>(chap5)</em></td><td>
        <em>proposition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-random_variable"><td></td><td>
-       <strong>random_variable</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#random_variable"><code class="xref">random_variable</code></a> <em>(chap2)</em></td><td>
-       <em>definition</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-sufficient"><td></td><td>
        <strong>sufficient</strong></td><td></td></tr>
@@ -1701,20 +1643,12 @@ title="Open an issue"
        <a href="chap13.html#theorem-10"><code class="xref">theorem-10</code></a> <em>(chap13)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-theorem-11"><td></td><td>
-       <strong>theorem-11</strong></td><td></td></tr>
+     <tr class="cap" id="cap-theorem-27"><td></td><td>
+       <strong>theorem-27</strong></td><td></td></tr>
      <tr>
        <td></td>
        <td>
-       <a href="chap2.html#theorem-11"><code class="xref">theorem-11</code></a> <em>(chap2)</em></td><td>
-       <em>theorem</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-theorem-15"><td></td><td>
-       <strong>theorem-15</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#theorem-15"><code class="xref">theorem-15</code></a> <em>(chap2)</em></td><td>
+       <a href="chap2.html#theorem-27"><code class="xref">theorem-27</code></a> <em>(chap2)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-theorem-3"><td></td><td>
@@ -1741,6 +1675,46 @@ title="Open an issue"
        <a href="chap4.html#theorem-8"><code class="xref">theorem-8</code></a> <em>(chap4)</em></td><td>
        <em>theorem</em></td></tr>
      <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm2.1"><td></td><td>
+       <strong>thm2.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#thm2.1"><code class="xref">thm2.1</code></a> <em>(chap2)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm2.2"><td></td><td>
+       <strong>thm2.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#thm2.2"><code class="xref">thm2.2</code></a> <em>(chap2)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm2.3"><td></td><td>
+       <strong>thm2.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#thm2.3"><code class="xref">thm2.3</code></a> <em>(chap2)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm2.4"><td></td><td>
+       <strong>thm2.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#thm2.4"><code class="xref">thm2.4</code></a> <em>(chap2)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-thm2.5"><td></td><td>
+       <strong>thm2.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#thm2.5"><code class="xref">thm2.5</code></a> <em>(chap2)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
      <tr class="cap" id="cap-unbiased"><td></td><td>
        <strong>unbiased</strong></td><td></td></tr>
      <tr>
@@ -1748,47 +1722,76 @@ title="Open an issue"
        <td>
        <a href="chap5.html#unbiased"><code class="xref">unbiased</code></a> <em>(chap5)</em></td><td>
        <em>definition</em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-variance"><td></td><td>
-       <strong>variance</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="chap2.html#variance"><code class="xref">variance</code></a> <em>(chap2)</em></td><td>
-       <em>definition</em></td></tr>
    </table>
 
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

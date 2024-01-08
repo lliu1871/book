@@ -7,11 +7,11 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-Statistical Inference in Bioinformatics
-<br>
-<br>
+Statistical Inference
+
+in
+
+Bioinformatics
 <br>
 <br>
 <br>
@@ -23,7 +23,7 @@ Statistical Inference in Bioinformatics
 </h1>
 
 ---
-# Table of Contents
+# Table of Contents &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
 ```{tableofcontents}
 ```

@@ -1,0 +1,815 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 4: BLAST &#8212; Statistical Inference in Bioinformatics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 5: Optimization algorithms" href="lab5.html" />
+    <link rel="prev" title="Lab 3: The law of large numbers" href="lab3.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Statistical Inference in Bioinformatics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="preface.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lecture
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap0.html">
+   Chapter 0: Prerequisites
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap1.html">
+   Chapter 1: Probability theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap2.html">
+   Chapter 2: Discrete random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap3.html">
+   Chapter 3: Continuous random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap4.html">
+   Chapter 4: Multiple random variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap5.html">
+   Chapter 5: Estimation theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap6.html">
+   Chapter 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap7.html">
+   Chapter 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap8.html">
+   Chapter 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap9.html">
+   Chapter 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap10.html">
+   Chapter 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap11.html">
+   Chapter 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap12.html">
+   Chapter 12: Bayesian analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap13.html">
+   Chapter 13: Markov Chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap14.html">
+   Chapter 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chap15.html">
+   Chapter 15: Phylogenetic models
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lab
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab1.html">
+   Lab 1: Introduction to R
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab2.html">
+   Lab 2: Generating random numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab3.html">
+   Lab 3: The law of large numbers
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lab 4: BLAST
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab5.html">
+   Lab 5: Optimization algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab6.html">
+   Lab 6: Hypothesis testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab7.html">
+   Lab 7: Multiple tests
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab8.html">
+   Lab 8: RNA-seq analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab9.html">
+   Lab 9: Linear regression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab10.html">
+   Lab 10: Monte Carlo simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab11.html">
+   Lab 11: Bootstrap
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab12.html">
+   Lab 12: Markov Chain Monte Carlo algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab13.html">
+   Lab 13: Markov chains
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab14.html">
+   Lab 14: Substitution models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lab15.html">
+   Lab 15: Phylogenetic tree reconstruction
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab4.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab4.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/lab4.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="_sources/lab4.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fasta-format">
+   FASTA format
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blast-genbank-online">
+   Blast GenBank online
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blast-remotely-against-genbank">
+   Blast remotely against GenBank
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-a-local-blast-database">
+   Generate a local blast database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blast-against-the-local-database">
+   Blast against the local database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lab 4: BLAST</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   Preparation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fasta-format">
+   FASTA format
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blast-genbank-online">
+   Blast GenBank online
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blast-remotely-against-genbank">
+   Blast remotely against GenBank
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#generate-a-local-blast-database">
+   Generate a local blast database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#blast-against-the-local-database">
+   Blast against the local database
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-4-blast">
+<h1>Lab 4: BLAST<a class="headerlink" href="#lab-4-blast" title="Permalink to this headline">#</a></h1>
+<section id="preparation">
+<h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Download BLAST (ncbi-blast-2.13.0+.dmg for Mac and ncbi-blast-2.13.0+-win64.exe for Windows) at <a class="reference external" href="https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/">https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/</a> and install it on your laptop</p></li>
+<li><p>The manual is available at <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK279690/">https://www.ncbi.nlm.nih.gov/books/NBK279690/</a></p></li>
+<li><p>Install an R package “ape” by typing install.packages(“ape”) in R</p></li>
+<li><p>Install an R package “seqinr” by typing install.packages(“seqinr”) in R</p></li>
+</ul>
+</section>
+<section id="fasta-format">
+<h2>FASTA format<a class="headerlink" href="#fasta-format" title="Permalink to this headline">#</a></h2>
+<p>FASTA format is used to represent molecular sequences. The first line begins with <strong>&gt;</strong> and describes the sequence, while the following lines are the sequence.</p>
+<div class="admonition-example-dna-sequence-in-fasta-format admonition">
+<p class="admonition-title">Example DNA sequence in FASTA format</p>
+<p>&gt;gi|23423|ref|NM_23542.0| Homo sapiens protein <br />
+ATGAATCGATACGATAGCTAGCTATCGATGCA <br />
+GATCAGAGAGGGGCTTTAGCTAGCTAAGCTAG</p>
+</div>
+<div class="admonition-example-protein-sequence-in-fasta-format admonition">
+<p class="admonition-title">Example protein sequence in FASTA format</p>
+<p>&gt;MCHU - Calmodulin - Human, rabbit, bovine, rat, and chicken <br />
+ADQLTEEQIAEFKEAFSLFDKDGDGTITTKELGTVMRSLGQNPTEAELQDMINEVDADGNGTID <br />
+FPEFLTMMARKMKDTDSEEEIREAFRVFDKDGNGYISAAELRHVMTNLGEKLTDEEVDEMIREA <br />
+DIDGDGQVNYEEFVQMMTAK*</p>
+</div>
+</section>
+<section id="blast-genbank-online">
+<h2>Blast GenBank online<a class="headerlink" href="#blast-genbank-online" title="Permalink to this headline">#</a></h2>
+<p>The query sequence in FASTA format is given below</p>
+<div class="admonition-sequence3a admonition">
+<p class="admonition-title">&gt;Sequence3a</p>
+<p>TAACCTACGGGTGGCCGCAGTGGGGAATATTGCACAATGGACACAAGTCTGATGCAGCGACGC<br />
+CGCGTGGGGGATGAAGGCTTTCGGGTTGTAAACTCCTTTCAGTACAGAAGAAGCATTTTTGTG<br />
+ACGGTATGTGCAGAAGAAGCGCCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGCG<br />
+CGAGCGTTGTCCGGAATTATTGGGCGTAAAGAGCTCGTAGGCGGTTTGTTGCGCCTGCTGTG</p>
+</div>
+<p>Navigate to the main BLAST page (<a class="reference external" href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">https://blast.ncbi.nlm.nih.gov/Blast.cgi</a>). Select the appropriate type of BLAST for your sequence. Paste the query sequence into the box. Click the “BLAST” button and wait for the results.</p>
+<p>Once the results are displayed, notice there are three main headings: Graphic Summary, Descriptions, and Alignments.</p>
+</section>
+<section id="blast-remotely-against-genbank">
+<h2>Blast remotely against GenBank<a class="headerlink" href="#blast-remotely-against-genbank" title="Permalink to this headline">#</a></h2>
+<p>Save the sequence3a in a file called lab4_test.fa or download the file <a class="reference external" href="https://book.phylolab.net/binf8441/data/lab4_test.fa">lab4_test.fa</a>. We may run the following command line to blast remotely against GenBank. Please make sure to specify the full path of blastn.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">lab4_test</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">out</span> <span class="n">lab4_result</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">remote</span> <span class="o">-</span><span class="n">db</span> <span class="n">nt</span>
+</pre></div>
+</div>
+<p>We may get the IDs of the first 100 significant sequences in R.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span><span class="nf">scan</span><span class="p">(</span><span class="s">&quot;https://book.phylolab.net/binf8441/data/lab4_result.txt&quot;</span><span class="p">,</span><span class="n">what</span><span class="o">=</span><span class="s">&quot;character&quot;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&quot;\n&quot;</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="nf">grep</span><span class="p">(</span><span class="s">&quot;Sequences producing&quot;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+<span class="n">ngeneid</span> <span class="o">=</span> <span class="m">100</span>
+<span class="n">geneid</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">ngeneid</span><span class="p">)</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">ngeneid</span><span class="p">){</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="o">+</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">geneid</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">split</span><span class="o">=</span><span class="s">&quot; &quot;</span><span class="p">))[</span><span class="m">1</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="s">&quot;The geneid of the first 100 significant sequences include&quot;</span><span class="p">)</span>
+<span class="n">geneid</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The geneid of the first 100 significant sequences include&quot;
+</pre></div>
+</div>
+<div class="output text_html"><style>
+.list-inline {list-style: none; margin:0; padding: 0}
+.list-inline>li {display: inline-block}
+.list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
+</style>
+<ol class=list-inline><li>'MT269339.1'</li><li>'MT269338.1'</li><li>'LC523909.1'</li><li>'LC523908.1'</li><li>'LC523907.1'</li><li>'LC523906.1'</li><li>'LC523905.1'</li><li>'LC523904.1'</li><li>'LC523903.1'</li><li>'LC523902.1'</li><li>'MN946520.1'</li><li>'MN907639.1'</li><li>'MN712476.1'</li><li>'LC500013.1'</li><li>'LC500007.1'</li><li>'LC500006.1'</li><li>'LC500005.1'</li><li>'LC500004.1'</li><li>'MN135984.1'</li><li>'MN027909.1'</li><li>'CP033904.1'</li><li>'CP033902.1'</li><li>'CP029004.1'</li><li>'CP029001.1'</li><li>'CP028833.1'</li><li>'MG461533.1'</li><li>'KX592208.1'</li><li>'KX592205.1'</li><li>'KX592204.1'</li><li>'KX592202.1'</li><li>'KX592201.1'</li><li>'KX462008.1'</li><li>'KX815984.1'</li><li>'KU738726.1'</li><li>'KT191139.1'</li><li>'KT191138.1'</li><li>'KT191137.1'</li><li>'KT191136.1'</li><li>'CP012649.1'</li><li>'OQ179914.1'</li><li>'KP872907.1'</li><li>'KP159746.1'</li><li>'KP159745.1'</li><li>'CP007003.1'</li><li>'CP096280.1'</li><li>'CP096279.1'</li><li>'CP081508.1'</li><li>'CP097247.1'</li><li>'KM096430.1'</li><li>'ON725016.1'</li><li>'KJ930040.1'</li><li>'KJ842125.1'</li><li>'CP007519.1'</li><li>'KF828869.1'</li><li>'HG530069.1'</li><li>'MW813977.1'</li><li>'JX975440.1'</li><li>'JX975434.1'</li><li>'JQ975939.1'</li><li>'JQ975941.1'</li><li>'JQ975938.1'</li><li>'JQ975918.1'</li><li>'JQ975934.1'</li><li>'JQ975932.1'</li><li>'JQ975931.1'</li><li>'JQ975929.1'</li><li>'JQ975919.1'</li><li>'JQ975917.1'</li><li>'JQ975916.1'</li><li>'JQ975914.1'</li><li>'JQ975913.1'</li><li>'JQ975912.1'</li><li>'JQ975910.1'</li><li>'JQ975908.1'</li><li>'JQ975906.1'</li><li>'JQ726530.1'</li><li>'JQ726517.1'</li><li>'JQ726516.1'</li><li>'JQ726507.1'</li><li>'JQ726505.1'</li><li>'JQ404452.1'</li><li>'JN857612.1'</li><li>'JN579657.1'</li><li>'JN578141.1'</li><li>'JN578140.1'</li><li>'JN578139.1'</li><li>'JN578137.1'</li><li>'JN578136.1'</li><li>'JN578135.1'</li><li>'JN578134.1'</li><li>'JN578127.1'</li><li>'JN578126.1'</li><li>'JN578116.1'</li><li>'JN578114.1'</li><li>'JN578111.1'</li><li>'JN578108.1'</li><li>'JN578107.1'</li><li>'JN578106.1'</li><li>'HQ712123.1'</li><li>'HM246725.1'</li></ol>
+</div></div>
+</div>
+<p>We can retrieve the DNA sequences using the gene IDs we received above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ape</span><span class="p">)</span>
+<span class="n">ngeneid</span> <span class="o">=</span> <span class="m">2</span> <span class="c1">#to save time we only retrieve the first 2 sequences</span>
+<span class="n">seq</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">ngeneid</span><span class="p">)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span><span class="o">=</span><span class="n">geneid</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">ngeneid</span><span class="p">]</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">ngeneid</span><span class="p">){</span>
+    <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">read.GenBank</span><span class="p">(</span><span class="n">geneid</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="nf">Sys.sleep</span><span class="p">(</span><span class="m">5</span><span class="p">)</span> <span class="c1">#if too many request, the server will identify it as a spam. here we wait 5 seconds after each request</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;The first sequence is&quot;</span><span class="p">,</span> <span class="n">seq</span><span class="p">[</span><span class="m">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The first sequence is as.raw(c(0x48, 0x28, 0x28, 0x48, 0x28, 0x88, 0x18, 0x48, 0x48, 0x18, 0x48, 0x48, 0x48, 0x48, 0x48, 0x18, 0x18, 0x48, 0x48, 0x88, 0x88, 0x88, 0x48, 0x88, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x48, 0x48, 0x88, 0x18, 0x48, 0x48, 0x48, 0x48, 0x88, 0x18, 0x48, 0x48, 0x48, 0x28, 0x18, 0x28, 0x88, 0x28, 0x48, 0x48, 0x28, 0x28, 0x18, 0x88, 0x18, 0x28, 0x88, 0x48, 0x28, 0x18, 0x18, 0x48, 0x18, 0x18, 0x48, 0x48, 0x18, 0x48, 0x48, 0x48, 0x48, 0x18, 0x48, 0x88, 0x18, 0x48, 0x48, 0x28, 0x28, 0x18, 0x88, 0x28, \n0x28, 0x88, 0x88, 0x48, 0x48, 0x28, 0x48, 0x18, 0x28, 0x48, 0x88, 0x28, 0x48, 0x48, 0x48, 0x18, 0x88, 0x48, 0x28, 0x28, 0x48, 0x48, 0x28, 0x28, 0x18, 0x48, 0x88, 0x48, 0x88, 0x48, 0x48, 0x48, 0x18, 0x48, 0x88, 0x28, 0x28, 0x48, 0x48, 0x28, 0x28, 0x88, 0x28, 0x88, 0x18, 0x18, 0x48, 0x48, 0x48, 0x88, 0x28, 0x18, 0x48, 0x88, 0x48, 0x88, 0x18, 0x88, 0x28, 0x48, 0x48, 0x28, 0x28, 0x28, 0x88, 0x48, 0x88, 0x28, 0x18, 0x28, 0x28, 0x18, 0x88, 0x28, 0x48, 0x48, 0x48, 0x88, 0x48, 0x48, 0x28, 0x88, 0x48, 0x28, \n0x88, 0x48, 0x18, 0x48, 0x48, 0x48, 0x48, 0x88, 0x88, 0x18, 0x88, 0x18, 0x18, 0x48, 0x28, 0x88, 0x28, 0x88, 0x88, 0x18, 0x48, 0x48, 0x88, 0x28, 0x48, 0x28, 0x88, 0x88, 0x48, 0x18, 0x28, 0x18, 0x48, 0x88, 0x18, 0x48, 0x28, 0x88, 0x48, 0x28, 0x48, 0x88, 0x28, 0x48, 0x28, 0x28, 0x48, 0x28, 0x48, 0x18, 0x48, 0x48, 0x48, 0x48, 0x48, 0x88, 0x18, 0x48, 0x88, 0x88, 0x48, 0x48, 0x28, 0x18, 0x18, 0x18, 0x28, 0x48, 0x48, 0x48, 0x18, 0x18, 0x48, 0x18, 0x88, 0x88, 0x88, 0x28, 0x18, 0x28, 0x28, 0x18, 0x18, 0x18, \n0x28, 0x88, 0x48, 0x18, 0x88, 0x28, 0x88, 0x48, 0x88, 0x88, 0x48, 0x88, 0x88, 0x48, 0x28, 0x88, 0x18, 0x18, 0x18, 0x18, 0x18, 0x48, 0x18, 0x48, 0x88, 0x28, 0x48, 0x48, 0x18, 0x88, 0x18, 0x48, 0x18, 0x48, 0x28, 0x88, 0x48, 0x88, 0x88, 0x48, 0x88, 0x88, 0x48, 0x28, 0x48, 0x28, 0x28, 0x48, 0x48, 0x28, 0x18, 0x88, 0x88, 0x28, 0x18, 0x88, 0x28, 0x48, 0x18, 0x48, 0x28, 0x28, 0x88, 0x48, 0x28, 0x88, 0x48, 0x28, 0x28, 0x48, 0x28, 0x48, 0x48, 0x18, 0x88, 0x88, 0x18, 0x88, 0x28, 0x48, 0x18, 0x88, 0x48, 0x48, \n0x48, 0x28, 0x48, 0x28, 0x48, 0x88, 0x48, 0x28, 0x48, 0x18, 0x18, 0x48, 0x18, 0x28, 0x28, 0x48, 0x48, 0x88, 0x88, 0x18, 0x18, 0x88, 0x18, 0x18, 0x48, 0x48, 0x48, 0x28, 0x48, 0x18, 0x88, 0x88, 0x88, 0x48, 0x88, 0x48, 0x28, 0x18, 0x28, 0x48, 0x18, 0x88, 0x48, 0x48, 0x28, 0x48, 0x48, 0x18, 0x18, 0x18, 0x48, 0x18, 0x18, 0x48, 0x28, 0x48, 0x28, 0x28, 0x18, 0x48, 0x28, 0x18, 0x48, 0x18, 0x48, 0x88, 0x88, 0x88, 0x48, 0x88, 0x28, 0x28, 0x48, 0x48, 0x48, 0x48, 0x28, 0x18, 0x18, 0x88, 0x88, 0x28, 0x18, 0x18, \n0x28, 0x48, 0x48, 0x48, 0x48, 0x18, 0x18, 0x48, 0x28, 0x88, 0x48, 0x18, 0x48, 0x48, 0x48, 0x18, 0x88, 0x28, 0x48, 0x48, 0x48, 0x28, 0x88, 0x48, 0x88, 0x28, 0x18, 0x88, 0x48, 0x88, 0x48, 0x18, 0x48, 0x18, 0x48, 0x48, 0x18, 0x88, 0x48, 0x48, 0x48, 0x48, 0x18, 0x88, 0x88, 0x18, 0x18, 0x48, 0x48, 0x88, 0x88, 0x18, 0x18, 0x28, 0x28, 0x18, 0x48, 0x48, 0x18, 0x48, 0x18, 0x88, 0x48, 0x28, 0x48, 0x48, 0x18, 0x48, 0x48, 0x88, 0x88, 0x18, 0x48, 0x28, 0x48, 0x28, 0x88, 0x48, 0x88, 0x18, 0x88, 0x18, 0x28, 0x88, \n0x48, 0x48, 0x88, 0x48, 0x48, 0x88, 0x88, 0x28, 0x88, 0x28, 0x28, 0x48, 0x88, 0x18, 0x48, 0x48, 0x28, 0x48, 0x88, 0x88, 0x48, 0x48, 0x28, 0x88, 0x48, 0x48, 0x18, 0x18, 0x88, 0x28, 0x18, 0x48, 0x48, 0x48, 0x28, 0x28, 0x88, 0x18, 0x18, 0x88, 0x28, 0x18, 0x48, 0x88, 0x28, 0x48, 0x28, 0x18, 0x48, 0x88, 0x48, 0x48, 0x88, 0x48, 0x28, 0x48, 0x88, 0x88, 0x88, 0x48, 0x28, 0x48, 0x18, 0x48, 0x48, 0x48, 0x18, 0x88, 0x48, 0x28, 0x48, 0x88, 0x88, 0x28, 0x88, 0x48, 0x48, 0x88, 0x18, 0x18, 0x88, 0x48, 0x88, 0x18, \n0x88, 0x28, 0x28, 0x28, 0x18, 0x48, 0x48, 0x18, 0x88, 0x48, 0x18, 0x28, 0x28, 0x88, 0x28, 0x48, 0x28, 0x18, 0x48, 0x18, 0x88, 0x88, 0x88, 0x28, 0x48, 0x18, 0x18, 0x48, 0x48, 0x48, 0x28, 0x88, 0x28, 0x18, 0x88, 0x48, 0x48, 0x18, 0x48, 0x18, 0x48, 0x48, 0x48, 0x48, 0x28, 0x28, 0x18, 0x18, 0x18, 0x18, 0x28, 0x28, 0x88, 0x28, 0x48, 0x48, 0x48, 0x18, 0x18, 0x28, 0x18, 0x48, 0x28, 0x48, 0x28, 0x28, 0x48, 0x18, 0x88, 0x48, 0x28, 0x18, 0x88, 0x88, 0x28, 0x48, 0x28, 0x18, 0x18, 0x18, 0x88, 0x88, 0x48, 0x18, \n0x48, 0x28, 0x28, 0x28, 0x28, 0x48, 0x28, 0x28, 0x18, 0x48, 0x48, 0x48, 0x48, 0x88, 0x48, 0x18, 0x88, 0x28, 0x48, 0x48, 0x28, 0x28, 0x48, 0x28, 0x88, 0x88, 0x48, 0x48, 0x18, 0x18, 0x88, 0x88, 0x88, 0x88, 0x28, 0x18, 0x28, 0x88, 0x88, 0x88, 0x48, 0x48, 0x88, 0x88, 0x18, 0x18, 0x48, 0x88, 0x28, 0x48, 0x48, 0x48, 0x48, 0x48, 0x28, 0x28, 0x28, 0x48, 0x28, 0x88, 0x28, 0x88, 0x88, 0x48, 0x28, 0x48, 0x48, 0x28, 0x48, 0x48, 0x88, 0x48, 0x28, 0x88, 0x18, 0x48, 0x28, 0x48, 0x48, 0x88, 0x18, 0x18, 0x88, 0x88, \n0x18, 0x18, 0x28, 0x48, 0x88, 0x18, 0x48, 0x28, 0x88, 0x88, 0x28, 0x48, 0x28, 0x48, 0x88, 0x88, 0x48, 0x88, 0x88, 0x28, 0x28, 0x18, 0x18, 0x88, 0x28, 0x28, 0x88, 0x88, 0x48, 0x48, 0x28, 0x18, 0x18, 0x48, 0x88, 0x28, 0x88, 0x18, 0x88, 0x28, 0x88, 0x28, 0x18, 0x48, 0x28, 0x48, 0x88, 0x18, 0x48, 0x18, 0x48, 0x28, 0x28, 0x88, 0x48, 0x88, 0x48, 0x88, 0x18, 0x48, 0x48, 0x18, 0x48, 0x28, 0x88, 0x48, 0x28, 0x28, 0x18, 0x18, 0x28, 0x48, 0x48, 0x48, 0x48, 0x18, 0x48, 0x48, 0x18, 0x48, 0x18, 0x88, 0x28, 0x88, \n0x48, 0x48, 0x18, 0x48, 0x48, 0x18, 0x48, 0x28, 0x88, 0x18, 0x48, 0x48, 0x18, 0x18, 0x48, 0x18, 0x28, 0x48, 0x18, 0x28, 0x88, 0x48, 0x28, 0x18, 0x28, 0x48, 0x18, 0x48, 0x18, 0x28, 0x48, 0x18, 0x48, 0x88, 0x48, 0x88, 0x18, 0x48, 0x18, 0x18, 0x48, 0x48, 0x48, 0x18, 0x18, 0x88, 0x88, 0x48, 0x18, 0x28, 0x28, 0x28, 0x48, 0x28, 0x88, 0x88, 0x28, 0x48, 0x88, 0x48, 0x28, 0x48, 0x28, 0x88, 0x88, 0x28, 0x28, 0x28, 0x18, 0x18, 0x48, 0x18, 0x28, 0x28, 0x18, 0x48, 0x18, 0x48, 0x18, 0x18, 0x48, 0x28, 0x28, 0x88, \n0x48, 0x28, 0x88, 0x18, 0x48, 0x18, 0x18, 0x48, 0x18, 0x48, 0x48, 0x18, 0x48, 0x48, 0x48, 0x48, 0x88, 0x28, 0x18, 0x28, 0x88, 0x28, 0x48, 0x48, 0x48, 0x88, 0x48, 0x88, 0x28, 0x18, 0x48, 0x28, 0x28, 0x48, 0x48, 0x48, 0x48, 0x18, 0x18, 0x88, 0x88, 0x28, 0x18, 0x28, 0x48, 0x48, 0x88, 0x48, 0x48, 0x88, 0x88, 0x48, 0x48, 0x18, 0x48, 0x48, 0x48, 0x48, 0x88, 0x18, 0x48, 0x88, 0x28, 0x48, 0x18, 0x28, 0x88, 0x88, 0x88, 0x18, 0x28, 0x88, 0x18, 0x28, 0x88, 0x18, 0x48, 0x28, 0x28, 0x28, 0x28, 0x18, 0x18, 0x88, \n0x18, 0x48, 0x18, 0x28, 0x18, 0x18, 0x48, 0x48, 0x48, 0x28, 0x18, 0x18, 0x28, 0x88, 0x28, 0x48, 0x28, 0x88, 0x18, 0x48, 0x28, 0x18, 0x88, 0x28, 0x88, 0x88, 0x18, 0x48, 0x48, 0x28, 0x28, 0x48, 0x48, 0x18, 0x88, 0x28, 0x88, 0x48, 0x88, 0x48, 0x48, 0x48, 0x18, 0x18, 0x48, 0x28, 0x48, 0x88, 0x48, 0x28, 0x28, 0x18, 0x48, 0x18, 0x48, 0x88, 0x48, 0x48, 0x48, 0x18, 0x48, 0x88, 0x48, 0x28, 0x18, 0x88, 0x88, 0x18, 0x28, 0x28, 0x28, 0x18, 0x18, 0x88, 0x88, 0x88, 0x48, 0x28, 0x18, 0x48, 0x48, 0x18, 0x28, 0x18, \n0x28, 0x88, 0x48, 0x18, 0x18, 0x28, 0x48, 0x48, 0x88, 0x18, 0x18, 0x48, 0x48, 0x48, 0x48, 0x18, 0x28, 0x18, 0x48, 0x28, 0x88, 0x88, 0x28, 0x18, 0x28, 0x48, 0x88, 0x28, 0x28, 0x28, 0x28, 0x88, 0x18, 0x48, 0x88, 0x88, 0x48, 0x18, 0x28, 0x48, 0x48, 0x88, 0x48, 0x18, 0x28, 0x48, 0x28, 0x18, 0x88, 0x48, 0x18, 0x88, 0x88, 0x18, 0x28, 0x48, 0x28, 0x88, 0x48, 0x88, 0x18, 0x28, 0x88, 0x48, 0x28, 0x88, 0x88, 0x28, 0x48, 0x28, 0x18, 0x48, 0x28, 0x48, 0x48, 0x18, 0x48, 0x88, 0x88, 0x18, 0x88, 0x28, 0x48, 0x18, \n0x18, 0x28, 0x18, 0x28, 0x48, 0x48, 0x48, 0x28, 0x28, 0x18, 0x18, 0x48, 0x18, 0x88, 0x28, 0x88, 0x28, 0x88, 0x28, 0x28, 0x48, 0x28, 0x28, 0x28, 0x48, 0x18, 0x28, 0x88, 0x28, 0x48, 0x18, 0x28, 0x88, 0x28, 0x48, 0x88, 0x88, 0x88, 0x48, 0x18, 0x18, 0x48, 0x48))&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Save the sequences in a file</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">write.dna</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="s">&quot;seq.fas&quot;</span><span class="p">,</span><span class="n">format</span><span class="o">=</span><span class="s">&quot;fasta&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generate-a-local-blast-database">
+<h2>Generate a local blast database<a class="headerlink" href="#generate-a-local-blast-database" title="Permalink to this headline">#</a></h2>
+<p>The Blast package includes a program <strong>makeblastdb</strong>. We first download and unzip the zebra finch chromosome 1 <a class="reference external" href="https://book.phylolab.net/binf8441/data/Taeniopygia_guttata.bTaeGut1_v1.p.dna.primary_assembly.1.fa.gz">Taeniopygia_guttata.bTaeGut1_v1.p.dna.primary_assembly.1.fa.gz</a>. A local blast database is constructed by typing the following command line in Terminal (Mac) or the command window (type CMD in Windows). Please make sure to specify the full path of <strong>makeblastdb</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">Bin</span><span class="o">/</span><span class="n">ncbi</span><span class="o">-</span><span class="n">blast</span><span class="o">-</span><span class="mf">2.10.0</span><span class="o">+/</span><span class="nb">bin</span><span class="o">/</span><span class="n">makeblastdb</span> <span class="o">-</span><span class="ow">in</span> <span class="n">Taeniopygia_guttata</span><span class="o">.</span><span class="n">bTaeGut1_v1</span><span class="o">.</span><span class="n">p</span><span class="o">.</span><span class="n">dna</span><span class="o">.</span><span class="n">primary_assembly</span><span class="mf">.1</span><span class="o">.</span><span class="n">fa</span> <span class="o">-</span><span class="n">dbtype</span> <span class="n">nucl</span> <span class="o">-</span><span class="n">out</span> <span class="n">Taeniopygia_guttata</span>
+</pre></div>
+</div>
+<p>Note that we may run the third party programs such as blast in R using the R function <strong>system()</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span> <span class="nf">try</span><span class="p">(</span><span class="nf">system</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="s">&quot;c://Users/liuliang_2/bin/blast-2.10.0+/bin/makeblastdb.exe -in Taeniopygia_guttata.bTaeGut1_v1.p.dna.primary_assembly.1.fa -dbtype nucl -out Taeniopygia_guttata&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">1</div></div>
+</div>
+</section>
+<section id="blast-against-the-local-database">
+<h2>Blast against the local database<a class="headerlink" href="#blast-against-the-local-database" title="Permalink to this headline">#</a></h2>
+<p>Download the input file <a class="reference external" href="https://book.phylolab.net/binf8441/data/lab4_query_local.txt">lab4_query_local.txt</a> and run the following command line in Terminal (Mac) or the command window (type CMD in Windows).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blastn</span> <span class="o">-</span><span class="n">query</span> <span class="n">lab4_query_local</span><span class="o">.</span><span class="n">txt</span> <span class="o">-</span><span class="n">db</span> <span class="n">Taeniopygia_guttata</span> <span class="o">-</span><span class="n">out</span> <span class="n">resultfile</span> <span class="o">-</span><span class="n">max_target_seqs</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</section>
+<section id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">#</a></h2>
+<p>For each query sequence in the file lab4_query_local, write R code to blast remotely against GenBank and save the sequences of the first 50 significant alignments to a file. Since there are 10 query sequences in the file lab4_query_local, your R code should generate 10 output files. Explain the sequences in each output file.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="lab3.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lab 3: The law of large numbers</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lab5.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 5: Optimization algorithms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Liang Liu<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
