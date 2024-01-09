@@ -22,7 +22,7 @@ $$P(a<X<b)=\int_a^bf(x)dx $$
 
 Similarly, the expectation of a function $g(x)$ is given by
 
-$$E(g(X))=\int_{-\infty}{\infty}g(x)f(x)dx$$
+$$E(g(X))=\int_{-\infty}^{\infty}g(x)f(x)dx$$
 
 Both calculations involve integrals with respect to the probability density function $f(x)$. However, there is often no analytic solution to these integrals. We will use numerical approaches to approximate the integrals.  
 
