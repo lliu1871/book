@@ -24,23 +24,21 @@ kernelspec:
 ```{seealso}
 - [substitution models](https://en.wikipedia.org/wiki/Substitution_model)
 ```
-How do we estimate mutation rates from DNA sequences? We often count the number $x$ of different nucleotides between two sequences and use the ratio $x/n$ to estimate the mutation rate where $n$ is the number of nucleotides in the DNA sequences. For example, there are two sites with different nucleotides in the following two DNA sequences. Thus, the mutation rate is $2/10 = 0.2$ which is the number of mutations per site. 
+To estimate mutation rates from DNA sequences, a common approach involves counting the number $x$ of differing nucleotides between two sequences. The ratio $x/n$ is then employed as an estimate of the mutation rate, where $n$ represents the total number of nucleotides in the DNA sequences. For instance, consider the following two DNA sequences with two differing nucleotide sites. In this case, the mutation rate is calculated as $2/10 = 0.2$, representing the number of mutations per site.
 
 S1 ATTTACCTTG\
 S2 ATTTCACTTG
 
-In this example, we count the first site AA as no-mutation but count the site AC as a single mutation. However, the nucleotide A in the first site may first mutate to T and then mutate back to A. Then, there should be two mutations. Simply counting the number of different nucleotides will underestimate the number of mutations. We need a model which allows multiple mutations to accurately estimate the mutation rate. 
+In this instance, the counting considers the first site, AA, as having no mutation, while the site AC is counted as a single mutation. However, it's crucial to recognize that the nucleotide A in the first site may initially mutate to T and then mutate back to A. In such a scenario, there should be two mutations. Merely counting the number of different nucleotides can lead to an underestimation of the mutation count. To accurately estimate the mutation rate, a model that accommodates multiple mutations is necessary.
 
 The substitution model is a continuous time Markov chain describing how a single nucleotide evolves over a continuous time $t$. Let $X_t$ be the nucleotide at time $t$. The state space is finite, i.e., $(A,C,G,T)$. Let $\pi_t = \left(\pi_t(A),\pi_t(C),\pi_t(G),\pi_t(T)\right)$ be the probability distribution of $X_t$. 
 
 ```{admonition} Goal
-Our goal is to find $\pi_t$ and the limiting probability distribution $\pi_\infty$ as time $t$ goes to infinity.
+Our goal is to determine $\pi_t$ and the limiting probability distribution $\pi_\infty$ as time $t$ goes to infinity.
 ```
 
 ## Transition probability matrix
-The transition probabilities $P(t)$ for nucleotides is a 4
-by 4 matrix, in which $P_{ij}(t)$ is the probability that nucleotide $i$
-changes to nucleotide $j$ in time $t$, where $i,j=A,C,G,T$.
+The transition probabilities $P(t)$ for nucleotides form a 4 by 4 matrix. In this matrix, $P_{ij}(t)$ represents the probability that nucleotide $i$ changes to nucleotide $j$ over a time interval $t$, with $i, j$ taking values from the set ${A, C, G, T}$.
 
 $$P(t) = \begin{pmatrix}
 P_{AA}(t),\ P_{AC}(t),\ P_{AG}(t),P_{AT}(t) \\
@@ -74,11 +72,7 @@ $$
 
 ## Transition rate matrix
 
-The rate matrix $Q$ describes
-the rate at which nucleotides of one type mutate to nucleotides of
-another type, i.e., $Q_{ij}$ for $i \neq j$ is the substitution rate at which
-nucleotide $i$ mutates to nucleotide $j$. The diagonals of the $Q$ matrix are
-chosen so that the rows sum to zero. Since the diagonal values are determined, they are often replaced by a dash in the $Q$ matrix.
+The rate matrix $Q$ characterizes the rate at which nucleotides of one type mutate to nucleotides of another type. Specifically, $Q_{ij}$ for $i \neq j$ represents the substitution rate at which nucleotide $i$ mutates to nucleotide $j$. To ensure that the rows sum to zero, the diagonals of the $Q$ matrix are set accordingly. As the diagonal values are predetermined, they are commonly represented by a dash in the $Q$ matrix.
 
 ### Jukes-Cantor model
 The Jukes-Cantor model is the simplest substitution model. It assumes that all nucleotide
@@ -91,7 +85,7 @@ u & u & - & u \\
 u & u & u & - \\
 \end{pmatrix}$$
 
-For $i,j = \{ A,C,G,T\}$, the transition probabilities for the Jukes-Cantor model are given by eq(3), 
+For $i,j = \{ A,C,G,T\}$, the transition probabilities for the Jukes-Cantor model are given by 
 
 $$P_{ij}(t) = \left\{ \begin{matrix}
 \frac{1}{4} + \frac{3}{4}e^{- 4ut},\ for\ i = j \\
@@ -99,8 +93,7 @@ $$P_{ij}(t) = \left\{ \begin{matrix}
 \end{matrix} \right.\ $$
 
 For the Jukes-Cantor model, the limiting probabilities are
-$\lim_{t \rightarrow \infty}{P_{ij}(t)} = 1/4$ for all i and j. 
-Thus, the limiting probabilities are
+$\lim_{t \rightarrow \infty}{P_{ij}(t)} = 1/4$ for all $i$ and $j$.  Thus, the limiting probabilities are
 
 $$\pi_{A} = \pi_{C} = \pi_{G} = \pi_{T} = \frac{1}{4}$$
 
@@ -119,7 +112,7 @@ Q_0 = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-The transition probability matrix P(t) can be derived from equ(3) and the limiting probabilities can be found by solving the equations in (4). Because the rate matrix $Q_0$ is symmetric, the limiting probabilities are always equal to $1/4$. The $Q$ matrix must be modified in order to produce arbitrary limiting probabilities.
+Given that the rate matrix $Q_0$ is symmetric, the resulting limiting probabilities are consistently equal to $1/4$. To introduce arbitrary limiting probabilities, adjustments must be made to the $Q$ matrix.
 
 It can be shown that the limiting probabilities of the Markov chain with
 the following rate matrix $Q$ are $\pi_\infty=\left(\pi_A,\pi_C,\pi_G,\pi_T\right)$.
@@ -173,6 +166,6 @@ evolutionary distance $d$,
 
 $$d = \frac{3ut}{4} = - \frac{3}{4}log(1 - \frac{4p}{3})$$
 
-The transition probability matrix $P(t)$ and limiting probabilities
+In the next chapter, the transition probability matrix $P(t)$ and limiting probabilities
 $(\pi_{A},\pi_{C},\pi_{G},\pi_{T})$ will be used to derive the
 likelihood function for phylogenetic models.

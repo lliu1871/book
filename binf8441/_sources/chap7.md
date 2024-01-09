@@ -26,7 +26,7 @@ kernelspec:
 - [Multiple tests problems](https://en.wikipedia.org/wiki/Multiple_comparisons_problem)
 ```
 
-Statistical analysis may involve multiple tests. Although the $\alpha$ level (Type I error) of each test is 0.05, the overall $\alpha$ level is much greater than 0.05 when multiple tests are involved. Therefore, correction is needed in order to control the overall $\alpha$ at the level of 5%. 
+Statistical analysis may involve multiple tests. While the $\alpha$ level (Type I error) for each test is set at 0.05, the cumulative $\alpha$ level becomes substantially higher than 0.05 when multiple tests are performed. Consequently, corrections are necessary to maintain overall control of the $\alpha$ level at 5%.
 
 ## Bonferroni correction
 
@@ -45,10 +45,10 @@ P(\cup_{i=1}^kR_i) &= 1- P(\overline{\cup_{i=1}^kR_i})\\
 \end{equation}
 $$
 
-The overall $\alpha$-level $\theta = k\alpha$ where $\alpha$ is the $\alpha$ level of each test. Or $\alpha = \frac{\theta}{k}$. 
+The overall $\alpha$-level $\theta$ is equal to $\theta = k\alpha$, where $\alpha$ represents the $\alpha$ level of each test. If a specific overall $\alpha$-level $\theta$ is designated, such as $\theta=0.05$, then the $\alpha$-level for an individual test should be set as $\alpha = \frac{\theta}{k}$.
 
 ```{admonition} Bonferroni correction
-If the overall $\alpha$ level is 0.05, then the Bonferroni correction for individual tests is
+If the overall $\alpha$ level is 0.05, then the Bonferroni correction for an individual test is
 
  $$\alpha = \frac{0.05}{k}$$ 
 ```
@@ -65,9 +65,7 @@ If $k$ is large, the $\alpha$ level for each test is extremely small, making it 
 The above section indicates that it is difficult to control the overall type I error. In this section, we introduce a new criterion, false discovery rate, to perform the tests.
 
 ````{prf:definition} false discovery rate
-:nonumber:
-:label: fdr
-:nonumber:
+:label: def7.1
 
 Let $W$ be the number of wrong rejections among a total of $Y$ rejections. False discovery rate is equal to the expectation of $\frac{W}{Y}$, i.e.,
 
@@ -81,12 +79,10 @@ re-order them from the minimum to the maximum $P_{(1)},\dots, P_{(n)}$.
 1. For a given $\alpha$, find the largest $k$ such that $P_{(k)} \leq \frac{k}{n}\alpha$
 2. Reject the null hypothesis (i.e. declare positive discoveries) for the re-ordered hypotheses $H_{(i)}$ for $i = 1, \dots, k$.
 
-````{prf:example} 7.1
-:nonumber:
-:label: 7.1
-:nonumber:
+````{prf:example}
+:label: exp7.1
 
-We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed the two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06, and the number of tests $n=3$.
+We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06, and the number of tests $n=3$.
 
 Thus, $P_{(1)} = 0.01, P_{(2)} = 0.03, P_{(3)} = 0.06$. We want to control the FDR at the level of 0.05, i.e., $\alpha = 0.05$. 
 

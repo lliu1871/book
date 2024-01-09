@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -432,11 +432,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 6.1&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 5.9&quot;
 </pre></div>
 </div>
-<div class="output text_html">1.44913767461894</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   4.00    5.25    6.00    6.10    7.00    8.00 
+<div class="output text_html">3.41402336775183</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    2.0     3.5     5.5     5.9     7.5    13.0 
 </pre></div>
 </div>
 <div class="output text_html"><style>
@@ -444,8 +444,8 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>4</li><li>4</li><li>5</li><li>6</li><li>6</li><li>6</li><li>7</li><li>7</li><li>8</li><li>8</li></ol>
-</div><div class="output text_html">8</div><div class="output text_html">4</div><div class="output text_html"><strong>95%:</strong> 8</div><img alt="_images/a65f550539aea15a6f15a4f035eeeb06dbd5122c63fdda72bb1fee04d772b157.png" src="_images/a65f550539aea15a6f15a4f035eeeb06dbd5122c63fdda72bb1fee04d772b157.png" />
+<ol class=list-inline><li>2</li><li>2</li><li>3</li><li>5</li><li>5</li><li>6</li><li>6</li><li>8</li><li>9</li><li>13</li></ol>
+</div><div class="output text_html">13</div><div class="output text_html">2</div><div class="output text_html"><strong>95%:</strong> 11.2</div><img alt="_images/4c01d33ca8be8b71662d6c71b1995cb0878e994b3491784ee3c19489dcf2fcbd.png" src="_images/4c01d33ca8be8b71662d6c71b1995cb0878e994b3491784ee3c19489dcf2fcbd.png" />
 </div>
 </div>
 <p>Then we increase the sample size <span class="math notranslate nohighlight">\(n\)</span> from 100, 200, up to 100,000 and recalculate the sample average. By the law of large numbers, we expect that the sample average gets closer to the true population mean 5 as the sample size increases.</p>
@@ -465,7 +465,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4895c13ada78e46b5f01da425f304b6483eefb914a137ee0fb9e84a392f4ecb4.png" src="_images/4895c13ada78e46b5f01da425f304b6483eefb914a137ee0fb9e84a392f4ecb4.png" />
+<img alt="_images/8139f7d1746cbc366ffde7016ff0f00979e174abd89f512f02c078701355a159.png" src="_images/8139f7d1746cbc366ffde7016ff0f00979e174abd89f512f02c078701355a159.png" />
 </div>
 </div>
 </section>
@@ -493,11 +493,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 2.14778581695907&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 2.53828188458356&quot;
 </pre></div>
 </div>
-<div class="output text_html">1.85272947767308</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
--0.09617  1.06339  1.73032  2.14779  2.90609  5.98808 
+<div class="output text_html">1.80209457975876</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ -1.395   1.814   2.533   2.538   3.711   4.827 
 </pre></div>
 </div>
 <div class="output text_html"><style>
@@ -505,8 +505,8 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>-0.0961735488497597</li><li>0.216767752833451</li><li>0.991315994772336</li><li>1.27959397586328</li><li>1.6882730447553</li><li>1.77237786165589</li><li>2.41629609078158</li><li>3.06935725568071</li><li>4.15196775083274</li><li>5.98808199126513</li></ol>
-</div><div class="output text_html">5.98808199126513</div><div class="output text_html">-0.0961735488497597</div><div class="output text_html"><strong>95%:</strong> 5.16183058307055</div><img alt="_images/ab4f331a7b37e9efb1a4423ad0e4b3e64b4a3dfbb02d9d103ccb50c339f08688.png" src="_images/ab4f331a7b37e9efb1a4423ad0e4b3e64b4a3dfbb02d9d103ccb50c339f08688.png" />
+<ol class=list-inline><li>-1.39455005743823</li><li>1.48401084148317</li><li>1.72041908150297</li><li>2.0960053806262</li><li>2.41876989503602</li><li>2.64737702908047</li><li>3.02864567856145</li><li>3.9388086190002</li><li>4.61609490854408</li><li>4.82723746943925</li></ol>
+</div><div class="output text_html">4.82723746943925</div><div class="output text_html">-1.39455005743823</div><div class="output text_html"><strong>95%:</strong> 4.73222331703642</div><img alt="_images/d874234f213a281e270b1e6c4f19dda273fba252a7d64e322f5398a8a79533e0.png" src="_images/d874234f213a281e270b1e6c4f19dda273fba252a7d64e322f5398a8a79533e0.png" />
 </div>
 </div>
 <p>Then we increase the sample size <span class="math notranslate nohighlight">\(n\)</span> from 100, 200, up to 100,000 and recalculate the sample average. By the law of large numbers, we expect that the sample average gets closer to the true population mean 2.7 as the sample size increases.</p>
@@ -526,7 +526,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3960bdad626384bdce60e2c8d2eba32afabcb16d390295052391c1942046b5fe.png" src="_images/3960bdad626384bdce60e2c8d2eba32afabcb16d390295052391c1942046b5fe.png" />
+<img alt="_images/c8aeebb2c5b0f3fe60e5c6c0dc56a381fc07873b20072adb68c8e4e824f04b80.png" src="_images/c8aeebb2c5b0f3fe60e5c6c0dc56a381fc07873b20072adb68c8e4e824f04b80.png" />
 </div>
 </div>
 </section>

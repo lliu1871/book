@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -432,7 +432,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7d9761694eb8a2ab8649a8ca0c9f7893413173bd34b403e90e77debb3c6eefcd.png" src="_images/7d9761694eb8a2ab8649a8ca0c9f7893413173bd34b403e90e77debb3c6eefcd.png" />
+<img alt="_images/7066c6b442069fb559bab54d697f833045b1408b541a71e30c2bf533145a74db.png" src="_images/7066c6b442069fb559bab54d697f833045b1408b541a71e30c2bf533145a74db.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\mu_1\)</span>: the population mean of the control population <br />
@@ -449,13 +449,13 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  control and treatment
-t = -2.7771, df = 46.527, p-value = 0.007879
+t = -3.6096, df = 45.341, p-value = 0.0007628
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -1.4313991 -0.2285877
+ -1.4535989 -0.4125317
 sample estimates:
 mean of x mean of y 
- 1.192321  2.022315 
+ 1.117301  2.050366 
 </pre></div>
 </div>
 </div>
@@ -482,7 +482,7 @@ mean of x mean of y
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/19e27130da272f8c11f23744f65458b31cef91e71337cec6847a763d3b2cc5c3.png" src="_images/19e27130da272f8c11f23744f65458b31cef91e71337cec6847a763d3b2cc5c3.png" />
+<img alt="_images/e675b0a25e358f5afd6a67d721499bf0fd2895f1335e1f6ed5e00bb5d607ead5.png" src="_images/e675b0a25e358f5afd6a67d721499bf0fd2895f1335e1f6ed5e00bb5d607ead5.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(H_0: \mu_1=\mu_2=\mu_3\)</span> and <span class="math notranslate nohighlight">\(H_1\)</span>: at least two population means are not equal</p>
@@ -496,8 +496,8 @@ mean of x mean of y
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value Pr(&gt;F)
-data$group   2  0.756  0.3781   0.561  0.577
-Residuals   27 18.190  0.6737               
+data$group   2   0.35  0.1733   0.139  0.871
+Residuals   27  33.60  1.2446               
 </pre></div>
 </div>
 </div>
@@ -520,7 +520,7 @@ Residuals   27 18.190  0.6737
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5645d7b91eb3999be2dfb6cbe4c9b3759e3f620861a6cc060ff46698dd050e3b.png" src="_images/5645d7b91eb3999be2dfb6cbe4c9b3759e3f620861a6cc060ff46698dd050e3b.png" />
+<img alt="_images/a0d348c4f9846a71e684ed79d03f9b623be57ce5f164195fa954a35b90920bea.png" src="_images/a0d348c4f9846a71e684ed79d03f9b623be57ce5f164195fa954a35b90920bea.png" />
 </div>
 </div>
 <p>We perform ANOVA in R.</p>
@@ -532,9 +532,9 @@ Residuals   27 18.190  0.6737
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-data$group   2  24.88  12.440   10.15 0.000516 ***
-Residuals   27  33.09   1.225                     
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value  Pr(&gt;F)   
+data$group   2  11.79   5.893   5.736 0.00839 **
+Residuals   27  27.74   1.027                   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 </pre></div>
@@ -559,16 +559,16 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 1.4753, num df = 19, denom df = 29, p-value = 0.3367
+F = 1.5142, num df = 19, denom df = 29, p-value = 0.3061
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 0.6611913 3.5435832
+ 0.6786142 3.6369592
 sample estimates:
 ratio of variances 
-          1.475299 
+          1.514174 
 </pre></div>
 </div>
-<img alt="_images/e6a1fb223a1f5bd21f3f17166a5f4785d2ca4acf1d4edf56f872f157ca555c87.png" src="_images/e6a1fb223a1f5bd21f3f17166a5f4785d2ca4acf1d4edf56f872f157ca555c87.png" />
+<img alt="_images/7f3290e413c8ecdc9c29acfcefbf0d23cc4faa938fbbb76b722a66b80777be9a.png" src="_images/7f3290e413c8ecdc9c29acfcefbf0d23cc4faa938fbbb76b722a66b80777be9a.png" />
 </div>
 </div>
 <p>Then, we generate the control and treatment groups from two normal distributions with unequal variances.</p>
@@ -585,16 +585,16 @@ ratio of variances
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	F test to compare two variances
 
 data:  control and treatment
-F = 32.982, num df = 19, denom df = 29, p-value = 2.087e-14
+F = 23.86, num df = 19, denom df = 29, p-value = 1.565e-12
 alternative hypothesis: true ratio of variances is not equal to 1
 95 percent confidence interval:
- 14.78186 79.22179
+ 10.69363 57.31136
 sample estimates:
 ratio of variances 
-          32.98238 
+          23.86042 
 </pre></div>
 </div>
-<img alt="_images/85a17b76508ddd5d87d6624114e9c06d64a0b029d383b520b6ce902b324979f1.png" src="_images/85a17b76508ddd5d87d6624114e9c06d64a0b029d383b520b6ce902b324979f1.png" />
+<img alt="_images/1c8f2c605d0875ff9c39dc911d3a5e1e56b723b22f97f27e0a2dc670142429f1.png" src="_images/1c8f2c605d0875ff9c39dc911d3a5e1e56b723b22f97f27e0a2dc670142429f1.png" />
 </div>
 </div>
 </section>
@@ -655,7 +655,7 @@ X-squared = 5.4885, df = 6, p-value = 0.4828
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9daba2007f6d02219d033ced66dc99ef478211875edc281d6e221777f70ff64c.png" src="_images/9daba2007f6d02219d033ced66dc99ef478211875edc281d6e221777f70ff64c.png" />
+<img alt="_images/d67e83b9fd7acd5838bf8902721aee0c3ee30f37436118c0e672b85dd0c7be1d.png" src="_images/d67e83b9fd7acd5838bf8902721aee0c3ee30f37436118c0e672b85dd0c7be1d.png" />
 </div>
 </div>
 <p>We perform the nonparametric test</p>
@@ -669,7 +669,7 @@ X-squared = 5.4885, df = 6, p-value = 0.4828
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Wilcoxon rank sum exact test
 
 data:  control and treatment
-W = 408, p-value = 0.03237
+W = 358, p-value = 0.2575
 alternative hypothesis: true location shift is not equal to 0
 </pre></div>
 </div>
@@ -715,7 +715,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.169488868895576&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.121776059053291&quot;
 </pre></div>
 </div>
 </div>
@@ -744,7 +744,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/4e7f200ba1a3cf3f8022599b52bd297661aed2536ad32d783d411739fc337d70.png" src="_images/4e7f200ba1a3cf3f8022599b52bd297661aed2536ad32d783d411739fc337d70.png" />
+<img alt="_images/2e6a1285eac2830a3105c0e8e7c0762cbd81d3b5132dd44e9cf9c6135c8943d6.png" src="_images/2e6a1285eac2830a3105c0e8e7c0762cbd81d3b5132dd44e9cf9c6135c8943d6.png" />
 </div>
 </div>
 <p>The Sapiro-Wilk test is widely used to check normality.</p>
@@ -758,7 +758,7 @@ alternative hypothesis: true location shift is not equal to 0
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  data
-W = 0.91594, p-value = 8.626e-06
+W = 0.87177, p-value = 8.271e-08
 </pre></div>
 </div>
 </div>

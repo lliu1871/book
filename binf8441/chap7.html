@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -416,7 +416,7 @@ document.write(`
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Multiple_comparisons_problem">Multiple tests problems</a></p></li>
 </ul>
 </div>
-<p>Statistical analysis may involve multiple tests. Although the <span class="math notranslate nohighlight">\(\alpha\)</span> level (Type I error) of each test is 0.05, the overall <span class="math notranslate nohighlight">\(\alpha\)</span> level is much greater than 0.05 when multiple tests are involved. Therefore, correction is needed in order to control the overall <span class="math notranslate nohighlight">\(\alpha\)</span> at the level of 5%.</p>
+<p>Statistical analysis may involve multiple tests. While the <span class="math notranslate nohighlight">\(\alpha\)</span> level (Type I error) for each test is set at 0.05, the cumulative <span class="math notranslate nohighlight">\(\alpha\)</span> level becomes substantially higher than 0.05 when multiple tests are performed. Consequently, corrections are necessary to maintain overall control of the <span class="math notranslate nohighlight">\(\alpha\)</span> level at 5%.</p>
 <section id="bonferroni-correction">
 <h2>Bonferroni correction<a class="headerlink" href="#bonferroni-correction" title="Permalink to this heading">#</a></h2>
 <p>Suppose there are <span class="math notranslate nohighlight">\(k\)</span>  tests and they are independent of each other. Let <span class="math notranslate nohighlight">\(R_i\)</span> be the rejection region for the test <span class="math notranslate nohighlight">\(i\)</span>. The overall type I error, the probability of at least one test rejecting the null hypothesis, is given by</p>
@@ -433,10 +433,10 @@ P(\cup_{i=1}^kR_i) &amp;= 1- P(\overline{\cup_{i=1}^kR_i})\\
 \end{split}
 \end{equation}
 \end{split}\]</div>
-<p>The overall <span class="math notranslate nohighlight">\(\alpha\)</span>-level <span class="math notranslate nohighlight">\(\theta = k\alpha\)</span> where <span class="math notranslate nohighlight">\(\alpha\)</span> is the <span class="math notranslate nohighlight">\(\alpha\)</span> level of each test. Or <span class="math notranslate nohighlight">\(\alpha = \frac{\theta}{k}\)</span>.</p>
+<p>The overall <span class="math notranslate nohighlight">\(\alpha\)</span>-level <span class="math notranslate nohighlight">\(\theta\)</span> is equal to <span class="math notranslate nohighlight">\(\theta = k\alpha\)</span>, where <span class="math notranslate nohighlight">\(\alpha\)</span> represents the <span class="math notranslate nohighlight">\(\alpha\)</span> level of each test. If a specific overall <span class="math notranslate nohighlight">\(\alpha\)</span>-level <span class="math notranslate nohighlight">\(\theta\)</span> is designated, such as <span class="math notranslate nohighlight">\(\theta=0.05\)</span>, then the <span class="math notranslate nohighlight">\(\alpha\)</span>-level for an individual test should be set as <span class="math notranslate nohighlight">\(\alpha = \frac{\theta}{k}\)</span>.</p>
 <div class="admonition-bonferroni-correction admonition">
 <p class="admonition-title">Bonferroni correction</p>
-<p>If the overall <span class="math notranslate nohighlight">\(\alpha\)</span> level is 0.05, then the Bonferroni correction for individual tests is</p>
+<p>If the overall <span class="math notranslate nohighlight">\(\alpha\)</span> level is 0.05, then the Bonferroni correction for an individual test is</p>
 <div class="math notranslate nohighlight">
 \[\alpha = \frac{0.05}{k}\]</div>
 </div>
@@ -462,8 +462,8 @@ P(\cup_{i=1}^kR_i) &amp;= 1- P(\overline{\cup_{i=1}^kR_i})\\
 <section id="false-discovery-rate">
 <h2>False discovery rate<a class="headerlink" href="#false-discovery-rate" title="Permalink to this heading">#</a></h2>
 <p>The above section indicates that it is difficult to control the overall type I error. In this section, we introduce a new criterion, false discovery rate, to perform the tests.</p>
-<div class="proof definition admonition" id="fdr">
-<p class="admonition-title"><span>Definition </span> (false discovery rate)</p>
+<div class="proof definition admonition" id="def7.1">
+<p class="admonition-title"><span class="caption-number">Definition 23 </span> (false discovery rate)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(W\)</span> be the number of wrong rejections among a total of <span class="math notranslate nohighlight">\(Y\)</span> rejections. False discovery rate is equal to the expectation of <span class="math notranslate nohighlight">\(\frac{W}{Y}\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
@@ -476,10 +476,10 @@ re-order them from the minimum to the maximum <span class="math notranslate nohi
 <li><p>For a given <span class="math notranslate nohighlight">\(\alpha\)</span>, find the largest <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(P_{(k)} \leq \frac{k}{n}\alpha\)</span></p></li>
 <li><p>Reject the null hypothesis (i.e. declare positive discoveries) for the re-ordered hypotheses <span class="math notranslate nohighlight">\(H_{(i)}\)</span> for <span class="math notranslate nohighlight">\(i = 1, \dots, k\)</span>.</p></li>
 </ol>
-<div class="proof example admonition" id="7.1">
-<p class="admonition-title"><span>Example </span> (7.1)</p>
+<div class="proof example admonition" id="exp7.1">
+<p class="admonition-title"><span class="caption-number">Example 61 </span></p>
 <section class="example-content" id="proof-content">
-<p>We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed the two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06, and the number of tests <span class="math notranslate nohighlight">\(n=3\)</span>.</p>
+<p>We would like to know if any of the three genes are associated with cancer. We collected the gene expression level data from the normal group (50 people) and the cancer group (50 people). We performed two-sample t-test for three genes and their pvalues are pvalue1 = 0.03, pvalue2 = 0.01, pvalue3 = 0.06, and the number of tests <span class="math notranslate nohighlight">\(n=3\)</span>.</p>
 <p>Thus, <span class="math notranslate nohighlight">\(P_{(1)} = 0.01, P_{(2)} = 0.03, P_{(3)} = 0.06\)</span>. We want to control the FDR at the level of 0.05, i.e., <span class="math notranslate nohighlight">\(\alpha = 0.05\)</span>.</p>
 <ol class="arabic simple">
 <li><p>Find the largest <span class="math notranslate nohighlight">\(k\)</span> such that <span class="math notranslate nohighlight">\(P_{(k)} \le \frac{k}{n}\alpha\)</span>. We first try <span class="math notranslate nohighlight">\(k = 3\)</span>, but <span class="math notranslate nohighlight">\(P_{(3)} &gt; 0.05\)</span>. Then, we try <span class="math notranslate nohighlight">\(k = 2\)</span> and <span class="math notranslate nohighlight">\(P_{(2)} &lt; 2*0.05/3\)</span>. Thus, <span class="math notranslate nohighlight">\(k=2\)</span>.</p></li>

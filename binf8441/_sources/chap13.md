@@ -33,22 +33,19 @@ integers), the process is said to be a discrete time process. If $T$ is an
 interval of real line, the process is said to be a continuous time
 process.
 
-````{prf:example} 13.1
-:nonumber:
-:label: 13.1
-:nonumber:
+````{prf:example} 
+:label: exp13.1
+
 $X_{t}$ is the total number of customers who have entered a
 supermarket by time $t$. This is a discrete state continuous time
 stochastic process. $X_{t} = 0,1,\ldots,$ and $t \ge 0$.
 ````
 
-````{prf:example} 13.2
-:nonumber:
-:label: 13.2
-:nonumber:
+````{prf:example}
+:label: exp13.2
+
 $X_{t}$ is the number of individuals in a population in each
-generation $t$, i.e., $X_{t} = 0,1,2,\ldots$, and $t = 0, 1, 2, \dots$ This
-is a discrete state discrete time stochastic process
+generation $t$, i.e., $X_{t} = 0,1,2,\ldots$, and $t = 0, 1, 2, \dots$ This is a discrete state discrete time stochastic process.
 ````
 
 ## Discrete time Markov chains
@@ -60,8 +57,7 @@ $P\left( X_{n + 1} \middle| X_{n},\ldots,X_{0} \right) = P(X_{n + 1}|X_{n})$.
 ```
 
 ````{prf:definition} Markov chain
-:nonumber:
-:label: Markov chain
+:label: def13.1
 
 A discrete time Markov chain $\{ X_{n},n = 0,1,2\ldots\}$ is a discrete
 state discrete time stochastic process that satisfies Markov property.
@@ -72,8 +68,7 @@ state space is $\{0, 1, 2, \dots\}$. If $X_{n} = i$, we say that the process
 is in state $i$ at time $n$.
 
 ```{admonition} How do we define a DTMC?
-For a discrete time MC $\{X_{n}\}$, the goal is to find the probability distribution $\pi_n$ of the random variable $X_n$ at time $n$. The DTMC is determined if we know where the chain begins and how the chain moves, i.e., if the initial state $\pi_0$ at time 0 is given and the transition probabilities $P(X_{n+1}|X_n)$ from time $n$ to time $n+1$ is given.
-
+In the context of a discrete-time Markov Chain (DTMC) denoted as ${X_{n}}$, the objective is to determine the probability distribution $\pi_n$ of the random variable $X_n$ at time $n$. The specification of a DTMC requires knowledge of the initial state $\pi_0$ at time 0 and the transition probabilities $P(X_{n+1}|X_n)$ from time $n$ to time $n+1$, outlining how the chain begins and moves.
 ```
 
 ### One-step transition probability matrix
@@ -114,10 +109,8 @@ homogeneous transition probability matrix are given. The initial state
 $X_0$ defines how the chain starts and the transition probability matrix
 $P$ determines how the chain moves.
 
-````{prf:example} 13.3
-:nonumber:
-:label: 13.3
-:nonumber:
+````{prf:example}
+:label: exp13.3
 
 Suppose that a gene has two alleles $A$ and $a$. The alleles
 $A$ and $a$ may mutate to another type in the next generation. The
@@ -142,10 +135,9 @@ A \\
 \end{pmatrix}$$
 ````
 
-````{prf:example} 13.4
-:nonumber:
-:label: 13.4
-:nonumber:
+````{prf:example} 
+:label: exp13.4
+
 We consider a population of $N$ individuals. Let $X_{n}$
 denote the number of individuals with allele A in generation $n$.
 Suppose $X_{0} = k, 0 \leq k \leq N$. Given $X_{i}$ (the number of A in
@@ -168,10 +160,9 @@ Binomial $(N, p = \frac{j}{N})$.
 ````
 
 
-````{prf:example} 13.5
-:nonumber:
-:label: 13.5
-:nonumber:
+````{prf:example}
+:label: exp13.5
+
 A gambling model. a gamble either wins \$1 with probability
 $p$ or loses \$1 with probability 1-p. if the gambler quits playing either
 when he goes broke or he attains a fortune of \$N, the one-step
@@ -191,15 +182,13 @@ $$
 ````
 
 ```{important}
-States 0 and N are called **absorbing states**, because once the process gets into those states it will never get out.
+In this example, states 0 and N are **absorbing states**, because once the process gets into those states it will never get out.
 ```
 
-````{prf:example} 13.6
-:nonumber:
-:label: 13.6
-:nonumber:
-In example 1, if the initial state $P(X_0) = (0.1, 0.9)$ and $\alpha = 0.1$ and
-$\beta=0.2$, find $P(X_1)$
+````{prf:example}
+:label: exp13.6
+
+In {prf:ref}`exp13.1`, if the initial state $P(X_0) = (0.1, 0.9)$ and $\alpha = 0.1$ and $\beta=0.2$, find $P(X_1)$.
 
 
 The one-step transition probability matrix is 
@@ -236,9 +225,11 @@ We have a matrix representation for the probability distribution of $X_{1}$,
 
 $$P\left( X_{1} \right) = P\left( X_{0} \right)\cdot P$$
 
-In general,
+```{important}
+In general, the probability distribution of $X_n$ is determined by the initial state $P(X_0)$ and the one-step transition probability matrix $P$, i.e.,
 
-$$P\left( X_{n} \right) = P\left( X_{0} \right)\cdot P^{n}$$
+$$P(X_n) = P(X_0)\cdot P^n$$
+```
 
 ```{code-cell}
 p = matrix(c(0.8,0.1,0.2,0.9),2,2)
@@ -252,7 +243,7 @@ x_10 = x_0 %*% (p %^% 10)
 print(paste("the probability distribution of x_10 is",x_10))
 ```
 ### Limiting probability distribution
-Another major goal of the Markov chain theory is to find the limiting
+Another major goal of the Markov chain theory is to determine the limiting
 probabilities $\lim_{n \rightarrow \infty}{P(X_{n})}$, as time $n$ goes to
 infinity.
 
@@ -281,9 +272,7 @@ print(paste("the probability for time = 50", round(x_0 %*% (p %^% 50),5)))
 print(paste("the probability for time = 60", round(x_0 %*% (p %^% 60),5)))
 ```
 
-Note that once the chain reaches the limiting probability distribution, it will stay in
-the limiting probability distribution. Thus, the limiting probability distribution is also
-called the stationary distribution.
+It's important to note that once the chain attains the limiting probability distribution, it remains within that distribution. Consequently, the limiting probability distribution is also referred to as the stationary distribution.
 
 ```{code-cell}
 x_lim = x_0 %*% (p %^% 60)
@@ -291,9 +280,7 @@ print(paste("the limit probability is",round(x_lim,5)))
 print(paste("the probability after one more move is", round(x_lim %*% p,5)))
 ```
 
-For irreducible finite state discrete time Markov chain, the ergodic
-conditions are always satisfied. Thus, we can find the limiting
-probabilities by solving the equations
+In the case of an irreducible finite-state discrete-time Markov chain, the ergodic conditions are always fulfilled. Therefore, we can determine the limiting probabilities by solving the equations:
 
 $$
 \begin{equation}
@@ -305,10 +292,9 @@ $$
 $$
 
 
-````{prf:example} 13.7
-:nonumber:
-:label: 13.7
-:nonumber:
+````{prf:example}
+:label: exp13.7
+
 
 Consider a Markov chain of two alleles (a, A) with the one-step
 transition probability $P=\begin{pmatrix}
@@ -341,8 +327,7 @@ print(paste("the limiting probability is", eigen(t(x))$vectors[,1]/sum(eigen(t(x
 
 
 ````{prf:definition} continuous time Markov chain
-:nonumber:
-:label: CTMC
+:label: def13.2
 
 A continuous time Markov chain $\{ X_{t}\}$ is a discrete
 state continuous time stochastic process that satisfies Markov property.
@@ -354,13 +339,7 @@ For all $s,t \geq 0$, and nonnegative integers $i, j$,
 $$P\left( X_{t + s} = j \middle| X_{s} = i,\ X_{u},\ 0 \leq u \leq s \right) = P(X_{t + s} = j|X_{s} = i)$$
 ```
 
-Suppose $\{ X_{t},t \geq 0\}$ is a continuous time stochastic process
-taking on values in the set of nonnegative integers {0, 1, 2, ...}.
-
-In addition, if $P\left( X_{t + s} = j \middle| X_{s} = i \right)$ is
-independent of $s$, the continuous time Markov chain is said to have
-stationary or homogeneous transition probabilities, denoted by $P_{ij}(t)$,
-the probability of transition from state $i$ to state j in time t.
+Suppose $\{ X_{t},t \geq 0\}$ is a continuous time stochastic process taking on values in the set of nonnegative integers {0, 1, 2, ...}. In addition, if $P\left( X_{t + s} = j \middle| X_{s} = i \right)$ is independent of $s$, the continuous time Markov chain is said to have stationary or homogeneous transition probabilities, denoted by $P_{ij}(t)$, the probability of transition from state $i$ to state $j$ in time $t$.
 
 ### Finite state space 
 
@@ -388,8 +367,14 @@ The solution to this differential equation is
 
 $$P(t) = e^{Qt}$$
 
+Thus,
+
+$$
+\pi_t = \pi_0e^{Qt}
+$$ 
+
 ````{prf:theorem}
-:nonumber:
+
 The limiting probabilities
 $\pi_\infty=\lim_{t \rightarrow \infty}{P\left( X_{t} = j \middle| X_{0} = i \right)}$,
 if exist, are independent of the initial state $X_{0}$, and must satisfy the equation 

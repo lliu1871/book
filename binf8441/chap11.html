@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -417,19 +417,19 @@ document.write(`
 </ul>
 </div>
 <p>Monte Carlo simulation assumes that the underlying probability distribution is given. If the probability distribution is not given, we can estimate the probability distribution from data and use the estimated distribution to generate data.</p>
-<div class="proof definition admonition" id="bootstrapping">
-<p class="admonition-title"><span>Definition </span> (Bootstrapping)</p>
+<div class="proof definition admonition" id="def11.1">
+<p class="admonition-title"><span class="caption-number">Definition 25 </span> (Bootstrapping)</p>
 <section class="definition-content" id="proof-content">
 <p>Bootstrapping is a resampling technique for estimating the distribution (or expectations) of any statistic of interest.</p>
 </section>
 </div><section id="parametric-bootstrap">
 <h2>Parametric bootstrap<a class="headerlink" href="#parametric-bootstrap" title="Permalink to this heading">#</a></h2>
-<p>The probability distribution is given up to the parameter values. For example, the probability distribution is Normal<span class="math notranslate nohighlight">\((\mu, \sigma^2)\)</span>. We first use data to estimate the unknown parameters, and then generate bootstrap samples from Normal<span class="math notranslate nohighlight">\((\hat{\mu}, \hat{\sigma^2})\)</span>, where the unknown parameters are replaced by their estimates.</p>
-<p>Note that the structure (size, table, number of subsamples) of bootstrap samples should look exactly the same as the original data. If the original data contains two samples, each bootstrap sample should contain two sample. If the original data consist of 23 observations, each bootstrap sample should consist of 23 observations. If the original data is a table (or a matrix), each bootstrap sample should be a table (or a matrix).</p>
-<div class="proof example admonition" id="11.1">
-<p class="admonition-title"><span>Example </span> (11.1)</p>
+<p>The probability distribution is specified with respect to certain parameter values. For instance, the probability distribution may be described as Normal<span class="math notranslate nohighlight">\((\mu, \sigma^2)\)</span> where <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span> are unknow parameters. We can utilize data to estimate unknown parameters, and then generate bootstrap samples from the normal distribution with estimated parameters, such as Normal<span class="math notranslate nohighlight">\((\hat{\mu}, \hat{\sigma^2})\)</span>, where the unknown parameters are substituted with their estimates.</p>
+<p>It is crucial to maintain the same structure (size, table format, and number of subsamples) in bootstrap samples as in the original data. If the original data comprises two groups, each bootstrap sample should also include two groups. Similarly, if the original data consists of 23 observations, each bootstrap sample should consist of 23 observations. If the original data is presented as a table (or a matrix), each bootstrap sample should retain the same table (or matrix) format.</p>
+<div class="proof example admonition" id="exp11.1">
+<p class="admonition-title"><span class="caption-number">Example 67 </span></p>
 <section class="example-content" id="proof-content">
-<p>We want to estimate the average weight of all UGA students. We take a sample of 10 students and their weights are (125.2028, 128.9885, 131.3598, 126.8757, 128.8428, 128.8664, 133.3717, 131.3412, 132.6467, 130.6033). The sample average is 129.81. Here, we want to calculate the variance of the sample average.</p>
+<p>We aim to estimate the average weight of all UGA students. Taking a sample of 10 students with weights (125.2028, 128.9885, 131.3598, 126.8757, 128.8428, 128.8664, 133.3717, 131.3412, 132.6467, 130.6033), the sample average is 129.81. Now, our objective is to compute the variance of the sample average.</p>
 <p>Parametric bootstrap: Suppose the probability distribution of weights of all UGA students is Normal<span class="math notranslate nohighlight">\((\mu,\sigma^{2})\)</span>.</p>
 <ol class="arabic simple">
 <li><p>We first estimate the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span>. The population mean <span class="math notranslate nohighlight">\(\mu\)</span> is estimated by the sample average, which is 129.81. The population variance <span class="math notranslate nohighlight">\(\sigma^2\)</span> is estimated by the sample variance is 6.49.</p></li>
@@ -453,13 +453,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the variance of the sample average is 0.68362172595162&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the variance of the sample average is 0.647875538123312&quot;
 </pre></div>
 </div>
 </div>
 </div>
-<div class="proof example admonition" id="11.2">
-<p class="admonition-title"><span>Example </span> (11.2)</p>
+<p>Parametric bootstrapping can be used to approximate the null distribution of the test statistic in hypothesis testing.</p>
+<div class="proof example admonition" id="exp11.2">
+<p class="admonition-title"><span class="caption-number">Example 68 </span></p>
 <section class="example-content" id="proof-content">
 <p>Comparing two Packing Machines. In a packing plant, a machine packs cartons with jars. It is supposed that a new machine will pack faster on the average than the machine currently used. To test that hypothesis, the times it takes each machine to pack ten cartons are recorded. The results, in seconds, are shown in the following table</p>
 <div class="math notranslate nohighlight">
@@ -526,10 +527,10 @@ document.write(`
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the estimate of variance is 0.800289473684211&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 2.5% quantile: -0.787015409229191&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 2.5% quantile: -0.775902394998662&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 97.5% quantile: 0.839030929027982&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 97.5% quantile: 0.833139947605339&quot;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;test statistic: 0.00999999999999801&quot;
@@ -544,8 +545,8 @@ document.write(`
 <section id="nonparametric-bootstrap">
 <h2>Nonparametric bootstrap<a class="headerlink" href="#nonparametric-bootstrap" title="Permalink to this heading">#</a></h2>
 <p>Nonparametric bootstrap samples are generated by resampling the original data with replacement, pretending the original data is the “population”.</p>
-<div class="proof example admonition" id="11.3">
-<p class="admonition-title"><span>Example </span> (11.3)</p>
+<div class="proof example admonition" id="exp11.3">
+<p class="admonition-title"><span class="caption-number">Example 69 </span></p>
 <section class="example-content" id="proof-content">
 <p>We want to estimate the average weight of all UGA students. We take a sample of 10 students and their weights are (125.2028, 128.9885, 131.3598, 126.8757, 128.8428, 128.8664, 133.3717, 131.3412, 132.6467, 130.6033). The sample average is <span class="math notranslate nohighlight">\(129.81\)</span>. Here, we want to calculate the variance of the sample average.</p>
 <p>Nonparametric bootstrap samples are generated by resampling the original data with replacement</p>
@@ -571,13 +572,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the variance of the sample average is 0.587982207685721&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the variance of the sample average is 0.618809466400895&quot;
 </pre></div>
 </div>
 </div>
 </div>
-<div class="proof example admonition" id="11.4">
-<p class="admonition-title"><span>Example </span> (11.4)</p>
+<div class="proof example admonition" id="exp11.4">
+<p class="admonition-title"><span class="caption-number">Example 70 </span></p>
 <section class="example-content" id="proof-content">
 <p>Comparing two Packing Machines. In a packing plant, a machine packs cartons with jars. It is supposed that a new machine will pack faster on the average than the machine currently used. To test that hypothesis, the times it takes each machine to pack ten cartons are recorded. The results, in seconds, are shown in the following table</p>
 <div class="math notranslate nohighlight">
@@ -632,10 +633,10 @@ Under <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span>, two 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 2.5% quantile: -0.6805&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 2.5% quantile: -0.710000000000001&quot;
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 97.5% quantile: 0.800249999999997&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the 97.5% quantile: 0.769999999999996&quot;
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;test statistic: 0.00999999999999801&quot;

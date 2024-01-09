@@ -435,10 +435,10 @@ document.write(`
 <section id="discrete-cases">
 <h2>Discrete cases<a class="headerlink" href="#discrete-cases" title="Permalink to this heading">#</a></h2>
 <p>Considering two discrete random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> with a joint probability mass function (pmf) <span class="math notranslate nohighlight">\(P(X=x, Y=y)\)</span> or simply <span class="math notranslate nohighlight">\(P(x,y)\)</span>.</p>
-<div class="proof example admonition" id="example_4.1">
-<p class="admonition-title"><span>Example </span> (4.1)</p>
+<div class="proof example admonition" id="exp4.1">
+<p class="admonition-title"><span class="caption-number">Example 30 </span></p>
 <section class="example-content" id="proof-content">
-<p>The joint pmf can be represented by a table. The following table indicates <span class="math notranslate nohighlight">\(P(X=1,Y=0)=0.1\)</span>, <span class="math notranslate nohighlight">\(P(X=1,Y=1)=0.3\)</span>, <span class="math notranslate nohighlight">\(P(X=2,Y=0)=0.2\)</span>, <span class="math notranslate nohighlight">\(P(X=2,Y=1)=0.4\)</span>. The total probability is <span class="math notranslate nohighlight">\(0.1+0.2+0.3+0.4=1\)</span>.</p>
+<p>The joint pmf can be represented by a table. The following table indicates <span class="math notranslate nohighlight">\(P(X=1,Y=0)=0.1\)</span>, <span class="math notranslate nohighlight">\(P(X=1,Y=1)=0.3\)</span>, <span class="math notranslate nohighlight">\(P(X=2,Y=0)=0.2\)</span>, and <span class="math notranslate nohighlight">\(P(X=2,Y=1)=0.4\)</span>. The total probability is <span class="math notranslate nohighlight">\(0.1+0.2+0.3+0.4=1\)</span>.</p>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -455,34 +455,30 @@ document.write(`
 <td><p>0.3</p></td>
 <td><p>0.4</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
 </section>
-</div><div class="proof definition admonition" id="marginal">
-<p class="admonition-title"><span>Definition </span> (marginal pmf)</p>
+</div><div class="proof definition admonition" id="def4.1">
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (marginal pmf)</p>
 <section class="definition-content" id="proof-content">
-<p>The marginal pmf of <span class="math notranslate nohighlight">\(X\)</span> is</p>
+<p>The marginal pmf of <span class="math notranslate nohighlight">\(X\)</span> is just the pmf of <span class="math notranslate nohighlight">\(X\)</span>, which can be obtained from the joint pmf by summing over <span class="math notranslate nohighlight">\(Y\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
 P(X = x)=\sum_{y} P(X=x, Y=y)
 \]</div>
 </section>
-</div><p>The marginal pmf of <span class="math notranslate nohighlight">\(Y\)</span> is</p>
+</div><p>Similarly, the marginal pmf of <span class="math notranslate nohighlight">\(Y\)</span> can be obtained from the joint pmf by summing over <span class="math notranslate nohighlight">\(X\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
 P(y)=\sum_{x} P(x, y)
 \]</div>
-<p>The conditional probability</p>
+<p>Moreover, we can find the conditional probability by the following formula</p>
 <div class="math notranslate nohighlight">
 \[
 P(x \mid y)=\frac{P(x, y)}{P(y)}
 \]</div>
-<div class="proof example admonition" id="example_4.2">
-<p class="admonition-title"><span>Example </span> (4.2)</p>
+<div class="proof example admonition" id="exp4.2">
+<p class="admonition-title"><span class="caption-number">Example 31 </span></p>
 <section class="example-content" id="proof-content">
 <table class="table">
 <thead>
@@ -508,11 +504,6 @@ P(x \mid y)=\frac{P(x, y)}{P(y)}
 <td><p>0.6</p></td>
 <td><p>1</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
 <p>The marginal probability distribution of <span class="math notranslate nohighlight">\(X\)</span> is given by</p>
@@ -527,10 +518,6 @@ P(x \mid y)=\frac{P(x, y)}{P(y)}
 <tr class="row-even"><td><p>P</p></td>
 <td><p>0.4</p></td>
 <td><p>0.6</p></td>
-</tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -547,10 +534,6 @@ P(x \mid y)=\frac{P(x, y)}{P(y)}
 <td><p>0.3</p></td>
 <td><p>0.7</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
 </tbody>
 </table>
 <p>The conditional probability distribution of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y=0\)</span> is <span class="math notranslate nohighlight">\(P(X=1|Y=0) = 0.1/0.3 = 1/3\)</span> and <span class="math notranslate nohighlight">\(P(X=1|Y=0) = 0.2/0.3 = 2/3\)</span></p>
@@ -560,19 +543,19 @@ P(x \mid y)=\frac{P(x, y)}{P(y)}
 </div><div class="proof definition admonition" id="joint_expectation">
 <p class="admonition-title"><span>Definition </span></p>
 <section class="definition-content" id="proof-content">
-<p>The expectation of a function of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is defined as</p>
+<p>The expectation of a function <span class="math notranslate nohighlight">\(g(x,y)\)</span> of <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[
 E(g(x, y))=\sum_{x} \sum_{y} g(x, y) P(x, y)
 \]</div>
 </section>
-</div><p>The conditional expectation of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y\)</span> is</p>
+</div><p>The conditional expectation of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 E(X \mid Y=y)=\sum_{x} x P(x \mid y)
 \]</div>
-<div class="proof example admonition" id="example_4.3">
-<p class="admonition-title"><span>Example </span> (4.3)</p>
+<div class="proof example admonition" id="exp4.3">
+<p class="admonition-title"><span class="caption-number">Example 32 </span></p>
 <section class="example-content" id="proof-content">
 <p>The joint pmf of two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is given in the following table</p>
 <div class="math notranslate nohighlight">
@@ -612,15 +595,15 @@ E(X \mid Y=y)=\sum_{x} x P(x \mid y)
 <h2>Continuous cases<a class="headerlink" href="#continuous-cases" title="Permalink to this heading">#</a></h2>
 <section id="joint-marginal-conditional-densities">
 <h3>Joint, marginal, conditional densities<a class="headerlink" href="#joint-marginal-conditional-densities" title="Permalink to this heading">#</a></h3>
-<p>Let <span class="math notranslate nohighlight">\(f(x, y)\)</span> be the joint density function of two continuous random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. The marginal density of <span class="math notranslate nohighlight">\(X\)</span> is given by</p>
+<p>Let <span class="math notranslate nohighlight">\(f(x, y)\)</span> be the joint density function of two continuous random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>. The marginal density of <span class="math notranslate nohighlight">\(X\)</span> can be obtained from the joint density by integrating over <span class="math notranslate nohighlight">\(Y\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
 f(X=x)=\int_{-\infty}^{\infty} f(x, y) d y
 \]</div>
-<p>The marginal density of <span class="math notranslate nohighlight">\(Y\)</span> is given by</p>
+<p>Similarly, the marginal density of <span class="math notranslate nohighlight">\(Y\)</span> can be obtained from the joint density by integrating over <span class="math notranslate nohighlight">\(X\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
-f(Y=y)=\int_{-\infty}^{\infty} f(x, y) d x
+f(Y=y)=\int_{-\infty}^{\infty} f(x, y) dx
 \]</div>
 <p>The condition density of <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(Y=y\)</span> is given by</p>
 <div class="math notranslate nohighlight">
@@ -635,7 +618,7 @@ f(X=x \mid Y=y)=\frac{f(x, y)}{f(y)}
 \[
 P(x&lt;a, y&lt;b)=\int_{-\infty}^{a} \int_{-\infty}^{b} f(x, y) d x d y
 \]</div>
-<p>The expection of a function of random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span></p>
+<p>The expection of a function <span class="math notranslate nohighlight">\(g(x,y)\)</span> of random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 E(g(x, y))=\int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) f(x, y) d x d y
@@ -652,7 +635,7 @@ E(X \mid Y=y)=\int_{-\infty}^{\infty} x f(x \mid y) d x
 \[
 E(X)=E_{Y}(E(X \mid Y))
 \]</div>
-<p>because</p>
+<p>This is because</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -677,29 +660,35 @@ E_{Y}(E(X \mid Y)) &amp;= \int_{-\infty}^{\infty} (E(X \mid Y) f(y)dy\\
 </section>
 <section id="covariance-and-correlation">
 <h3>Covariance and correlation<a class="headerlink" href="#covariance-and-correlation" title="Permalink to this heading">#</a></h3>
-<p>The covariance of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is defined as</p>
+<p>The <strong>covariance</strong> of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[
 \operatorname{cov}(X_1, X_2)=E((X_1-u_1)(X_2-u_2))
 \]</div>
-<p>When <span class="math notranslate nohighlight">\(X_{1}=X_{2}\)</span>, the covariance of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is</p>
+<p>When <span class="math notranslate nohighlight">\(X_{1}=X_{2}\)</span>, the covariance of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is equal to the variance, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
 E\left(\left(X_{1}-u_{1}\right)\left(X_{1}-u_{1}\right)\right)=E\left[\left(X_{1}-u_{1}\right)^{2}\right]=\operatorname{var}\left(X_{1}\right)
 \]</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <ul class="simple">
 <li><p>Variance is a special case of covariance</p></li>
 <li><p>Covariance could be any real number, but variance must be non-negative.</p></li>
 </ul>
-<p>The correlation of <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is given by</p>
+</div>
+<p>The correlation of two random variables <span class="math notranslate nohighlight">\(X_{1}\)</span> and <span class="math notranslate nohighlight">\(X_{2}\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 \operatorname{corr}(X_1, X_2)=\frac{E((X_1-u_1)(X_2-u_2))}{\sqrt{\operatorname{var}(X_1)} \sqrt{\operatorname{var}(X_2)}}
 \]</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
 <ul class="simple">
 <li><p>Correlation is the standardized covariance</p></li>
 <li><p><span class="math notranslate nohighlight">\(-1 \leq\)</span> correlation <span class="math notranslate nohighlight">\(\leq 1\)</span></p></li>
 </ul>
+</div>
 </section>
 </section>
 <section id="independent-random-variables">
@@ -714,10 +703,10 @@ f\left(X_{1}, X_{2}\right)=f\left(X_{1}\right) f\left(X_{2}\right)
 \[
 f\left(X_{1},\dots, X_{n}\right)=\prod_{i=1}^nf\left(X_{i}\right)
 \]</div>
-<div class="proof example admonition" id="example_4.4">
-<p class="admonition-title"><span>Example </span> (4.4)</p>
+<div class="proof example admonition" id="exp4.4">
+<p class="admonition-title"><span class="caption-number">Example 33 </span></p>
 <section class="example-content" id="proof-content">
-<p><span class="math notranslate nohighlight">\(\left(X_{1}, X_{2}, \ldots, X_{n}\right) \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>. The joint density function of <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> is</p>
+<p>The notation <span class="math notranslate nohighlight">\(\left(X_{1}, X_{2}, \ldots, X_{n}\right) \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span> indicates that <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> are independently and identically distributed random variables with the same probability distribution <span class="math notranslate nohighlight">\(\operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>. The joint density function of <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -733,8 +722,8 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n}=x_{n} \mid \mu, \sigma^{2}\right)
 <p class="admonition-title">Important</p>
 <p>The joint density function of data <span class="math notranslate nohighlight">\(\left(X_1,\dots,X_n\right)\)</span> is also called the <strong>likelihood</strong> function. The likelihood function measures the likelihood of the observed data <span class="math notranslate nohighlight">\(\left(X_1,\dots,X_n\right)\)</span> given the parameters. When we estimate the parameter values from data, we choose the parameter values such that they can maximize the likelihood of the observed data; this is called “maximum likelihood estimate”</p>
 </div>
-<div class="proof example admonition" id="example_4.5">
-<p class="admonition-title"><span>Example </span> (4.5)</p>
+<div class="proof example admonition" id="exp4.5">
+<p class="admonition-title"><span class="caption-number">Example 34 </span></p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)\)</span>. The joint density function is</p>
 <div class="math notranslate nohighlight">
@@ -743,13 +732,13 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n}=x_{n} \mid \mu, \sigma^{2}\right)
 \begin{split}
 f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n} = x_{n} \mid \lambda\right) &amp;=\prod_{i=1}^{n} f\left(X_{i}=x_{i} \mid \lambda\right)\\
  &amp;=\prod_{i=1}^{n} \lambda^{x_{i}} e^{-\lambda} / x_{i} ! \\
-&amp; =\lambda^{\sum_{i=1}^{n} x_{i}} e^{-\lambda n} \prod \frac{1}{x_{i}!}
+&amp; =\lambda^{\sum_{i=1}^{n} x_{i}} e^{-\lambda n} \prod_{i=1}^n \frac{1}{x_{i}!}
 \end{split}
 \end{equation}
 \end{split}\]</div>
 </section>
-</div><div class="proof example admonition" id="example_4.6">
-<p class="admonition-title"><span>Example </span> (4.6)</p>
+</div><div class="proof example admonition" id="exp4.6">
+<p class="admonition-title"><span class="caption-number">Example 35 </span></p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Exponential}(\lambda)\)</span>. The joint density function is</p>
 <div class="math notranslate nohighlight">
@@ -758,7 +747,7 @@ f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n} = x_{n} \mid \lambda\right) &amp;
 \begin{split}
 f\left(X_{1}=x_{1}, X_{2}=x_{2}, \ldots, X_{n}=x_{n} \mid \lambda\right) &amp;= \prod_{i=1}^{n} f\left(X_{i}=x_{i} \mid \lambda\right)\\
 &amp;=\prod_{i=1}^{n} \lambda e^{-\lambda x_{i}}\\
-&amp;=(\lambda)^{n} e^{-\lambda \sum_{i=1}^{n} x_{i}}
+&amp;=\lambda^{n} e^{-\lambda \sum_{i=1}^{n} x_{i}}
 \end{split}
 \end{equation}
 \end{split}\]</div>
@@ -780,11 +769,15 @@ G(t)=E\left(t^{X}\right)=\sum_{x=0}^{\infty} t^{x} p(x)
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{array}{r}
-G(t=0)=p(0) \\
-G^{\prime}(t=0)=p(1) \\
-G^{\prime \prime}(t=0)=p(2)
+P(X=0)=G(t=0) \\
+P(X=1)=G^{\prime}(t=0) \\
+P(X=2)=G^{\prime \prime}(t=0)
 \end{array}
 \end{split}\]</div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The Probability Generating Function (PGF) of a random variable uniquely determines its probability distribution. Once the PGF is determined, the corresponding probability distribution can be identified.</p>
 </div>
 <p>We can show that</p>
 <ol class="arabic simple">
@@ -792,16 +785,16 @@ G^{\prime \prime}(t=0)=p(2)
 <li><p>The probability generating function for the Poisson distribution is <span class="math notranslate nohighlight">\(e^{\lambda(t-1)}\)</span></p></li>
 </ol>
 <div class="proof theorem admonition" id="theorem-8">
-<p class="admonition-title"><span class="caption-number">Theorem 10 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 11 </span></p>
 <section class="theorem-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> be independent discrete random variables with the probability generating functions <span class="math notranslate nohighlight">\(G_{1}(t), \ldots, G_{n}(t)\)</span>. Then, the probability generating function of <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span> is given by</p>
+<p>Let <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> be independent discrete random variables with the probability generating functions <span class="math notranslate nohighlight">\(G_{1}(t), \ldots, G_{n}(t)\)</span>. Then, the probability generating function of <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span> is equal to the product of individual PGFs, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
 G_{s_{n}}(t)=\prod_{i=1}^{n} G_{i}(t)
 \]</div>
 </section>
-</div><div class="proof example admonition" id="example_4.7">
-<p class="admonition-title"><span>Example </span> (4.7)</p>
+</div><div class="proof example admonition" id="exp4.7">
+<p class="admonition-title"><span class="caption-number">Example 36 </span></p>
 <section class="example-content" id="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(X_{1} \sim Poisson(\lambda_1)\)</span> and <span class="math notranslate nohighlight">\(X_2 \sim Poisson(\lambda_2)\)</span>. Find the probability distribution of <span class="math notranslate nohighlight">\(X_1+X_2\)</span>.</p>
 <p>The PGF of <span class="math notranslate nohighlight">\(X_1\)</span> is <span class="math notranslate nohighlight">\(G_{X_1}(t) = e^{\lambda_1(t-1)}\)</span> and the PGF of <span class="math notranslate nohighlight">\(X_2\)</span> is <span class="math notranslate nohighlight">\(G_{X_2}(t) = e^{\lambda_2(t-1)}\)</span>. Thus,</p>
@@ -809,38 +802,38 @@ G_{s_{n}}(t)=\prod_{i=1}^{n} G_{i}(t)
 \[
 G_{X_1+X_2}(t)=G_{X_1}(t)G_{X_2}(t)=e^{(\lambda_1+\lambda_2)(t-1)}
 \]</div>
-<p>Thus, <span class="math notranslate nohighlight">\(X_1+X_2\)</span> is a Poisson random variable with mean <span class="math notranslate nohighlight">\(\lambda^{*}=\lambda_1+\lambda_2\)</span>.</p>
+<p>This is the PGF of the Poisson distribution with <span class="math notranslate nohighlight">\(\lambda=\lambda_1+\lambda_2\)</span>. Thus, the sum <span class="math notranslate nohighlight">\(X_1+X_2\)</span> is a Poisson random variable with mean <span class="math notranslate nohighlight">\(\lambda=\lambda_1+\lambda_2\)</span>.</p>
 </section>
 </div><p>If <span class="math notranslate nohighlight">\(X_{1},\ldots, X_{n}\)</span> are identically and independently distributed (iid) with the same probability distribution, then the PGF of their sum is given by</p>
 <div class="math notranslate nohighlight">
 \[
 G_{S_{n}}(t)=(G(t))^{n}
 \]</div>
-<div class="proof example admonition" id="example_4.8">
-<p class="admonition-title"><span>Example </span> (4.8)</p>
+<div class="proof example admonition" id="exp4.8">
+<p class="admonition-title"><span class="caption-number">Example 37 </span></p>
 <section class="example-content" id="proof-content">
-<p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)\)</span> and <span class="math notranslate nohighlight">\(G(t)=e^{\lambda(t-1)}\)</span></p>
+<p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Poisson}(\lambda)\)</span> and the PGF of the Poisson distribution is <span class="math notranslate nohighlight">\(G(t)=e^{\lambda(t-1)}\)</span>. Then, the PGF of the sum <span class="math notranslate nohighlight">\(S_n=\sum_{i=1}^nX_i\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 G_{s_{n}}(t)=(G(t))^{n}=e^{n \lambda(t-1)}
 \]</div>
-<p>Thus, <span class="math notranslate nohighlight">\(S_{n}\)</span> is a Poisson random variable with mean <span class="math notranslate nohighlight">\(\lambda^{*}=n \lambda\)</span>.</p>
+<p>This is the PGF of the Poisson distribution with <span class="math notranslate nohighlight">\(\lambda^*=n \lambda\)</span>. Thus, <span class="math notranslate nohighlight">\(S_{n}\)</span> of Poisson random variables is again a Poisson random variable with mean <span class="math notranslate nohighlight">\(\lambda^*=n \lambda\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example_4.9">
-<p class="admonition-title"><span>Example </span> (4.9)</p>
+</div><div class="proof example admonition" id="exp4.9">
+<p class="admonition-title"><span class="caption-number">Example 38 </span></p>
 <section class="example-content" id="proof-content">
-<p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Bernoulli}(p), G(t)=(1-p)+p t\)</span></p>
+<p><span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Bernoulli}(p) and the PGF of the Bernoulli distribution is G(t)=(1-p)+p t\)</span>. Then, the PGF of the sum <span class="math notranslate nohighlight">\(S_n=\sum_{i=1}^nX_i\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 G_{S_{n}}(t)=(G(t))^{n}=(1-p+p t)^{n}
 \]</div>
-<p>Thus, the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> follows a Binomial distribution with parameters <span class="math notranslate nohighlight">\((n, p)\)</span>.</p>
+<p>This is the PGF of the Binomial distribution.Thus, the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> of Bernoulli random variables is a Binomial random variable.</p>
 </section>
 </div></section>
 <section id="id2">
 <h3>Continuous cases<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>The PGF cannot be applied to the continuous random variables, because the continuous random variables do not have point probabilities. Instead, we will use the moment generating function to derive the probability distribution of the sum.</p>
-<p>Let <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> be independent random variables with moment generating functions <span class="math notranslate nohighlight">\(M_{1}(t), \ldots, M_{n}(t)\)</span>. Then, the moment generating function of <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span> is given by</p>
+<p>Let <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> be independent random variables with MGFs <span class="math notranslate nohighlight">\(M_{1}(t), \ldots, M_{n}(t)\)</span>. Then, the MGF of the sum <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span> is equal to the product of individual MGFs, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
 M_{S_{n}}(t)=\prod_{i=1}^{n} M_{i}(t)
@@ -859,30 +852,30 @@ M_{S_{n}}(t)=(M(t))^{n}
 <li><p>The moment generating function for the gamma distribution is <span class="math notranslate nohighlight">\((1-t / \alpha)^{-\beta}\)</span></p></li>
 </ol>
 </div>
-<div class="proof example admonition" id="example_4.10">
-<p class="admonition-title"><span>Example </span> (4.10)</p>
+<div class="proof example admonition" id="exp4.10">
+<p class="admonition-title"><span class="caption-number">Example 39 </span></p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}\right)\)</span>, find the probability distribution of the sum <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span>.</p>
 <p>Since <span class="math notranslate nohighlight">\(X_i's\)</span> have the same normal distribution with the MGF <span class="math notranslate nohighlight">\(M(t)=e^{u t+\sigma^{2} t^{2} / 2}\)</span>, the MGF of the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[M_{S_{n}}(t)=(M(t))^{n}=\left(e^{u t+\sigma^{2} t^{2} / 2}\right)^{n}=\left(e^{nut+n\sigma^{2} t^{2} / 2}\right)\]</div>
-<p>Thus, the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(n \mu\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span></p>
+<p>This is the MGF of the normal distribution with mean <span class="math notranslate nohighlight">\(n \mu\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span>. Thus, the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> of iid (independently and identically distributed) normal random variables is again a normal random variable with mean <span class="math notranslate nohighlight">\(n \mu\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="example_4.11">
-<p class="admonition-title"><span>Example </span> (4.11)</p>
+</div><div class="proof example admonition" id="exp4.11">
+<p class="admonition-title"><span class="caption-number">Example 40 </span></p>
 <section class="example-content" id="proof-content">
 <p>Given a random sample <span class="math notranslate nohighlight">\(X_{1}, \dots, X_{n} \sim \exp (\lambda)\)</span>, find the probability distribution of the sum <span class="math notranslate nohighlight">\(S_{n}=\sum_{i=1}^{n} X_{i}\)</span>.</p>
 <p>Since <span class="math notranslate nohighlight">\(X_i's\)</span> have the same exponential distribution with the MGF <span class="math notranslate nohighlight">\(M(t)=(1-t / \lambda)^{-1}\)</span>, the MGF of the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> is</p>
 <div class="math notranslate nohighlight">
 \[M_{S_{n}}(t)=(M(t))^{n}=(1-t / \lambda)^{-n}\]</div>
-<p>Thus, <span class="math notranslate nohighlight">\(S_{n}\)</span> follows the Gamma distribution with <span class="math notranslate nohighlight">\(\alpha=\lambda\)</span> and <span class="math notranslate nohighlight">\(\beta=n\)</span>.</p>
+<p>This is the MGF of the Gamma distribution. Thus, the sum <span class="math notranslate nohighlight">\(S_{n}\)</span> of iid exponential random variables is a Gamma random variable with <span class="math notranslate nohighlight">\(\alpha=\lambda\)</span> and <span class="math notranslate nohighlight">\(\beta=n\)</span>.</p>
 </section>
-</div><p>Alternatively, we may find the CDF of the statistic.</p>
-<div class="proof example admonition" id="example_4.12">
-<p class="admonition-title"><span>Example </span> (4.12)</p>
+</div><p>Alternatively, the subsequent example illustrates how the Cumulative Distribution Function (CDF) technique can be employed to ascertain the probability distribution of a statistic.</p>
+<div class="proof example admonition" id="exp4.12">
+<p class="admonition-title"><span class="caption-number">Example 41 </span></p>
 <section class="example-content" id="proof-content">
-<p>Find the distribution of <span class="math notranslate nohighlight">\(\max \left\{X_{1}, X_{2}, \ldots, X_{n}\right\}\)</span></p>
-<p><span class="math notranslate nohighlight">\(P\left(X_{\max } \leq a\right)=P\left(X_{1} \leq a, X_{2} \leq a, \ldots, X_{n} \leq a\right)=\prod P\left(X_{i} \leq a\right)=(F(a))^{n}\)</span>. Thus, the probability density function is <span class="math notranslate nohighlight">\(f\left(X_{\max }=a\right)=n(F(a))^{n-1} f(a)\)</span></p>
+<p>Suppose <span class="math notranslate nohighlight">\(X_{1}, \ldots, X_{n}\)</span> are iid random variables with the same density <span class="math notranslate nohighlight">\(f(x)\)</span> and CDF <span class="math notranslate nohighlight">\(F(x)\)</span>. Find the distribution of <span class="math notranslate nohighlight">\(\max \left\{X_{1}, X_{2}, \ldots, X_{n}\right\}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(P\left(X_{\max } \leq a\right)=P\left(X_{1} \leq a, X_{2} \leq a, \ldots, X_{n} \leq a\right)=\prod P\left(X_{i} \leq a\right)=(F(a))^{n}\)</span>. Thus, the probability density function is <span class="math notranslate nohighlight">\(f\left(X_{\max }=a\right)=n(F(a))^{n-1} f(a)\)</span>.</p>
 </section>
 </div></section>
 </section>
@@ -890,9 +883,9 @@ M_{S_{n}}(t)=(M(t))^{n}
 <h2>Mutivariate probability distributions<a class="headerlink" href="#mutivariate-probability-distributions" title="Permalink to this heading">#</a></h2>
 <section id="multinomial-distribution">
 <h3>Multinomial distribution<a class="headerlink" href="#multinomial-distribution" title="Permalink to this heading">#</a></h3>
-<p>The multinomial distribution is an extension of the binomial distribution. In the Binomial distribution, there are two possible outcomes. But the multinomial distribution is dealing with multiple <span class="math notranslate nohighlight">\((&gt;2)\)</span> outcomes.</p>
-<div class="proof example admonition" id="example_4.13">
-<p class="admonition-title"><span>Example </span> (4.13)</p>
+<p>The multinomial distribution is an extension of the binomial distribution. In the Binomial distribution, there are two possible outcomes. The multinomial distribution is dealing with multiple <span class="math notranslate nohighlight">\((&gt;2)\)</span> outcomes.</p>
+<div class="proof example admonition" id="exp4.13">
+<p class="admonition-title"><span class="caption-number">Example 42 </span></p>
 <section class="example-content" id="proof-content">
 <p>Suppose the proportions of <span class="math notranslate nohighlight">\(A, C, G, T\)</span> in the genome are <span class="math notranslate nohighlight">\(p_{A}=0.2, p_{c}=0.3, p_{G}=0.2, p_{T}=0.3\)</span>. We select <span class="math notranslate nohighlight">\(n=100\)</span> nucleotides at random from the genome. Let <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}, X_{T}\)</span> be the number of <span class="math notranslate nohighlight">\(A, C, G, T\)</span>, respectively. <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}, X_{T}\)</span> are random variables and the sum of <span class="math notranslate nohighlight">\(X_{A}, X_{C}, X_{G}\)</span>, <span class="math notranslate nohighlight">\(X_{T}\)</span> is <span class="math notranslate nohighlight">\(n\)</span>. <span class="math notranslate nohighlight">\(\left\{X_{A}, X_{C}, X_{G}, X_{T}\right\}\)</span> follow the multinomial distribution with joint probability mass function</p>
 <div class="math notranslate nohighlight">
@@ -916,8 +909,8 @@ f_{\mathbf{x}}\left(x_{1}, \ldots, x_{n}\right)=\frac{1}{\sqrt{(2 \pi)^{k}|\math
 <li><p>The conditional distribution of <span class="math notranslate nohighlight">\(X_{i}\)</span> given <span class="math notranslate nohighlight">\(X_{j}\)</span> for <span class="math notranslate nohighlight">\(j \neq i\)</span> is normal</p></li>
 <li><p>Any linear combination of <span class="math notranslate nohighlight">\(X_1,\dots, X_n\)</span>, i.e., <span class="math notranslate nohighlight">\(\sum_{i=1}^na_iX_i\)</span> follows the normal distribution with mean <span class="math notranslate nohighlight">\(\sum_{i=1}^na_i\mu_i\)</span> and variance <span class="math notranslate nohighlight">\(a^{t}\Sigma a\)</span> where <span class="math notranslate nohighlight">\(a=(a_1,\dots,a_n)\)</span> and <span class="math notranslate nohighlight">\(a^t\)</span> is the transpose of the vector <span class="math notranslate nohighlight">\(a\)</span>.</p></li>
 </ul>
-<div class="proof example admonition" id="example_4.14">
-<p class="admonition-title"><span>Example </span> (4.14)</p>
+<div class="proof example admonition" id="exp4.14">
+<p class="admonition-title"><span class="caption-number">Example 43 </span></p>
 <section class="example-content" id="proof-content">
 <p>Suppose three random variables <span class="math notranslate nohighlight">\((X_1, X_2, X_3)\)</span> follow a Multivariate normal distribution with the mean vector <span class="math notranslate nohighlight">\(\mu=(1.2, 3.4, 0.4)\)</span> and the covariance matrix <span class="math notranslate nohighlight">\(\begin{pmatrix} 0.1&amp;   0.2&amp;  -0.4\\ 0.2 &amp;     1.3 &amp;    1.8\\ -0.4 &amp;   1.8  &amp;  1.1\end{pmatrix}\)</span>.</p>
 <p>a) What is the probability density function of <span class="math notranslate nohighlight">\(X_1\)</span>?<br />
@@ -940,7 +933,7 @@ E(2X_1-X_2-4X_3) &amp;= 2E(X_1)-E(X_2)-4E(X_3) \\
 \begin{equation}
 \begin{split} 
 var(X_1+X_2+X_3) &amp;= var(X_1)+var(X_2)+var(X_3)+2cov(X_1,X_2)+2cov(X_1,X_3)+2cov(X_2,X_3) \\
-&amp;=0.1+1.3+1.1+2*0.2+2*(-1.4)+2*1.8 \\
+&amp;=0.1+1.3+1.1+2*0.2+2*(-0.4)+2*1.8 \\
 &amp;=3.7
 \end{split}
 \end{equation}

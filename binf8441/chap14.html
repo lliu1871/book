@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -421,20 +421,18 @@ document.write(`
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Substitution_model">substitution models</a></p></li>
 </ul>
 </div>
-<p>How do we estimate mutation rates from DNA sequences? We often count the number <span class="math notranslate nohighlight">\(x\)</span> of different nucleotides between two sequences and use the ratio <span class="math notranslate nohighlight">\(x/n\)</span> to estimate the mutation rate where <span class="math notranslate nohighlight">\(n\)</span> is the number of nucleotides in the DNA sequences. For example, there are two sites with different nucleotides in the following two DNA sequences. Thus, the mutation rate is <span class="math notranslate nohighlight">\(2/10 = 0.2\)</span> which is the number of mutations per site.</p>
+<p>To estimate mutation rates from DNA sequences, a common approach involves counting the number <span class="math notranslate nohighlight">\(x\)</span> of differing nucleotides between two sequences. The ratio <span class="math notranslate nohighlight">\(x/n\)</span> is then employed as an estimate of the mutation rate, where <span class="math notranslate nohighlight">\(n\)</span> represents the total number of nucleotides in the DNA sequences. For instance, consider the following two DNA sequences with two differing nucleotide sites. In this case, the mutation rate is calculated as <span class="math notranslate nohighlight">\(2/10 = 0.2\)</span>, representing the number of mutations per site.</p>
 <p>S1 ATTTACCTTG<br />
 S2 ATTTCACTTG</p>
-<p>In this example, we count the first site AA as no-mutation but count the site AC as a single mutation. However, the nucleotide A in the first site may first mutate to T and then mutate back to A. Then, there should be two mutations. Simply counting the number of different nucleotides will underestimate the number of mutations. We need a model which allows multiple mutations to accurately estimate the mutation rate.</p>
+<p>In this instance, the counting considers the first site, AA, as having no mutation, while the site AC is counted as a single mutation. However, it’s crucial to recognize that the nucleotide A in the first site may initially mutate to T and then mutate back to A. In such a scenario, there should be two mutations. Merely counting the number of different nucleotides can lead to an underestimation of the mutation count. To accurately estimate the mutation rate, a model that accommodates multiple mutations is necessary.</p>
 <p>The substitution model is a continuous time Markov chain describing how a single nucleotide evolves over a continuous time <span class="math notranslate nohighlight">\(t\)</span>. Let <span class="math notranslate nohighlight">\(X_t\)</span> be the nucleotide at time <span class="math notranslate nohighlight">\(t\)</span>. The state space is finite, i.e., <span class="math notranslate nohighlight">\((A,C,G,T)\)</span>. Let <span class="math notranslate nohighlight">\(\pi_t = \left(\pi_t(A),\pi_t(C),\pi_t(G),\pi_t(T)\right)\)</span> be the probability distribution of <span class="math notranslate nohighlight">\(X_t\)</span>.</p>
 <div class="admonition-goal admonition">
 <p class="admonition-title">Goal</p>
-<p>Our goal is to find <span class="math notranslate nohighlight">\(\pi_t\)</span> and the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_\infty\)</span> as time <span class="math notranslate nohighlight">\(t\)</span> goes to infinity.</p>
+<p>Our goal is to determine <span class="math notranslate nohighlight">\(\pi_t\)</span> and the limiting probability distribution <span class="math notranslate nohighlight">\(\pi_\infty\)</span> as time <span class="math notranslate nohighlight">\(t\)</span> goes to infinity.</p>
 </div>
 <section id="transition-probability-matrix">
 <h2>Transition probability matrix<a class="headerlink" href="#transition-probability-matrix" title="Permalink to this heading">#</a></h2>
-<p>The transition probabilities <span class="math notranslate nohighlight">\(P(t)\)</span> for nucleotides is a 4
-by 4 matrix, in which <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span> is the probability that nucleotide <span class="math notranslate nohighlight">\(i\)</span>
-changes to nucleotide <span class="math notranslate nohighlight">\(j\)</span> in time <span class="math notranslate nohighlight">\(t\)</span>, where <span class="math notranslate nohighlight">\(i,j=A,C,G,T\)</span>.</p>
+<p>The transition probabilities <span class="math notranslate nohighlight">\(P(t)\)</span> for nucleotides form a 4 by 4 matrix. In this matrix, <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span> represents the probability that nucleotide <span class="math notranslate nohighlight">\(i\)</span> changes to nucleotide <span class="math notranslate nohighlight">\(j\)</span> over a time interval <span class="math notranslate nohighlight">\(t\)</span>, with <span class="math notranslate nohighlight">\(i, j\)</span> taking values from the set <span class="math notranslate nohighlight">\({A, C, G, T}\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}P(t) = \begin{pmatrix}
 P_{AA}(t),\ P_{AC}(t),\ P_{AG}(t),P_{AT}(t) \\
@@ -465,11 +463,7 @@ transition rate matrix <span class="math notranslate nohighlight">\(Q\)</span></
 </section>
 <section id="transition-rate-matrix">
 <h2>Transition rate matrix<a class="headerlink" href="#transition-rate-matrix" title="Permalink to this heading">#</a></h2>
-<p>The rate matrix <span class="math notranslate nohighlight">\(Q\)</span> describes
-the rate at which nucleotides of one type mutate to nucleotides of
-another type, i.e., <span class="math notranslate nohighlight">\(Q_{ij}\)</span> for <span class="math notranslate nohighlight">\(i \neq j\)</span> is the substitution rate at which
-nucleotide <span class="math notranslate nohighlight">\(i\)</span> mutates to nucleotide <span class="math notranslate nohighlight">\(j\)</span>. The diagonals of the <span class="math notranslate nohighlight">\(Q\)</span> matrix are
-chosen so that the rows sum to zero. Since the diagonal values are determined, they are often replaced by a dash in the <span class="math notranslate nohighlight">\(Q\)</span> matrix.</p>
+<p>The rate matrix <span class="math notranslate nohighlight">\(Q\)</span> characterizes the rate at which nucleotides of one type mutate to nucleotides of another type. Specifically, <span class="math notranslate nohighlight">\(Q_{ij}\)</span> for <span class="math notranslate nohighlight">\(i \neq j\)</span> represents the substitution rate at which nucleotide <span class="math notranslate nohighlight">\(i\)</span> mutates to nucleotide <span class="math notranslate nohighlight">\(j\)</span>. To ensure that the rows sum to zero, the diagonals of the <span class="math notranslate nohighlight">\(Q\)</span> matrix are set accordingly. As the diagonal values are predetermined, they are commonly represented by a dash in the <span class="math notranslate nohighlight">\(Q\)</span> matrix.</p>
 <section id="jukes-cantor-model">
 <h3>Jukes-Cantor model<a class="headerlink" href="#jukes-cantor-model" title="Permalink to this heading">#</a></h3>
 <p>The Jukes-Cantor model is the simplest substitution model. It assumes that all nucleotide
@@ -481,15 +475,14 @@ u &amp; - &amp; u &amp; u \\
 u &amp; u &amp; - &amp; u \\
 u &amp; u &amp; u &amp; - \\
 \end{pmatrix}\end{split}\]</div>
-<p>For <span class="math notranslate nohighlight">\(i,j = \{ A,C,G,T\}\)</span>, the transition probabilities for the Jukes-Cantor model are given by eq(3),</p>
+<p>For <span class="math notranslate nohighlight">\(i,j = \{ A,C,G,T\}\)</span>, the transition probabilities for the Jukes-Cantor model are given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}P_{ij}(t) = \left\{ \begin{matrix}
 \frac{1}{4} + \frac{3}{4}e^{- 4ut},\ for\ i = j \\
 \frac{1}{4} - \frac{1}{4}e^{- 4ut},\ for\ i \neq j \\
 \end{matrix} \right.\ \end{split}\]</div>
 <p>For the Jukes-Cantor model, the limiting probabilities are
-<span class="math notranslate nohighlight">\(\lim_{t \rightarrow \infty}{P_{ij}(t)} = 1/4\)</span> for all i and j.
-Thus, the limiting probabilities are</p>
+<span class="math notranslate nohighlight">\(\lim_{t \rightarrow \infty}{P_{ij}(t)} = 1/4\)</span> for all <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.  Thus, the limiting probabilities are</p>
 <div class="math notranslate nohighlight">
 \[\pi_{A} = \pi_{C} = \pi_{G} = \pi_{T} = \frac{1}{4}\]</div>
 <p>It can be verified that <span class="math notranslate nohighlight">\(\pi Q = 0\)</span> and <span class="math notranslate nohighlight">\(\sum_{j}^{}\pi_{j} = 1\)</span>.</p>
@@ -507,7 +500,7 @@ Q_0 = \begin{pmatrix}
 \gamma &amp; \omega &amp; \sigma &amp; - \\
 \end{pmatrix}
 \end{split}\]</div>
-<p>The transition probability matrix P(t) can be derived from equ(3) and the limiting probabilities can be found by solving the equations in (4). Because the rate matrix <span class="math notranslate nohighlight">\(Q_0\)</span> is symmetric, the limiting probabilities are always equal to <span class="math notranslate nohighlight">\(1/4\)</span>. The <span class="math notranslate nohighlight">\(Q\)</span> matrix must be modified in order to produce arbitrary limiting probabilities.</p>
+<p>Given that the rate matrix <span class="math notranslate nohighlight">\(Q_0\)</span> is symmetric, the resulting limiting probabilities are consistently equal to <span class="math notranslate nohighlight">\(1/4\)</span>. To introduce arbitrary limiting probabilities, adjustments must be made to the <span class="math notranslate nohighlight">\(Q\)</span> matrix.</p>
 <p>It can be shown that the limiting probabilities of the Markov chain with
 the following rate matrix <span class="math notranslate nohighlight">\(Q\)</span> are <span class="math notranslate nohighlight">\(\pi_\infty=\left(\pi_A,\pi_C,\pi_G,\pi_T\right)\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -555,7 +548,7 @@ model, in which the transition probabilities are given by</p>
 evolutionary distance <span class="math notranslate nohighlight">\(d\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[d = \frac{3ut}{4} = - \frac{3}{4}log(1 - \frac{4p}{3})\]</div>
-<p>The transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span> and limiting probabilities
+<p>In the next chapter, the transition probability matrix <span class="math notranslate nohighlight">\(P(t)\)</span> and limiting probabilities
 <span class="math notranslate nohighlight">\((\pi_{A},\pi_{C},\pi_{G},\pi_{T})\)</span> will be used to derive the
 likelihood function for phylogenetic models.</p>
 </section>

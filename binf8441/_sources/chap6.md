@@ -43,78 +43,74 @@ $\mathrm{H}_{0}: \mu_{A}=\mu_{B}$ vs $\mathrm{H}_{1}: \mu_{A} > \mu_{B}$
 
 Test-stat: $t=\frac{\bar{x}_{A}-\bar{x}_{B}}{s d\left(\bar{x}_{A}-\bar{x}_{B}\right)}$. 
 
-Rejection region: we reject the null hypothesis $\mathrm{H}_{0}$ if $t$ is too large, i.e., $t>a$ where $a$ is called the critical value for rejecting the null hypothesis.
+Rejection region: we reject the null hypothesis $H_{0}$ if $t$ is too large, i.e., $t>a$ where $a$ is called the critical value for rejecting the null hypothesis.
 
 ## General principles (hypothesis, test stat, decision)
 
-1. The null and alternative hypotheses must be about unknown parameters. They should NOT involve statistics.
-2. If we reject the null hypothesis, we can say that the alternative hypothesis is true. But if we cannot reject the null hypothesis, we cannot say that the null hypothesis is true. We can only say that there is no enough information in the data to support either the null or the alternative hypothesis.
-3. Because we cannot accept the null hypothesis, the scientifically significant hypothesis (or the hypothesis you want to conclude) should be formulated as the alternative hypothesis.
+1. The null and alternative hypotheses should pertain to unknown parameters and should avoid involving statistics.
+2. If we reject the null hypothesis, we can conclude that the alternative hypothesis is likely true. However, if we cannot reject the null hypothesis, we cannot assert that the null hypothesis is true. In such cases, we can only state that the available data does not provide sufficient evidence to support either the null or the alternative hypothesis.
+3. As we cannot accept the null hypothesis, the scientifically significant hypothesis, or the hypothesis we aim to conclude, should be formulated as the alternative hypothesis.
 4. The test statistic should be a function of the estimators of parameters in the hypotheses.
-5. The rejection region consists of values of test statistic for rejecting the null hypothesis.
+5. The rejection region comprises the values of the test statistic that lead to rejecting the null hypothesis.
 
+````{prf:example} 
+:label: exp6.1
 
-````{prf:example} 6.1
-:nonumber:
-:label: 6.1
-:nonumber:
 A pharmaceutical company is testing if a new drug is effective. In this case, we should formulate the hypotheses as follows
 
-H0: the drug is not effective
+$H_0$: the drug is not effective
 
-H1: the drug is effective
+$H_1$: the drug is effective
 
-If we reject the null hypothesis, we can conclude that the drug is effective. However, if we switch the null and alternative hypothsis
+If we reject the null hypothesis, we can conclude that the drug is effective. However, if we switch the null and alternative hypothses
 
-H0: the drug is effective
+$H_0$: the drug is effective
 
-H1: the drug is not effective
+$H_1$: the drug is not effective
 
 If we reject the null, we conclude that the drug is not effective. If we cannot reject the null, we still cannot accept the null hypothesis. Thus, we would NEVER conclude that the drug is effective if we formulate the null and alternative hypothese in this way.
 
 ````
 ## Type I and II errors
 
-| | H0 is true | H1 is true |
+| | $H_0$ is true | $H_1$ is true |
 | --- | --- | --- | 
-|Accept H0 | - |  Type II error| 
-|Reject H0 | Type I error | - | 
-| | | |
+|Accept $H_0$ | - |  Type II error| 
+|Reject $H_0$ | Type I error | - | 
 
 ````{prf:definition} Type I and II error
-:nonumber:
-:label: Type I error
+:label: def6.1
 
-Type I error $=\mathrm{P}\left(\right.$ rejection region $\left.\mid \mathrm{H}_{0}\right)$
+Type I error $=P\left(\right.$ rejection region $\left.\mid H_{0}\right)$
 
-Type II error $=\mathrm{P}\left(\right.$ acceptance region $\left.\mid \mathrm{H}_{1}\right)$
+Type II error $=P\left(\right.$ acceptance region $\left.\mid H_{1}\right)$
 ````
 
 Type I and II errors depend on the rejection region. Our goal is to minimize both types of errors. We may make Type I error arbitrarily small using trivial rejection regions.
 
-For example, in the two sample $t$ test, we reject the null if $t>\infty$ (this is the rejection region), then Type I error $=0$, because we never reject the null. But type II error $=1$ for the same reason. If the rejection region is $t>-\infty$, then Type I error $=1$ and type II error $=0$. 
+For example, in the two sample $t$ test, we reject the null if $t>\infty$ (this is the rejection region), then Type I error $=0$, because we would never reject the null. But type II error $=1$ for the same reason. If the rejection region is $t>-\infty$, then Type I error $=1$ and type II error $=0$. 
 
 ```{important}
-We can control Type I or Type II error separately, but we cannot control both errors simultaneously. 
+We can independently manage Type I or Type II errors, but it is not possible to control both errors simultaneously unless we increase the sample size.
 ```
 
-By convension, we choose to control type I error at the level of 5%. For example, the rejection region in the example of the two sample $t$ test is $t>a$. To control the type I error at the level of 5%, we have
+rewrite:By convension, we choose to control type I error at the level of 5%. For example, the rejection region in the example of the two sample $t$ test is $t>a$. To control the type I error at the level of 5%, we have
 
 $$
 P\left(t>a \mid H_{0}\right)=0.05
 $$
 
-Solving this equation, we can find the critical value $a$. The solution is that $a$ is the 95% quantile of the null distribution of the test statistic $t$.
+By solving this equation, we can determine the critical value $a$, which is the 95th percentile of the null distribution of the test statistic $t$.
 
 ## Evaluating the performance of a test
 
 The performance of a test is evaluated by its power, which is defined as the probability of rejecting $H_{0}$ while $H_{1}$ is true, i.e.,
 
 $$
-\text { Power }=P\left(\text { rejection region } \mid \mathrm{H}_{1}\right)=1 \text { - Type II error. }
+\text{Power}=P\left(\text{rejection region} \mid H_{1}\right)=1 - \text {Type II error.}
 $$
 
-When the alternative hypothesis $\mathrm{H}_{1}$ is an interval, the power of the test must be evaluated at each value in the interval of the parameters.
+When the alternative hypothesis $H_{1}$ is an interval, the power of the test must be evaluated at each value in the interval of the parameters.
 
 ## One sample t-test
 ```{admonition} Assumption
@@ -134,7 +130,7 @@ The Wald statistic takes the following form $W=\frac{\hat{\mu}-\mu_0}{\operatorn
 
 Test-stat: $t=\frac{\bar{x}-1} {sd(\bar{x})}$. The null distribution of $t$ is the student $t$ distribution with degrees of freedom $(n-1)$.
 
-Rejection region: we reject the null if $t>a$. We find the value of $a$ by controling the type I error at the level of 5%, i.e.,
+Rejection region: we reject the null if $t>a$. We find the value of $a$ by controling type I error at the level of 5%, i.e.,
 
 $$P(t>a|H_0) = 0.05$$
 
@@ -149,7 +145,7 @@ text(2.3,0.005,labels="5%", col="red")
 text(0,0.15,labels="95%", col="red")
 ```
 
-If the alternative is H1: $\mu<1$, we only need to change the rejection region and we reject the null if $t<a$ where $a$ is the 5% quantile of the null distribution of the test statistic.
+If the alternative is $H_1$: $\mu<1$, we only need to change the rejection region and we reject the null if $t<a$ where $a$ is the 5% quantile of the null distribution of the test statistic.
 
 ```{code-cell}
 x <- seq(-3, 3, by = .1)
@@ -301,11 +297,11 @@ $H_0$ : gender and smoking are independent versus $H_1$ : not independent
 
 If the null hypothesis is true, then $P(M\cap S)=P(M) * P(S)=8 / 20 * 9 / 20$. Thus, under the null hypothesis, the expected number of male who smoke is $8 / 20 * 9 / 20 * 20=3.6$. Similarly, the expected number of female who smoke is $12 / 20 * 9 / 20 * 20=5.4$. The expected number of male who do not smoke is $8 / 20 * 11 / 20 * 20=4.4$. The expected number of female who do not smoke is $12 / 20 * 11 / 20 * 20=6.6$.
 
-Test-stat: $t=\sum_{i=1}^{4} \frac{\left(o_{i}-e_{i}\right)^{2}}{e_{i}}$. 
+Test-stat: $t=\sum_{i=1}^{4} \frac{\left(o_{i}-e_{i}\right)^{2}}{e_{i}}$, where $o_i's$ are the observed counts and $e_i's$ are the expected counts in the table.
 
-The null distribution of the test statistic is asymptotically (sample size is large) the chi-square distribution with $(r-1)(c-1)$ degrees of freedom, in which $r$ is the number of rows and $c$ is the number of columns.
+The null distribution of the test statistic is asymptotically (i.e., sample size is large) the $\chi^2$ distribution with $(r-1)(c-1)$ degrees of freedom, in which $r$ is the number of rows and $c$ is the number of columns.
 
-Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the chi-square distribution with $(r-1)(c-1)$ degrees of freedom.
+Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the $\chi^2$ distribution with $(r-1)(c-1)$ degrees of freedom.
 
 ```{code-cell}
 x=matrix(c(6,3,2,9),2,2)
@@ -322,22 +318,21 @@ The likelihood ratio test can test which hypothesis (null or alternative) has a 
 
 ### Two points hypothesis
 
-$\mathrm{H}_{0}: \theta=\theta_{0}$ vs $\mathrm{H}_{1}: \theta=\theta_{1}$ 
+$H_{0}: \theta=\theta_{0}$ vs $H_{1}: \theta=\theta_{1}$ 
 
 Test-stat: $t=\frac{l_{0}}{l_{1}}$, or equivalently, $t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)$, where $l_{0}$ is the likelihood under the null hypothesis and $l_{1}$ is the likelihood under the alternative hypothesis.
 
 Rejection region: we reject the null if $t>a$, where $a$ is the 95% quantile of the null distribution of the test statistic.
 
 
-````{prf:example} 6.2
-:nonumber:
-:label: 6.2
-:nonumber:
+````{prf:example}
+:label: exp6.2
+
 Given a random sample $X_{1}, X_{2}, \ldots, X_{n} \sim \operatorname{Normal}\left(\mu, \sigma^{2}=1\right)$, we want to test if $\mu=1$ or $\mu=2$.
 
-$$\mathrm{H}_{0}: u=1 \text { vs } \mathrm{H}_{1}: u=2 \\$$
+$$H_{0}: u=1 \text { vs } H_{1}: u=2 \\$$
 
-We first find the likelihood score $l_0$ for the null hypothesis
+We find the likelihood score $l_0$ for the null hypothesis
 
 $$
 \begin{gathered}
@@ -377,7 +372,7 @@ The likelihood ratio test for two simple hypotheses is the most powerful test.
 
 ### Interval hypotheses 
 
-$\mathrm{H}_{0}: \theta \in \Theta_{0}$ vs $\mathrm{H}_{1}: \theta \in \Theta_{1}$ 
+$H_{0}: \theta \in \Theta_{0}$ vs $H_{1}: \theta \in \Theta_{1}$ 
 
 Test-stat: $t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)$, where $l_{0}=\max _{\theta \in \Theta_{0}}\{l(\theta)\}$ is the maximum likelihood score under the null hypothesis and $l_{1}$ is the maximum likelihood score $l_{1}=$ $\max _{\theta \in \Theta_{1}}\{l(\theta)\}$ under the alternative hypothesis.
 
@@ -389,7 +384,7 @@ $H_{0}: M_{0}$ vs $H_{1}: M_{1}$ where the null model $M_0$ is a special case (n
 
 Test-stat: $t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)$, where $l_{0}=\max _{\theta \in \mathrm{M}_{0}}\{l(\theta)\}$ is the maximum likelihood score under the null hypothesis and $l_{1}$ is the maximum likelihood score $l_{1}=$ $\max _{\theta \in \mathrm{M}_{1}}\{l(\theta)\}$ under the alternative hypothesis. 
 
-The null distribution of the test statistic is asymptotically the chi-square distribution with $\mathrm{df}=\left(\right.$ number of free parameters in $\mathrm{H}_{1}-$ number of free parameters in $\left.\mathrm{H}_{0}\right)$
+The null distribution of the test statistic is asymptotically the $\chi^2$ distribution with $\mathrm{df}=\left(\right.$ number of free parameters in $H_{1}-$ number of free parameters in $\left.H_{0}\right)$
 
 Rejection region: we reject the null if $t>a$ where $a$ is the 95% quantile of the chi-square distribution
 
@@ -410,21 +405,19 @@ The Mann-Whitney test can test if two populations have the same median. The test
 The data consist of two random samples. Let $X_{1}, \dots, X_{n}$ be the sample generated from population 1 and $Y_{1}, \dots, Y_{m}$ be the sample from population 2. We want to test if two samples are from the same population, i.e.,
 
 $$
-\mathrm{H}_{0}: pop1 = pop2 \text{  versus } \mathrm{H}_{1}: \text{pop1 not equal pop2}
+H_{0}: pop1 = pop2 \text{  versus } H_{1}: \text{pop1 not equal pop2}
 $$
 
-Test-stat: Ranking all observations from the minimum to the maximum. If several sample values are exactly equal to each other (tied), assign to each the average rank. Let $\mathrm{R}\left(\mathrm{X}_{\mathrm{i}}\right)$ denote the ranks of $\mathrm{X}_{\mathrm{i}}$. The test statistic is $T=\sum_{i=1}^{n} R\left(X_{i}\right)$.
+Test-stat: Ranking all observations from the minimum to the maximum. If several sample values are exactly equal to each other (tied), assign to each the average rank. Let $\mathrm{R}\left(X_i\right)$ denote the ranks of $X_i$. The test statistic is $T=\sum_{i=1}^{n} R\left(X_i\right)$.
 
-Under the null hypothesis that two samples are generated from the same population, the ranks of $X$ and $Y$ are totally random. Thus, the ranks of $X$ (assuming no ties) are $n$ numbers chosen at random without replacement from $(1,2, \ldots, n+m)$. The null distribution of $\mathrm{T}$ can be derived for small $\mathrm{n}$ and $\mathrm{m}$ (table). For large $\mathrm{n}$ and $\mathrm{m}$, we can use simulation to calculate the null distribution of $T$.
+Under the null hypothesis that two samples are generated from the same population, the ranks of $X$ and $Y$ are totally random. Thus, the ranks of $X$ (assuming no ties) are $n$ numbers chosen at random without replacement from $(1,2, \ldots, n+m)$. The null distribution of $T$ can be derived for small $\mathrm{n}$ and $\mathrm{m}$ (table). For large $n$ and $m$, we can use simulation to calculate the null distribution of $T$.
 
 Rejection region: we reject the null hypothesis if $t>a$ or $t<b$, where $a$ is the 97.5% quantile of the null distribution of the test statistic, and $b$ is the 2.5% quantile of the null distribution of the test statistic.
 
-````{prf:example} 6.3
-:nonumber:
-:label: 6.3
-:nonumber:
+````{prf:example}
+:label: exp6.3
 
-Data is given in the table
+Data is given in the table. The numbers within the parentheses are ranks. For example, the rank of 2.3 is 5 and the rank of 1.4 is 1.
 
 $$
 \begin{array}{|l|l|l|l|l|l|}
@@ -434,7 +427,7 @@ $$
 \end{array}
 $$
 
-Test-stat: Let $R_i$ be the sum of the ranks in group $i$. Define $U_i=n_1n_2+\frac{n_i(n_i+1)}{2}-R_i$. The test statistic is the smaller of $U_1$ and $U_2$. 
+Test-stat: Let $R_i$ be the sum of the ranks in group $i$. Define $U_i=n_1n_2+\frac{n_i(n_i+1)}{2}-R_i$. The test statistic $t$ is the smaller of $U_1$ and $U_2$, i.e., $t=min(U_1, U_2)$. 
 
 Rejection region: we reject the null hypothesis if $t>a$ or $t<b$, where $a$ is the 97.5% quantile of the null distribution of the test statistic, and $b$ is the 2.5% quantile of the null distribution of the test statistic.
 

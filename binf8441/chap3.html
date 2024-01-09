@@ -428,10 +428,10 @@ document.write(`
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Probability_distribution#Absolutely_continuous_probability_distribution">Continuous probability distribution</a></p></li>
 </ul>
 </div>
-<div class="proof definition admonition" id="cdf">
-<p class="admonition-title"><span>Definition </span> (cumulative distribution function)</p>
+<div class="proof definition admonition" id="def3.1">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (cumulative distribution function)</p>
 <section class="definition-content" id="proof-content">
-<p>The cumulative distribution function (CDF) of a real-valued random variable <span class="math notranslate nohighlight">\(X\)</span>, evaluated at <span class="math notranslate nohighlight">\(x\)</span>, is the probability that <span class="math notranslate nohighlight">\(X\)</span> will take a value less than or equal to <span class="math notranslate nohighlight">\(x\)</span></p>
+<p>The cumulative distribution function (CDF) of a real-valued random variable <span class="math notranslate nohighlight">\(X\)</span>, evaluated at <span class="math notranslate nohighlight">\(x\)</span>, is the probability that <span class="math notranslate nohighlight">\(X\)</span> will take a value less than or equal to <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[F(x)=P(X \leq x)\]</div>
 </section>
@@ -474,25 +474,25 @@ document.write(`
 <img alt="_images/9edfc481735d655cd554b6cff393388471820bd67e6d77821969a40418257a5e.png" src="_images/9edfc481735d655cd554b6cff393388471820bd67e6d77821969a40418257a5e.png" />
 </div>
 </div>
-<div class="proof definition admonition" id="pdf">
-<p class="admonition-title"><span>Definition </span> (probability density function)</p>
+<div class="proof definition admonition" id="def3.2">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (probability density function)</p>
 <section class="definition-content" id="proof-content">
-<p>The probability density function <span class="math notranslate nohighlight">\(f(x)\)</span> is the derivate of the CDF at <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
+<p>The probability density function <span class="math notranslate nohighlight">\(f(x)\)</span> is the derivate of the CDF <span class="math notranslate nohighlight">\(F(x)\)</span> at <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[f(x)=\frac{d F(x)}{d x}\]</div>
 </section>
 </div><ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f(x)\ge 0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(F(x)=\int_{-\infty}^{x} f(y) d y\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\int_{-\infty}^\infty f(x)dx = 1\)</span></p></li>
-<li><p>The probability <span class="math notranslate nohighlight">\(P(a&lt;X&lt;b)\)</span> is the area under the density curve <span class="math notranslate nohighlight">\(f(x)\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(f(x)\ge 0\)</span> because the CDF <span class="math notranslate nohighlight">\(F(x)\)</span> is a monotone increasing function.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=\int_{-\infty}^{x} f(y) d y\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\int_{-\infty}^\infty f(x)dx = 1\)</span>, i.e., the total probability is 1.</p></li>
+<li><p>The probability <span class="math notranslate nohighlight">\(P(a&lt;X&lt;b)\)</span> is the area under the density curve <span class="math notranslate nohighlight">\(f(x)\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, i.e.,</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[P(a&lt;X&lt;b) = \int_a^b f(x)dx\]</div>
-<div class="proof definition admonition" id="expectation2">
-<p class="admonition-title"><span>Definition </span> (expectation)</p>
+<div class="proof definition admonition" id="def3.3">
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (expectation)</p>
 <section class="definition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(f(x)\)</span> be the density function of a random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
+<p>Let <span class="math notranslate nohighlight">\(f(x)\)</span> be the density function of a continuous random variable <span class="math notranslate nohighlight">\(X\)</span>. The expectation of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[E(X)=\int_{-\infty}^{\infty} x f(x) d x\]</div>
 <p>The expectation <span class="math notranslate nohighlight">\(E(X)\)</span> is also called the population mean.</p>
@@ -503,17 +503,14 @@ document.write(`
 <p>The variance of <span class="math notranslate nohighlight">\(X\)</span> is defined as</p>
 <div class="math notranslate nohighlight">
 \[var(X) = E(X-E(X))^2\]</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(sd(X) = \sqrt{var(X)}\)</span></p></li>
-</ul>
-<div class="proof theorem admonition" id="theorem-3">
+<p>The standard deviation of <span class="math notranslate nohighlight">\(X\)</span> is equal to the square root of the variance, i.e., <span class="math notranslate nohighlight">\(sd(X) = \sqrt{var(X)}\)</span>.</p>
+<div class="proof theorem admonition" id="thm3.1">
 <p class="admonition-title"><span class="caption-number">Theorem 9 </span></p>
 <section class="theorem-content" id="proof-content">
-<ol class="arabic simple">
-<li><p><span class="math notranslate nohighlight">\(E(aX+b) = aE(X)+b\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(aX+b) = a^2var(x)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(X) = E(X^2) - \left(E(X)\right)^2\)</span></p></li>
-</ol>
+<p>Consider a continuous random variable <span class="math notranslate nohighlight">\(X\)</span> with a probability density function <span class="math notranslate nohighlight">\(f(x)\)</span>. Let <span class="math notranslate nohighlight">\(Y = aX + b\)</span> be a transformed random variable, where <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are real numbers. The expectation of <span class="math notranslate nohighlight">\(Y\)</span> can be expressed in terms of the expectation of <span class="math notranslate nohighlight">\(X\)</span>, i.e., <span class="math notranslate nohighlight">\(E(aX + b) = aE(X) + b\)</span>. Moverover, <span class="math notranslate nohighlight">\(var(aX+b) = a^2var(x)\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. We first show <span class="math notranslate nohighlight">\(E(aX + b) = aE(X) + b\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -525,6 +522,7 @@ document.write(`
 \end{split}
 \end{equation}
 \end{split}\]</div>
+<p>Next, we show <span class="math notranslate nohighlight">\(var(aX+b) = a^2var(x)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -535,6 +533,14 @@ document.write(`
 \end{split}
 \end{equation}
 \end{split}\]</div>
+</div>
+<div class="proof theorem admonition" id="thm3.2">
+<p class="admonition-title"><span class="caption-number">Theorem 10 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>For a continuous random variable <span class="math notranslate nohighlight">\(X\)</span>, <span class="math notranslate nohighlight">\(var(X) = E(X^2) - \left(E(X)\right)^2\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Suppose <span class="math notranslate nohighlight">\(X\)</span> is a continous random variable with a probability density function <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -546,8 +552,12 @@ document.write(`
 \end{split}
 \end{equation}
 \end{split}\]</div>
-</section>
-</div><section id="continuous-probability-distributions">
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><a class="reference internal" href="#thm3.1">Theorem 9</a> and <a class="reference internal" href="#thm3.2">Theorem 10</a> also hold true for discrete random variables.</p>
+</div>
+<section id="continuous-probability-distributions">
 <h2>Continuous probability distributions<a class="headerlink" href="#continuous-probability-distributions" title="Permalink to this heading">#</a></h2>
 <section id="uniform-distribution">
 <h3>Uniform distribution<a class="headerlink" href="#uniform-distribution" title="Permalink to this heading">#</a></h3>
@@ -555,8 +565,8 @@ document.write(`
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x|a,b)=\frac{1}{b-a}\)</span>, for <span class="math notranslate nohighlight">\(x \in[a, b]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(F(x)=P(X \leq x)=\int_{a}^{x} \frac{1}{(b-a)} dy = \frac{x-a}{b-a}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E(X)=\int_{a}^{b} x f(x) d x=\frac{a+b}{2}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(X)=\frac{(b-a)^2}{12}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\int_{a}^{b}xf(x)dx=\int_{a}^{b}\frac{x}{b-a}dx=\frac{a+b}{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=E(X^2)-(E(X))^2=\int_{a}^{b}\frac{x^2}{b-a}dx-\big(\frac{a+b}{2}\big)^2=\frac{(b-a)^2}{12}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -570,20 +580,24 @@ document.write(`
 <img alt="_images/8d35c86025ca0d5fe80be216ba18f2dc27ddb7797cc159a9cab99b9e16cb872b.png" src="_images/8d35c86025ca0d5fe80be216ba18f2dc27ddb7797cc159a9cab99b9e16cb872b.png" />
 </div>
 </div>
-<div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="exp3.1">
+<p class="admonition-title"><span class="caption-number">Example 25 </span></p>
 <section class="example-content" id="proof-content">
-<p>The random variable <span class="math notranslate nohighlight">\(X\)</span> follows the uniform [2,4] distribution. Find <span class="math notranslate nohighlight">\(E(X)\)</span>, <span class="math notranslate nohighlight">\(var(X)\)</span>, and <span class="math notranslate nohighlight">\(P(X&lt;2.7)\)</span></p>
-<p><span class="math notranslate nohighlight">\(E(X)=(b+a)/2=3\)</span> and <span class="math notranslate nohighlight">\(var(X) = (b-a)^2/12 = 1/3\)</span> and <span class="math notranslate nohighlight">\(P(X&lt;2.7) = (x-a)/(b-a) = 0.7/2=0.35\)</span></p>
+<p>The random variable <span class="math notranslate nohighlight">\(X\)</span> follows the uniform [2,4]. Find <span class="math notranslate nohighlight">\(E(X)\)</span>, <span class="math notranslate nohighlight">\(var(X)\)</span>, and <span class="math notranslate nohighlight">\(P(X&lt;2.7)\)</span></p>
+<p>Here, <span class="math notranslate nohighlight">\(a=2\)</span> and <span class="math notranslate nohighlight">\(b=4\)</span>. Thus, <span class="math notranslate nohighlight">\(E(X)=(b+a)/2=3\)</span> and <span class="math notranslate nohighlight">\(var(X) = (b-a)^2/12 = 1/3\)</span> and <span class="math notranslate nohighlight">\(P(X&lt;2.7) = (x-a)/(b-a) = 0.7/2=0.35\)</span>.</p>
 </section>
 </div></section>
 <section id="normal-distribution">
 <h3>Normal distribution<a class="headerlink" href="#normal-distribution" title="Permalink to this heading">#</a></h3>
-<p>The normal random variable represents the mean effect of many equally likely random variables. For example, the human body weight (or height) is a normal random variable because weight (or height) is the mean effect of many factors.</p>
+<p>The normal random variable signifies the average outcome of numerous equally probable random variables. For instance, human body weight (or height) is considered a normal random variable as it represents the average effect of multiple factors. The normal distribution is characterized by two parameters: the population mean denoted by <span class="math notranslate nohighlight">\(\mu\)</span> and the population variance denoted by <span class="math notranslate nohighlight">\(\sigma^2\)</span>.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x|\mu,\sigma^2)=\frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{(x-u)^{2}}{2 \sigma^{2}}}\)</span>, for <span class="math notranslate nohighlight">\(x \in[-\infty, \infty]\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(E(X)=u\)</span> and <span class="math notranslate nohighlight">\(var(X)=\sigma^{2}\)</span></p></li>
 </ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The normal density is a bell-shaped curve centered around its mean <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
@@ -596,23 +610,23 @@ document.write(`
 <img alt="_images/8eba2cd042d2d17169416241f442cf401c7dc98002fb56a3581201f1a1083cde.png" src="_images/8eba2cd042d2d17169416241f442cf401c7dc98002fb56a3581201f1a1083cde.png" />
 </div>
 </div>
-<p>If a random variable <span class="math notranslate nohighlight">\(X \sim Normal(\mu,\sigma^{2})\)</span>, then <span class="math notranslate nohighlight">\(Y=aX+b\)</span> follows <span class="math notranslate nohighlight">\(Normal(a\mu+b,a^{2} \sigma^{2})\)</span>.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(X\)</span> is a normal random variable <span class="math notranslate nohighlight">\(X\)</span> with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^2\)</span>. Then, a linearly transformed variable <span class="math notranslate nohighlight">\(Y=aX+b\)</span>, where <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are real numbers, is also a normal random variable with mean <span class="math notranslate nohighlight">\(a\mu+b\)</span> and variance <span class="math notranslate nohighlight">\(a^2\sigma^2\)</span>.</p>
 <p>To calculate the normal probabilities, we first standardize the normal random variable <span class="math notranslate nohighlight">\(\frac{X-E(X)}{sd(X)}\)</span> and then use the standard normal distribution to calculate probabilities,</p>
 <div class="math notranslate nohighlight">
 \[P(X&lt;d)=P\left(\frac{X-u}{\sigma}&lt;\frac{d-u}{\sigma}\right) = P\left(Z&lt;\frac{d-u}{\sigma}\right)\]</div>
-<div class="admonition-rule admonition">
-<p class="admonition-title">68-95-99 rule</p>
+<div class="admonition-rule-for-the-standard-normal-distribution admonition">
+<p class="admonition-title">68-95-99 rule for the standard normal distribution</p>
 <ol class="arabic simple">
 <li><p>68% of the population is within 1 standard deviation of the mean.</p></li>
 <li><p>95% of the population is within 2 standard deviation of the mean.</p></li>
 <li><p>99% of the population is within 3 standard deviation of the mean.</p></li>
 </ol>
 </div>
-<div class="proof example admonition" id="example-5">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="exp3.2">
+<p class="admonition-title"><span class="caption-number">Example 26 </span></p>
 <section class="example-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(X \sim Normal(\mu=1,\sigma^2=1)\)</span>, find <span class="math notranslate nohighlight">\(E(X^2)\)</span> and <span class="math notranslate nohighlight">\(P(X&gt;2)\)</span></p>
-<p><span class="math notranslate nohighlight">\(E(X^2) = var(X)+(E(X))^2 = 1+1 = 2\)</span> and <span class="math notranslate nohighlight">\(P(X&gt;2) = P\left(\frac{X-\mu}{\sigma}&gt;\frac{2-1}{1}\right)= P(Z&gt;1)\)</span> where <span class="math notranslate nohighlight">\(Z \sim Normal(0,1)\)</span>. We know from the 68-95-99 rule that <span class="math notranslate nohighlight">\(P(-1&lt;Z&lt;1) \approx 0.68\)</span>. Thus, <span class="math notranslate nohighlight">\(P(Z&gt;1) = (1 - 0.68)/2 = 0.16\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(E(X^2) = var(X)+(E(X))^2 = 1+1^2 = 2\)</span> and <span class="math notranslate nohighlight">\(P(X&gt;2) = P\left(\frac{X-\mu}{\sigma}&gt;\frac{2-1}{1}\right)= P(Z&gt;1)\)</span> where <span class="math notranslate nohighlight">\(Z \sim Normal(0,1)\)</span>. We know from the 68-95-99 rule that <span class="math notranslate nohighlight">\(P(-1&lt;Z&lt;1) \approx 0.68\)</span>. Thus, <span class="math notranslate nohighlight">\(P(Z&gt;1) = (1 - 0.68)/2 = 0.16\)</span>.</p>
 </section>
 </div></section>
 <section id="exponential-distribution">
@@ -620,9 +634,9 @@ document.write(`
 <p>The exponential random variable often represents the waiting time until the next event. For example, the waiting time until the next phone call follows the exponential distribution.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\lambda} e^{-\frac{x}{\lambda}}\)</span>, for <span class="math notranslate nohighlight">\(x&gt;0\)</span> and <span class="math notranslate nohighlight">\(\lambda&gt;0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(F(x)=1-e^{-\frac{x}{\lambda}}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E(X)=\lambda\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(X)=\lambda^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(F(x)=\int_0^{x}\frac{1}{\lambda} e^{-\frac{y}{\lambda}}dy =1-e^{-\frac{x}{\lambda}}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\int_0^{\infty}x\frac{1}{\lambda} e^{-\frac{x}{\lambda}}dx=\lambda\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=E(X^2)-(E(X))^2=\int_0^{\infty}x^2\frac{1}{\lambda} e^{-\frac{x}{\lambda}}dx-\lambda^2 =\lambda^{2}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -639,11 +653,11 @@ document.write(`
 </section>
 <section id="beta-distribution">
 <h3>Beta distribution<a class="headerlink" href="#beta-distribution" title="Permalink to this heading">#</a></h3>
-<p>We often use the Beta distribution to model probabilities.</p>
+<p>We often use the Beta distribution to model probabilities because the domain of a Beta random variable is between 0 and 1.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}, 0 \leq x \leq 1, \alpha&gt;0, \beta&gt;0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E(X)=\frac{\alpha}{\alpha+\beta}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(X)=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\int_0^1x\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}dx=\frac{\alpha}{\alpha+\beta}\int_0^1\frac{\Gamma(\alpha+1+\beta)}{\Gamma(\alpha+1) \Gamma(\beta)} x^{\alpha+1-1}(1-x)^{\beta-1}dx=\frac{\alpha}{\alpha+\beta}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=E(X^2)-(E(X))^2=\int_0^1x^2\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}-\big(\frac{\alpha}{\alpha+\beta}\big)^2dx=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -663,8 +677,8 @@ document.write(`
 <p>We often use the Gamma distribution to model ratios, for example, mutation rates.</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(f(x)=\frac{1}{\Gamma(\alpha) \beta^{\alpha}} x^{\alpha-1} e^{-\frac{x}{\beta}}, x&gt;0, \alpha&gt;0, \beta&gt;0\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(E(X)=\alpha \beta\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(var(X)=\alpha \beta^{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X)=\int_0^{\infty}x\frac{1}{\Gamma(\alpha) \beta^{\alpha}} x^{\alpha-1} e^{-\frac{x}{\beta}}dx=\alpha\beta\int_0^{\infty}\frac{1}{\Gamma(\alpha+1) \beta^{\alpha+1}} x^{\alpha+1-1} e^{-\frac{x}{\beta}}dx =\alpha\beta\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(var(X)=E(X^2)-(E(X))^2=\int_0^{\infty}x^2\frac{1}{\Gamma(\alpha) \beta^{\alpha}} x^{\alpha-1} e^{-\frac{x}{\beta}}dx-(\alpha\beta)^2=(\alpha+1)\alpha\beta^2-\alpha^2\beta^2=\alpha \beta^{2}\)</span></p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -682,23 +696,23 @@ document.write(`
 </section>
 <section id="transformation">
 <h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this heading">#</a></h2>
-<p>Three commonly used techniques can be used to find the probability distribution of a transformed continuous random variable.</p>
+<p>Three commonly employed techniques can be utilized to determine the probability distribution of a transformed continuous random variable.</p>
 <section id="cdf">
 <h3>CDF<a class="headerlink" href="#cdf" title="Permalink to this heading">#</a></h3>
-<p>Suppose <span class="math notranslate nohighlight">\(Y=g(X)\)</span> and we want to find the probability distribution of <span class="math notranslate nohighlight">\(Y\)</span>.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(Y=g(X)\)</span> is a transformed random variable, where <span class="math notranslate nohighlight">\(g\)</span> is a bijective function, i.e., its inverse function <span class="math notranslate nohighlight">\(g^{-1}\)</span> exists. We want to find the probability distribution of <span class="math notranslate nohighlight">\(Y\)</span>. By definition, the CDF of Y is <span class="math notranslate nohighlight">\(P(Y\le a)\)</span>. We apply the inverse function <span class="math notranslate nohighlight">\(g^{-1}\)</span> on both sides of the inequality,</p>
 <div class="math notranslate nohighlight">
 \[
-P(Y \leq a)=P(g(X) \leq a)=\int_{g(x) \leq a} f(x) d x
+P(Y \le a)=P(g^{-1}(Y)\le g^{-1}(a))=P(X\leq g^{-1}(a))=\int_{-\infty}^{g^{-1}(a)} f(x)dx
 \]</div>
-<div class="proof example admonition" id="example-6">
-<p class="admonition-title"><span>Example </span></p>
+<div class="proof example admonition" id="exp3.3">
+<p class="admonition-title"><span class="caption-number">Example 27 </span></p>
 <section class="example-content" id="proof-content">
-<p>Suppose <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with a density <span class="math notranslate nohighlight">\(e^{-x}\)</span>. Find the probability distribution of <span class="math notranslate nohighlight">\(Y=2X\)</span></p>
+<p>Suppose <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with a density <span class="math notranslate nohighlight">\(e^{-x}\)</span>. Find the probability distribution of <span class="math notranslate nohighlight">\(Y=2X\)</span>’</p>
 <div class="math notranslate nohighlight">
-\[P(Y\le a) = P(2X \le a) = P(X\le a/2) = 1-e^{-a/2}\]</div>
-<p>The density function is the derivative of the CDF <span class="math notranslate nohighlight">\(1-e^{-a/2}\)</span> with respect to <span class="math notranslate nohighlight">\(a\)</span>,</p>
+\[P(Y\le y) = P(2X \le y) = P(X\le y/2) = 1-e^{-y/2}\]</div>
+<p>The density function of <span class="math notranslate nohighlight">\(Y\)</span> is the derivative of the CDF <span class="math notranslate nohighlight">\(1-e^{-y/2}\)</span> with respect to <span class="math notranslate nohighlight">\(y\)</span>,</p>
 <div class="math notranslate nohighlight">
-\[(1-e^{-a/2})'=\frac{1}{2}e^{-\frac{a}{2}}\]</div>
+\[(1-e^{-y/2})'=\frac{1}{2}e^{-\frac{y}{2}}\]</div>
 <p>This is an exponential density with <span class="math notranslate nohighlight">\(\lambda = 2\)</span>.</p>
 </section>
 </div></section>
@@ -729,8 +743,8 @@ f_{Y}(a)=-F^{\prime}{ }_{X}\left(g^{-1}(a)\right)=-f_{X}\left(g^{-1}(a)\right) *
 \[
 f_{Y}(y)=f_{X}\left(g^{-1}(y)\right) *\left|\frac{d g^{-1}(y)}{d y}\right|
 \]</div>
-<div class="proof example admonition" id="3.1">
-<p class="admonition-title"><span>Example </span> (3.1)</p>
+<div class="proof example admonition" id="exp3.4">
+<p class="admonition-title"><span class="caption-number">Example 28 </span></p>
 <section class="example-content" id="proof-content">
 <p>The random variable <span class="math notranslate nohighlight">\(X\)</span> is an exponential random variable with density function <span class="math notranslate nohighlight">\(f(x)=\lambda e^{-\lambda x}\)</span>. Find the distribution of <span class="math notranslate nohighlight">\(Y=X+2\)</span>. The inverse function is <span class="math notranslate nohighlight">\(X=Y-2\)</span>. Thus, for <span class="math notranslate nohighlight">\(y&gt;2\)</span></p>
 <div class="math notranslate nohighlight">
@@ -741,25 +755,26 @@ f_{y}(y)=\lambda e^{-\lambda(y-2)}\left|\frac{d(y-2)}{d y}\right|=\lambda e^{-\l
 </div></section>
 <section id="mgf-moment-generating-function">
 <h3>MGF (moment generating function)<a class="headerlink" href="#mgf-moment-generating-function" title="Permalink to this heading">#</a></h3>
-<p>If two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent, we can show that</p>
+<p>Let <span class="math notranslate nohighlight">\(M_X(t)\)</span> be the MGF of a random variable <span class="math notranslate nohighlight">\(X\)</span>. If two random variables <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span> are independent, we can show that the MGF of the sum <span class="math notranslate nohighlight">\(X_1+X_2\)</span> is equal to the product of the MGFs of <span class="math notranslate nohighlight">\(X_1\)</span> and <span class="math notranslate nohighlight">\(X_2\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
-M_{X+Y}(t)=M_{X}(t) M_{Y}(t)
+M_{X_1+X_2}(t)=M_{X_1}(t) M_{X_2}(t)
 \]</div>
-<div class="proof example admonition" id="3.2">
-<p class="admonition-title"><span>Example </span> (3.2)</p>
+<p>Furthermore, the Moment Generating Function (MGF) of a random variable uniquely determines its probability distribution. Once the MGF is determined, the corresponding probability distribution can be identified.</p>
+<div class="proof example admonition" id="exp3.5">
+<p class="admonition-title"><span class="caption-number">Example 29 </span></p>
 <section class="example-content" id="proof-content">
-<p>The MGF of a normal random variable is <span class="math notranslate nohighlight">\(e^{u t+\sigma^{2} t^{2} / 2}\)</span>. Suppose <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> <span class="math notranslate nohighlight">\(\sim Normal\left(u, \sigma^{2}\right)\)</span>. Find the probability distribution of the sample average <span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^{n} X_{i}}{n}\)</span>.</p>
-<p>We first find the MGF of the sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span>, which is equal to</p>
+<p>The MGF of a normal random variable is <span class="math notranslate nohighlight">\(e^{u t+\sigma^{2} t^{2} / 2}\)</span>. Suppose <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> are independent normal random variables with the same mean and variance, i.e., <span class="math notranslate nohighlight">\(Normal\left(u, \sigma^{2}\right)\)</span>. Find the probability distribution of the sample average <span class="math notranslate nohighlight">\(\frac{\sum_{i=1}^{n} X_{i}}{n}\)</span>.</p>
+<p>We first find the MGF of the sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span>. Because <span class="math notranslate nohighlight">\(X_{1}, X_{2}, \ldots, X_{n}\)</span> are independent random variables, the MGF of the sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span> is equal to the product of the MGFs of individual random variables, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[
 \prod_{i=1}^{n} M(t)=e^{n u t+n \sigma^{2} t^{2} / 2}
 \]</div>
-<p>The sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span> has a normal distribution with mean <span class="math notranslate nohighlight">\(n \mu\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(Y=\sum_{i=1}^{n} X_{i}\)</span> and <span class="math notranslate nohighlight">\(Z=\frac{Y}{n}\)</span>. Then,</p>
+<p>This is the MGF of a normal random variable with mean <span class="math notranslate nohighlight">\(n\mu\)</span> and variance <span class="math notranslate nohighlight">\(n\sigma^2\)</span>. Hence, the sum <span class="math notranslate nohighlight">\(\sum_{i=1}^{n} X_{i}\)</span> has a normal distribution with mean <span class="math notranslate nohighlight">\(n \mu\)</span> and variance <span class="math notranslate nohighlight">\(n \sigma^{2}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(Y=\sum_{i=1}^{n} X_{i}\)</span> and <span class="math notranslate nohighlight">\(Z=\frac{Y}{n}\)</span>. Then, the MGF of <span class="math notranslate nohighlight">\(Z\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[E\left(e^{t Z}\right)=E\left(e^{\frac{t Y}{n}}\right)=e^{u t+\frac{\sigma^{2} t^{2}}{2 n}}\]</div>
-<p>Thus, the sample average <span class="math notranslate nohighlight">\(\frac{1}{n}\sum_{i=1}^{n} X_{i}\)</span> has a normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\frac{\sigma^{2}}{n}\)</span>.</p>
+<p>This is the MGF of a normal random variable with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\frac{\sigma^{2}}{n}\)</span>. Thus, the sample average <span class="math notranslate nohighlight">\(\frac{1}{n}\sum_{i=1}^{n} X_{i}\)</span> has a normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> and variance <span class="math notranslate nohighlight">\(\frac{\sigma^{2}}{n}\)</span>.</p>
 </section>
 </div></section>
 </section>

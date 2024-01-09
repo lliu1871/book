@@ -430,19 +430,18 @@ index set of the process. When <span class="math notranslate nohighlight">\(T\)<
 integers), the process is said to be a discrete time process. If <span class="math notranslate nohighlight">\(T\)</span> is an
 interval of real line, the process is said to be a continuous time
 process.</p>
-<div class="proof example admonition" id="13.1">
-<p class="admonition-title"><span>Example </span> (13.1)</p>
+<div class="proof example admonition" id="exp13.1">
+<p class="admonition-title"><span class="caption-number">Example 73 </span></p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{t}\)</span> is the total number of customers who have entered a
 supermarket by time <span class="math notranslate nohighlight">\(t\)</span>. This is a discrete state continuous time
 stochastic process. <span class="math notranslate nohighlight">\(X_{t} = 0,1,\ldots,\)</span> and <span class="math notranslate nohighlight">\(t \ge 0\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="13.2">
-<p class="admonition-title"><span>Example </span> (13.2)</p>
+</div><div class="proof example admonition" id="exp13.2">
+<p class="admonition-title"><span class="caption-number">Example 74 </span></p>
 <section class="example-content" id="proof-content">
 <p><span class="math notranslate nohighlight">\(X_{t}\)</span> is the number of individuals in a population in each
-generation <span class="math notranslate nohighlight">\(t\)</span>, i.e., <span class="math notranslate nohighlight">\(X_{t} = 0,1,2,\ldots\)</span>, and <span class="math notranslate nohighlight">\(t = 0, 1, 2, \dots\)</span> This
-is a discrete state discrete time stochastic process</p>
+generation <span class="math notranslate nohighlight">\(t\)</span>, i.e., <span class="math notranslate nohighlight">\(X_{t} = 0,1,2,\ldots\)</span>, and <span class="math notranslate nohighlight">\(t = 0, 1, 2, \dots\)</span> This is a discrete state discrete time stochastic process.</p>
 </section>
 </div><section id="discrete-time-markov-chains">
 <h2>Discrete time Markov chains<a class="headerlink" href="#discrete-time-markov-chains" title="Permalink to this heading">#</a></h2>
@@ -453,8 +452,8 @@ is a discrete state discrete time stochastic process</p>
 <span class="math notranslate nohighlight">\((X_{n - 1},\ X_{n - 2},\ldots,X_{0})\)</span>, i.e.,
 <span class="math notranslate nohighlight">\(P\left( X_{n + 1} \middle| X_{n},\ldots,X_{0} \right) = P(X_{n + 1}|X_{n})\)</span>.</p>
 </div>
-<div class="proof definition admonition" id="Markov chain">
-<p class="admonition-title"><span>Definition </span> (Markov chain)</p>
+<div class="proof definition admonition" id="def13.1">
+<p class="admonition-title"><span class="caption-number">Definition 28 </span> (Markov chain)</p>
 <section class="definition-content" id="proof-content">
 <p>A discrete time Markov chain <span class="math notranslate nohighlight">\(\{ X_{n},n = 0,1,2\ldots\}\)</span> is a discrete
 state discrete time stochastic process that satisfies Markov property.</p>
@@ -464,7 +463,7 @@ state space is <span class="math notranslate nohighlight">\(\{0, 1, 2, \dots\}\)
 is in state <span class="math notranslate nohighlight">\(i\)</span> at time <span class="math notranslate nohighlight">\(n\)</span>.</p>
 <div class="admonition-how-do-we-define-a-dtmc admonition">
 <p class="admonition-title">How do we define a DTMC?</p>
-<p>For a discrete time MC <span class="math notranslate nohighlight">\(\{X_{n}\}\)</span>, the goal is to find the probability distribution <span class="math notranslate nohighlight">\(\pi_n\)</span> of the random variable <span class="math notranslate nohighlight">\(X_n\)</span> at time <span class="math notranslate nohighlight">\(n\)</span>. The DTMC is determined if we know where the chain begins and how the chain moves, i.e., if the initial state <span class="math notranslate nohighlight">\(\pi_0\)</span> at time 0 is given and the transition probabilities <span class="math notranslate nohighlight">\(P(X_{n+1}|X_n)\)</span> from time <span class="math notranslate nohighlight">\(n\)</span> to time <span class="math notranslate nohighlight">\(n+1\)</span> is given.</p>
+<p>In the context of a discrete-time Markov Chain (DTMC) denoted as <span class="math notranslate nohighlight">\({X_{n}}\)</span>, the objective is to determine the probability distribution <span class="math notranslate nohighlight">\(\pi_n\)</span> of the random variable <span class="math notranslate nohighlight">\(X_n\)</span> at time <span class="math notranslate nohighlight">\(n\)</span>. The specification of a DTMC requires knowledge of the initial state <span class="math notranslate nohighlight">\(\pi_0\)</span> at time 0 and the transition probabilities <span class="math notranslate nohighlight">\(P(X_{n+1}|X_n)\)</span> from time <span class="math notranslate nohighlight">\(n\)</span> to time <span class="math notranslate nohighlight">\(n+1\)</span>, outlining how the chain begins and moves.</p>
 </div>
 <section id="one-step-transition-probability-matrix">
 <h3>One-step transition probability matrix<a class="headerlink" href="#one-step-transition-probability-matrix" title="Permalink to this heading">#</a></h3>
@@ -498,8 +497,8 @@ P_{i0}\ P_{i1}\ P_{i2}\ldots \\
 homogeneous transition probability matrix are given. The initial state
 <span class="math notranslate nohighlight">\(X_0\)</span> defines how the chain starts and the transition probability matrix
 <span class="math notranslate nohighlight">\(P\)</span> determines how the chain moves.</p>
-<div class="proof example admonition" id="13.3">
-<p class="admonition-title"><span>Example </span> (13.3)</p>
+<div class="proof example admonition" id="exp13.3">
+<p class="admonition-title"><span class="caption-number">Example 75 </span></p>
 <section class="example-content" id="proof-content">
 <p>Suppose that a gene has two alleles <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span>. The alleles
 <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(a\)</span> may mutate to another type in the next generation. The
@@ -522,8 +521,8 @@ A \\
 \alpha &amp; 1 - \alpha \\
 \end{pmatrix}\end{split}\]</div>
 </section>
-</div><div class="proof example admonition" id="13.4">
-<p class="admonition-title"><span>Example </span> (13.4)</p>
+</div><div class="proof example admonition" id="exp13.4">
+<p class="admonition-title"><span class="caption-number">Example 76 </span></p>
 <section class="example-content" id="proof-content">
 <p>We consider a population of <span class="math notranslate nohighlight">\(N\)</span> individuals. Let <span class="math notranslate nohighlight">\(X_{n}\)</span>
 denote the number of individuals with allele A in generation <span class="math notranslate nohighlight">\(n\)</span>.
@@ -544,8 +543,8 @@ B\left( 0,\frac{2}{N} \right) &amp; B\left( 1,\frac{2}{N} \right) &amp; B\left( 
 <p>where <span class="math notranslate nohighlight">\(B\left(i,\frac{j}{N}\right)\)</span> is the probability <span class="math notranslate nohighlight">\(P(X = i)\)</span> when <span class="math notranslate nohighlight">\(X\)</span> has the
 Binomial <span class="math notranslate nohighlight">\((N, p = \frac{j}{N})\)</span>.</p>
 </section>
-</div><div class="proof example admonition" id="13.5">
-<p class="admonition-title"><span>Example </span> (13.5)</p>
+</div><div class="proof example admonition" id="exp13.5">
+<p class="admonition-title"><span class="caption-number">Example 77 </span></p>
 <section class="example-content" id="proof-content">
 <p>A gambling model. a gamble either wins $1 with probability
 <span class="math notranslate nohighlight">\(p\)</span> or loses $1 with probability 1-p. if the gambler quits playing either
@@ -566,13 +565,12 @@ P = \begin{pmatrix}
 </section>
 </div><div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>States 0 and N are called <strong>absorbing states</strong>, because once the process gets into those states it will never get out.</p>
+<p>In this example, states 0 and N are <strong>absorbing states</strong>, because once the process gets into those states it will never get out.</p>
 </div>
-<div class="proof example admonition" id="13.6">
-<p class="admonition-title"><span>Example </span> (13.6)</p>
+<div class="proof example admonition" id="exp13.6">
+<p class="admonition-title"><span class="caption-number">Example 78 </span></p>
 <section class="example-content" id="proof-content">
-<p>In example 1, if the initial state <span class="math notranslate nohighlight">\(P(X_0) = (0.1, 0.9)\)</span> and <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span> and
-<span class="math notranslate nohighlight">\(\beta=0.2\)</span>, find <span class="math notranslate nohighlight">\(P(X_1)\)</span></p>
+<p>In <a class="reference internal" href="#exp13.1">Example 73</a>, if the initial state <span class="math notranslate nohighlight">\(P(X_0) = (0.1, 0.9)\)</span> and <span class="math notranslate nohighlight">\(\alpha = 0.1\)</span> and <span class="math notranslate nohighlight">\(\beta=0.2\)</span>, find <span class="math notranslate nohighlight">\(P(X_1)\)</span>.</p>
 <p>The one-step transition probability matrix is</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -604,9 +602,12 @@ P\left( X_{1} = A \right) &amp;= P\left( X_{1} = A|X_{0} = a \right)P\left( X_{0
 </div><p>We have a matrix representation for the probability distribution of <span class="math notranslate nohighlight">\(X_{1}\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[P\left( X_{1} \right) = P\left( X_{0} \right)\cdot P\]</div>
-<p>In general,</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>In general, the probability distribution of <span class="math notranslate nohighlight">\(X_n\)</span> is determined by the initial state <span class="math notranslate nohighlight">\(P(X_0)\)</span> and the one-step transition probability matrix <span class="math notranslate nohighlight">\(P\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
-\[P\left( X_{n} \right) = P\left( X_{0} \right)\cdot P^{n}\]</div>
+\[P(X_n) = P(X_0)\cdot P^n\]</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.1</span><span class="p">,</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.9</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
@@ -646,11 +647,11 @@ P\left( X_{1} = A \right) &amp;= P\left( X_{1} = A|X_{0} = a \right)P\left( X_{0
 </section>
 <section id="limiting-probability-distribution">
 <h3>Limiting probability distribution<a class="headerlink" href="#limiting-probability-distribution" title="Permalink to this heading">#</a></h3>
-<p>Another major goal of the Markov chain theory is to find the limiting
+<p>Another major goal of the Markov chain theory is to determine the limiting
 probabilities <span class="math notranslate nohighlight">\(\lim_{n \rightarrow \infty}{P(X_{n})}\)</span>, as time <span class="math notranslate nohighlight">\(n\)</span> goes to
 infinity.</p>
 <div class="proof theorem admonition" id="theorem-7">
-<p class="admonition-title"><span class="caption-number">Theorem 11 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 21 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>If the Markov chain is ergodic (irreducible, aperiodic, and
 positive recurrent), limiting probabilities <span class="math notranslate nohighlight">\(\pi\)</span> exist and satisfy the
@@ -704,9 +705,7 @@ equations</p>
 </div>
 </div>
 </div>
-<p>Note that once the chain reaches the limiting probability distribution, it will stay in
-the limiting probability distribution. Thus, the limiting probability distribution is also
-called the stationary distribution.</p>
+<p>It’s important to note that once the chain attains the limiting probability distribution, it remains within that distribution. Consequently, the limiting probability distribution is also referred to as the stationary distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">x_lim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x_0</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">%^%</span><span class="w"> </span><span class="m">60</span><span class="p">)</span>
@@ -725,9 +724,7 @@ called the stationary distribution.</p>
 </div>
 </div>
 </div>
-<p>For irreducible finite state discrete time Markov chain, the ergodic
-conditions are always satisfied. Thus, we can find the limiting
-probabilities by solving the equations</p>
+<p>In the case of an irreducible finite-state discrete-time Markov chain, the ergodic conditions are always fulfilled. Therefore, we can determine the limiting probabilities by solving the equations:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{equation}
@@ -737,8 +734,8 @@ probabilities by solving the equations</p>
 \end{cases}
 \end{equation}
 \end{split}\]</div>
-<div class="proof example admonition" id="13.7">
-<p class="admonition-title"><span>Example </span> (13.7)</p>
+<div class="proof example admonition" id="exp13.7">
+<p class="admonition-title"><span class="caption-number">Example 79 </span></p>
 <section class="example-content" id="proof-content">
 <p>Consider a Markov chain of two alleles (a, A) with the one-step
 transition probability <span class="math notranslate nohighlight">\(P=\begin{pmatrix}
@@ -787,8 +784,8 @@ $vectors
 </section>
 <section id="continuous-time-markov-chains">
 <h2>Continuous time Markov chains<a class="headerlink" href="#continuous-time-markov-chains" title="Permalink to this heading">#</a></h2>
-<div class="proof definition admonition" id="CTMC">
-<p class="admonition-title"><span>Definition </span> (continuous time Markov chain)</p>
+<div class="proof definition admonition" id="def13.2">
+<p class="admonition-title"><span class="caption-number">Definition 29 </span> (continuous time Markov chain)</p>
 <section class="definition-content" id="proof-content">
 <p>A continuous time Markov chain <span class="math notranslate nohighlight">\(\{ X_{t}\}\)</span> is a discrete
 state continuous time stochastic process that satisfies Markov property.</p>
@@ -799,12 +796,7 @@ state continuous time stochastic process that satisfies Markov property.</p>
 <div class="math notranslate nohighlight">
 \[P\left( X_{t + s} = j \middle| X_{s} = i,\ X_{u},\ 0 \leq u \leq s \right) = P(X_{t + s} = j|X_{s} = i)\]</div>
 </div>
-<p>Suppose <span class="math notranslate nohighlight">\(\{ X_{t},t \geq 0\}\)</span> is a continuous time stochastic process
-taking on values in the set of nonnegative integers {0, 1, 2, …}.</p>
-<p>In addition, if <span class="math notranslate nohighlight">\(P\left( X_{t + s} = j \middle| X_{s} = i \right)\)</span> is
-independent of <span class="math notranslate nohighlight">\(s\)</span>, the continuous time Markov chain is said to have
-stationary or homogeneous transition probabilities, denoted by <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span>,
-the probability of transition from state <span class="math notranslate nohighlight">\(i\)</span> to state j in time t.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(\{ X_{t},t \geq 0\}\)</span> is a continuous time stochastic process taking on values in the set of nonnegative integers {0, 1, 2, …}. In addition, if <span class="math notranslate nohighlight">\(P\left( X_{t + s} = j \middle| X_{s} = i \right)\)</span> is independent of <span class="math notranslate nohighlight">\(s\)</span>, the continuous time Markov chain is said to have stationary or homogeneous transition probabilities, denoted by <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span>, the probability of transition from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> in time <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <section id="finite-state-space">
 <h3>Finite state space<a class="headerlink" href="#finite-state-space" title="Permalink to this heading">#</a></h3>
 <p>Suppose there are <span class="math notranslate nohighlight">\(n\)</span> states. The transition probabilities <span class="math notranslate nohighlight">\(P_{ij}(t)\)</span> can be represented by a <span class="math notranslate nohighlight">\(n\times n\)</span> matrix
@@ -827,8 +819,13 @@ matrix <span class="math notranslate nohighlight">\(Q\)</span>.</p>
 <p>The solution to this differential equation is</p>
 <div class="math notranslate nohighlight">
 \[P(t) = e^{Qt}\]</div>
+<p>Thus,</p>
+<div class="math notranslate nohighlight">
+\[
+\pi_t = \pi_0e^{Qt}
+\]</div>
 <div class="proof theorem admonition" id="theorem-10">
-<p class="admonition-title"><span>Theorem </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 22 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>The limiting probabilities
 <span class="math notranslate nohighlight">\(\pi_\infty=\lim_{t \rightarrow \infty}{P\left( X_{t} = j \middle| X_{0} = i \right)}\)</span>,

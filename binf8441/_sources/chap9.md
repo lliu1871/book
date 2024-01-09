@@ -26,7 +26,7 @@ kernelspec:
 ```
 
 ## Simple linear regression
-
+```{admonition} Model assumptions
 Simple linear regression is a linear model with a single explanatory variable $x$. The model assumes a linear relationship between the response variable $y$ and the explanatory variable $x$, i.e., 
 
 $y_{i}=\beta_0+\beta_1 x_{i}+\epsilon_{i}$
@@ -36,13 +36,13 @@ $x$ : the explanatary variable. $x_i's$ are fixed.
 $y$: the response variable.
 
 $\epsilon$ : the error term. The model assumes that $\epsilon_{i}{ }^{\prime} s$ are iid random variables with the normal $\left(0, \sigma^{2}\right)$ density.
-
+```
 ```{code-cell}
 data(trees)
 head(trees)
 ```
 
-The probability distribution of $y_{i}$ is $\operatorname{Normal}\left(\beta_0+\beta_1 x_{i}, \sigma^{2}\right)$. The expectation of $y$ is a linear function of $x$, i.e., $E(y)$ and $x$ has a linear relationship,
+The probability distribution of $y_{i}$ is $\operatorname{Normal}\left(\beta_0+\beta_1 x_{i}, \sigma^{2}\right)$. The expectation of $y$ is a linear function of $x$, i.e., $E(y)$ and $x$ have a linear relationship,
 
 $$E(y) = \beta_0+\beta_1x$$(1)
 
@@ -103,13 +103,13 @@ beta1
 
 ### Maximum likelihood estimates 
 
-We first find the likelihood function
+The first step is to determine the likelihood function
 
 $$
 f\left(y_{1}, y_{2}, \ldots, y_{n}\right)=\prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{\sum\left(y_{i}-\left(\beta_0+\beta_1 x_{i}\right)\right)^{2}}{2 \sigma^{2}}}
 $$
 
-Next, we find the log-likelihood
+Next, we find the log-likelihood function,
 
 $$
 n \log \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}}\right)-\frac{\sum\left(y_{i}-\left(\beta_0+\beta_1 x_{i}\right)\right)^{2}}{2 \sigma^{2}}
@@ -119,11 +119,11 @@ The log-likelihood is maximized if $\sum_{i=1}^{n}\left(y_{i}-\left(\beta_0+\bet
 
 ### Testing the linear relationship
 ```{important}
-If $\beta_1=0$, we say that $Y$ and $X$ do not have the linear relationship
+If $\beta_1=0$, we say that $Y$ and $X$ do not have a linear relationship
 
-If $\beta_1>0$, we say that $\mathrm{Y}$ and $\mathrm{X}$ are positively correlated
+If $\beta_1>0$, we say that $Y$ and $X$ are positively correlated
 
-If $\beta_1<0$, we say that $\mathrm{Y}$ and $\mathrm{X}$ are negatively correlated 
+If $\beta_1<0$, we say that $Y$ and $X$ are negatively correlated 
 ```
 
 The likelihood ratio test (LRT) can be used to test if $Y$ and $X$ have a linear relationship.
@@ -146,9 +146,9 @@ $$
 $$
 
 
-$\mathrm{H}_{0}$ has one free parameter $\beta_0$, while $\mathrm{H}_{1}$ has two free parameters $\beta_0$ and $\beta_1$. Thus, the null distribution of the test statistic $t$ is the chi-square distribution with 1 degree of freedom.
+$H_{0}$ has one free parameter $\beta_0$, while $H_{1}$ has two free parameters $\beta_0$ and $\beta_1$. Thus, the null distribution of the test statistic $t$ is the chi-square distribution with 1 degree of freedom.
 
-Rejection region: we reject the null if $t>a$ where $a$ is the 95% quantile of the chi-square distribution with 1 degree of freedom.
+Rejection region: we reject the null if $t>a$ where $a$ is the 95% quantile of the $\chi^2$ distribution with 1 degree of freedom.
 
 ```{code-cell}
 result = lm(Volume ~ Height, data=trees)
@@ -156,31 +156,31 @@ summary(result)
 ```
 
 ## Multiple linear regression
-
+```{admonition} Model assumptions
 $y_{i}=\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}+\varepsilon_{i}$
 
-$x_{i}$ : explanatary variables. We assume $X_{i}$ is fixed.
+$x_{i}$ : the explanatary variables. We assume $x_i's$ are fixed.
 
-$y$ : the response variable. random variable
+$y$ : the response variable, which is a random variable.
 
 $\epsilon$ : the error term. The model assumes that $\epsilon_{i}^{\prime} s$ are independent and have the same probability distribution normal $\left(0, \sigma^{2}\right)$.
-
-The probability distribution of $y_i$ is normal with mean $\left(\beta_{0}+\beta_{1} X_{1 i}+\beta_{2} X_{2 i}+\cdots+\right.$ $\left.\beta_{p} X_{p i}\right)$ and the variance of $\mathrm{Y}_{\mathrm{i}}$ is $\sigma^{2}$, in which $\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)$ and $\sigma^{2}$ are parameters to estimate.
-
-The matrix representation of multiple linear regression with $p$ predictors $\left(X_{1}, \ldots, X_{p}\right)$ is
+```
+The probability distribution of $y_i$ is normal with mean $\left(\beta_{0}+\beta_{1} X_{1 i}+\beta_{2} X_{2 i}+\cdots+\right.$ $\left.\beta_{p} X_{p i}\right)$ and variance $\sigma^{2}$, in which $\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)$ and $\sigma^{2}$ are parameters to estimate. The matrix representation of the multiple linear regression with $p$ predictors $\left(X_{1}, \ldots, X_{p}\right)$ is given by
 
 $$
 Y=X \beta+\epsilon
 $$
 
-where $\mathrm{Y}$ is a vector of size $n$, $\mathrm{X}$ is a $n \times(p+1)$ matrix, and $\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)$ is a vector of size $(p+1)$.
+where $Y=(y_1,\dots,y_n)$ is a vector of size $n$, $X$ is a $n \times(p+1)$ matrix, and $\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)$ is a vector of size $(p+1)$.
 
 ### Least square estimates of $\beta$ 
 We estimate $\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)$ by minimizing the sum of squared errors
 
 $$
-\sum_{i=1}^{n}\left(y_{i}-\left(\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}\right)\right)^{2}
+SSE=\sum_{i=1}^{n}\left(y_{i}-\left(\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}\right)\right)^{2}
 $$
+
+The matrix representation of the sum of squared error is $SSE=(Y-X\beta)'(Y-X\beta)$, which is equal to $Y'Y-Y'X\beta-\beta'X'Y+\beta'X'X\beta$. To minimize the sum of squared error, we take the first derivative with respect to $\beta$ and set it to be 0, i.e., $-2X'Y+2X'X\beta=0$, indicating that $\beta = (X'X)^{-1}X'Y$. Thus, the least square estimate of $\beta$ is $\hat{\beta}=(X'X)^{-1}X'Y$ where $X'$ is the transpose of the matrix $X$. 
 
 ### Maximum likelihood estimates
 The likelihood function is given by 
@@ -198,15 +198,15 @@ summary(result)
 
 ## Transformation
 
-The response variable $\mathrm{Y}$ may not have a linear relationship with $\mathrm{X}$. For example, if the true relation is $E(Y)=\beta_0+\beta_1 X^{2}$, we can transform $Z=X^{2}$ and fit a linear model for $\mathrm{Y}$ and $\mathrm{Z}$ (or $\mathrm{X}^{2}$ )
+The response variable $Y$ may not have a linear relationship with $X$. For example, if the true relation is $E(Y)=\beta_0+\beta_1 X^{2}$, we can transform $Z=X^{2}$ and fit a linear model for $Y$ and $Z$ (or $X^{2}$)
 
-In general, if $E(Y)=g(X)$, we can fit a linear model for $Y$ and a function $g(X)$ of $X$, where the function $g(X)$ can be found by
+In general, if $E(Y)=g(X)$, we can fit a linear regression for $Y$ and a function $g(X)$ of $X$, where the function $g(X)$ is determined by
 
-1) The residual plots to discover the relationship between $\mathrm{Y}$ and $\mathrm{X}$ and find $g(X)$
+1. The residual plots to discover the relationship between $Y$ and $X$ and find $g(X)$
 
-2) Log-transformation for $\mathrm{X}$ and $\mathrm{Y}$
+2. Log-transformation for $X$ and $Y$
 
-3) Box-Cox transformation: $Y=\left\{\begin{array}{l}\frac{Y^{\lambda}-1}{\lambda} \text {, if } \lambda \neq 0 \\ \log (Y) \text {, if } \lambda=0\end{array}\right.$ and find the optimal $\lambda$ using $\mathrm{R}$
+3. Box-Cox transformation: $Y=\left\{\begin{array}{l}\frac{Y^{\lambda}-1}{\lambda} \text {, if } \lambda \neq 0 \\ \log (Y) \text {, if } \lambda=0\end{array}\right.$ and find the optimal $\lambda$ using R.
 
 ```{code-cell}
 library(MASS)
@@ -236,27 +236,27 @@ $$
 H_{0}: \beta_{s}=0 \text { vs } H_{1}: \beta_{s} \neq 0
 $$
 
-The model under $H_{0}$ is called reduced model with $p_{s}+1$ coefficients $\beta$ and the model under $H_{1}$ is called full model with $(p+1)$ coefficients $\beta$. Note that $p_{s}<p$, and the null model is nested in the alternative model.
+The model under $H_{0}$ is called reduced model with $p_{s}+1$ coefficients $\beta$ and the model under $H_{1}$ is called full model with $(p+1)$ coefficients $\beta$. Note that $p_{s}<p$, and the null model is nested in the alternative model. The likelihood ratio test can determine if a subset $\beta_{s}$ are 0.
 
 ### F-test 
 
 The residual sum-of-squares $\operatorname{RSS}(\beta)$ is defined as:
 
 $$
-R S S(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}=\sum_{i=1}^{n}\left(y_{i}-x_{i} \beta\right)^{2}
+RSS(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}=\sum_{i=1}^{n}\left(y_{i}-x_{i} \beta\right)^{2}
 $$
 
-Let $\mathrm{RSS}_{1}$ correspond to the full model with $p+1$ parameters, and $\mathrm{RSS}_{0}$ correspond to the nested model with $p_{0}+1$ parameters. The $\mathrm{F}$ statistic measures the reduction of RSS per additional parameter in the full model,
+Let $\mathrm{RSS}_{1}$ correspond to the full model with $p+1$ parameters, and $\mathrm{RSS}_{0}$ correspond to the nested model with $p_{0}+1$ parameters. The $F$ statistic measures the reduction of RSS per additional parameter in the full model,
 
 $$
 F=\frac{\left(R S S_{0}-R S S_{1}\right) /\left(p_{1}-p_{0}\right)}{R S S_{1} /\left(n-p_{1}-1\right)}
 $$
 
-Under the normal assumption, the null distribution of $\mathrm{F}$ test statistic is the $\mathrm{F}$ distribution with degrees of freedom $\left(p_{1}-p_{0}\right)$ and $\left(n-p_{1}-1\right)$. Thus, we reject $\mathrm{H}_{0}$ if $F>$ a, where $\mathrm{a}$ is the $(1-\alpha)$ quantile of the $\mathrm{F}$ distribution with degrees of freedom $\left(p_{1}-p_{0}\right)$ and $\left(n-p_{1}-1\right)$.
+Under the normality assumption, the null distribution of $F$ test statistic is the $F$ distribution with degrees of freedom $\left(p_{1}-p_{0}\right)$ and $\left(n-p_{1}-1\right)$. Thus, we reject $H_{0}$ if $F>$ a, where $a$ is the $(1-\alpha)$ quantile of the $F$ distribution with degrees of freedom $\left(p_{1}-p_{0}\right)$ and $\left(n-p_{1}-1\right)$.
 
 ### Likelihood ratio test (LRT)
 
-Let $\mathrm{L}_{1}$ be the maximum value of the likelihood of the full model. Let $\mathrm{L}_{0}$ be the maximum value of the likelihood of the nested model. The likelihood ratio test statistic is
+Let $L_{1}$ be the maximum value of the likelihood of the full model. Let $L_{0}$ be the maximum value of the likelihood of the nested model. The likelihood ratio test statistic is
 
 $$
 t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
@@ -266,13 +266,13 @@ The null distribution of test statistic $t$ is asymptotically $\chi^{2}$ distrib
 
 ### Akaike Information Criterion (AIC)
 
-The LRT can only be applied to the nested models. In addition, the LRT tends to favor the complex model, because LRT is solely based on the likelihood score and the complex model always has a higher likelihood score. AIC is a more general measure of "model fit" by penalizing the complexity of the model to avoid overfitting the data,
+The LRT tends to favor the complex model, because LRT is solely based on the likelihood score and the complex model always has a higher likelihood score. AIC is a more general measure of "model fit" by penalizing the complexity of the model to avoid overfitting the data,
 
 $$
 \text { AIC }=-2 \text { loglikelihood }+2 p
 $$
 
-where $p$ is the number of parameters, measuring the complexity of the model, and loglikelihood measures the goodness of fit of the model to the data. Given a collection of putative models, the best model is the one with the lowest $A I C$.
+where $p$ is the number of parameters, measuring the complexity of the model, and loglikelihood measures goodness of fit of the model to the data. Given a collection of putative models, the best model is the one with the lowest $AIC$.
 
 ### Bayes Information Criterion (BIC)
 
@@ -295,18 +295,18 @@ The algorithm begins with a naive model $y = \beta_0$ that does not include any 
 The algorithm begins with the full model including all predictors and then removes one predictor at a time.
 
 #### Forward and backward stepwise selection
-mixing forward and backward selection to find the optimal subset of predictors.
+Mixing forward and backward selection to find the optimal subset of predictors.
 
 #### Least absolute shrinkage and selection operator (LASSO)
-The algorithm minimizes the residual sum-of-square $\operatorname{RSS}(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}$, subject to $\sum_{i=1}^{p}\left|\beta_{i}\right| \leq c$, in which $\mathrm{c}$ is a pre-specified parameter. This procedure can automatically shrink some $\beta$ to 0 .
+The algorithm minimizes the residual sum-of-square $\operatorname{RSS}(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}$, subject to $\sum_{i=1}^{p}\left|\beta_{i}\right| \leq c$, in which $c$ is a pre-specified parameter. This procedure can automatically shrink some $\beta$ to 0 .
 
 ## Generalized linear regression
 
-In linear regression model, the dependent variable $\mathrm{Y}$ is assumed to have a normal distribution with mean $X \beta$. In generalized linear regression, the normality assumption is relaxed to allow $Y$ to have other probability distributions (binomial, Poisson, etc).
+In linear regression model, the dependent variable $Y$ is assumed to have a normal distribution with mean $X \beta$. In generalized linear regression, the normality assumption is relaxed to allow $Y$ to have other probability distributions (Binomial, Poisson, etc).
 
 ### Logistic model
 
-$Y_{i}=(0,1)$ is a Bernoulli random variable with probability $p_{i}$ satisfying $\log \left(\frac{p_{i}}{1-p_{i}}\right)=X_{i} \beta$, which is called the link function. It indicates that $p_{i}=\frac{e^{X_{i} \beta}}{1+e^{X_{i} \beta}}$. 
+In the logistic model, the response variable $Y_{i}=(0,1)$ is a Bernoulli random variable with probability $p_{i}$ satisfying $\log \left(\frac{p_{i}}{1-p_{i}}\right)=X_{i} \beta$, which is called the link function. It indicates that $p_{i}=\frac{e^{X_{i} \beta}}{1+e^{X_{i} \beta}}$. The logistic model can be used to predict probabilities given the covariates $X$.
 
 ```{code-cell}
 data <- read.csv("https://stats.idre.ucla.edu/stat/data/binary.csv")

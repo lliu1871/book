@@ -28,33 +28,30 @@ kernelspec:
 Monte Carlo simulation assumes that the underlying probability distribution is given. If the probability distribution is not given, we can estimate the probability distribution from data and use the estimated distribution to generate data.
 
 ````{prf:definition} Bootstrapping
-:nonumber:
-:label: bootstrapping
-:nonumber:
+:label: def11.1
 
 Bootstrapping is a resampling technique for estimating the distribution (or expectations) of any statistic of interest. 
 ````
 
 ## Parametric bootstrap
-The probability distribution is given up to the parameter values. For example, the probability distribution is Normal$(\mu, \sigma^2)$. We first use data to estimate the unknown parameters, and then generate bootstrap samples from Normal$(\hat{\mu}, \hat{\sigma^2})$, where the unknown parameters are replaced by their estimates.  
+The probability distribution is specified with respect to certain parameter values. For instance, the probability distribution may be described as Normal$(\mu, \sigma^2)$ where $\mu$ and $\sigma^2$ are unknow parameters. We can utilize data to estimate unknown parameters, and then generate bootstrap samples from the normal distribution with estimated parameters, such as Normal$(\hat{\mu}, \hat{\sigma^2})$, where the unknown parameters are substituted with their estimates.
 
-Note that the structure (size, table, number of subsamples) of bootstrap samples should look exactly the same as the original data. If the original data contains two samples, each bootstrap sample should contain two sample. If the original data consist of 23 observations, each bootstrap sample should consist of 23 observations. If the original data is a table (or a matrix), each bootstrap sample should be a table (or a matrix).
+It is crucial to maintain the same structure (size, table format, and number of subsamples) in bootstrap samples as in the original data. If the original data comprises two groups, each bootstrap sample should also include two groups. Similarly, if the original data consists of 23 observations, each bootstrap sample should consist of 23 observations. If the original data is presented as a table (or a matrix), each bootstrap sample should retain the same table (or matrix) format.
 
-````{prf:example} 11.1
-:nonumber:
-:label: 11.1
-:nonumber:
-We want to estimate the average weight of all UGA students. We take a sample of 10 students and their weights are (125.2028, 128.9885, 131.3598, 126.8757, 128.8428, 128.8664, 133.3717, 131.3412, 132.6467, 130.6033). The sample average is 129.81. Here, we want to calculate the variance of the sample average.
+````{prf:example}
+:label: exp11.1
+
+We aim to estimate the average weight of all UGA students. Taking a sample of 10 students with weights (125.2028, 128.9885, 131.3598, 126.8757, 128.8428, 128.8664, 133.3717, 131.3412, 132.6467, 130.6033), the sample average is 129.81. Now, our objective is to compute the variance of the sample average.
 
 Parametric bootstrap: Suppose the probability distribution of weights of all UGA students is Normal$(\mu,\sigma^{2})$.
 
-1) We first estimate the parameters $\mu$ and $\sigma^2$. The population mean $\mu$ is estimated by the sample average, which is 129.81. The population variance $\sigma^2$ is estimated by the sample variance is 6.49. 
+1. We first estimate the parameters $\mu$ and $\sigma^2$. The population mean $\mu$ is estimated by the sample average, which is 129.81. The population variance $\sigma^2$ is estimated by the sample variance is 6.49. 
 
-2) 100 bootstrap samples of size 10 are generated from the normal distribution with $\mu=129.81$ and $\sigma^{2}=6.49$.
+2. 100 bootstrap samples of size 10 are generated from the normal distribution with $\mu=129.81$ and $\sigma^{2}=6.49$.
 
-3) For each bootstrap sample, we calculate the sample average. We get 100 averages $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$ 
+3. For each bootstrap sample, we calculate the sample average. We get 100 averages $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$ 
 
-4) The variance of the sample average is approximated by the sample variance of $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$
+4. The variance of the sample average is approximated by the sample variance of $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$
 ````
 
 ```{code-cell}
@@ -69,10 +66,10 @@ for(i in 1:nbootstrap){
 print(paste("the variance of the sample average is",var(ave)))
 ```
 
-````{prf:example} 11.2
-:nonumber:
-:label: 11.2
-:nonumber:
+Parametric bootstrapping can be used to approximate the null distribution of the test statistic in hypothesis testing.
+
+````{prf:example}
+:label: exp11.2
 
 Comparing two Packing Machines. In a packing plant, a machine packs cartons with jars. It is supposed that a new machine will pack faster on the average than the machine currently used. To test that hypothesis, the times it takes each machine to pack ten cartons are recorded. The results, in seconds, are shown in the following table
 
@@ -142,20 +139,18 @@ if(teststat < critical_value[1] | teststat>critical_value[2]){
 ## Nonparametric bootstrap 
 Nonparametric bootstrap samples are generated by resampling the original data with replacement, pretending the original data is the "population".
 
+````{prf:example}
+:label: exp11.3
 
-````{prf:example} 11.3
-:nonumber:
-:label: 11.3
-:nonumber:
 We want to estimate the average weight of all UGA students. We take a sample of 10 students and their weights are (125.2028, 128.9885, 131.3598, 126.8757, 128.8428, 128.8664, 133.3717, 131.3412, 132.6467, 130.6033). The sample average is $129.81$. Here, we want to calculate the variance of the sample average.
 
 Nonparametric bootstrap samples are generated by resampling the original data with replacement
 
-1) 100 bootstrap samples of size 10 by resampling the original data set with replacement
+1. 100 bootstrap samples of size 10 by resampling the original data set with replacement
 
-2) For each bootstrap sample, we calculate the sample average. We have 100 averages $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$
+2. For each bootstrap sample, we calculate the sample average. We have 100 averages $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$
 
-3) The variance of the sample average is approximated by the sample variance of $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$
+3. The variance of the sample average is approximated by the sample variance of $\left(\overline{x_{1}}, \ldots, \overline{x_{100}}\right)$
 ````
 
 ```{code-cell}
@@ -172,10 +167,8 @@ print(paste("the variance of the sample average is",var(ave)))
 ```
 
 
-````{prf:example} 11.4
-:nonumber:
-:label: 11.4
-:nonumber:
+````{prf:example}
+:label: exp11.4
 
 Comparing two Packing Machines. In a packing plant, a machine packs cartons with jars. It is supposed that a new machine will pack faster on the average than the machine currently used. To test that hypothesis, the times it takes each machine to pack ten cartons are recorded. The results, in seconds, are shown in the following table
 
@@ -194,13 +187,13 @@ Test-stat: $t=\overline{x_{1}}-\overline{x_{2}}$
 We use nonparametric bootstrap to approximate the null distribution of the test statistic $t$.
 Under $\mathrm{H}_{0}$, two samples are generated from the same population. Thus, the pooled sample is treated as the "population" and we generate bootstrap samples from the pooled sample with replacement.
 
-1) The pooled sample consists of 20 observations. Each bootstrap sample has a $x$ sample and a y sample. The x sample is generated by selecting 10 numbers at random from the 20 observations in the pooled sample. The y sample is generated by selecting 10 numbers at random from the 20 observations in the pooled sample.
+1. The pooled sample consists of 20 observations. Each bootstrap sample has a $x$ sample and a y sample. The x sample is generated by selecting 10 numbers at random from the 20 observations in the pooled sample. The y sample is generated by selecting 10 numbers at random from the 20 observations in the pooled sample.
 
-2) For each bootstrap sample, we calculate the test statistic t. Thus, we have 100 test statistics $\left(t_{1}, \ldots, t_{100}\right)$
+2. For each bootstrap sample, we calculate the test statistic t. Thus, we have 100 test statistics $\left(t_{1}, \ldots, t_{100}\right)$
 
-3) The $97.5 \%$ quantile of the null distribution of the test statistic $\mathrm{t}$ is approximated by the sample $97.5 \%$ quantile of $\left(t_{1}, \ldots, t_{100}\right)$. Similarly, the $2.5 \%$ quantile of the null distribution of the test statistic t is approximated by the sample $2.5 \%$ quantile of $\left(t_{1}, \ldots, t_{100}\right)$
+3. The $97.5 \%$ quantile of the null distribution of the test statistic $\mathrm{t}$ is approximated by the sample $97.5 \%$ quantile of $\left(t_{1}, \ldots, t_{100}\right)$. Similarly, the $2.5 \%$ quantile of the null distribution of the test statistic t is approximated by the sample $2.5 \%$ quantile of $\left(t_{1}, \ldots, t_{100}\right)$
 
-4) We reject $\mathrm{H}_{0}$, if the observed test statistic calculated from the original data is $>$ the $97.5 \%$ quantile of the null distribution or $<$ the $2.5 \%$ quantile of the null distribution 
+4. We reject $\mathrm{H}_{0}$, if the observed test statistic calculated from the original data is $>$ the $97.5 \%$ quantile of the null distribution or $<$ the $2.5 \%$ quantile of the null distribution 
 ````
 
 ```{code-cell}

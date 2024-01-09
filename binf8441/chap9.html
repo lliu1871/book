@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -447,11 +447,14 @@ document.write(`
 </div>
 <section id="simple-linear-regression">
 <h2>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this heading">#</a></h2>
+<div class="admonition-model-assumptions admonition">
+<p class="admonition-title">Model assumptions</p>
 <p>Simple linear regression is a linear model with a single explanatory variable <span class="math notranslate nohighlight">\(x\)</span>. The model assumes a linear relationship between the response variable <span class="math notranslate nohighlight">\(y\)</span> and the explanatory variable <span class="math notranslate nohighlight">\(x\)</span>, i.e.,</p>
 <p><span class="math notranslate nohighlight">\(y_{i}=\beta_0+\beta_1 x_{i}+\epsilon_{i}\)</span></p>
 <p><span class="math notranslate nohighlight">\(x\)</span> : the explanatary variable. <span class="math notranslate nohighlight">\(x_i's\)</span> are fixed.</p>
 <p><span class="math notranslate nohighlight">\(y\)</span>: the response variable.</p>
 <p><span class="math notranslate nohighlight">\(\epsilon\)</span> : the error term. The model assumes that <span class="math notranslate nohighlight">\(\epsilon_{i}{ }^{\prime} s\)</span> are iid random variables with the normal <span class="math notranslate nohighlight">\(\left(0, \sigma^{2}\right)\)</span> density.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">trees</span><span class="p">)</span>
@@ -477,7 +480,7 @@ document.write(`
 </table>
 </div></div>
 </div>
-<p>The probability distribution of <span class="math notranslate nohighlight">\(y_{i}\)</span> is <span class="math notranslate nohighlight">\(\operatorname{Normal}\left(\beta_0+\beta_1 x_{i}, \sigma^{2}\right)\)</span>. The expectation of <span class="math notranslate nohighlight">\(y\)</span> is a linear function of <span class="math notranslate nohighlight">\(x\)</span>, i.e., <span class="math notranslate nohighlight">\(E(y)\)</span> and <span class="math notranslate nohighlight">\(x\)</span> has a linear relationship,</p>
+<p>The probability distribution of <span class="math notranslate nohighlight">\(y_{i}\)</span> is <span class="math notranslate nohighlight">\(\operatorname{Normal}\left(\beta_0+\beta_1 x_{i}, \sigma^{2}\right)\)</span>. The expectation of <span class="math notranslate nohighlight">\(y\)</span> is a linear function of <span class="math notranslate nohighlight">\(x\)</span>, i.e., <span class="math notranslate nohighlight">\(E(y)\)</span> and <span class="math notranslate nohighlight">\(x\)</span> have a linear relationship,</p>
 <div class="math notranslate nohighlight" id="equation-1">
 <span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation">#</a></span>\[E(y) = \beta_0+\beta_1x\]</div>
 <div class="cell docutils container">
@@ -551,12 +554,12 @@ Coefficients:
 </section>
 <section id="maximum-likelihood-estimates">
 <h3>Maximum likelihood estimates<a class="headerlink" href="#maximum-likelihood-estimates" title="Permalink to this heading">#</a></h3>
-<p>We first find the likelihood function</p>
+<p>The first step is to determine the likelihood function</p>
 <div class="math notranslate nohighlight">
 \[
 f\left(y_{1}, y_{2}, \ldots, y_{n}\right)=\prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi \sigma^{2}}} e^{-\frac{\sum\left(y_{i}-\left(\beta_0+\beta_1 x_{i}\right)\right)^{2}}{2 \sigma^{2}}}
 \]</div>
-<p>Next, we find the log-likelihood</p>
+<p>Next, we find the log-likelihood function,</p>
 <div class="math notranslate nohighlight">
 \[
 n \log \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}}\right)-\frac{\sum\left(y_{i}-\left(\beta_0+\beta_1 x_{i}\right)\right)^{2}}{2 \sigma^{2}}
@@ -567,9 +570,9 @@ n \log \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}}\right)-\frac{\sum\left(y_{i}-\lef
 <h3>Testing the linear relationship<a class="headerlink" href="#testing-the-linear-relationship" title="Permalink to this heading">#</a></h3>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>If <span class="math notranslate nohighlight">\(\beta_1=0\)</span>, we say that <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> do not have the linear relationship</p>
-<p>If <span class="math notranslate nohighlight">\(\beta_1&gt;0\)</span>, we say that <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> are positively correlated</p>
-<p>If <span class="math notranslate nohighlight">\(\beta_1&lt;0\)</span>, we say that <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> are negatively correlated</p>
+<p>If <span class="math notranslate nohighlight">\(\beta_1=0\)</span>, we say that <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> do not have a linear relationship</p>
+<p>If <span class="math notranslate nohighlight">\(\beta_1&gt;0\)</span>, we say that <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> are positively correlated</p>
+<p>If <span class="math notranslate nohighlight">\(\beta_1&lt;0\)</span>, we say that <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> are negatively correlated</p>
 </div>
 <p>The likelihood ratio test (LRT) can be used to test if <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> have a linear relationship.</p>
 <p><span class="math notranslate nohighlight">\(\mathrm{H}_{0}: \beta_1=0\)</span> and <span class="math notranslate nohighlight">\(\mathrm{H}_{1}: \beta_1 \neq 0\)</span></p>
@@ -586,8 +589,8 @@ n \log \left(\frac{1}{\sqrt{2 \pi \sigma^{2}}}\right)-\frac{\sum\left(y_{i}-\lef
 \end{split}
 \end{equation}
 \end{split}\]</div>
-<p><span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span> has one free parameter <span class="math notranslate nohighlight">\(\beta_0\)</span>, while <span class="math notranslate nohighlight">\(\mathrm{H}_{1}\)</span> has two free parameters <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>. Thus, the null distribution of the test statistic <span class="math notranslate nohighlight">\(t\)</span> is the chi-square distribution with 1 degree of freedom.</p>
-<p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the chi-square distribution with 1 degree of freedom.</p>
+<p><span class="math notranslate nohighlight">\(H_{0}\)</span> has one free parameter <span class="math notranslate nohighlight">\(\beta_0\)</span>, while <span class="math notranslate nohighlight">\(H_{1}\)</span> has two free parameters <span class="math notranslate nohighlight">\(\beta_0\)</span> and <span class="math notranslate nohighlight">\(\beta_1\)</span>. Thus, the null distribution of the test statistic <span class="math notranslate nohighlight">\(t\)</span> is the chi-square distribution with 1 degree of freedom.</p>
+<p>Rejection region: we reject the null if <span class="math notranslate nohighlight">\(t&gt;a\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is the 95% quantile of the <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution with 1 degree of freedom.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">lm</span><span class="p">(</span><span class="n">Volume</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">Height</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="o">=</span><span class="n">trees</span><span class="p">)</span>
@@ -621,24 +624,27 @@ F-statistic: 16.16 on 1 and 29 DF,  p-value: 0.0003784
 </section>
 <section id="multiple-linear-regression">
 <h2>Multiple linear regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this heading">#</a></h2>
+<div class="admonition-model-assumptions admonition">
+<p class="admonition-title">Model assumptions</p>
 <p><span class="math notranslate nohighlight">\(y_{i}=\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}+\varepsilon_{i}\)</span></p>
-<p><span class="math notranslate nohighlight">\(x_{i}\)</span> : explanatary variables. We assume <span class="math notranslate nohighlight">\(X_{i}\)</span> is fixed.</p>
-<p><span class="math notranslate nohighlight">\(y\)</span> : the response variable. random variable</p>
+<p><span class="math notranslate nohighlight">\(x_{i}\)</span> : the explanatary variables. We assume <span class="math notranslate nohighlight">\(x_i's\)</span> are fixed.</p>
+<p><span class="math notranslate nohighlight">\(y\)</span> : the response variable, which is a random variable.</p>
 <p><span class="math notranslate nohighlight">\(\epsilon\)</span> : the error term. The model assumes that <span class="math notranslate nohighlight">\(\epsilon_{i}^{\prime} s\)</span> are independent and have the same probability distribution normal <span class="math notranslate nohighlight">\(\left(0, \sigma^{2}\right)\)</span>.</p>
-<p>The probability distribution of <span class="math notranslate nohighlight">\(y_i\)</span> is normal with mean <span class="math notranslate nohighlight">\(\left(\beta_{0}+\beta_{1} X_{1 i}+\beta_{2} X_{2 i}+\cdots+\right.\)</span> <span class="math notranslate nohighlight">\(\left.\beta_{p} X_{p i}\right)\)</span> and the variance of <span class="math notranslate nohighlight">\(\mathrm{Y}_{\mathrm{i}}\)</span> is <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>, in which <span class="math notranslate nohighlight">\(\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)\)</span> and <span class="math notranslate nohighlight">\(\sigma^{2}\)</span> are parameters to estimate.</p>
-<p>The matrix representation of multiple linear regression with <span class="math notranslate nohighlight">\(p\)</span> predictors <span class="math notranslate nohighlight">\(\left(X_{1}, \ldots, X_{p}\right)\)</span> is</p>
+</div>
+<p>The probability distribution of <span class="math notranslate nohighlight">\(y_i\)</span> is normal with mean <span class="math notranslate nohighlight">\(\left(\beta_{0}+\beta_{1} X_{1 i}+\beta_{2} X_{2 i}+\cdots+\right.\)</span> <span class="math notranslate nohighlight">\(\left.\beta_{p} X_{p i}\right)\)</span> and variance <span class="math notranslate nohighlight">\(\sigma^{2}\)</span>, in which <span class="math notranslate nohighlight">\(\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)\)</span> and <span class="math notranslate nohighlight">\(\sigma^{2}\)</span> are parameters to estimate. The matrix representation of the multiple linear regression with <span class="math notranslate nohighlight">\(p\)</span> predictors <span class="math notranslate nohighlight">\(\left(X_{1}, \ldots, X_{p}\right)\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 Y=X \beta+\epsilon
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> is a vector of size <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> is a <span class="math notranslate nohighlight">\(n \times(p+1)\)</span> matrix, and <span class="math notranslate nohighlight">\(\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)\)</span> is a vector of size <span class="math notranslate nohighlight">\((p+1)\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(Y=(y_1,\dots,y_n)\)</span> is a vector of size <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(X\)</span> is a <span class="math notranslate nohighlight">\(n \times(p+1)\)</span> matrix, and <span class="math notranslate nohighlight">\(\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)\)</span> is a vector of size <span class="math notranslate nohighlight">\((p+1)\)</span>.</p>
 <section id="least-square-estimates-of-beta">
 <h3>Least square estimates of <span class="math notranslate nohighlight">\(\beta\)</span><a class="headerlink" href="#least-square-estimates-of-beta" title="Permalink to this heading">#</a></h3>
 <p>We estimate <span class="math notranslate nohighlight">\(\beta=\left(\beta_{0}, \beta_{1}, \ldots, \beta_{p}\right)\)</span> by minimizing the sum of squared errors</p>
 <div class="math notranslate nohighlight">
 \[
-\sum_{i=1}^{n}\left(y_{i}-\left(\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}\right)\right)^{2}
+SSE=\sum_{i=1}^{n}\left(y_{i}-\left(\beta_{0}+\beta_{1} x_{1 i}+\beta_{2} x_{2 i}+\cdots+\beta_{p} x_{p i}\right)\right)^{2}
 \]</div>
+<p>The matrix representation of the sum of squared error is <span class="math notranslate nohighlight">\(SSE=(Y-X\beta)'(Y-X\beta)\)</span>, which is equal to <span class="math notranslate nohighlight">\(Y'Y-Y'X\beta-\beta'X'Y+\beta'X'X\beta\)</span>. To minimize the sum of squared error, we take the first derivative with respect to <span class="math notranslate nohighlight">\(\beta\)</span> and set it to be 0, i.e., <span class="math notranslate nohighlight">\(-2X'Y+2X'X\beta=0\)</span>, indicating that <span class="math notranslate nohighlight">\(\beta = (X'X)^{-1}X'Y\)</span>. Thus, the least square estimate of <span class="math notranslate nohighlight">\(\beta\)</span> is <span class="math notranslate nohighlight">\(\hat{\beta}=(X'X)^{-1}X'Y\)</span> where <span class="math notranslate nohighlight">\(X'\)</span> is the transpose of the matrix <span class="math notranslate nohighlight">\(X\)</span>.</p>
 </section>
 <section id="id1">
 <h3>Maximum likelihood estimates<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
@@ -682,12 +688,12 @@ F-statistic:   255 on 2 and 28 DF,  p-value: &lt; 2.2e-16
 </section>
 <section id="transformation">
 <h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this heading">#</a></h2>
-<p>The response variable <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> may not have a linear relationship with <span class="math notranslate nohighlight">\(\mathrm{X}\)</span>. For example, if the true relation is <span class="math notranslate nohighlight">\(E(Y)=\beta_0+\beta_1 X^{2}\)</span>, we can transform <span class="math notranslate nohighlight">\(Z=X^{2}\)</span> and fit a linear model for <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{Z}\)</span> (or <span class="math notranslate nohighlight">\(\mathrm{X}^{2}\)</span> )</p>
-<p>In general, if <span class="math notranslate nohighlight">\(E(Y)=g(X)\)</span>, we can fit a linear model for <span class="math notranslate nohighlight">\(Y\)</span> and a function <span class="math notranslate nohighlight">\(g(X)\)</span> of <span class="math notranslate nohighlight">\(X\)</span>, where the function <span class="math notranslate nohighlight">\(g(X)\)</span> can be found by</p>
+<p>The response variable <span class="math notranslate nohighlight">\(Y\)</span> may not have a linear relationship with <span class="math notranslate nohighlight">\(X\)</span>. For example, if the true relation is <span class="math notranslate nohighlight">\(E(Y)=\beta_0+\beta_1 X^{2}\)</span>, we can transform <span class="math notranslate nohighlight">\(Z=X^{2}\)</span> and fit a linear model for <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> (or <span class="math notranslate nohighlight">\(X^{2}\)</span>)</p>
+<p>In general, if <span class="math notranslate nohighlight">\(E(Y)=g(X)\)</span>, we can fit a linear regression for <span class="math notranslate nohighlight">\(Y\)</span> and a function <span class="math notranslate nohighlight">\(g(X)\)</span> of <span class="math notranslate nohighlight">\(X\)</span>, where the function <span class="math notranslate nohighlight">\(g(X)\)</span> is determined by</p>
 <ol class="arabic simple">
-<li><p>The residual plots to discover the relationship between <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> and find <span class="math notranslate nohighlight">\(g(X)\)</span></p></li>
-<li><p>Log-transformation for <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span></p></li>
-<li><p>Box-Cox transformation: <span class="math notranslate nohighlight">\(Y=\left\{\begin{array}{l}\frac{Y^{\lambda}-1}{\lambda} \text {, if } \lambda \neq 0 \\ \log (Y) \text {, if } \lambda=0\end{array}\right.\)</span> and find the optimal <span class="math notranslate nohighlight">\(\lambda\)</span> using <span class="math notranslate nohighlight">\(\mathrm{R}\)</span></p></li>
+<li><p>The residual plots to discover the relationship between <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> and find <span class="math notranslate nohighlight">\(g(X)\)</span></p></li>
+<li><p>Log-transformation for <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+<li><p>Box-Cox transformation: <span class="math notranslate nohighlight">\(Y=\left\{\begin{array}{l}\frac{Y^{\lambda}-1}{\lambda} \text {, if } \lambda \neq 0 \\ \log (Y) \text {, if } \lambda=0\end{array}\right.\)</span> and find the optimal <span class="math notranslate nohighlight">\(\lambda\)</span> using R.</p></li>
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -720,24 +726,24 @@ H_{0}: \beta_{j}=0 \text { vs } H_{1}: \beta_{j} \neq 0
 \[
 H_{0}: \beta_{s}=0 \text { vs } H_{1}: \beta_{s} \neq 0
 \]</div>
-<p>The model under <span class="math notranslate nohighlight">\(H_{0}\)</span> is called reduced model with <span class="math notranslate nohighlight">\(p_{s}+1\)</span> coefficients <span class="math notranslate nohighlight">\(\beta\)</span> and the model under <span class="math notranslate nohighlight">\(H_{1}\)</span> is called full model with <span class="math notranslate nohighlight">\((p+1)\)</span> coefficients <span class="math notranslate nohighlight">\(\beta\)</span>. Note that <span class="math notranslate nohighlight">\(p_{s}&lt;p\)</span>, and the null model is nested in the alternative model.</p>
+<p>The model under <span class="math notranslate nohighlight">\(H_{0}\)</span> is called reduced model with <span class="math notranslate nohighlight">\(p_{s}+1\)</span> coefficients <span class="math notranslate nohighlight">\(\beta\)</span> and the model under <span class="math notranslate nohighlight">\(H_{1}\)</span> is called full model with <span class="math notranslate nohighlight">\((p+1)\)</span> coefficients <span class="math notranslate nohighlight">\(\beta\)</span>. Note that <span class="math notranslate nohighlight">\(p_{s}&lt;p\)</span>, and the null model is nested in the alternative model. The likelihood ratio test can determine if a subset <span class="math notranslate nohighlight">\(\beta_{s}\)</span> are 0.</p>
 <section id="f-test">
 <h3>F-test<a class="headerlink" href="#f-test" title="Permalink to this heading">#</a></h3>
 <p>The residual sum-of-squares <span class="math notranslate nohighlight">\(\operatorname{RSS}(\beta)\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[
-R S S(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}=\sum_{i=1}^{n}\left(y_{i}-x_{i} \beta\right)^{2}
+RSS(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}=\sum_{i=1}^{n}\left(y_{i}-x_{i} \beta\right)^{2}
 \]</div>
-<p>Let <span class="math notranslate nohighlight">\(\mathrm{RSS}_{1}\)</span> correspond to the full model with <span class="math notranslate nohighlight">\(p+1\)</span> parameters, and <span class="math notranslate nohighlight">\(\mathrm{RSS}_{0}\)</span> correspond to the nested model with <span class="math notranslate nohighlight">\(p_{0}+1\)</span> parameters. The <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> statistic measures the reduction of RSS per additional parameter in the full model,</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathrm{RSS}_{1}\)</span> correspond to the full model with <span class="math notranslate nohighlight">\(p+1\)</span> parameters, and <span class="math notranslate nohighlight">\(\mathrm{RSS}_{0}\)</span> correspond to the nested model with <span class="math notranslate nohighlight">\(p_{0}+1\)</span> parameters. The <span class="math notranslate nohighlight">\(F\)</span> statistic measures the reduction of RSS per additional parameter in the full model,</p>
 <div class="math notranslate nohighlight">
 \[
 F=\frac{\left(R S S_{0}-R S S_{1}\right) /\left(p_{1}-p_{0}\right)}{R S S_{1} /\left(n-p_{1}-1\right)}
 \]</div>
-<p>Under the normal assumption, the null distribution of <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> test statistic is the <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> and <span class="math notranslate nohighlight">\(\left(n-p_{1}-1\right)\)</span>. Thus, we reject <span class="math notranslate nohighlight">\(\mathrm{H}_{0}\)</span> if <span class="math notranslate nohighlight">\(F&gt;\)</span> a, where <span class="math notranslate nohighlight">\(\mathrm{a}\)</span> is the <span class="math notranslate nohighlight">\((1-\alpha)\)</span> quantile of the <span class="math notranslate nohighlight">\(\mathrm{F}\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> and <span class="math notranslate nohighlight">\(\left(n-p_{1}-1\right)\)</span>.</p>
+<p>Under the normality assumption, the null distribution of <span class="math notranslate nohighlight">\(F\)</span> test statistic is the <span class="math notranslate nohighlight">\(F\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> and <span class="math notranslate nohighlight">\(\left(n-p_{1}-1\right)\)</span>. Thus, we reject <span class="math notranslate nohighlight">\(H_{0}\)</span> if <span class="math notranslate nohighlight">\(F&gt;\)</span> a, where <span class="math notranslate nohighlight">\(a\)</span> is the <span class="math notranslate nohighlight">\((1-\alpha)\)</span> quantile of the <span class="math notranslate nohighlight">\(F\)</span> distribution with degrees of freedom <span class="math notranslate nohighlight">\(\left(p_{1}-p_{0}\right)\)</span> and <span class="math notranslate nohighlight">\(\left(n-p_{1}-1\right)\)</span>.</p>
 </section>
 <section id="likelihood-ratio-test-lrt">
 <h3>Likelihood ratio test (LRT)<a class="headerlink" href="#likelihood-ratio-test-lrt" title="Permalink to this heading">#</a></h3>
-<p>Let <span class="math notranslate nohighlight">\(\mathrm{L}_{1}\)</span> be the maximum value of the likelihood of the full model. Let <span class="math notranslate nohighlight">\(\mathrm{L}_{0}\)</span> be the maximum value of the likelihood of the nested model. The likelihood ratio test statistic is</p>
+<p>Let <span class="math notranslate nohighlight">\(L_{1}\)</span> be the maximum value of the likelihood of the full model. Let <span class="math notranslate nohighlight">\(L_{0}\)</span> be the maximum value of the likelihood of the nested model. The likelihood ratio test statistic is</p>
 <div class="math notranslate nohighlight">
 \[
 t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
@@ -746,12 +752,12 @@ t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
 </section>
 <section id="akaike-information-criterion-aic">
 <h3>Akaike Information Criterion (AIC)<a class="headerlink" href="#akaike-information-criterion-aic" title="Permalink to this heading">#</a></h3>
-<p>The LRT can only be applied to the nested models. In addition, the LRT tends to favor the complex model, because LRT is solely based on the likelihood score and the complex model always has a higher likelihood score. AIC is a more general measure of “model fit” by penalizing the complexity of the model to avoid overfitting the data,</p>
+<p>The LRT tends to favor the complex model, because LRT is solely based on the likelihood score and the complex model always has a higher likelihood score. AIC is a more general measure of “model fit” by penalizing the complexity of the model to avoid overfitting the data,</p>
 <div class="math notranslate nohighlight">
 \[
 \text { AIC }=-2 \text { loglikelihood }+2 p
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(p\)</span> is the number of parameters, measuring the complexity of the model, and loglikelihood measures the goodness of fit of the model to the data. Given a collection of putative models, the best model is the one with the lowest <span class="math notranslate nohighlight">\(A I C\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the number of parameters, measuring the complexity of the model, and loglikelihood measures goodness of fit of the model to the data. Given a collection of putative models, the best model is the one with the lowest <span class="math notranslate nohighlight">\(AIC\)</span>.</p>
 </section>
 <section id="bayes-information-criterion-bic">
 <h3>Bayes Information Criterion (BIC)<a class="headerlink" href="#bayes-information-criterion-bic" title="Permalink to this heading">#</a></h3>
@@ -775,20 +781,20 @@ t=2 \log \left(L_{1}\right)-2 \log \left(L_{0}\right)
 </section>
 <section id="forward-and-backward-stepwise-selection">
 <h4>Forward and backward stepwise selection<a class="headerlink" href="#forward-and-backward-stepwise-selection" title="Permalink to this heading">#</a></h4>
-<p>mixing forward and backward selection to find the optimal subset of predictors.</p>
+<p>Mixing forward and backward selection to find the optimal subset of predictors.</p>
 </section>
 <section id="least-absolute-shrinkage-and-selection-operator-lasso">
 <h4>Least absolute shrinkage and selection operator (LASSO)<a class="headerlink" href="#least-absolute-shrinkage-and-selection-operator-lasso" title="Permalink to this heading">#</a></h4>
-<p>The algorithm minimizes the residual sum-of-square <span class="math notranslate nohighlight">\(\operatorname{RSS}(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}\)</span>, subject to <span class="math notranslate nohighlight">\(\sum_{i=1}^{p}\left|\beta_{i}\right| \leq c\)</span>, in which <span class="math notranslate nohighlight">\(\mathrm{c}\)</span> is a pre-specified parameter. This procedure can automatically shrink some <span class="math notranslate nohighlight">\(\beta\)</span> to 0 .</p>
+<p>The algorithm minimizes the residual sum-of-square <span class="math notranslate nohighlight">\(\operatorname{RSS}(\beta)=\sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{l}\right)^{2}\)</span>, subject to <span class="math notranslate nohighlight">\(\sum_{i=1}^{p}\left|\beta_{i}\right| \leq c\)</span>, in which <span class="math notranslate nohighlight">\(c\)</span> is a pre-specified parameter. This procedure can automatically shrink some <span class="math notranslate nohighlight">\(\beta\)</span> to 0 .</p>
 </section>
 </section>
 </section>
 <section id="generalized-linear-regression">
 <h2>Generalized linear regression<a class="headerlink" href="#generalized-linear-regression" title="Permalink to this heading">#</a></h2>
-<p>In linear regression model, the dependent variable <span class="math notranslate nohighlight">\(\mathrm{Y}\)</span> is assumed to have a normal distribution with mean <span class="math notranslate nohighlight">\(X \beta\)</span>. In generalized linear regression, the normality assumption is relaxed to allow <span class="math notranslate nohighlight">\(Y\)</span> to have other probability distributions (binomial, Poisson, etc).</p>
+<p>In linear regression model, the dependent variable <span class="math notranslate nohighlight">\(Y\)</span> is assumed to have a normal distribution with mean <span class="math notranslate nohighlight">\(X \beta\)</span>. In generalized linear regression, the normality assumption is relaxed to allow <span class="math notranslate nohighlight">\(Y\)</span> to have other probability distributions (Binomial, Poisson, etc).</p>
 <section id="logistic-model">
 <h3>Logistic model<a class="headerlink" href="#logistic-model" title="Permalink to this heading">#</a></h3>
-<p><span class="math notranslate nohighlight">\(Y_{i}=(0,1)\)</span> is a Bernoulli random variable with probability <span class="math notranslate nohighlight">\(p_{i}\)</span> satisfying <span class="math notranslate nohighlight">\(\log \left(\frac{p_{i}}{1-p_{i}}\right)=X_{i} \beta\)</span>, which is called the link function. It indicates that <span class="math notranslate nohighlight">\(p_{i}=\frac{e^{X_{i} \beta}}{1+e^{X_{i} \beta}}\)</span>.</p>
+<p>In the logistic model, the response variable <span class="math notranslate nohighlight">\(Y_{i}=(0,1)\)</span> is a Bernoulli random variable with probability <span class="math notranslate nohighlight">\(p_{i}\)</span> satisfying <span class="math notranslate nohighlight">\(\log \left(\frac{p_{i}}{1-p_{i}}\right)=X_{i} \beta\)</span>, which is called the link function. It indicates that <span class="math notranslate nohighlight">\(p_{i}=\frac{e^{X_{i} \beta}}{1+e^{X_{i} \beta}}\)</span>. The logistic model can be used to predict probabilities given the covariates <span class="math notranslate nohighlight">\(X\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;https://stats.idre.ucla.edu/stat/data/binary.csv&quot;</span><span class="p">)</span>

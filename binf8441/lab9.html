@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -456,18 +456,18 @@ lm(formula = data$y ~ data$x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.2698 -1.3667  0.1422  1.4180  5.2577 
+-5.6426 -1.4897 -0.0916  1.3337  4.6732 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   2.5020     0.6663   3.755 0.000294 ***
-data$x        1.2604     0.2119   5.948  4.2e-08 ***
+(Intercept)   1.9147     0.6569   2.915  0.00441 ** 
+data$x        1.4406     0.2137   6.743 1.08e-09 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 2.003 on 98 degrees of freedom
-Multiple R-squared:  0.2652,	Adjusted R-squared:  0.2577 
-F-statistic: 35.37 on 1 and 98 DF,  p-value: 4.204e-08
+Residual standard error: 2.148 on 98 degrees of freedom
+Multiple R-squared:  0.3169,	Adjusted R-squared:  0.3099 
+F-statistic: 45.47 on 1 and 98 DF,  p-value: 1.084e-09
 </pre></div>
 </div>
 </div>
@@ -489,7 +489,7 @@ F-statistic: 35.37 on 1 and 98 DF,  p-value: 4.204e-08
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e949ff3b831e0dd7a3738ec2035535a6af5fb42a0fa781d19fe901125dc0614a.png" src="_images/e949ff3b831e0dd7a3738ec2035535a6af5fb42a0fa781d19fe901125dc0614a.png" />
+<img alt="_images/92ef4d92fee8bbc94c873b374b066d262e1be450b045e249dfc02693453e0be2.png" src="_images/92ef4d92fee8bbc94c873b374b066d262e1be450b045e249dfc02693453e0be2.png" />
 </div>
 </div>
 </section>
@@ -505,7 +505,7 @@ F-statistic: 35.37 on 1 and 98 DF,  p-value: 4.204e-08
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  result$residuals
-W = 0.9914, p-value = 0.7762
+W = 0.99362, p-value = 0.9224
 </pre></div>
 </div>
 </div>
@@ -522,7 +522,7 @@ W = 0.9914, p-value = 0.7762
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><strong>(Intercept):</strong> 3.38424805190888</div></div>
+<div class="output text_html"><strong>(Intercept):</strong> 2.92314586058224</div></div>
 </div>
 </section>
 <section id="fitting-quadratic-relationships">
@@ -543,18 +543,18 @@ lm(formula = data$y ~ data$x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--4.9530 -1.8444 -0.3516  1.8101  5.6646 
+-6.7177 -2.1466 -0.5238  1.4160 10.9666 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   3.7131     0.2488  14.924   &lt;2e-16 ***
-data$x       -0.6257     0.2559  -2.445   0.0162 *  
+(Intercept)   3.8766     0.3124  12.411   &lt;2e-16 ***
+data$x       -0.3003     0.2906  -1.033    0.304    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 2.488 on 98 degrees of freedom
-Multiple R-squared:  0.05751,	Adjusted R-squared:  0.0479 
-F-statistic:  5.98 on 1 and 98 DF,  p-value: 0.01625
+Residual standard error: 3.104 on 98 degrees of freedom
+Multiple R-squared:  0.01078,	Adjusted R-squared:  0.0006825 
+F-statistic: 1.068 on 1 and 98 DF,  p-value: 0.304
 </pre></div>
 </div>
 </div>
@@ -579,7 +579,7 @@ F-statistic:  5.98 on 1 and 98 DF,  p-value: 0.01625
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0e2692dccd2431fce7462e74b17dd3911b2af7b08605d75323a0b4a6f3758576.png" src="_images/0e2692dccd2431fce7462e74b17dd3911b2af7b08605d75323a0b4a6f3758576.png" />
+<img alt="_images/77af4113250bfb53fc7c8ef2c8098682b069c134f1fc981136d6923cc1d6c01f.png" src="_images/77af4113250bfb53fc7c8ef2c8098682b069c134f1fc981136d6923cc1d6c01f.png" />
 </div>
 </div>
 </section>
@@ -597,20 +597,20 @@ F-statistic:  5.98 on 1 and 98 DF,  p-value: 0.01625
 lm(formula = y ~ x1 + x2, data = data)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--4.5002 -1.1699 -0.0289  1.4825  4.9430 
+   Min     1Q Median     3Q    Max 
+-5.457 -1.501 -0.064  1.422  4.822 
 
 Coefficients:
             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)   1.8828     0.6393   2.945  0.00404 ** 
-x1            1.1758     0.1928   6.097  2.2e-08 ***
-x2           -2.8876     0.0894 -32.298  &lt; 2e-16 ***
+(Intercept)   2.1680     0.8080   2.683  0.00858 ** 
+x1            1.1681     0.2132   5.478 3.39e-07 ***
+x2           -2.8910     0.1063 -27.187  &lt; 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-Residual standard error: 1.935 on 97 degrees of freedom
-Multiple R-squared:  0.9168,	Adjusted R-squared:  0.9151 
-F-statistic: 534.3 on 2 and 97 DF,  p-value: &lt; 2.2e-16
+Residual standard error: 2.175 on 97 degrees of freedom
+Multiple R-squared:  0.8982,	Adjusted R-squared:  0.8961 
+F-statistic: 427.8 on 2 and 97 DF,  p-value: &lt; 2.2e-16
 </pre></div>
 </div>
 </div>
@@ -630,7 +630,7 @@ F-statistic: 534.3 on 2 and 97 DF,  p-value: &lt; 2.2e-16
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/95f4e1d0561581caafafd0f4c59afcd9da87779ed6758b533e9820353d2975bc.png" src="_images/95f4e1d0561581caafafd0f4c59afcd9da87779ed6758b533e9820353d2975bc.png" />
+<img alt="_images/912deacaed1d19fe28efc3d16c10402a1b26a88ee438aa7a69e363580aad1119.png" src="_images/912deacaed1d19fe28efc3d16c10402a1b26a88ee438aa7a69e363580aad1119.png" />
 </div>
 </div>
 </section>
@@ -646,7 +646,7 @@ F-statistic: 534.3 on 2 and 97 DF,  p-value: &lt; 2.2e-16
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Shapiro-Wilk normality test
 
 data:  result$residuals
-W = 0.99385, p-value = 0.9338
+W = 0.98997, p-value = 0.662
 </pre></div>
 </div>
 </div>
@@ -683,20 +683,18 @@ glm(formula = y ~ age, family = &quot;binomial&quot;)
 
 Deviance Residuals: 
     Min       1Q   Median       3Q      Max  
--1.1182  -0.7473  -0.5049  -0.3614   2.3458  
+-1.0287  -0.9143  -0.8123   1.3940   1.6601  
 
 Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept) -3.50479    0.88396  -3.965 7.34e-05 ***
-age          0.04313    0.01485   2.904  0.00368 ** 
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+            Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept) -0.12623    0.59525  -0.212    0.832
+age         -0.01232    0.01194  -1.032    0.302
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance: 107.855  on 99  degrees of freedom
-Residual deviance:  97.873  on 98  degrees of freedom
-AIC: 101.87
+    Null deviance: 126.84  on 99  degrees of freedom
+Residual deviance: 125.76  on 98  degrees of freedom
+AIC: 129.76
 
 Number of Fisher Scoring iterations: 4
 </pre></div>

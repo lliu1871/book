@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -418,7 +418,7 @@ document.write(`
 <h2>Monte carlo simulation for integrals<a class="headerlink" href="#monte-carlo-simulation-for-integrals" title="Permalink to this heading">#</a></h2>
 <p>The integral can be approximated by Monte Carlo simulation, where the integral is treated as an expectation <span class="math notranslate nohighlight">\(E(g(X))\)</span> of a function <span class="math notranslate nohighlight">\(g(X)\)</span>. By the law of large numbers, the expectation <span class="math notranslate nohighlight">\(E(g(X))\)</span> can be approximated by the sample average <span class="math notranslate nohighlight">\(\overline{g(X)}\)</span>. Monte Carlo simulation involves the following steps</p>
 <div class="proof algorithm admonition" id="algorithm-0">
-<p class="admonition-title"><span class="caption-number">Algorithm 3 </span></p>
+<p class="admonition-title"><span class="caption-number">Algorithm 4 </span></p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Input:</strong> the target function <span class="math notranslate nohighlight">\(g(x)\)</span> and the density function <span class="math notranslate nohighlight">\(f(x)\)</span></p>
 <p><strong>Output:</strong> approximation to the integral</p>
@@ -461,14 +461,14 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">7.04622754375794</div></div>
+<div class="output text_html">8.140582367685</div></div>
 </div>
 </section>
 <section id="monte-carlo-simulation-for-variance">
 <h2>Monte carlo simulation for variance<a class="headerlink" href="#monte-carlo-simulation-for-variance" title="Permalink to this heading">#</a></h2>
 <p>We can use Monte Carlo simulation to calculate the variance of an arbitrary estimator <span class="math notranslate nohighlight">\(\hat{\theta}=\)</span> <span class="math notranslate nohighlight">\(g\left(x_1, \ldots, x_n\right)\)</span>, where <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span> is a random sample generated from a probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>. Suppose the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span> is given and the sample size <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> is given. Monte Carlo simulation for calculating <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta})\)</span> involves the following steps</p>
 <div class="proof algorithm admonition" id="algorithm-2">
-<p class="admonition-title"><span class="caption-number">Algorithm 4 </span></p>
+<p class="admonition-title"><span class="caption-number">Algorithm 5 </span></p>
 <section class="algorithm-content" id="proof-content">
 <ol class="arabic">
 <li><p>generate multiple random samples from the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>; each sample contains <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> observations</p>
@@ -499,14 +499,14 @@ Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">2.49195459086982</div></div>
+<div class="output text_html">2.48187276625876</div></div>
 </div>
 </section>
 <section id="monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic">
 <h2>Monte carlo simulation for the null distribution of a test statistic<a class="headerlink" href="#monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic" title="Permalink to this heading">#</a></h2>
 <p>We can use Monte Carlo simulation to approximate the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span>. Let <span class="math notranslate nohighlight">\(f(x)\)</span> be the density function of the null model. If the density function <span class="math notranslate nohighlight">\(f(x)\)</span> involves unknown parameters, those unknown parameters are replaced by their estimates, i.e., maximum likelihood estimates, such that we can generate random samples from the null model <span class="math notranslate nohighlight">\(f(x)\)</span>. Monte Carlo Simulation for approximating the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span> involves following steps.</p>
 <div class="proof algorithm admonition" id="algorithm-3">
-<p class="admonition-title"><span class="caption-number">Algorithm 5 </span></p>
+<p class="admonition-title"><span class="caption-number">Algorithm 6 </span></p>
 <section class="algorithm-content" id="proof-content">
 <p><strong>Input</strong>: the test statistic and the null hypothesis</p>
 <p><strong>Output</strong>: the null distribution of the test statistic</p>
@@ -556,10 +556,10 @@ Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.093&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.024&quot;
 </pre></div>
 </div>
-<img alt="_images/412aae38456781b9139dcf241fb1f6333bff895b9bb8995f7db1d78f2a1d438b.png" src="_images/412aae38456781b9139dcf241fb1f6333bff895b9bb8995f7db1d78f2a1d438b.png" />
+<img alt="_images/565eab766585ec977248332885e5524c461e6a8f46fa6e84b6258313cea613ce.png" src="_images/565eab766585ec977248332885e5524c461e6a8f46fa6e84b6258313cea613ce.png" />
 </div>
 </div>
 </section>

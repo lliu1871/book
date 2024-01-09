@@ -63,24 +63,12 @@ $L\left( T,\theta|D \right) = P\left( D|T,\theta \right) $ with respect to $T$ a
 
 ## Distance methods
 
-Phylogenetic trees are reconstructed by iteratively grouping species
-with small distances. The distance methods involve two steps. In the
-first step, pairwise distances of sequences are calculated. In the
-second step, the phylogenetic tree is built from the pairwise distances.
-The most popular distance method is neighbor-joining (NJ) implemented in 
-the phylogenetic program [PAUP](https://paup.phylosolutions.com/).
+Phylogenetic trees are constructed by iteratively grouping species based on small distances. Distance methods typically involve two steps. In the initial step, pairwise distances between sequences are computed. Subsequently, in the second step, the phylogenetic tree is constructed using these pairwise distances. One of the most widely used distance methods is neighbor-joining (NJ), implemented in various phylogenetic programs. [PAUP](https://paup.phylosolutions.com/).
 
 ## Parsimony methods
 
-The parsimony score of a phylogenetic tree is equal to the number of
-mutations required to explain the nucleotide variation observed among
-sequences. Parsimony methods reconstruct phylogenetic trees by
-minimizing the parsimony score, i.e., finding the tree with the minimum
-parsimony score. [PAUP](https://paup.phylosolutions.com/) is a popular program for building MP trees
+The parsimony score of a phylogenetic tree corresponds to the number of mutations needed to account for the observed nucleotide variation among sequences. Parsimony methods for reconstructing phylogenetic trees aim to minimize the parsimony score, essentially seeking the tree with the lowest possible parsimony score. [PAUP](https://paup.phylosolutions.com/) is a popular program for building MP trees
 
 ## Bayesian models
 
-The tree topology has a uniform prior, assuming that topologies are
-equally likely. The priors of branch lengths are independent exponential
-distributions. The posterior distribution of the phylogenetic tree is
-approximated by the outputs from a MCMC algorithm. The Bayesian phylogenetic programs include [MrBayes](https://nbisweden.github.io/MrBayes/index.html) and [BEAST](https://beast.community/).
+The tree topology is assigned a uniform prior, assuming equal likelihood for all topologies. Branch lengths have independent exponential distributions as their priors. The posterior distribution of the phylogenetic tree is approximated using the outputs from a Markov Chain Monte Carlo (MCMC) algorithm. Bayesian phylogenetic programs that implement this approach include: [MrBayes](https://nbisweden.github.io/MrBayes/index.html) and [BEAST](https://beast.community/).
