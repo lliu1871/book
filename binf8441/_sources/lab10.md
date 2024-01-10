@@ -72,7 +72,7 @@ g_average
 ```
 
 ## Monte carlo simulation for variance
-We can use Monte Carlo simulation to calculate the variance of an arbitrary estimator $\hat{\theta}=$ $g\left(x_1, \ldots, x_n\right)$, where $x_1, \ldots, x_n$ is a random sample generated from a probability distribution $f(x)$. Suppose the probability distribution $f(x)$ is given and the sample size $\mathrm{n}$ is given. Monte Carlo simulation for calculating $\operatorname{var}(\hat{\theta})$ involves the following steps
+Monte Carlo simulation can be employed to compute the variance of an arbitrary estimator $\hat{\theta} = g\left(x_1, \ldots, x_n\right)$, where $x_1, \ldots, x_n$ represents a random sample generated from a probability distribution $f(x)$. Given the probability distribution $f(x)$ and the specified sample size $n$, the steps for Monte Carlo simulation to calculate $\operatorname{var}(\hat{\theta})$ include:
 
 ```{prf:algorithm}
 1. generate multiple random samples from the probability distribution $f(x)$; each sample contains $\mathrm{n}$ observations
@@ -88,7 +88,7 @@ We can use Monte Carlo simulation to calculate the variance of an arbitrary esti
 3. finally, $\operatorname{var}(\hat{\theta}) \approx$ the sample variance of $\widehat{\theta_1}, \ldots, \widehat{\theta_k}=\frac{1}{k-1} \sum_{i=1}^k\left(\widehat{\theta_t}-\overline{\hat{\theta}}\right)^2$ where $\overline{\hat{\theta}}=$ $\frac{\widehat{\theta_1}+\cdots+\widehat{\theta_k}}{k}$
 ```
 
-As an example, we use simulation to calculate the variance of the sample average for the data generated from the exponential distribution.
+As an illustration, we use Monte Carlo simulation to compute the variance of the sample average for data generated from the exponential distribution.
 
 ```{code-cell}
 sample_size = 10
@@ -102,7 +102,7 @@ var(statistic)
 ```
 
 ## Monte carlo simulation for the null distribution of a test statistic
-We can use Monte Carlo simulation to approximate the null distribution of an arbitrary test statistic $t$. Let $f(x)$ be the density function of the null model. If the density function $f(x)$ involves unknown parameters, those unknown parameters are replaced by their estimates, i.e., maximum likelihood estimates, such that we can generate random samples from the null model $f(x)$. Monte Carlo Simulation for approximating the null distribution of an arbitrary test statistic $t$ involves following steps.
+Monte Carlo simulation can be employed to approximate the null distribution of an arbitrary test statistic $t$. Suppose $f(x)$ is the density function of the null model. If $f(x)$ includes unknown parameters, these parameters are substituted with their estimates, such as maximum likelihood estimates, to generate random samples from the null model $f(x)$. The steps for Monte Carlo Simulation to approximate the null distribution of an arbitrary test statistic $t$ include:
 
 ```{prf:algorithm}
 **Input**: the test statistic and the null hypothesis
@@ -122,7 +122,7 @@ We can use Monte Carlo simulation to approximate the null distribution of an arb
     sample $2: x_1^{(2)}, \ldots, x_n^{(2)}=>t_2$ \
     Sample k: $x_1^{(k)}, \ldots, x_n^{(k)}=>t_k$
 
-3. The null distribution of $t$ is approximated by $t_1, \ldots, t_k$. For example, the $95 \%$ quantile of the null distribution of $t$ is approximately equal to the $95 \%$ quantile of $t_1, \ldots, t_k$
+3. The null distribution of $t$ is approximated by $t_1, \ldots, t_k$. For example, the $95 \%$ quantile of the null distribution of $t$ is approximately equal to the $95 \%$ quantile of $t_1, \ldots, t_k$.
 ```
 
 Data are generated from the exponential distribution with $\lambda = 5$. 
@@ -135,7 +135,7 @@ We want to test if the population mean $\lambda$ is equal to 3.
 
 $H_0: \lambda = 3$ and $H_1: \lambda > 3$
 
-The test statistic is the sample average $\bar{x}$. We use MC simulation to find the null distribution of the test statistic. The pvalue is equal to the 
+The test statistic is the sample average $\bar{x}$. We use MC simulation to find the null distribution of the test statistic. The pvalue is equal to the proportion of simulated samples whose sample averages are greater than the sample average $t$ of data.
 
 ```{code-cell}
 sample_size = 20

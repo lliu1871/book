@@ -461,12 +461,12 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">10.6864675921399</div></div>
+<div class="output text_html">10.9924852374929</div></div>
 </div>
 </section>
 <section id="monte-carlo-simulation-for-variance">
 <h2>Monte carlo simulation for variance<a class="headerlink" href="#monte-carlo-simulation-for-variance" title="Permalink to this heading">#</a></h2>
-<p>We can use Monte Carlo simulation to calculate the variance of an arbitrary estimator <span class="math notranslate nohighlight">\(\hat{\theta}=\)</span> <span class="math notranslate nohighlight">\(g\left(x_1, \ldots, x_n\right)\)</span>, where <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span> is a random sample generated from a probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>. Suppose the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span> is given and the sample size <span class="math notranslate nohighlight">\(\mathrm{n}\)</span> is given. Monte Carlo simulation for calculating <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta})\)</span> involves the following steps</p>
+<p>Monte Carlo simulation can be employed to compute the variance of an arbitrary estimator <span class="math notranslate nohighlight">\(\hat{\theta} = g\left(x_1, \ldots, x_n\right)\)</span>, where <span class="math notranslate nohighlight">\(x_1, \ldots, x_n\)</span> represents a random sample generated from a probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span>. Given the probability distribution <span class="math notranslate nohighlight">\(f(x)\)</span> and the specified sample size <span class="math notranslate nohighlight">\(n\)</span>, the steps for Monte Carlo simulation to calculate <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta})\)</span> include:</p>
 <div class="proof algorithm admonition" id="algorithm-2">
 <p class="admonition-title"><span class="caption-number">Algorithm 5 </span></p>
 <section class="algorithm-content" id="proof-content">
@@ -484,7 +484,7 @@ Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(
 <li><p>finally, <span class="math notranslate nohighlight">\(\operatorname{var}(\hat{\theta}) \approx\)</span> the sample variance of <span class="math notranslate nohighlight">\(\widehat{\theta_1}, \ldots, \widehat{\theta_k}=\frac{1}{k-1} \sum_{i=1}^k\left(\widehat{\theta_t}-\overline{\hat{\theta}}\right)^2\)</span> where <span class="math notranslate nohighlight">\(\overline{\hat{\theta}}=\)</span> <span class="math notranslate nohighlight">\(\frac{\widehat{\theta_1}+\cdots+\widehat{\theta_k}}{k}\)</span></p></li>
 </ol>
 </section>
-</div><p>As an example, we use simulation to calculate the variance of the sample average for the data generated from the exponential distribution.</p>
+</div><p>As an illustration, we use Monte Carlo simulation to compute the variance of the sample average for data generated from the exponential distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
@@ -499,12 +499,12 @@ Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">2.39701002382653</div></div>
+<div class="output text_html">2.53084485904083</div></div>
 </div>
 </section>
 <section id="monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic">
 <h2>Monte carlo simulation for the null distribution of a test statistic<a class="headerlink" href="#monte-carlo-simulation-for-the-null-distribution-of-a-test-statistic" title="Permalink to this heading">#</a></h2>
-<p>We can use Monte Carlo simulation to approximate the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span>. Let <span class="math notranslate nohighlight">\(f(x)\)</span> be the density function of the null model. If the density function <span class="math notranslate nohighlight">\(f(x)\)</span> involves unknown parameters, those unknown parameters are replaced by their estimates, i.e., maximum likelihood estimates, such that we can generate random samples from the null model <span class="math notranslate nohighlight">\(f(x)\)</span>. Monte Carlo Simulation for approximating the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span> involves following steps.</p>
+<p>Monte Carlo simulation can be employed to approximate the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span>. Suppose <span class="math notranslate nohighlight">\(f(x)\)</span> is the density function of the null model. If <span class="math notranslate nohighlight">\(f(x)\)</span> includes unknown parameters, these parameters are substituted with their estimates, such as maximum likelihood estimates, to generate random samples from the null model <span class="math notranslate nohighlight">\(f(x)\)</span>. The steps for Monte Carlo Simulation to approximate the null distribution of an arbitrary test statistic <span class="math notranslate nohighlight">\(t\)</span> include:</p>
 <div class="proof algorithm admonition" id="algorithm-3">
 <p class="admonition-title"><span class="caption-number">Algorithm 6 </span></p>
 <section class="algorithm-content" id="proof-content">
@@ -522,7 +522,7 @@ sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(
 sample <span class="math notranslate nohighlight">\(2: x_1^{(2)}, \ldots, x_n^{(2)}=&gt;t_2\)</span> <br />
 Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(k)}=&gt;t_k\)</span></p>
 </li>
-<li><p>The null distribution of <span class="math notranslate nohighlight">\(t\)</span> is approximated by <span class="math notranslate nohighlight">\(t_1, \ldots, t_k\)</span>. For example, the <span class="math notranslate nohighlight">\(95 \%\)</span> quantile of the null distribution of <span class="math notranslate nohighlight">\(t\)</span> is approximately equal to the <span class="math notranslate nohighlight">\(95 \%\)</span> quantile of <span class="math notranslate nohighlight">\(t_1, \ldots, t_k\)</span></p></li>
+<li><p>The null distribution of <span class="math notranslate nohighlight">\(t\)</span> is approximated by <span class="math notranslate nohighlight">\(t_1, \ldots, t_k\)</span>. For example, the <span class="math notranslate nohighlight">\(95 \%\)</span> quantile of the null distribution of <span class="math notranslate nohighlight">\(t\)</span> is approximately equal to the <span class="math notranslate nohighlight">\(95 \%\)</span> quantile of <span class="math notranslate nohighlight">\(t_1, \ldots, t_k\)</span>.</p></li>
 </ol>
 </section>
 </div><p>Data are generated from the exponential distribution with <span class="math notranslate nohighlight">\(\lambda = 5\)</span>.</p>
@@ -536,7 +536,7 @@ Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(
 </div>
 <p>We want to test if the population mean <span class="math notranslate nohighlight">\(\lambda\)</span> is equal to 3.</p>
 <p><span class="math notranslate nohighlight">\(H_0: \lambda = 3\)</span> and <span class="math notranslate nohighlight">\(H_1: \lambda &gt; 3\)</span></p>
-<p>The test statistic is the sample average <span class="math notranslate nohighlight">\(\bar{x}\)</span>. We use MC simulation to find the null distribution of the test statistic. The pvalue is equal to the</p>
+<p>The test statistic is the sample average <span class="math notranslate nohighlight">\(\bar{x}\)</span>. We use MC simulation to find the null distribution of the test statistic. The pvalue is equal to the proportion of simulated samples whose sample averages are greater than the sample average <span class="math notranslate nohighlight">\(t\)</span> of data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">sample_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
@@ -556,10 +556,10 @@ Sample k: <span class="math notranslate nohighlight">\(x_1^{(k)}, \ldots, x_n^{(
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.058&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;pvalue = 0.153&quot;
 </pre></div>
 </div>
-<img alt="_images/58c39b818a5b751aa0e33bdceab1e10ea886c6db61a099abaaaccab00fcf9760.png" src="_images/58c39b818a5b751aa0e33bdceab1e10ea886c6db61a099abaaaccab00fcf9760.png" />
+<img alt="_images/a95d33d2d6756b64b776bcfce25422ec96ee9fdafcad14482b2b798c133a6b98.png" src="_images/a95d33d2d6756b64b776bcfce25422ec96ee9fdafcad14482b2b798c133a6b98.png" />
 </div>
 </div>
 </section>
