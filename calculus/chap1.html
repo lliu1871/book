@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 1: Limit &#8212; Univariate Calculus</title>
   
@@ -387,7 +387,7 @@ document.write(`
 <blockquote>
 <div><p>The terminus of a progression is the end of the series, which none progression can reach, even not if she is continued in infinity, but which she can approach nearer than a given segment.</p>
 </div></blockquote>
-<p>The foundation of several crucial concepts in calculus and mathematical analysis, such as continuity, derivatives, integrals, and more, relies on the definition of limits.</p>
+<p>A limit describes the value that a function (or sequence) approaches as the input (or index) approaches some value. The foundation of several crucial concepts in calculus and mathematical analysis, such as continuity, derivatives, integrals, and more, relies on the definition of limits.</p>
 <div class="proof definition admonition" id="def1.1">
 <p class="admonition-title"><span class="caption-number">Definition 1 </span> (limit of a sequence)</p>
 <section class="definition-content" id="proof-content">
@@ -412,8 +412,8 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ab2ca14fccbb3161c2784161222c9087c6eebddf1a0e198dc884b171648b7fac.png" src="_images/ab2ca14fccbb3161c2784161222c9087c6eebddf1a0e198dc884b171648b7fac.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x10a557e20&gt;
+<img alt="_images/93720c3b840d8be5b30ad71a2fa904396e4a62daf131aebc648775482786ffb8.png" src="_images/93720c3b840d8be5b30ad71a2fa904396e4a62daf131aebc648775482786ffb8.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;sympy.plotting.plot.Plot at 0x10d7789a0&gt;
 </pre></div>
 </div>
 </div>
@@ -456,12 +456,17 @@ the same definition as the limit except it requires <span class="math notranslat
 <li><p><span class="math notranslate nohighlight">\(\lim_{x \rightarrow a}[f(x) g(x)]=\lim_{x \rightarrow a} f(x) \lim_{x \rightarrow a} g(x)\)</span></p></li>
 </ol>
 <div class="proof theorem admonition" id="thm1.2">
-<p class="admonition-title"><span class="caption-number">Theorem 2 </span> (Hospital)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 2 </span> (L’Hôpital’s Rule)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(\lim_{x \rightarrow a} \frac{f(x)}{g(x)}=\frac{0}{0}\)</span> or <span class="math notranslate nohighlight">\(\lim_{x \rightarrow a} \frac{f(x)}{g(x)}=\frac{\pm \infty}{\pm \infty}\)</span>, then</p>
 <div class="math notranslate nohighlight">
 \[\lim_{x \rightarrow a} \frac{f(x)}{g(x)}=\lim_{x \rightarrow a} \frac{f^{\prime}(x)}{g^{\prime}(x)}\]</div>
 <p>where <span class="math notranslate nohighlight">\(a\)</span> is a number, <span class="math notranslate nohighlight">\(\infty\)</span> or <span class="math notranslate nohighlight">\(-\infty\)</span></p>
+</section>
+</div><div class="proof example admonition" id="example-5">
+<p class="admonition-title"><span class="caption-number">Example 1 </span></p>
+<section class="example-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\lim_{x \rightarrow 1}\frac{x^2-1}{x-1} = \lim_{x \rightarrow 1}(x+1) = 2\)</span></p>
 </section>
 </div></section>
 </section>

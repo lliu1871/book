@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 4: Integral &#8212; Univariate Calculus</title>
   
@@ -357,6 +357,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-techniques">Integration Techniques</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#substitution">Substitution</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-by-parts">Integration by parts</a></li>
@@ -401,7 +403,9 @@ document.write(`
 \[\int_{a}^{b} f(x) d x=\lim _{n \rightarrow \infty} \sum_{i=1}^{n} f\left(x_{i}^{*}\right) \Delta x\]</div>
 <p>If the limit exist, the function <span class="math notranslate nohighlight">\(f(x)\)</span> is said to be integrable.</p>
 </section>
-</div><p>It follows from the definition that <span class="math notranslate nohighlight">\(\int_{a}^{a} f(x) d x=0\)</span>, <span class="math notranslate nohighlight">\(\int_{a}^{b} c d x=c(b-a)\)</span>, <span class="math notranslate nohighlight">\(\int_{a}^{b} f(x) d x=-\int_{b}^{a} f(x) dx\)</span>, and</p>
+</div><section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h2>
+<p>It follows from the definition that <span class="math notranslate nohighlight">\(\int_{a}^{a} f(x) d x=0\)</span>, <span class="math notranslate nohighlight">\(\int_{a}^{b} c d x=c(b-a)\)</span>, <span class="math notranslate nohighlight">\(\int_{a}^{b} f(x) d x=-\int_{b}^{a} f(x) dx\)</span>, and</p>
 <div class="math notranslate nohighlight" id="equation-1">
 <span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation">#</a></span>\[\int_{a}^{b} f(x) d x=\int_{a}^{c} f(x) d x+\int_{c}^{b} f(x) dx\]</div>
 <p>Let <span class="math notranslate nohighlight">\(\Omega\)</span> be a set of all integrable functions. Due to linearity of the limit operator, it is straightforward that integral is a linear operator, i.e.,</p>
@@ -419,33 +423,7 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\left|\int_{a}^{b} f(x) d x\right| \leq \int_{a}^{b}|f(x)| dx\)</span></p></li>
 <li><p>If <span class="math notranslate nohighlight">\(m \leq f(x) \leq M\)</span> on <span class="math notranslate nohighlight">\(a \leq x \leq b\)</span> then <span class="math notranslate nohighlight">\(m(b-a) \leq \int_{a}^{b} f(x) d x \leq M(b-a)\)</span>.</p></li>
 </ul>
-<div class="proof definition admonition" id="anti-derivative">
-<p class="admonition-title"><span>Definition </span> (anti-derivative)</p>
-<section class="definition-content" id="proof-content">
-<p>A function <span class="math notranslate nohighlight">\(F(x)\)</span> is said to be the anti-derivative of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(F^{\prime}(x)=f(x)\)</span>.</p>
-</section>
-</div><p>It turns out that the integral operator (function) is an anti-derivative function, i.e., the integral operator is the inverse function of the derivative operator.</p>
-<div class="proof theorem admonition" id="fundamental theorem of calculus">
-<p class="admonition-title"><span class="caption-number">Theorem 14 </span> (Fundamental Theorem of Calculus)</p>
-<section class="theorem-content" id="proof-content">
-<p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on <span class="math notranslate nohighlight">\([a, b]\)</span>, then <span class="math notranslate nohighlight">\(g(x)=\int_{a}^{x} f(t) d t\)</span> is differentiable in <span class="math notranslate nohighlight">\((a, b)\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[g^{\prime}(x)=\frac{d}{d x} \int_{a}^{x} f(t) d t=f(x)\]</div>
-<p>and</p>
-<div class="math notranslate nohighlight">
-\[\frac{d}{d x} \int_{a}^{v(x)} f(t) d t=v^{\prime}(x) f[v(x)]\]</div>
-<p>Moreover, if <span class="math notranslate nohighlight">\(F(x)\)</span> is an anti-derivative of <span class="math notranslate nohighlight">\(f(x)\)</span>, then</p>
-<div class="math notranslate nohighlight">
-\[\int_{a}^{b} f(x) d x=F(b)-F(a)\]</div>
-<p>Variants of Part I:</p>
-<div class="math notranslate nohighlight">
-\[\frac{d}{d x} \int_{a}^{u(x)} f(t) d t=u^{\prime}(x) f[u(x)]\]</div>
-<div class="math notranslate nohighlight">
-\[\int f(x) \pm g(x) d x=\int f(x) d x \pm \int g(x) d x \]</div>
-<div class="math notranslate nohighlight">
-\[\frac{d}{d x} \int_{v(x)}^{u(x)} f(t) d t=u^{\prime}(x) f[u(x)]-v^{\prime}(x) f[v(x)]\]</div>
-</section>
-</div><div class="admonition-common-integrals admonition">
+<div class="admonition-common-integrals admonition">
 <p class="admonition-title">Common Integrals </p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\int k d x=k x+c\)</span></p></li>
@@ -465,6 +443,36 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(\int \frac{1}{\sqrt{a^{2}-u^{2}}} d u=\sin ^{-1}\left(\frac{u}{a}\right)+c\)</span></p></li>
 </ul>
 </div>
+</section>
+<section id="fundamental-theorem-of-calculus">
+<h2>Fundamental Theorem of Calculus<a class="headerlink" href="#fundamental-theorem-of-calculus" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="anti-derivative">
+<p class="admonition-title"><span>Definition </span> (anti-derivative)</p>
+<section class="definition-content" id="proof-content">
+<p>A function <span class="math notranslate nohighlight">\(F(x)\)</span> is said to be the anti-derivative of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(F^{\prime}(x)=f(x)\)</span>.</p>
+</section>
+</div><p>It turns out that the integral operator (function) is an anti-derivative function, i.e., the integral operator is the inverse function of the derivative operator.</p>
+<div class="proof theorem admonition" id="fundamental theorem of calculus">
+<p class="admonition-title"><span class="caption-number">Theorem 15 </span> (Fundamental Theorem of Calculus)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on <span class="math notranslate nohighlight">\([a, b]\)</span>, then <span class="math notranslate nohighlight">\(g(x)=\int_{a}^{x} f(t) d t\)</span> is differentiable in <span class="math notranslate nohighlight">\((a, b)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[g^{\prime}(x)=\frac{d}{d x} \int_{a}^{x} f(t) d t=f(x)\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{d x} \int_{a}^{v(x)} f(t) d t=v^{\prime}(x) f[v(x)]\]</div>
+<p>Moreover, if <span class="math notranslate nohighlight">\(F(x)\)</span> is an anti-derivative of <span class="math notranslate nohighlight">\(f(x)\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[\int_{a}^{b} f(x) d x=F(b)-F(a)\]</div>
+<p>Variants of Part I:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{d x} \int_{a}^{u(x)} f(t) d t=u^{\prime}(x) f[u(x)]\]</div>
+<div class="math notranslate nohighlight">
+\[\int f(x) \pm g(x) d x=\int f(x) d x \pm \int g(x) d x \]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d}{d x} \int_{v(x)}^{u(x)} f(t) d t=u^{\prime}(x) f[u(x)]-v^{\prime}(x) f[v(x)]\]</div>
+</section>
+</div></section>
 <section id="integration-techniques">
 <h2>Integration Techniques<a class="headerlink" href="#integration-techniques" title="Permalink to this heading">#</a></h2>
 <section id="substitution">
@@ -508,7 +516,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/495be85e6518806d945a82acb5d6489d30e7279ae41651e9a3e41406f9316f56.png" src="_images/495be85e6518806d945a82acb5d6489d30e7279ae41651e9a3e41406f9316f56.png" />
+<img alt="_images/f8cfb7ce040799cfc5aed71dcf2133588b330bac608f443f88d186162cbbbe92.png" src="_images/f8cfb7ce040799cfc5aed71dcf2133588b330bac608f443f88d186162cbbbe92.png" />
 </div>
 </div>
 </section>
@@ -578,7 +586,7 @@ document.write(`
 </div><section id="trigonometric-substitutions">
 <h3>Trigonometric Substitutions<a class="headerlink" href="#trigonometric-substitutions" title="Permalink to this heading">#</a></h3>
 <p>If the integral contains the following root use the given substitution and formula to convert into an integral involving trigonometric functions.</p>
-<table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>transform</p></th>
 <th class="head"><p>fact</p></th>
@@ -626,7 +634,7 @@ x &amp; \text { if } x \geq 0 \\
 <section id="partial-fractions">
 <h3>Partial Fractions<a class="headerlink" href="#partial-fractions" title="Permalink to this heading">#</a></h3>
 <p>If integrating <span class="math notranslate nohighlight">\(\int \frac{P(x)}{Q(x)} d x\)</span> where the degree of <span class="math notranslate nohighlight">\(P(x)\)</span> is smaller than the degree of <span class="math notranslate nohighlight">\(Q(x)\)</span>. Factor denominator as completely as possible and find the partial fraction decomposition of the rational expression. Integrate the partial fraction decomposition (P.F.D.). For each factor in the denominator we get term(s) in the decomposition according to the following table.</p>
-<table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Factor in <span class="math notranslate nohighlight">\(Q(x)\)</span></p></th>
 <th class="head"><p>Term in P.F.D</p></th>
@@ -773,6 +781,8 @@ x &amp; \text { if } x \geq 0 \\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-techniques">Integration Techniques</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#substitution">Substitution</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-by-parts">Integration by parts</a></li>

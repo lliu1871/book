@@ -30,7 +30,7 @@ kernelspec:
 [Grégoire de Saint-Vincent](https://en.wikipedia.org/wiki/Gr%C3%A9goire_de_Saint-Vincent) gave the first definition of limit of a geometric series in his book [Opus Geometricum](https://books.google.com/books?id=-dA-AAAAcAAJ&printsec=frontcover#v=onepage&q&f=false) 
 > The terminus of a progression is the end of the series, which none progression can reach, even not if she is continued in infinity, but which she can approach nearer than a given segment.
 
-The foundation of several crucial concepts in calculus and mathematical analysis, such as continuity, derivatives, integrals, and more, relies on the definition of limits.
+A limit describes the value that a function (or sequence) approaches as the input (or index) approaches some value. The foundation of several crucial concepts in calculus and mathematical analysis, such as continuity, derivatives, integrals, and more, relies on the definition of limits. 
 
 ````{prf:definition} limit of a sequence
 :label: def1.1
@@ -95,11 +95,15 @@ Let $\Omega$ be a set of all funtions that have a limit at $x=a$. If $f,g\in \Om
 6. $\lim_{x \rightarrow a}[f(x) g(x)]=\lim_{x \rightarrow a} f(x) \lim_{x \rightarrow a} g(x)$
 
 
-````{prf:theorem} Hospital
+````{prf:theorem} L'Hôpital's Rule
 :label: thm1.2
 If $\lim_{x \rightarrow a} \frac{f(x)}{g(x)}=\frac{0}{0}$ or $\lim_{x \rightarrow a} \frac{f(x)}{g(x)}=\frac{\pm \infty}{\pm \infty}$, then 
 
 $$\lim_{x \rightarrow a} \frac{f(x)}{g(x)}=\lim_{x \rightarrow a} \frac{f^{\prime}(x)}{g^{\prime}(x)}$$
 
 where $a$ is a number, $\infty$ or $-\infty$ 
+````
+
+````{prf:example}
+$\lim_{x \rightarrow 1}\frac{x^2-1}{x-1} = \lim_{x \rightarrow 1}(x+1) = 2$
 ````

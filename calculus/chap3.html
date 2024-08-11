@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 3: Derivative &#8212; Univariate Calculus</title>
   
@@ -359,6 +359,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-value-theorem">Mean Value Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuity-of-derivative">Continuity of Derivative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-function-theorem">Implicit Function Theorem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-derivatives">Higher Order Derivatives</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concave-and-convex">Concave and Convex</a></li>
 </ul>
@@ -431,7 +434,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/923b85a3b52ba6146b95d7bd1da7c0ecb991384a1ba989a89eeab01139e9c953.png" src="_images/923b85a3b52ba6146b95d7bd1da7c0ecb991384a1ba989a89eeab01139e9c953.png" />
+<img alt="_images/927c1387bbc5dc6bcd28b343dc4e5485842c94118ece3ba958e492f15029f0d9.png" src="_images/927c1387bbc5dc6bcd28b343dc4e5485842c94118ece3ba958e492f15029f0d9.png" />
 </div>
 </div>
 <p>A function <span class="math notranslate nohighlight">\(f(x)\)</span> is said to be differentiable at <span class="math notranslate nohighlight">\(x=a\)</span> if the derivative <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> exists. If <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable at any point in an open set <span class="math notranslate nohighlight">\(D\subset\mathbb{R}\)</span>, we say that <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable on <span class="math notranslate nohighlight">\(D\)</span>.</p>
@@ -465,6 +468,9 @@ document.write(`
 </ul>
 </div>
 <p>The derivative <span class="math notranslate nohighlight">\(f^\prime(a)\)</span> characterizes the local behavior of the function <span class="math notranslate nohighlight">\(f(x)\)</span> at <span class="math notranslate nohighlight">\(x=a\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is increasing on the interval <span class="math notranslate nohighlight">\(I\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is decreasing on the interval <span class="math notranslate nohighlight">\(I\)</span>. If <span class="math notranslate nohighlight">\(f^{\prime}(x)=0\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in an interval <span class="math notranslate nohighlight">\(I\)</span> then <span class="math notranslate nohighlight">\(f(x)\)</span> is constant on the interval <span class="math notranslate nohighlight">\(I\)</span>.</p>
+</section>
+<section id="mean-value-theorem">
+<h2>Mean Value Theorem<a class="headerlink" href="#mean-value-theorem" title="Permalink to this heading">#</a></h2>
 <div class="proof theorem admonition" id="theorem-2">
 <p class="admonition-title"><span class="caption-number">Theorem 8 </span> (Rolle theorem)</p>
 <section class="theorem-content" id="proof-content">
@@ -479,7 +485,7 @@ document.write(`
 <p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a, b]\)</span> and differentiable on the open interval <span class="math notranslate nohighlight">\((a, b)\)</span> then there is a number <span class="math notranslate nohighlight">\(a&lt;c&lt;b\)</span> such that <span class="math notranslate nohighlight">\(f^{\prime}(c)=\frac{f(b)-f(a)}{b-a}\)</span>.</p>
 </section>
 </div><div class="proof example admonition" id="example-4">
-<p class="admonition-title"><span class="caption-number">Example 1 </span></p>
+<p class="admonition-title"><span class="caption-number">Example 2 </span></p>
 <section class="example-content" id="proof-content">
 <p>The distance between store A and store B is 10 miles. It took me 10 min to drive from A to B. My overall speed is 1 mile per minute. Although my instantaneuou speed varies, there must be a point between A and B at which my instantaneous speed is exactly 1 mile per minute.</p>
 </section>
@@ -517,9 +523,34 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/384c8efdd6c95fdaf3a90a47ea99765e8ad095f1ccd292660f5ca92c2171dbcd.png" src="_images/384c8efdd6c95fdaf3a90a47ea99765e8ad095f1ccd292660f5ca92c2171dbcd.png" />
+<img alt="_images/f22d74b595948cc262bd84e669f51a6e21c187783311d9bd9fe555457babf68f.png" src="_images/f22d74b595948cc262bd84e669f51a6e21c187783311d9bd9fe555457babf68f.png" />
 </div>
 </div>
+</section>
+<section id="continuity-of-derivative">
+<h2>Continuity of Derivative<a class="headerlink" href="#continuity-of-derivative" title="Permalink to this heading">#</a></h2>
+<p>A function that is differentiable but not continuously differentiable provides an interesting example in calculus. Such functions have a derivative at every point in their domain, but this derivative is not a continuous function. One classic example is the function defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{cases}
+x^2 \sin\left(\frac{1}{x}\right) &amp; \text{if } x \neq 0 \\
+0 &amp; \text{if } x = 0
+\end{cases} \end{split}\]</div>
+<p>To check differentiability at <span class="math notranslate nohighlight">\(x = 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f'(0) = \lim_{h \to 0} \frac{f(0 + h) - f(0)}{h} = \lim_{h \to 0} \frac{h^2 \sin\left(\frac{1}{h}\right)}{h} = \lim_{h \to 0} h \sin\left(\frac{1}{h}\right)\]</div>
+<p>Since <span class="math notranslate nohighlight">\(-1 \leq \sin\left(\frac{1}{h}\right) \leq 1\)</span>, we have
+<span class="math notranslate nohighlight">\(-h \leq h \sin\left(\frac{1}{h}\right) \leq h\)</span>. As <span class="math notranslate nohighlight">\(h \to 0\)</span>, both bounds <span class="math notranslate nohighlight">\(-h\)</span> and <span class="math notranslate nohighlight">\(h\)</span> approach 0. By the Squeeze Theorem, <span class="math notranslate nohighlight">\(\lim_{h \to 0} h \sin\left(\frac{1}{h}\right) = 0\)</span>. Therefore, <span class="math notranslate nohighlight">\(f'(0) = 0\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(x \neq 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = \frac{d}{dx} \left( x^2 \sin\left(\frac{1}{x}\right) \right) = 2x \sin\left(\frac{1}{x}\right) - \cos\left(\frac{1}{x}\right)\]</div>
+<p>Thus, the function <span class="math notranslate nohighlight">\(f(x)\)</span> is differentiable at every point in its domain. Now, let’s examine the continuity of <span class="math notranslate nohighlight">\(f'(x)\)</span>. For <span class="math notranslate nohighlight">\(x \neq 0\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f'(x) = 2x \sin\left(\frac{1}{x}\right) - \cos\left(\frac{1}{x}\right)\]</div>
+<p>As <span class="math notranslate nohighlight">\(x \to 0\)</span>, observe that <span class="math notranslate nohighlight">\(\lim_{x \to 0} 2x \sin\left(\frac{1}{x}\right) = 0\)</span>.
+However, <span class="math notranslate nohighlight">\(\cos\left(\frac{1}{x}\right)\)</span> does not approach a single value as <span class="math notranslate nohighlight">\(x \to 0\)</span>; instead, it oscillates between -1 and 1. This means that <span class="math notranslate nohighlight">\(\lim_{x \to 0} f'(x) \text{ does not exist}\)</span>. Because the limit of <span class="math notranslate nohighlight">\(f'(x)\)</span> as <span class="math notranslate nohighlight">\(x \to 0\)</span> does not exist, <span class="math notranslate nohighlight">\(f'(x)\)</span> is not continuous at <span class="math notranslate nohighlight">\(x = 0\)</span>. Hence, <span class="math notranslate nohighlight">\(f(x)\)</span> is a differentiable function that is not continuously differentiable.</p>
+</section>
+<section id="implicit-function-theorem">
+<h2>Implicit Function Theorem<a class="headerlink" href="#implicit-function-theorem" title="Permalink to this heading">#</a></h2>
 <div class="proof theorem admonition" id="thm3.3">
 <p class="admonition-title"><span class="caption-number">Theorem 10 </span> (Implicit function theorem)</p>
 <section class="theorem-content" id="proof-content">
@@ -558,11 +589,18 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/f3fd342618f6b6346e2134c278e24fe8410869223c723b442264b24c5ffe5359.png" src="_images/f3fd342618f6b6346e2134c278e24fe8410869223c723b442264b24c5ffe5359.png" />
+<img alt="_images/34ce76b9e0f2cfc61460aa675bac8e63038cd147bb9cfd6b9cac35eb07449b23.png" src="_images/34ce76b9e0f2cfc61460aa675bac8e63038cd147bb9cfd6b9cac35eb07449b23.png" />
 </div>
 </div>
 <div class="proof theorem admonition" id="theorem-6">
-<p class="admonition-title"><span class="caption-number">Theorem 11 </span> (Inverse function theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 11 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f\)</span> is a continuous differentiable function with non-zero derivative at point <span class="math notranslate nohighlight">\(a\)</span>, then <span class="math notranslate nohighlight">\(f\)</span> is injective in the neighborhood of <span class="math notranslate nohighlight">\(a\)</span>. The inverse is continuous differentiable near <span class="math notranslate nohighlight">\(b=f(a)\)</span> and the derivative of the inverse function at <span class="math notranslate nohighlight">\(b\)</span> is the reciprocal of the derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[(f^{-1})'(b) = \frac{1}{f'(a)}\]</div>
+</section>
+</div><div class="proof theorem admonition" id="theorem-7">
+<p class="admonition-title"><span class="caption-number">Theorem 12 </span> (Inverse function theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(y = f(x)\)</span> be a continuously differentiable function on an open set <span class="math notranslate nohighlight">\(\Phi\)</span>. Its inverse function <span class="math notranslate nohighlight">\(f^{-1}(x)\)</span> exists if <span class="math notranslate nohighlight">\(f^{\prime}(x) \ne 0\)</span> for all <span class="math notranslate nohighlight">\(x\in\Phi\)</span>.</p>
 </section>
@@ -590,7 +628,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0baf8bcbafe8b143274359ae8216ca85f4263c1187229313989b046995c2d029.png" src="_images/0baf8bcbafe8b143274359ae8216ca85f4263c1187229313989b046995c2d029.png" />
+<img alt="_images/932cec1cc9f911128ff196edab70ffb28a85d52305ea2139ca70598a4e0f1529.png" src="_images/932cec1cc9f911128ff196edab70ffb28a85d52305ea2139ca70598a4e0f1529.png" />
 </div>
 </div>
 <div class="admonition-example1 admonition">
@@ -632,12 +670,12 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
 <span class="math notranslate nohighlight">\(x=c\)</span> is an absolute minimum of <span class="math notranslate nohighlight">\(f(x)\)</span> if <span class="math notranslate nohighlight">\(f(c) \leq f(x)\)</span> for all <span class="math notranslate nohighlight">\(x\)</span> in the domain.</p>
 </section>
 </div><div class="proof theorem admonition" id="thm3.4">
-<p class="admonition-title"><span class="caption-number">Theorem 12 </span> (Fermat’s Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 13 </span> (Fermat’s Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(f(x)\)</span> has a relative (or local) extrema at <span class="math notranslate nohighlight">\(x=c\)</span>, then <span class="math notranslate nohighlight">\(x=c\)</span> is a critical point of <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
 </section>
 </div><div class="proof theorem admonition" id="thm3.5">
-<p class="admonition-title"><span class="caption-number">Theorem 13 </span> (Extreme Value Theorem)</p>
+<p class="admonition-title"><span class="caption-number">Theorem 14 </span> (Extreme Value Theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>If <span class="math notranslate nohighlight">\(f(x)\)</span> is continuous on the closed interval <span class="math notranslate nohighlight">\([a, b]\)</span> then there exist numbers <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(d\)</span> so that,</p>
 <ol class="arabic simple">
@@ -784,6 +822,9 @@ f_x = 11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}\)</span> and <span class="math not
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-value-theorem">Mean Value Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuity-of-derivative">Continuity of Derivative</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-function-theorem">Implicit Function Theorem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#higher-order-derivatives">Higher Order Derivatives</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#concave-and-convex">Concave and Convex</a></li>
 </ul>

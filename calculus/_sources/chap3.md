@@ -28,7 +28,6 @@ kernelspec:
 ```
 
 ````{prf:definition} derivative
-:nonumber:
 :label: derivative
 If $y=f(x)$ then the derivative is defined to be $f^{\prime}(x)=\lim _{h \rightarrow 0} \frac{f(x+h)-f(x)}{h}$.
 ````
@@ -78,7 +77,7 @@ Given $f,g\in\Omega$ and $c\in\mathbb{R}$, $D_a(f+g)=D_af+D_ag$ and $D_a(cf)=cD_
 ````
 
 - **The product rule**: $(f g)^{\prime}=f^{\prime} g+f g^{\prime}$
-- **The quotient rule**: $\left(\frac{f}{g}\right)^{\prime}=\frac{f^{\prime} g-f g^{\prime}}{g^{2}}-$
+- **The quotient rule**: $\left(\frac{f}{g}\right)^{\prime}=\frac{f^{\prime} g-f g^{\prime}}{g^{2}}$
 - **The power rule**: $\frac{d}{d x}\left(x^{n}\right)=n x^{n-1}$
 - **The chain rule**: $\frac{d}{d x}(f(g(x)))=f^{\prime}(g(x)) g^{\prime}(x)$
 
@@ -90,6 +89,15 @@ Given $f,g\in\Omega$ and $c\in\mathbb{R}$, $D_a(f+g)=D_af+D_ag$ and $D_a(cf)=cD_
 - $(\csc x)^\prime=-\csc x \cot x$, $(\cot x)^\prime=-\csc ^{2} x$, $(\sec x)^\prime=\sec x \tan x$
 ```
 The derivative $f^\prime(a)$ characterizes the local behavior of the function $f(x)$ at $x=a$. If $f^{\prime}(x)>0$ for all $x$ in an interval $I$ then $f(x)$ is increasing on the interval $I$. If $f^{\prime}(x)<0$ for all $x$ in an interval $I$ then $f(x)$ is decreasing on the interval $I$. If $f^{\prime}(x)=0$ for all $x$ in an interval $I$ then $f(x)$ is constant on the interval $I$. 
+
+## Mean Value Theorem
+````{prf:theorem} Rolle theorem
+If a real-valued function $f$ is continuous on a proper closed interval $[a, b]$, differentiable on the open interval $(a, b)$, and $f(a) = f(b)$, then there exists at least one $c$ in the open interval $(a, b)$ such that $f'(c)=0$.
+````
+
+````{prf:proof}
+Given that $f(x)$ is continuous on the interval $[a,b]$ and $f(a)=f(b)$, it achieves either a maximum or a minimum at $x=c$, where $a<c<b$. If $f(c)=f(a)$, then $f(x)$ is constant on $[a,b]$, implying $f'(c)=0$. When $f(c)>f(a)$, $f(c)$ becomes a maximum. Consequently, for any real number $h$ such that $c + h$ lies in $[a, b]$, we have $\frac{f(c+h)-f(c)}{h}\le 0$. This leads to $f'(c^+)=\lim_{h\rightarrow 0^+}\frac{f(c+h)-f(c)}{h}\le 0$. Similarly, it can be demonstrated that $f'(c^-)\ge 0$. Since $f(x)$ is differentiable at $c$, we conclude that $f'(c^+)=f'(c^-)=0$. In the scenario where $f(c)<f(a)$, $f(c)$ represents a minimum, and the proof can be extended to show that $f'(c^+)=f'(c^-)=0$. This concludes the proof.
+````
 
 ````{prf:theorem} Mean Value Theorem
 :label: thm3.2
@@ -128,7 +136,34 @@ plt.show()
 
 ```
 
-````{prf:theorem} implicit function theorem
+## Continuity of Derivative
+A function that is differentiable but not continuously differentiable provides an interesting example in calculus. Such functions have a derivative at every point in their domain, but this derivative is not a continuous function. One classic example is the function defined as follows:
+
+$$\begin{cases}
+x^2 \sin\left(\frac{1}{x}\right) & \text{if } x \neq 0 \\
+0 & \text{if } x = 0
+\end{cases} $$
+
+To check differentiability at $x = 0$:
+
+$$f'(0) = \lim_{h \to 0} \frac{f(0 + h) - f(0)}{h} = \lim_{h \to 0} \frac{h^2 \sin\left(\frac{1}{h}\right)}{h} = \lim_{h \to 0} h \sin\left(\frac{1}{h}\right)$$
+
+Since $-1 \leq \sin\left(\frac{1}{h}\right) \leq 1$, we have
+$-h \leq h \sin\left(\frac{1}{h}\right) \leq h$. As $h \to 0$, both bounds $-h$ and $h$ approach 0. By the Squeeze Theorem, $\lim_{h \to 0} h \sin\left(\frac{1}{h}\right) = 0$. Therefore, $f'(0) = 0$.
+
+For $x \neq 0$:
+
+$$f'(x) = \frac{d}{dx} \left( x^2 \sin\left(\frac{1}{x}\right) \right) = 2x \sin\left(\frac{1}{x}\right) - \cos\left(\frac{1}{x}\right)$$
+
+Thus, the function $f(x)$ is differentiable at every point in its domain. Now, let's examine the continuity of $f'(x)$. For $x \neq 0$:
+
+$$f'(x) = 2x \sin\left(\frac{1}{x}\right) - \cos\left(\frac{1}{x}\right)$$
+
+As $x \to 0$, observe that $\lim_{x \to 0} 2x \sin\left(\frac{1}{x}\right) = 0$.
+However, $\cos\left(\frac{1}{x}\right)$ does not approach a single value as $x \to 0$; instead, it oscillates between -1 and 1. This means that $\lim_{x \to 0} f'(x) \text{ does not exist}$. Because the limit of $f'(x)$ as $x \to 0$ does not exist, $f'(x)$ is not continuous at $x = 0$. Hence, $f(x)$ is a differentiable function that is not continuously differentiable.
+
+## Implicit Function Theorem
+````{prf:theorem} Implicit function theorem
 :label: thm3.3
 Given a graph $f(x,y)=0$, we want to find the derivative of the inverse function $y^{\prime}(x)$ if it exists. 
 
@@ -162,8 +197,14 @@ plt.show()
 
 ```
 
-````{prf:theorem} inverse function theorem
-Let $y = f(x)$ be a differentiable function on an open set $\Phi$. Its inverse function $f^{-1}(x)$ exists if $f^{\prime}(x) \ne 0$ for all $x\in\Phi$. 
+````{prf:theorem}
+If $f$ is a continuous differentiable function with non-zero derivative at point $a$, then $f$ is injective in the neighborhood of $a$. The inverse is continuous differentiable near $b=f(a)$ and the derivative of the inverse function at $b$ is the reciprocal of the derivative of $f$ at $a$,
+
+$$(f^{-1})'(b) = \frac{1}{f'(a)}$$
+````
+
+````{prf:theorem} Inverse function theorem
+Let $y = f(x)$ be a continuously differentiable function on an open set $\Phi$. Its inverse function $f^{-1}(x)$ exists if $f^{\prime}(x) \ne 0$ for all $x\in\Phi$. 
 ````
 
 ```{code-cell} python
@@ -195,7 +236,6 @@ $$y^\prime = \frac{11-2 \mathbf{e}^{2 x-9 y}-3 x^{2} y^{2}}{2 x^{3} y-9 \mathbf{
 
 ## Higher Order Derivatives
 ````{prf:definition} second derivative
-:nonumber:
 :label: second_derivative
 The second derivative is defined as $f^{\prime \prime}(x)=\left(f^{\prime}(x)\right)^{\prime}$, i.e. the derivative of first derivative $f^{\prime}(x)$.
 ````
@@ -218,7 +258,7 @@ $x=c$ is a critical point of $f(x)$ if $f^{\prime}(c)=0$ or $f^{\prime}(c)$ does
 
 ````{prf:definition} Absolute Extrema
 :label: def3.4
-:nonumber:
+
 $x=c$ is an absolute maximum of $f(x)$ if $f(c) \geq f(x)$ for all $x$ in the domain.
 $x=c$ is an absolute minimum of $f(x)$ if $f(c) \leq f(x)$ for all $x$ in the domain.
 ````
@@ -244,7 +284,7 @@ To find the absolute extrema of the continuous function $f(x)$ on the interval $
 
 ````{prf:definition} Relative (local) Extrema
 :label: def3.5
-:nonumber:
+
 $x=c$ is a relative (or local) maximum of $f(x)$ if $f(c) \geq f(x)$ for all $x$ near $c$.
 $x=c$ is a relative (or local) minimum of $f(x)$ if $f(c) \leq f(x)$ for all $x$ near $c$.
 ````

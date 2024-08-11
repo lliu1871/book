@@ -36,6 +36,7 @@ $$\int_{a}^{b} f(x) d x=\lim _{n \rightarrow \infty} \sum_{i=1}^{n} f\left(x_{i}
 If the limit exist, the function $f(x)$ is said to be integrable.
 ````
 
+## Properties
 It follows from the definition that $\int_{a}^{a} f(x) d x=0$, $\int_{a}^{b} c d x=c(b-a)$, $\int_{a}^{b} f(x) d x=-\int_{b}^{a} f(x) dx$, and 
 
 $$\int_{a}^{b} f(x) d x=\int_{a}^{c} f(x) d x+\int_{c}^{b} f(x) dx$$(1)
@@ -57,7 +58,27 @@ It indicates the following inequalities
 - $\left|\int_{a}^{b} f(x) d x\right| \leq \int_{a}^{b}|f(x)| dx$ 
 - If $m \leq f(x) \leq M$ on $a \leq x \leq b$ then $m(b-a) \leq \int_{a}^{b} f(x) d x \leq M(b-a)$. 
 
+```{admonition} Common Integrals 
 
+- $\int k d x=k x+c$
+- $\int \cos u d u=\sin u+c$
+- $\int x^{n} d x=\frac{1}{n+1} x^{n+1}+c$
+- $\int \sin u d u=-\cos u+c$
+- $\int x^{-1} d x=\int \frac{1}{x} d x=\ln |x|+c$
+- $\int \frac{1}{a x+b} d x=\frac{1}{a} \ln |a x+b|+c$
+- $\int \sec u \tan u d u=\sec u+c$
+- $\int \ln u d u=u \ln (u)-u+c$ 
+- $\int \csc u \cot u d u=-\csc u+c$
+- $\int \csc ^{2} u d u=-\cot u+c$
+- $\int e^u du=e^u+c$
+- $\int \tan u d u=\ln |\sec u|+c$
+- $\int \sec u d u=\ln |\sec u+\tan u|+c$
+- $\int \frac{1}{a^{2}+u^{2}} d u=\frac{1}{a} \tan ^{-1}\left(\frac{u}{a}\right)+c$
+- $\int \frac{1}{\sqrt{a^{2}-u^{2}}} d u=\sin ^{-1}\left(\frac{u}{a}\right)+c$ 
+```
+
+
+## Fundamental Theorem of Calculus
 ````{prf:definition} anti-derivative
 :nonumber:
 :label: anti-derivative
@@ -91,24 +112,6 @@ $$\frac{d}{d x} \int_{v(x)}^{u(x)} f(t) d t=u^{\prime}(x) f[u(x)]-v^{\prime}(x) 
 ````
 
 
-```{admonition} Common Integrals 
-
-- $\int k d x=k x+c$
-- $\int \cos u d u=\sin u+c$
-- $\int x^{n} d x=\frac{1}{n+1} x^{n+1}+c$
-- $\int \sin u d u=-\cos u+c$
-- $\int x^{-1} d x=\int \frac{1}{x} d x=\ln |x|+c$
-- $\int \frac{1}{a x+b} d x=\frac{1}{a} \ln |a x+b|+c$
-- $\int \sec u \tan u d u=\sec u+c$
-- $\int \ln u d u=u \ln (u)-u+c$ 
-- $\int \csc u \cot u d u=-\csc u+c$
-- $\int \csc ^{2} u d u=-\cot u+c$
-- $\int e^u du=e^u+c$
-- $\int \tan u d u=\ln |\sec u|+c$
-- $\int \sec u d u=\ln |\sec u+\tan u|+c$
-- $\int \frac{1}{a^{2}+u^{2}} d u=\frac{1}{a} \tan ^{-1}\left(\frac{u}{a}\right)+c$
-- $\int \frac{1}{\sqrt{a^{2}-u^{2}}} d u=\sin ^{-1}\left(\frac{u}{a}\right)+c$ 
-```
 
 ## Integration Techniques
 
