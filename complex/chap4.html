@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 4: Integration &#8212; Complex Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,9 +39,8 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -80,15 +79,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -142,11 +132,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="intro.html">
-  
   
   
   
@@ -156,8 +144,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.jpg" class="logo__image only-light" alt="Complex Analysis - Home"/>
-    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Complex Analysis - Home"/>`);</script>
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -167,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -338,22 +326,20 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
 
-
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -383,6 +369,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antiderivative">Antiderivative</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cauchy-theorem">Cauchy theorem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cauchy-integral-formula">Cauchy integral formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-properties-of-analytic-functions">Local properties of analytic functions</a></li>
 </ul>
             </nav>
         </div>
@@ -507,12 +494,15 @@ piecewise smooth, G-contractible path. If <span class="math notranslate nohighli
 <div class="math notranslate nohighlight">
 \[f''(w) = \frac{1}{\pi i}\int_{C[w,R]} \frac{f(z)}{(z-w)^3}dz\]</div>
 </section>
-</div><p>If f is differentiable in a region G then f is infinitely differentiable in G, and all partials
-of f with respect to x and y exist and are continuous.</p>
+</div><p>If <span class="math notranslate nohighlight">\(f\)</span> is differentiable in a region <span class="math notranslate nohighlight">\(G\)</span> then <span class="math notranslate nohighlight">\(f\)</span> is infinitely differentiable in <span class="math notranslate nohighlight">\(G\)</span>, and all partials
+of <span class="math notranslate nohighlight">\(f\)</span> with respect to <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> exist and are continuous.</p>
 <div class="proof theorem admonition" id="theorem-11">
 <p class="admonition-title"><span class="caption-number">Theorem 12 </span> (Morera theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(f\)</span> is continuous in the region <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(\int_\gamma f=0\)</span> for all piecewise smooth closed paths <span class="math notranslate nohighlight">\(\gamma\)</span> in <span class="math notranslate nohighlight">\(G\)</span>. Then <span class="math notranslate nohighlight">\(f\)</span> is holomorphic in <span class="math notranslate nohighlight">\(G\)</span>.</p>
+<p>Proof: The assumption shows that <span class="math notranslate nohighlight">\(f\)</span> has a primitive in a neighborhood
+of every point of <span class="math notranslate nohighlight">\(G\)</span>­. Thus <span class="math notranslate nohighlight">\(f\)</span> is near each point the derivative of an analytic
+function, so it is itself differentiable in ­<span class="math notranslate nohighlight">\(G\)</span>, i.e., holomorphic.</p>
 </section>
 </div><div class="proof definition admonition" id="definition-12">
 <p class="admonition-title"><span class="caption-number">Definition 17 </span> (Simply connected)</p>
@@ -525,15 +515,34 @@ of f with respect to x and y exist and are continuous.</p>
 <p>Every holomorphic function on a simply-connected region <span class="math notranslate nohighlight">\(G\subset \mathbb{C}\)</span> has an antiderivative
 on <span class="math notranslate nohighlight">\(G\)</span>.</p>
 </section>
-</div><div class="proof theorem admonition" id="theorem-14">
-<p class="admonition-title"><span class="caption-number">Theorem 14 </span> (Fundamental theorem of algebra)</p>
+</div></section>
+<section id="local-properties-of-analytic-functions">
+<h2>Local properties of analytic functions<a class="headerlink" href="#local-properties-of-analytic-functions" title="Permalink to this heading">#</a></h2>
+<p>Suppose <span class="math notranslate nohighlight">\(f\)</span> is continuous on a circle <span class="math notranslate nohighlight">\(\gamma\)</span> with equation
+<span class="math notranslate nohighlight">\(|z-p| = r\)</span>. Then the function</p>
+<div class="math notranslate nohighlight">
+\[
+g(z) = \frac{1}{2\pi i}\int_{\gamma}\frac{f(x)}{(x-z)}dx
+\]</div>
+<p>is analytic in the corresponding open disk <span class="math notranslate nohighlight">\(|z-p| &lt; r\)</span>. In fact, we may
+expand the function in a power series <span class="math notranslate nohighlight">\(g(z) = \sum_{k=0}^\infty a_k(z - p)^k\)</span> with
+radius of convergence at least equal to <span class="math notranslate nohighlight">\(r\)</span>. The coefficients in the series
+are given by <span class="math notranslate nohighlight">\(a_k = \frac{1}{2\pi i}\int_{\gamma}\frac{f(z)}{(z-p)^{k+1}}dz\)</span>.</p>
+<div class="proof theorem admonition" id="theorem-14">
+<p class="admonition-title"><span class="caption-number">Theorem 14 </span> (Liouville)</p>
 <section class="theorem-content" id="proof-content">
-<p>Every nonconstant polynomial has a root in <span class="math notranslate nohighlight">\(\mathbb{C}\)</span>.</p>
+<p>Suppose <span class="math notranslate nohighlight">\(f\)</span> is an entire function such
+that <span class="math notranslate nohighlight">\(|f(z)| \le C|z|^n\)</span> for all sufficiently large <span class="math notranslate nohighlight">\(|z|\)</span>. Then <span class="math notranslate nohighlight">\(f\)</span> is a polynomial
+of degree <span class="math notranslate nohighlight">\(\le n\)</span>. In particular, if <span class="math notranslate nohighlight">\(f\)</span> is bounded in all of <span class="math notranslate nohighlight">\(\mathbb{C}\)</span>, then <span class="math notranslate nohighlight">\(f\)</span> is
+constant.</p>
 </section>
 </div><div class="proof theorem admonition" id="theorem-15">
-<p class="admonition-title"><span class="caption-number">Theorem 15 </span></p>
+<p class="admonition-title"><span class="caption-number">Theorem 15 </span> (Fundamental theorem of algebra)</p>
 <section class="theorem-content" id="proof-content">
-<p>Any bounded entire function is constant.</p>
+<p>Every nonconstant polynomial has a root in <span class="math notranslate nohighlight">\(\mathbb{C}\)</span>.</p>
+<p>Proof: Suppose <span class="math notranslate nohighlight">\(P\)</span> is a polynomial without zeros. Then <span class="math notranslate nohighlight">\(1/P(z)\)</span> is
+an entire function, and we shall see that it is bounded, so that Liouville’s
+theorem will show it to be constant.</p>
 </section>
 </div></section>
 </section>
@@ -563,10 +572,11 @@ on <span class="math notranslate nohighlight">\(G\)</span>.</p>
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="chap3.html"
@@ -586,7 +596,10 @@ on <span class="math notranslate nohighlight">\(G\)</span>.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -604,6 +617,7 @@ on <span class="math notranslate nohighlight">\(G\)</span>.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#antiderivative">Antiderivative</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cauchy-theorem">Cauchy theorem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cauchy-integral-formula">Cauchy integral formula</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-properties-of-analytic-functions">Local properties of analytic functions</a></li>
 </ul>
   </nav></div>
 
@@ -625,7 +639,6 @@ By Liang Liu
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2022.
@@ -652,8 +665,8 @@ By Liang Liu
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

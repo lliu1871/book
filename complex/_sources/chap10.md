@@ -28,6 +28,12 @@ kernelspec:
 ```
 
 ## Sequences of analytic functions
+A sequence of functions $f_1, f_2,\dots$ defined in $\Omega$­ is said to converge **locally uniformly** to $f$ in ­$\Omega$ if every $x\in \Omega$ ­ has a neighborhood in which the sequence converges uniformly to $f$.
+
+Suppose $f_n \in H(\Omega­), n = 1, 2, \dots$ and that $f_n\rightarrow f$
+locally uniformly in $\Omega$­. Then $f \in H(\Omega­)$. Furthermore, $f^{(j)}_n \rightarrow f^{(j)}$
+locally uniformly in $\Omega$­ for $j = 1, 2, 3,\dots$.
+
 
 ## Infinite products
 

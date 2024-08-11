@@ -115,11 +115,15 @@ Moreover, $f''(w)$ exists, and
 $$f''(w) = \frac{1}{\pi i}\int_{C[w,R]} \frac{f(z)}{(z-w)^3}dz$$
 ````
 
-If f is differentiable in a region G then f is infinitely differentiable in G, and all partials
-of f with respect to x and y exist and are continuous.
+If $f$ is differentiable in a region $G$ then $f$ is infinitely differentiable in $G$, and all partials
+of $f$ with respect to $x$ and $y$ exist and are continuous.
 
 ````{prf:theorem} Morera theorem
 Suppose $f$ is continuous in the region $G$ and $\int_\gamma f=0$ for all piecewise smooth closed paths $\gamma$ in $G$. Then $f$ is holomorphic in $G$.
+
+Proof: The assumption shows that $f$ has a primitive in a neighborhood
+of every point of $G$­. Thus $f$ is near each point the derivative of an analytic
+function, so it is itself differentiable in ­$G$, i.e., holomorphic.
 ````
 
 ````{prf:definition} Simply connected
@@ -131,10 +135,30 @@ Every holomorphic function on a simply-connected region $G\subset \mathbb{C}$ ha
 on $G$.
 ````
 
-````{prf:theorem} Fundamental theorem of algebra
-Every nonconstant polynomial has a root in $\mathbb{C}$.
+## Local properties of analytic functions
+Suppose $f$ is continuous on a circle $\gamma$ with equation
+$|z-p| = r$. Then the function
+
+$$
+g(z) = \frac{1}{2\pi i}\int_{\gamma}\frac{f(x)}{(x-z)}dx
+$$
+
+is analytic in the corresponding open disk $|z-p| < r$. In fact, we may
+expand the function in a power series $g(z) = \sum_{k=0}^\infty a_k(z - p)^k$ with
+radius of convergence at least equal to $r$. The coefficients in the series
+are given by $a_k = \frac{1}{2\pi i}\int_{\gamma}\frac{f(z)}{(z-p)^{k+1}}dz$.
+
+````{prf:theorem} Liouville 
+Suppose $f$ is an entire function such
+that $|f(z)| \le C|z|^n$ for all sufficiently large $|z|$. Then $f$ is a polynomial
+of degree $\le n$. In particular, if $f$ is bounded in all of $\mathbb{C}$, then $f$ is
+constant.
 ````
 
-````{prf:theorem}
-Any bounded entire function is constant.
+````{prf:theorem} Fundamental theorem of algebra
+Every nonconstant polynomial has a root in $\mathbb{C}$.
+
+Proof: Suppose $P$ is a polynomial without zeros. Then $1/P(z)$ is
+an entire function, and we shall see that it is bounded, so that Liouville’s
+theorem will show it to be constant.
 ````

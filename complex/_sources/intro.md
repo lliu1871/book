@@ -7,11 +7,7 @@
 <br>
 <br>
 <br>
-<br>
-<br>
 Complex Analysis
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -23,7 +19,7 @@ Complex Analysis
 </h1>
 
 ---
-# Table of Contents
+# Table of Contents &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
 ```{tableofcontents}
 ```

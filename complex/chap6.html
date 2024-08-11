@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html lang="en" data-content_root="" >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 6: Harmonic functions &#8212; Complex Analysis</title>
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -39,9 +39,8 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
-  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -80,15 +79,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -142,11 +132,9 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
-
   
 
 <a class="navbar-brand logo" href="intro.html">
-  
   
   
   
@@ -156,8 +144,8 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/logo.jpg" class="logo__image only-light" alt="Complex Analysis - Home"/>
-    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Complex Analysis - Home"/>`);</script>
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
   
   
 </a></div>
@@ -167,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
@@ -338,26 +326,26 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
-
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
-
 
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -373,6 +361,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-value-property">Mean value property</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-and-minimum">Maximum and Minimum</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -396,6 +393,7 @@ document.write(`
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Real_number">Youtube</a></p></li>
 </ul>
 </div>
+<p>Harmonic functions are functions that satisfy Laplace’s equation, i.e.,the sum of second partial derivatives are equal to zero.</p>
 <div class="proof definition admonition" id="definition-0">
 <p class="admonition-title"><span class="caption-number">Definition 19 </span></p>
 <section class="definition-content" id="proof-content">
@@ -403,37 +401,73 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[u_{xx} + u_{yy} = 0\]</div>
 </section>
-</div><p>Suppose <span class="math notranslate nohighlight">\(f = u + iv\)</span> is holomorphic in the region <span class="math notranslate nohighlight">\(G\)</span>. Then <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are harmonic in <span class="math notranslate nohighlight">\(G\)</span>.</p>
+</div><p>The real and imaginary parts of a complex holomorphic function are harmonic functions. This means that a complex differentiable function can be expressed as a sum of a harmonic function and a conjugate harmonic function.</p>
 <div class="proof theorem admonition" id="theorem-1">
 <p class="admonition-title"><span class="caption-number">Theorem 20 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Suppose <span class="math notranslate nohighlight">\(f = u + iv\)</span> is holomorphic in the region <span class="math notranslate nohighlight">\(G\)</span>. Then <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are harmonic in <span class="math notranslate nohighlight">\(G\)</span>.</p>
+</section>
+</div><div class="proof theorem admonition" id="theorem-2">
+<p class="admonition-title"><span class="caption-number">Theorem 21 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(u\)</span> is harmonic on a simply-connected region <span class="math notranslate nohighlight">\(G\)</span>. Then there exists a harmonic
 function <span class="math notranslate nohighlight">\(v\)</span> in <span class="math notranslate nohighlight">\(G\)</span> such that <span class="math notranslate nohighlight">\(f = u + iv\)</span> is holomorphic in <span class="math notranslate nohighlight">\(G\)</span>. The function <span class="math notranslate nohighlight">\(v\)</span> is called a harmonic conjugate of <span class="math notranslate nohighlight">\(u\)</span>.</p>
 </section>
-</div><div class="proof definition admonition" id="definition-2">
+</div><div class="proof definition admonition" id="definition-3">
 <p class="admonition-title"><span class="caption-number">Definition 20 </span></p>
 <section class="definition-content" id="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(u\)</span> is harmonic on <span class="math notranslate nohighlight">\(\mathbb{C}\)</span>. Then <span class="math notranslate nohighlight">\(v(x, y) :=\int_0^y u_x(x, t)dt + \int_0^x u_y(t, 0) dt\)</span> is a harmonic conjugate for <span class="math notranslate nohighlight">\(u\)</span>.</p>
 </section>
 </div><p>A harmonic function is infinitely differentiable.</p>
-<p>We have established an intimate connection between harmonic and holomorphic functions, and so
-it should come as no surprise that some of the theorems we proved for holomorphic functions
-have analogues in the world of harmonic functions. Here is such a harmonic analogue of Cauchy’s
-Integral Formula.</p>
-<div class="proof theorem admonition" id="theorem-3">
-<p class="admonition-title"><span class="caption-number">Theorem 21 </span></p>
+<section id="mean-value-property">
+<h2>Mean value property<a class="headerlink" href="#mean-value-property" title="Permalink to this heading">#</a></h2>
+<p>There is a close relationship between harmonic and holomorphic functions. The theorems proven for holomorphic functions find analogs in the realm of harmonic functions. Presented here is a harmonic counterpart to Cauchy’s Integral Formula.</p>
+<div class="proof theorem admonition" id="theorem-4">
+<p class="admonition-title"><span class="caption-number">Theorem 22 </span></p>
 <section class="theorem-content" id="proof-content">
 <p>Suppose <span class="math notranslate nohighlight">\(u\)</span> is harmonic in the region <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(D[w, r]\subset G\)</span>. Then
 <span class="math notranslate nohighlight">\(u(w) =\frac{1}{2\pi} \int_0^{2\pi}u(w + re^{it})dt\)</span></p>
 </section>
-</div><p>Let <span class="math notranslate nohighlight">\(G\subset \mathbb{C}\)</span> be a region. The function <span class="math notranslate nohighlight">\(u : G \rightarrow \mathbb{R}\)</span> has a <strong>strong relative maximum</strong> at <span class="math notranslate nohighlight">\(w \in G\)</span> if there exists a disk <span class="math notranslate nohighlight">\(D[w, r]\subset G\)</span> such that <span class="math notranslate nohighlight">\(u(z)\le u(w)\)</span> for all <span class="math notranslate nohighlight">\(z \in D[w, r]\)</span> and <span class="math notranslate nohighlight">\(u(z_0) &lt; u(w)\)</span> for some <span class="math notranslate nohighlight">\(z_0 \in D[w, r]\)</span>. The definition of a strong relative minimum is analogous.</p>
-<ol class="arabic simple">
-<li><p>If <span class="math notranslate nohighlight">\(u\)</span> is harmonic in the region <span class="math notranslate nohighlight">\(G\)</span>, then it does not have a strong relative maximum or minimum in <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+</div><p>The theorem illustrates the mean value property of harmonic functions, affirming that the value of a harmonic function at any point equals the average of its values on the surrounding boundary. This property extends seamlessly to 3D spaces, as articulated in the subsequent theorem.</p>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 23 </span> (Mean-value property of harmonic functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(f : \mathbb{R}^3 \rightarrow \mathbb{R}\)</span> be a harmonic function. Given a point
+<span class="math notranslate nohighlight">\(p \in \mathbb{R}^3\)</span> and a positive number <span class="math notranslate nohighlight">\(r&gt;0\)</span>, let <span class="math notranslate nohighlight">\(S(r)\)</span> be the sphere of radius <span class="math notranslate nohighlight">\(r\)</span> centered at <span class="math notranslate nohighlight">\(p\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[
+f(p) = \frac{1}{4\pi r^2}\int\int_{S(r)}fd\delta
+\]</div>
+<p>The right side of this equation is the average value of <span class="math notranslate nohighlight">\(f\)</span> on the sphere; the left side is the value of <span class="math notranslate nohighlight">\(f\)</span> at the center of the sphere. Notice that the left side doesn’t even depend on <span class="math notranslate nohighlight">\(r\)</span>.</p>
+</section>
+</div></section>
+<section id="maximum-and-minimum">
+<h2>Maximum and Minimum<a class="headerlink" href="#maximum-and-minimum" title="Permalink to this heading">#</a></h2>
+<p>Harmonic functions exhibit the maximum principle as another inherent property. This principle asserts that the maximum value of a harmonic function is invariably attained on the boundary of the domain in which the function is defined. Such a property holds significance for understanding the behavior of harmonic functions and aids in their analysis.</p>
+<p>Let <span class="math notranslate nohighlight">\(G\subset \mathbb{C}\)</span> be a region. The function <span class="math notranslate nohighlight">\(u : G \rightarrow \mathbb{R}\)</span> has a <strong>strong relative maximum</strong> at <span class="math notranslate nohighlight">\(w \in G\)</span> if there exists a disk <span class="math notranslate nohighlight">\(D[w, r]\subset G\)</span> such that <span class="math notranslate nohighlight">\(u(z)\le u(w)\)</span> for all <span class="math notranslate nohighlight">\(z \in D[w, r]\)</span> and <span class="math notranslate nohighlight">\(u(z_0) &lt; u(w)\)</span> for some <span class="math notranslate nohighlight">\(z_0 \in D[w, r]\)</span>. The definition of a strong relative minimum is analogous.</p>
+<div class="proof theorem admonition" id="theorem-6">
+<p class="admonition-title"><span class="caption-number">Theorem 24 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(u\)</span> is harmonic in the region <span class="math notranslate nohighlight">\(G\)</span>, then it does not have a strong relative maximum or minimum in <span class="math notranslate nohighlight">\(G\)</span>.</p>
+</section>
+</div><ol class="arabic simple">
+<li><p>If <span class="math notranslate nohighlight">\(f\)</span> is harmonic and has a local maximum or minimum, then <span class="math notranslate nohighlight">\(f\)</span> is constant.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(f\)</span> is holomorphic and nonzero in the region <span class="math notranslate nohighlight">\(G\)</span>, then <span class="math notranslate nohighlight">\(|f|\)</span> does not have a strong relative
 maximum or minimum in <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
-<li><p>Suppose <span class="math notranslate nohighlight">\(u\)</span> is harmonic in the bounded region <span class="math notranslate nohighlight">\(G\)</span> and continuous on its closure. If <span class="math notranslate nohighlight">\(u\)</span> is
-zero on <span class="math notranslate nohighlight">\(\partial G\)</span> then <span class="math notranslate nohighlight">\(u\)</span> is zero in <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
 </ol>
+<div class="proof theorem admonition" id="theorem-7">
+<p class="admonition-title"><span class="caption-number">Theorem 25 </span> (Maximum principle)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f\)</span> is harmonic in a bounded solid region, then its absolute maximum and minimum occur on the boundary.</p>
+</section>
+</div><p>Suppose <span class="math notranslate nohighlight">\(u\)</span> is harmonic in the bounded region <span class="math notranslate nohighlight">\(G\)</span> and continuous on its closure. If <span class="math notranslate nohighlight">\(u\)</span> is
+zero on <span class="math notranslate nohighlight">\(\partial G\)</span> then <span class="math notranslate nohighlight">\(u\)</span> is zero in <span class="math notranslate nohighlight">\(G\)</span>, because maximum and minimum occur on the boundary <span class="math notranslate nohighlight">\(\partial G\)</span>.</p>
+<div class="proof theorem admonition" id="theorem-8">
+<p class="admonition-title"><span class="caption-number">Theorem 26 </span> (Uniqueness of harmonic functions)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are harmonic functions and <span class="math notranslate nohighlight">\(f = g\)</span> on the surface of a bounded region, then <span class="math notranslate nohighlight">\(f = g\)</span> inside the region as well.</p>
+</section>
+</div></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -461,10 +495,11 @@ zero on <span class="math notranslate nohighlight">\(\partial G\)</span> then <s
 
               
               
-              
-              
-                <footer class="prev-next-footer">
+                <footer class="bd-footer-article">
                   
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="chap5.html"
@@ -484,12 +519,30 @@ zero on <span class="math notranslate nohighlight">\(\partial G\)</span> then <s
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-value-property">Mean value property</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-and-minimum">Maximum and Minimum</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
@@ -507,7 +560,6 @@ By Liang Liu
   
   <div class="footer-item">
     
-
   <p class="copyright">
     
       © Copyright 2022.
@@ -534,8 +586,8 @@ By Liang Liu
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

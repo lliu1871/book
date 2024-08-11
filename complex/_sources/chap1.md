@@ -37,6 +37,12 @@ A group $(G,*)$ is a set $G$ equipped with a binary operation $*$ satisfying the
 3. inverse: every element a has an inverse $a^{-1}$ such that $a*a^{-1}=a^{-1}*a=e$.
 ````
 
+```{code-cell}
+:tags: ["hide-input"]
+note = "Python syntax"
+print(note)
+```
+
 ````{prf:example} 1.1
 :nonumber:
 :label: ex.1
@@ -61,12 +67,6 @@ Show that if a set has an associative binary operation with neutral element, the
 
 Proof: We first show that the left inverse is equal to the right inverse. Let $b∈G$ and $c∈G$ be the left and right inverse of $a∈G$. We have $a*b=e=c*a$ and $b=e*b=c*a*b=c*e=c$.
 ````
-
-
-```{code-cell}
-:tags: ["hide-input"]
-
-```
 
 ````{prf:definition} Abelian group
 A group is called Abelian if it is commutative, i.e., for all elements x,y∈G holds x*y=y*x. (commutative law)
