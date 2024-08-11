@@ -13,6 +13,7 @@ kernelspec:
   name: python3
 ---
 # 第001回 灵根育孕源流出   心性修持大道
+![](./image/cover.jpg)
 
 诗曰
 
