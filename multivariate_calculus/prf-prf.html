@@ -1,0 +1,1371 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proof Index &#8212; Multivariate Calculus</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'prf-prf';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+
+    <script>
+      DOCUMENTATION_OPTIONS.COLLAPSE_INDEX = true;
+    </script>
+
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents      
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Vector space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Linear maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Vector calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Differential forms</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fprf-prf.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+
+   <h1>Proof Index</h1>
+
+   <div class="modindex-jumpbox">
+   <a href="#cap-Al_Kashi_theorem"><strong>Al_Kashi_theorem</strong></a> | 
+   <a href="#cap-Cauchy_Schwarz_inequality"><strong>Cauchy_Schwarz_inequality</strong></a> | 
+   <a href="#cap-def1.1"><strong>def1.1</strong></a> | 
+   <a href="#cap-def1.10"><strong>def1.10</strong></a> | 
+   <a href="#cap-def1.11"><strong>def1.11</strong></a> | 
+   <a href="#cap-def1.12"><strong>def1.12</strong></a> | 
+   <a href="#cap-def1.13"><strong>def1.13</strong></a> | 
+   <a href="#cap-def1.14"><strong>def1.14</strong></a> | 
+   <a href="#cap-def1.2"><strong>def1.2</strong></a> | 
+   <a href="#cap-def1.3"><strong>def1.3</strong></a> | 
+   <a href="#cap-def1.4"><strong>def1.4</strong></a> | 
+   <a href="#cap-def1.5"><strong>def1.5</strong></a> | 
+   <a href="#cap-def1.6"><strong>def1.6</strong></a> | 
+   <a href="#cap-def1.7"><strong>def1.7</strong></a> | 
+   <a href="#cap-def1.8"><strong>def1.8</strong></a> | 
+   <a href="#cap-def1.9"><strong>def1.9</strong></a> | 
+   <a href="#cap-def2.1"><strong>def2.1</strong></a> | 
+   <a href="#cap-def2.2"><strong>def2.2</strong></a> | 
+   <a href="#cap-def2.3"><strong>def2.3</strong></a> | 
+   <a href="#cap-def2.4"><strong>def2.4</strong></a> | 
+   <a href="#cap-def2.5"><strong>def2.5</strong></a> | 
+   <a href="#cap-def2.6"><strong>def2.6</strong></a> | 
+   <a href="#cap-def2.7"><strong>def2.7</strong></a> | 
+   <a href="#cap-def3.1"><strong>def3.1</strong></a> | 
+   <a href="#cap-def3.2"><strong>def3.2</strong></a> | 
+   <a href="#cap-def3.3"><strong>def3.3</strong></a> | 
+   <a href="#cap-def3.4"><strong>def3.4</strong></a> | 
+   <a href="#cap-def3.5"><strong>def3.5</strong></a> | 
+   <a href="#cap-def4.1"><strong>def4.1</strong></a> | 
+   <a href="#cap-def4.2"><strong>def4.2</strong></a> | 
+   <a href="#cap-def4.3"><strong>def4.3</strong></a> | 
+   <a href="#cap-def4.4"><strong>def4.4</strong></a> | 
+   <a href="#cap-def4.5"><strong>def4.5</strong></a> | 
+   <a href="#cap-def4.6"><strong>def4.6</strong></a> | 
+   <a href="#cap-def4.7"><strong>def4.7</strong></a> | 
+   <a href="#cap-def4.8"><strong>def4.8</strong></a> | 
+   <a href="#cap-def5.1"><strong>def5.1</strong></a> | 
+   <a href="#cap-def5.2"><strong>def5.2</strong></a> | 
+   <a href="#cap-def5.3"><strong>def5.3</strong></a> | 
+   <a href="#cap-def5.4"><strong>def5.4</strong></a> | 
+   <a href="#cap-def5.5"><strong>def5.5</strong></a> | 
+   <a href="#cap-def5.6"><strong>def5.6</strong></a> | 
+   <a href="#cap-def5.7"><strong>def5.7</strong></a> | 
+   <a href="#cap-def5.8"><strong>def5.8</strong></a> | 
+   <a href="#cap-def6.1"><strong>def6.1</strong></a> | 
+   <a href="#cap-def6.2"><strong>def6.2</strong></a> | 
+   <a href="#cap-def6.3"><strong>def6.3</strong></a> | 
+   <a href="#cap-def6.4"><strong>def6.4</strong></a> | 
+   <a href="#cap-def6.5"><strong>def6.5</strong></a> | 
+   <a href="#cap-def6.6"><strong>def6.6</strong></a> | 
+   <a href="#cap-def6.7"><strong>def6.7</strong></a> | 
+   <a href="#cap-def7.1"><strong>def7.1</strong></a> | 
+   <a href="#cap-def7.2"><strong>def7.2</strong></a> | 
+   <a href="#cap-def7.3"><strong>def7.3</strong></a> | 
+   <a href="#cap-def7.4"><strong>def7.4</strong></a> | 
+   <a href="#cap-def7.5"><strong>def7.5</strong></a> | 
+   <a href="#cap-def7.6"><strong>def7.6</strong></a> | 
+   <a href="#cap-def7.7"><strong>def7.7</strong></a> | 
+   <a href="#cap-def7.8"><strong>def7.8</strong></a> | 
+   <a href="#cap-def7.9"><strong>def7.9</strong></a> | 
+   <a href="#cap-exp1.1"><strong>exp1.1</strong></a> | 
+   <a href="#cap-exp1.2"><strong>exp1.2</strong></a> | 
+   <a href="#cap-exp2.1"><strong>exp2.1</strong></a> | 
+   <a href="#cap-exp4.1"><strong>exp4.1</strong></a> | 
+   <a href="#cap-exp4.2"><strong>exp4.2</strong></a> | 
+   <a href="#cap-exp4.3"><strong>exp4.3</strong></a> | 
+   <a href="#cap-exp4.4"><strong>exp4.4</strong></a> | 
+   <a href="#cap-exp5.1"><strong>exp5.1</strong></a> | 
+   <a href="#cap-exp5.2"><strong>exp5.2</strong></a> | 
+   <a href="#cap-exp6.1"><strong>exp6.1</strong></a> | 
+   <a href="#cap-exp6.2"><strong>exp6.2</strong></a> | 
+   <a href="#cap-prop3.1"><strong>prop3.1</strong></a> | 
+   <a href="#cap-prop3.2"><strong>prop3.2</strong></a> | 
+   <a href="#cap-prop4.1"><strong>prop4.1</strong></a> | 
+   <a href="#cap-prop4.2"><strong>prop4.2</strong></a> | 
+   <a href="#cap-prop5.1"><strong>prop5.1</strong></a> | 
+   <a href="#cap-prop5.2"><strong>prop5.2</strong></a> | 
+   <a href="#cap-prop5.3"><strong>prop5.3</strong></a> | 
+   <a href="#cap-prop5.4"><strong>prop5.4</strong></a> | 
+   <a href="#cap-them2.1"><strong>them2.1</strong></a> | 
+   <a href="#cap-them3.1"><strong>them3.1</strong></a> | 
+   <a href="#cap-them3.2"><strong>them3.2</strong></a> | 
+   <a href="#cap-them3.3"><strong>them3.3</strong></a> | 
+   <a href="#cap-them3.4"><strong>them3.4</strong></a> | 
+   <a href="#cap-them3.5"><strong>them3.5</strong></a> | 
+   <a href="#cap-them3.6"><strong>them3.6</strong></a> | 
+   <a href="#cap-them3.7"><strong>them3.7</strong></a> | 
+   <a href="#cap-them4.1"><strong>them4.1</strong></a> | 
+   <a href="#cap-them4.2"><strong>them4.2</strong></a> | 
+   <a href="#cap-them4.3"><strong>them4.3</strong></a> | 
+   <a href="#cap-them4.4"><strong>them4.4</strong></a> | 
+   <a href="#cap-them4.5"><strong>them4.5</strong></a> | 
+   <a href="#cap-them4.6"><strong>them4.6</strong></a> | 
+   <a href="#cap-them4.7"><strong>them4.7</strong></a> | 
+   <a href="#cap-them4.8"><strong>them4.8</strong></a> | 
+   <a href="#cap-them5.1"><strong>them5.1</strong></a> | 
+   <a href="#cap-them5.2"><strong>them5.2</strong></a> | 
+   <a href="#cap-them5.3"><strong>them5.3</strong></a> | 
+   <a href="#cap-them5.4"><strong>them5.4</strong></a> | 
+   <a href="#cap-them6.1"><strong>them6.1</strong></a> | 
+   <a href="#cap-them6.2"><strong>them6.2</strong></a> | 
+   <a href="#cap-them6.3"><strong>them6.3</strong></a> | 
+   <a href="#cap-them6.4"><strong>them6.4</strong></a> | 
+   <a href="#cap-them7.1"><strong>them7.1</strong></a> | 
+   <a href="#cap-them7.2"><strong>them7.2</strong></a> | 
+   <a href="#cap-them7.3"><strong>them7.3</strong></a> | 
+   <a href="#cap-them7.4"><strong>them7.4</strong></a> | 
+   <a href="#cap-theorem-6"><strong>theorem-6</strong></a>
+   </div>
+
+   <table class="indextable modindextable">
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Al_Kashi_theorem"><td></td><td>
+       <strong>Al_Kashi_theorem</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#Al_Kashi_theorem"><code class="xref">Al_Kashi_theorem</code></a> <em>(chap1)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-Cauchy_Schwarz_inequality"><td></td><td>
+       <strong>Cauchy_Schwarz_inequality</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#Cauchy_Schwarz_inequality"><code class="xref">Cauchy_Schwarz_inequality</code></a> <em>(chap1)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.1"><td></td><td>
+       <strong>def1.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.1"><code class="xref">def1.1</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.10"><td></td><td>
+       <strong>def1.10</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.10"><code class="xref">def1.10</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.11"><td></td><td>
+       <strong>def1.11</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.11"><code class="xref">def1.11</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.12"><td></td><td>
+       <strong>def1.12</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.12"><code class="xref">def1.12</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.13"><td></td><td>
+       <strong>def1.13</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.13"><code class="xref">def1.13</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.14"><td></td><td>
+       <strong>def1.14</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.14"><code class="xref">def1.14</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.2"><td></td><td>
+       <strong>def1.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.2"><code class="xref">def1.2</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.3"><td></td><td>
+       <strong>def1.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.3"><code class="xref">def1.3</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.4"><td></td><td>
+       <strong>def1.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.4"><code class="xref">def1.4</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.5"><td></td><td>
+       <strong>def1.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.5"><code class="xref">def1.5</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.6"><td></td><td>
+       <strong>def1.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.6"><code class="xref">def1.6</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.7"><td></td><td>
+       <strong>def1.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.7"><code class="xref">def1.7</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.8"><td></td><td>
+       <strong>def1.8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.8"><code class="xref">def1.8</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def1.9"><td></td><td>
+       <strong>def1.9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#def1.9"><code class="xref">def1.9</code></a> <em>(chap1)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.1"><td></td><td>
+       <strong>def2.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.1"><code class="xref">def2.1</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.2"><td></td><td>
+       <strong>def2.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.2"><code class="xref">def2.2</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.3"><td></td><td>
+       <strong>def2.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.3"><code class="xref">def2.3</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.4"><td></td><td>
+       <strong>def2.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.4"><code class="xref">def2.4</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.5"><td></td><td>
+       <strong>def2.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.5"><code class="xref">def2.5</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.6"><td></td><td>
+       <strong>def2.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.6"><code class="xref">def2.6</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def2.7"><td></td><td>
+       <strong>def2.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#def2.7"><code class="xref">def2.7</code></a> <em>(chap2)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def3.1"><td></td><td>
+       <strong>def3.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#def3.1"><code class="xref">def3.1</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def3.2"><td></td><td>
+       <strong>def3.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#def3.2"><code class="xref">def3.2</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def3.3"><td></td><td>
+       <strong>def3.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#def3.3"><code class="xref">def3.3</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def3.4"><td></td><td>
+       <strong>def3.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#def3.4"><code class="xref">def3.4</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def3.5"><td></td><td>
+       <strong>def3.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#def3.5"><code class="xref">def3.5</code></a> <em>(chap3)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.1"><td></td><td>
+       <strong>def4.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.1"><code class="xref">def4.1</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.2"><td></td><td>
+       <strong>def4.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.2"><code class="xref">def4.2</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.3"><td></td><td>
+       <strong>def4.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.3"><code class="xref">def4.3</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.4"><td></td><td>
+       <strong>def4.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.4"><code class="xref">def4.4</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.5"><td></td><td>
+       <strong>def4.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.5"><code class="xref">def4.5</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.6"><td></td><td>
+       <strong>def4.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.6"><code class="xref">def4.6</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.7"><td></td><td>
+       <strong>def4.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.7"><code class="xref">def4.7</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def4.8"><td></td><td>
+       <strong>def4.8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#def4.8"><code class="xref">def4.8</code></a> <em>(chap4)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.1"><td></td><td>
+       <strong>def5.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.1"><code class="xref">def5.1</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.2"><td></td><td>
+       <strong>def5.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.2"><code class="xref">def5.2</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.3"><td></td><td>
+       <strong>def5.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.3"><code class="xref">def5.3</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.4"><td></td><td>
+       <strong>def5.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.4"><code class="xref">def5.4</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.5"><td></td><td>
+       <strong>def5.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.5"><code class="xref">def5.5</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.6"><td></td><td>
+       <strong>def5.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.6"><code class="xref">def5.6</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.7"><td></td><td>
+       <strong>def5.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.7"><code class="xref">def5.7</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def5.8"><td></td><td>
+       <strong>def5.8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#def5.8"><code class="xref">def5.8</code></a> <em>(chap5)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def6.1"><td></td><td>
+       <strong>def6.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#def6.1"><code class="xref">def6.1</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def6.2"><td></td><td>
+       <strong>def6.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#def6.2"><code class="xref">def6.2</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def6.3"><td></td><td>
+       <strong>def6.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#def6.3"><code class="xref">def6.3</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def6.4"><td></td><td>
+       <strong>def6.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#def6.4"><code class="xref">def6.4</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def6.5"><td></td><td>
+       <strong>def6.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#def6.5"><code class="xref">def6.5</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def6.6"><td></td><td>
+       <strong>def6.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#def6.6"><code class="xref">def6.6</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def6.7"><td></td><td>
+       <strong>def6.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#def6.7"><code class="xref">def6.7</code></a> <em>(chap6)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.1"><td></td><td>
+       <strong>def7.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.1"><code class="xref">def7.1</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.2"><td></td><td>
+       <strong>def7.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.2"><code class="xref">def7.2</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.3"><td></td><td>
+       <strong>def7.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.3"><code class="xref">def7.3</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.4"><td></td><td>
+       <strong>def7.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.4"><code class="xref">def7.4</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.5"><td></td><td>
+       <strong>def7.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.5"><code class="xref">def7.5</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.6"><td></td><td>
+       <strong>def7.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.6"><code class="xref">def7.6</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.7"><td></td><td>
+       <strong>def7.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.7"><code class="xref">def7.7</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.8"><td></td><td>
+       <strong>def7.8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.8"><code class="xref">def7.8</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-def7.9"><td></td><td>
+       <strong>def7.9</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#def7.9"><code class="xref">def7.9</code></a> <em>(chap7)</em></td><td>
+       <em>definition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.1"><td></td><td>
+       <strong>exp1.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.1"><code class="xref">exp1.1</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp1.2"><td></td><td>
+       <strong>exp1.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap1.html#exp1.2"><code class="xref">exp1.2</code></a> <em>(chap1)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp2.1"><td></td><td>
+       <strong>exp2.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#exp2.1"><code class="xref">exp2.1</code></a> <em>(chap2)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp4.1"><td></td><td>
+       <strong>exp4.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#exp4.1"><code class="xref">exp4.1</code></a> <em>(chap4)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp4.2"><td></td><td>
+       <strong>exp4.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#exp4.2"><code class="xref">exp4.2</code></a> <em>(chap4)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp4.3"><td></td><td>
+       <strong>exp4.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#exp4.3"><code class="xref">exp4.3</code></a> <em>(chap4)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp4.4"><td></td><td>
+       <strong>exp4.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#exp4.4"><code class="xref">exp4.4</code></a> <em>(chap4)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp5.1"><td></td><td>
+       <strong>exp5.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#exp5.1"><code class="xref">exp5.1</code></a> <em>(chap5)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp5.2"><td></td><td>
+       <strong>exp5.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#exp5.2"><code class="xref">exp5.2</code></a> <em>(chap5)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp6.1"><td></td><td>
+       <strong>exp6.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#exp6.1"><code class="xref">exp6.1</code></a> <em>(chap6)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-exp6.2"><td></td><td>
+       <strong>exp6.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#exp6.2"><code class="xref">exp6.2</code></a> <em>(chap6)</em></td><td>
+       <em>example</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop3.1"><td></td><td>
+       <strong>prop3.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#prop3.1"><code class="xref">prop3.1</code></a> <em>(chap3)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop3.2"><td></td><td>
+       <strong>prop3.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#prop3.2"><code class="xref">prop3.2</code></a> <em>(chap3)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop4.1"><td></td><td>
+       <strong>prop4.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#prop4.1"><code class="xref">prop4.1</code></a> <em>(chap4)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop4.2"><td></td><td>
+       <strong>prop4.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#prop4.2"><code class="xref">prop4.2</code></a> <em>(chap4)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop5.1"><td></td><td>
+       <strong>prop5.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#prop5.1"><code class="xref">prop5.1</code></a> <em>(chap5)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop5.2"><td></td><td>
+       <strong>prop5.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#prop5.2"><code class="xref">prop5.2</code></a> <em>(chap5)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop5.3"><td></td><td>
+       <strong>prop5.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#prop5.3"><code class="xref">prop5.3</code></a> <em>(chap5)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-prop5.4"><td></td><td>
+       <strong>prop5.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#prop5.4"><code class="xref">prop5.4</code></a> <em>(chap5)</em></td><td>
+       <em>proposition</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them2.1"><td></td><td>
+       <strong>them2.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap2.html#them2.1"><code class="xref">them2.1</code></a> <em>(chap2)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them3.1"><td></td><td>
+       <strong>them3.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#them3.1"><code class="xref">them3.1</code></a> <em>(chap3)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them3.2"><td></td><td>
+       <strong>them3.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#them3.2"><code class="xref">them3.2</code></a> <em>(chap3)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them3.3"><td></td><td>
+       <strong>them3.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#them3.3"><code class="xref">them3.3</code></a> <em>(chap3)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them3.4"><td></td><td>
+       <strong>them3.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#them3.4"><code class="xref">them3.4</code></a> <em>(chap3)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them3.5"><td></td><td>
+       <strong>them3.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#them3.5"><code class="xref">them3.5</code></a> <em>(chap3)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them3.6"><td></td><td>
+       <strong>them3.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#them3.6"><code class="xref">them3.6</code></a> <em>(chap3)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them3.7"><td></td><td>
+       <strong>them3.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap3.html#them3.7"><code class="xref">them3.7</code></a> <em>(chap3)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.1"><td></td><td>
+       <strong>them4.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.1"><code class="xref">them4.1</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.2"><td></td><td>
+       <strong>them4.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.2"><code class="xref">them4.2</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.3"><td></td><td>
+       <strong>them4.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.3"><code class="xref">them4.3</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.4"><td></td><td>
+       <strong>them4.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.4"><code class="xref">them4.4</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.5"><td></td><td>
+       <strong>them4.5</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.5"><code class="xref">them4.5</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.6"><td></td><td>
+       <strong>them4.6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.6"><code class="xref">them4.6</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.7"><td></td><td>
+       <strong>them4.7</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.7"><code class="xref">them4.7</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them4.8"><td></td><td>
+       <strong>them4.8</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap4.html#them4.8"><code class="xref">them4.8</code></a> <em>(chap4)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them5.1"><td></td><td>
+       <strong>them5.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#them5.1"><code class="xref">them5.1</code></a> <em>(chap5)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them5.2"><td></td><td>
+       <strong>them5.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#them5.2"><code class="xref">them5.2</code></a> <em>(chap5)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them5.3"><td></td><td>
+       <strong>them5.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#them5.3"><code class="xref">them5.3</code></a> <em>(chap5)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them5.4"><td></td><td>
+       <strong>them5.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap5.html#them5.4"><code class="xref">them5.4</code></a> <em>(chap5)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them6.1"><td></td><td>
+       <strong>them6.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#them6.1"><code class="xref">them6.1</code></a> <em>(chap6)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them6.2"><td></td><td>
+       <strong>them6.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#them6.2"><code class="xref">them6.2</code></a> <em>(chap6)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them6.3"><td></td><td>
+       <strong>them6.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#them6.3"><code class="xref">them6.3</code></a> <em>(chap6)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them6.4"><td></td><td>
+       <strong>them6.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap6.html#them6.4"><code class="xref">them6.4</code></a> <em>(chap6)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them7.1"><td></td><td>
+       <strong>them7.1</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#them7.1"><code class="xref">them7.1</code></a> <em>(chap7)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them7.2"><td></td><td>
+       <strong>them7.2</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#them7.2"><code class="xref">them7.2</code></a> <em>(chap7)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them7.3"><td></td><td>
+       <strong>them7.3</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#them7.3"><code class="xref">them7.3</code></a> <em>(chap7)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-them7.4"><td></td><td>
+       <strong>them7.4</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#them7.4"><code class="xref">them7.4</code></a> <em>(chap7)</em></td><td>
+       <em>theorem</em></td></tr>
+     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
+     <tr class="cap" id="cap-theorem-6"><td></td><td>
+       <strong>theorem-6</strong></td><td></td></tr>
+     <tr>
+       <td></td>
+       <td>
+       <a href="chap7.html#theorem-6"><code class="xref">theorem-6</code></a> <em>(chap7)</em></td><td>
+       <em>theorem</em></td></tr>
+   </table>
+
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
