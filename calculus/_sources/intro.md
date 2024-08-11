@@ -7,7 +7,11 @@
 <br>
 <br>
 <br>
-Calculus
+<br>
+<br>
+Univariate Calculus
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -19,7 +23,7 @@ Calculus
 </h1>
 
 ---
-# Table of Contents &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+# Table of Contents
 
 ```{tableofcontents}
 ```
