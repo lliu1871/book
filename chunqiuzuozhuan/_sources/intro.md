@@ -22,7 +22,7 @@
 </h1>
 
 ---
-# 春秋左传目录
+# 春秋左传目录 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 
 ```{tableofcontents}
 ```
