@@ -1,0 +1,933 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 2: Supervised Learning &#8212; Artificial Intelligence</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 3: Multivariate Methods" href="lab3.html" />
+    <link rel="prev" title="Lab 1: Introduction to Python" href="lab1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1. History of AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2. Intelligent Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3. Knowledge Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5. Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6. Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 2: Supervised Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-linear-regression">Multivariate linear regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-by-logistic-model">Classification by logistic model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-feature">Selecting Feature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-data">Splitting Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fit-and-prediction">Model Fit and Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation-using-confusion-matrix">Model Evaluation using Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-confusion-matrix-using-heatmap">Visualizing Confusion Matrix using Heatmap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-evaluation-metrics">Confusion Matrix Evaluation Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-curve">ROC curve</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-2-supervised-learning">
+<h1>Lab 2: Supervised Learning<a class="headerlink" href="#lab-2-supervised-learning" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Supervised_learning">Superwise learning at Wikipedia</a></p></li>
+</ul>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=tz_N9pPiNCKIk0zM&amp;list=PLOLWGEXpOrBzV-o9E1qWnisuxNJuePBEG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<section id="linear-regression">
+<h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="k">as</span> <span class="n">lr</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">samplesize</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.35</span><span class="p">,</span><span class="mf">2.7</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">samplesize</span><span class="p">)</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">samplesize</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/3501a06b056cdc021b4894ae3f30f0cd1988ca09c9b4e911407b90835018673b.png" src="_images/3501a06b056cdc021b4894ae3f30f0cd1988ca09c9b4e911407b90835018673b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">LR</span> <span class="o">=</span> <span class="n">lr</span><span class="p">()</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">LR</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">reg</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient: &quot;</span><span class="p">,</span> <span class="n">LR</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: &quot;</span><span class="p">,</span> <span class="n">LR</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">LR</span><span class="o">.</span><span class="n">coef_</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">LR</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient:  [2.6795092]
+Intercept:  0.3224607760017568
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function matplotlib.pyplot.show(close=None, block=None)&gt;
+</pre></div>
+</div>
+<img alt="_images/13119764fb5bf52f7e040945d01bf0077ea597d04e729e44f97ac37cb0b0f841.png" src="_images/13119764fb5bf52f7e040945d01bf0077ea597d04e729e44f97ac37cb0b0f841.png" />
+</div>
+</div>
+</section>
+<section id="multivariate-linear-regression">
+<h2>Multivariate linear regression<a class="headerlink" href="#multivariate-linear-regression" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="c1"># your example values:</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">random_seed</span> <span class="o">=</span> <span class="mi">42</span> <span class="c1"># for reproducibility, exact value does not matter</span>
+
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">n_targets</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">noise</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="n">random_seed</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">+</span><span class="mi">6</span> <span class="c1">#add intercept</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[74.96113466  2.93986331 14.58506673 79.01739209 15.09938965 37.72594167
+ 70.46542254 71.5561938  20.94138334 37.3912242  44.64766944 10.9255277
+ 41.65861407 25.36115514 27.97183843  9.50461159 18.10593467 21.14662516
+ 87.33989034 35.73258103 21.93626485 32.55422588 74.95809817  0.5363795
+ 88.48327012 77.08878922 56.03943168 62.82658449 46.88494468 16.4038937
+ 83.27750947  2.49654269 73.09779097 18.06219427 57.35549346 29.09474537
+ 43.11468129 63.25788887 14.01517432 48.67540606  0.84115194  9.55092085
+ 50.8043141  82.68617283  2.28217206 40.2144315  64.27644089 55.3769291
+ 84.73036948 88.40489821 64.10795156 87.98333242 89.38967874 77.657785
+ 18.60837041 36.3749496  67.68205678 59.40334439 37.95497342 40.19040592
+ 55.3533318  23.38459897 90.17260756 21.69672497 52.36419314 23.08103093
+ 37.4214363  21.01876373 64.64706419 96.33328647 41.18518575 84.91182137
+ 80.40262408 24.07276256 20.57151397  4.44175302 78.62172946 63.2411135
+ 26.40066897 71.24936987 59.64801617 24.03086424  5.4607237  69.55037268
+ 96.9206204  71.19987438 93.79398472 35.5665652  26.51499825 78.7580468
+ 32.68296277 91.62962268 47.93167209 13.36749881 22.398207   11.72896302
+ 91.640456   51.53049388 24.56826202 40.33597672]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">reg</span> <span class="o">=</span> <span class="n">LR</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Coefficient: &quot;</span><span class="p">,</span> <span class="n">LR</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Intercept: &quot;</span><span class="p">,</span> <span class="n">LR</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient:  [75.07393056  2.7884828  14.61026479 79.01750782 15.03859804 37.77341414
+ 70.48666546 71.46230917 20.82278507 37.41881459 44.69052604 10.94607763
+ 41.79043769 25.42946729 28.06176724  9.40362379 17.91804405 21.05294472
+ 87.34631776 35.73375822 21.84025756 32.72634608 75.1316737   0.3922209
+ 88.43899331 77.23876702 56.00980912 62.92092754 46.81888169 16.43073396
+ 83.14717987  2.44109357 73.00522122 18.28969464 57.21574111 29.16834027
+ 43.09486249 63.34341112 13.85840953 48.55913709  0.71969753  9.31661895
+ 50.91993766 82.6907242   2.15049582 40.13101465 64.19221318 55.48524316
+ 84.8481755  88.30886376 64.16330621 88.04186425 89.33244827 77.54539833
+ 18.55936212 36.56925009 67.60353495 59.28648006 37.8719336  40.13996916
+ 55.27914349 23.47462011 90.11141247 21.61546527 52.37622413 23.23578358
+ 37.33068978 21.22409185 64.66809338 96.3344292  41.20158955 84.93418856
+ 80.46358715 23.92567136 20.68468306  4.53297985 78.43496242 63.22058422
+ 26.43465493 71.24121093 59.76939907 24.12772702  5.42647993 69.52320165
+ 96.85900054 71.00909197 94.02595466 35.44776141 26.44455914 78.6093718
+ 32.69760362 91.71411804 48.02584071 13.43854038 22.38940796 11.79847682
+ 91.63605794 51.39731896 24.57559543 40.29967879]
+Intercept:  6.211788767599497
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="classification-by-logistic-model">
+<h2>Classification by logistic model<a class="headerlink" href="#classification-by-logistic-model" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import pandas</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pregnant&#39;</span><span class="p">,</span> <span class="s1">&#39;glucose&#39;</span><span class="p">,</span> <span class="s1">&#39;bp&#39;</span><span class="p">,</span> <span class="s1">&#39;skin&#39;</span><span class="p">,</span> <span class="s1">&#39;insulin&#39;</span><span class="p">,</span> <span class="s1">&#39;bmi&#39;</span><span class="p">,</span> <span class="s1">&#39;pedigree&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">]</span>
+<span class="c1"># load dataset</span>
+<span class="n">pima</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;diabetes.csv&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
+<span class="n">pima</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pregnant</th>
+      <th>glucose</th>
+      <th>bp</th>
+      <th>skin</th>
+      <th>insulin</th>
+      <th>bmi</th>
+      <th>pedigree</th>
+      <th>age</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>6</td>
+      <td>148</td>
+      <td>72</td>
+      <td>35</td>
+      <td>0</td>
+      <td>33.6</td>
+      <td>0.627</td>
+      <td>50</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>85</td>
+      <td>66</td>
+      <td>29</td>
+      <td>0</td>
+      <td>26.6</td>
+      <td>0.351</td>
+      <td>31</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>8</td>
+      <td>183</td>
+      <td>64</td>
+      <td>0</td>
+      <td>0</td>
+      <td>23.3</td>
+      <td>0.672</td>
+      <td>32</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>89</td>
+      <td>66</td>
+      <td>23</td>
+      <td>94</td>
+      <td>28.1</td>
+      <td>0.167</td>
+      <td>21</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>137</td>
+      <td>40</td>
+      <td>35</td>
+      <td>168</td>
+      <td>43.1</td>
+      <td>2.288</td>
+      <td>33</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="selecting-feature">
+<h3>Selecting Feature<a class="headerlink" href="#selecting-feature" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#split dataset in features and target variable</span>
+<span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pregnant&#39;</span><span class="p">,</span> <span class="s1">&#39;insulin&#39;</span><span class="p">,</span> <span class="s1">&#39;bmi&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span><span class="s1">&#39;glucose&#39;</span><span class="p">,</span><span class="s1">&#39;bp&#39;</span><span class="p">,</span><span class="s1">&#39;pedigree&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pima</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span> <span class="c1"># Features</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">pima</span><span class="o">.</span><span class="n">label</span> <span class="c1"># Target variable</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="splitting-data">
+<h3>Splitting Data<a class="headerlink" href="#splitting-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># split X and y into training and testing sets</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-fit-and-prediction">
+<h3>Model Fit and Prediction<a class="headerlink" href="#model-fit-and-prediction" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the class</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="c1"># instantiate the model (using the default parameters)</span>
+<span class="n">logreg</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># fit the model with data</span>
+<span class="n">logreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">logreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lliu/Library/Python/3.9/lib/python/site-packages/sklearn/linear_model/_logistic.py:469: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-evaluation-using-confusion-matrix">
+<h3>Model Evaluation using Confusion Matrix<a class="headerlink" href="#model-evaluation-using-confusion-matrix" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the metrics class</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">metrics</span>
+
+<span class="n">cnf_matrix</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">cnf_matrix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[115,  10],
+       [ 25,  42]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualizing-confusion-matrix-using-heatmap">
+<h3>Visualizing Confusion Matrix using Heatmap<a class="headerlink" href="#visualizing-confusion-matrix-using-heatmap" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import required modules</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># name  of classes</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">tick_marks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_names</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">tick_marks</span><span class="p">,</span> <span class="n">class_names</span><span class="p">)</span>
+<span class="c1"># create heatmap</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cnf_matrix</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;YlGnBu&quot;</span> <span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s2">&quot;top&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion matrix&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual label&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted label&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 427.9555555555555, &#39;Predicted label&#39;)
+</pre></div>
+</div>
+<img alt="_images/4e498f09dd965b62ec83a02f0148bf22b5d1a038da4302270a742629370150e4.png" src="_images/4e498f09dd965b62ec83a02f0148bf22b5d1a038da4302270a742629370150e4.png" />
+</div>
+</div>
+</section>
+<section id="confusion-matrix-evaluation-metrics">
+<h3>Confusion Matrix Evaluation Metrics<a class="headerlink" href="#confusion-matrix-evaluation-metrics" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="n">target_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;without diabetes&#39;</span><span class="p">,</span> <span class="s1">&#39;with diabetes&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                  precision    recall  f1-score   support
+
+without diabetes       0.82      0.92      0.87       125
+   with diabetes       0.81      0.63      0.71        67
+
+        accuracy                           0.82       192
+       macro avg       0.81      0.77      0.79       192
+    weighted avg       0.82      0.82      0.81       192
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="roc-curve">
+<h3>ROC curve<a class="headerlink" href="#roc-curve" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_proba</span> <span class="o">=</span> <span class="n">logreg</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[::,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span>  <span class="n">y_pred_proba</span><span class="p">)</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_proba</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span><span class="n">tpr</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;data 1, auc=&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">auc</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/bdf567cb4e1bc560a5f438d4a3bd3dace607648b9407abd182075f27e1f415a5.png" src="_images/bdf567cb4e1bc560a5f438d4a3bd3dace607648b9407abd182075f27e1f415a5.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 1: Introduction to Python</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 3: Multivariate Methods</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-linear-regression">Multivariate linear regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-by-logistic-model">Classification by logistic model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-feature">Selecting Feature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#splitting-data">Splitting Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-fit-and-prediction">Model Fit and Prediction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-evaluation-using-confusion-matrix">Model Evaluation using Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-confusion-matrix-using-heatmap">Visualizing Confusion Matrix using Heatmap</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix-evaluation-metrics">Confusion Matrix Evaluation Metrics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#roc-curve">ROC curve</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

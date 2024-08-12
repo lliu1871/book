@@ -1,0 +1,2379 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 4: Dimensionality Reduction &#8212; Artificial Intelligence</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 5: Clustering" href="lab5.html" />
+    <link rel="prev" title="Lab 3: Multivariate Methods" href="lab3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1. History of AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2. Intelligent Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3. Knowledge Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5. Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6. Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 4: Dimensionality Reduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-selection">Subset Selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-selection">Forward selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-boston-data">Import Boston data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-data-frame">Convert to data frame</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Forward selection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-selection">Backward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bidirection-selection">Bidirection selection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal Components Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-analysis">Factor Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-data">Loading data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-scaling">Multidimensional Scaling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-coordinates-of-z-from-x">Find the coordinates of Z from X</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-learning-from-mds">Coordinate Learning from MDS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mds-as-manifold-learning">MDS as Manifold Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-embedding-mds-fails">Nonlinear embedding MDS fails</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locally-linear-embedding">Locally Linear Embedding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lle-for-the-s-shaped-hello">LLE for the S shaped “HELLO”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomap">Isomap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruct-the-s-shaped-hello">Reconstruct the S shaped HELLO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-face-data">Visualizing face data</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-4-dimensionality-reduction">
+<h1>Lab 4: Dimensionality Reduction<a class="headerlink" href="#lab-4-dimensionality-reduction" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Dimensionality_reduction">Dimensionality reduction at Wikipedia</a></p></li>
+</ul>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=7cMLztowsVuLmd4g&amp;list=PLBv09BD7ez_4InDh85LM_43Bsw0cFDHdN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<p>There are two main methods for reducing dimensionality - feature selection and feature extraction</p>
+<p>In feature selection, we find <span class="math notranslate nohighlight">\(k\)</span> of the <span class="math notranslate nohighlight">\(p\)</span> dimensions that give us the most information and we discard the other <span class="math notranslate nohighlight">\(p-k\)</span> dimensions. The feature selection includes subset selection</p>
+<p>In feature extraction, we find <span class="math notranslate nohighlight">\(k\)</span> dimensions that are combination of original <span class="math notranslate nohighlight">\(p\)</span> dimensions. This includes principal component analysis, factor analysis, multidimensional scaling, Isometric feature mapping, etc</p>
+<section id="subset-selection">
+<h2>Subset Selection<a class="headerlink" href="#subset-selection" title="Permalink to this heading">#</a></h2>
+<p>There are <span class="math notranslate nohighlight">\(2^p\)</span> possible subsets of <span class="math notranslate nohighlight">\(p\)</span> variables. If <span class="math notranslate nohighlight">\(p\)</span> is small, the subset of significant variables can be found by an exhaustive search. Otherwise, we employ heuristics to find the subset.</p>
+<section id="forward-selection">
+<h3>Forward selection<a class="headerlink" href="#forward-selection" title="Permalink to this heading">#</a></h3>
+<p>We start with no variables and add them one by one. At each step, we train our model on the training set and calculate the misclassification rate for the test set. we add the one that has the minimum misclassification rate. We stop if adding any feature does not decrease the misclassification rate, or if the decrease in error is too small.</p>
+<section id="import-boston-data">
+<h4>Import Boston data<a class="headerlink" href="#import-boston-data" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;http://lib.stat.cmu.edu/datasets/boston&quot;</span>
+<span class="n">raw_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">raw_df</span><span class="o">.</span><span class="n">values</span><span class="p">[::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:],</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">raw_df</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CRIM&#39;</span><span class="p">,</span><span class="s1">&#39;ZN&#39;</span><span class="p">,</span><span class="s1">&#39;INDUS&#39;</span><span class="p">,</span><span class="s1">&#39;CHAS&#39;</span><span class="p">,</span><span class="s1">&#39;NOX&#39;</span><span class="p">,</span><span class="s1">&#39;RM&#39;</span><span class="p">,</span><span class="s1">&#39;AGE&#39;</span><span class="p">,</span><span class="s1">&#39;DIS&#39;</span><span class="p">,</span><span class="s1">&#39;RAD&#39;</span><span class="p">,</span><span class="s1">&#39;TAX&#39;</span><span class="p">,</span><span class="s1">&#39;PTRATIO&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;LSTAT&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>         <span class="c1"># for dataset dimension</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,::])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(506, 13)
+[6.320e-03 1.800e+01 2.310e+00 0.000e+00 5.380e-01 6.575e+00 6.520e+01
+ 4.090e+00 1.000e+00 2.960e+02 1.530e+01 3.969e+02 4.980e+00]
+24.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convert-to-data-frame">
+<h4>Convert to data frame<a class="headerlink" href="#convert-to-data-frame" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">feature_names</span><span class="p">)</span>
+<span class="n">bos</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">bos</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Price&quot;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># feature matrix </span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">bos</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span>            <span class="c1"># target feature</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bos</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>      CRIM    ZN  INDUS  CHAS    NOX     RM   AGE     DIS  RAD    TAX  \
+0  0.00632  18.0   2.31   0.0  0.538  6.575  65.2  4.0900  1.0  296.0   
+1  0.02731   0.0   7.07   0.0  0.469  6.421  78.9  4.9671  2.0  242.0   
+2  0.02729   0.0   7.07   0.0  0.469  7.185  61.1  4.9671  2.0  242.0   
+3  0.03237   0.0   2.18   0.0  0.458  6.998  45.8  6.0622  3.0  222.0   
+4  0.06905   0.0   2.18   0.0  0.458  7.147  54.2  6.0622  3.0  222.0   
+
+   PTRATIO       B  LSTAT  Price  
+0     15.3  396.90   4.98   24.0  
+1     17.8  396.90   9.14   21.6  
+2     17.8  392.83   4.03   34.7  
+3     18.7  394.63   2.94   33.4  
+4     18.7  396.90   5.33   36.2  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h4>Forward selection<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mlxtend.feature_selection</span> <span class="kn">import</span> <span class="n">SequentialFeatureSelector</span> <span class="k">as</span> <span class="n">SFS</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="n">sfs</span> <span class="o">=</span> <span class="n">SFS</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">(),</span>
+           <span class="n">k_features</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+           <span class="n">forward</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+           <span class="n">floating</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+           <span class="n">scoring</span> <span class="o">=</span> <span class="s1">&#39;r2&#39;</span><span class="p">,</span>
+           <span class="n">cv</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">sfs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sfs</span><span class="o">.</span><span class="n">k_feature_names_</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;CRIM&#39;, &#39;ZN&#39;, &#39;CHAS&#39;, &#39;NOX&#39;, &#39;RM&#39;, &#39;DIS&#39;, &#39;RAD&#39;, &#39;TAX&#39;, &#39;PTRATIO&#39;, &#39;B&#39;, &#39;LSTAT&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="backward-selection">
+<h3>Backward selection<a class="headerlink" href="#backward-selection" title="Permalink to this heading">#</a></h3>
+<p>We start with the full model and delete one variable at a time. At each step, delete the variable that causes the smallest increase in misclassificaiton rate. We stop if removal causes a significant increase in misclassification rate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sbs</span> <span class="o">=</span> <span class="n">SFS</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">(),</span> 
+          <span class="n">k_features</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> 
+          <span class="n">forward</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
+          <span class="n">floating</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+          <span class="n">cv</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sbs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sbs</span><span class="o">.</span><span class="n">k_feature_names_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;CRIM&#39;, &#39;ZN&#39;, &#39;CHAS&#39;, &#39;NOX&#39;, &#39;RM&#39;, &#39;DIS&#39;, &#39;RAD&#39;, &#39;TAX&#39;, &#39;PTRATIO&#39;, &#39;B&#39;, &#39;LSTAT&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bidirection-selection">
+<h3>Bidirection selection<a class="headerlink" href="#bidirection-selection" title="Permalink to this heading">#</a></h3>
+<p>It is similar to forward selection but the difference is while adding a new feature it also checks the significance of already added features and if it finds any of the already selected features insignificant then it simply removes that particular feature through backward elimination.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sffs</span> <span class="o">=</span> <span class="n">SFS</span><span class="p">(</span><span class="n">LinearRegression</span><span class="p">(),</span> 
+          <span class="n">k_features</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span> 
+          <span class="n">forward</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+          <span class="n">floating</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">cv</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sffs</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sffs</span><span class="o">.</span><span class="n">k_feature_names_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;CRIM&#39;, &#39;ZN&#39;, &#39;CHAS&#39;, &#39;NOX&#39;, &#39;RM&#39;, &#39;DIS&#39;, &#39;RAD&#39;, &#39;TAX&#39;, &#39;PTRATIO&#39;, &#39;B&#39;, &#39;LSTAT&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="principal-components-analysis">
+<h2>Principal Components Analysis<a class="headerlink" href="#principal-components-analysis" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(X=\{X_1,...,X_p\}\)</span> be the feature variables. PCA can reduce the dimension <span class="math notranslate nohighlight">\(p\)</span> by using the linear combinations of <span class="math notranslate nohighlight">\(X_1,...,X_p\)</span>.</p>
+<p>The principal component <span class="math notranslate nohighlight">\(w_1\)</span> maximizes the variance of the projection <span class="math notranslate nohighlight">\(z=w_1^TX\)</span> on the direction <span class="math notranslate nohighlight">\(w_1\)</span> with <span class="math notranslate nohighlight">\(||w_1||=1\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[w_1 = argmax_w w^T\Sigma w\]</div>
+<p>This is a quadratic optimization problem with a constraint <span class="math notranslate nohighlight">\(||w_1||=1\)</span>. To solve this problem, we add the Lagrange parameter <span class="math notranslate nohighlight">\(\alpha\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[w_1^T\Sigma w_1 + \alpha (w_1^Tw_1-1)\]</div>
+<p>Taking the derivative with respect to <span class="math notranslate nohighlight">\(w_1\)</span>, we have <span class="math notranslate nohighlight">\(\Sigma w_1 = \alpha w_1\)</span>. It follows that <span class="math notranslate nohighlight">\(var(z) = \alpha w_1^Tw_1 = \alpha\)</span>. Thus, <span class="math notranslate nohighlight">\(w_1\)</span> is the eigenvector with the largest eigenvalue. Similarly, the second component is the eigenvector with the second largest eigenvalue and etc.</p>
+<p>The proportion of variance explained by the <span class="math notranslate nohighlight">\(k\)</span> components is $<span class="math notranslate nohighlight">\(\frac{\lambda_1+...+\lambda_k}{\lambda_1+...+\lambda_k+...+\lambda_p}\)</span>$</p>
+<ol class="arabic simple">
+<li><p>If the learning algorithm is too slow because the input dimension is too high, then using PCA to speed it up is a reasonable choice</p></li>
+<li><p>If memory or disk space is limited, PCA allows you to save space in exchange for losing a little of the data’s information. This can be a reasonable tradeoff</p></li>
+</ol>
+<p>The limitations of PCA</p>
+<ol class="arabic simple">
+<li><p>PCA is not scale invariant. check: we need to scale our data first.</p></li>
+<li><p>The directions with largest variance are assumed to be of the most interest</p></li>
+<li><p>Only considers orthogonal transformations (rotations) of the original variables</p></li>
+<li><p>PCA is only based on the mean vector and covariance matrix. Some distributions (multivariate normal) are characterized by this, but some are not.</p></li>
+<li><p>If the variables are correlated, PCA can achieve dimension reduction. If not, PCA just orders them according to their variances.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data&quot;</span>
+
+<span class="c1"># loading dataset into Pandas DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sepal length&#39;</span><span class="p">,</span><span class="s1">&#39;sepal width&#39;</span><span class="p">,</span><span class="s1">&#39;petal length&#39;</span><span class="p">,</span><span class="s1">&#39;petal width&#39;</span><span class="p">,</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length</th>
+      <th>sepal width</th>
+      <th>petal length</th>
+      <th>petal width</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Since PCA yields a feature subspace that maximizes the variance along the axes, it makes sense to standardize the data onto unit scale (mean=0 and variance=1)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal width&#39;</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">features</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,[</span><span class="s1">&#39;target&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">features</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length</th>
+      <th>sepal width</th>
+      <th>petal length</th>
+      <th>petal width</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.900681</td>
+      <td>1.032057</td>
+      <td>-1.341272</td>
+      <td>-1.312977</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-1.143017</td>
+      <td>-0.124958</td>
+      <td>-1.341272</td>
+      <td>-1.312977</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1.385353</td>
+      <td>0.337848</td>
+      <td>-1.398138</td>
+      <td>-1.312977</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.506521</td>
+      <td>0.106445</td>
+      <td>-1.284407</td>
+      <td>-1.312977</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-1.021849</td>
+      <td>1.263460</td>
+      <td>-1.341272</td>
+      <td>-1.312977</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We find the first two components for the standardized data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">principalComponents</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">principalDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">principalComponents</span>
+             <span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;principal component 1&#39;</span><span class="p">,</span> <span class="s1">&#39;principal component 2&#39;</span><span class="p">])</span>
+<span class="n">principalDf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>principal component 1</th>
+      <th>principal component 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2.264542</td>
+      <td>0.505704</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-2.086426</td>
+      <td>-0.655405</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-2.367950</td>
+      <td>-0.318477</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-2.304197</td>
+      <td>-0.575368</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-2.388777</td>
+      <td>0.674767</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The proportion of variance explained by the first two components. Together, the first two principal components contain 95.80% of the information</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.72770452, 0.23030523])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The clustering analysis is applied to the first two components combined with the target variable</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;target&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">finalDf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">principalDf</span><span class="p">,</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;target&#39;</span><span class="p">]]],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">finalDf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>principal component 1</th>
+      <th>principal component 2</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-2.264542</td>
+      <td>0.505704</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-2.086426</td>
+      <td>-0.655405</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-2.367950</td>
+      <td>-0.318477</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-2.304197</td>
+      <td>-0.575368</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-2.388777</td>
+      <td>0.674767</td>
+      <td>Iris-setosa</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Use a PCA projection to 2d to visualize the entire data set. You should plot different classes using different colors or shapes. Do the classes seem well-separated from each other?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;2 Component PCA&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Iris-setosa&#39;</span><span class="p">,</span> <span class="s1">&#39;Iris-versicolor&#39;</span><span class="p">,</span> <span class="s1">&#39;Iris-virginica&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">target</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span><span class="n">colors</span><span class="p">):</span>
+    <span class="n">indicesToKeep</span> <span class="o">=</span> <span class="n">finalDf</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">finalDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indicesToKeep</span><span class="p">,</span> <span class="s1">&#39;principal component 1&#39;</span><span class="p">]</span>
+               <span class="p">,</span> <span class="n">finalDf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indicesToKeep</span><span class="p">,</span> <span class="s1">&#39;principal component 2&#39;</span><span class="p">]</span>
+               <span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">color</span>
+               <span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/22d767ee5a4463ac9e0a3e361f78a36f69d06d97514a78acc6bd80a13ffca5de.png" src="_images/22d767ee5a4463ac9e0a3e361f78a36f69d06d97514a78acc6bd80a13ffca5de.png" />
+</div>
+</div>
+</section>
+<section id="factor-analysis">
+<h2>Factor Analysis<a class="headerlink" href="#factor-analysis" title="Permalink to this heading">#</a></h2>
+<p>In factor analysis, we assume that there is a set of unobservable latent factors <span class="math notranslate nohighlight">\(z_i: j=1,...,k\)</span> which generate <span class="math notranslate nohighlight">\(X\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[X-\mu = Vz+\epsilon\]</div>
+<p>where <span class="math notranslate nohighlight">\(V\)</span> is the <span class="math notranslate nohighlight">\(p\times k\)</span> matrix of weights, called factor loadings. Without loss of generality, we assume <span class="math notranslate nohighlight">\(\mu=0\)</span> and <span class="math notranslate nohighlight">\(var(z_j)=1\)</span> and <span class="math notranslate nohighlight">\(var(\epsilon_i)=\Psi_i\)</span>. Thus,</p>
+<div class="math notranslate nohighlight">
+\[Cov(X) = VV^T + \Psi\]</div>
+<p>Given data, <span class="math notranslate nohighlight">\(Cov(X)\)</span> is estimated by the sample covariance matrix <span class="math notranslate nohighlight">\(S\)</span>. We know that <span class="math notranslate nohighlight">\(S = CDC^T\)</span> where <span class="math notranslate nohighlight">\(C\)</span> are eigenvectors. We select the first <span class="math notranslate nohighlight">\(k\)</span> eigenvectors <span class="math notranslate nohighlight">\(C_k\)</span></p>
+<div class="math notranslate nohighlight">
+\[V = C_kD_k^{1/2}\]</div>
+<p>We can find</p>
+<div class="math notranslate nohighlight">
+\[\Psi_i = s_i^2-\sum_{j=1}^k V_{ij}^2\]</div>
+<p>For any orthogonal matrix <span class="math notranslate nohighlight">\(T\)</span> with <span class="math notranslate nohighlight">\(TT^T=I\)</span>, <span class="math notranslate nohighlight">\(V'=VT\)</span> is another solution.</p>
+<p>In orthogonal rotation the factors are still orthogonal after rotation. In oblique rotation, the factors are allowed to become correlated. The factors are rotated to give the maximum loading on as few factors as possible for each variable to make the factors inerpretable. This is for knowledge extraction.</p>
+<p>Factor analysis can also be used for dimensionality reduction when <span class="math notranslate nohighlight">\(k&lt;p\)</span>. In this case, we want to find the factor scores <span class="math notranslate nohighlight">\(z_j\)</span> from <span class="math notranslate nohighlight">\(x_i\)</span>. We want to find the loading <span class="math notranslate nohighlight">\(w_{ji}\)</span></p>
+<div class="math notranslate nohighlight">
+\[z_j = \sum_{i=1}^p w_{ji}x_i + \epsilon_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i\)</span> are centered to have mean 0. It indicates</p>
+<div class="math notranslate nohighlight">
+\[Z = XW + \epsilon\]</div>
+<p>Thus,</p>
+<div class="math notranslate nohighlight">
+\[W = (X^TX)^{-1}X^TZ = S^{-1}V\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[Z=XS^{-1}V\]</div>
+<p>We can use the correlation matrix <span class="math notranslate nohighlight">\(R\)</span> instead of <span class="math notranslate nohighlight">\(S\)</span> when <span class="math notranslate nohighlight">\(X\)</span> are normalized to have unit variance.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<section id="loading-data">
+<h4>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">factor_analyzer</span> <span class="kn">import</span> <span class="n">FactorAnalyzer</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="c1"># Dropping unnecessary columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;rownames&#39;</span><span class="p">,</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Dropping missing values rows</span>
+<span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;rownames&#39;, &#39;A1&#39;, &#39;A2&#39;, &#39;A3&#39;, &#39;A4&#39;, &#39;A5&#39;, &#39;C1&#39;, &#39;C2&#39;, &#39;C3&#39;, &#39;C4&#39;, &#39;C5&#39;,
+       &#39;E1&#39;, &#39;E2&#39;, &#39;E3&#39;, &#39;E4&#39;, &#39;E5&#39;, &#39;N1&#39;, &#39;N2&#39;, &#39;N3&#39;, &#39;N4&#39;, &#39;N5&#39;, &#39;O1&#39;, &#39;O2&#39;,
+       &#39;O3&#39;, &#39;O4&#39;, &#39;O5&#39;, &#39;gender&#39;, &#39;education&#39;, &#39;age&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A1</th>
+      <th>A2</th>
+      <th>A3</th>
+      <th>A4</th>
+      <th>A5</th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+      <th>C4</th>
+      <th>C5</th>
+      <th>...</th>
+      <th>N1</th>
+      <th>N2</th>
+      <th>N3</th>
+      <th>N4</th>
+      <th>N5</th>
+      <th>O1</th>
+      <th>O2</th>
+      <th>O3</th>
+      <th>O4</th>
+      <th>O5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>6</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>...</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>3</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>3</td>
+      <td>4.0</td>
+      <td>3.0</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 25 columns</p>
+</div></div></div>
+</div>
+<p>Bartlett’s test of sphericity checks whether or not the observed variables intercorrelate at all using the observed correlation matrix against the identity matrix. If the test found statistically insignificant, you should not employ a factor analysis</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">factor_analyzer.factor_analyzer</span> <span class="kn">import</span> <span class="n">calculate_bartlett_sphericity</span>
+<span class="n">chi_square_value</span><span class="p">,</span><span class="n">p_value</span><span class="o">=</span><span class="n">calculate_bartlett_sphericity</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">chi_square_value</span><span class="p">,</span> <span class="n">p_value</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18146.065577235047, 0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kaiser-Meyer-Olkin (KMO) Test measures the suitability of data for factor analysis. KMO estimates the proportion of variance among all the observed variable. Lower proportion is more suitable for factor analysis. KMO values range between 0 and 1. Value of KMO less than 0.6 is considered inadequate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">factor_analyzer.factor_analyzer</span> <span class="kn">import</span> <span class="n">calculate_kmo</span>
+<span class="n">kmo_all</span><span class="p">,</span><span class="n">kmo_model</span><span class="o">=</span><span class="n">calculate_kmo</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">kmo_model</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8486452309468394
+</pre></div>
+</div>
+</div>
+</div>
+<p>For choosing the number of factors, we can use the Kaiser criterion and scree plot. Here 6 eigenvalues are greater than one. It means we need to choose only 6 factors</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create factor analysis object and perform factor analysis</span>
+<span class="n">fa</span> <span class="o">=</span> <span class="n">FactorAnalyzer</span><span class="p">(</span><span class="n">n_factors</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s2">&quot;varimax&quot;</span><span class="p">)</span>
+<span class="n">fa</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>FactorAnalyzer(n_factors=2, rotation=&#x27;varimax&#x27;, rotation_kwargs={})</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;FactorAnalyzer<span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>FactorAnalyzer(n_factors=2, rotation=&#x27;varimax&#x27;, rotation_kwargs={})</pre></div> </div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check Eigenvalues</span>
+<span class="n">ev</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">fa</span><span class="o">.</span><span class="n">get_eigenvalues</span><span class="p">()</span>
+<span class="n">ev</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.13431118, 2.75188667, 2.14270195, 1.85232761, 1.54816285,
+       1.07358247, 0.83953893, 0.79920618, 0.71898919, 0.68808879,
+       0.67637336, 0.65179984, 0.62325295, 0.59656284, 0.56309083,
+       0.54330533, 0.51451752, 0.49450315, 0.48263952, 0.448921  ,
+       0.42336611, 0.40067145, 0.38780448, 0.38185679, 0.26253902])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fa</span><span class="o">.</span><span class="n">loadings_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.19765334,  0.09747934],
+       [ 0.53141913, -0.00339674],
+       [ 0.59661042, -0.0231874 ],
+       [ 0.41348182, -0.11472232],
+       [ 0.58853195, -0.1445291 ],
+       [ 0.34548843, -0.06357922],
+       [ 0.35987296, -0.01275361],
+       [ 0.2887642 , -0.11265749],
+       [-0.33088457,  0.30619504],
+       [-0.33910665,  0.36179651],
+       [-0.43670566,  0.05595167],
+       [-0.54522606,  0.27057839],
+       [ 0.62610913,  0.00816198],
+       [ 0.59380571, -0.15746867],
+       [ 0.58947736, -0.01813043],
+       [-0.05501905,  0.75399831],
+       [-0.04762412,  0.74058648],
+       [-0.03146446,  0.74986759],
+       [-0.24276789,  0.62138528],
+       [-0.08548324,  0.52650791],
+       [ 0.37264675, -0.00175912],
+       [-0.12986934,  0.14918989],
+       [ 0.47446156,  0.02736786],
+       [ 0.06793076,  0.2352687 ],
+       [-0.19000778,  0.05882625]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fa</span><span class="o">.</span><span class="n">get_communalities</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.04856907, 0.28241783, 0.35648165, 0.18412842, 0.36725852,
+       0.12340457, 0.1296712 , 0.09607648, 0.20324   , 0.24589004,
+       0.19384242, 0.37048412, 0.39207926, 0.3774016 , 0.34781226,
+       0.57154055, 0.55073639, 0.56329142, 0.44505591, 0.28451796,
+       0.13886869, 0.03912367, 0.22586277, 0.05996595, 0.03956349])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2., 4., 3., ..., 3., 4., 3.],
+       [2., 4., 5., ..., 4., 3., 3.],
+       [5., 4., 5., ..., 5., 5., 2.],
+       ...,
+       [2., 3., 5., ..., 6., 4., 3.],
+       [5., 2., 2., ..., 5., 5., 1.],
+       [2., 3., 1., ..., 3., 5., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fa</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.23855817, -0.36090319],
+       [-0.03465479,  0.15167857],
+       [-0.07183736,  0.4940733 ],
+       ...,
+       [ 0.57415071, -0.24588988],
+       [-0.2928997 ,  0.95327637],
+       [-2.0595775 , -1.57872747]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>The scree plot method draws a straight line for each factor and its eigenvalues. Number eigenvalues greater than one considered as the number of factors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create scree plot using matplotlib</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">ev</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="n">ev</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scree Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Factors&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Eigenvalue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/da0d3eea48c4cc07ffa0802c4652522041055947b9d64ada6cbd734a6aebccab.png" src="_images/da0d3eea48c4cc07ffa0802c4652522041055947b9d64ada6cbd734a6aebccab.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="multidimensional-scaling">
+<h2>Multidimensional Scaling<a class="headerlink" href="#multidimensional-scaling" title="Permalink to this heading">#</a></h2>
+<p>Given the pairwise distance matrix <span class="math notranslate nohighlight">\(D = d_{ij}\)</span>, MDS is the method for placing the points in a low dimension space such that the distance is as close as possible to <span class="math notranslate nohighlight">\(d_{ij}\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(D_X\)</span> be the <span class="math notranslate nohighlight">\(N\times N\)</span> pairwise distance matrix for a data matrix <span class="math notranslate nohighlight">\(X_{N\times p}\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the sample size. We want to find a linear map <span class="math notranslate nohighlight">\(W: R^p \rightarrow R^k\)</span> and <span class="math notranslate nohighlight">\(Z=WX\)</span> such that the distance matrix <span class="math notranslate nohighlight">\(D_Z\)</span> for <span class="math notranslate nohighlight">\(Z\)</span> is a good approximation to <span class="math notranslate nohighlight">\(D_X\)</span></p>
+<p>It can be shown that <span class="math notranslate nohighlight">\(B=XX^T\)</span> is a linear function of the distance matrix <span class="math notranslate nohighlight">\(D_X\)</span>. Thus, approximating <span class="math notranslate nohighlight">\(D_X\)</span> is equivalent to approximaing <span class="math notranslate nohighlight">\(XX^T\)</span>.</p>
+<p>From the spectral decomposition, We know that <span class="math notranslate nohighlight">\(X=CD^{1/2}\)</span> can be used as an approximation for <span class="math notranslate nohighlight">\(X\)</span> where <span class="math notranslate nohighlight">\(C\)</span> is the eigenvector matrix and <span class="math notranslate nohighlight">\(D\)</span> is the diagonal matrix of eigenvalues. We have</p>
+<div class="math notranslate nohighlight">
+\[Z=C_kD_k^{1/2}\]</div>
+<p>This is the same approximation as that in PCA. Thus, PCA on the correlation matrix is equivalent to the MDS on the standardized Eulclidean distances</p>
+<p>If the linear mapping <span class="math notranslate nohighlight">\(W\)</span> is replaced by a nonlinear mapping <span class="math notranslate nohighlight">\(Z = g(X|\theta)\)</span> called Sammon mapping, we want to find the Sammon mapping <span class="math notranslate nohighlight">\(g(X|\theta)\)</span> to minimize the Sammon stress</p>
+<div class="math notranslate nohighlight">
+\[\sum_{r,s}\frac{(||Z^r-Z^s||-||X^r-X^s||)^2}{||X^r-X^s||^2}\]</div>
+<p>The Sammon mapping <span class="math notranslate nohighlight">\(g(X|\theta)\)</span> can be estimated from regression by minimizing the Sammon stress for the training data.</p>
+<p>In the case of classification, we can include class information <span class="math notranslate nohighlight">\(L\)</span> (the <span class="math notranslate nohighlight">\(N\times N\)</span> loss matrix for misclassification) in the distance matrix by</p>
+<div class="math notranslate nohighlight">
+\[d'_{rs} = (1-\alpha)d_{rs} + \alpha L_{rs}\]</div>
+<section id="find-the-coordinates-of-z-from-x">
+<h3>Find the coordinates of Z from X<a class="headerlink" href="#find-the-coordinates-of-z-from-x" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">MDS</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1797, 64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embedding</span> <span class="o">=</span> <span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_transformed</span> <span class="o">=</span> <span class="n">embedding</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+<span class="n">X_transformed</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(100, 2)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="coordinate-learning-from-mds">
+<h3>Coordinate Learning from MDS<a class="headerlink" href="#coordinate-learning-from-mds" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span><span class="p">;</span> <span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_hello</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">rseed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+    <span class="c1"># Make a plot with &quot;HELLO&quot; text; save as PNG</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;HELLO&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">85</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;hello.png&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    
+    <span class="c1"># Open this PNG and draw random points from it</span>
+    <span class="kn">from</span> <span class="nn">matplotlib.image</span> <span class="kn">import</span> <span class="n">imread</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">imread</span><span class="p">(</span><span class="s1">&#39;hello.png&#39;</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">rseed</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">N</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+    <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">make_hello</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">colorize</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">c</span><span class="o">=</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;rainbow&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/53/vt_yht0j2h992vrjpc3y4v3cmgg9bt/T/ipykernel_64108/1703149913.py:2: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+  colorize = dict(c=X[:, 0], cmap=plt.cm.get_cmap(&#39;rainbow&#39;, 5))
+</pre></div>
+</div>
+<img alt="_images/9c6f40803c05a57c8d280c1a7c92565cc356bc9063521a6f58eea8ff53400029.png" src="_images/9c6f40803c05a57c8d280c1a7c92565cc356bc9063521a6f58eea8ff53400029.png" />
+</div>
+</div>
+<p>The particular choice of x and y values of the dataset are not the most fundamental description of the data: we can scale, shrink, or rotate the data, and the “HELLO” will still be apparent</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">angle</span><span class="p">):</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)],</span>
+         <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)]]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span>
+    
+<span class="n">X2</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X2</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X2</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6cdc6d071ef40d25fdc7236b931bdd76757543bb5f39c8a66d8fe0f2d3d30dd4.png" src="_images/6cdc6d071ef40d25fdc7236b931bdd76757543bb5f39c8a66d8fe0f2d3d30dd4.png" />
+</div>
+</div>
+<p>What is fundamental is the distance between each point and the other points in the dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">pairwise_distances</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">pairwise_distances</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">D</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 1000)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/c417f0aa569b7da604fff4793393cb4eb0e9fc4003cd7f6b57c6d8226a54f726.png" src="_images/c417f0aa569b7da604fff4793393cb4eb0e9fc4003cd7f6b57c6d8226a54f726.png" />
+</div>
+</div>
+<p>If we similarly construct a distance matrix for our rotated and translated data, we see that it is the same:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">D2</span> <span class="o">=</span> <span class="n">pairwise_distances</span><span class="p">(</span><span class="n">X2</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">D2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Transforming the distances back into x and y coordinates is difficult. This is exactly what the multidimensional scaling algorithm aims to do: given a distance matrix between points, it recovers coordinates</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">MDS</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dissimilarity</span><span class="o">=</span><span class="s1">&#39;precomputed&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">out</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" src="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" />
+</div>
+</div>
+</section>
+<section id="mds-as-manifold-learning">
+<h3>MDS as Manifold Learning<a class="headerlink" href="#mds-as-manifold-learning" title="Permalink to this heading">#</a></h3>
+<p>Since distance matrices can be computed from data in any dimension, instead of simply rotating the data “HELLO” in the two-dimensional plane, we can project it into three dimensions using the following function (essentially a three-dimensional generalization of the rotation matrix used earlier):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">random_projection</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">rseed</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">dimension</span> <span class="o">&gt;=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">rseed</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">dimension</span><span class="p">,</span> <span class="n">dimension</span><span class="p">)</span>
+    <span class="n">e</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">V</span><span class="p">[:</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    
+<span class="n">X3</span> <span class="o">=</span> <span class="n">random_projection</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">X3</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visualizing the points in 3D</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter3D</span><span class="p">(</span><span class="n">X3</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X3</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X3</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span>
+             <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">view_init</span><span class="p">(</span><span class="n">azim</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">elev</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9bff8e6c6141332e22d7f6df3cbbc16cb0446d7f7a1bd369266e53eb2288fb05.png" src="_images/9bff8e6c6141332e22d7f6df3cbbc16cb0446d7f7a1bd369266e53eb2288fb05.png" />
+</div>
+</div>
+<p>We can now ask the MDS estimator to input this three-dimensional data, compute the distance matrix, and then determine the optimal two-dimensional embedding for this distance matrix. The result recovers a representation of the original data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">out3</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out3</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">out3</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" src="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" />
+</div>
+</div>
+</section>
+<section id="nonlinear-embedding-mds-fails">
+<h3>Nonlinear embedding MDS fails<a class="headerlink" href="#nonlinear-embedding-mds-fails" title="Permalink to this heading">#</a></h3>
+<p>Linear embeddings, which essentially consist of rotations, translations, and scalings of data into higher-dimensional spaces. MDS breaks down is when the embedding is nonlinear — that is, when it goes beyond this simple set of operations. Consider the following embedding, which takes the input and contorts it into an “S” shape in three dimensions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_hello_s_curve</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">XS</span> <span class="o">=</span> <span class="n">make_hello_s_curve</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits</span> <span class="kn">import</span> <span class="n">mplot3d</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter3D</span><span class="p">(</span><span class="n">XS</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">XS</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">XS</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span>
+             <span class="o">**</span><span class="n">colorize</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/126d2eaf1714c282e0cc5915695530093cc8e0a09a09a31541d7b29ca0f51177.png" src="_images/126d2eaf1714c282e0cc5915695530093cc8e0a09a09a31541d7b29ca0f51177.png" />
+</div>
+</div>
+<p>The fundamental relationships between the data points are still there, but this time the data has been transformed in a nonlinear way: it has been wrapped-up into the shape of an “S.”</p>
+<p>If we try a simple MDS algorithm on this data, it is not able to “unwrap” this nonlinear embedding, and we lose track of the fundamental relationships in the embedded manifold:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">MDS</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">MDS</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">outS</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">XS</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">outS</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">outS</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/adbad059a133fd57eeb6f3cb10a71d14a7a5d7a17e9d37e7283c042c1434f298.png" src="_images/adbad059a133fd57eeb6f3cb10a71d14a7a5d7a17e9d37e7283c042c1434f298.png" />
+</div>
+</div>
+<p>This problem can be solved using local linear embedding (LLE, see below)</p>
+</section>
+</section>
+<section id="locally-linear-embedding">
+<h2>Locally Linear Embedding<a class="headerlink" href="#locally-linear-embedding" title="Permalink to this heading">#</a></h2>
+<p>Each local patch of the manifold can be approximated linearly and given enough data, each point can be written as a linear weighted sum of its neighbors.</p>
+<p>Given  <span class="math notranslate nohighlight">\(X^r\)</span> and its neighbor <span class="math notranslate nohighlight">\(X^s_{(r)}\)</span> in the original space, one can find the reconstruction weights <span class="math notranslate nohighlight">\(W_{rs}\)</span> that minimize the error function using least squares subject to <span class="math notranslate nohighlight">\(W_{rr}=0\)</span> for all <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(\sum_sW_{rs}=1\)</span></p>
+<div class="math notranslate nohighlight">
+\[\sum_r ||X^r-\sum_s W_{rs}X^s_{(r)}||^2\]</div>
+<p>The second step is to keep the weights fixed and find the new coordinates <span class="math notranslate nohighlight">\(Z^r\)</span> respecting the interpoint constraints given by the weights, i.e., minimizing the local sum of squared errors</p>
+<div class="math notranslate nohighlight">
+\[\sum_r ||Z^r-\sum_s W_{rs}Z^s_{(r)}||^2\]</div>
+<p>Thus, nearby points in the original <span class="math notranslate nohighlight">\(p\)</span>-dimensional space remain nearby and similarly colocated with respect to one another in the new <span class="math notranslate nohighlight">\(k\)</span>-dimensional space</p>
+<p>The sum of squared errors can be rewritten as <span class="math notranslate nohighlight">\(Z^TMZ\)</span>, where <span class="math notranslate nohighlight">\(M\)</span> is a function of the weight matrix <span class="math notranslate nohighlight">\(W\)</span> and it is sparse (a small proportion of data points are neighbors), symmetric, and positive semidefinite.</p>
+<p>We assume that the new coordinates <span class="math notranslate nohighlight">\(Z\)</span> are centered at the origin <span class="math notranslate nohighlight">\(E(Z)=0\)</span> and are uncorrelated with unit length <span class="math notranslate nohighlight">\(Cov(z)=I\)</span>. The solution is given by the <span class="math notranslate nohighlight">\(k+1\)</span> engenvectors with the smallest eigenvalues. Then we ignore the lowest one and the other <span class="math notranslate nohighlight">\(k\)</span> eigenvectors give us the new coordinates.</p>
+<p>The <span class="math notranslate nohighlight">\(n\)</span> neighbors span a space of dimensionality <span class="math notranslate nohighlight">\(n-1\)</span>. LLE can reduce dimensionality up to <span class="math notranslate nohighlight">\(k\le n-1\)</span>. Some margin between <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(n\)</span> is necessary to obtain a good embedding. If <span class="math notranslate nohighlight">\(n\)</span> (i.e., <span class="math notranslate nohighlight">\(\epsilon\)</span>) is small, the graph may no longer connected. If <span class="math notranslate nohighlight">\(n\)</span> is large, some neighbors may be too far for the local linearity assumption to hold.</p>
+<p>LLE solution is the set of new coordinates, but we do not learn a mappping from the original space to the new space and hence cannot find <span class="math notranslate nohighlight">\(z'\)</span> for a new <span class="math notranslate nohighlight">\(x'\)</span>. To find the new coordinate of <span class="math notranslate nohighlight">\(x'\)</span>, we can first find the weights <span class="math notranslate nohighlight">\(w_s\)</span> for the neighborhood of <span class="math notranslate nohighlight">\(x'\)</span> and then use the weights <span class="math notranslate nohighlight">\(w_s\)</span> to calculate the new coordinates <span class="math notranslate nohighlight">\(z'\)</span> from the new coordinates <span class="math notranslate nohighlight">\(Z^s\)</span> of the neighbors <span class="math notranslate nohighlight">\(X^s\)</span> of <span class="math notranslate nohighlight">\(x'\)</span></p>
+<div class="math notranslate nohighlight">
+\[z' = \sum_s w_sZ^s\]</div>
+<p>Alternatively, we can use the original data <span class="math notranslate nohighlight">\({X^t,Z^t}_1^N\)</span> as a training set, and we train a regressor <span class="math notranslate nohighlight">\(g(X^t|\theta)\)</span> to approximate <span class="math notranslate nohighlight">\(Z^t\)</span> from <span class="math notranslate nohighlight">\(X\)</span> by minimizing the regression error with respect to <span class="math notranslate nohighlight">\(\theta\)</span></p>
+<div class="math notranslate nohighlight">
+\[\sum_t ||Z^t - g(X^t|\theta)||^2\]</div>
+<p>Then we can caculate</p>
+<div class="math notranslate nohighlight">
+\[z'=g(x'|\theta)\]</div>
+<section id="lle-for-the-s-shaped-hello">
+<h3>LLE for the S shaped “HELLO”<a class="headerlink" href="#lle-for-the-s-shaped-hello" title="Permalink to this heading">#</a></h3>
+<p>Previously, we saw that linear embedding methods MDS fail when the input “HELLO” is contorted into an “S” shape in three dimensions. But LLE captures the local structure of HELLO and is able to unroll the S-shaped input in a way that keeps the local structure approximately the same.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">LocallyLinearEmbedding</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LocallyLinearEmbedding</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;modified&#39;</span><span class="p">,</span>
+                               <span class="n">eigen_solver</span><span class="o">=</span><span class="s1">&#39;dense&#39;</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">XS</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">out</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">out</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6dd95aec2f3b8189c29002a58c81d2621462f50c3223d067529467a8afcb6019.png" src="_images/6dd95aec2f3b8189c29002a58c81d2621462f50c3223d067529467a8afcb6019.png" />
+</div>
+</div>
+<p>The result remains somewhat distorted compared to our original manifold, but captures the essential relationships in the data!</p>
+</section>
+</section>
+<section id="isomap">
+<h2>Isomap<a class="headerlink" href="#isomap" title="Permalink to this heading">#</a></h2>
+<p>Taking a series of pictures as a person slowly rotates hs or her head from right to left, the sequence of faces follows a trajectory that is not linear. Thus, similarity between two faces cannot simplybe written in terms of the sum of the pixel differences and Euclidean distance is not a good metric. The images of two different people with the same pose may have smaller Euclidean distance thn the images of two different poses of the same person.</p>
+<p>More reasonable distance is the geodesic distance along the manifold. Isometric feature mapping (Isomap) estimates the geodesic distance and applies multidimensional scaling for dimensionality reduction.</p>
+<p>Two nodes <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(s\)</span> are locally connected if <span class="math notranslate nohighlight">\(||X^r-X^s||&lt;\epsilon\)</span>. We set it as the distance between <span class="math notranslate nohighlight">\(X^r\)</span> and <span class="math notranslate nohighlight">\(X^s\)</span>. For two arbitrary nodes on the manifold, their distance <span class="math notranslate nohighlight">\(d_{rs}\)</span> is the shortest length path between them. This distance is called graph distance.</p>
+<p>The graph distance provides a good approximation as the number of points increases, though there is the trade-off of longer execution time. If time is critical, we can subsample and use a subset of points to make the algorithm faster</p>
+<p>The parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> needs to be carefully tuned; if it is two small there might be more than one connected component and if it is too large, shortcut may be added that corrupt the low-dimensional embedding.</p>
+<p>One problem with Isomap is that it does not learn a general mappping function that will allow mapping a new test point; the new point should be added to the data set adn the whole algorithm mst be run once more using <span class="math notranslate nohighlight">\(N+1\)</span> points</p>
+<section id="reconstruct-the-s-shaped-hello">
+<h3>Reconstruct the S shaped HELLO<a class="headerlink" href="#reconstruct-the-s-shaped-hello" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">Isomap</span>
+<span class="kn">import</span> <span class="nn">scipy.sparse</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="n">XS_LIL</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">lil_matrix</span><span class="p">(</span><span class="n">XS</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">XS_LIL</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Isomap</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">project</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">XS_LIL</span><span class="p">)</span>
+<span class="n">project</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 3)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lliu/Library/Python/3.9/lib/python/site-packages/sklearn/manifold/_isomap.py:383: UserWarning: The number of connected components of the neighbors graph is 4 &gt; 1. Completing the graph to fit Isomap might be slow. Increase the number of neighbors to avoid this issue.
+  self._fit_transform(X)
+/Users/lliu/Library/Python/3.9/lib/python/site-packages/scipy/sparse/_index.py:100: SparseEfficiencyWarning: Changing the sparsity structure of a csr_matrix is expensive. lil_matrix is more efficient.
+  self._set_intXint(row, col, x.flat[0])
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1000, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">project</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">project</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="o">**</span><span class="n">colorize</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f234ad4f369adb79a17b03e711d4cfc75cf7aa43fdba23ee13425dc9981a0869.png" src="_images/f234ad4f369adb79a17b03e711d4cfc75cf7aa43fdba23ee13425dc9981a0869.png" />
+</div>
+</div>
+</section>
+<section id="visualizing-face-data">
+<h3>Visualizing face data<a class="headerlink" href="#visualizing-face-data" title="Permalink to this heading">#</a></h3>
+<p>We apply Isomap on some faces data. Running this command will download the data and cache it in your home directory for later use. We have 2,370 images, each with 2,914 pixels. In other words, the images can be thought of as data points in a 2,914-dimensional space!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_lfw_people</span>
+<span class="n">faces</span> <span class="o">=</span> <span class="n">fetch_lfw_people</span><span class="p">(</span><span class="n">min_faces_per_person</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">faces</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1867, 2914)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s quickly visualize several of these images to see what we’re working with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[]))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">axi</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">flat</span><span class="p">):</span>
+    <span class="n">axi</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">faces</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/7ebc42c565c8f0380c37008a02f13220ed69f9940cfd35b66764315115fae41f.png" src="_images/7ebc42c565c8f0380c37008a02f13220ed69f9940cfd35b66764315115fae41f.png" />
+</div>
+</div>
+<p>We would like to plot a low-dimensional embedding of the 2,914-dimensional data to learn the fundamental relationships between the images. One useful way to start is to compute a PCA, and examine the explained variance ratio, which will give us an idea of how many linear features are required to describe the data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span> <span class="k">as</span> <span class="n">RandomizedPCA</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomizedPCA</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">faces</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;n components&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;cumulative variance&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/629aa2abef1983afa837ada14456b6ea6188d5d2da106f16b1e25743398e325c.png" src="_images/629aa2abef1983afa837ada14456b6ea6188d5d2da106f16b1e25743398e325c.png" />
+</div>
+</div>
+<p>We see that for this data, nearly 100 components are required to preserve 90% of the variance: this tells us that the data is intrinsically very high dimensional—it can’t be described linearly with just a few components.</p>
+<p>When this is the case, nonlinear manifold embeddings like LLE and Isomap can be helpful. We can compute an Isomap embedding on these faces using the same pattern shown before:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.manifold</span> <span class="kn">import</span> <span class="n">Isomap</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Isomap</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">faces</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">proj</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1867, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output is a two-dimensional projection of all the input images. To get a better idea of what the projection tells us, let’s define a function that will output image thumbnails at the locations of the projections:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">offsetbox</span>
+
+<span class="k">def</span> <span class="nf">plot_components</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">images</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">thumb_frac</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">ax</span> <span class="ow">or</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    
+    <span class="n">proj</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">proj</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">proj</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;.k&#39;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">images</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">min_dist_2</span> <span class="o">=</span> <span class="p">(</span><span class="n">thumb_frac</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">proj</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">-</span> <span class="n">proj</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">shown_images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span> <span class="o">*</span> <span class="n">proj</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">proj</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">shown_images</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_dist_2</span><span class="p">:</span>
+                <span class="c1"># don&#39;t show points that are too close</span>
+                <span class="k">continue</span>
+            <span class="n">shown_images</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">shown_images</span><span class="p">,</span> <span class="n">proj</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+            <span class="n">imagebox</span> <span class="o">=</span> <span class="n">offsetbox</span><span class="o">.</span><span class="n">AnnotationBbox</span><span class="p">(</span>
+                <span class="n">offsetbox</span><span class="o">.</span><span class="n">OffsetImage</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">),</span>
+                                      <span class="n">proj</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">imagebox</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calling this function now, we see the result:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_components</span><span class="p">(</span><span class="n">faces</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+                <span class="n">model</span><span class="o">=</span><span class="n">Isomap</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">images</span><span class="o">=</span><span class="n">faces</span><span class="o">.</span><span class="n">images</span><span class="p">[:,</span> <span class="p">::</span><span class="mi">2</span><span class="p">,</span> <span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/01c2b73a70c5c4a20f1943606dcb464189b12985e70a5855d30568551bf32d71.png" src="_images/01c2b73a70c5c4a20f1943606dcb464189b12985e70a5855d30568551bf32d71.png" />
+</div>
+</div>
+<p>The result is interesting: the first two Isomap dimensions seem to describe global image features: the overall darkness or lightness of the image from left to right, and the general orientation of the face from bottom to top. This gives us a nice visual indication of some of the fundamental features in our data.</p>
+<p>We could then go on to classify this data (perhaps using manifold features as inputs to the classification algorithm) as we did in In-Depth: Support Vector Machines.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 3: Multivariate Methods</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 5: Clustering</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-selection">Subset Selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-selection">Forward selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-boston-data">Import Boston data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-to-data-frame">Convert to data frame</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Forward selection</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-selection">Backward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bidirection-selection">Bidirection selection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal Components Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-analysis">Factor Analysis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-data">Loading data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-scaling">Multidimensional Scaling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#find-the-coordinates-of-z-from-x">Find the coordinates of Z from X</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-learning-from-mds">Coordinate Learning from MDS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mds-as-manifold-learning">MDS as Manifold Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-embedding-mds-fails">Nonlinear embedding MDS fails</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locally-linear-embedding">Locally Linear Embedding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lle-for-the-s-shaped-hello">LLE for the S shaped “HELLO”</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomap">Isomap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruct-the-s-shaped-hello">Reconstruct the S shaped HELLO</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-face-data">Visualizing face data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

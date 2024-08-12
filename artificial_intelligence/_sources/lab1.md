@@ -12,161 +12,487 @@ kernelspec:
   language: python
   name: python3
 ---
+# Lab 1: Introduction to Python
 
-# Lab 1: Natural language processing
-
-## Text to speech
-
-We use google API text-to-speech to convert text to speech. The user must already have a google account and configure the google cloud console => APIs and Services => **Enable API and Services** and **Credentials**.
-
-### Python package - texttospeech
-To use google text-to-speech API in python, we need to download and install the [google-cloud-sdk](https://cloud.google.com/sdk/docs/). We also need to install the following python packages. 
-
-- pip install google-api-python-client
-- pip install os
-
-Read the input text file in python and print out the text.
-
-```{code-cell}
-f = open(file="./data/test.txt", encoding= "utf-8")
-x = f.read()
-print(x)
+```{epigraph}
+*"Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step."*
+-- Lao Tzu
 ```
 
-The text is converted to speech and saved in an audio file output.mp3.
-
-```{code-cell}
-from google.cloud import texttospeech
-
-# Instantiates a client
-client = texttospeech.TextToSpeechClient()
-
-# Set the text input to be synthesized
-synthesis_input = texttospeech.SynthesisInput(text=x)
-
-# Build the voice request, select the language code ("en-US") and the ssml
-# voice gender ("neutral")
-voice = texttospeech.VoiceSelectionParams(
-    language_code="cmn-CN", ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
-)
-
-# Select the type of audio file you want returned
-audio_config = texttospeech.AudioConfig(
-    audio_encoding=texttospeech.AudioEncoding.MP3
-)
-
-# Perform the text-to-speech request on the text input with the selected
-# voice parameters and audio file type
-response = client.synthesize_speech(
-    input=synthesis_input, voice=voice, audio_config=audio_config
-)
-
-# The response's audio_content is binary.
-with open("./_build/html/_images/output.mp3", "wb") as out:
-    # Write the response to the output file.
-    out.write(response.audio_content)
-
+```{seealso}
+- [Python Tutorial](https://www.w3schools.com/python/default.asp)
 ```
 
-Click the audio player to listen to the speech.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kqtD5dpn9C8?si=Oucu0vicsWG8dWtO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<audio controls>
-  <source src="_images/output.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+## Introduction
+Python is a versatile and powerful programming language used in various fields such as web development, data analysis, artificial intelligence, and more. In this tutorial, we'll cover the basics of Python programming for beginners.
 
-Alternatively, you may play the audio file in python.
+### Installation
+Before we start, you need to have Python installed on your computer. You can download and install Python from the official website: Python.org
+
+### Getting Started
+Once Python is installed, you can start writing and executing Python code using a text editor or an Integrated Development Environment (IDE) such as PyCharm, VSCode, or Jupyter Notebook.
+
+#### Your First Python Program
+Let's start with a simple "Hello, World!" program, a tradition for beginners in programming:
+
+```{code-cell}
+print("Hello, World!")
+```
+
+To run this program, save it with a .py extension (e.g., hello.py), open a terminal or command prompt, navigate to the directory where the file is located, and type python hello.py. You should see the output Hello, World! printed to the console.
+
+#### Basic Syntax
+Python syntax is straightforward and easy to read. Here are some basic concepts:
+
+Variables: Used to store data. You can assign values to variables using the = operator.
+
+```{code-cell}
+x = 10
+name = "Alice"
+```
+
+Data Types: Python supports various data types such as integers, floats, strings, lists, tuples, dictionaries, etc.
+
+```{code-cell}
+# Integer
+age = 25
+
+# Float
+height = 5.9
+
+# String
+message = "Hello, Python!"
+
+# List
+numbers = [1, 2, 3, 4, 5]
+
+# Tuple
+coordinates = (10, 20)
+
+# Dictionary
+person = {"name": "Alice", "age": 30}
+```
+
+Control Structures: Python uses indentation to define code blocks. Common control structures include if-else statements, loops, and functions.
+
+```{code-cell}
+# If-else statement
+if x > 0:
+    print("Positive")
+else:
+    print("Negative")
+
+# Loop
+for i in range(5):
+    print(i)
+
+# Function
+def greet(name):
+    print("Hello,", name)
+    
+greet("Alice")
+```
+
+Example of a recursive function
+```{code-cell}
+def factorial(x):
+    """This is a recursive function
+    to find the factorial of an integer"""
+
+    if x == 1:
+        return 1
+    else:
+        return (x * factorial(x-1))
+
+
+num = 3
+print("The factorial of", num, "is", factorial(num))
+```
+
+In Python, a lambda function is a special type of function without the function name. For example,
+```{code-cell}
+# lambda that accepts one argument
+greet_user = lambda name : print('Hey there,', name)
+greet_user('Delilah')
+```
+
+### Python module
+As our program grows bigger, it may contain many lines of code. Instead of putting everything in a single file, we can use modules to separate codes in separate files as per their functionality. This makes our code organized and easier to maintain.
+
+Module is a file that contains code to perform a specific task. A module may contain variables, functions, classes etc. Let's see an example,
+
+Let us create a module. Type the following and save it as example.py
+
+```{code} python
+# Python Module addition
+def add(a, b):
+   result = a + b
+   return result
+```
+
+Here, we have defined a function add() inside a module named example. The function takes in two numbers and returns their sum. We can import the definitions inside a module to another module or the interactive interpreter in Python. We use the import keyword to do this. To import our previously defined module example, we type the following in the Python prompt.
+
 ```{code}
-import os
-os.system('start output.mp3')
+import example
 ```
 
-### Python package - gTTS
-The package gTTS is a wrapper of the google API text-to-speech to convert text to speech. The speech is at a slow rate.
+## Python Object Oriented Programming
+Python is a versatile programming language that supports various programming styles, including object-oriented programming (OOP) through the use of objects and classes.
 
-- pip install gTTS
+An object is any entity that has attributes and behaviors. For example, a parrot is an object. It has
+
+attributes - name, age, color, etc.
+behavior - dancing, singing, etc.
+Similarly, a class is a blueprint for that object.
+
+### Python Class and Object
+```{code-cell}
+class Parrot:
+
+    # class attribute
+    name = ""
+    age = 0
+
+# create parrot1 object
+parrot1 = Parrot()
+parrot1.name = "Blu"
+parrot1.age = 10
+
+# create another object parrot2
+parrot2 = Parrot()
+parrot2.name = "Woo"
+parrot2.age = 15
+
+# access attributes
+print(f"{parrot1.name} is {parrot1.age} years old")
+print(f"{parrot2.name} is {parrot2.age} years old")
+```
+
+### Python Inheritance
+Inheritance is a way of creating a new class for using details of an existing class without modifying it.
+
+The newly formed class is a derived class (or child class). Similarly, the existing class is a base class (or parent class).
 
 ```{code-cell}
-from gtts import gTTS
+# base class
+class Animal:
+    
+    def eat(self):
+        print( "I can eat!")
+    
+    def sleep(self):
+        print("I can sleep!")
 
-tts = gTTS(x, lang='zh-CN', slow=True)
-tts.save('./_build/html/_images/slow.mp3')
+# derived class
+class Dog(Animal):
+    
+    def bark(self):
+        print("I can bark! Woof woof!!")
+
+# Create object of the Dog class
+dog1 = Dog()
+
+# Calling members of the base class
+dog1.eat()
+dog1.sleep()
+
+# Calling member of the derived class
+dog1.bark();
 ```
 
-Click the audio player to listen to the slower speech.
+### Python Encapsulation
+Encapsulation is one of the key features of object-oriented programming. Encapsulation refers to the bundling of attributes and methods inside a single class.
 
-<audio controls>
-  <source src="_images/slow.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+It prevents outer classes from accessing and changing attributes and methods of a class. This also helps to achieve data hiding.
 
-```{code}
-from playsound import playsound
-import os
-
-os.system('start hello.mp3')
-playsound("hello.mp3")
-```
-
-### Python package - pyttsx3
-The package pyttsx3 takes Microsoft speech utility to convert text to speech. Check setting -> Region and language -> Language and install the needed languages. By default, English has been installed. If you need to install other languages, please make to also add voices in the "Speech" section.
-
-- pip insatall pyttsx3
+In Python, we denote private attributes using underscore as the prefix i.e single _ or double __. For example,
 
 ```{code-cell}
-import pyttsx3
+class Computer:
 
-audio = pyttsx3.init()  
-voices = audio.getProperty('voices') 
+    def __init__(self):
+        self.__maxprice = 900
 
-for voice in voices:
-    print("Voice:")
-    print(" - ID: %s" % voice.id)
-    print(" - Name: %s" % voice.name)
-    print(" - Languages: %s" % voice.languages)
-    print(" - Gender: %s" % voice.gender)
-    print(" - Age: %s" % voice.age)
+    def sell(self):
+        print("Selling Price: {}".format(self.__maxprice))
 
+    def setMaxPrice(self, price):
+        self.__maxprice = price
 
-audio.setProperty('rate', 110)
-audio.setProperty('volume', 0.8)
-audio.setProperty('voice', voices[3].id)
+c = Computer()
+c.sell()
 
-#audio.say(x)
-#audio.runAndWait()
+# change the price
+c.__maxprice = 1000
+c.sell()
 
-audio.save_to_file(x, './_build/html/_images/pyttsx3.mp3')
-audio.runAndWait()
+# using setter function
+c.setMaxPrice(1000)
+c.sell()
 ```
 
-Click the audio player to listen to the Taiwan accent speech.
+We used __init__() method to store the maximum selling price of Computer. Here, notice the code c.__maxprice = 1000
 
-<audio controls>
-  <source src="_images/pyttsx3.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+Here, we have tried to modify the value of __maxprice outside of the class. However, since __maxprice is a private variable, this modification is not seen on the output.
 
-## Speech to text
-Convert an Audio file to transcript using a python package SpeechRecognition.
+As shown, to change the value, we have to use a setter function i.e setMaxPrice() which takes price as a parameter.
 
-- pip install SpeechRecognition
+### Polymorphism
+Polymorphism is another important concept of object-oriented programming. It simply means more than one form.
 
-<audio controls>
-  <source src="_images/preamble.wav" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+That is, the same entity (method or operator or object) can perform different operations in different scenarios.
+
+Let's see an example,
 
 ```{code-cell}
-import speech_recognition as sr
+class Polygon:
+    # method to render a shape
+    def render(self):
+        print("Rendering Polygon...")
 
-r = sr.Recognizer()
+class Square(Polygon):
+    # renders Square
+    def render(self):
+        print("Rendering Square...")
 
-with sr.AudioFile('./data/preamble.wav') as source:
-    audio_text = r.listen(source)
-    try:    
-        # using google speech recognition
-        text = r.recognize_google(audio_text)
-        print('Converting audio transcripts into text ...')
-        print(text)
-    except:
-         print('Sorry.. run again...')
+class Circle(Polygon):
+    # renders circle
+    def render(self):
+        print("Rendering Circle...")
+    
+# create an object of Square
+s1 = Square()
+s1.render()
+
+# create an object of Circle
+c1 = Circle()
+c1.render()
+```
+
+In the above example, we have created a superclass: Polygon and two subclasses: Square and Circle. Notice the use of the render() method.
+
+The main purpose of the render() method is to render the shape. However, the process of rendering a square is different from the process of rendering a circle.
+
+Hence, the render() method behaves differently in different classes. Or, we can say render() is polymorphic.
+
+## Loading data
+
+### Boston data
+
+```{code-cell}
+from sklearn.datasets import load_diabetes
+X, y = load_diabetes(return_X_y=True)
+print(X.shape)
+X[:,1]
+X[1:3,0:2]
+```
+
+### Iris data
+
+```{code-cell} ipython3
+from sklearn.datasets import load_iris
+iris = load_iris()
+```
+
+```{code-cell} ipython3
+print(iris.data.shape)
+print(iris.target_names)
+```
+
+#### The first two features
+
+```{code-cell} ipython3
+X = iris.data[:, :2]
+y = iris.target
+```
+
+#### Plot the first two features
+
+```{code-cell} ipython3
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.decomposition import PCA
+
+plt.figure(2, figsize=(8, 6))
+plt.clf()
+
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Set1,
+            edgecolor='k')
+plt.xlabel('Sepal length')
+plt.ylabel('Sepal width')
+
+x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
+y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
+plt.xlim(x_min, x_max)
+plt.ylim(y_min, y_max)
+plt.xticks(())
+plt.yticks(())
+
+plt.show()
+```
+
+#### Plot the first three PCA dimensions
+
+```{code-cell} ipython3
+fig = plt.figure(1, figsize=(8, 6))
+ax = Axes3D(fig, elev=-150, azim=110)
+X_reduced = PCA(n_components=3).fit_transform(iris.data)
+ax.scatter(X_reduced[:, 0], X_reduced[:, 1], X_reduced[:, 2], c=y,
+           cmap=plt.cm.Set1, edgecolor='k', s=40)
+ax.set_title("First three PCA directions")
+ax.set_xlabel("1st eigenvector")
+ax.xaxis.set_ticklabels([])
+ax.set_ylabel("2nd eigenvector")
+ax.yaxis.set_ticklabels([])
+ax.set_zlabel("3rd eigenvector")
+ax.zaxis.set_ticklabels([])
+
+plt.show()
+```
+
+### Digit data
+
+```{code-cell} ipython3
+from sklearn.datasets import load_digits
+digits = load_digits()
+print(digits.data.shape)
+print(digits.target)
+```
+
+#### Plot an image
+
+```{code-cell} ipython3
+import matplotlib.pyplot as plt 
+plt.gray() 
+plt.matshow(digits.images[17]) 
+plt.show()
+```
+
+## Simulating data
+
+
+### Generate random numbers [0,1]
+
+```{code-cell} ipython3
+from random import seed
+from random import random
+
+seed(14)
+for _ in range(10):
+    value = random()
+    print(value)
+```
+
+### Generate random integers
+
+```{code-cell} ipython3
+from random import seed
+from random import randint
+# seed random number generator
+seed(1)
+# generate some integers
+for _ in range(10):
+    value = randint(0, 10)
+    print(value)
+```
+
+### Generating a random sample without replacement
+
+```{code-cell} ipython3
+# select a random sample without replacement
+from random import seed
+from random import sample
+# seed random number generator
+seed(1)
+# prepare a sequence
+sequence = [i for i in range(20)]
+print(sequence)
+# select a subset without replacement
+subset = sample(sequence, 5)
+print(subset)
+```
+
+### Generating random numbers from distributions
+
+```{code-cell} ipython3
+import random
+
+# seed random number generator
+random.seed(1)
+
+# generate some Gaussian values
+print("Normal distribution")
+for _ in range(10):
+    value = random.gauss(0, 1)
+    print(value)
+
+# generate uniform    
+print("\nUniform")
+for _ in range(10):
+    value = random.uniform(0, 1)
+    print(value)
+
+# generate exponential    
+print("\nExponential")
+for _ in range(10):
+    value = random.expovariate(10)
+    print(value)   
+    
+# generate Gamma  
+print("\nGamma")
+value = list(range(10))
+for i in range(10):
+    value[i] = random.gammavariate(1,10)
+print(value) 
+
+# generate multivariate normal
+print("\nMultivariate normal")
+import numpy as np
+import matplotlib.pyplot as plt 
+from scipy.stats import multivariate_normal
+
+rmvn = np.array([x[:] for x in [[0.1]*2]*10])
+for i in range(10):
+    rmvn[i,] = multivariate_normal.rvs(mean = [0.5, -0.2], cov=[[2.0, 0.3], [0.3, 0.5]])
+print(rmvn)
+
+plt.scatter(rmvn[:,0], rmvn[:,1], s= 30*(rmvn[:,0]**2+rmvn[:,1]**2), c="red", alpha=0.5)
+```
+
+### Generate 2D classification points
+
+```{code-cell} ipython3
+from sklearn.datasets import make_blobs
+from matplotlib import pyplot
+from pandas import DataFrame
+# generate 2d classification dataset
+X, y = make_blobs(n_samples=100, centers=3, n_features=2)
+# scatter plot, dots colored by class value
+df = DataFrame(dict(x=X[:,0], y=X[:,1], label=y))
+colors = {0:'red', 1:'blue', 2:'green'}
+fig, ax = pyplot.subplots()
+grouped = df.groupby('label')
+for key, group in grouped:
+    group.plot(ax=ax, kind='scatter', x='x', y='y', label=key, color=colors[key])
+pyplot.show()
+```
+
+### Generating circle data for classification
+
+```{code-cell} ipython3
+from sklearn.datasets import make_circles
+from matplotlib import pyplot
+from pandas import DataFrame
+# generate 2d classification dataset
+X, y = make_circles(n_samples=100, noise=0.05)
+# scatter plot, dots colored by class value
+df = DataFrame(dict(x=X[:,0], y=X[:,1], label=y))
+colors = {0:'red', 1:'blue'}
+fig, ax = pyplot.subplots()
+grouped = df.groupby('label')
+for key, group in grouped:
+    group.plot(ax=ax, kind='scatter', x='x', y='y', label=key, color=colors[key])
+pyplot.show()
+```

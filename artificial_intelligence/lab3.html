@@ -1,0 +1,895 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 3: Multivariate Methods &#8212; Artificial Intelligence</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 4: Dimensionality Reduction" href="lab4.html" />
+    <link rel="prev" title="Lab 2: Supervised Learning" href="lab2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1. History of AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2. Intelligent Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3. Knowledge Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5. Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6. Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 3: Multivariate Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation">Parameter Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-normal-distributions-with-different-mean-vectors-and-covariance-matrix">Two normal distributions with different mean vectors and covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-classes-may-have-a-common-covaraince-matrix">Two classes may have a common covaraince matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-off-diagonal-values-of-the-common-covariance-matrix-are-0">The off-diagonal values of the common covariance matrix are 0</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-missing-values">Estimation of Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-classification">Multivariate Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-discriminant-analysis">Regularized discriminant analysis</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-3-multivariate-methods">
+<h1>Lab 3: Multivariate Methods<a class="headerlink" href="#lab-3-multivariate-methods" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Multivariate_statistics">Multivariate analysis at Wikipedia</a></p></li>
+</ul>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ui2El5CZPRE?si=K0AJpMmDF-HHpVRQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<section id="parameter-estimation">
+<h2>Parameter Estimation<a class="headerlink" href="#parameter-estimation" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(𝑋={𝑋_1,…,𝑋_𝑃}\)</span> be a <span class="math notranslate nohighlight">\(p\)</span>-dimension point. The mean vector is <span class="math notranslate nohighlight">\(\mu=𝐸(𝑋)\)</span> and the covariance matrix is <span class="math notranslate nohighlight">\(Σ_{𝑝×𝑝}\)</span></p>
+<section id="two-normal-distributions-with-different-mean-vectors-and-covariance-matrix">
+<h3>Two normal distributions with different mean vectors and covariance matrix<a class="headerlink" href="#two-normal-distributions-with-different-mean-vectors-and-covariance-matrix" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">]]</span>  <span class="c1"># diagonal covariance</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f9ca093fba59288e9d45ba9824da0509acbc453183d9751c30850f37f455a9aa.png" src="_images/f9ca093fba59288e9d45ba9824da0509acbc453183d9751c30850f37f455a9aa.png" />
+</div>
+</div>
+<p>The mean vector 𝜇 can be estimated by the sample average</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.01627052002738149
+-0.12423276616506523
+</pre></div>
+</div>
+</div>
+</div>
+<p>The covariance matrix can be estimated by the sample covariance matrix</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 9.81837065e-01 -8.24382550e-03]
+ [-8.24382550e-03  1.02307363e+02]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="two-classes-may-have-a-common-covaraince-matrix">
+<h3>Two classes may have a common covaraince matrix<a class="headerlink" href="#two-classes-may-have-a-common-covaraince-matrix" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>  <span class="c1"># diagonal covariance</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/113880e493e1ff20aca67bba3ee53ff0c2381ea6ec61409283f03fcf125e089e.png" src="_images/113880e493e1ff20aca67bba3ee53ff0c2381ea6ec61409283f03fcf125e089e.png" />
+</div>
+</div>
+<p>The covariance matrix is estimated by the sample covariance of the pooled data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x1</span><span class="o">-</span><span class="n">x1</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">x2</span><span class="o">-</span><span class="n">x2</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y1</span><span class="o">-</span><span class="n">y1</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">y2</span><span class="o">-</span><span class="n">y2</span><span class="o">.</span><span class="n">mean</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">([</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1.10134145 0.49244598]
+ [0.49244598 0.91199087]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-off-diagonal-values-of-the-common-covariance-matrix-are-0">
+<h3>The off-diagonal values of the common covariance matrix are 0<a class="headerlink" href="#the-off-diagonal-values-of-the-common-covariance-matrix-are-0" title="Permalink to this heading">#</a></h3>
+<p>In this case, the coordinate random variables <span class="math notranslate nohighlight">\(X_1,...X_p\)</span> are independently distributed with a normal distribution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>  <span class="c1"># diagonal covariance</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">,</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ed96e6a0594bb1f8485d97cd39efd3a4c5fed13a80d474b3a954885590b022ae.png" src="_images/ed96e6a0594bb1f8485d97cd39efd3a4c5fed13a80d474b3a954885590b022ae.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="estimation-of-missing-values">
+<h2>Estimation of Missing Values<a class="headerlink" href="#estimation-of-missing-values" title="Permalink to this heading">#</a></h2>
+<p>Values of certain variables may be missing in data. For example, the first 10 values of the first column of bvn1 are missing</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[       nan        nan        nan        nan        nan        nan
+        nan        nan        nan        nan 4.77300084 3.15523196
+ 2.61472677 2.50829076 3.99263275 1.94396671 1.39165914 3.3004066
+ 2.86175981 3.79573814 3.8761216  3.5462934  2.08642862 3.32833142
+ 2.33526877 2.12324573 3.43218771 3.16784106 3.81106289 3.45078168
+ 1.79110597 2.95855462 4.0855329  2.67845795 1.76958974 2.86924451
+ 1.84421027 3.25761516 2.86584348 3.56115683 3.67058683 3.71680695
+ 2.87372914 3.79094427 5.30446512 4.53314644 3.16461514 3.21367095
+ 4.45180466 3.88546796 3.8546683  3.11818947 4.34667319 2.80527789
+ 3.22892193 2.88932384 3.7341071  3.17822862 3.38808058 3.41452011
+ 1.87335781 2.98109045 4.43836156 2.57467706 2.82885338 3.38890723
+ 4.34505353 2.07213168 4.32534387 3.97736791 3.79624006 3.29872692
+ 2.15466555 2.81340235 3.34816204 2.35003881 2.66608592 3.81493349
+ 3.55370189 2.33150858 2.67574952 1.86699917 1.16090889 2.5341372
+ 2.22155826 1.70850099 3.09736669 1.29095235 3.72593162 1.51651314
+ 2.89390597 3.10648676 2.89593924 2.58487432 3.06626409 2.78350506
+ 2.53778518 1.08678625 3.1245869  1.61135209]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We fill in the missing entries by estimating them, i.e., imputation. In the main imputation, missing values are replaced by the average of the available data</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="o">~</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x1</span><span class="p">)]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3.02402478 3.02402478 3.02402478 3.02402478 3.02402478 3.02402478
+ 3.02402478 3.02402478 3.02402478 3.02402478 4.77300084 3.15523196
+ 2.61472677 2.50829076 3.99263275 1.94396671 1.39165914 3.3004066
+ 2.86175981 3.79573814 3.8761216  3.5462934  2.08642862 3.32833142
+ 2.33526877 2.12324573 3.43218771 3.16784106 3.81106289 3.45078168
+ 1.79110597 2.95855462 4.0855329  2.67845795 1.76958974 2.86924451
+ 1.84421027 3.25761516 2.86584348 3.56115683 3.67058683 3.71680695
+ 2.87372914 3.79094427 5.30446512 4.53314644 3.16461514 3.21367095
+ 4.45180466 3.88546796 3.8546683  3.11818947 4.34667319 2.80527789
+ 3.22892193 2.88932384 3.7341071  3.17822862 3.38808058 3.41452011
+ 1.87335781 2.98109045 4.43836156 2.57467706 2.82885338 3.38890723
+ 4.34505353 2.07213168 4.32534387 3.97736791 3.79624006 3.29872692
+ 2.15466555 2.81340235 3.34816204 2.35003881 2.66608592 3.81493349
+ 3.55370189 2.33150858 2.67574952 1.86699917 1.16090889 2.5341372
+ 2.22155826 1.70850099 3.09736669 1.29095235 3.72593162 1.51651314
+ 2.89390597 3.10648676 2.89593924 2.58487432 3.06626409 2.78350506
+ 2.53778518 1.08678625 3.1245869  1.61135209]
+</pre></div>
+</div>
+</div>
+</div>
+<p>In imputation by regression, missing values are predicted by linear regression</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="k">as</span> <span class="n">lr</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="mi">10</span><span class="p">:]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y1</span><span class="p">[</span><span class="mi">10</span><span class="p">:]</span>
+<span class="n">LR</span> <span class="o">=</span> <span class="n">lr</span><span class="p">()</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">LR</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">x1</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="n">LR</span><span class="o">.</span><span class="n">intercept_</span><span class="o">+</span><span class="n">LR</span><span class="o">.</span><span class="n">coef_</span> <span class="o">*</span> <span class="n">y1</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3.07228012 2.93288696 3.03045896 2.96570072 3.02976576 3.07495373
+ 3.01353467 3.04850358 3.01043955 2.92298112 4.77300084 3.15523196
+ 2.61472677 2.50829076 3.99263275 1.94396671 1.39165914 3.3004066
+ 2.86175981 3.79573814 3.8761216  3.5462934  2.08642862 3.32833142
+ 2.33526877 2.12324573 3.43218771 3.16784106 3.81106289 3.45078168
+ 1.79110597 2.95855462 4.0855329  2.67845795 1.76958974 2.86924451
+ 1.84421027 3.25761516 2.86584348 3.56115683 3.67058683 3.71680695
+ 2.87372914 3.79094427 5.30446512 4.53314644 3.16461514 3.21367095
+ 4.45180466 3.88546796 3.8546683  3.11818947 4.34667319 2.80527789
+ 3.22892193 2.88932384 3.7341071  3.17822862 3.38808058 3.41452011
+ 1.87335781 2.98109045 4.43836156 2.57467706 2.82885338 3.38890723
+ 4.34505353 2.07213168 4.32534387 3.97736791 3.79624006 3.29872692
+ 2.15466555 2.81340235 3.34816204 2.35003881 2.66608592 3.81493349
+ 3.55370189 2.33150858 2.67574952 1.86699917 1.16090889 2.5341372
+ 2.22155826 1.70850099 3.09736669 1.29095235 3.72593162 1.51651314
+ 2.89390597 3.10648676 2.89593924 2.58487432 3.06626409 2.78350506
+ 2.53778518 1.08678625 3.1245869  1.61135209]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multivariate-classification">
+<h2>Multivariate Classification<a class="headerlink" href="#multivariate-classification" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\{C_i: i=1,...,k\}\)</span> be the <span class="math notranslate nohighlight">\(k\)</span> classes. The points in the class <span class="math notranslate nohighlight">\(C_i\)</span> follow the multivariate normal distribution with mean vector <span class="math notranslate nohighlight">\(\mu_i\)</span> and covariance matrix <span class="math notranslate nohighlight">\(\Sigma_i\)</span>.</p>
+<p>Given the training data <span class="math notranslate nohighlight">\(X_i\)</span> in class <span class="math notranslate nohighlight">\(C_i\)</span>, the mean vector and covariance matrix can be estimated by the sample average <span class="math notranslate nohighlight">\(\bar{X}_i\)</span> and sample covariance matrix <span class="math notranslate nohighlight">\(S_i\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>  <span class="c1"># diagonal covariance</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>  <span class="c1"># diagonal covariance</span>
+<span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">bvn1_average</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">y1</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
+<span class="n">bvn2_average</span> <span class="o">=</span> <span class="p">[</span><span class="n">x2</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span><span class="n">y2</span><span class="o">.</span><span class="n">mean</span><span class="p">()]</span>
+
+<span class="n">bvn1_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">])</span>
+<span class="n">bvn2_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cov</span><span class="p">([</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">bvn1_average</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bvn2_average</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bvn1_cov</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bvn2_cov</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2.9174015869673386, 3.9473191043301648]
+[6.738780100158287, 7.956318870339207]
+[[1.9551651  0.15761044]
+ [0.15761044 2.41097926]]
+[[0.92881793 0.50580404]
+ [0.50580404 1.00377429]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(P(C_i): i=1,...k\)</span> be the prior probabilities of the k classes. Given the training data <span class="math notranslate nohighlight">\(X\)</span>, the probablity <span class="math notranslate nohighlight">\(P(C_i)\)</span> can be estimated by the proportion of points in the class <span class="math notranslate nohighlight">\(C_i\)</span></p>
+<p>The Bayes classifier is given by the posterior probability <span class="math notranslate nohighlight">\(g_i(x) = logf(x|C_i) + log(C_i)\)</span>. We substitute the mean vector, covariance matrix, and prior probabilties with their estimates. The posterior probability of the class <span class="math notranslate nohighlight">\(C_i\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[g_i(x) = -\frac{1}{2}(x-\bar{X}_i)^TS_i^{-1}(x-\bar{X}_i)+\hat{P}(C_i)\]</div>
+<p>The Bayes classification is that <span class="math notranslate nohighlight">\(x\in C_i\)</span> if <span class="math notranslate nohighlight">\(g_i(x) &gt; g_j(x)\)</span> for <span class="math notranslate nohighlight">\(i,j = 1,...,k\)</span> and <span class="math notranslate nohighlight">\(j\ne i\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">y1</span><span class="p">,</span><span class="n">y2</span><span class="p">))</span>
+<span class="n">class1</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+  <span class="n">g1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="o">-</span><span class="n">bvn1_average</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">bvn1_cov</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="o">-</span><span class="n">bvn1_average</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()))</span><span class="o">+</span><span class="mf">0.5</span>
+  <span class="n">g2</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="o">-</span><span class="n">bvn2_average</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">bvn2_cov</span><span class="p">))</span><span class="o">.</span><span class="n">dot</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span><span class="o">-</span><span class="n">bvn2_average</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()))</span><span class="o">+</span><span class="mf">0.5</span>
+
+  <span class="k">if</span> <span class="n">g1</span><span class="o">&gt;</span><span class="n">g2</span><span class="p">:</span>
+    <span class="n">class1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">class1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">miss1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">class1</span><span class="p">[:</span><span class="mi">100</span><span class="p">]:</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">miss1</span> <span class="o">=</span> <span class="n">miss1</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">miss1</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">miss2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">class1</span><span class="p">[</span><span class="mi">100</span><span class="p">:]:</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">miss2</span> <span class="o">=</span> <span class="n">miss2</span><span class="o">+</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">miss2</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.02
+0.05
+</pre></div>
+</div>
+</div>
+</div>
+<section id="regularized-discriminant-analysis">
+<h3>Regularized discriminant analysis<a class="headerlink" href="#regularized-discriminant-analysis" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(S_i\)</span> be the sample covaraince matrix for class <span class="math notranslate nohighlight">\(i\)</span> and let <span class="math notranslate nohighlight">\(S\)</span> be the covariance matrix of the pool data. The covariance matrix is written as a weighted average of the three special cases</p>
+<div class="math notranslate nohighlight">
+\[w(\lambda) = \lambda S + (1-\lambda) S_i\]</div>
+<div class="math notranslate nohighlight">
+\[v(\lambda,\gamma) = (1-\gamma)w(\lambda) + \gamma\frac{1}{p}tr(w(\lambda))I\]</div>
+<p>When <span class="math notranslate nohighlight">\(\lambda=\gamma=0\)</span>, it is a quadratic classifier.</p>
+<p>When <span class="math notranslate nohighlight">\(\lambda=1\)</span> and <span class="math notranslate nohighlight">\(\gamma=0\)</span>, it is a linear classifier.</p>
+<p>When <span class="math notranslate nohighlight">\(\lambda=0\)</span> and <span class="math notranslate nohighlight">\(\gamma=1\)</span>, the covariance matrices are diagonal with <span class="math notranslate nohighlight">\(\sigma^2\)</span> and it is the nearest mean classifier.</p>
+<p>When <span class="math notranslate nohighlight">\(\lambda=1\)</span> and <span class="math notranslate nohighlight">\(\gamma=1\)</span>, the covariance matrices are diagonal with the same variance.</p>
+<p>The choice of <span class="math notranslate nohighlight">\(\lambda\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> can be optimized by cross-validation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># grid search shrinkage for lda</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">arange</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RepeatedStratifiedKFold</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span>
+<span class="c1"># define dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_informative</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearDiscriminantAnalysis</span><span class="p">(</span><span class="n">solver</span><span class="o">=</span><span class="s1">&#39;lsqr&#39;</span><span class="p">)</span>
+<span class="c1"># define model evaluation method</span>
+<span class="n">cv</span> <span class="o">=</span> <span class="n">RepeatedStratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># define grid</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">grid</span><span class="p">[</span><span class="s1">&#39;shrinkage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="c1"># define search</span>
+<span class="n">search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">grid</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># perform the search</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># summarize</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Accuracy: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">results</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Config: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">results</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean Accuracy: 0.894
+Config: {&#39;shrinkage&#39;: 0.02}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 2: Supervised Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 4: Dimensionality Reduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-estimation">Parameter Estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-normal-distributions-with-different-mean-vectors-and-covariance-matrix">Two normal distributions with different mean vectors and covariance matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-classes-may-have-a-common-covaraince-matrix">Two classes may have a common covaraince matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-off-diagonal-values-of-the-common-covariance-matrix-are-0">The off-diagonal values of the common covariance matrix are 0</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-missing-values">Estimation of Missing Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-classification">Multivariate Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regularized-discriminant-analysis">Regularized discriminant analysis</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

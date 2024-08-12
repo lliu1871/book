@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Lab 1: Natural language processing &#8212; Artificial Intelligence</title>
-    
+    <title>Lab 1: Introduction to Python &#8212; Artificial Intelligence</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -51,615 +62,1118 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Preface" href="preface.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="Lab 2: Supervised Learning" href="lab2.html" />
+    <link rel="prev" title="Chapter 6. Computer Vision" href="chap6.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Artificial Intelligence</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents                              
                 </a>
             </li>
         </ul>
-        <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lab 1: Natural language processing
-  </a>
- </li>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1. History of AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2. Intelligent Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3. Knowledge Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5. Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6. Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Natural Language Processing</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab1.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab1.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/lab1.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/lab1.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#text-to-speech">
-   Text to speech
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-package-texttospeech">
-     Python package - texttospeech
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-package-gtts">
-     Python package - gTTS
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-package-pyttsx3">
-     Python package - pyttsx3
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#speech-to-text">
-   Speech to text
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 1: Natural language processing</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#text-to-speech">
-   Text to speech
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-package-texttospeech">
-     Python package - texttospeech
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-package-gtts">
-     Python package - gTTS
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-package-pyttsx3">
-     Python package - pyttsx3
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#speech-to-text">
-   Speech to text
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 1: Introduction to Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-python-program">Your First Python Program</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-syntax">Basic Syntax</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-module">Python module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-object-oriented-programming">Python Object Oriented Programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-class-and-object">Python Class and Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-inheritance">Python Inheritance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-encapsulation">Python Encapsulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polymorphism">Polymorphism</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-data">Loading data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boston-data">Boston data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-data">Iris data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-two-features">The first two features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-first-two-features">Plot the first two features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-first-three-pca-dimensions">Plot the first three PCA dimensions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digit-data">Digit data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-an-image">Plot an image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-data">Simulating data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-numbers-0-1">Generate random numbers [0,1]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-integers">Generate random integers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-random-sample-without-replacement">Generating a random sample without replacement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-random-numbers-from-distributions">Generating random numbers from distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-2d-classification-points">Generate 2D classification points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-circle-data-for-classification">Generating circle data for classification</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
-  <section class="tex2jax_ignore mathjax_ignore" id="lab-1-natural-language-processing">
-<h1>Lab 1: Natural language processing<a class="headerlink" href="#lab-1-natural-language-processing" title="Permalink to this headline">#</a></h1>
-<section id="text-to-speech">
-<h2>Text to speech<a class="headerlink" href="#text-to-speech" title="Permalink to this headline">#</a></h2>
-<p>We use google API text-to-speech to convert text to speech. The user must already have a google account and configure the google cloud console =&gt; APIs and Services =&gt; <strong>Enable API and Services</strong> and <strong>Credentials</strong>.</p>
-<section id="python-package-texttospeech">
-<h3>Python package - texttospeech<a class="headerlink" href="#python-package-texttospeech" title="Permalink to this headline">#</a></h3>
-<p>To use google text-to-speech API in python, we need to download and install the <a class="reference external" href="https://cloud.google.com/sdk/docs/">google-cloud-sdk</a>. We also need to install the following python packages.</p>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-1-introduction-to-python">
+<h1>Lab 1: Introduction to Python<a class="headerlink" href="#lab-1-introduction-to-python" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p>pip install google-api-python-client</p></li>
-<li><p>pip install os</p></li>
+<li><p><a class="reference external" href="https://www.w3schools.com/python/default.asp">Python Tutorial</a></p></li>
 </ul>
-<p>Read the input text file in python and print out the text.</p>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kqtD5dpn9C8?si=Oucu0vicsWG8dWtO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<p>Python is a versatile and powerful programming language used in various fields such as web development, data analysis, artificial intelligence, and more. In this tutorial, we’ll cover the basics of Python programming for beginners.</p>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h3>
+<p>Before we start, you need to have Python installed on your computer. You can download and install Python from the official website: <a class="reference external" href="http://Python.org">Python.org</a></p>
+</section>
+<section id="getting-started">
+<h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h3>
+<p>Once Python is installed, you can start writing and executing Python code using a text editor or an Integrated Development Environment (IDE) such as PyCharm, VSCode, or Jupyter Notebook.</p>
+<section id="your-first-python-program">
+<h4>Your First Python Program<a class="headerlink" href="#your-first-python-program" title="Permalink to this heading">#</a></h4>
+<p>Let’s start with a simple “Hello, World!” program, a tradition for beginners in programming:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s2">&quot;./data/test.txt&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>却说雨村忙回头看时，不是别人，乃是当日同僚一案参革的号张如圭者。他本系此地人，革后家居，今打听得都中奏准起复旧员之信，他便四下里寻情找门路，忽遇见雨村，故忙道喜。二人见了礼，张如圭便将此信告诉雨村，雨村自是欢喜，忙忙的叙了两句，遂作别各自回家。冷子兴听得此言，便忙献计，令雨村央烦林如海，转向都中去央烦贾政。雨村领其意，作别回至馆中，忙寻邸报看真确了。
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, World!
 </pre></div>
 </div>
 </div>
 </div>
-<p>The text is converted to speech and saved in an audio file output.mp3.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
-
-<span class="c1"># Instantiates a client</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="o">.</span><span class="n">TextToSpeechClient</span><span class="p">()</span>
-
-<span class="c1"># Set the text input to be synthesized</span>
-<span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="o">.</span><span class="n">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># Build the voice request, select the language code (&quot;en-US&quot;) and the ssml</span>
-<span class="c1"># voice gender (&quot;neutral&quot;)</span>
-<span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="o">.</span><span class="n">VoiceSelectionParams</span><span class="p">(</span>
-    <span class="n">language_code</span><span class="o">=</span><span class="s2">&quot;cmn-CN&quot;</span><span class="p">,</span> <span class="n">ssml_gender</span><span class="o">=</span><span class="n">texttospeech</span><span class="o">.</span><span class="n">SsmlVoiceGender</span><span class="o">.</span><span class="n">NEUTRAL</span>
-<span class="p">)</span>
-
-<span class="c1"># Select the type of audio file you want returned</span>
-<span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="o">.</span><span class="n">AudioConfig</span><span class="p">(</span>
-    <span class="n">audio_encoding</span><span class="o">=</span><span class="n">texttospeech</span><span class="o">.</span><span class="n">AudioEncoding</span><span class="o">.</span><span class="n">MP3</span>
-<span class="p">)</span>
-
-<span class="c1"># Perform the text-to-speech request on the text input with the selected</span>
-<span class="c1"># voice parameters and audio file type</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">synthesize_speech</span><span class="p">(</span>
-    <span class="nb">input</span><span class="o">=</span><span class="n">synthesis_input</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="n">voice</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span>
-<span class="p">)</span>
-
-<span class="c1"># The response&#39;s audio_content is binary.</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;./_build/html/_images/output.mp3&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
-    <span class="c1"># Write the response to the output file.</span>
-    <span class="n">out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">audio_content</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Click the audio player to listen to the speech.</p>
-<audio controls>
-  <source src="_images/output.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<p>Alternatively, you may play the audio file in python.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;start output.mp3&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>To run this program, save it with a .py extension (e.g., <a class="reference external" href="http://hello.py">hello.py</a>), open a terminal or command prompt, navigate to the directory where the file is located, and type python <a class="reference external" href="http://hello.py">hello.py</a>. You should see the output Hello, World! printed to the console.</p>
 </section>
-<section id="python-package-gtts">
-<h3>Python package - gTTS<a class="headerlink" href="#python-package-gtts" title="Permalink to this headline">#</a></h3>
-<p>The package gTTS is a wrapper of the google API text-to-speech to convert text to speech. The speech is at a slow rate.</p>
-<ul class="simple">
-<li><p>pip install gTTS</p></li>
-</ul>
+<section id="basic-syntax">
+<h4>Basic Syntax<a class="headerlink" href="#basic-syntax" title="Permalink to this heading">#</a></h4>
+<p>Python syntax is straightforward and easy to read. Here are some basic concepts:</p>
+<p>Variables: Used to store data. You can assign values to variables using the = operator.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
-
-<span class="n">tts</span> <span class="o">=</span> <span class="n">gTTS</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="s1">&#39;zh-CN&#39;</span><span class="p">,</span> <span class="n">slow</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">tts</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;./_build/html/_images/slow.mp3&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Click the audio player to listen to the slower speech.</p>
-<audio controls>
-  <source src="_images/slow.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">playsound</span> <span class="kn">import</span> <span class="n">playsound</span>
-<span class="kn">import</span> <span class="nn">os</span>
-
-<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;start hello.mp3&#39;</span><span class="p">)</span>
-<span class="n">playsound</span><span class="p">(</span><span class="s2">&quot;hello.mp3&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="python-package-pyttsx3">
-<h3>Python package - pyttsx3<a class="headerlink" href="#python-package-pyttsx3" title="Permalink to this headline">#</a></h3>
-<p>The package pyttsx3 takes Microsoft speech utility to convert text to speech. Check setting -&gt; Region and language -&gt; Language and install the needed languages. By default, English has been installed. If you need to install other languages, please make to also add voices in the “Speech” section.</p>
-<ul class="simple">
-<li><p>pip insatall pyttsx3</p></li>
-</ul>
+<p>Data Types: Python supports various data types such as integers, floats, strings, lists, tuples, dictionaries, etc.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyttsx3</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integer</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">25</span>
 
-<span class="n">audio</span> <span class="o">=</span> <span class="n">pyttsx3</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>  
-<span class="n">voices</span> <span class="o">=</span> <span class="n">audio</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;voices&#39;</span><span class="p">)</span> 
+<span class="c1"># Float</span>
+<span class="n">height</span> <span class="o">=</span> <span class="mf">5.9</span>
 
-<span class="k">for</span> <span class="n">voice</span> <span class="ow">in</span> <span class="n">voices</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Voice:&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - ID: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">voice</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - Name: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">voice</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - Languages: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">voice</span><span class="o">.</span><span class="n">languages</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - Gender: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">voice</span><span class="o">.</span><span class="n">gender</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; - Age: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">voice</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+<span class="c1"># String</span>
+<span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello, Python!&quot;</span>
 
+<span class="c1"># List</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 
-<span class="n">audio</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;rate&#39;</span><span class="p">,</span> <span class="mi">110</span><span class="p">)</span>
-<span class="n">audio</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;volume&#39;</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">)</span>
-<span class="n">audio</span><span class="o">.</span><span class="n">setProperty</span><span class="p">(</span><span class="s1">&#39;voice&#39;</span><span class="p">,</span> <span class="n">voices</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="c1"># Tuple</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 
-<span class="c1">#audio.say(x)</span>
-<span class="c1">#audio.runAndWait()</span>
+<span class="c1"># Dictionary</span>
+<span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Control Structures: Python uses indentation to define code blocks. Common control structures include if-else statements, loops, and functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If-else statement</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Positive&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Negative&quot;</span><span class="p">)</span>
 
-<span class="n">audio</span><span class="o">.</span><span class="n">save_to_file</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s1">&#39;./_build/html/_images/pyttsx3.mp3&#39;</span><span class="p">)</span>
-<span class="n">audio</span><span class="o">.</span><span class="n">runAndWait</span><span class="p">()</span>
+<span class="c1"># Loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># Function</span>
+<span class="k">def</span> <span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello,&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+    
+<span class="n">greet</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Voice:
- - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0
- - Name: Microsoft David Desktop - English (United States)
- - Languages: []
- - Gender: None
- - Age: None
-Voice:
- - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0
- - Name: Microsoft Zira Desktop - English (United States)
- - Languages: []
- - Gender: None
- - Age: None
-Voice:
- - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ZH-CN_HUIHUI_11.0
- - Name: Microsoft Huihui Desktop - Chinese (Simplified)
- - Languages: []
- - Gender: None
- - Age: None
-Voice:
- - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ZH-TW_HANHAN_11.0
- - Name: Microsoft Hanhan Desktop - Chinese (Taiwan)
- - Languages: []
- - Gender: None
- - Age: None
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Positive
+0
+1
+2
+3
+4
+Hello, Alice
 </pre></div>
 </div>
 </div>
 </div>
-<p>Click the audio player to listen to the Taiwan accent speech.</p>
-<audio controls>
-  <source src="_images/pyttsx3.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-</section>
-</section>
-<section id="speech-to-text">
-<h2>Speech to text<a class="headerlink" href="#speech-to-text" title="Permalink to this headline">#</a></h2>
-<p>Convert an Audio file to transcript using a python package SpeechRecognition.</p>
-<ul class="simple">
-<li><p>pip install SpeechRecognition</p></li>
-</ul>
-<audio controls>
-  <source src="_images/preamble.wav" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio><div class="cell docutils container">
+<p>Example of a recursive function</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">speech_recognition</span> <span class="k">as</span> <span class="nn">sr</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This is a recursive function</span>
+<span class="sd">    to find the factorial of an integer&quot;&quot;&quot;</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">Recognizer</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 
-<span class="k">with</span> <span class="n">sr</span><span class="o">.</span><span class="n">AudioFile</span><span class="p">(</span><span class="s1">&#39;./data/preamble.wav&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">source</span><span class="p">:</span>
-    <span class="n">audio_text</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>    
-        <span class="c1"># using google speech recognition</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">recognize_google</span><span class="p">(</span><span class="n">audio_text</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Converting audio transcripts into text ...&#39;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sorry.. run again...&#39;</span><span class="p">)</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The factorial of&quot;</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span> <span class="n">factorial</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result2:
-{   &#39;alternative&#39;: [   {   &#39;confidence&#39;: 0.96939272,
-                           &#39;transcript&#39;: &#39;we the people of the United States &#39;
-                                         &#39;in order to form a more perfect &#39;
-                                         &#39;union establish justice and sure &#39;
-                                         &#39;domestic tranquility provide for the &#39;
-                                         &#39;common defense promote the general &#39;
-                                         &#39;welfare and secure the blessings of &#39;
-                                         &#39;liberty to ourselves and our &#39;
-                                         &#39;posterity do ordain and establish &#39;
-                                         &#39;this constitution for the United &#39;
-                                         &#39;States of America&#39;},
-                       {   &#39;transcript&#39;: &#39;we the people of the United States &#39;
-                                         &#39;in order to form a more perfect &#39;
-                                         &#39;union establish justice and sure &#39;
-                                         &#39;domestic tranquility provide for the &#39;
-                                         &#39;common defense promote the general &#39;
-                                         &#39;welfare and secure the blessings of &#39;
-                                         &#39;liberty to ourselves and our &#39;
-                                         &#39;posterity to ordain and establish &#39;
-                                         &#39;this constitution for the United &#39;
-                                         &#39;States of America&#39;}],
-    &#39;final&#39;: True}
-Converting audio transcripts into text ...
-we the people of the United States in order to form a more perfect union establish justice and sure domestic tranquility provide for the common defense promote the general welfare and secure the blessings of liberty to ourselves and our posterity do ordain and establish this constitution for the United States of America
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The factorial of 3 is 6
 </pre></div>
 </div>
 </div>
 </div>
+<p>In Python, a lambda function is a special type of function without the function name. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># lambda that accepts one argument</span>
+<span class="n">greet_user</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">name</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hey there,&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="n">greet_user</span><span class="p">(</span><span class="s1">&#39;Delilah&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hey there, Delilah
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="python-module">
+<h3>Python module<a class="headerlink" href="#python-module" title="Permalink to this heading">#</a></h3>
+<p>As our program grows bigger, it may contain many lines of code. Instead of putting everything in a single file, we can use modules to separate codes in separate files as per their functionality. This makes our code organized and easier to maintain.</p>
+<p>Module is a file that contains code to perform a specific task. A module may contain variables, functions, classes etc. Let’s see an example,</p>
+<p>Let us create a module. Type the following and save it as <a class="reference external" href="http://example.py">example.py</a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python Module addition</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+   <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+   <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>Here, we have defined a function add() inside a module named example. The function takes in two numbers and returns their sum. We can import the definitions inside a module to another module or the interactive interpreter in Python. We use the import keyword to do this. To import our previously defined module example, we type the following in the Python prompt.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">example</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="python-object-oriented-programming">
+<h2>Python Object Oriented Programming<a class="headerlink" href="#python-object-oriented-programming" title="Permalink to this heading">#</a></h2>
+<p>Python is a versatile programming language that supports various programming styles, including object-oriented programming (OOP) through the use of objects and classes.</p>
+<p>An object is any entity that has attributes and behaviors. For example, a parrot is an object. It has</p>
+<p>attributes - name, age, color, etc.
+behavior - dancing, singing, etc.
+Similarly, a class is a blueprint for that object.</p>
+<section id="python-class-and-object">
+<h3>Python Class and Object<a class="headerlink" href="#python-class-and-object" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Parrot</span><span class="p">:</span>
+
+    <span class="c1"># class attribute</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">age</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># create parrot1 object</span>
+<span class="n">parrot1</span> <span class="o">=</span> <span class="n">Parrot</span><span class="p">()</span>
+<span class="n">parrot1</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Blu&quot;</span>
+<span class="n">parrot1</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># create another object parrot2</span>
+<span class="n">parrot2</span> <span class="o">=</span> <span class="n">Parrot</span><span class="p">()</span>
+<span class="n">parrot2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Woo&quot;</span>
+<span class="n">parrot2</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">15</span>
+
+<span class="c1"># access attributes</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">parrot1</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">parrot1</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">parrot2</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">parrot2</span><span class="o">.</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Blu is 10 years old
+Woo is 15 years old
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="python-inheritance">
+<h3>Python Inheritance<a class="headerlink" href="#python-inheritance" title="Permalink to this heading">#</a></h3>
+<p>Inheritance is a way of creating a new class for using details of an existing class without modifying it.</p>
+<p>The newly formed class is a derived class (or child class). Similarly, the existing class is a base class (or parent class).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># base class</span>
+<span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="nf">eat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;I can eat!&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">sleep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I can sleep!&quot;</span><span class="p">)</span>
+
+<span class="c1"># derived class</span>
+<span class="k">class</span> <span class="nc">Dog</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">bark</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;I can bark! Woof woof!!&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create object of the Dog class</span>
+<span class="n">dog1</span> <span class="o">=</span> <span class="n">Dog</span><span class="p">()</span>
+
+<span class="c1"># Calling members of the base class</span>
+<span class="n">dog1</span><span class="o">.</span><span class="n">eat</span><span class="p">()</span>
+<span class="n">dog1</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span>
+
+<span class="c1"># Calling member of the derived class</span>
+<span class="n">dog1</span><span class="o">.</span><span class="n">bark</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I can eat!
+I can sleep!
+I can bark! Woof woof!!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="python-encapsulation">
+<h3>Python Encapsulation<a class="headerlink" href="#python-encapsulation" title="Permalink to this heading">#</a></h3>
+<p>Encapsulation is one of the key features of object-oriented programming. Encapsulation refers to the bundling of attributes and methods inside a single class.</p>
+<p>It prevents outer classes from accessing and changing attributes and methods of a class. This also helps to achieve data hiding.</p>
+<p>In Python, we denote private attributes using underscore as the prefix i.e single _ or double __. For example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Computer</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__maxprice</span> <span class="o">=</span> <span class="mi">900</span>
+
+    <span class="k">def</span> <span class="nf">sell</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selling Price: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__maxprice</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">setMaxPrice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">price</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__maxprice</span> <span class="o">=</span> <span class="n">price</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">Computer</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">sell</span><span class="p">()</span>
+
+<span class="c1"># change the price</span>
+<span class="n">c</span><span class="o">.</span><span class="n">__maxprice</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">c</span><span class="o">.</span><span class="n">sell</span><span class="p">()</span>
+
+<span class="c1"># using setter function</span>
+<span class="n">c</span><span class="o">.</span><span class="n">setMaxPrice</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">c</span><span class="o">.</span><span class="n">sell</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selling Price: 900
+Selling Price: 900
+Selling Price: 1000
+</pre></div>
+</div>
+</div>
+</div>
+<p>We used <strong>init</strong>() method to store the maximum selling price of Computer. Here, notice the code c.__maxprice = 1000</p>
+<p>Here, we have tried to modify the value of __maxprice outside of the class. However, since __maxprice is a private variable, this modification is not seen on the output.</p>
+<p>As shown, to change the value, we have to use a setter function i.e setMaxPrice() which takes price as a parameter.</p>
+</section>
+<section id="polymorphism">
+<h3>Polymorphism<a class="headerlink" href="#polymorphism" title="Permalink to this heading">#</a></h3>
+<p>Polymorphism is another important concept of object-oriented programming. It simply means more than one form.</p>
+<p>That is, the same entity (method or operator or object) can perform different operations in different scenarios.</p>
+<p>Let’s see an example,</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Polygon</span><span class="p">:</span>
+    <span class="c1"># method to render a shape</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rendering Polygon...&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Square</span><span class="p">(</span><span class="n">Polygon</span><span class="p">):</span>
+    <span class="c1"># renders Square</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rendering Square...&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Circle</span><span class="p">(</span><span class="n">Polygon</span><span class="p">):</span>
+    <span class="c1"># renders circle</span>
+    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rendering Circle...&quot;</span><span class="p">)</span>
+    
+<span class="c1"># create an object of Square</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span>
+<span class="n">s1</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
+<span class="c1"># create an object of Circle</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">()</span>
+<span class="n">c1</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Rendering Square...
+Rendering Circle...
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above example, we have created a superclass: Polygon and two subclasses: Square and Circle. Notice the use of the render() method.</p>
+<p>The main purpose of the render() method is to render the shape. However, the process of rendering a square is different from the process of rendering a circle.</p>
+<p>Hence, the render() method behaves differently in different classes. Or, we can say render() is polymorphic.</p>
+</section>
+</section>
+<section id="loading-data">
+<h2>Loading data<a class="headerlink" href="#loading-data" title="Permalink to this heading">#</a></h2>
+<section id="boston-data">
+<h3>Boston data<a class="headerlink" href="#boston-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_diabetes</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">load_diabetes</span><span class="p">(</span><span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(442, 10)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.00188202, -0.04464164],
+       [ 0.08529891,  0.05068012]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="iris-data">
+<h3>Iris data<a class="headerlink" href="#iris-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 4)
+[&#39;setosa&#39; &#39;versicolor&#39; &#39;virginica&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="the-first-two-features">
+<h4>The first two features<a class="headerlink" href="#the-first-two-features" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="plot-the-first-two-features">
+<h4>Plot the first two features<a class="headerlink" href="#plot-the-first-two-features" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span>
+            <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sepal length&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sepal width&#39;</span><span class="p">)</span>
+
+<span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.5</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.5</span>
+<span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mf">.5</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">.5</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">x_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e4306c9da1b033b89fa9a127f45111d334531e580cbdd4399cee2e6131d18180.png" src="_images/e4306c9da1b033b89fa9a127f45111d334531e580cbdd4399cee2e6131d18180.png" />
+</div>
+</div>
+</section>
+<section id="plot-the-first-three-pca-dimensions">
+<h4>Plot the first three PCA dimensions<a class="headerlink" href="#plot-the-first-three-pca-dimensions" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">Axes3D</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">elev</span><span class="o">=-</span><span class="mi">150</span><span class="p">,</span> <span class="n">azim</span><span class="o">=</span><span class="mi">110</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_reduced</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Set1</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;First three PCA directions&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;1st eigenvector&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;2nd eigenvector&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;3rd eigenvector&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">zaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 800x600 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="digit-data">
+<h3>Digit data<a class="headerlink" href="#digit-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
+<span class="n">digits</span> <span class="o">=</span> <span class="n">load_digits</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1797, 64)
+[0 1 2 ... 8 9 8]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="plot-an-image">
+<h4>Plot an image<a class="headerlink" href="#plot-an-image" title="Permalink to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">gray</span><span class="p">()</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">images</span><span class="p">[</span><span class="mi">17</span><span class="p">])</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="_images/a54763a9ca7ee72af9642b2f0419e8ac80f766c6e34fefb62751aeba4fb623dc.png" src="_images/a54763a9ca7ee72af9642b2f0419e8ac80f766c6e34fefb62751aeba4fb623dc.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="simulating-data">
+<h2>Simulating data<a class="headerlink" href="#simulating-data" title="Permalink to this heading">#</a></h2>
+<section id="generate-random-numbers-0-1">
+<h3>Generate random numbers [0,1]<a class="headerlink" href="#generate-random-numbers-0-1" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">seed</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">random</span>
+
+<span class="n">seed</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.10682853770165568
+0.7025855239868555
+0.6520420203142754
+0.9403523895661179
+0.27111522656032316
+0.25577551343303917
+0.7340593641446967
+0.6584500182400758
+0.3029879738883551
+0.6842331280769555
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generate-random-integers">
+<h3>Generate random integers<a class="headerlink" href="#generate-random-integers" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">seed</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+<span class="c1"># seed random number generator</span>
+<span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># generate some integers</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+9
+1
+4
+1
+7
+7
+7
+10
+6
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generating-a-random-sample-without-replacement">
+<h3>Generating a random sample without replacement<a class="headerlink" href="#generating-a-random-sample-without-replacement" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select a random sample without replacement</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">seed</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">sample</span>
+<span class="c1"># seed random number generator</span>
+<span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># prepare a sequence</span>
+<span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+<span class="c1"># select a subset without replacement</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+[4, 18, 2, 8, 3]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="generating-random-numbers-from-distributions">
+<h3>Generating random numbers from distributions<a class="headerlink" href="#generating-random-numbers-from-distributions" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># seed random number generator</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># generate some Gaussian values</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Normal distribution&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># generate uniform    </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Uniform&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># generate exponential    </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Exponential&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">expovariate</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>   
+    
+<span class="c1"># generate Gamma  </span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Gamma&quot;</span><span class="p">)</span>
+<span class="n">value</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">gammavariate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> 
+
+<span class="c1"># generate multivariate normal</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Multivariate normal&quot;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">multivariate_normal</span>
+
+<span class="n">rmvn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">[:]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[[</span><span class="mf">0.1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">rmvn</span><span class="p">[</span><span class="n">i</span><span class="p">,]</span> <span class="o">=</span> <span class="n">multivariate_normal</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">mean</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="p">[[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rmvn</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rmvn</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">rmvn</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">s</span><span class="o">=</span> <span class="mi">30</span><span class="o">*</span><span class="p">(</span><span class="n">rmvn</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">rmvn</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Normal distribution
+1.2881847531554629
+1.4494456086997711
+0.06633580893826191
+-0.7645436509716318
+-1.0921732151041414
+0.03133451683171687
+-1.022103170010873
+-1.4368294451025299
+0.19931197648375384
+0.13337460465860485
+
+Uniform
+0.8357651039198697
+0.43276706790505337
+0.762280082457942
+0.0021060533511106927
+0.4453871940548014
+0.7215400323407826
+0.22876222127045265
+0.9452706955539223
+0.9014274576114836
+0.030589983033553536
+
+Exponential
+0.0025775205901396527
+0.07796041064717965
+0.27993297008677476
+0.04799800085423127
+0.02441110881957027
+0.054838311851086355
+0.0029470817314445606
+0.025063251747169862
+0.05760534377901244
+0.06848065433446529
+
+Gamma
+[2.65378588315137, 2.6249077647307697, 2.4689980651293686, 6.15452086198919, 3.4218277115754687, 0.21723971267174863, 18.175572426085274, 8.129544896439866, 10.280448736365472, 2.05679767145641]
+
+Multivariate normal
+[[ 0.09194802  0.41054222]
+ [ 1.52936003  0.24375493]
+ [-0.85884242 -0.37382967]
+ [ 1.15180345  1.49373797]
+ [-1.58159697  1.25226255]
+ [ 0.70696171 -0.11107303]
+ [ 1.94394497  0.49280494]
+ [-1.10105597 -0.27149524]
+ [ 1.04725091 -0.03466518]
+ [ 0.83110543 -1.52585152]]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x17f7fb340&gt;
+</pre></div>
+</div>
+<img alt="_images/24e51b5fca9a4496a9287765610e9602363214af09410dd8e51a91e97a14bff1.png" src="_images/24e51b5fca9a4496a9287765610e9602363214af09410dd8e51a91e97a14bff1.png" />
+</div>
+</div>
+</section>
+<section id="generate-2d-classification-points">
+<h3>Generate 2D classification points<a class="headerlink" href="#generate-2d-classification-points" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="c1"># generate 2d classification dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># scatter plot, dots colored by class value</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;green&#39;</span><span class="p">}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">grouped</span><span class="p">:</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b34a6ba18c53a2dd07b99ae0ffd69c67becc636efa2cfc6079fb071c1a7c1197.png" src="_images/b34a6ba18c53a2dd07b99ae0ffd69c67becc636efa2cfc6079fb071c1a7c1197.png" />
+</div>
+</div>
+</section>
+<section id="generating-circle-data-for-classification">
+<h3>Generating circle data for classification<a class="headerlink" href="#generating-circle-data-for-classification" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_circles</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="c1"># generate 2d classification dataset</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_circles</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="c1"># scatter plot, dots colored by class value</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">X</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">y</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;blue&#39;</span><span class="p">}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">grouped</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">grouped</span><span class="p">:</span>
+    <span class="n">group</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/9c7d5ca58acb087f8e4ac28b5410b596a4195810e787a43a9bffdf05ec25bd0b.png" src="_images/9c7d5ca58acb087f8e4ac28b5410b596a4195810e787a43a9bffdf05ec25bd0b.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 
@@ -675,7 +1189,7 @@ we the people of the United States in order to form a more perfect union establi
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -683,43 +1197,144 @@ we the people of the United States in order to form a more perfect union establi
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="preface.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Preface</p>
-        </div>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
 
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap6.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 6. Computer Vision</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="lab2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 2: Supervised Learning</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started">Getting Started</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#your-first-python-program">Your First Python Program</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-syntax">Basic Syntax</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-module">Python module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-object-oriented-programming">Python Object Oriented Programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-class-and-object">Python Class and Object</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-inheritance">Python Inheritance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-encapsulation">Python Encapsulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polymorphism">Polymorphism</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-data">Loading data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boston-data">Boston data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-data">Iris data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-two-features">The first two features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-first-two-features">Plot the first two features</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-the-first-three-pca-dimensions">Plot the first three PCA dimensions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#digit-data">Digit data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-an-image">Plot an image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulating-data">Simulating data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-numbers-0-1">Generate random numbers [0,1]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-random-integers">Generate random integers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-a-random-sample-without-replacement">Generating a random sample without replacement</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-random-numbers-from-distributions">Generating random numbers from distributions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-2d-classification-points">Generate 2D classification points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-circle-data-for-classification">Generating circle data for classification</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

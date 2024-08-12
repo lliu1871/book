@@ -7,11 +7,7 @@
 <br>
 <br>
 <br>
-<br>
-<br>
 Artificial Intelligence
-<br>
-<br>
 <br>
 <br>
 <br>
@@ -23,7 +19,8 @@ Artificial Intelligence
 </h1>
 
 ---
-# Table of Contents
+# Table of Contents &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
 ```{tableofcontents}
 ```
+[book cover](./image/cover.jpg)

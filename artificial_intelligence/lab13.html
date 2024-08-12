@@ -1,0 +1,1753 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 13: Reinforcement Learning &#8212; Artificial Intelligence</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab13';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab 14: Natural Language Processing" href="lab14.html" />
+    <link rel="prev" title="Lab 12: Hidden Markov Models" href="lab12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1. History of AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2. Intelligent Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3. Knowledge Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5. Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6. Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab13.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab13.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 13: Reinforcement Learning</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-reinforcement-learning">Components of Reinforcement Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-process">Learning Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-with-q-learning">Reinforcement Learning with Q-Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-overview">Algorithm Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mountaincar">MountainCar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blob">Blob</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taxi-driver">Taxi Driver</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-13-reinforcement-learning">
+<h1>Lab 13: Reinforcement Learning<a class="headerlink" href="#lab-13-reinforcement-learning" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement learning at Wikipedia</a></p></li>
+</ul>
+</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yMk_XtIEzH8?si=X-dCm1-zSB27DcVP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<p>Reinforcement learning (RL) is a type of machine learning paradigm where an agent learns to make decisions by interacting with an environment. The agent learns to achieve a goal by receiving feedback in the form of rewards or penalties for its actions.</p>
+<section id="components-of-reinforcement-learning">
+<h2>Components of Reinforcement Learning<a class="headerlink" href="#components-of-reinforcement-learning" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Agent</strong>: The entity that learns to interact with the environment. It makes decisions based on the information it receives from the environment.</p></li>
+<li><p><strong>Environment</strong>: The external system with which the agent interacts. It provides feedback to the agent based on its actions and possibly changes state accordingly.</p></li>
+<li><p><strong>State</strong>: A representation of the environment at a particular time. It captures all relevant information needed to make decisions.</p></li>
+<li><p><strong>Action</strong>: The choices available to the agent at each state. These actions lead to transitions to new states and potentially result in rewards or penalties.</p></li>
+<li><p><strong>Reward</strong>: Feedback provided to the agent after taking an action in a particular state. The goal of the agent is to maximize cumulative rewards over time.</p></li>
+</ol>
+</section>
+<section id="key-concepts">
+<h2>Key Concepts<a class="headerlink" href="#key-concepts" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Exploration vs. Exploitation</strong>: Balancing between trying out new actions (exploration) and selecting actions that have yielded high rewards in the past (exploitation).</p></li>
+<li><p><strong>Policy</strong>: A strategy or set of rules that the agent uses to select actions based on the current state.</p></li>
+<li><p><strong>Value Function</strong>: A function that estimates the expected cumulative reward of taking a particular action in a particular state.</p></li>
+</ul>
+</section>
+<section id="learning-process">
+<h2>Learning Process<a class="headerlink" href="#learning-process" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Initialization</strong>: Initialize the agent, environment, and any necessary parameters.</p></li>
+<li><p><strong>Interaction</strong>: The agent interacts with the environment by taking actions based on its current state.</p></li>
+<li><p><strong>Feedback</strong>: The environment provides feedback in the form of rewards or penalties.</p></li>
+<li><p><strong>Learning</strong>: The agent updates its policy or value function based on the received feedback to improve its decision-making process.</p></li>
+<li><p><strong>Repeat</strong>: Iteratively interact, receive feedback, and update until the agent learns an optimal policy or converges to a satisfactory solution.</p></li>
+</ol>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Game Playing</strong>: RL has been successfully applied to games like chess, Go, and video games.</p></li>
+<li><p><strong>Robotics</strong>: RL enables robots to learn to perform complex tasks such as grasping objects or navigating environments.</p></li>
+<li><p><strong>Recommendation Systems</strong>: RL can be used to optimize recommendations based on user interactions.</p></li>
+</ul>
+</section>
+<section id="algorithms">
+<h2>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this heading">#</a></h2>
+<p>Popular reinforcement learning algorithms include:</p>
+<ul class="simple">
+<li><p><strong>Q-Learning</strong></p></li>
+<li><p><strong>Deep Q-Networks (DQN)</strong></p></li>
+<li><p><strong>Policy Gradient Methods</strong></p></li>
+<li><p><strong>Actor-Critic Methods</strong></p></li>
+</ul>
+<p>These algorithms vary in complexity and are suited to different types of problems.</p>
+<p>Reinforcement learning offers a powerful framework for teaching agents to learn from experience and make decisions in complex environments.</p>
+</section>
+<section id="reinforcement-learning-with-q-learning">
+<h2>Reinforcement Learning with Q-Learning<a class="headerlink" href="#reinforcement-learning-with-q-learning" title="Permalink to this heading">#</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h3>
+<p>Q-Learning is a model-free form of machine learning, where the AI “agent” learns through interaction with an environment without needing prior knowledge of its dynamics. This tutorial demonstrates the Q-learning algorithm using OpenAI’s gym library.</p>
+</section>
+<section id="algorithm-overview">
+<h3>Algorithm Overview<a class="headerlink" href="#algorithm-overview" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Initialization</strong>: Initialize Q-table with zeros.</p></li>
+<li><p><strong>Exploration vs. Exploitation</strong>: Choose action based on an exploration-exploitation trade-off.</p></li>
+<li><p><strong>Update Q-values</strong>: Update Q-values based on observed rewards and transitions.</p></li>
+<li><p><strong>Repeat</strong>: Iterate through steps 2 and 3 until convergence.</p></li>
+</ol>
+</section>
+<section id="environment-setup">
+<h3>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading">#</a></h3>
+<p>We’ll be using OpenAI’s gym library, particularly the “MountainCar-v0” environment. Install gym using pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>gym
+</pre></div>
+</div>
+<p>Most basic gym environments follow a similar structure: initialize the environment with gym.make(NAME), reset the environment with env.reset(), then iterate through a loop where you perform an action with env.step(ACTION) on each iteration.</p>
+<ul class="simple">
+<li><p>Initialize environment: <code class="docutils literal notranslate"><span class="pre">env</span> <span class="pre">=</span> <span class="pre">gym.make('MountainCar-v0')</span></code></p></li>
+<li><p>Reset environment: <code class="docutils literal notranslate"><span class="pre">state</span> <span class="pre">=</span> <span class="pre">env.reset()</span></code></p></li>
+<li><p>Iterate through environment steps: <code class="docutils literal notranslate"><span class="pre">next_state,</span> <span class="pre">reward,</span> <span class="pre">done,</span> <span class="pre">info</span> <span class="pre">=</span> <span class="pre">env.step(action)</span></code></p></li>
+</ul>
+</section>
+<section id="mountaincar">
+<h3>MountainCar<a class="headerlink" href="#mountaincar" title="Permalink to this heading">#</a></h3>
+<p>In this MountainCar example, there are three actions - move left (0), stay still (1), and move right (2).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>When we step the environment, we can pass a 0, 1, or 2 as our “action” for each step. Each time we do this, the environment will return to us the new state and a reward.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s2">&quot;rgb_array&quot;</span><span class="p">)</span>
+<span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+<span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">stepsize</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># always go right!</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+    <span class="n">stepsize</span> <span class="o">=</span> <span class="n">stepsize</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">stepsize</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+      <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lliu/Library/Python/3.9/lib/python/site-packages/gym/utils/passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see, despite asking this car to go right constantly, we can see that it just doesn’t quite have the power to make it. Instead, we need to actually build momentum here to reach that flag. To do that, we’d want to move back and forth to build up momentum. We could program a function to do this task for us, or we can use Q-learning to solve it!</p>
+<p>The following code gives the starting observation state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(array([-0.42914152,  0.        ], dtype=float32), {})
+</pre></div>
+</div>
+</div>
+</div>
+<p>While the environment runs, we can also get this information</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">)</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+
+<span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">stepsize</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">reward</span><span class="p">,</span> <span class="n">new_state</span><span class="p">)</span>
+    <span class="n">stepsize</span> <span class="o">=</span> <span class="n">stepsize</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">stepsize</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+      <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-1.0 [-0.47566447  0.00064653]
+-1.0 [-0.4743762   0.00128826]
+-1.0 [-0.47245577  0.00192043]
+-1.0 [-0.46991742  0.00253836]
+-1.0 [-0.46677992  0.00313749]
+-1.0 [-0.46306652  0.00371341]
+-1.0 [-0.4588046   0.00426191]
+-1.0 [-0.4540256   0.00477901]
+-1.0 [-0.44876462  0.00526099]
+-1.0 [-0.4430602   0.00570443]
+-1.0 [-0.43695393  0.00610626]
+-1.0 [-0.4304902   0.00646371]
+-1.0 [-0.42371577  0.00677444]
+-1.0 [-0.4166793   0.00703648]
+-1.0 [-0.409431    0.00724826]
+-1.0 [-0.40202236  0.00740865]
+-1.0 [-0.39450547  0.00751691]
+-1.0 [-0.38693273  0.00757273]
+-1.0 [-0.37935653  0.00757621]
+-1.0 [-0.37182868  0.00752784]
+-1.0 [-0.36440018  0.00742849]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lliu/Library/Python/3.9/lib/python/site-packages/gym/utils/passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+</pre></div>
+</div>
+</div>
+</div>
+<p>Okay so we can see the reward is just simply -1 always so far. Then we see the observation is yet again these 2 values.</p>
+<p>And again, to our agent, what these values are…really doesn’t matter. But, for your curiosity, the values are position (along an x/horizontal axis) and velocity. So, we can see above that the car was moving left, for example, because velocity is negative.</p>
+<p>With a general position, and a velocity, we could <em>definitely</em> come up with some sort of algorithm that could calculate whether or not we’d make it to the flag, or if we should instead reverse again to build more momentum, so we hope Q learning can do the same. These 2 values are our “observation space.” This space can be of any size, but, the larger it gets, the much larger the Q Table becomes!</p>
+<p>What’s a Q Table!?</p>
+<p>The way Q-Learning works is there’s a “Q” value per action possible per state. This creates a table. In order to figure out all of the possible states, we can either query the environment (if it is kind enough to us to tell us)…or we just simply have to engage in the environment for a while to figure it out.</p>
+<p>In our case, we can query the enviornment to find out the possible ranges for each of these state values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">low</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.6  0.07]
+[-1.2  -0.07]
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the value at index 0, we can see the high value is 0.6, the low is -1.2, and then for the value at index 1, the high is 0.07, and the low is -0.07. Okay, so these are the ranges, but from one of the above observation states that we output: [-0.27508804 -0.00268013], we can see that these numbers can become quite granular. Can you imagine the size of a Q Table if we were going to have a value for every combination of these ranges out to 8 decimal places? That’d be huge! And, more importantly, it’d be useless. We don’t need that much granularity. So, instead, what we want to do is conver these continuous values to discrete values. Basically, we want to bucket/group the ranges into something more manageable.</p>
+<p>We’ll use 20 groups/buckets for each range. This is a variable you might decide to tweak later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DISCRETE_OS_SIZE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">discrete_os_win_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">low</span><span class="p">)</span><span class="o">/</span><span class="n">DISCRETE_OS_SIZE</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">discrete_os_win_size</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.09  0.007]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So this tells us how large each bucket is, basically how much to increment the range by for each bucket. We can build our q_table now with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">DISCRETE_OS_SIZE</span> <span class="o">+</span> <span class="p">[</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q_table</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[-1.73451319 -1.4299805  -0.98707016]
+  [-0.34718008 -1.59071108 -1.11409682]
+  [-0.85461408 -1.60088436 -1.75272624]
+  ...
+  [-0.26144333 -0.33761853 -0.07205162]
+  [-0.50025769 -1.06276925 -1.23788001]
+  [-1.31471045 -1.78012738 -1.5390252 ]]
+
+ [[-1.55019343 -1.8998021  -1.13281517]
+  [-0.89012604 -0.24980609 -1.2715517 ]
+  [-1.66311407 -0.95703138 -0.27457745]
+  ...
+  [-1.26298074 -1.50612698 -0.52597472]
+  [-1.73644525 -1.04807438 -1.54185336]
+  [-0.10595788 -1.23507842 -0.11550261]]
+
+ [[-1.92450957 -0.15567416 -0.9053834 ]
+  [-0.94954061 -0.00620197 -0.7632638 ]
+  [-0.33011047 -0.4217951  -1.37623476]
+  ...
+  [-1.94129706 -0.99104427 -1.09205476]
+  [-1.05580051 -1.10254079 -0.31590979]
+  [-1.24115239 -0.75123519 -1.27028236]]
+
+ ...
+
+ [[-1.71711356 -1.48486903 -1.80113202]
+  [-0.95748937 -0.31448357 -0.00675892]
+  [-0.24383471 -0.23221595 -0.90454875]
+  ...
+  [-0.87785871 -0.64956281 -1.8770005 ]
+  [-1.49952525 -1.71936177 -0.97632384]
+  [-0.96208065 -0.27822066 -1.308275  ]]
+
+ [[-1.59843121 -1.80222176 -1.98498718]
+  [-0.71312693 -0.69048134 -1.69808228]
+  [-0.33610158 -0.42440779 -1.36528907]
+  ...
+  [-0.49460287 -1.62895098 -1.19991707]
+  [-1.17882924 -0.47950097 -0.45484114]
+  [-1.72484532 -0.47441606 -1.40790832]]
+
+ [[-1.68221987 -0.48914045 -0.5206072 ]
+  [-0.0506456  -0.45671218 -1.1911721 ]
+  [-0.5334545  -1.07054441 -0.50656567]
+  ...
+  [-1.52626273 -0.67434491 -0.55107693]
+  [-0.63086484 -1.46431556 -1.35111956]
+  [-1.32524598 -1.45370051 -1.70007743]]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The full code is given below</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s2">&quot;rgb_array&quot;</span><span class="p">)</span>
+
+<span class="n">LEARNING_RATE</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">DISCOUNT</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">EPISODES</span> <span class="o">=</span> <span class="mi">25000</span>
+<span class="n">DISCRETE_OS_SIZE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">discrete_os_win_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">low</span><span class="p">)</span><span class="o">/</span><span class="n">DISCRETE_OS_SIZE</span>
+<span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">DISCRETE_OS_SIZE</span> <span class="o">+</span> <span class="p">[</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">]))</span>
+
+<span class="k">def</span> <span class="nf">get_discrete_state</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">discrete_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">state</span> <span class="o">-</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">low</span><span class="p">)</span><span class="o">/</span><span class="n">discrete_os_win_size</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">discrete_state</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>  
+
+<span class="n">discrete_state</span> <span class="o">=</span> <span class="n">get_discrete_state</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span><span class="p">])</span>
+    <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">new_discrete_state</span> <span class="o">=</span> <span class="n">get_discrete_state</span><span class="p">(</span><span class="n">new_state</span><span class="p">)</span>
+    <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+    
+    <span class="c1"># If simulation did not end yet after last step - update Q table</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+        <span class="c1"># Maximum possible Q value in next step (for new state)</span>
+        <span class="n">max_future_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">new_discrete_state</span><span class="p">])</span>
+        <span class="c1"># Current Q value (for current state and performed action)</span>
+        <span class="n">current_q</span> <span class="o">=</span> <span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span> <span class="o">+</span> <span class="p">(</span><span class="n">action</span><span class="p">,)]</span>
+        <span class="c1"># And here&#39;s our equation for a new Q value for current state and action</span>
+        <span class="n">new_q</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">LEARNING_RATE</span><span class="p">)</span> <span class="o">*</span> <span class="n">current_q</span> <span class="o">+</span> <span class="n">LEARNING_RATE</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">DISCOUNT</span> <span class="o">*</span> <span class="n">max_future_q</span><span class="p">)</span>
+        <span class="c1"># Update Q table with new Q value</span>
+        <span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span> <span class="o">+</span> <span class="p">(</span><span class="n">action</span><span class="p">,)]</span> <span class="o">=</span> <span class="n">new_q</span>
+
+    <span class="c1"># Simulation ended (for any reson) - if goal position is achived - update Q value with reward directly</span>
+    <span class="k">elif</span> <span class="n">new_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">env</span><span class="o">.</span><span class="n">goal_position</span><span class="p">:</span>
+        <span class="c1">#q_table[discrete_state + (action,)] = reward</span>
+        <span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span> <span class="o">+</span> <span class="p">(</span><span class="n">action</span><span class="p">,)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">discrete_state</span> <span class="o">=</span> <span class="n">new_discrete_state</span>
+<span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c1">#print the q table</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">q_table</span><span class="p">)</span>
+<span class="c1">#print the final state</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">discrete_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[-1.18316319 -1.43311123 -1.7380446 ]
+  [-1.13397187 -1.66400149 -0.9101195 ]
+  [-0.97829612 -1.90728808 -0.39440227]
+  ...
+  [-1.7113021  -0.69055891 -0.15017944]
+  [-0.45028363 -1.76757807 -0.64262948]
+  [-0.39225416 -0.62038734 -0.73709264]]
+
+ [[-1.92865    -1.63742989 -0.72438744]
+  [-1.39613722 -1.1479615  -0.57776621]
+  [-1.02619527 -0.70484083 -0.44922887]
+  ...
+  [-1.51875743 -1.54006776 -0.93386215]
+  [-0.12152246 -1.96512118 -1.28970586]
+  [-1.8943713  -0.49572293 -0.77674319]]
+
+ [[-1.13360172 -1.86987525 -1.11198149]
+  [-1.41270718 -1.6956795  -0.98746884]
+  [-1.16004665 -0.89035195 -0.58641206]
+  ...
+  [-0.17221747 -1.32070046 -0.34810627]
+  [-0.28798146 -1.20201593 -0.52014643]
+  [-1.89337019 -1.61062775 -0.69973901]]
+
+ ...
+
+ [[-0.80757917 -1.90932501 -0.32658347]
+  [-0.79404768 -0.37693436 -0.54359193]
+  [-1.06148625 -0.71976032 -0.19758403]
+  ...
+  [-1.33454921 -0.27131773 -0.78153349]
+  [-1.77837879 -1.85736648 -1.96532568]
+  [-0.27423561 -0.51885422 -1.30547572]]
+
+ [[-0.60444579 -1.1989472  -1.70004044]
+  [-1.16742716 -0.47806064 -1.41161135]
+  [-0.81528047 -1.76399415 -1.96112465]
+  ...
+  [-1.72889043 -0.66440507 -1.56543523]
+  [-0.35906919 -0.75701106 -1.09773462]
+  [-0.65965281 -1.12692552 -0.04340657]]
+
+ [[-1.57900372 -1.78675319 -1.18091181]
+  [-1.76987497 -1.02884262 -0.25081447]
+  [-0.23360962 -0.51026949 -1.0105813 ]
+  ...
+  [-1.35258799 -1.04900684 -1.76221548]
+  [-0.06505942 -1.33737689 -1.38936183]
+  [-1.16781346 -0.64486949 -1.79573971]]]
+(18, 12)
+</pre></div>
+</div>
+</div>
+</div>
+<p>It does not learn because each time we use a random q-table. The following code can learn the q-table</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># objective is to get the cart to the flag.</span>
+<span class="c1"># for now, let&#39;s just move randomly:</span>
+
+<span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;MountainCar-v0&quot;</span><span class="p">)</span>
+
+<span class="n">LEARNING_RATE</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">DISCOUNT</span> <span class="o">=</span> <span class="mf">0.95</span>
+<span class="n">EPISODES</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">SHOW_EVERY</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">DISCRETE_OS_SIZE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">high</span><span class="p">)</span>
+<span class="n">discrete_os_win_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">low</span><span class="p">)</span><span class="o">/</span><span class="n">DISCRETE_OS_SIZE</span>
+
+<span class="c1">#use these to track various values through training to graph them</span>
+<span class="n">STATS_EVERY</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">ep_rewards</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">aggr_ep_rewards</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ep&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;avg&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+
+<span class="c1"># Exploration settings</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># not a constant, qoing to be decayed</span>
+<span class="n">START_EPSILON_DECAYING</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">END_EPSILON_DECAYING</span> <span class="o">=</span> <span class="n">EPISODES</span><span class="o">//</span><span class="mi">2</span>
+<span class="n">epsilon_decay_value</span> <span class="o">=</span> <span class="n">epsilon</span><span class="o">/</span><span class="p">(</span><span class="n">END_EPSILON_DECAYING</span> <span class="o">-</span> <span class="n">START_EPSILON_DECAYING</span><span class="p">)</span>
+
+
+<span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">DISCRETE_OS_SIZE</span> <span class="o">+</span> <span class="p">[</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">]))</span>
+
+
+<span class="k">def</span> <span class="nf">get_discrete_state</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="n">discrete_state</span> <span class="o">=</span> <span class="p">(</span><span class="n">state</span> <span class="o">-</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">low</span><span class="p">)</span><span class="o">/</span><span class="n">discrete_os_win_size</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">discrete_state</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>  <span class="c1"># we use this tuple to look up the 3 Q values for the available actions in the q-table</span>
+
+
+<span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">EPISODES</span><span class="p">):</span>
+    <span class="n">discrete_state</span> <span class="o">=</span> <span class="n">get_discrete_state</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1">#initial reward for each episode</span>
+    <span class="n">episode_reward</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="n">episode</span> <span class="o">%</span> <span class="n">SHOW_EVERY</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">render</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">render</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">:</span>
+            <span class="c1"># Get action from Q table</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Get random action</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+
+
+        <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="c1">#update reward and state</span>
+        <span class="n">episode_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+        <span class="n">new_discrete_state</span> <span class="o">=</span> <span class="n">get_discrete_state</span><span class="p">(</span><span class="n">new_state</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">episode</span> <span class="o">%</span> <span class="n">SHOW_EVERY</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">max_future_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">new_discrete_state</span><span class="p">])</span>
+            <span class="n">current_q</span> <span class="o">=</span> <span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span> <span class="o">+</span> <span class="p">(</span><span class="n">action</span><span class="p">,)]</span>
+            <span class="n">new_q</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">LEARNING_RATE</span><span class="p">)</span> <span class="o">*</span> <span class="n">current_q</span> <span class="o">+</span> <span class="n">LEARNING_RATE</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">DISCOUNT</span> <span class="o">*</span> <span class="n">max_future_q</span><span class="p">)</span>
+            <span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span> <span class="o">+</span> <span class="p">(</span><span class="n">action</span><span class="p">,)]</span> <span class="o">=</span> <span class="n">new_q</span>
+        <span class="k">elif</span> <span class="n">new_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">env</span><span class="o">.</span><span class="n">goal_position</span><span class="p">:</span>
+            <span class="c1">#q_table[discrete_state + (action,)] = reward</span>
+            <span class="n">q_table</span><span class="p">[</span><span class="n">discrete_state</span> <span class="o">+</span> <span class="p">(</span><span class="n">action</span><span class="p">,)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">discrete_state</span> <span class="o">=</span> <span class="n">new_discrete_state</span>
+    
+    <span class="c1">#save reward for each episode</span>
+    <span class="n">ep_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">episode_reward</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">episode</span> <span class="o">%</span> <span class="n">STATS_EVERY</span><span class="p">:</span>
+        <span class="n">average_reward</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">ep_rewards</span><span class="p">[</span><span class="o">-</span><span class="n">STATS_EVERY</span><span class="p">:])</span><span class="o">/</span><span class="n">STATS_EVERY</span>
+        <span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;ep&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span>
+        <span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;avg&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">average_reward</span><span class="p">)</span>
+        <span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">ep_rewards</span><span class="p">[</span><span class="o">-</span><span class="n">STATS_EVERY</span><span class="p">:]))</span>
+        <span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">ep_rewards</span><span class="p">[</span><span class="o">-</span><span class="n">STATS_EVERY</span><span class="p">:]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Episode: </span><span class="si">{</span><span class="n">episode</span><span class="si">:</span><span class="s1">&gt;5d</span><span class="si">}</span><span class="s1">, average reward: </span><span class="si">{</span><span class="n">average_reward</span><span class="si">:</span><span class="s1">&gt;4.1f</span><span class="si">}</span><span class="s1">, current epsilon: </span><span class="si">{</span><span class="n">epsilon</span><span class="si">:</span><span class="s1">&gt;1.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1">#save q-table</span>
+    <span class="k">if</span> <span class="n">episode</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qtables/</span><span class="si">{</span><span class="n">episode</span><span class="si">}</span><span class="s2">-qtable.npy&quot;</span><span class="p">,</span> <span class="n">q_table</span><span class="p">)</span>
+
+    <span class="c1"># Decaying if episode number is within decaying range</span>
+    <span class="k">if</span> <span class="n">END_EPSILON_DECAYING</span> <span class="o">&gt;=</span> <span class="n">episode</span> <span class="o">&gt;=</span> <span class="n">START_EPSILON_DECAYING</span><span class="p">:</span>
+        <span class="n">epsilon</span> <span class="o">-=</span> <span class="n">epsilon_decay_value</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1">#print out rewards</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;ep&#39;</span><span class="p">],</span> <span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;avg&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;average rewards&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;ep&#39;</span><span class="p">],</span> <span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;max rewards&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;ep&#39;</span><span class="p">],</span> <span class="n">aggr_ep_rewards</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;min rewards&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+Episode:     0, average reward: -1250.8, current epsilon: 1.00
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lliu/Library/Python/3.9/lib/python/site-packages/gym/utils/passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)
+  if not isinstance(terminated, (bool, np.bool8)):
+/Users/lliu/Library/Python/3.9/lib/python/site-packages/gym/envs/classic_control/mountain_car.py:171: UserWarning: <span class=" -Color -Color-Yellow">WARN: You are calling render method without specifying any render mode. You can specify the render_mode at initialization, e.g. gym(&quot;MountainCar-v0&quot;, render_mode=&quot;rgb_array&quot;)</span>
+  gym.logger.warn(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+Episode:    10, average reward: -20995.0, current epsilon: 0.98
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+Episode:    20, average reward: -13578.1, current epsilon: 0.96
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30
+Episode:    30, average reward: -5706.9, current epsilon: 0.94
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40
+Episode:    40, average reward: -4933.3, current epsilon: 0.92
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50
+Episode:    50, average reward: -3410.4, current epsilon: 0.90
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>60
+Episode:    60, average reward: -2265.2, current epsilon: 0.88
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>70
+Episode:    70, average reward: -3305.3, current epsilon: 0.86
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>80
+Episode:    80, average reward: -2670.4, current epsilon: 0.84
+90
+Episode:    90, average reward: -1254.6, current epsilon: 0.82
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100
+Episode:   100, average reward: -1647.6, current epsilon: 0.80
+110
+Episode:   110, average reward: -1696.7, current epsilon: 0.78
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
+Episode:   120, average reward: -1389.9, current epsilon: 0.76
+130
+Episode:   130, average reward: -934.1, current epsilon: 0.74
+140
+Episode:   140, average reward: -835.9, current epsilon: 0.72
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>150
+Episode:   150, average reward: -691.1, current epsilon: 0.70
+160
+Episode:   160, average reward: -952.7, current epsilon: 0.68
+170
+Episode:   170, average reward: -590.5, current epsilon: 0.66
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>180
+Episode:   180, average reward: -588.6, current epsilon: 0.64
+190
+Episode:   190, average reward: -544.2, current epsilon: 0.62
+200
+Episode:   200, average reward: -501.2, current epsilon: 0.60
+210
+Episode:   210, average reward: -433.9, current epsilon: 0.58
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>220
+Episode:   220, average reward: -423.8, current epsilon: 0.56
+230
+Episode:   230, average reward: -416.7, current epsilon: 0.54
+240
+Episode:   240, average reward: -380.1, current epsilon: 0.52
+250
+Episode:   250, average reward: -429.1, current epsilon: 0.50
+260
+Episode:   260, average reward: -346.3, current epsilon: 0.48
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>270
+Episode:   270, average reward: -363.9, current epsilon: 0.46
+280
+Episode:   280, average reward: -310.2, current epsilon: 0.44
+290
+Episode:   290, average reward: -300.9, current epsilon: 0.42
+300
+Episode:   300, average reward: -290.2, current epsilon: 0.40
+310
+Episode:   310, average reward: -338.7, current epsilon: 0.38
+320
+Episode:   320, average reward: -268.0, current epsilon: 0.36
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>330
+Episode:   330, average reward: -248.8, current epsilon: 0.34
+340
+Episode:   340, average reward: -219.3, current epsilon: 0.32
+350
+Episode:   350, average reward: -232.9, current epsilon: 0.30
+360
+Episode:   360, average reward: -244.0, current epsilon: 0.28
+370
+Episode:   370, average reward: -254.7, current epsilon: 0.26
+380
+Episode:   380, average reward: -317.9, current epsilon: 0.24
+390
+Episode:   390, average reward: -225.2, current epsilon: 0.22
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>400
+Episode:   400, average reward: -225.0, current epsilon: 0.20
+410
+Episode:   410, average reward: -214.0, current epsilon: 0.18
+420
+Episode:   420, average reward: -221.5, current epsilon: 0.16
+430
+Episode:   430, average reward: -189.0, current epsilon: 0.14
+440
+Episode:   440, average reward: -202.5, current epsilon: 0.12
+450
+Episode:   450, average reward: -246.0, current epsilon: 0.10
+460
+Episode:   460, average reward: -229.1, current epsilon: 0.08
+470
+Episode:   470, average reward: -212.8, current epsilon: 0.06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>480
+Episode:   480, average reward: -218.1, current epsilon: 0.04
+490
+Episode:   490, average reward: -226.4, current epsilon: 0.02
+500
+Episode:   500, average reward: -155.2, current epsilon: -0.00
+510
+Episode:   510, average reward: -153.4, current epsilon: -0.00
+520
+Episode:   520, average reward: -158.0, current epsilon: -0.00
+530
+Episode:   530, average reward: -141.7, current epsilon: -0.00
+540
+Episode:   540, average reward: -158.3, current epsilon: -0.00
+550
+Episode:   550, average reward: -193.3, current epsilon: -0.00
+560
+Episode:   560, average reward: -204.5, current epsilon: -0.00
+570
+Episode:   570, average reward: -216.6, current epsilon: -0.00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>580
+Episode:   580, average reward: -215.1, current epsilon: -0.00
+590
+Episode:   590, average reward: -217.3, current epsilon: -0.00
+600
+Episode:   600, average reward: -224.8, current epsilon: -0.00
+610
+Episode:   610, average reward: -235.1, current epsilon: -0.00
+620
+Episode:   620, average reward: -224.3, current epsilon: -0.00
+630
+Episode:   630, average reward: -224.0, current epsilon: -0.00
+640
+Episode:   640, average reward: -215.2, current epsilon: -0.00
+650
+Episode:   650, average reward: -189.5, current epsilon: -0.00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>660
+Episode:   660, average reward: -203.5, current epsilon: -0.00
+670
+Episode:   670, average reward: -200.2, current epsilon: -0.00
+680
+Episode:   680, average reward: -217.9, current epsilon: -0.00
+690
+Episode:   690, average reward: -221.8, current epsilon: -0.00
+700
+Episode:   700, average reward: -171.4, current epsilon: -0.00
+710
+Episode:   710, average reward: -197.7, current epsilon: -0.00
+720
+Episode:   720, average reward: -180.0, current epsilon: -0.00
+730
+Episode:   730, average reward: -151.9, current epsilon: -0.00
+740
+Episode:   740, average reward: -159.6, current epsilon: -0.00
+750
+Episode:   750, average reward: -158.3, current epsilon: -0.00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>760
+Episode:   760, average reward: -149.8, current epsilon: -0.00
+770
+Episode:   770, average reward: -162.5, current epsilon: -0.00
+780
+Episode:   780, average reward: -178.3, current epsilon: -0.00
+790
+Episode:   790, average reward: -204.0, current epsilon: -0.00
+800
+Episode:   800, average reward: -182.9, current epsilon: -0.00
+810
+Episode:   810, average reward: -173.8, current epsilon: -0.00
+820
+Episode:   820, average reward: -165.7, current epsilon: -0.00
+830
+Episode:   830, average reward: -184.7, current epsilon: -0.00
+840
+Episode:   840, average reward: -221.3, current epsilon: -0.00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>850
+Episode:   850, average reward: -284.3, current epsilon: -0.00
+860
+Episode:   860, average reward: -155.9, current epsilon: -0.00
+870
+Episode:   870, average reward: -157.7, current epsilon: -0.00
+880
+Episode:   880, average reward: -262.6, current epsilon: -0.00
+890
+Episode:   890, average reward: -220.8, current epsilon: -0.00
+900
+Episode:   900, average reward: -223.8, current epsilon: -0.00
+910
+Episode:   910, average reward: -228.1, current epsilon: -0.00
+920
+Episode:   920, average reward: -217.5, current epsilon: -0.00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>930
+Episode:   930, average reward: -232.2, current epsilon: -0.00
+940
+Episode:   940, average reward: -231.3, current epsilon: -0.00
+950
+Episode:   950, average reward: -233.7, current epsilon: -0.00
+960
+Episode:   960, average reward: -227.2, current epsilon: -0.00
+970
+Episode:   970, average reward: -225.7, current epsilon: -0.00
+980
+Episode:   980, average reward: -232.0, current epsilon: -0.00
+990
+Episode:   990, average reward: -242.3, current epsilon: -0.00
+</pre></div>
+</div>
+<img alt="_images/36230b59ec3ef23bc68add73735f1c6bd06fdf8989e06496915e17549908d2fb.png" src="_images/36230b59ec3ef23bc68add73735f1c6bd06fdf8989e06496915e17549908d2fb.png" />
+</div>
+</div>
+<p>Print out q-tables</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">axes3d</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_q_color</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">vals</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="mf">1.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="mf">0.3</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">EPISODES</span><span class="p">,</span> <span class="n">EPISODES</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">312</span><span class="p">)</span>
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">313</span><span class="p">)</span>
+
+    <span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qtables/</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">-qtable.npy&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_vals</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">q_table</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y</span><span class="p">,</span> <span class="n">y_vals</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">x_vals</span><span class="p">):</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">get_q_color</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_vals</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">get_q_color</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y_vals</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">get_q_color</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_vals</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">get_q_color</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_vals</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">get_q_color</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">y_vals</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">get_q_color</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">y_vals</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Action 0&quot;</span><span class="p">)</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Action 1&quot;</span><span class="p">)</span>
+            <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Action 2&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+<img alt="_images/4fe0c9b0ed3b3145991a596bce0b77e500468ff58e600652d6cbe40ffefd2049.png" src="_images/4fe0c9b0ed3b3145991a596bce0b77e500468ff58e600652d6cbe40ffefd2049.png" />
+</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">class</span> <span class="nc">QLearningAgent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_states</span><span class="p">,</span> <span class="n">num_actions</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">discount_factor</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">exploration_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_states</span> <span class="o">=</span> <span class="n">num_states</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_actions</span> <span class="o">=</span> <span class="n">num_actions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">=</span> <span class="n">discount_factor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exploration_rate</span> <span class="o">=</span> <span class="n">exploration_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num_states</span><span class="p">,</span> <span class="n">num_actions</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">choose_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">exploration_rate</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_actions</span><span class="p">)</span>  <span class="c1"># Explore</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>  <span class="c1"># Exploit</span>
+
+    <span class="k">def</span> <span class="nf">update_q_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_state</span><span class="p">):</span>
+        <span class="n">best_next_action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">q_table</span><span class="p">[</span><span class="n">next_state</span><span class="p">])</span>
+        <span class="n">td_target</span> <span class="o">=</span> <span class="n">reward</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">discount_factor</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_table</span><span class="p">[</span><span class="n">next_state</span><span class="p">,</span> <span class="n">best_next_action</span><span class="p">]</span>
+        <span class="n">td_error</span> <span class="o">=</span> <span class="n">td_target</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">td_error</span>
+
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">num_episodes</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">total_reward</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">choose_action</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+            <span class="n">agent</span><span class="o">.</span><span class="n">update_q_table</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">next_state</span><span class="p">)</span>
+            <span class="n">total_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Episode:&quot;</span><span class="p">,</span> <span class="n">episode</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Total Reward:&quot;</span><span class="p">,</span> <span class="n">total_reward</span><span class="p">)</span>
+
+<span class="c1"># Example usage</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Creating the environment</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;MountainCar-v0&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Creating the agent</span>
+    <span class="n">num_states</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="o">.</span><span class="n">n</span>
+    <span class="n">num_actions</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">n</span> 
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">QLearningAgent</span><span class="p">(</span><span class="n">num_states</span><span class="p">,</span> <span class="n">num_actions</span><span class="p">)</span>
+
+    <span class="c1"># Training the agent</span>
+    <span class="n">train</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="n">agent</span><span class="p">,</span> <span class="n">num_episodes</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="blob">
+<h3>Blob<a class="headerlink" href="#blob" title="Permalink to this heading">#</a></h3>
+<p>Welcome to part 4 of the Reinforcement Learning series as well our our Q-learning part of it. In this part, we’re going to wrap up this basic Q-Learning by making our own environment to learn in. I hadn’t initially intended to do this as a tutorial, it was just something I personally wanted to do, but, after many requests, it only makes sense to do it as a tutorial!</p>
+<p>If you’ve followed my tutorials much over the years, you know I like blobs. I like the player blobs, food, and bad enemy blobs! It’s kind of a staple in my examples. It’s only fitting that blobs show up here.</p>
+<p>The plan is to have a player blob (blue), which aims to navigate its way as quickly as possible to the food blob (green), while avoiding the enemy blob (red).</p>
+<p>Now, we could make this super smooth with high definition, but we already know we’re going to be breaking it down into observation spaces. Instead, let’s just start in a discrete space. Something between a 10x10 and 20x20 should suffice. Do note, the larger you go, the larger your Q-Table will be in terms of space it takes up in memory as well as time it takes for the model to actually learn.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+
+<span class="n">SIZE</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">HM_EPISODES</span> <span class="o">=</span> <span class="mi">25000</span>
+<span class="n">MOVE_PENALTY</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">ENEMY_PENALTY</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">FOOD_REWARD</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">EPS_DECAY</span> <span class="o">=</span> <span class="mf">0.9998</span>  <span class="c1"># Every episode will be epsilon*EPS_DECAY</span>
+<span class="n">SHOW_EVERY</span> <span class="o">=</span> <span class="mi">3000</span>  <span class="c1"># how often to play through env visually.</span>
+
+<span class="n">start_q_table</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># None or Filename</span>
+
+<span class="n">LEARNING_RATE</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">DISCOUNT</span> <span class="o">=</span> <span class="mf">0.95</span>
+
+<span class="n">PLAYER_N</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># player key in dict</span>
+<span class="n">FOOD_N</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># food key in dict</span>
+<span class="n">ENEMY_N</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># enemy key in dict</span>
+
+<span class="c1"># the dict!</span>
+<span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+     <span class="mi">2</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+     <span class="mi">3</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)}</span>
+
+
+<span class="k">class</span> <span class="nc">Blob</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">SIZE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">SIZE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">choice</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Gives us 4 total movement options. (0,1,2,3)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+
+        <span class="c1"># If no value for x, move randomly</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">x</span>
+
+        <span class="c1"># If no value for y, move randomly</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">y</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">y</span>
+
+
+        <span class="c1"># If we are out of bounds, fix!</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">SIZE</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">SIZE</span><span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">&gt;</span> <span class="n">SIZE</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">SIZE</span><span class="o">-</span><span class="mi">1</span>
+
+
+<span class="k">if</span> <span class="n">start_q_table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># initialize the q-table#</span>
+    <span class="n">q_table</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">SIZE</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">SIZE</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">SIZE</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">SIZE</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">iii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">SIZE</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">SIZE</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">iiii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="n">SIZE</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">SIZE</span><span class="p">):</span>
+                        <span class="n">q_table</span><span class="p">[((</span><span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">),</span> <span class="p">(</span><span class="n">iii</span><span class="p">,</span> <span class="n">iiii</span><span class="p">))]</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">start_q_table</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">q_table</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+
+<span class="c1"># can look up from Q-table with: print(q_table[((-9, -2), (3, 9))]) for example</span>
+
+<span class="n">episode_rewards</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HM_EPISODES</span><span class="p">):</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">Blob</span><span class="p">()</span>
+    <span class="n">food</span> <span class="o">=</span> <span class="n">Blob</span><span class="p">()</span>
+    <span class="n">enemy</span> <span class="o">=</span> <span class="n">Blob</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">episode</span> <span class="o">%</span> <span class="n">SHOW_EVERY</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;on #</span><span class="si">{</span><span class="n">episode</span><span class="si">}</span><span class="s2">, epsilon is </span><span class="si">{</span><span class="n">epsilon</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">SHOW_EVERY</span><span class="si">}</span><span class="s2"> ep mean: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">episode_rewards</span><span class="p">[</span><span class="o">-</span><span class="n">SHOW_EVERY</span><span class="p">:])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">show</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="n">episode_reward</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">):</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="p">(</span><span class="n">player</span><span class="o">-</span><span class="n">food</span><span class="p">,</span> <span class="n">player</span><span class="o">-</span><span class="n">enemy</span><span class="p">)</span>
+        <span class="c1">#print(obs)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">epsilon</span><span class="p">:</span>
+            <span class="c1"># GET THE ACTION</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">obs</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="c1"># Take the action!</span>
+        <span class="n">player</span><span class="o">.</span><span class="n">action</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="c1">#### MAYBE ###</span>
+        <span class="c1">#enemy.move()</span>
+        <span class="c1">#food.move()</span>
+        <span class="c1">##############</span>
+
+        <span class="k">if</span> <span class="n">player</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">enemy</span><span class="o">.</span><span class="n">x</span> <span class="ow">and</span> <span class="n">player</span><span class="o">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">enemy</span><span class="o">.</span><span class="n">y</span><span class="p">:</span>
+            <span class="n">reward</span> <span class="o">=</span> <span class="o">-</span><span class="n">ENEMY_PENALTY</span>
+        <span class="k">elif</span> <span class="n">player</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">food</span><span class="o">.</span><span class="n">x</span> <span class="ow">and</span> <span class="n">player</span><span class="o">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">food</span><span class="o">.</span><span class="n">y</span><span class="p">:</span>
+            <span class="n">reward</span> <span class="o">=</span> <span class="n">FOOD_REWARD</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">reward</span> <span class="o">=</span> <span class="o">-</span><span class="n">MOVE_PENALTY</span>
+        <span class="c1">## NOW WE KNOW THE REWARD, LET&#39;S CALC YO</span>
+        <span class="c1"># first we need to obs immediately after the move.</span>
+        <span class="n">new_obs</span> <span class="o">=</span> <span class="p">(</span><span class="n">player</span><span class="o">-</span><span class="n">food</span><span class="p">,</span> <span class="n">player</span><span class="o">-</span><span class="n">enemy</span><span class="p">)</span>
+        <span class="n">max_future_q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">new_obs</span><span class="p">])</span>
+        <span class="n">current_q</span> <span class="o">=</span> <span class="n">q_table</span><span class="p">[</span><span class="n">obs</span><span class="p">][</span><span class="n">action</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="n">FOOD_REWARD</span><span class="p">:</span>
+            <span class="n">new_q</span> <span class="o">=</span> <span class="n">FOOD_REWARD</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_q</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">LEARNING_RATE</span><span class="p">)</span> <span class="o">*</span> <span class="n">current_q</span> <span class="o">+</span> <span class="n">LEARNING_RATE</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">DISCOUNT</span> <span class="o">*</span> <span class="n">max_future_q</span><span class="p">)</span>
+        <span class="n">q_table</span><span class="p">[</span><span class="n">obs</span><span class="p">][</span><span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_q</span>
+
+        <span class="k">if</span> <span class="n">show</span><span class="p">:</span>
+            <span class="n">env</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">SIZE</span><span class="p">,</span> <span class="n">SIZE</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>  <span class="c1"># starts an rbg of our size</span>
+            <span class="n">env</span><span class="p">[</span><span class="n">food</span><span class="o">.</span><span class="n">x</span><span class="p">][</span><span class="n">food</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">FOOD_N</span><span class="p">]</span>  <span class="c1"># sets the food location tile to green color</span>
+            <span class="n">env</span><span class="p">[</span><span class="n">player</span><span class="o">.</span><span class="n">x</span><span class="p">][</span><span class="n">player</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">PLAYER_N</span><span class="p">]</span>  <span class="c1"># sets the player tile to blue</span>
+            <span class="n">env</span><span class="p">[</span><span class="n">enemy</span><span class="o">.</span><span class="n">x</span><span class="p">][</span><span class="n">enemy</span><span class="o">.</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">ENEMY_N</span><span class="p">]</span>  <span class="c1"># sets the enemy location to red</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">env</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)</span>  <span class="c1"># reading to rgb. Apparently. Even tho color definitions are bgr. ???</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>  <span class="c1"># resizing so we can see our agent in all its glory.</span>
+            <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>  <span class="c1"># show it!</span>
+            <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="n">FOOD_REWARD</span> <span class="ow">or</span> <span class="n">reward</span> <span class="o">==</span> <span class="o">-</span><span class="n">ENEMY_PENALTY</span><span class="p">:</span>  <span class="c1"># crummy code to hang at the end if we reach abrupt end for good reasons or not.</span>
+                <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFF</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">):</span>
+                    <span class="k">break</span>
+
+        <span class="n">episode_reward</span> <span class="o">+=</span> <span class="n">reward</span>
+        <span class="k">if</span> <span class="n">reward</span> <span class="o">==</span> <span class="n">FOOD_REWARD</span> <span class="ow">or</span> <span class="n">reward</span> <span class="o">==</span> <span class="o">-</span><span class="n">ENEMY_PENALTY</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="c1">#print(episode_reward)</span>
+    <span class="n">episode_rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">episode_reward</span><span class="p">)</span>
+    <span class="n">epsilon</span> <span class="o">*=</span> <span class="n">EPS_DECAY</span>
+
+<span class="n">moving_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">episode_rewards</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">SHOW_EVERY</span><span class="p">,))</span><span class="o">/</span><span class="n">SHOW_EVERY</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">moving_avg</span><span class="p">))],</span> <span class="n">moving_avg</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reward </span><span class="si">{</span><span class="n">SHOW_EVERY</span><span class="si">}</span><span class="s2">ma&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;episode #&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;qtable-</span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span><span class="si">}</span><span class="s2">.pickle&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">q_table</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #0, epsilon is 0.9
+3000 ep mean: nan
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lliu/Library/Python/3.9/lib/python/site-packages/numpy/core/fromnumeric.py:3504: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/Users/lliu/Library/Python/3.9/lib/python/site-packages/numpy/core/_methods.py:129: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+2024-03-17 17:14:22.410 Python[63943:1083649] WARNING: Secure coding is automatically enabled for restorable state! However, not on all supported macOS versions of this application. Opt-in to secure coding explicitly by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState:.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #3000, epsilon is 0.49390083359356435
+3000 ep mean: -168.56733333333332
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #6000, epsilon is 0.27104225936046566
+3000 ep mean: -111.559
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #9000, epsilon is 0.14874221981913022
+3000 ep mean: -82.16033333333333
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #12000, epsilon is 0.08162656262136181
+3000 ep mean: -68.77366666666667
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #15000, epsilon is 0.044794919246742226
+3000 ep mean: -57.434333333333335
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #18000, epsilon is 0.024582497729691496
+3000 ep mean: -48.675
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #21000, epsilon is 0.01349035124500733
+3000 ep mean: -39.187666666666665
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>on #24000, epsilon is 0.0074032174726434705
+3000 ep mean: -32.623333333333335
+</pre></div>
+</div>
+<img alt="_images/6c6799c2bf3d65b1cfa7a3bf20b6957772b722d0fcea1d9ecc99e91c884b73cf.png" src="_images/6c6799c2bf3d65b1cfa7a3bf20b6957772b722d0fcea1d9ecc99e91c884b73cf.png" />
+</div>
+</div>
+</section>
+<section id="taxi-driver">
+<h3>Taxi Driver<a class="headerlink" href="#taxi-driver" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SEED</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">gymnasium</span> <span class="k">as</span> <span class="nn">gym</span>
+
+<span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">geom</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">nbinom</span>
+
+<span class="n">is_ipython</span> <span class="o">=</span> <span class="s2">&quot;inline&quot;</span> <span class="ow">in</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_backend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">clear_output</span>
+
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s2">&quot;Taxi-v3&quot;</span><span class="p">,</span> <span class="n">render_mode</span><span class="o">=</span><span class="s2">&quot;rgb_array&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OBSERVATON SPACE: </span><span class="si">{</span><span class="n">env</span><span class="o">.</span><span class="n">observation_space</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ACTION SPACE: </span><span class="si">{</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OBSERVATON SPACE: Discrete(500)
+ACTION SPACE: Discrete(6)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obs</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+
+<span class="n">env</span><span class="o">.</span><span class="n">s</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">unwrapped</span><span class="o">.</span><span class="n">initial_state_distrib</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">env</span><span class="o">.</span><span class="n">lastaction</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">env</span><span class="o">.</span><span class="n">taxi_orientation</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>386
+{&#39;prob&#39;: 1.0, &#39;action_mask&#39;: array([1, 1, 0, 1, 0, 0], dtype=int8)}
+</pre></div>
+</div>
+<img alt="_images/d48ba15eea33e1b1869b8d20fb54524abf916767c661c8221a63bf06ed33ba0d.png" src="_images/d48ba15eea33e1b1869b8d20fb54524abf916767c661c8221a63bf06ed33ba0d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Since every state is in this matrix, we can see the default reward values assigned to our illustration&#39;s state:</span>
+<span class="n">env</span><span class="o">.</span><span class="n">P</span><span class="p">[</span><span class="mi">328</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/lliu/Library/Python/3.9/lib/python/site-packages/gymnasium/core.py:311: UserWarning: <span class=" -Color -Color-Yellow">WARN: env.P to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.P` for environment variables or `env.get_wrapper_attr(&#39;P&#39;)` that will search the reminding wrappers.</span>
+  logger.warn(
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{0: [(1.0, 428, -1, False)],
+ 1: [(1.0, 228, -1, False)],
+ 2: [(1.0, 348, -1, False)],
+ 3: [(1.0, 328, -1, False)],
+ 4: [(1.0, 328, -10, False)],
+ 5: [(1.0, 328, -10, False)]}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 12: Hidden Markov Models</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab14.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab 14: Natural Language Processing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-reinforcement-learning">Components of Reinforcement Learning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-concepts">Key Concepts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-process">Learning Process</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithms">Algorithms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reinforcement-learning-with-q-learning">Reinforcement Learning with Q-Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-overview">Algorithm Overview</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mountaincar">MountainCar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#blob">Blob</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taxi-driver">Taxi Driver</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

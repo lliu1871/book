@@ -1,0 +1,1091 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab 14: Natural Language Processing &#8212; Artificial Intelligence</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab14';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lab 13: Reinforcement Learning" href="lab13.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1. History of AI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2. Intelligent Agents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3. Knowledge Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4. Machine Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5. Natural Language Processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6. Computer Vision</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lab</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 14: Natural Language Processing</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab14.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab14.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 14: Natural Language Processing</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tolenization">Tolenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#named-entity-recognition">Named entity recognition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-the-grammatical-structure-of-sentences">Analyzing the grammatical structure of sentences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-sentiment-or-opinion-expressed-in-a-piece-of-text">Determining the sentiment or opinion expressed in a piece of text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embedding">Word embedding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-translation">Machine translation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-summarization">Text summarization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-answering">Question answering</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-14-natural-language-processing">
+<h1>Lab 14: Natural Language Processing<a class="headerlink" href="#lab-14-natural-language-processing" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Reinforcement learning at Wikipedia</a></p></li>
+</ul>
+</div>
+<p>Natural Language Processing (NLP) is a field of artificial intelligence (AI) and computational linguistics that focuses on the interaction between computers and humans through natural language. Its primary goal is to enable computers to understand, interpret, and generate human language in a manner that is both meaningful and useful.</p>
+<ol class="arabic simple">
+<li><p>Tokenization: Breaking down text into individual words or tokens.
+Part-of-speech tagging: Assigning grammatical categories (e.g., noun, verb, adjective) to words in a sentence.</p></li>
+<li><p>Named entity recognition (NER): Identifying and classifying named entities (e.g., persons, organizations, locations) mentioned in text.</p></li>
+<li><p>Parsing: Analyzing the grammatical structure of sentences.</p></li>
+<li><p>Sentiment analysis: Determining the sentiment or opinion expressed in a piece of text.</p></li>
+<li><p>Topic modeling: Identifying topics or themes present in a collection of documents.</p></li>
+<li><p>Word embeddings: Representing words as dense vectors in a continuous vector space, capturing semantic relationships between words.</p></li>
+<li><p>Machine translation: Translating text from one language to another.</p></li>
+<li><p>Text summarization: Generating concise summaries of longer texts.
+Question answering: Automatically answering questions posed in natural language based on a given text.</p></li>
+</ol>
+<section id="tolenization">
+<h2>Tolenization<a class="headerlink" href="#tolenization" title="Permalink to this heading">#</a></h2>
+<p>Make sure you have NLTK installed (pip install nltk). Additionally, you may need to download the NLTK data by running:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;averaged_perceptron_tagger&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>An example of Python code using the Natural Language Toolkit (NLTK) library for natural language processing (NLP). This code tokenizes a sentence and performs part-of-speech tagging.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.tag</span> <span class="kn">import</span> <span class="n">pos_tag</span>
+
+<span class="c1"># Sample sentence</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;Natural language processing is a fascinating field of study.&quot;</span>
+
+<span class="c1"># Tokenize the sentence</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+
+<span class="c1"># Perform part-of-speech tagging</span>
+<span class="n">tagged_tokens</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># Print the tagged tokens</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tagged_tokens</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[(&#39;Natural&#39;, &#39;JJ&#39;), (&#39;language&#39;, &#39;NN&#39;), (&#39;processing&#39;, &#39;NN&#39;), (&#39;is&#39;, &#39;VBZ&#39;), (&#39;a&#39;, &#39;DT&#39;), (&#39;fascinating&#39;, &#39;JJ&#39;), (&#39;field&#39;, &#39;NN&#39;), (&#39;of&#39;, &#39;IN&#39;), (&#39;study&#39;, &#39;NN&#39;), (&#39;.&#39;, &#39;.&#39;)]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Chinese text segmentation</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">import</span> <span class="nn">jieba.analyse</span>
+
+<span class="n">jieba</span><span class="o">.</span><span class="n">enable_paddle</span><span class="p">()</span> <span class="c1"># 启动paddle模式。 0.40版之后开始支持，早期版本不支持</span>
+<span class="n">strs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;我来到北京清华大学&quot;</span><span class="p">,</span><span class="s2">&quot;乒乓球拍卖完了&quot;</span><span class="p">,</span><span class="s2">&quot;中国科学技术大学&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="nb">str</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">:</span>
+    <span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">use_paddle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 使用paddle模式</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Paddle Mode: &quot;</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">seg_list</span><span class="p">)))</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;我来到北京清华大学&quot;</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Full Mode: &quot;</span> <span class="o">+</span> <span class="s2">&quot;/ &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>  <span class="c1"># 全模式</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;我来到北京清华大学&quot;</span><span class="p">,</span> <span class="n">cut_all</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Default Mode: &quot;</span> <span class="o">+</span> <span class="s2">&quot;/ &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>  <span class="c1"># 精确模式</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;他来到了网易杭研大厦&quot;</span><span class="p">)</span>  <span class="c1"># 默认是精确模式</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>
+
+<span class="n">seg_list</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut_for_search</span><span class="p">(</span><span class="s2">&quot;小明硕士毕业于中国科学院计算所，后在日本京都大学深造&quot;</span><span class="p">)</span>  <span class="c1"># 搜索引擎模式</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg_list</span><span class="p">))</span>
+
+<span class="c1">#key words</span>
+<span class="n">jieba</span><span class="o">.</span><span class="n">analyse</span><span class="o">.</span><span class="n">extract_tags</span><span class="p">(</span><span class="s2">&quot;小明硕士毕业于中国科学院计算所，后在日本京都大学深造&quot;</span><span class="p">,</span> <span class="n">topK</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">withWeight</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">allowPOS</span><span class="o">=</span><span class="p">())</span>
+
+<span class="c1">#word type</span>
+<span class="kn">import</span> <span class="nn">jieba.posseg</span> <span class="k">as</span> <span class="nn">pseg</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">pseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;我爱北京天安门&quot;</span><span class="p">)</span> <span class="c1">#jieba默认模式</span>
+<span class="n">jieba</span><span class="o">.</span><span class="n">enable_paddle</span><span class="p">()</span> <span class="c1">#启动paddle模式。 0.40版之后开始支持，早期版本不支持</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">pseg</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="s2">&quot;我爱北京天安门&quot;</span><span class="p">,</span><span class="n">use_paddle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#paddle模式</span>
+<span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">flag</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Import error, cannot find paddle.fluid and jieba.lac_small.predict module. Now, back to jieba basic cut......
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2024-03-17 18:05:31,968] [   DEBUG] _compat.py:50 - Import error, cannot find paddle.fluid and jieba.lac_small.predict module. Now, back to jieba basic cut......
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Building prefix dict from the default dictionary ...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2024-03-17 18:05:31,969] [   DEBUG] __init__.py:113 - Building prefix dict from the default dictionary ...
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading model from cache /var/folders/53/vt_yht0j2h992vrjpc3y4v3cmgg9bt/T/jieba.cache
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2024-03-17 18:05:31,970] [   DEBUG] __init__.py:132 - Loading model from cache /var/folders/53/vt_yht0j2h992vrjpc3y4v3cmgg9bt/T/jieba.cache
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loading model cost 0.299 seconds.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2024-03-17 18:05:32,269] [   DEBUG] __init__.py:164 - Loading model cost 0.299 seconds.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Prefix dict has been built successfully.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2024-03-17 18:05:32,270] [   DEBUG] __init__.py:166 - Prefix dict has been built successfully.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Import error, cannot find paddle.fluid and jieba.lac_small.predict module. Now, back to jieba basic cut......
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2024-03-17 18:05:32,272] [   DEBUG] _compat.py:50 - Import error, cannot find paddle.fluid and jieba.lac_small.predict module. Now, back to jieba basic cut......
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paddle Mode: 我/来到/北京/清华大学
+Paddle Mode: 乒乓球/拍卖/完/了
+Paddle Mode: 中国/科学技术/大学
+Full Mode: 我/ 来到/ 北京/ 清华/ 清华大学/ 华大/ 大学
+Default Mode: 我/ 来到/ 北京/ 清华大学
+他, 来到, 了, 网易, 杭研, 大厦
+小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 日本, 京都, 大学, 日本京都大学, 深造
+我 r
+爱 v
+北京 ns
+天安门 ns
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="named-entity-recognition">
+<h2>Named entity recognition<a class="headerlink" href="#named-entity-recognition" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">pos_tag</span><span class="p">,</span> <span class="n">ne_chunk</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;averaged_perceptron_tagger&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;maxent_ne_chunker&#39;</span><span class="p">)</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;words&#39;</span><span class="p">)</span>
+
+<span class="c1"># Sample text</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Barack Obama was born in Hawaii. He served as the 44th President of the United States.&quot;</span>
+
+<span class="c1"># Tokenize the text</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># Perform part-of-speech tagging</span>
+<span class="n">tagged_tokens</span> <span class="o">=</span> <span class="n">pos_tag</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+
+<span class="c1"># Perform named entity recognition</span>
+<span class="n">named_entities</span> <span class="o">=</span> <span class="n">ne_chunk</span><span class="p">(</span><span class="n">tagged_tokens</span><span class="p">)</span>
+
+<span class="c1"># Print the named entities</span>
+<span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">named_entities</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">entity</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">entity</span><span class="o">.</span><span class="n">label</span><span class="p">(),</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">leaves</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package punkt to /Users/lliu/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+[nltk_data] Downloading package averaged_perceptron_tagger to
+[nltk_data]     /Users/lliu/nltk_data...
+[nltk_data]   Package averaged_perceptron_tagger is already up-to-
+[nltk_data]       date!
+[nltk_data] Downloading package maxent_ne_chunker to
+[nltk_data]     /Users/lliu/nltk_data...
+[nltk_data]   Package maxent_ne_chunker is already up-to-date!
+[nltk_data] Downloading package words to /Users/lliu/nltk_data...
+[nltk_data]   Package words is already up-to-date!
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PERSON Barack
+PERSON Obama
+GPE Hawaii
+GPE United States
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analyzing-the-grammatical-structure-of-sentences">
+<h2>Analyzing the grammatical structure of sentences<a class="headerlink" href="#analyzing-the-grammatical-structure-of-sentences" title="Permalink to this heading">#</a></h2>
+<p>We use NLTK to perform parsing and display the parse tree for the grammatical structure of the sentence and to provide output indicating the dependencies between words in the sentence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.parse</span> <span class="kn">import</span> <span class="n">CoreNLPParser</span>
+
+<span class="c1">#download stanform model</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stanford&#39;</span><span class="p">)</span>
+
+<span class="c1"># Sample sentence</span>
+<span class="n">sentence</span> <span class="o">=</span> <span class="s2">&quot;The quick brown fox jumps over the lazy dog.&quot;</span>
+
+<span class="c1"># Tokenize the sentence</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+
+<span class="c1"># Initialize Stanford CoreNLP Parser (Ensure you have Stanford CoreNLP server running)</span>
+<span class="c1"># parser = CoreNLPParser(url=&#39;http://localhost:9000&#39;)</span>
+
+<span class="c1"># Parse the sentence</span>
+<span class="c1">#parse_tree = next(parser.raw_parse(sentence))</span>
+
+<span class="c1"># Display the parse tree</span>
+<span class="c1">#print(parse_tree)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Error loading stanford: Package &#39;stanford&#39; not found in
+[nltk_data]     index
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="determining-the-sentiment-or-opinion-expressed-in-a-piece-of-text">
+<h2>Determining the sentiment or opinion expressed in a piece of text<a class="headerlink" href="#determining-the-sentiment-or-opinion-expressed-in-a-piece-of-text" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.sentiment.vader</span> <span class="kn">import</span> <span class="n">SentimentIntensityAnalyzer</span>
+
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;vader_lexicon&#39;</span><span class="p">)</span>
+
+<span class="c1"># Initialize VADER sentiment analyzer</span>
+<span class="n">sid</span> <span class="o">=</span> <span class="n">SentimentIntensityAnalyzer</span><span class="p">()</span>
+
+<span class="c1"># Sample text</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;I love this product! It&#39;s amazing.&quot;</span>
+
+<span class="c1"># Analyze sentiment</span>
+<span class="n">sentiment_scores</span> <span class="o">=</span> <span class="n">sid</span><span class="o">.</span><span class="n">polarity_scores</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># Print sentiment scores</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sentiment_scores</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;neg&#39;: 0.0, &#39;neu&#39;: 0.266, &#39;pos&#39;: 0.734, &#39;compound&#39;: 0.8516}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package vader_lexicon to
+[nltk_data]     /Users/lliu/nltk_data...
+[nltk_data]   Package vader_lexicon is already up-to-date!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="word-embedding">
+<h2>Word embedding<a class="headerlink" href="#word-embedding" title="Permalink to this heading">#</a></h2>
+<p>To generate word embeddings in Python, you can use libraries like Word2Vec, GloVe, or FastText. Here’s an example using Gensim, a popular Python library for topic modeling, document indexing, and similarity retrieval with large corpora:</p>
+<p>First, you need to install Gensim (pip install gensim). Then, you can use it to train your Word2Vec model or load a pre-trained one.</p>
+<p>Here’s how you can train a Word2Vec model using a sample corpus:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+
+<span class="c1"># Sample corpus</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;This is a sample sentence.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Another example sentence.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Yet another sentence for demonstration.&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Tokenize the corpus</span>
+<span class="n">tokenized_corpus</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">corpus</span><span class="p">]</span>
+
+<span class="c1"># Train Word2Vec model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">sentences</span><span class="o">=</span><span class="n">tokenized_corpus</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Save the model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;word2vec.model&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can then load the trained model and obtain word embeddings:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the saved model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;word2vec.model&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the embedding for a word</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Embedding for &#39;sample&#39;:&quot;</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Embedding for &#39;sample&#39;: [ 8.1681199e-03 -4.4430327e-03  8.9854337e-03  8.2536647e-03
+ -4.4352221e-03  3.0310510e-04  4.2744912e-03 -3.9263200e-03
+ -5.5599655e-03 -6.5123225e-03 -6.7073823e-04 -2.9592158e-04
+  4.4630850e-03 -2.4740540e-03 -1.7260908e-04  2.4618758e-03
+  4.8675989e-03 -3.0808449e-05 -6.3394094e-03 -9.2608072e-03
+  2.6657581e-05  6.6618943e-03  1.4660227e-03 -8.9665223e-03
+ -7.9386048e-03  6.5519023e-03 -3.7856805e-03  6.2549924e-03
+ -6.6810320e-03  8.4796622e-03 -6.5163244e-03  3.2880199e-03
+ -1.0569858e-03 -6.7875278e-03 -3.2875966e-03 -1.1614120e-03
+ -5.4709399e-03 -1.2113475e-03 -7.5633135e-03  2.6466595e-03
+  9.0701487e-03 -2.3772502e-03 -9.7651005e-04  3.5135616e-03
+  8.6650876e-03 -5.9218528e-03 -6.8875779e-03 -2.9329848e-03
+  9.1476962e-03  8.6626766e-04 -8.6784009e-03 -1.4469790e-03
+  9.4794659e-03 -7.5494875e-03 -5.3580985e-03  9.3165627e-03
+ -8.9737261e-03  3.8259076e-03  6.6544057e-04  6.6607012e-03
+  8.3127534e-03 -2.8507852e-03 -3.9923131e-03  8.8979173e-03
+  2.0896459e-03  6.2489416e-03 -9.4457148e-03  9.5901238e-03
+ -1.3483083e-03 -6.0521150e-03  2.9925345e-03 -4.5661093e-04
+  4.7064926e-03 -2.2830211e-03 -4.1378425e-03  2.2778988e-03
+  8.3543835e-03 -4.9956059e-03  2.6686788e-03 -7.9905549e-03
+ -6.7733466e-03 -4.6766878e-04 -8.7677278e-03  2.7894378e-03
+  1.5985954e-03 -2.3196924e-03  5.0037908e-03  9.7487867e-03
+  8.4542679e-03 -1.8802249e-03  2.0581519e-03 -4.0036892e-03
+ -8.2414057e-03  6.2779556e-03 -1.9491815e-03 -6.6620467e-04
+ -1.7713320e-03 -4.5356657e-03  4.0617096e-03 -4.2701806e-03]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Alternatively, you can use a pre-trained Word2Vec model, such as Google’s pre-trained Word2Vec model available through gensim.downloader. Here’s how you can load and use it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gensim.downloader</span> <span class="k">as</span> <span class="nn">api</span>
+
+<span class="c1"># Load pre-trained Word2Vec model</span>
+<span class="n">word2vec_model</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;word2vec-google-news-300&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get the embedding for a word</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">word2vec_model</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Embedding for &#39;sample&#39;:&quot;</span><span class="p">,</span> <span class="n">embedding</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="machine-translation">
+<h2>Machine translation<a class="headerlink" href="#machine-translation" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="text-summarization">
+<h2>Text summarization<a class="headerlink" href="#text-summarization" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># importing libraries </span>
+<span class="kn">import</span> <span class="nn">nltk</span> 
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span> 
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span><span class="p">,</span> <span class="n">sent_tokenize</span> 
+
+<span class="c1">#nltk.download(&#39;stopwords&#39;)</span>
+
+<span class="c1"># Input text - to summarize </span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">There are many techniques available to generate extractive summarization to keep it simple, I will be using an unsupervised learning approach to find the sentences similarity and rank them. Summarization can be defined as a task of producing a concise and fluent summary while preserving key information and overall meaning. One benefit of this will be, you don’t need to train and build a model prior start using it for your project. It’s good to understand Cosine similarity to make the best use of the code you are going to see. Cosine similarity is a measure of similarity between two non-zero vectors of an inner product space that measures the cosine of the angle between them. Its measures cosine of the angle between vectors. The angle will be 0 if sentences are similar.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+   
+<span class="c1"># Tokenizing the text </span>
+<span class="n">stopWords</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s2">&quot;english&quot;</span><span class="p">))</span> 
+<span class="n">words</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> 
+   
+<span class="c1"># Creating a frequency table to keep the  </span>
+<span class="c1"># score of each word </span>
+   
+<span class="n">freqTable</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> 
+<span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span> 
+    <span class="n">word</span> <span class="o">=</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> 
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">stopWords</span><span class="p">:</span> 
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">freqTable</span><span class="p">:</span> 
+        <span class="n">freqTable</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="n">freqTable</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+   
+<span class="c1"># Creating a dictionary to keep the score </span>
+<span class="c1"># of each sentence </span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">sent_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> 
+<span class="n">sentenceValue</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> 
+   
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span> 
+    <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">freqTable</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
+        <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sentence</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span> 
+            <span class="k">if</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentenceValue</span><span class="p">:</span> 
+                <span class="n">sentenceValue</span><span class="p">[</span><span class="n">sentence</span><span class="p">]</span> <span class="o">+=</span> <span class="n">freq</span> 
+            <span class="k">else</span><span class="p">:</span> 
+                <span class="n">sentenceValue</span><span class="p">[</span><span class="n">sentence</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq</span> 
+      
+<span class="n">sumValues</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentenceValue</span><span class="p">:</span> 
+    <span class="n">sumValues</span> <span class="o">+=</span> <span class="n">sentenceValue</span><span class="p">[</span><span class="n">sentence</span><span class="p">]</span> 
+   
+<span class="c1"># Average value of a sentence from the original text </span>
+   
+<span class="n">average</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sumValues</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentenceValue</span><span class="p">))</span> 
+   
+<span class="c1"># Storing sentences into our summary. </span>
+<span class="n">summary</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> 
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="p">(</span><span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentenceValue</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">sentenceValue</span><span class="p">[</span><span class="n">sentence</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">1.2</span> <span class="o">*</span> <span class="n">average</span><span class="p">)):</span> 
+        <span class="n">summary</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">sentence</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 
+There are many techniques available to generate extractive summarization to keep it simple, I will be using an unsupervised learning approach to find the sentences similarity and rank them. Cosine similarity is a measure of similarity between two non-zero vectors of an inner product space that measures the cosine of the angle between them.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="n">summarizer</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;summarization&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;facebook/bart-large-cnn&quot;</span><span class="p">)</span>
+
+<span class="n">article</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;New York (CNN)When Liana Barrientos was 23 years old, she got married in Westchester County, New York.</span>
+<span class="s2">A year later, she got married again in Westchester County, but to a different man and without divorcing her first husband.</span>
+<span class="s2">Only 18 days after that marriage, she got hitched yet again. Then, Barrientos declared &quot;I do&quot; five more times, sometimes only within two weeks of each other.</span>
+<span class="s2">In 2010, she married once more, this time in the Bronx. In an application for a marriage license, she stated it was her &quot;first and only&quot; marriage.</span>
+<span class="s2">Barrientos, now 39, is facing two criminal counts of &quot;offering a false instrument for filing in the first degree,&quot; referring to her false statements on the</span>
+<span class="s2">2010 marriage license application, according to court documents.</span>
+<span class="s2">Prosecutors said the marriages were part of an immigration scam.</span>
+<span class="s2">On Friday, she pleaded not guilty at State Supreme Court in the Bronx, according to her attorney, Christopher Wright, who declined to comment further.</span>
+<span class="s2">After leaving court, Barrientos was arrested and charged with theft of service and criminal trespass for allegedly sneaking into the New York subway through an emergency exit, said Detective</span>
+<span class="s2">Annette Markowski, a police spokeswoman. In total, Barrientos has been married 10 times, with nine of her marriages occurring between 1999 and 2002.</span>
+<span class="s2">All occurred either in Westchester County, Long Island, New Jersey or the Bronx. She is believed to still be married to four men, and at one time, she was married to eight men at once, prosecutors say.</span>
+<span class="s2">Prosecutors said the immigration scam involved some of her husbands, who filed for permanent residence status shortly after the marriages.</span>
+<span class="s2">Any divorces happened only after such filings were approved. It was unclear whether any of the men will be prosecuted.</span>
+<span class="s2">The case was referred to the Bronx District Attorney</span><span class="se">\&#39;</span><span class="s2">s Office by Immigration and Customs Enforcement and the Department of Homeland Security</span><span class="se">\&#39;</span><span class="s2">s</span>
+<span class="s2">Investigation Division. Seven of the men are from so-called &quot;red-flagged&quot; countries, including Egypt, Turkey, Georgia, Pakistan and Mali.</span>
+<span class="s2">Her eighth husband, Rashid Rajput, was deported in 2006 to his native Pakistan after an investigation by the Joint Terrorism Task Force.</span>
+<span class="s2">If convicted, Barrientos faces up to four years in prison.  Her next court appearance is scheduled for May 18.&quot;&quot;&quot;</span>
+
+<span class="n">summary</span> <span class="o">=</span> <span class="n">summarizer</span><span class="p">(</span><span class="n">article</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">130</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All PyTorch model weights were used when initializing TFBartForConditionalGeneration.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All the weights of TFBartForConditionalGeneration were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFBartForConditionalGeneration for predictions without further training.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[{&#39;summary_text&#39;: &#39;Liana Barrientos, 39, is charged with two counts of &quot;offering a false instrument for filing in the first degree&quot; In total, she has been married 10 times, with nine of her marriages occurring between 1999 and 2002. If convicted, she faces up to four years in prison.&#39;}]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">newspaper</span> <span class="kn">import</span> <span class="n">Article</span>
+<span class="kn">import</span> <span class="nn">spacy</span>
+<span class="kn">from</span> <span class="nn">spacy.lang.en.stop_words</span> <span class="kn">import</span> <span class="n">STOP_WORDS</span>
+<span class="kn">from</span> <span class="nn">string</span> <span class="kn">import</span> <span class="n">punctuation</span>
+<span class="kn">from</span> <span class="nn">heapq</span> <span class="kn">import</span> <span class="n">nlargest</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://fox13now.com/2013/12/30/new-year-new-laws-obamacare-pot-guns-and-drones/&#39;</span>
+<span class="n">article</span> <span class="o">=</span> <span class="n">Article</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">article</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
+<span class="n">article</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+<span class="n">article</span><span class="o">.</span><span class="n">text</span>
+
+<span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">per</span><span class="p">):</span>
+    <span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;en_core_web_sm&#39;</span><span class="p">)</span>
+    <span class="n">doc</span><span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">tokens</span><span class="o">=</span><span class="p">[</span><span class="n">token</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+    <span class="n">word_frequencies</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">STOP_WORDS</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">punctuation</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">text</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">word_frequencies</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">word_frequencies</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">word_frequencies</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">max_frequency</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">word_frequencies</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_frequencies</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">word_frequencies</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">=</span><span class="n">word_frequencies</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">/</span><span class="n">max_frequency</span>
+    <span class="n">sentence_tokens</span><span class="o">=</span> <span class="p">[</span><span class="n">sent</span> <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">sents</span><span class="p">]</span>
+    <span class="n">sentence_scores</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentence_tokens</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">sent</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">word_frequencies</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">sent</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sentence_scores</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>                            
+                    <span class="n">sentence_scores</span><span class="p">[</span><span class="n">sent</span><span class="p">]</span><span class="o">=</span><span class="n">word_frequencies</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">sentence_scores</span><span class="p">[</span><span class="n">sent</span><span class="p">]</span><span class="o">+=</span><span class="n">word_frequencies</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+    <span class="n">select_length</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sentence_tokens</span><span class="p">)</span><span class="o">*</span><span class="n">per</span><span class="p">)</span>
+    <span class="n">summary</span><span class="o">=</span><span class="n">nlargest</span><span class="p">(</span><span class="n">select_length</span><span class="p">,</span> <span class="n">sentence_scores</span><span class="p">,</span><span class="n">key</span><span class="o">=</span><span class="n">sentence_scores</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
+    <span class="n">final_summary</span><span class="o">=</span><span class="p">[</span><span class="n">word</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">summary</span><span class="p">]</span>
+    <span class="n">summary</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">final_summary</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">summary</span>
+
+<span class="n">summarize</span><span class="p">(</span><span class="n">article</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Local: Guns, family leave and shark fins\n\nConnecticut: While no national legislation was approved to tighten gun laws a year after the Newtown school shooting, Connecticut is implementing a final round of changes to its books: All assault weapons and large capacity magazines must be registered.\n\n&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="question-answering">
+<h2>Question answering<a class="headerlink" href="#question-answering" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="c1"># Load the pre-trained question answering model</span>
+<span class="n">qa_pipeline</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;question-answering&quot;</span><span class="p">)</span>
+
+<span class="c1"># Context text</span>
+<span class="n">context</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">The quick brown fox jumps over the lazy dog. This is a simple example sentence used for demonstration purposes.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Ask a question related to the context</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What jumps over the lazy dog?&quot;</span>
+
+<span class="c1"># Perform question answering</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">qa_pipeline</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="n">question</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+
+<span class="c1"># Print the answer</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Answer:&quot;</span><span class="p">,</span> <span class="n">answer</span><span class="p">[</span><span class="s1">&#39;answer&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No model was supplied, defaulted to distilbert/distilbert-base-cased-distilled-squad and revision 626af31 (https://huggingface.co/distilbert/distilbert-base-cased-distilled-squad).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All PyTorch model weights were used when initializing TFDistilBertForQuestionAnswering.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All the weights of TFDistilBertForQuestionAnswering were initialized from the PyTorch model.
+If your task is similar to the task the model of the checkpoint was trained on, you can already use TFDistilBertForQuestionAnswering for predictions without further training.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Answer: quick brown fox
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab13.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 13: Reinforcement Learning</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tolenization">Tolenization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#named-entity-recognition">Named entity recognition</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-the-grammatical-structure-of-sentences">Analyzing the grammatical structure of sentences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#determining-the-sentiment-or-opinion-expressed-in-a-piece-of-text">Determining the sentiment or opinion expressed in a piece of text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#word-embedding">Word embedding</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-translation">Machine translation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-summarization">Text summarization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#question-answering">Question answering</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
