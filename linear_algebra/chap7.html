@@ -1,0 +1,703 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 7: Singular Value Decomposition &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap7';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 8: Applications of Linear Algebra" href="chap8.html" />
+    <link rel="prev" title="Chapter 6: Diagonalization and Spectral Theorem" href="chap6.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap7.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap7.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 7: Singular Value Decomposition</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jordan-canonical-form">Jordan Canonical Form</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jordan-block">Jordan Block</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-singular-value-decomposition">Applications of Singular Value Decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-graphics">Computer Graphics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-compression">Image Compression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-denoising">Image Denoising</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-synthesis">Texture Synthesis</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-processing">Signal Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-reduction">Noise Reduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-and-speech-processing">Audio and Speech Processing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-compression">Data Compression</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-7-singular-value-decomposition">
+<h1>Chapter 7: Singular Value Decomposition<a class="headerlink" href="#chapter-7-singular-value-decomposition" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="jordan-canonical-form">
+<h2>Jordan Canonical Form<a class="headerlink" href="#jordan-canonical-form" title="Permalink to this heading">#</a></h2>
+<p>The Jordan canonical form is a standard form for representing a square matrix, particularly in the context of linear algebra and eigenvalue problems. It decomposes a matrix into a block-diagonal form, making its structure more transparent and simplifying various computations.</p>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h3>
+<p>A matrix <span class="math notranslate nohighlight">\(A\)</span> is said to be in Jordan canonical form if it can be written as:</p>
+<div class="math notranslate nohighlight">
+\[
+A = PJP^{-1}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(J\)</span> is a block-diagonal matrix with Jordan blocks along the diagonal, and <span class="math notranslate nohighlight">\(P\)</span> is an invertible matrix whose columns are the corresponding eigenvectors and generalized eigenvectors of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+</section>
+<section id="jordan-block">
+<h3>Jordan Block<a class="headerlink" href="#jordan-block" title="Permalink to this heading">#</a></h3>
+<p>A Jordan block is a square matrix of the form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J_k(\lambda) = \begin{pmatrix}
+\lambda &amp; 1 &amp; 0 &amp; \ldots &amp; 0 \\
+0 &amp; \lambda &amp; 1 &amp; \ldots &amp; 0 \\
+0 &amp; 0 &amp; \lambda &amp; \ldots &amp; 0 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; 0 &amp; \ldots &amp; \lambda \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is an eigenvalue of the matrix <span class="math notranslate nohighlight">\(A\)</span>. The size of the Jordan block is <span class="math notranslate nohighlight">\(k \times k\)</span>, where <span class="math notranslate nohighlight">\(k\)</span> is the size of the largest block associated with the eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+</section>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Uniqueness:</strong> The Jordan canonical form of a matrix is unique up to the order of the Jordan blocks.</p></li>
+<li><p><strong>Geometric Interpretation:</strong> The Jordan blocks represent the geometric multiplicity of eigenvalues and the presence of generalized eigenvectors.</p></li>
+<li><p><strong>Computational Advantages:</strong> The Jordan canonical form simplifies various computations, such as matrix exponentiation, matrix powers, and solving systems of linear differential equations.</p></li>
+</ol>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Linear Differential Equations:</strong> Jordan canonical form is used to solve systems of linear differential equations with constant coefficients.</p></li>
+<li><p><strong>Dynamical Systems:</strong> In dynamical systems theory, Jordan canonical form helps analyze the stability and behavior of linear systems.</p></li>
+<li><p><strong>Numerical Analysis:</strong> Jordan canonical form is used in numerical analysis algorithms for solving eigenvalue problems and matrix exponentiation.</p></li>
+<li><p><strong>Control Theory:</strong> Jordan canonical form is employed in control theory for analyzing and designing control systems.</p></li>
+</ul>
+</section>
+</section>
+<section id="singular-value-decomposition-svd">
+<h2>Singular Value Decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this heading">#</a></h2>
+<p>Singular value decomposition (SVD) is a fundamental matrix factorization technique used in various fields such as linear algebra, numerical analysis, signal processing, and machine learning. It decomposes a matrix into three simpler matrices, providing valuable insights into the underlying structure of the data.</p>
+<section id="id1">
+<h3>Definition<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Given a matrix <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{m \times n}\)</span>, its singular value decomposition is given by:</p>
+<div class="math notranslate nohighlight">
+\[
+A = U\Sigma V^T
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(U\)</span> is an orthogonal matrix of size <span class="math notranslate nohighlight">\(m \times m\)</span>, containing the left singular vectors.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Sigma\)</span> is a diagonal matrix of size <span class="math notranslate nohighlight">\(m \times n\)</span>, containing the singular values arranged in descending order.</p></li>
+<li><p><span class="math notranslate nohighlight">\(V^T\)</span> is the transpose of an orthogonal matrix <span class="math notranslate nohighlight">\(V\)</span> of size <span class="math notranslate nohighlight">\(n \times n\)</span>, containing the right singular vectors.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Properties<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Orthogonality:</strong> Both <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> are orthogonal matrices, meaning <span class="math notranslate nohighlight">\(UU^T = U^TU = I\)</span> and <span class="math notranslate nohighlight">\(VV^T = V^TV = I\)</span>, where <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix.</p></li>
+<li><p><strong>Diagonal Matrix:</strong> The diagonal entries of <span class="math notranslate nohighlight">\(\Sigma\)</span> are the singular values of <span class="math notranslate nohighlight">\(A\)</span>, which are non-negative real numbers. They represent the magnitude of the singular vectors and capture the importance of each component of the data.</p></li>
+<li><p><strong>Low-Rank Approximation:</strong> SVD provides an optimal low-rank approximation of the original matrix <span class="math notranslate nohighlight">\(A\)</span>. By retaining only the largest singular values and their corresponding singular vectors, we can approximate <span class="math notranslate nohighlight">\(A\)</span> with minimal loss of information.</p></li>
+</ol>
+</section>
+<section id="id3">
+<h3>Applications<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Dimensionality Reduction:</strong> SVD is widely used for reducing the dimensionality of data while preserving important information. It is used in techniques like principal component analysis (PCA) and latent semantic analysis (LSA).</p></li>
+<li><p><strong>Image Compression:</strong> SVD is applied in image compression algorithms to represent images efficiently with fewer bits.</p></li>
+<li><p><strong>Collaborative Filtering:</strong> In recommendation systems, SVD is used to decompose user-item interaction matrices, allowing for personalized recommendations.</p></li>
+<li><p><strong>Signal Processing:</strong> SVD is used in signal processing tasks such as noise reduction, data denoising, and feature extraction.</p></li>
+<li><p><strong>Matrix Completion:</strong> SVD is used in matrix completion algorithms to fill in missing entries of a matrix based on the observed entries.</p></li>
+</ul>
+</section>
+</section>
+<section id="applications-of-singular-value-decomposition">
+<h2>Applications of Singular Value Decomposition<a class="headerlink" href="#applications-of-singular-value-decomposition" title="Permalink to this heading">#</a></h2>
+<p>Singular Value Decomposition (SVD) is a powerful matrix factorization technique with various applications in computer graphics and signal processing. It enables the analysis and manipulation of data in these domains, leading to advancements in image processing, computer vision, and multimedia technologies.</p>
+<section id="computer-graphics">
+<h3>Computer Graphics<a class="headerlink" href="#computer-graphics" title="Permalink to this heading">#</a></h3>
+<section id="image-compression">
+<h4>Image Compression<a class="headerlink" href="#image-compression" title="Permalink to this heading">#</a></h4>
+<p>SVD is widely used in image compression algorithms to represent images efficiently with fewer bits. By decomposing an image matrix into its singular values and vectors, redundant information can be discarded while preserving essential features. This allows for significant reduction in storage space without compromising image quality.</p>
+</section>
+<section id="image-denoising">
+<h4>Image Denoising<a class="headerlink" href="#image-denoising" title="Permalink to this heading">#</a></h4>
+<p>In computer graphics, images often contain noise due to factors such as sensor imperfections or transmission errors. SVD-based denoising techniques leverage the low-rank approximation property of SVD to separate noise from the underlying structure of the image. By retaining only the dominant singular values, noise can be effectively suppressed while preserving image details.</p>
+</section>
+<section id="texture-synthesis">
+<h4>Texture Synthesis<a class="headerlink" href="#texture-synthesis" title="Permalink to this heading">#</a></h4>
+<p>SVD plays a crucial role in texture synthesis, where the goal is to generate realistic textures from a small sample. By analyzing the statistical properties of texture patches using SVD, new textures can be synthesized by reconstructing patches with similar characteristics. This allows for the creation of seamless and visually appealing textures in computer graphics applications.</p>
+</section>
+</section>
+<section id="signal-processing">
+<h3>Signal Processing<a class="headerlink" href="#signal-processing" title="Permalink to this heading">#</a></h3>
+<section id="noise-reduction">
+<h4>Noise Reduction<a class="headerlink" href="#noise-reduction" title="Permalink to this heading">#</a></h4>
+<p>In signal processing, noisy signals can be effectively denoised using SVD-based techniques. By decomposing a noisy signal into its singular values and vectors, noise components can be separated from the underlying signal. By retaining only the dominant singular values, noise can be attenuated while preserving signal features, leading to improved signal quality.</p>
+</section>
+<section id="audio-and-speech-processing">
+<h4>Audio and Speech Processing<a class="headerlink" href="#audio-and-speech-processing" title="Permalink to this heading">#</a></h4>
+<p>SVD is employed in audio and speech processing tasks such as source separation, speech enhancement, and audio compression. By decomposing audio signals into their singular components, meaningful audio features can be extracted and manipulated. This enables applications such as noise removal, speaker identification, and audio coding in multimedia systems.</p>
+</section>
+<section id="data-compression">
+<h4>Data Compression<a class="headerlink" href="#data-compression" title="Permalink to this heading">#</a></h4>
+<p>SVD-based compression techniques are used to reduce the size of signals and data streams in communication systems. By representing signals in a lower-dimensional space using the dominant singular values and vectors, data can be efficiently transmitted and stored with minimal loss of information. This is particularly useful in applications with limited bandwidth or storage capacity.</p>
+</section>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
+<p>Singular Value Decomposition (SVD) is a versatile tool with numerous applications in computer graphics and signal processing. Its ability to analyze and manipulate data in a compact and efficient manner makes it indispensable in fields such as image processing, computer vision, audio processing, and multimedia technologies. By leveraging the power of SVD, researchers and practitioners continue to advance the state-of-the-art in these domains, enabling new and innovative applications in the digital world.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap6.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 6: Diagonalization and Spectral Theorem</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap8.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 8: Applications of Linear Algebra</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jordan-canonical-form">Jordan Canonical Form</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jordan-block">Jordan Block</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#singular-value-decomposition-svd">Singular Value Decomposition (SVD)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-singular-value-decomposition">Applications of Singular Value Decomposition</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#computer-graphics">Computer Graphics</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-compression">Image Compression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-denoising">Image Denoising</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#texture-synthesis">Texture Synthesis</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-processing">Signal Processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#noise-reduction">Noise Reduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-and-speech-processing">Audio and Speech Processing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-compression">Data Compression</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

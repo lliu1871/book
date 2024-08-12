@@ -1,0 +1,1015 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 11: Linear Transformation &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap11';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 12: Isomorphism" href="chap12.html" />
+    <link rel="prev" title="Chapter 10: Vector Space" href="chap10.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap11.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap11.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 11: Linear Transformation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-transformations">Linear transformations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomorphisms">Isomorphisms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kernel-and-image-of-a-linear-transformation">The Kernel and Image of a Linear Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-transformations-from-f-m-to-f-n">Linear Transformations from F^m to F^n</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rank-plus-nullity-theorem">The Rank Plus Nullity Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-of-basis-matrices">Change of Basis Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matrix-of-a-linear-transformation">The Matrix of a Linear Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-of-bases-for-linear-transformations">Change of Bases for Linear Transformations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-of-matrices">Equivalence of Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-of-matrices">Similarity of Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-of-operators">Similarity of Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-subspaces">Invariant Subspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-pairs">Reducing Pairs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topological-vector-spaces">Topological Vector Spaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-operators-on-v-c">Linear Operators on V^C,</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-11-linear-transformation">
+<h1>Chapter 11: Linear Transformation<a class="headerlink" href="#chapter-11-linear-transformation" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="linear-transformations">
+<h2>Linear transformations<a class="headerlink" href="#linear-transformations" title="Permalink to this heading">#</a></h2>
+<p>A linear transformation is a function between two vector spaces that preserves vector addition and scalar multiplication. In other words, for a linear transformation ( T ), if ( u ) and ( v ) are vectors in the domain of ( T ) and ( c ) is a scalar, then:</p>
+<ol class="arabic simple">
+<li><p>( T(u + v) = T(u) + T(v) )</p></li>
+<li><p>( T(cu) = cT(u) )</p></li>
+</ol>
+<p>These properties ensure that the structure of the vector space is maintained under the transformation. Examples of linear transformations include rotations, reflections, scaling, and projections.
+Linear transformations have several important properties:</p>
+<ol class="arabic simple">
+<li><p>Additivity: For any two vectors ( \mathbf{u} ) and ( \mathbf{v} ) in the domain of the transformation ( T ), we have ( T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) ).</p></li>
+<li><p>Homogeneity: For any scalar ( c ) and any vector ( \mathbf{v} ) in the domain of ( T ), we have ( T(c\mathbf{v}) = cT(\mathbf{v}) ).</p></li>
+<li><p>Preserves the origin: The linear transformation takes the zero vector in the domain to the zero vector in the codomain: ( T(\mathbf{0}) = \mathbf{0} ).</p></li>
+<li><p>Preserves linear combinations: For any vectors ( \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n ) and scalars ( c_1, c_2, \ldots, c_n ), we have ( T(c_1\mathbf{v}_1 + c_2\mathbf{v}_2 + \cdots + c_n\mathbf{v}_n) = c_1T(\mathbf{v}_1) + c_2T(\mathbf{v}_2) + \cdots + c_nT(\mathbf{v}_n) ).</p></li>
+<li><p>Composition: The composition of two linear transformations is also a linear transformation.</p></li>
+<li><p>Transformation of the standard basis: The image of the standard basis vectors under a linear transformation uniquely determines the transformation.</p></li>
+<li><p>Invertibility: A linear transformation is invertible if and only if its matrix representation is invertible.</p></li>
+</ol>
+<p>These properties are crucial for understanding the behavior of linear transformations and their applications in various mathematical and scientific fields.
+There are several important theorems related to linear transformations. Here are some of the key theorems in linear algebra pertaining to linear transformations:</p>
+<ol class="arabic simple">
+<li><p>The Linearity Property: A function T: V → W is a linear transformation if it satisfies the following two properties for all vectors u, v in V and scalars c:</p></li>
+</ol>
+<ul class="simple">
+<li><p>T(u + v) = T(u) + T(v) (additivity)</p></li>
+<li><p>T(cu) = cT(u) (homogeneity)</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Kernel-Image Theorem: Let T: V → W be a linear transformation. The kernel of T, denoted by Ker(T), is the set of all vectors v in V such that T(v) = 0. The image of T, denoted by Im(T), is the set of all vectors w in W that can be written as w = T(v) for some v in V. The Kernel-Image theorem states:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Ker(T) is a subspace of V.</p></li>
+<li><p>Im(T) is a subspace of W.</p></li>
+<li><p>dim(Ker(T)) + dim(Im(T)) = dim(V).</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Rank-Nullity Theorem: For a linear transformation T: V → W, the rank of T is the dimension of the image of T, denoted by rank(T), and the nullity of T is the dimension of the kernel of T, denoted by nullity(T). The Rank-Nullity theorem states:</p></li>
+</ol>
+<ul class="simple">
+<li><p>rank(T) + nullity(T) = dim(V).</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Invertible Transformation Theorem: A linear transformation T: V → W is invertible if and only if it is bijective, meaning that it is both injective (one-to-one) and surjective (onto).</p></li>
+<li><p>Matrix Representation Theorem: Every linear transformation T: V → W between finite-dimensional vector spaces V and W can be represented by a matrix. Given bases B and B’ for V and W respectively, the matrix of the linear transformation T with respect to these bases is unique.</p></li>
+</ol>
+<p>These theorems are fundamental in the study of linear algebra and provide important insights into the properties and structure of linear transformations and their relationship with vector spaces.</p>
+</section>
+<section id="isomorphisms">
+<h2>Isomorphisms<a class="headerlink" href="#isomorphisms" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, an isomorphism between two vector spaces V and W is a linear transformation T: V -&gt; W that is bijective, meaning it is both injective (no two different vectors in V are mapped to the same vector in W) and surjective (every vector in W is the image of some vector in V). Isomorphisms preserve the structure and properties of vector spaces, such as dimensions, basis, and operations. Two isomorphic vector spaces are essentially the same in terms of their linear algebraic structure, just expressed in different bases or coordinate systems.
+An isomorphism is a one-to-one linear transformation between two vector spaces that preserves both the operations of addition and scalar multiplication. Here are some key properties of isomorphisms:</p>
+<ol class="arabic simple">
+<li><p>Injective: An isomorphism is injective, meaning it maps distinct inputs to distinct outputs. In other words, if two vectors in the domain are different, their images under the isomorphism will also be different.</p></li>
+<li><p>Surjective: An isomorphism is surjective, meaning every element in the codomain is the image of some element in the domain. In other words, every element in the codomain is mapped to by at least one element in the domain.</p></li>
+<li><p>Bijective: An isomorphism is bijective, meaning it is both injective and surjective. This implies that there is a one-to-one correspondence between elements in the domain and elements in the codomain.</p></li>
+<li><p>Preserves operations: An isomorphism preserves the operations of addition and scalar multiplication. This means that if you apply the isomorphism to the sum of two vectors, it will be the same as the sum of the images of those vectors under the isomorphism. Similarly, the isomorphism of a scalar multiple of a vector will be the same as the scalar multiple of the image of that vector.</p></li>
+<li><p>Invertible: An isomorphism has an inverse mapping that is also an isomorphism. This means that there exists a linear transformation that “undoes” the original isomorphism, mapping elements from the codomain back to the domain.</p></li>
+<li><p>Dimension-preserving: An isomorphism between finite-dimensional vector spaces preserves the dimension of the vector spaces. This means that if two vector spaces are isomorphic, they have the same dimension.</p></li>
+<li><p>Unique: If two vector spaces are isomorphic, the isomorphism between them is unique. In other words, there is only one linear transformation that establishes the isomorphism between the two vector spaces.</p></li>
+<li><p>Theorem 1: Let V and W be vector spaces over the same field F. An isomorphism between V and W is a bijective linear transformation from V to W. In other words, a linear transformation T: V → W is an isomorphism if and only if T is both injective and surjective.</p></li>
+<li><p>Theorem 2: If T: V → W is an isomorphism, then the inverse function T^-1 : W → V exists and is also an isomorphism. In other words, T^-1 is a linear transformation that maps W back to V and preserves vector space operations.</p></li>
+<li><p>Theorem 3: If V and W are finite-dimensional vector spaces over the same field F, then V and W are isomorphic if and only if they have the same dimension. This implies that any two finite-dimensional vector spaces with the same dimension are isomorphic.</p></li>
+<li><p>Theorem 4: Let V be a vector space and B = {v1, v2, …, vn} be a basis for V. Then, for any vector space W and any set of vectors {w1, w2, …, wn} in W, there exists a unique linear transformation T: V → W such that T(vi) = wi for all i = 1, 2, …, n.</p></li>
+<li><p>Theorem 5: If T: V → W is an isomorphism between vector spaces V and W, then T preserves linear independence and spanning sets. That is, if {v1, v2, …, vn} is a linearly independent set in V, then {T(v1), T(v2), …, T(vn)} is linearly independent in W. Similarly, if {v1, v2, …, vn} spans V, then {T(v1), T(v2), …, T(vn)} spans W.</p></li>
+</ol>
+<p>These theorems provide important properties and results related to isomorphisms between vector spaces.</p>
+</section>
+<section id="the-kernel-and-image-of-a-linear-transformation">
+<h2>The Kernel and Image of a Linear Transformation<a class="headerlink" href="#the-kernel-and-image-of-a-linear-transformation" title="Permalink to this heading">#</a></h2>
+<p>The kernel and image of a linear transformation are fundamental concepts in linear algebra.</p>
+<p>The kernel of a linear transformation T: V → W, denoted as ker(T), is the set of all vectors in the domain V that are mapped to the zero vector in the codomain W by the transformation. Formally, ker(T) = {v ∈ V : T(v) = 0}.</p>
+<p>The image of a linear transformation T, denoted as im(T) or sometimes as range(T), is the set of all possible output vectors in the codomain W that can be obtained by applying the transformation to vectors in the domain V. Formally, im(T) = {T(v) : v ∈ V}.</p>
+<p>The kernel and image of a linear transformation are related in that the kernel contains all vectors that are “lost” or mapped to zero by the transformation, while the image consists of all the possible “outputs” that can be obtained by applying the transformation.</p>
+<p>These concepts have important implications in linear algebra, such as determining whether a linear transformation is injective (one-to-one), surjective (onto), or bijective (both injective and surjective). The kernel and image also play a key role in understanding the structure and properties of linear transformations and matrices.
+The kernel and image of a linear transformation are fundamental concepts in linear algebra that provide valuable insights into the behavior and structure of a linear transformation. Here are some key properties of the kernel and image of a linear transformation:</p>
+<ol class="arabic simple">
+<li><p>Kernel (Null Space):</p></li>
+</ol>
+<ul class="simple">
+<li><p>The kernel of a linear transformation T, denoted as ker(T), is the set of all vectors in the domain of T that get mapped to the zero vector in the codomain.</p></li>
+<li><p>The kernel of a linear transformation is always a subspace of the domain.</p></li>
+<li><p>The dimension of the kernel is known as the nullity of the linear transformation.</p></li>
+<li><p>The kernel is non-empty if and only if the linear transformation is not injective (one-to-one).</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Image (Range):</p></li>
+</ol>
+<ul class="simple">
+<li><p>The image of a linear transformation T, denoted as Im(T) or range(T), is the set of all vectors in the codomain that can be obtained by applying T to vectors in the domain.</p></li>
+<li><p>The image of a linear transformation is always a subspace of the codomain.</p></li>
+<li><p>The dimension of the image is known as the rank of the linear transformation.</p></li>
+<li><p>The image is non-empty if and only if the linear transformation is not surjective (onto).</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Dimension Theorem (Rank-Nullity Theorem):</p></li>
+</ol>
+<ul class="simple">
+<li><p>The kernel and image of a linear transformation are related by the dimension theorem, also known as the rank-nullity theorem.</p></li>
+<li><p>For a linear transformation T from an n-dimensional vector space V to an m-dimensional vector space W, the rank-nullity theorem states that dim(ker(T)) + dim(Im(T)) = n.</p></li>
+<li><p>This theorem provides a fundamental relationship between the dimension of the kernel, the dimension of the image, and the dimension of the domain of the linear transformation.</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Relationship between Kernel and Image:</p></li>
+</ol>
+<ul class="simple">
+<li><p>The kernel and image of a linear transformation are related through the fundamental theorem of linear algebra, which states that for a linear transformation T from an n-dimensional vector space V to an m-dimensional vector space W, the image of T is the orthogonal complement of the kernel of T in V.</p></li>
+<li><p>This relationship highlights the duality between the kernel and image of a linear transformation and provides insights into the structure of the linear transformation.</p></li>
+</ul>
+<p>Overall, the kernel and image of a linear transformation play crucial roles in understanding the behavior and properties of linear transformations, and their study forms a core part of linear algebra theory.</p>
+<ol class="arabic simple">
+<li><p>Kernel-Image Theorem: Let ( T: V \rightarrow W ) be a linear transformation between vector spaces V and W. Then, the rank-nullity theorem states that:</p></li>
+</ol>
+<p>[
+\text{rank}(T) + \text{nullity}(T) = \text{dim}(V)
+]</p>
+<p>where (\text{rank}(T)) is the dimension of the image of T and (\text{nullity}(T)) is the dimension of the kernel of T.</p>
+<ol class="arabic simple" start="2">
+<li><p>Dimension of Kernel: The dimension of the kernel of a linear transformation ( T: V \rightarrow W ) is also known as the nullity of T and is denoted by (\text{nullity}(T)). It is equal to the number of linearly independent vectors in the kernel.</p></li>
+<li><p>Dimension of Image: The dimension of the image of a linear transformation ( T: V \rightarrow W ) is denoted by (\text{rank}(T)) and is equal to the number of linearly independent vectors in the image.</p></li>
+<li><p>Rank-Nullity Theorem: Let ( T: V \rightarrow W ) be a linear transformation between vector spaces V and W. Then, the rank-nullity theorem states that:</p></li>
+</ol>
+<p>[
+\text{rank}(T) + \text{nullity}(T) = \text{dim}(V)
+]</p>
+<ol class="arabic simple" start="5">
+<li><p>Injective Linear Transformation: A linear transformation ( T: V \rightarrow W ) is injective if and only if the kernel of T is {0}, meaning that the only vector that gets mapped to the zero vector in W is the zero vector in V.</p></li>
+<li><p>Surjective Linear Transformation: A linear transformation ( T: V \rightarrow W ) is surjective if and only if the image of T equals W, i.e., every vector in W is the image of some vector in V under T.</p></li>
+</ol>
+<p>These theorems are fundamental in understanding the properties of linear transformations and their associated kernel and image spaces.</p>
+</section>
+<section id="linear-transformations-from-f-m-to-f-n">
+<h2>Linear Transformations from F^m to F^n<a class="headerlink" href="#linear-transformations-from-f-m-to-f-n" title="Permalink to this heading">#</a></h2>
+<p>A linear transformation from the vector space (F^m) to (F^n) is a function (T: F^m \rightarrow F^n) that satisfies two properties:</p>
+<ol class="arabic simple">
+<li><p>Additivity: For any vectors (\mathbf{v_1}, \mathbf{v_2} \in F^m), (T(\mathbf{v_1} + \mathbf{v_2}) = T(\mathbf{v_1}) + T(\mathbf{v_2})).</p></li>
+<li><p>Homogeneity: For any scalar (c \in F) and vector (\mathbf{v} \in F^m), (T(c\mathbf{v}) = cT(\mathbf{v})).</p></li>
+</ol>
+<p>In other words, a linear transformation preserves vector addition and scalar multiplication.
+Linear transformations from the vector space ( F^m ) to ( F^n ) have the following key properties:</p>
+<ol class="arabic simple">
+<li><p>Linearity: A linear transformation T: ( F^m ) -&gt; ( F^n ) satisfies the properties of additivity and homogeneity:</p>
+<ul class="simple">
+<li><p>Additivity: ( T(u + v) = T(u) + T(v) ) for all vectors ( u, v ) in ( F^m ).</p></li>
+<li><p>Homogeneity: ( T(cu) = cT(u) ) for all scalar ( c ) in ( F ) and vector ( u ) in ( F^m ).</p></li>
+</ul>
+</li>
+<li><p>Preservation of Vector Operations: The linear transformation T preserves vector addition and scalar multiplication, i.e., ( T(cu + dv) = cT(u) + dT(v) ) for all vectors ( u, v ) in ( F^m ) and scalars ( c, d ) in ( F ).</p></li>
+<li><p>Matrix Representation: A linear transformation from ( F^m ) to ( F^n ) can be represented by an ( n \times m ) matrix. The columns of the matrix correspond to the images of the basis vectors of ( F^m ) under the transformation.</p></li>
+<li><p>Kernel and Image: The kernel of a linear transformation from ( F^m ) to ( F^n ) is the set of vectors that are mapped to the zero vector in ( F^n ). The image (or range) of the transformation is the set of all possible outputs of the transformation.</p></li>
+<li><p>Rank and Nullity: The rank of a linear transformation is the dimension of its image, while the nullity is the dimension of its kernel. The rank-nullity theorem states that the sum of the rank and nullity of a linear transformation is equal to the dimension of the domain.</p></li>
+<li><p>Invertibility: A linear transformation is invertible if and only if the transformation is both injective (one-to-one) and surjective (onto). In this case, the inverse transformation also exists, and the composition of a linear transformation with its inverse gives the identity transformation.</p></li>
+</ol>
+<p>These properties are fundamental in the study of linear algebra and play a crucial role in various applications in mathematics and other fields.
+There are several important theorems related to linear transformations from (F^m) to (F^n) where (F) is a field. Here are a few important theorems:</p>
+<ol class="arabic simple">
+<li><p>The Rank-Nullity Theorem: This theorem states that for a linear transformation (T: F^m \rightarrow F^n), the sum of the dimension of the image of (T) (also known as the rank of (T)) and the dimension of the kernel of (T) (also known as the nullity of (T)) is equal to the dimension of the domain of (T). Mathematically, if (T: F^m \rightarrow F^n) is a linear transformation, then (\text{rank}(T) + \text{nullity}(T) = m).</p></li>
+<li><p>Invertibility Theorem: A linear transformation (T: F^m \rightarrow F^n) is invertible if and only if its matrix representation is invertible. In other words, (T) is invertible if and only if its matrix (A) is invertible.</p></li>
+<li><p>Rank-Nullity Theorem for Matrices: For a matrix (A) that represents a linear transformation from (F^m) to (F^n), the rank of (A) is equal to the rank of the linear transformation it represents. Furthermore, the nullity of (A) is equal to the nullity of the linear transformation it represents.</p></li>
+<li><p>Isomorphism Theorem: If (T: F^m \rightarrow F^n) is a linear transformation and (m = n), and (T) is also bijective (both injective and surjective), then (T) is an isomorphism. An isomorphism is a bijective linear transformation.</p></li>
+</ol>
+<p>These theorems are fundamental in the study of linear algebra and help in understanding the properties and behavior of linear transformations from (F^m) to (F^n).</p>
+</section>
+<section id="the-rank-plus-nullity-theorem">
+<h2>The Rank Plus Nullity Theorem<a class="headerlink" href="#the-rank-plus-nullity-theorem" title="Permalink to this heading">#</a></h2>
+<p>The Rank Plus Nullity Theorem, also known as the Rank-Nullity Theorem, is a fundamental result in linear algebra that relates the dimensions of the range (or image) and the null space of a linear transformation.</p>
+<p>Formally, the theorem states that for a linear transformation T: V -&gt; W between vector spaces V and W, the sum of the rank of the transformation and the dimension of the null space (kernel) of the transformation is equal to the dimension of the domain:</p>
+<p>rank(T) + dim(ker(T)) = dim(V)</p>
+<p>In other words, the rank of a linear transformation is the dimension of the image of the transformation, while the nullity is the dimension of the kernel (set of all vectors that map to zero under the transformation). The Rank Plus Nullity Theorem provides a way to understand the relationship between these two important subspaces of a linear transformation.
+The Rank Plus Nullity Theorem, also known as the Rank-Nullity Theorem, is a fundamental result in linear algebra that relates the dimensions of the image and kernel of a linear transformation. The theorem states that for a linear transformation ( T: V \rightarrow W ) where ( V ) and ( W ) are vector spaces, the sum of the rank of ( T ) and the nullity of ( T ) is equal to the dimension of the domain ( V ):</p>
+<p>[ \text{rank}(T) + \text{nullity}(T) = \text{dim}(V) ]</p>
+<p>Here are some key properties of the Rank-Nullity Theorem:</p>
+<ol class="arabic simple">
+<li><p><strong>Rank of a Transformation (Image):</strong> The rank of a linear transformation ( T ) is the dimension of the image of ( T ), denoted as ( \text{rank}(T) ). This represents the maximum number of linearly independent vectors in the image of ( T ).</p></li>
+<li><p><strong>Nullity of a Transformation (Kernel):</strong> The nullity of a linear transformation ( T ) is the dimension of the kernel of ( T ), denoted as ( \text{nullity}(T) ). The kernel is the set of all vectors in the domain that are mapped to the zero vector in the co-domain.</p></li>
+<li><p><strong>Dimension of the Domain:</strong> The dimension of the domain of the linear transformation is denoted as ( \text{dim}(V) ). It represents the number of vectors needed to form a basis for the domain vector space ( V ).</p></li>
+<li><p><strong>Relationship between Rank, Nullity, and Dimension:</strong> The Rank-Nullity Theorem establishes a relationship between the rank, nullity, and dimension of a linear transformation. It states that the sum of the rank of ( T ) and the nullity of ( T ) is equal to the dimension of the domain ( V ).</p></li>
+<li><p><strong>Usage in Solving Systems of Linear Equations:</strong> The Rank-Nullity Theorem is often used in solving systems of linear equations to determine the number of independent equations and unknowns. It provides insight into the structure of the solution space and the existence of solutions.</p></li>
+<li><p><strong>Invariance of Rank and Nullity:</strong> The Rank-Nullity Theorem holds true for any linear transformation, regardless of the specific choice of basis for the vector spaces involved. This property makes it a powerful tool in linear algebra.</p></li>
+</ol>
+<p>Overall, the Rank-Nullity Theorem is a fundamental result that provides a direct connection between the rank and nullity of a linear transformation and the dimension of its domain. It is a key concept in understanding the structure and properties of linear transformations in vector spaces.
+The Rank-Nullity Theorem, also known as the Rank Plus Nullity Theorem, is a fundamental result in linear algebra that relates the dimensions of the column space and null space of a matrix to the number of columns and rows of the matrix. Here are the theorems associated with the Rank-Nullity Theorem:</p>
+<ol class="arabic simple">
+<li><p>Rank-Nullity Theorem: Let A be an m x n matrix. The rank of A plus the nullity of A equals the number of columns of A,
+i.e., rank(A) + nullity(A) = n.</p></li>
+<li><p>Rank of a Matrix: The rank of a matrix A is the dimension of the column space of A, denoted by rank(A).</p></li>
+<li><p>Nullity of a Matrix: The nullity of a matrix A is the dimension of the null space of A, denoted by nullity(A).</p></li>
+<li><p>Dimension Theorem: For any m x n matrix A, dim(col(A)) + dim(null(A)) = n, where dim(col(A)) represents the dimension of the column space of A (rank of A) and dim(null(A)) represents the dimension of the null space of A (nullity of A).</p></li>
+<li><p>Relationship to Row Space: The rank of a matrix A is also equal to the dimension of the row space of A. Therefore, rank(A) = rank(A^T).</p></li>
+<li><p>Full Rank Matrix: A matrix with a rank equal to the number of columns is called a full rank matrix. Therefore, for a full rank matrix A, rank(A) = n and nullity(A) = 0.</p></li>
+</ol>
+<p>These theorems highlight the relationship between the rank and nullity of a matrix, and they are essential in understanding the properties and structure of linear transformations represented by matrices.</p>
+</section>
+<section id="change-of-basis-matrices">
+<h2>Change of Basis Matrices<a class="headerlink" href="#change-of-basis-matrices" title="Permalink to this heading">#</a></h2>
+<p>A change of basis matrix is a matrix used to convert between different bases of a vector space. If we have two bases B and B’ of a vector space V, and V has dimension n, then a change of basis matrix P is an invertible matrix such that if v is a vector in V expressed in terms of the basis B as [v]_B and in terms of the basis B’ as [v]_B’, then we have the relationship [v]_B’ = P[v]_B.</p>
+<p>In other words, a change of basis matrix allows us to convert the coordinates of a vector from one basis to another basis in the same vector space.
+A change of basis matrix is a matrix that allows us to convert vectors and linear transformations between different basis vectors. Here are some properties of change of basis matrices:</p>
+<ol class="arabic simple">
+<li><p>Invertibility: A change of basis matrix is invertible, meaning that it has an inverse matrix that can be used to convert back to the original basis.</p></li>
+<li><p>Composition: If you have two change of basis matrices, say P and Q, for converting between basis A and basis B, and between basis B and basis C respectively, then the composition of P and Q, PQ, will be a change of basis matrix for converting between basis A and basis C.</p></li>
+<li><p>Transpose: The transpose of a change of basis matrix is also a change of basis matrix. This allows us to convert linear transformations in the original basis to the new basis.</p></li>
+<li><p>Multiplication: Multiplying a vector by a change of basis matrix converts the vector from the original basis to the new basis.</p></li>
+<li><p>Linear Independence: Change of basis matrices preserve linear independence. If a set of vectors are linearly independent in one basis, they will remain linearly independent in the new basis.</p></li>
+<li><p>Eigenvalues: The eigenvalues of a linear transformation will remain the same under a change of basis.</p></li>
+<li><p>Determinant: The determinant of a change of basis matrix is nonzero, ensuring that it is invertible and does not change the orientation of vectors.</p></li>
+</ol>
+<p>These properties make change of basis matrices a powerful tool in linear algebra for understanding and manipulating vectors and linear transformations in different coordinate systems.
+There are several important theorems related to change of basis matrices in linear algebra. Some of the key theorems include:</p>
+<ol class="arabic simple">
+<li><p>Let V be a vector space with finite basis B and B’ and let P be the change of basis matrix from B to B’. If v is a vector in V with coordinates X with respect to B and X’ with respect to B’, then X’ = PX.</p></li>
+<li><p>If P is the change of basis matrix from basis B to basis B’, then P^-1 is the change of basis matrix from basis B’ to basis B.</p></li>
+<li><p>If A is a matrix representing a linear transformation T with respect to basis B and A’ is a matrix representing the same linear transformation with respect to basis B’, then there exists a change of basis matrix P such that A’ = P^-1AP.</p></li>
+<li><p>If A and B are similar matrices, i.e., there exists an invertible matrix P such that A = P^-1BP, then they represent the same linear transformation under different bases.</p></li>
+<li><p>The change of basis matrix is unique for a given pair of bases. That is, if there exists two change of basis matrices P and Q relating basis B and B’, then P = Q.</p></li>
+</ol>
+<p>These theorems highlight the fundamental properties of change of basis matrices and their importance in understanding linear transformations with respect to different bases.</p>
+</section>
+<section id="the-matrix-of-a-linear-transformation">
+<h2>The Matrix of a Linear Transformation<a class="headerlink" href="#the-matrix-of-a-linear-transformation" title="Permalink to this heading">#</a></h2>
+<p>The matrix of a linear transformation is a representation of the transformation in terms of a matrix. Given a linear transformation T: V -&gt; W between vector spaces V and W, where dim(V) = n and dim(W) = m, the matrix of T is an m x n matrix A such that for any vector x in V, the action of T on x can be expressed as the matrix-vector product Ax.</p>
+<p>More formally, if {v1, v2, …, vn} is a basis for V and {w1, w2, …, wm} is a basis for W, the matrix A is defined such that for any vector x = a1v1 + a2v2 + … + anvn in V, the action of T on x can be written as T(x) = b1w1 + b2w2 + … + bmwm, where the coefficients b1, b2, …, bm are the entries of the column vector Ax.</p>
+<p>In summary, the matrix of a linear transformation serves as a way to represent the transformation using matrix operations and allows for efficient computation of the transformed vectors.
+The matrix of a linear transformation represents how the transformation affects vectors in a given vector space. Here are some key properties of the matrix of a linear transformation:</p>
+<ol class="arabic simple">
+<li><p>Basis Representation: The matrix of a linear transformation with respect to a given basis for the vector spaces involved reveals how the transformation behaves on the basis vectors. Specifically, the columns of the matrix correspond to the images of the basis vectors under the linear transformation.</p></li>
+<li><p>Composition: The matrix of the composition of two linear transformations is the product of the matrices of the individual transformations. This property makes it convenient to determine the effect of applying multiple linear transformations sequentially.</p></li>
+<li><p>Invertibility: A linear transformation is invertible if and only if its matrix is invertible. In other words, the matrix is invertible if and only if the corresponding linear transformation is bijective (one-to-one and onto).</p></li>
+<li><p>Change of Basis: The matrix of a linear transformation changes when the basis of the vector space is changed. Specifically, if you change the basis, the matrix of the linear transformation will be conjugated by the change of basis matrix.</p></li>
+<li><p>Rank and Nullity: The rank of the matrix of a linear transformation is equal to the rank of the linear transformation itself. Similarly, the nullity of the matrix is the same as the nullity of the linear transformation.</p></li>
+<li><p>Eigenvalues and Eigenvectors: The eigenvectors and eigenvalues of a linear transformation are related to the eigenvectors and eigenvalues of its matrix. In particular, the eigenvectors are the same, while the eigenvalues may differ if a change of basis is involved.</p></li>
+<li><p>Determinant: The determinant of the matrix of a linear transformation is equal to the determinant of the linear transformation itself. This property can be used to determine whether a transformation preserves orientation.</p></li>
+</ol>
+<p>These properties highlight the close relationship between a linear transformation and its corresponding matrix representation, making matrices a powerful tool for analyzing and understanding linear transformations.
+There are several theorems related to the matrix representation of a linear transformation. Some of the important theorems are:</p>
+<ol class="arabic simple">
+<li><p><strong>Existence and Uniqueness Theorem</strong>: Every linear transformation from a finite-dimensional vector space V to a finite-dimensional vector space W can be represented by a unique matrix.</p></li>
+<li><p><strong>Standard Matrix Representation Theorem</strong>: Let T : V -&gt; W be a linear transformation, where V and W are finite-dimensional vector spaces with ordered bases B = {v1, v2, …, vn} and C = {w1, w2, …, wm} respectively. Then there exists a unique matrix A such that [T]B,C = A, where [T]B,C denotes the matrix representation of T with respect to bases B and C.</p></li>
+<li><p><strong>Matrix of Composition Theorem</strong>: Let S : U -&gt; V and T : V -&gt; W be linear transformations, where U, V, and W are finite-dimensional vector spaces. Suppose B, C, and D are ordered bases for U, V, and W respectively. Then the matrix of the composition T ◦ S is equal to the product of the matrices [T]C,D and [S]B,C, i.e., [T ◦ S]B,D = [T]C,D [S]B,C.</p></li>
+<li><p><strong>Change of Basis Formula</strong>: Let T : V -&gt; V be a linear transformation on a finite-dimensional vector space V, and let B and C be two ordered bases for V. If P is the change of basis matrix from B to C, then the matrix representation of T with respect to basis C is given by [T]C = P^(-1) [T]B P, where [T]B and [T]C are the matrix representations of T with respect to bases B and C respectively.</p></li>
+<li><p><strong>Rank-Nullity Theorem</strong>: For any linear transformation T : V -&gt; W between finite-dimensional vector spaces V and W, the rank of T plus the nullity of T equals the dimension of V.</p></li>
+</ol>
+<p>These theorems play a crucial role in understanding the relationship between linear transformations and their matrix representations.</p>
+</section>
+<section id="change-of-bases-for-linear-transformations">
+<h2>Change of Bases for Linear Transformations<a class="headerlink" href="#change-of-bases-for-linear-transformations" title="Permalink to this heading">#</a></h2>
+<p>Change of bases for linear transformations refers to the process of analyzing how the representation of a linear transformation changes when the basis of the vector space is changed.</p>
+<p>When we have a linear transformation ( T: V \rightarrow W ) between vector spaces ( V ) and ( W ), and we have two different bases ( B ) and ( B’ ) for the vector space ( V ), we can determine how the matrix representation of the linear transformation changes when we switch from basis ( B ) to basis ( B’ ) using a change of basis matrix.</p>
+<p>Let ( P ) be the change of basis matrix that transforms coordinates of vectors in basis ( B ) to coordinates in basis ( B’ ). If ( [T]<em>B ) represents the matrix of the linear transformation ( T ) with respect to basis ( B ) and ( [T]</em>{B’} ) represents the matrix of ( T ) with respect to basis ( B’ ), then the relationship between these matrices is given by:</p>
+<p>[ [T]_{B’} = P^{-1} [T]_B P ]</p>
+<p>This equation shows how the matrix representation of the linear transformation changes when the basis is changed using the change of basis matrix ( P ). This concept is crucial in understanding how linear transformations behave with respect to different bases and is fundamental in linear algebra.
+There are several important properties of change of bases for linear transformations:</p>
+<ol class="arabic simple">
+<li><p>Linear independence: If a set of vectors is linearly independent in one basis, they will remain linearly independent in any other basis. Conversely, if a set of vectors is linearly dependent in one basis, they will remain linearly dependent in any other basis.</p></li>
+<li><p>Eigenvalues and eigenvectors: The eigenvalues and eigenvectors of a linear transformation are invariant under a change of basis. This means that the eigenvalues and eigenvectors will remain the same regardless of the basis chosen.</p></li>
+<li><p>Matrix representation: The matrix representation of a linear transformation changes when the basis changes. Specifically, if we have a linear transformation represented by a matrix A with respect to one basis, the matrix representation of the same transformation with respect to a different basis is given by the change of basis matrix P multiplied by the original matrix A, and then multiplied by the inverse of the change of basis matrix P^(-1).</p></li>
+<li><p>Transformation properties: The transformation properties of a linear transformation, such as whether it is invertible or diagonalizable, are preserved under a change of basis. This means that any structural properties of the linear transformation will remain the same, regardless of the basis chosen.</p></li>
+</ol>
+<p>Overall, change of bases for linear transformations allows us to analyze and understand linear transformations in different coordinate systems, while preserving important properties such as linear independence, eigenvalues and eigenvectors, and transformation properties.
+There are two important theorems related to change of bases for linear transformations:</p>
+<ol class="arabic simple">
+<li><p>Change of Basis Theorem for Linear Transformations: Let ( T: V \rightarrow W ) be a linear transformation between vector spaces ( V ) and ( W ), and let ( B = {v_1, v_2, \ldots, v_n} ) and ( C = {w_1, w_2, \ldots, w_n} ) be two ordered bases for ( V ). Suppose that ( P = [v_1, v_2, \ldots, v_n] ) and ( Q = [w_1, w_2, \ldots, w_n] ) are the respective coordinate matrices. If ( A ) is the matrix representation of ( T ) with respect to the basis ( B ) and ( D ) is the matrix representation of ( T ) with respect to the basis ( C ), then ( D = Q^{-1}AP ).</p></li>
+<li><p>Similarity Transformation Theorem: Let ( A ) and ( B ) be two square matrices of the same size. If there exists an invertible matrix ( P ) such that ( B = P^{-1}AP ), then ( A ) and ( B ) are said to be similar matrices. This theorem also applies to linear transformations if we consider the matrix representations of the transformations as matrices.</p></li>
+</ol>
+<p>These theorems are fundamental in understanding how the representation of a linear transformation changes when we change the basis of the vector spaces involved.</p>
+</section>
+<section id="equivalence-of-matrices">
+<h2>Equivalence of Matrices<a class="headerlink" href="#equivalence-of-matrices" title="Permalink to this heading">#</a></h2>
+<p>Two matrices are said to be equivalent if they can be transformed into each other by a sequence of elementary row operations. These row operations include:</p>
+<ol class="arabic simple">
+<li><p>Swapping two rows.</p></li>
+<li><p>Multiplying a row by a nonzero scalar.</p></li>
+<li><p>Adding a multiple of one row to another row.</p></li>
+</ol>
+<p>If two matrices can be transformed into each other using these elementary row operations, then they are considered equivalent. This equivalence relation is important in linear algebra as equivalent matrices represent the same linear transformation in different bases or have the same row space and null space properties.
+The equivalence of matrices refers to the relation between two matrices that have the same row echelon form. In other words, two matrices are considered equivalent if one can be transformed into the other through a sequence of elementary row operations.</p>
+<p>Some key properties of equivalence of matrices include:</p>
+<ol class="arabic simple">
+<li><p>Reflexivity: A matrix is equivalent to itself. This is because the row echelon form of a matrix is itself, so no row operations are needed to transform it into itself.</p></li>
+<li><p>Symmetry: If matrix A is equivalent to matrix B, then matrix B is also equivalent to matrix A. This property stems from the fact that elementary row operations are reversible.</p></li>
+<li><p>Transitivity: If matrix A is equivalent to matrix B, and matrix B is equivalent to matrix C, then matrix A is equivalent to matrix C. This property follows from the fact that the row echelon form is unique for a given matrix, so if two matrices share the same row echelon form, they must be equivalent.</p></li>
+<li><p>Equivalence is an equivalence relation: This means that the relation of equivalence between matrices satisfies the properties of reflexivity, symmetry, and transitivity.</p></li>
+<li><p>Equivalence preserves certain properties: If two matrices are equivalent, they share some important properties such as rank, determinant, and eigenvalues. This makes equivalence useful in various applications, such as solving systems of linear equations and understanding the geometric properties of matrices.</p></li>
+</ol>
+<p>These properties make the concept of equivalence of matrices a powerful tool in linear algebra for simplifying calculations, analyzing matrices, and solving problems.
+There are several theorems related to the equivalence of matrices in linear algebra. Here are some of the key theorems:</p>
+<ol class="arabic simple">
+<li><p>Two matrices are equivalent if and only if they have the same rank.</p></li>
+<li><p>If two matrices are row equivalent, then they are equivalent.</p></li>
+<li><p>If two matrices are equivalent, then they have the same nullity.</p></li>
+<li><p>If two matrices are equivalent, then they have the same column space.</p></li>
+<li><p>If two matrices are equivalent, then they have the same row space.</p></li>
+<li><p>If two matrices are equivalent, then they have the same determinant.</p></li>
+<li><p>If two matrices are equivalent, then they have the same eigenvalues.</p></li>
+</ol>
+<p>These theorems are fundamental in understanding the properties and relationships between equivalent matrices in linear algebra.</p>
+</section>
+<section id="similarity-of-matrices">
+<h2>Similarity of Matrices<a class="headerlink" href="#similarity-of-matrices" title="Permalink to this heading">#</a></h2>
+<p>Two matrices A and B are said to be similar if there exists an invertible matrix P such that B = P^(-1) * A * P. In other words, matrices A and B are similar if they represent the same linear transformation under different bases.
+When two square matrices A and B are said to be similar, there exists an invertible matrix P such that B = P^-1AP. The concept of similarity has several important properties, including:</p>
+<ol class="arabic simple">
+<li><p>Similar matrices have the same eigenvalues: If A and B are similar matrices, then they have the same eigenvalues. This can be shown by observing that det(B - λI) = det(P^-1AP - λI) = det(A - λI), where λ represents an eigenvalue.</p></li>
+<li><p>Similar matrices have the same characteristic polynomial: The characteristic polynomial of a matrix is defined as det(A - λI), where λ is an eigenvalue. Since similar matrices have the same eigenvalues, they will have the same characteristic polynomial.</p></li>
+<li><p>Similar matrices have the same trace and determinant: The trace and determinant of a matrix are invariant under similarity transformations. Mathematically, tr(A) = tr(B) and det(A) = det(B), where tr denotes the trace.</p></li>
+<li><p>Similarity is an equivalence relation: Similarity is reflexive, symmetric, and transitive. Any matrix is similar to itself (reflexive), if A is similar to B, then B is similar to A (symmetric), and if A is similar to B and B is similar to C, then A is similar to C (transitive).</p></li>
+<li><p>If A and B are similar matrices, then powers of A and B are also similar: Specifically, A^k and B^k are similar for any non-negative integer k.</p></li>
+<li><p>Diagonalizability is preserved under similarity: If a matrix A is diagonalizable, meaning it has a full set of linearly independent eigenvectors, then any matrix similar to A is also diagonalizable.</p></li>
+<li><p>Similar matrices have the same rank: The rank of a matrix is the same as the rank of any similar matrix.</p></li>
+</ol>
+<p>These properties make the concept of similarity an important one in linear algebra, as it helps to connect and understand the properties of different matrices.
+There are several theorems related to the similarity of matrices in linear algebra:</p>
+<ol class="arabic simple">
+<li><p>Two matrices (A) and (B) are similar if and only if there exists an invertible matrix (P) such that (B = P^{-1}AP).</p></li>
+<li><p>Similarity is an equivalence relation, which means that it is reflexive, symmetric, and transitive.</p>
+<ul class="simple">
+<li><p>Reflexive: A matrix is always similar to itself, as (A = I^{-1}AI).</p></li>
+<li><p>Symmetric: If (A) is similar to (B), then (B) is also similar to (A).</p></li>
+<li><p>Transitive: If (A) is similar to (B) and (B) is similar to (C), then (A) is similar to (C).</p></li>
+</ul>
+</li>
+<li><p>Similar matrices share many important properties, such as determinant, trace, eigenvalues, and rank. Specifically:</p>
+<ul class="simple">
+<li><p>The determinants of similar matrices are equal, i.e., det((A)) = det((B)).</p></li>
+<li><p>The eigenvalues of similar matrices are the same.</p></li>
+<li><p>The trace of similar matrices is the same, i.e., tr((A)) = tr((B)).</p></li>
+</ul>
+</li>
+<li><p>If (A) and (B) are similar matrices, then they have the same characteristic polynomial and minimal polynomial.</p></li>
+<li><p>If (A) is a diagonalizable matrix, then it is similar to a diagonal matrix containing its eigenvalues as entries.</p></li>
+</ol>
+<p>Understanding these theorems can be helpful in analyzing the properties and relationships of matrices in linear algebra.</p>
+</section>
+<section id="similarity-of-operators">
+<h2>Similarity of Operators<a class="headerlink" href="#similarity-of-operators" title="Permalink to this heading">#</a></h2>
+<p>Two linear operators (A) and (B) defined on the same vector space are called similar if there exists an invertible operator (P) such that (B = P^{-1}AP). In other words, operators (A) and (B) are similar if they represent the same linear transformation but with respect to different bases, where (P) is the change of basis operator. This concept is important in linear algebra as it allows us to study the properties of a linear operator in a different basis while preserving structural and algebraic properties.
+When we say that two linear operators are similar, we mean that there exists an invertible matrix P such that the two operators A and B are related by the equation:</p>
+<p>[ B = P^{-1}AP ]</p>
+<p>This notion of similarity is important in linear algebra and has several key properties:</p>
+<ol class="arabic simple">
+<li><p>Similarity is an equivalence relation: This means that similarity satisfies three properties - reflexivity, symmetry, and transitivity.</p></li>
+<li><p>Similar operators share many properties: Similar operators have the same eigenvalues. This property is useful in the context of diagonalization and understanding the behavior of linear operators.</p></li>
+<li><p>Similarity is preserved under certain operations: If A and B are similar, then any function of A is similar to the corresponding function of B. Specifically, if f is a function, then f(A) = P^{-1}f(B)P.</p></li>
+<li><p>Similar operators have the same trace: The trace of a linear operator is invariant under similarity transformations. This property is particularly useful in studying the behavior of operators.</p></li>
+<li><p>Similarity is a useful concept in applications: Similarity of operators is important in various areas of mathematics and its applications in physics, engineering, and signal processing. It helps to simplify computations and analysis by transforming operators into more convenient forms.</p></li>
+</ol>
+<p>Overall, the concept of similarity of operators plays a fundamental role in linear algebra and has many important implications and applications.
+There are several important theorems related to the similarity of operators in linear algebra. Some key theorems include:</p>
+<ol class="arabic simple">
+<li><p>Similarity of matrices implies similarity of operators: Given two linear operators ( T: V \rightarrow V ) and ( S: V \rightarrow V ) on a finite-dimensional vector space ( V ) with respect to some basis, if the matrices of these operators are similar, then the operators themselves are similar. That is, if there exists an invertible matrix ( P ) such that ( P^{-1}AP = B ), where ( A ) and ( B ) are the matrices of ( T ) and ( S ) respectively, then ( T ) and ( S ) are similar.</p></li>
+<li><p>Similarity is an equivalence relation: Similarity of linear operators is an equivalence relation, meaning it satisfies the properties of reflexivity, symmetry, and transitivity. That is, any operator is similar to itself, if ( T ) is similar to ( S ), then ( S ) is similar to ( T ), and if ( T ) is similar to ( S ) and ( S ) is similar to ( U ), then ( T ) is similar to ( U ).</p></li>
+<li><p>Diagonalizable operators are similar to diagonal matrices: If an operator ( T: V \rightarrow V ) on a finite-dimensional vector space ( V ) is diagonalizable, then it is similar to a diagonal matrix with its eigenvalues on the diagonal. This is known as the diagonalizability theorem for operators.</p></li>
+<li><p>Similarity and Jordan Canonical Form: Every operator on a finite-dimensional vector space ( V ) over an algebraically closed field is similar to a matrix in Jordan canonical form. The Jordan canonical form provides a canonical representation for linear operators up to similarity.</p></li>
+</ol>
+<p>These theorems are fundamental results in linear algebra and are key to understanding the concept of similarity of operators and matrices.</p>
+</section>
+<section id="invariant-subspaces">
+<h2>Invariant Subspaces<a class="headerlink" href="#invariant-subspaces" title="Permalink to this heading">#</a></h2>
+<p>An invariant subspace of a linear transformation ( T: V \rightarrow V ) on a vector space ( V ) is a subspace ( W \subseteq V ) such that for any vector ( \mathbf{v} \in W ), the image of ( \mathbf{v} ) under the linear transformation, ( T(\mathbf{v}) ), also belongs to ( W ), i.e., ( T(\mathbf{v}) \in W ).</p>
+<p>Formally, a subspace ( W \subseteq V ) is said to be an invariant subspace of the linear transformation ( T ) if for any vector ( \mathbf{v} \in W ), we have ( T(\mathbf{v}) \in W ).</p>
+<p>Invariant subspaces play a crucial role in the study of linear algebra and are essential for understanding the structure and behavior of linear transformations.
+Invariant subspaces are a key concept in linear algebra and have several important properties. An invariant subspace of a linear transformation or matrix is a subspace that is mapped into itself under the action of the transformation or matrix.</p>
+<p>Some important properties of invariant subspaces include:</p>
+<ol class="arabic simple">
+<li><p>Closure under the action of the linear transformation: If a subspace V is an invariant subspace of a linear transformation T, then for any vector v in V, the vector Tv is also in V. In other words, the linear transformation T maps vectors within the invariant subspace V back to the subspace V.</p></li>
+<li><p>Existence of non-trivial invariant subspaces: Not all subspaces are invariant under a given linear transformation. However, every linear transformation has at least two trivial invariant subspaces, namely the zero subspace {0} and the entire space itself.</p></li>
+<li><p>Invariant subspaces and eigenvectors: Eigenvectors associated with distinct eigenvalues of a linear transformation always span invariant subspaces that are orthogonal to each other. This means that if a linear transformation has distinct eigenvalues, its eigenvectors form invariant subspaces that are independent of each other.</p></li>
+<li><p>Direct sum decomposition: Any vector space V can be decomposed as a direct sum of invariant subspaces with respect to a linear transformation T. This decomposition provides a useful tool for analyzing the behavior of the linear transformation on the entire space.</p></li>
+<li><p>Relation to diagonalization: If a linear transformation is diagonalizable, then the vector space can be decomposed into invariant subspaces corresponding to the eigenspaces of the transformation. In this case, the matrix representation of the linear transformation is diagonal.</p></li>
+<li><p>Connection to the characteristic polynomial: The characteristic polynomial of a linear transformation plays a crucial role in understanding the invariant subspaces. The roots of the characteristic polynomial correspond to the eigenvalues of the transformation, which in turn determine the invariant subspaces associated with these eigenvalues.</p></li>
+</ol>
+<p>Understanding invariant subspaces and their properties is essential for analyzing the behavior of linear transformations and matrices in various applications of linear algebra, such as in differential equations, quantum mechanics, and control theory.</p>
+<ol class="arabic simple">
+<li><p>Every matrix has at least two trivial invariant subspaces, namely the zero subspace and the entire space itself.</p></li>
+<li><p>If an n x n matrix A has n distinct eigenvalues, then each eigenspace corresponding to these eigenvalues is an invariant subspace of A.</p></li>
+<li><p>If a linear operator T on a finite-dimensional vector space V has a cyclic vector v, then the subspace spanned by the powers of v, {v, Tv, T^2v, …}, is an invariant subspace of T.</p></li>
+<li><p>If a linear transformation T: V → V has an invariant subspace U, then the kernel and image of T restricted to U, i.e., ker(T|_U) and im(T|_U), are also invariant subspaces of T.</p></li>
+<li><p>A linear operator T on a finite-dimensional vector space V has a non-trivial invariant subspace if and only if there exists a non-zero vector v in V such that the subspace spanned by {v, Tv, T^2v, …} is a proper subspace of V.</p></li>
+</ol>
+</section>
+<section id="reducing-pairs">
+<h2>Reducing Pairs<a class="headerlink" href="#reducing-pairs" title="Permalink to this heading">#</a></h2>
+<p>In the context of linear algebra, reducing pairs are a pair of vectors in a vector space that can be used to generate a basis for the vector space through a process known as orthogonalization. More specifically, given a vector space V with an inner product, a reducing pair is a pair of non-zero vectors u and v such that u is orthogonal to v and the subspace spanned by u and v is complementary to the subspace spanned by the vectors orthogonal to u and v.</p>
+<p>Reducing pairs play a crucial role in various linear algebra techniques, such as Gram-Schmidt orthogonalization process, where they are used to construct an orthogonal basis for a vector space. By iteratively finding and processing reducing pairs, one can transform an arbitrary basis into an orthogonal basis, which is often more convenient for computational and theoretical purposes.
+In linear algebra, reducing pairs are pairs of matrices that are closely related and have some specific properties. Two matrices A and B are said to be reducing pairs if they simultaneously diagonalize each other. In other words, if there exists an invertible matrix P such that both A and B can be simultaneously diagonalized by similarity transformations, i.e.,</p>
+<p>P^(-1) * A * P = D,</p>
+<p>and</p>
+<p>P^(-1) * B * P = E,</p>
+<p>where D and E are diagonal matrices.</p>
+<p>Some properties of reducing pairs include:</p>
+<ol class="arabic simple">
+<li><p>Commutativity: If A and B are reducing pairs, then they commute with each other, i.e., AB = BA.</p></li>
+<li><p>Similarity: If A and B are reducing pairs, then any power of A is similar to the corresponding power of B, i.e., A^k is similar to B^k for all non-negative integers k.</p></li>
+<li><p>Spectral properties: The eigenvalues of A and B are the same and correspond to the diagonal elements of the diagonal matrices D and E.</p></li>
+<li><p>Simultaneous diagonalizability: The matrices A and B are simultaneously diagonalizable by a common invertible matrix P.</p></li>
+<li><p>Application in representation theory: Reducing pairs are often utilized in the context of representation theory, where they provide a way to analyze the structure of representations of algebraic structures.</p></li>
+</ol>
+<p>Overall, reducing pairs play a significant role in linear algebra and related areas, providing a framework to analyze the spectral properties and relationships between matrices.
+I’m not familiar with a specific concept or theorem called “Reducing Pairs” in the context of linear algebra. It’s possible that the term may refer to a specific concept used in a particular context or textbook.</p>
+<p>If you can provide more information or context, I would be happy to try to help clarify or provide information related to the topic. Alternatively, if you meant a different concept or theorem, please let me know so I can assist you accordingly.</p>
+</section>
+<section id="topological-vector-spaces">
+<h2>Topological Vector Spaces<a class="headerlink" href="#topological-vector-spaces" title="Permalink to this heading">#</a></h2>
+<p>A topological vector space is a vector space equipped with a topology that makes vector addition and scalar multiplication continuous functions with respect to this topology. In other words, the topological structure on the vector space allows for a notion of convergence that behaves well with the algebraic operations of addition and scalar multiplication. This convergence is compatible with the linear structure of the vector space, allowing for the development of a theory that combines both algebraic and topological properties.
+Topological Vector Spaces are vector spaces equipped with a topology that makes vector addition and scalar multiplication continuous. Here are some key properties of topological vector spaces:</p>
+<ol class="arabic simple">
+<li><p>Addition and scalar multiplication are continuous operations: In a topological vector space, vector addition and scalar multiplication are continuous functions with respect to the given topology. This means that if you take two sequences of vectors that converge to certain elements in the space, the sum of these sequences and the scalar multiples of these sequences will also converge to certain elements in the space.</p></li>
+<li><p>Translation invariance: The topology on a topological vector space is translation invariant, which means that if a subset of the space is open, then translates of that subset by any vector in the space are also open.</p></li>
+<li><p>Convergence: In a topological vector space, a sequence of vectors converges to a limit if and only if the sequence of their differences converges to zero. This is known as the Hausdorff property.</p></li>
+<li><p>Local convexity: A topological vector space is locally convex if the topology can be induced by a family of seminorms, which are functions that satisfy the triangle inequality and are positive homogeneous.</p></li>
+<li><p>Separation properties: Topological vector spaces satisfy separation properties like Hausdorffness. This means that distinct points can be separated by open sets.</p></li>
+<li><p>Topological dual: The topological dual of a topological vector space is the space of continuous linear functionals on that space. It plays a crucial role in the theory of topological vector spaces.</p></li>
+<li><p>Subspaces and quotient spaces: Subspaces and quotient spaces of topological vector spaces inherit the topology from the parent space, and operations like addition and scalar multiplication are continuous in these spaces as well.</p></li>
+</ol>
+<p>These properties make topological vector spaces a powerful framework for studying vector spaces with additional topological structure, providing a versatile setting for various mathematical analyses and applications.
+There are several important theorems related to topological vector spaces. Here are a few notable theorems:</p>
+<ol class="arabic simple">
+<li><p>Hahn-Banach Theorem: This theorem states that given a subspace (Y) of a topological vector space (X), and a continuous linear functional (f) defined on (Y), there exists a continuous linear extension of (f) to all of (X). This is a fundamental result in functional analysis.</p></li>
+<li><p>Open Mapping Theorem: This theorem asserts that a continuous linear surjection between two Banach spaces is an open map. In other words, it maps open sets to open sets.</p></li>
+<li><p>Closed Graph Theorem: The Closed Graph Theorem states that if a linear operator between two Banach spaces is bounded and its graph is closed in the product topology, then the operator is continuous.</p></li>
+<li><p>Uniform Boundedness Principle: This principle states that if a sequence of continuous linear operators from a Banach space to another normed space is pointwise bounded (i.e., bounded at each point), then the operators are uniformly bounded.</p></li>
+<li><p>Banach-Steinhaus Theorem: Also known as the Uniform Boundedness Principle, this theorem states that if a collection of continuous linear operators from a Banach space into a normed space is pointwise bounded, then the collection is uniformly bounded.</p></li>
+</ol>
+<p>These theorems are fundamental in the study of topological vector spaces and play a crucial role in understanding the properties of linear operators on these spaces.</p>
+</section>
+<section id="linear-operators-on-v-c">
+<h2>Linear Operators on V^C,<a class="headerlink" href="#linear-operators-on-v-c" title="Permalink to this heading">#</a></h2>
+<p>A linear operator on a complex vector space V is a function T: V -&gt; V that satisfies two properties:</p>
+<ol class="arabic simple">
+<li><p>Additivity: T(u + v) = T(u) + T(v) for all u, v in V.</p></li>
+<li><p>Homogeneity: T(cu) = cT(u) for all scalar c and u in V.</p></li>
+</ol>
+<p>In other words, a linear operator is a linear transformation from V to itself, where the operation preserves vector addition and scalar multiplication.
+Linear operators on the complex vector space (V^C) are functions that map each vector in (V^C) to another vector in (V^C) while satisfying the properties of linearity. Here are some key properties of linear operators on (V^C):</p>
+<ol class="arabic simple">
+<li><p>Linearity: A linear operator (T: V^C \rightarrow V^C) satisfies the following properties for all vectors (v, w \in V^C) and scalars (a, b \in \mathbb{C}):</p>
+<ul class="simple">
+<li><p>(T(av + bw) = aT(v) + bT(w))</p></li>
+<li><p>(T(0) = 0), where (0) is the zero vector in (V^C)</p></li>
+</ul>
+</li>
+<li><p>Additivity: The operator (T) is additive, meaning that (T(v + w) = T(v) + T(w)) for all vectors (v, w \in V^C).</p></li>
+<li><p>Homogeneity: The operator (T) is homogeneous, meaning that (T(av) = aT(v)) for all vectors (v \in V^C) and scalar (a \in \mathbb{C}).</p></li>
+<li><p>Preserves Scalar Multiplication: For any vector (v \in V^C) and scalar (a \in \mathbb{C}), the operator (T) satisfies (T(av) = aT(v)).</p></li>
+<li><p>Preserves Linear Combinations: A linear operator (T) also preserves linear combinations of vectors. That is, for any vectors (v_1, v_2, \ldots, v_n \in V^C) and scalars (a_1, a_2, \ldots, a_n \in \mathbb{C}), we have
+[ T\left(\sum_{i=1}^{n} a_i v_i\right) = \sum_{i=1}^{n} a_i T(v_i) ]</p></li>
+<li><p>Composition of Linear Operators: If (S: V^C \rightarrow V^C) and (T: V^C \rightarrow V^C) are linear operators, then the composition (S \circ T: V^C \rightarrow V^C) is also a linear operator.</p></li>
+<li><p>Null Space and Range: Just like in the case of linear transformations, linear operators on (V^C) also have well-defined null space, range, and rank.</p></li>
+</ol>
+<p>These are some of the fundamental properties of linear operators on the complex vector space (V^C). They play a crucial role in various areas of mathematics, physics, and engineering.
+When working with linear operators on complex vector spaces, there are several important theorems that come into play. Some key theorems for linear operators on (V^C) (complex vector space (V)) include:</p>
+<ol class="arabic simple">
+<li><p><strong>Cayley-Hamilton Theorem</strong>: Every square matrix satisfies its characteristic equation, which states that the matrix satisfies its own characteristic polynomial.</p></li>
+<li><p><strong>Spectral Theorem</strong>: For a self-adjoint (or Hermitian) linear operator on a complex inner product space, there exists an orthonormal basis of eigenvectors.</p></li>
+<li><p><strong>Jordan Canonical Form</strong>: Every linear operator on a finite-dimensional complex vector space can be represented in Jordan canonical form, which consists of diagonal blocks and upper triangular blocks along the diagonal.</p></li>
+<li><p><strong>Singular Value Decomposition</strong>: Every linear operator on a complex vector space can be decomposed into a product of three matrices: a unitary matrix, a diagonal matrix with non-negative real numbers on the diagonal, and another unitary matrix.</p></li>
+<li><p><strong>Schur Decomposition</strong>: Every square matrix can be decomposed into a unitary matrix and an upper triangular matrix.</p></li>
+<li><p><strong>Perron-Frobenius Theorem</strong>: For a positive matrix (all entries are positive), the largest eigenvalue is real and positive, and the corresponding eigenvector can be chosen to have all positive entries.</p></li>
+<li><p><strong>Fredholm Alternative</strong>: For a linear operator on a complex vector space, the Fredholm alternative states that either the operator has a nontrivial kernel (null space) or the range is the whole space.</p></li>
+</ol>
+<p>These theorems provide important properties and insights into the behavior of linear operators on complex vector spaces and help analyze their structure and properties.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap10.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 10: Vector Space</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap12.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 12: Isomorphism</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-transformations">Linear transformations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomorphisms">Isomorphisms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-kernel-and-image-of-a-linear-transformation">The Kernel and Image of a Linear Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-transformations-from-f-m-to-f-n">Linear Transformations from F^m to F^n</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rank-plus-nullity-theorem">The Rank Plus Nullity Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-of-basis-matrices">Change of Basis Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-matrix-of-a-linear-transformation">The Matrix of a Linear Transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#change-of-bases-for-linear-transformations">Change of Bases for Linear Transformations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-of-matrices">Equivalence of Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-of-matrices">Similarity of Matrices</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-of-operators">Similarity of Operators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#invariant-subspaces">Invariant Subspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-pairs">Reducing Pairs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topological-vector-spaces">Topological Vector Spaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-operators-on-v-c">Linear Operators on V^C,</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

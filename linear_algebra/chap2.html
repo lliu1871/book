@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 2: Systems of Linear Equations &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 3: Vector Spaces" href="chap3.html" />
+    <link rel="prev" title="Chapter 1: Introduction to Linear Algebra" href="chap1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 2: Systems of Linear Equations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-elimination-and-matrix-formulation">Gaussian Elimination and Matrix Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-formulation-of-linear-systems">Matrix Formulation of Linear Systems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-elimination-algorithm">Gaussian Elimination Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-matrix-formulation">Step 1: Matrix Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-forward-elimination">Step 2: Forward Elimination</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-back-substitution">Step 3: Back Substitution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-to-linear-systems">Solutions to Linear Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-solution">Unique Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-solution">No Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinitely-many-solutions">Infinitely Many Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-inverses-and-determinants">Matrix Inverses and Determinants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-inverse">Matrix Inverse</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant">Determinant</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-matrix-inverses-and-determinants">Calculating Matrix Inverses and Determinants</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-calculation">Inverse Calculation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant-calculation">Determinant Calculation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-2-systems-of-linear-equations">
+<h1>Chapter 2: Systems of Linear Equations<a class="headerlink" href="#chapter-2-systems-of-linear-equations" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="gaussian-elimination-and-matrix-formulation">
+<h2>Gaussian Elimination and Matrix Formulation<a class="headerlink" href="#gaussian-elimination-and-matrix-formulation" title="Permalink to this heading">#</a></h2>
+<p>Gaussian elimination is a method used in linear algebra to solve systems of linear equations by transforming the associated augmented matrix into row-echelon form and then back-substituting to find the solution.</p>
+<section id="matrix-formulation-of-linear-systems">
+<h3>Matrix Formulation of Linear Systems<a class="headerlink" href="#matrix-formulation-of-linear-systems" title="Permalink to this heading">#</a></h3>
+<p>A system of <span class="math notranslate nohighlight">\(m\)</span> linear equations with <span class="math notranslate nohighlight">\(n\)</span> variables can be represented in matrix form as <span class="math notranslate nohighlight">\(Ax = b\)</span>, where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is the coefficient matrix of size <span class="math notranslate nohighlight">\(m \times n\)</span>,</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span> is the column vector of variables of size <span class="math notranslate nohighlight">\(n \times 1\)</span>, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is the column vector of constants on the right-hand side of the equations, also of size <span class="math notranslate nohighlight">\(m \times 1\)</span>.</p></li>
+</ul>
+<p>For example, consider the system of linear equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+2x + 3y - z &amp;= 5 \\
+4x - y + 2z &amp;= 6 \\
+x + 2y - z &amp;= 7
+\end{align*}
+\end{split}\]</div>
+<p>This system can be represented in matrix form as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{pmatrix}
+2 &amp; 3 &amp; -1 \\
+4 &amp; -1 &amp; 2 \\
+1 &amp; 2 &amp; -1
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix}
+=
+\begin{pmatrix}
+5 \\
+6 \\
+7
+\end{pmatrix}
+\end{split}\]</div>
+</section>
+<section id="gaussian-elimination-algorithm">
+<h3>Gaussian Elimination Algorithm<a class="headerlink" href="#gaussian-elimination-algorithm" title="Permalink to this heading">#</a></h3>
+<p>The Gaussian elimination algorithm proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Forward Elimination:</strong> Transform the augmented matrix into row-echelon form through a sequence of row operations, such as adding multiples of one row to another or multiplying a row by a scalar.</p></li>
+<li><p><strong>Back Substitution:</strong> Solve for the variables starting from the bottom row and working upwards by substituting the values of already-solved variables into the equations.</p></li>
+</ol>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<p>Let’s solve the following system of equations using Gaussian elimination:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+2x + y - z &amp;= 8 \\
+-3x - y + 2z &amp;= -11 \\
+-2x + y + 2z &amp;= -3
+\end{align*}
+\end{split}\]</div>
+<section id="step-1-matrix-formulation">
+<h4>Step 1: Matrix Formulation<a class="headerlink" href="#step-1-matrix-formulation" title="Permalink to this heading">#</a></h4>
+<p>The augmented matrix corresponding to the system is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left[
+\begin{array}{ccc|c}
+2 &amp; 1 &amp; -1 &amp; 8 \\
+-3 &amp; -1 &amp; 2 &amp; -11 \\
+-2 &amp; 1 &amp; 2 &amp; -3
+\end{array}
+\right]
+\end{split}\]</div>
+</section>
+<section id="step-2-forward-elimination">
+<h4>Step 2: Forward Elimination<a class="headerlink" href="#step-2-forward-elimination" title="Permalink to this heading">#</a></h4>
+<p>Perform row operations to transform the matrix into row-echelon form.</p>
+</section>
+<section id="step-3-back-substitution">
+<h4>Step 3: Back Substitution<a class="headerlink" href="#step-3-back-substitution" title="Permalink to this heading">#</a></h4>
+<p>Solve for the variables using back substitution.</p>
+</section>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
+<p>Gaussian elimination is a powerful method for solving systems of linear equations, and its matrix formulation provides a convenient way to represent and manipulate such systems in a computational context.</p>
+</section>
+</section>
+<section id="solutions-to-linear-systems">
+<h2>Solutions to Linear Systems<a class="headerlink" href="#solutions-to-linear-systems" title="Permalink to this heading">#</a></h2>
+<p>When solving a system of linear equations, there are three possible outcomes: a unique solution, no solution, or infinitely many solutions. Let’s explore each case.</p>
+<section id="unique-solution">
+<h3>Unique Solution<a class="headerlink" href="#unique-solution" title="Permalink to this heading">#</a></h3>
+<p>A system of linear equations has a unique solution if and only if the coefficient matrix is non-singular, meaning its determinant is non-zero.</p>
+<section id="id1">
+<h4>Example<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>Consider the system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+2x + y &amp;= 5 \\
+3x - 2y &amp;= 4
+\end{align*}
+\end{split}\]</div>
+<p>The coefficient matrix is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{pmatrix} 2 &amp; 1 \\ 3 &amp; -2 \end{pmatrix}
+\end{split}\]</div>
+<p>The determinant of <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(-7\)</span>, which is non-zero. Therefore, the system has a unique solution.</p>
+<p>To solve the system, we can use Gaussian elimination or other methods to find the values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
+</section>
+</section>
+<section id="no-solution">
+<h3>No Solution<a class="headerlink" href="#no-solution" title="Permalink to this heading">#</a></h3>
+<p>A system of linear equations has no solution if the equations are inconsistent, meaning they represent parallel lines in the plane or planes in space that do not intersect.</p>
+<section id="id2">
+<h4>Example<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<p>Consider the system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+x + 2y &amp;= 3 \\
+2x + 4y &amp;= 5
+\end{align*}
+\end{split}\]</div>
+<p>The coefficient matrix is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{pmatrix} 1 &amp; 2 \\ 2 &amp; 4 \end{pmatrix}
+\end{split}\]</div>
+<p>The determinant of <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(0\)</span>, which means the system is singular and has no solution.</p>
+</section>
+</section>
+<section id="infinitely-many-solutions">
+<h3>Infinitely Many Solutions<a class="headerlink" href="#infinitely-many-solutions" title="Permalink to this heading">#</a></h3>
+<p>A system of linear equations has infinitely many solutions if the equations are dependent, meaning they represent the same line or plane.</p>
+<section id="id3">
+<h4>Example<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h4>
+<p>Consider the system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+2x + 3y &amp;= 6 \\
+4x + 6y &amp;= 12
+\end{align*}
+\end{split}\]</div>
+<p>The coefficient matrix is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{pmatrix} 2 &amp; 3 \\ 4 &amp; 6 \end{pmatrix}
+\end{split}\]</div>
+<p>The determinant of <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(0\)</span>, indicating that the system is singular. Therefore, the equations are dependent, and the system has infinitely many solutions.</p>
+<p>To find the solutions, we can express one variable in terms of the other and parameterize the solution set.</p>
+</section>
+</section>
+</section>
+<section id="matrix-inverses-and-determinants">
+<h2>Matrix Inverses and Determinants<a class="headerlink" href="#matrix-inverses-and-determinants" title="Permalink to this heading">#</a></h2>
+<p>Matrix inverses and determinants are important concepts in linear algebra that play a crucial role in solving systems of linear equations and analyzing transformations.</p>
+<section id="matrix-inverse">
+<h3>Matrix Inverse<a class="headerlink" href="#matrix-inverse" title="Permalink to this heading">#</a></h3>
+<p>The inverse of a square matrix <span class="math notranslate nohighlight">\(A\)</span>, denoted as <span class="math notranslate nohighlight">\(A^{-1}\)</span>, is another matrix such that their product equals the identity matrix <span class="math notranslate nohighlight">\(I\)</span>. In other words, if <span class="math notranslate nohighlight">\(A\)</span> is an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix, then <span class="math notranslate nohighlight">\(A^{-1}\)</span> is also an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix satisfying:</p>
+<div class="math notranslate nohighlight">
+\[
+A A^{-1} = A^{-1} A = I
+\]</div>
+<section id="properties">
+<h4>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is invertible (non-singular), then <span class="math notranslate nohighlight">\(A^{-1}\)</span> exists.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is singular (non-invertible), then <span class="math notranslate nohighlight">\(A^{-1}\)</span> does not exist.</p></li>
+</ul>
+</section>
+</section>
+<section id="determinant">
+<h3>Determinant<a class="headerlink" href="#determinant" title="Permalink to this heading">#</a></h3>
+<p>The determinant of a square matrix <span class="math notranslate nohighlight">\(A\)</span>, denoted as <span class="math notranslate nohighlight">\(|A|\)</span> or <span class="math notranslate nohighlight">\(\det(A)\)</span>, is a scalar value that represents a certain geometric scaling factor of the matrix. It provides important information about the matrix, including whether it is invertible.</p>
+<section id="id4">
+<h4>Properties<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\det(A) \neq 0\)</span>, then <span class="math notranslate nohighlight">\(A\)</span> is invertible.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\det(A) = 0\)</span>, then <span class="math notranslate nohighlight">\(A\)</span> is singular (non-invertible).</p></li>
+<li><p>The determinant of a product of matrices is the product of their determinants: <span class="math notranslate nohighlight">\(\det(AB) = \det(A) \det(B)\)</span>.</p></li>
+<li><p>The determinant of the transpose of a matrix is equal to the determinant of the original matrix: <span class="math notranslate nohighlight">\(\det(A^T) = \det(A)\)</span>.</p></li>
+</ul>
+</section>
+</section>
+<section id="calculating-matrix-inverses-and-determinants">
+<h3>Calculating Matrix Inverses and Determinants<a class="headerlink" href="#calculating-matrix-inverses-and-determinants" title="Permalink to this heading">#</a></h3>
+<section id="inverse-calculation">
+<h4>Inverse Calculation<a class="headerlink" href="#inverse-calculation" title="Permalink to this heading">#</a></h4>
+<p>The inverse of a matrix <span class="math notranslate nohighlight">\(A\)</span> can be calculated using various methods, such as Gaussian elimination, adjoint method, or using software tools like NumPy or MATLAB.</p>
+</section>
+<section id="determinant-calculation">
+<h4>Determinant Calculation<a class="headerlink" href="#determinant-calculation" title="Permalink to this heading">#</a></h4>
+<p>The determinant of a matrix <span class="math notranslate nohighlight">\(A\)</span> can be calculated using various methods, such as expansion by minors, cofactor expansion, or using software tools like NumPy or MATLAB.</p>
+</section>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Matrix inverses are used to solve systems of linear equations efficiently.</p></li>
+<li><p>Determinants are used to determine the invertibility of matrices and to compute volumes, areas, and transformations in geometry.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 1: Introduction to Linear Algebra</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 3: Vector Spaces</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-elimination-and-matrix-formulation">Gaussian Elimination and Matrix Formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-formulation-of-linear-systems">Matrix Formulation of Linear Systems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-elimination-algorithm">Gaussian Elimination Algorithm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-matrix-formulation">Step 1: Matrix Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-forward-elimination">Step 2: Forward Elimination</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-back-substitution">Step 3: Back Substitution</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solutions-to-linear-systems">Solutions to Linear Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unique-solution">Unique Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-solution">No Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinitely-many-solutions">Infinitely Many Solutions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-inverses-and-determinants">Matrix Inverses and Determinants</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-inverse">Matrix Inverse</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant">Determinant</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-matrix-inverses-and-determinants">Calculating Matrix Inverses and Determinants</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-calculation">Inverse Calculation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#determinant-calculation">Determinant Calculation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

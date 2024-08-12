@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 13: Modules &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap13';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 14: The Structure of a Linear Operator" href="chap14.html" />
+    <link rel="prev" title="Chapter 12: Isomorphism" href="chap12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap13.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap13.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 13: Modules</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spanning-sets">Spanning Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear Independence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#torsion-elements">Torsion Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annihilators">Annihilators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-modules">Free Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homomorphisms">Homomorphisms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quotient-modules">Quotient Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-correspondence-theorem">The Correspondence Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-isomorphism-theorems">The Isomorphism Theorems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-sums">Direct Sums</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules-are-not-as-nice-as-vector-spaces">Modules Are Not as Nice as Vector Spaces</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-13-modules">
+<h1>Chapter 13: Modules<a class="headerlink" href="#chapter-13-modules" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">#</a></h2>
+<p>In the context of abstract algebra, a module is a generalization of the notion of vector spaces over a field. Formally, let R be a ring (not necessarily commutative) and M be an abelian group. A left R-module is a structure that satisfies the following conditions:</p>
+<ol class="arabic simple">
+<li><p>There exist two operations, addition and scalar multiplication, such that (M,+) forms an abelian group.</p></li>
+<li><p>Scalar multiplication is compatible with the ring structure, i.e., for all r, s in R and all elements x, y in M, we have:</p>
+<ul class="simple">
+<li><p>r(x + y) = rx + ry</p></li>
+<li><p>(r + s)x = rx + sx</p></li>
+<li><p>(rs)x = r(sx)</p></li>
+<li><p>1x = x, where 1 is the multiplicative identity in R.</p></li>
+</ul>
+</li>
+</ol>
+<p>Similarly, a right R-module is defined similarly but with scalar multiplication on the right. If a module is both a left and right module and the actions are compatible, it is known as a two-sided module.</p>
+<p>Modules provide a framework for studying many algebraic structures, including vector spaces, groups, and rings, and allow for the generalization of concepts such as submodules, homomorphisms, and direct sums.
+In abstract algebra, a module is a generalization of the concept of vector spaces over a field. More specifically, a module is an abelian group with an associated ring of scalars. Here are some key properties of modules:</p>
+<ol class="arabic simple">
+<li><p>Module Structure: A module M over a ring R is a set equipped with two operations: addition (+) and scalar multiplication (·) such that for all r, s in R and for all x, y in M, the following properties hold:</p>
+<ul class="simple">
+<li><p>(x + y) + z = x + (y + z) for all x, y, z in M (associativity of addition)</p></li>
+<li><p>x + y = y + x for all x, y in M (commutativity of addition)</p></li>
+<li><p>r · (x + y) = r · x + r · y for all r in R and x, y in M (distributivity of scalar multiplication with respect to addition)</p></li>
+<li><p>(r + s) · x = r · x + s · x for all r, s in R and x in M (distributivity of scalar multiplication with respect to ring addition)</p></li>
+<li><p>(r · s) · x = r · (s · x) for all r, s in R and x in M (associativity of scalar multiplication)</p></li>
+</ul>
+</li>
+<li><p>Submodules: A submodule N of a module M is a subset of M that is closed under addition and scalar multiplication. In other words, if x and y are in N and r is in R, then x + y and r · x must also be in N. The submodule N is itself a module over R.</p></li>
+<li><p>Direct Sum: Given modules M and N over a ring R, their direct sum M ⊕ N is the set of all pairs (m, n) with m in M and n in N, equipped with component-wise addition and scalar multiplication.</p></li>
+<li><p>Homomorphisms: A module homomorphism (or module morphism) between two modules M and N over a ring R is a map f: M → N that preserves the module structure, i.e., f(r · x + s · y) = r · f(x) + s · f(y) for all r, s in R and x, y in M.</p></li>
+<li><p>Exact Sequences: A sequence of modules and module homomorphisms is said to be exact if the image of one homomorphism is equal to the kernel of the next homomorphism in the sequence.</p></li>
+<li><p>Tensor Product: The tensor product of two modules M and N over a ring R is another module that captures the idea of “bilinear maps” between M and N.</p></li>
+</ol>
+<p>These are just a few properties of modules in abstract algebra. Modules provide a general framework for studying algebraic structures that are more flexible and diverse than vector spaces.
+There are several important theorems for modules, which are algebraic structures that generalize vector spaces over a ring. Here are some of the key theorems in module theory:</p>
+<ol class="arabic simple">
+<li><p>Submodule Criterion Theorem: Let ( M ) be an ( R )-module and let ( N ) be a nonempty subset of ( M ). Then ( N ) is a submodule of ( M ) if and only if ( r \cdot x + y \in N ) for all ( r \in R ) and ( x, y \in N ).</p></li>
+<li><p>Isomorphism Theorems:
+a. First Isomorphism Theorem: If ( \phi: M \to N ) is a module homomorphism, then ( \text{ker}(\phi) ) is a submodule of ( M ), ( \text{im}(\phi) ) is a submodule of ( N ), and ( M / \text{ker}(\phi) ) is isomorphic to ( \text{im}(\phi) ).
+b. Second Isomorphism Theorem: Let ( M ) be an ( R )-module, ( S ) a submodule of ( M ), and ( N ) a submodule of ( M ). Then ( S + N ) is a submodule of ( M ), ( S \cap N ) is a submodule of ( M ), and ( (S + N) / S ) is isomorphic to ( N / (N \cap S) ).
+c. Third Isomorphism Theorem: Let ( M ) be an ( R )-module and let ( S ) and ( N ) be submodules of ( M ) such that ( S \subseteq N ). Then ( (M / S) / (N / S) ) is isomorphic to ( M / N ).</p></li>
+<li><p>Structure Theorem for Finitely Generated Modules: If ( M ) is a finitely generated module over a principal ideal domain (PID) ( R ), then ( M ) is isomorphic to a direct sum of cyclic modules of the form ( R / (a_i) ), where ( a_i ) are non-zero elements of ( R ) and ( a_i ) divides ( a_{i+1} ) for all ( i ).</p></li>
+<li><p>Cayley-Hamilton Theorem for Modules: Let ( M ) be an ( R )-module and let ( T: M \to M ) be an endomorphism of ( M ). If ( p_T(t) ) is the characteristic polynomial of ( T ), then ( p_T(T) = 0 ), where ( p_T(T) ) denotes the application of the polynomial ( p_T ) to the endomorphism ( T ).</p></li>
+</ol>
+<p>These theorems are fundamental results in the theory of modules and are essential for understanding the structure and properties of modules over a ring.</p>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">#</a></h2>
+<p>In the context of linear algebra, a submodule refers to a subset of a module that is also a module itself. Here are the key points to consider when defining submodules:</p>
+<ol class="arabic simple">
+<li><p><strong>Module</strong>: A module is a generalization of the concept of vector spaces in the context of abstract algebra. It consists of a set of elements, along with operations of addition and scalar multiplication. These operations satisfy certain properties such as closure under addition and scalar multiplication, associativity, distributivity, etc.</p></li>
+<li><p><strong>Submodule</strong>: A submodule of a module is a subset of the module that is itself a module, satisfying all the properties of a module. More formally, let M be a module and N be a subset of M. N is a submodule of M if N is closed under addition and scalar multiplication, and if N itself is a module with respect to the operations inherited from M.</p></li>
+<li><p><strong>Properties of Submodules</strong>: Some important properties of submodules include:</p>
+<ul class="simple">
+<li><p>A submodule must contain the zero element of the module.</p></li>
+<li><p>A submodule is closed under addition and scalar multiplication.</p></li>
+<li><p>The intersection of any collection of submodules of a given module is also a submodule.</p></li>
+<li><p>The sum of two submodules is also a submodule.</p></li>
+</ul>
+</li>
+<li><p><strong>Examples</strong>: In the context of linear algebra, if we have a vector space V and a subspace W of V, then W is a submodule of V with respect to the appropriate module structure.</p></li>
+</ol>
+<p>Overall, submodules play a crucial role in the study of modules and their properties, providing a framework for understanding the structure and relationships within modules.
+Submodules are subsets of a module that inherit the structure and properties of the larger module. Here are some key properties of submodules:</p>
+<ol class="arabic simple">
+<li><p>Closure under addition: If ( M ) is a module over a ring ( R ) and ( N ) is a submodule of ( M ), then the sum of any two elements in ( N ) is also in ( N ). That is, if ( x, y \in N ), then ( x + y \in N ).</p></li>
+<li><p>Closure under scalar multiplication: If ( M ) is a module over a ring ( R ) and ( N ) is a submodule of ( M ), then for any ( r \in R ) and ( x \in N ), the product ( rx ) is also in ( N ).</p></li>
+<li><p>Non-empty: A submodule is non-empty since it contains the zero element of the module.</p></li>
+<li><p>Submodule property: If ( N ) is a submodule of a module ( M ), then ( N ) is itself a module over the same ring ( R ).</p></li>
+<li><p>Intersection of submodules: If ( N_1 ) and ( N_2 ) are submodules of a module ( M ), then their intersection ( N_1 \cap N_2 ) is also a submodule of ( M ).</p></li>
+<li><p>Sum of submodules: If ( N_1 ) and ( N_2 ) are submodules of a module ( M ), then their sum ( N_1 + N_2 ) (consisting of all elements of the form ( x_1 + x_2 ), where ( x_1 \in N_1 ) and ( x_2 \in N_2 )) is also a submodule of ( M ).</p></li>
+<li><p>Quotient property: If ( N ) is a submodule of a module ( M ), then the quotient module ( M/N ) is well-defined and inherits a module structure over the same ring ( R ).</p></li>
+</ol>
+<p>These are some key properties of submodules in modules, which are fundamental concepts in module theory and linear algebra.
+There are several important theorems related to submodules in the context of module theory. Here are some key theorems:</p>
+<ol class="arabic simple">
+<li><p>Submodules of finitely generated modules are finitely generated: If M is a finitely generated module over a ring R, then any submodule N of M is also finitely generated.</p></li>
+<li><p>Isomorphism Theorems: Just like in group theory, there are isomorphism theorems for modules. For example, the First Isomorphism Theorem for modules states that if f: M → N is a homomorphism of R-modules, then the image of f is isomorphic to M/ker(f), where ker(f) is the kernel of f.</p></li>
+<li><p>Correspondence Theorem: If N is a submodule of a module M, then there is a one-to-one correspondence between the submodules of M containing N and the submodules of M/N. This theorem can be used to relate the submodules of M to those of M/N.</p></li>
+<li><p>Intersection of submodules: The intersection of any collection of submodules of a module M is again a submodule. This result can be useful in various situations when dealing with submodules.</p></li>
+<li><p>Direct sum and product of submodules: If M is a module and N1, N2 are submodules of M, then the direct sum of N1 and N2 (N1 ⊕ N2) is also a submodule of M. Similarly, the direct product of N1 and N2 (N1 × N2) is a submodule of M.</p></li>
+</ol>
+<p>These theorems are fundamental in the study of submodules and modules in general, and they provide important tools for understanding the algebraic structure of modules.</p>
+</section>
+<section id="spanning-sets">
+<h2>Spanning Sets<a class="headerlink" href="#spanning-sets" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, a set of vectors is said to span a vector space if every vector in the space can be expressed as a linear combination of the vectors in the set. In other words, a set of vectors spans a vector space if any vector in the space can be written as a linear combination of the vectors in the set. The set of all possible linear combinations of the vectors in the set is called the span of the set of vectors.
+A spanning set in linear algebra is a set of vectors that can be combined in various ways to create any vector in the vector space. Here are some key properties of spanning sets:</p>
+<ol class="arabic simple">
+<li><p>Linear Independence: A spanning set is linearly independent if none of its vectors can be written as a linear combination of the others. A set of linearly independent vectors is minimal in size to span the entire vector space.</p></li>
+<li><p>Minimal Spanning Set: A spanning set that is linearly independent is called a basis. It is the smallest spanning set that can generate all other vectors in the vector space through linear combinations.</p></li>
+<li><p>Span: The span of a set of vectors is the set of all possible linear combinations of those vectors. If a set of vectors spans the vector space, any vector in the vector space can be expressed as a linear combination of the spanning vectors.</p></li>
+<li><p>Basis: A basis is a spanning set that is linearly independent. Any vector in the vector space can be uniquely represented as a linear combination of the basis vectors.</p></li>
+<li><p>Dimension: The dimension of a vector space is the number of vectors in a basis. All bases for the same vector space have the same number of vectors, known as the dimension of the vector space.</p></li>
+<li><p>Spanning a Superset: Any subset of a spanning set is also a spanning set, but not necessarily a basis. Adding more vectors to a spanning set might make it linearly dependent.</p></li>
+<li><p>Decomposition: Any vector in the vector space can be uniquely decomposed into a linear combination of the basis vectors. This decomposition helps in understanding the structure and properties of vectors in the vector space.</p></li>
+</ol>
+<p>Understanding these properties of spanning sets is essential for various applications in linear algebra, such as solving systems of equations, understanding transformations, and studying the structure of vector spaces.
+Here are some important theorems related to spanning sets in linear algebra:</p>
+<ol class="arabic simple">
+<li><p><strong>Spanning Set Theorem</strong>: A set of vectors (S = {v_1, v_2, \ldots, v_n}) spans a vector space (V) if and only if every vector in (V) can be written as a linear combination of the vectors in (S).</p></li>
+<li><p><strong>Minimal Spanning Set Theorem</strong>: If (S = {v_1, v_2, \ldots, v_n}) is a spanning set for vector space (V), and if removing any vector from (S) results in a set that no longer spans (V), then (S) is a minimal spanning set for (V).</p></li>
+<li><p><strong>Extension Theorem</strong>: If a vector (v) can be expressed as a linear combination of a set of vectors (S), then adding (v) to (S) does not change the span of (S). In other words, if (v \in \text{span}(S)), then (\text{span}(S) = \text{span}(S \cup {v})).</p></li>
+<li><p><strong>Linearly Independent Spanning Set Theorem</strong>: If (S = {v_1, v_2, \ldots, v_n}) is a spanning set for vector space (V) and the vectors in (S) are linearly independent, then (S) is a basis for (V).</p></li>
+<li><p><strong>Characterization Theorem for Bases</strong>: A set of vectors (S) is a basis for vector space (V) if and only if (S) is linearly independent and (S) spans (V).</p></li>
+<li><p><strong>Steinitz Exchange Lemma</strong>: If (B_1) is a linearly independent set of vectors in a vector space (V) and (B_2) is a spanning set in (V), then (\lvert B_1 \rvert \leq \lvert B_2 \rvert). Moreover, if (\lvert B_1 \rvert = \lvert B_2 \rvert), then (B_1) and (B_2) can be combined to form a basis for (V).</p></li>
+</ol>
+<p>These theorems are fundamental in understanding the properties of spanning sets, bases, and linear independence in vector spaces.</p>
+</section>
+<section id="linear-independence">
+<h2>Linear Independence<a class="headerlink" href="#linear-independence" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, a set of vectors is said to be linearly independent if none of the vectors in the set can be expressed as a linear combination of the others. More formally, a set of vectors {v1, v2, …, vn} is linearly independent if the only solution to the equation:</p>
+<p>c1v1 + c2v2 + … + cnvn = 0</p>
+<p>is when all the coefficients c1, c2, …, cn are zero. If there exists a non-trivial solution where at least one coefficient is not zero, then the set of vectors is linearly dependent. In other words, a set of vectors is linearly independent if and only if the only way to get a linear combination summing to the zero vector is by having all coefficients be zero.
+Linear independence is a fundamental concept in linear algebra. Here are some key properties associated with linear independence:</p>
+<ol class="arabic simple">
+<li><p>Definition: A set of vectors {v1, v2, …, vn} is linearly independent if no vector in the set can be written as a linear combination of the others. In other words, the only way to express the zero vector as a linear combination of the set is by setting all coefficients to zero.</p></li>
+<li><p>Basis: A set of linearly independent vectors that spans a vector space V is called a basis for V. Bases are essential for representing vectors in terms of coordinate systems and for understanding the structure of vector spaces.</p></li>
+<li><p>Dimension: The dimension of a vector space V is the number of vectors in any basis for V. Linearly independent sets of vectors in V can contain at most dim(V) vectors.</p></li>
+<li><p>Span: A set of vectors {v1, v2, …, vn} spans a vector space V if every vector in V can be expressed as a linear combination of the set {v1, v2, …, vn}. Linear independence is closely related to the notion of spanning sets, as a linearly independent set can span a maximum of dim(V) vectors.</p></li>
+<li><p>Linear Transformation: Linear independence plays a crucial role in the study of linear transformations. A linear transformation T: V -&gt; W is uniquely determined by its action on a basis for V. The linear independence of the basis vectors of V ensures that T is well-defined and has a unique representation.</p></li>
+<li><p>Linear Equations: Linear independence is also important in solving systems of linear equations. Inconsistent systems often arise from linearly dependent equations, where some equations are redundant or can be expressed as linear combinations of others.</p></li>
+</ol>
+<p>Overall, linear independence is a fundamental concept that underpins many aspects of linear algebra, from basis construction to dimension calculations and the study of linear transformations.
+Here are some important theorems related to linear independence:</p>
+<ol class="arabic simple">
+<li><p><strong>Linear Independence Theorem</strong>:
+A set of vectors {v1, v2, …, vn} in a vector space V is linearly independent if and only if the only solution to the equation c1v1 + c2v2 + … + cnvn = 0 is c1 = c2 = … = cn = 0.</p></li>
+<li><p><strong>Characterization of Linear Independence</strong>:
+A set of vectors {v1, v2, …, vn} is linearly independent if and only if no vector in the set can be written as a linear combination of the others.</p></li>
+<li><p><strong>Linear Independence of Subsets</strong>:
+If a set of vectors {v1, v2, …, vn} is linearly independent and {u1, u2, …, um} is a subset of {v1, v2, …, vn}, then {u1, u2, …, um} is linearly independent.</p></li>
+<li><p><strong>Linear Dependence Theorem</strong>:
+If a set of vectors {v1, v2, …, vn} in a vector space V is linearly dependent, then at least one of the vectors in the set can be written as a linear combination of the others.</p></li>
+<li><p><strong>Extension Theorem</strong>:
+If {v1, v2, …, vn} is a linearly independent set of vectors in a finite-dimensional vector space V, then any set of vectors {v1, v2, …, vn, w1, w2, …, wm} obtained by adding new vectors to the original set is also linearly independent if and only if none of the new vectors can be expressed as a linear combination of the original vectors.</p></li>
+</ol>
+<p>These theorems are fundamental in understanding the concept of linear independence and its implications in linear algebra.</p>
+</section>
+<section id="torsion-elements">
+<h2>Torsion Elements<a class="headerlink" href="#torsion-elements" title="Permalink to this heading">#</a></h2>
+<p>In the context of linear algebra, a torsion element refers to an element of a vector space or a module whose repeated application to a vector results in the vector eventually becoming zero. Mathematically, an element ( v ) in a vector space ( V ) is said to be a torsion element with respect to a linear transformation ( T : V \rightarrow V ) if there exists a positive integer ( n ) such that ( T^n(v) = 0 ), where ( T^n ) denotes the composition of the linear transformation ( T ) applied ( n ) times.</p>
+<p>Torsion elements are often studied in the context of modules over integral domains or in the context of group representations, where they play an important role in understanding the structure of the underlying algebraic structure.
+In the context of linear algebra, the concept of torsion elements typically arises in the context of modules over a ring or in the study of abelian groups. Torsion elements are elements that, when multiplied by a scalar or combined in a linear combination, result in the zero element. Here are some key properties of torsion elements:</p>
+<ol class="arabic simple">
+<li><p>Definition: An element ( x ) in a module ( M ) over a ring ( R ) is called a torsion element if there exists a non-zero element ( r ) in the ring ( R ) such that ( rx = 0 ). In the case of abelian groups, a torsion element is an element of finite order.</p></li>
+<li><p>Torsion submodule: The set of all torsion elements in a module ( M ) forms a submodule, called the torsion submodule of ( M ). This submodule is denoted by ( M_{\text{tor}} ). It consists of all elements in ( M ) that are torsion elements.</p></li>
+<li><p>Closure under addition and scalar multiplication: The set of torsion elements is closed under addition and scalar multiplication. That is, if ( x ) and ( y ) are torsion elements in a module, then ( x + y ) and ( rx ) (for any scalar ( r )) are also torsion elements.</p></li>
+<li><p>Torsion-free elements: An element ( x ) in a module ( M ) is called torsion-free if ( rx = 0 ) implies that ( r = 0 ) for any scalar ( r \neq 0 ).</p></li>
+<li><p>Relation to the order of elements: In the context of abelian groups, if an element ( x ) has finite order ( n ), then ( nx = 0 ), which implies that ( x ) is a torsion element.</p></li>
+<li><p>Direct sum decomposition: For a module ( M ), if ( M = M_{\text{tor}} \oplus M_{\text{tf}} ), where ( M_{\text{tor}} ) is the torsion submodule and ( M_{\text{tf}} ) is the submodule of torsion-free elements, then ( M ) can be decomposed as a direct sum of its torsion and torsion-free parts.</p></li>
+</ol>
+<p>These are some of the key properties associated with torsion elements in the context of linear algebra, modules, and abelian groups.
+In the context of linear algebra, a torsion element refers to an element of a module (or vector space) for which multiplication by a scalar results in the element becoming zero after a certain number of scalar multiplications. Here are some theorems related to torsion elements in this context:</p>
+<ol class="arabic simple">
+<li><p>The order of a torsion element of a module is finite: This means that for any torsion element x in a module M, there exists a positive integer n such that n*x = 0.</p></li>
+<li><p>If a module has a torsion element of order n, then it also has torsion elements of orders d, for all positive divisors d of n.</p></li>
+<li><p>If M is a finitely generated module over a principal ideal domain (PID), then M can be decomposed as a direct sum of its torsion submodule and a free submodule.</p></li>
+<li><p>If V is a vector space over a field F, then every linear transformation T from V to V has a decomposition into a sum of a nilpotent transformation and a semisimple transformation. Torsion elements correspond to the nilpotent part of the transformation.</p></li>
+<li><p>If M is a module over a ring R, and M has torsion elements of orders n1, n2, …, nk, such that the greatest common divisor of n1, n2, …, nk is 1, then M is isomorphic to the direct sum of its torsion submodules corresponding to these elements.</p></li>
+</ol>
+<p>These theorems provide insights into the properties and structure of modules or vector spaces with torsion elements, and they help in understanding the behavior of linear transformations on such spaces.</p>
+</section>
+<section id="annihilators">
+<h2>Annihilators<a class="headerlink" href="#annihilators" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, the annihilator of a vector space V with respect to a linear transformation T is the set of all vectors in V that are mapped to the zero vector under T. In other words, the annihilator is the set of all vectors x such that T(x) = 0.</p>
+<p>More formally, the annihilator of a vector space V with respect to a linear transformation T is denoted as Ann(T) and is defined as:</p>
+<p>Ann(T) = {x ∈ V | T(x) = 0}</p>
+<p>The concept of annihilators is often used in the study of dual spaces, dual bases, and orthogonal complements in linear algebra.
+The concept of annihilators comes from linear algebra. In the context of vector spaces and linear transformations, the annihilator of a subset (W) of a vector space (V) is the set of all linear functionals that map elements of (W) to zero.</p>
+<p>More formally, suppose (V) is a vector space over a field (F) and (W) is a subspace of (V). The annihilator of (W), denoted by (W^\circ), is defined as:</p>
+<p>[W^\circ = {f \in V^* \ | \ f(w) = 0 \text{ for all } w \in W}]</p>
+<p>where (V^*) is the dual space of (V), consisting of all linear functionals on (V).</p>
+<p>Here are some key properties of annihilators:</p>
+<ol class="arabic simple">
+<li><p>(W^\circ) is a subspace of (V^*): The annihilator of a subspace is itself a subspace of the dual space.</p></li>
+<li><p>If (W_1) and (W_2) are subspaces of (V) such that (W_1 \subseteq W_2), then (W_2^\circ \subseteq W_1^\circ): The annihilator of a larger subspace contains the annihilator of a smaller subspace.</p></li>
+<li><p>((W^\circ)^\circ = \text{span}(W)): The double annihilator of a subspace (W) is equal to the span of (W). This shows that the process of taking annihilators can lose information about the original subspace.</p></li>
+<li><p>The annihilator of the whole vector space (V) is the zero subspace of (V^*): (V^\circ = {0}) since the zero functional is the only linear functional that maps all elements of (V) to zero.</p></li>
+<li><p>If (W_1 \cap W_2 = {0}), then ((W_1 + W_2)^\circ = W_1^\circ \cap W_2^\circ): This property relates the annihilators of direct sum and intersection of subspaces.</p></li>
+</ol>
+<p>Understanding the concept of annihilators and their properties is important in various areas of mathematics, including functional analysis and linear algebra.
+There are several important theorems related to annihilators in the context of linear algebra:</p>
+<ol class="arabic simple">
+<li><p>Annihilator Theorem: Let V be a vector space and W be a subspace of V. The annihilator of W, denoted as W^0, is defined as the set of all linear functionals on V that map elements of W to zero. The Annihilator Theorem states that dim(W) + dim(W^0) = dim(V).</p></li>
+<li><p>Annihilator of the Annihilator: For any vector space V and its subspace W, it can be shown that (W^0)^0 = W. In other words, the annihilator of the annihilator of a subspace is the subspace itself.</p></li>
+<li><p>Rank-Nullity Theorem: In the context of linear transformations and matrices, the Rank-Nullity Theorem states that for a linear transformation T: V -&gt; W, where V and W are vector spaces, the rank of T plus the nullity of T equal the dimension of the domain V. This theorem is closely related to the concept of annihilators, as the null space of a linear transformation can be seen as the annihilator of its range.</p></li>
+</ol>
+<p>These theorems highlight the important properties of annihilators and their relationships with subspaces, linear transformations, and vector spaces in linear algebra.</p>
+</section>
+<section id="free-modules">
+<h2>Free Modules<a class="headerlink" href="#free-modules" title="Permalink to this heading">#</a></h2>
+<p>A free module over a ring is a module that has a basis, where a basis is defined as a linearly independent set of elements that spans the module. In other words, a free module is a module that can be generated by a set of elements that are linearly independent and that every element in the module can be uniquely expressed as a linear combination of the basis elements with coefficients from the underlying ring.
+Free modules are an important concept in the theory of modules, which is a generalization of vector spaces over a field. Here are some key properties of free modules:</p>
+<ol class="arabic simple">
+<li><p>Basis: A free module over a given ring is a module that has a basis, which is a linearly independent set of elements that spans the module. Any two bases of a free module have the same number of elements, known as the rank of the free module.</p></li>
+<li><p>Uniqueness of the Basis: Given a free module, the basis is unique up to isomorphism. This means that any two bases of a free module are isomorphic under a module isomorphism.</p></li>
+<li><p>Direct Sum: Free modules can be decomposed as a direct sum of copies of the underlying ring. If a free module has a basis of n elements, it is isomorphic to the direct sum of n copies of the ring.</p></li>
+<li><p>Rank: The rank of a free module is the cardinality of its basis. It is a measure of the “size” of the free module, similar to the dimension of a vector space.</p></li>
+<li><p>Rank Inequality: Any submodule of a free module has rank less than or equal to the rank of the free module. This is because a submodule cannot have a linearly independent set of elements that spans the entire module.</p></li>
+<li><p>Universal Property: Free modules satisfy a universal property that characterizes them uniquely among all modules. Specifically, any module can be obtained as a quotient of a free module.</p></li>
+<li><p>Linear Independence: Like vectors in a vector space, elements of a free module are linearly independent if no non-trivial linear combination of them equals zero.</p></li>
+<li><p>Bases of Submodules: Every submodule of a free module has a basis that can be extended to a basis of the free module. This is known as the basis extension property.</p></li>
+</ol>
+<p>These properties make free modules a fundamental building block in the study of modules and allow for the development of linear algebra in a more general context than vector spaces.
+For free modules over a commutative ring ( R ), we have the following theorems:</p>
+<ol class="arabic simple">
+<li><p><strong>Existence of a Basis</strong>: Every free module has a basis. That is, for any free module ( F ) over a commutative ring ( R ), there exists a set of elements ( {v_1, v_2, \ldots, v_n} ) such that every element in ( F ) can be uniquely expressed as a linear combination of these basis elements with coefficients in ( R ).</p></li>
+<li><p><strong>Uniqueness of Basis</strong>: Any two bases of a free module have the same cardinality. This means that if ( {v_1, v_2, \ldots, v_n} ) and ( {w_1, w_2, \ldots, w_m} ) are two bases of a free module ( F ) over ( R ), then ( n = m ).</p></li>
+<li><p><strong>Rank of a Free Module</strong>: The rank of a free module is defined as the cardinality of any basis. This is well-defined due to the uniqueness of bases.</p></li>
+<li><p><strong>Isomorphism to ( R^n )</strong>: Any free module of rank ( n ) is isomorphic to the module ( R^n ), where ( R^n ) denotes the direct sum of ( n ) copies of the ring ( R ) considered as a module over itself.</p></li>
+<li><p><strong>Direct Sum Decomposition</strong>: If ( F ) is a free module of rank ( n ) and ( M ) is a submodule of ( F ), then there exists a submodule ( N ) of ( F ) such that ( F ) is isomorphic to the direct sum of ( M ) and ( N ). This is known as the direct sum decomposition of free modules.</p></li>
+<li><p><strong>Rank-Nullity Theorem</strong>: If ( F ) is a free module of rank ( n ) and ( L ) is a submodule of ( F ), then ( \text{rank}(L) + \text{rank}(F/L) = n ).</p></li>
+<li><p><strong>Universal Property of Free Modules</strong>: Any module over a commutative ring ( R ) can be embedded into a free module. This property is often used in the construction of free modules from other modules.</p></li>
+</ol>
+<p>These theorems provide important insights into the structure and properties of free modules over a commutative ring.</p>
+</section>
+<section id="homomorphisms">
+<h2>Homomorphisms<a class="headerlink" href="#homomorphisms" title="Permalink to this heading">#</a></h2>
+<p>In the context of linear algebra, a homomorphism between two vector spaces ( V ) and ( W ) over the same field ( F ) is a function ( T: V \rightarrow W ) that preserves the vector addition and scalar multiplication operations between the two vector spaces. Formally, for any vectors ( \mathbf{v}_1, \mathbf{v}_2 ) in ( V ) and any scalar ( c ) in ( F ), a linear transformation ( T ) satisfies the following properties:</p>
+<ol class="arabic simple">
+<li><p>Additivity: ( T(\mathbf{v}_1 + \mathbf{v}_2) = T(\mathbf{v}_1) + T(\mathbf{v}_2) )</p></li>
+<li><p>Homogeneity: ( T(c\mathbf{v}_1) = cT(\mathbf{v}_1) )</p></li>
+</ol>
+<p>It’s worth noting that a linear transformation is often referred to as a homomorphism in the context of vector spaces.
+Homomorphisms are functions between two algebraic structures that preserve the operations of the structures. In the context of linear algebra, homomorphisms are often referred to as linear transformations.</p>
+<p>Here are some key properties of homomorphisms (or linear transformations) in linear algebra:</p>
+<ol class="arabic simple">
+<li><p>Linearity: A linear transformation ( T: V \rightarrow W ) between two vector spaces ( V ) and ( W ) over the same field ( F ) satisfies the following two properties for all vectors ( v, u ) in ( V ) and scalars ( a, b ) in ( F ):</p>
+<ul class="simple">
+<li><p>Additivity: ( T(u + v) = T(u) + T(v) )</p></li>
+<li><p>Homogeneity: ( T(av) = aT(v) )</p></li>
+</ul>
+</li>
+<li><p>Null Space and Range: The null space (kernel) of a linear transformation ( T: V \rightarrow W ) is the set of all vectors ( v ) in ( V ) such that ( T(v) = 0 ). The range (image) of ( T ) is the set of all vectors ( w ) in ( W ) that can be expressed as ( T(v) ) for some vector ( v ) in ( V ). These sets have important properties related to the structure of the linear transformation.</p></li>
+<li><p>Injectivity and Surjectivity: A linear transformation ( T: V \rightarrow W ) is said to be injective (or one-to-one) if distinct vectors in ( V ) are mapped to distinct vectors in ( W ). It is surjective (or onto) if every vector in ( W ) can be expressed as ( T(v) ) for some vector ( v ) in ( V ). If a linear transformation is both injective and surjective, it is called an isomorphism, and the vector spaces ( V ) and ( W ) are isomorphic.</p></li>
+<li><p>Matrix Representation: Every linear transformation between finite-dimensional vector spaces can be represented by a matrix. The matrix representation of a linear transformation depends on the choice of bases for the vector spaces involved.</p></li>
+<li><p>Composition: The composition of two linear transformations is also a linear transformation. If ( T: V \rightarrow W ) and ( S: W \rightarrow U ) are linear transformations, then the composition ( S \circ T: V \rightarrow U ) is also a linear transformation.</p></li>
+<li><p>Dimension Preserving: A linear transformation preserves the dimension of vector spaces. Specifically, the dimension of the range of a linear transformation is less than or equal to the dimension of the domain vector space.</p></li>
+<li><p>Algebraic Operations: Linear transformations can be multiplied by scalars and added together, and their composition satisfies the associative property.</p></li>
+</ol>
+<p>Understanding and utilizing these properties can help in analyzing and working with linear transformations in various applications of linear algebra.
+Here are some key theorems related to homomorphisms in linear algebra:</p>
+<ol class="arabic simple">
+<li><p>Homomorphism Properties - A linear transformation T: V -&gt; W between two vector spaces V and W must satisfy two properties:</p>
+<ul class="simple">
+<li><p>T(u + v) = T(u) + T(v) for any vectors u, v in V (additivity)</p></li>
+<li><p>T(ku) = kT(u) for any scalar k and vector u in V (homogeneity)</p></li>
+</ul>
+</li>
+<li><p>Kernel and Image - The kernel of a linear transformation T is the set of all vectors in V that are mapped to the zero vector in W. The image of T is the set of all vectors in W that can be expressed as T(u) for some u in V. The kernel and image are subspaces of V and W, respectively.</p></li>
+<li><p>Rank-Nullity Theorem - This theorem states that for any linear transformation T: V -&gt; W, the dimension of the kernel of T (nullity) plus the dimension of the image of T (rank) equals the dimension of V.</p></li>
+<li><p>Isomorphism Theorems - If a homomorphism T: V -&gt; W is injective (one-to-one), then the dimension of V is less than or equal to the dimension of W. If T is surjective (onto), then the dimension of V is greater than or equal to the dimension of W. If T is both injective and surjective, it is an isomorphism and the dimensions of V and W are equal.</p></li>
+<li><p>Composition of Homomorphisms - The composition of two linear transformations T: V -&gt; W and S: W -&gt; X is also a linear transformation S o T: V -&gt; X. The composition of homomorphisms is associative.</p></li>
+</ol>
+<p>These theorems are fundamental in the study of linear algebra and provide important insights into the properties and relationships of linear transformations between vector spaces.</p>
+</section>
+<section id="quotient-modules">
+<h2>Quotient Modules<a class="headerlink" href="#quotient-modules" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, a quotient module is a module obtained by “factoring out” a submodule from a given module. Given a module (M) and a submodule (N), the quotient module, denoted as (M/N), consists of the cosets of (N) in (M) under the module operation.</p>
+<p>Formally, the quotient module (M/N) is defined as the set of equivalence classes of elements in (M) under the equivalence relation (x \sim y) if and only if (x - y \in N). The module structure on (M/N) is defined by extending the module operations of addition and scalar multiplication from (M) to the cosets in a natural way.</p>
+<p>Properties of quotient modules include the following:</p>
+<ol class="arabic simple">
+<li><p>The set of cosets (M/N) forms a module under the natural operations.</p></li>
+<li><p>The natural projection map from (M) to (M/N) defined by (x \mapsto x + N) is a module homomorphism.</p></li>
+<li><p>The kernel of the projection map is precisely the submodule (N) being factored out.</p></li>
+<li><p>Quotient modules arise naturally in various contexts, such as when studying the structure of modules over rings or when dealing with linear transformations between vector spaces.
+A quotient module is obtained by taking a module and “quotienting out” a submodule. Here are some important properties of quotient modules:</p></li>
+<li><p><strong>Well-defined</strong>: The operation of taking the quotient module is well-defined. That is, for any submodule N of a module M, the quotient M/N is also a module.</p></li>
+<li><p><strong>Isomorphism</strong>: If M is a module and N is a submodule of M, then there is a natural module homomorphism from M to the quotient module M/N given by the canonical projection map π: M → M/N defined by π(m) = m + N. This map is surjective and has kernel N.</p></li>
+<li><p><strong>Structure</strong>: The elements of the quotient module M/N are cosets of N in M, that is, [m] = {m + n | n ∈ N} for each m ∈ M. The coset [m] is the equivalence class of m under the equivalence relation m ∼ n if and only if m - n ∈ N.</p></li>
+<li><p><strong>Dimension</strong>: If M is a vector space and N is a subspace, then the dimension of the quotient space M/N is equal to the dimension of M minus the dimension of N.</p></li>
+<li><p><strong>Direct Sum</strong>: If M1 and M2 are modules and N is a submodule of M1, then there is an isomorphism between the quotient (M1 ⊕ M2)/((N ⊕ M2) ∩ (M1 ⊕ M2)) and (M1/N) ⊕ M2.</p></li>
+<li><p><strong>Universal Property</strong>: Quotient modules satisfy a universal property with respect to homomorphisms. That is, given a homomorphism f: M → N where N contains the submodule K, there is a unique homomorphism g: M/N → N such that f = g ∘ π, where π: M → M/N is the canonical projection map.</p></li>
+<li><p><strong>Intersection of Quotients</strong>: The intersection of two quotient modules M/N ∩ P/Q is isomorphic to (M ∩ P)/(N ∩ P).</p></li>
+</ol>
+<p>These are some of the key properties of quotient modules in the context of module theory.
+There are several important theorems related to quotient modules in linear algebra. Here are some key results:</p>
+<ol class="arabic simple">
+<li><p>First Isomorphism Theorem for Modules: Let (M) and (N) be modules over a ring (R), and let (\phi: M \rightarrow N) be a module homomorphism. Then, the map
+[
+\bar{\phi}: M/\text{ker}(\phi) \rightarrow \text{im}(\phi)
+]
+defined by (\bar{\phi}(m+\text{ker}(\phi)) = \phi(m)) is an isomorphism of modules.</p></li>
+<li><p>Correspondence Theorem: Let (M) be a module over a ring (R), and let (N) be a submodule of (M). There is a one-to-one correspondence between submodules of (M) containing (N) and submodules of (M/N).</p></li>
+<li><p>Second Isomorphism Theorem for Modules: Let (R) be a ring, (N) a submodule of a module (M), and (H) a submodule of (M). Then,
+[
+N/(N \cap H) \cong (N+H)/H.
+]</p></li>
+<li><p>Third Isomorphism Theorem for Modules: Let (R) be a ring, (N) and (H) be submodules of a module (M) such that (N \subset H). Then,
+[
+(M/N)/(H/N) \cong M/H.
+]</p></li>
+<li><p>Fourth Isomorphism Theorem for Modules: If (L) is a submodule of a module (M), then the submodules of (M/L) are in one-to-one correspondence with the submodules of (M) containing (L), given by (N/L \longleftrightarrow N), where (N) is a submodule of (M) with (L \subseteq N).</p></li>
+</ol>
+<p>These theorems are fundamental results in the study of quotient modules, and they provide important insights into the structure and properties of module quotients.</p>
+</section>
+<section id="the-correspondence-theorem">
+<h2>The Correspondence Theorem<a class="headerlink" href="#the-correspondence-theorem" title="Permalink to this heading">#</a></h2>
+<p>The Correspondence Theorem in linear algebra states that if ( V ) is a vector space and ( W ) is a subspace of ( V ), then there is a one-to-one correspondence between the subspaces of ( V ) that contain ( W ) and the subspaces of the quotient space ( V/W ).</p>
+<p>More formally, let ( V ) be a vector space and ( W ) be a subspace of ( V ). There is a bijective correspondence between the subspaces ( U ) of ( V ) such that ( W \subset U ) and the subspaces of the quotient space ( V/W ). This correspondence is given by the map ( U \leftrightarrow U/W ), where ( U/W ) is the image of ( U ) under the quotient map.</p>
+<p>In other words, the Correspondence Theorem allows us to understand the relationship between subspaces of a vector space and subspaces of the quotient space obtained by modding out by a given subspace. It provides a way to study the structure of a quotient space through its relationship with subspaces of the original vector space.</p>
+</section>
+<section id="the-isomorphism-theorems">
+<h2>The Isomorphism Theorems<a class="headerlink" href="#the-isomorphism-theorems" title="Permalink to this heading">#</a></h2>
+<p>The Isomorphism Theorems are fundamental results in algebra that relate the structure of a quotient group to the structure of a group and its subgroups. The theorems are commonly stated and proven for groups, but they also hold for other algebraic structures, such as rings and modules.</p>
+<p>There are three main Isomorphism Theorems in group theory, which are known as the First, Second, and Third Isomorphism Theorems. These theorems provide insights into the relationships between group homomorphisms, subgroups, and quotient groups.</p>
+<ol class="arabic simple">
+<li><p>First Isomorphism Theorem:
+Let ( \phi : G \rightarrow H ) be a group homomorphism, where ( G ) and ( H ) are groups. The First Isomorphism Theorem states that the image of ( \phi ), denoted by ( \text{Im}(\phi) ), is isomorphic to the quotient group ( G/\text{ker}(\phi) ). Mathematically, this can be expressed as:
+[ G/\text{ker}(\phi) \cong \text{Im}(\phi) ]</p></li>
+<li><p>Second Isomorphism Theorem:
+Let ( G ) be a group, and let ( H ) be a subgroup of ( G ), and let ( N ) be a normal subgroup of ( G ). The Second Isomorphism Theorem asserts that the intersection of ( H ) and ( N ) is a subgroup of ( H ), and the quotient group ( H/(H \cap N) ) is isomorphic to ( (HN)/N ). Symbolically:
+[ H/(H \cap N) \cong (HN)/N ]</p></li>
+<li><p>Third Isomorphism Theorem:
+Let ( G ) be a group, and let ( N ) and ( K ) be normal subgroups of ( G ) such that ( N \subseteq K ). The Third Isomorphism Theorem states that the quotient group ( (G/N)/(K/N) ) is isomorphic to ( G/K ):
+[ (G/N)/(K/N) \cong G/K ]</p></li>
+</ol>
+<p>These theorems are powerful tools in group theory that allow for a deeper understanding of the structure of groups and their relationships through homomorphisms and subgroups. The results of the Isomorphism Theorems are widely applicable in various areas of mathematics and provide crucial insights into the algebraic structures being studied.</p>
+</section>
+<section id="direct-sums">
+<h2>Direct Sums<a class="headerlink" href="#direct-sums" title="Permalink to this heading">#</a></h2>
+<p>In the context of linear algebra, the direct sum of two vector spaces ( V ) and ( W ) is denoted by ( V \oplus W ). It is defined as the set of all possible combinations of vectors from ( V ) and ( W ) that add up to a given vector. Formally, the direct sum ( V \oplus W ) is the set of all vectors of the form ( v + w ), where ( v \in V ) and ( w \in W ).</p>
+<p>The direct sum of two vector spaces is a way of combining them such that their intersection is trivial (i.e., the only vector in both spaces is the zero vector) and every vector in the direct sum can be uniquely expressed as the sum of a vector from ( V ) and a vector from ( W ).</p>
+<p>More generally, the direct sum of several vector spaces ( V_1, V_2, \ldots, V_n ) is denoted by ( V_1 \oplus V_2 \oplus \ldots \oplus V_n ) and is defined similarly as the set of all vectors that can be written as the sum of vectors from each individual space in the direct sum.
+A direct sum is a concept in linear algebra that occurs when two subspaces of a vector space have no non-zero vectors in common. Here are some properties of direct sums:</p>
+<ol class="arabic simple">
+<li><p>Closure under addition: If (U) and (V) are subspaces of a vector space (W), and (W = U \oplus V), then any vector in (W) can be uniquely expressed as the sum of a vector in (U) and a vector in (V).</p></li>
+<li><p>Dimension property: If (U) and (V) are subspaces of a finite-dimensional vector space (W) such that (W = U \oplus V), then (\dim(W) = \dim(U) + \dim(V)).</p></li>
+<li><p>Uniqueness property: The direct sum decomposition of a vector space into two subspaces is unique. That is, if (W = U \oplus V) and also (W = U’ \oplus V’), then (U = U’) and (V = V’).</p></li>
+<li><p>Projection operators: A direct sum decomposition allows for the construction of projection operators onto the subspaces (U) and (V), which can be used to project vectors in (W) onto the subspaces (U) and (V).</p></li>
+<li><p>Orthogonality: In the case of inner product spaces, if (W = U \oplus V) and (U) and (V) are orthogonal subspaces with respect to the inner product, then any vector in (W) can be uniquely written as the sum of a vector in (U) and a vector in (V) that are orthogonal to each other.</p></li>
+<li><p>Direct sum of matrices: The direct sum of matrices A and B is a block matrix in which A and B appear on the main diagonal and zeros appear elsewhere. The properties of the individual matrices are preserved in the direct sum.</p></li>
+</ol>
+<p>These properties highlight the utility and significance of direct sums in linear algebra, allowing for the decomposition and analysis of vector spaces in terms of their subspaces.
+There are several important theorems related to direct sums in linear algebra. Here are some key theorems related to direct sums:</p>
+<ol class="arabic simple">
+<li><p>If (V) and (W) are vector spaces over a field (F), then the direct sum of (V) and (W), denoted by (V \oplus W), is also a vector space over (F).</p></li>
+<li><p>For two subspaces (U) and (W) of a vector space (V), the following are equivalent:
+a. (V = U \oplus W)
+b. Every vector (v) in (V) can be uniquely written as (v = u + w), where (u \in U) and (w \in W)
+c. (U \cap W = {0})</p></li>
+<li><p>If (V = U \oplus W), then for any basis ({u_1, \ldots, u_m}) of (U) and basis ({w_1, \ldots, w_n}) of (W), the set ({u_1, \ldots, u_m, w_1, \ldots, w_n}) is a basis for (V).</p></li>
+<li><p>If (V = U_1 \oplus \cdots \oplus U_k), where each (U_i) is a subspace of (V), then for any vectors (v_1 \in U_1, \ldots, v_k \in U_k), if (v = v_1 + \cdots + v_k), then (v) is uniquely expressed as a sum of vectors from the respective (U_i).</p></li>
+<li><p>Let (V = U \oplus W). Then the projection maps (P_U : V \to U) and (P_W : V \to W), defined by (P_U(v) = u) where (v = u + w) for (u \in U, w \in W), and (P_W(v) = w), are linear transformations, and (P_U + P_W) is the identity map on (V).</p></li>
+</ol>
+<p>These theorems illustrate various properties and implications of direct sums in linear algebra.</p>
+</section>
+<section id="modules-are-not-as-nice-as-vector-spaces">
+<h2>Modules Are Not as Nice as Vector Spaces<a class="headerlink" href="#modules-are-not-as-nice-as-vector-spaces" title="Permalink to this heading">#</a></h2>
+<p>While it is true that modules are more general than vector spaces, and therefore may not satisfy all the nice properties that vector spaces do, modules are still an important concept in algebra. In particular, modules over rings generalize the notion of vector spaces over fields, and they arise naturally in many areas of mathematics and its applications.</p>
+<p>One key difference between modules and vector spaces is that in a vector space, scalar multiplication is well-defined over a field, while in a module, scalar multiplication is defined over a ring which may not have the nice properties of a field.</p>
+<p>Despite the additional generality and complexity of modules compared to vector spaces, they provide a powerful framework for studying linear algebraic structures in a broader context. Many fundamental algebraic structures, such as rings, fields, and algebras, can be understood and studied through the theory of modules.</p>
+<p>So while it is true that vector spaces have some nice properties that modules may not always enjoy, modules remain a fundamental concept in algebra and play a crucial role in many areas of mathematics.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 12: Isomorphism</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap14.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 14: The Structure of a Linear Operator</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules">Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spanning-sets">Spanning Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear Independence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#torsion-elements">Torsion Elements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annihilators">Annihilators</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#free-modules">Free Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homomorphisms">Homomorphisms</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quotient-modules">Quotient Modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-correspondence-theorem">The Correspondence Theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-isomorphism-theorems">The Isomorphism Theorems</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-sums">Direct Sums</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules-are-not-as-nice-as-vector-spaces">Modules Are Not as Nice as Vector Spaces</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 9: Basic Algebra &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap9';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 10: Vector Space" href="chap10.html" />
+    <link rel="prev" title="Chapter 8: Applications of Linear Algebra" href="chap8.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap9.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 9: Basic Algebra</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group">Group</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ring">Ring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal">Ideal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-domain">Integral Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-integral-domains">Principal integral domains</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-9-basic-algebra">
+<h1>Chapter 9: Basic Algebra<a class="headerlink" href="#chapter-9-basic-algebra" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="group">
+<h2>Group<a class="headerlink" href="#group" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (Semigroup)</p>
+<section class="definition-content" id="proof-content">
+<p>A semigroup is a set <span class="math notranslate nohighlight">\(S\)</span> together with an associative binary operation ⋅, i.e., <span class="math notranslate nohighlight">\((a⋅b)⋅c=a⋅(b⋅c)\)</span> for <span class="math notranslate nohighlight">\(a,b,c\in S\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span> (Group)</p>
+<section class="definition-content" id="proof-content">
+<p>A group is a semigroup <span class="math notranslate nohighlight">\(S\)</span> with an identity element <span class="math notranslate nohighlight">\(e\)</span> such that for any <span class="math notranslate nohighlight">\(a\in S\)</span>, <span class="math notranslate nohighlight">\(a⋅e=e⋅a=a\)</span> and there exists a unique <span class="math notranslate nohighlight">\(b\in S\)</span> such that <span class="math notranslate nohighlight">\(a⋅b=e\)</span> where <span class="math notranslate nohighlight">\(b\)</span> is called the inverse of <span class="math notranslate nohighlight">\(a\)</span> and denoted by <span class="math notranslate nohighlight">\(a^{-1}.\)</span></p>
+</section>
+</div><div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (Abelian group )</p>
+<section class="definition-content" id="proof-content">
+<p>An abelian group is a commutative group in which the binary operation is commutative, i.e., <span class="math notranslate nohighlight">\(a⋅b=b⋅a\)</span> for <span class="math notranslate nohighlight">\(a,b\in S\)</span>.</p>
+</section>
+</div></section>
+<section id="ring">
+<h2>Ring<a class="headerlink" href="#ring" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-3">
+<p class="admonition-title"><span class="caption-number">Definition 4 </span> (Ring)</p>
+<section class="definition-content" id="proof-content">
+<p>A ring is a set <span class="math notranslate nohighlight">\(E\)</span> endowed with two binary operation addition <span class="math notranslate nohighlight">\((x,y)\mapsto x+y\)</span> and multiplication <span class="math notranslate nohighlight">\((x,y)\mapsto xy\)</span> such that <span class="math notranslate nohighlight">\(E\)</span> is an abelian group under addition, <span class="math notranslate nohighlight">\(E\)</span> is a semigroup under multiplication, and for <span class="math notranslate nohighlight">\(a,b,c\in E\)</span>, <span class="math notranslate nohighlight">\(a(b+c)=ab+ac\)</span> and <span class="math notranslate nohighlight">\((a+b)c=ac+bc\)</span>.</p>
+</section>
+</div><p>A ring <span class="math notranslate nohighlight">\(E\)</span> is said to be <strong>unitary</strong> if it has a multiplicative identity element. A <strong>division ring</strong> is a unitary ring in which the non-zero elements form a group under multiplication. A ring is <strong>commutative</strong> if the multiplication is commutative.</p>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 5 </span> (Subring)</p>
+<section class="definition-content" id="proof-content">
+<p>A subring of a ring <span class="math notranslate nohighlight">\(R\)</span> is a subset <span class="math notranslate nohighlight">\(S\)</span> of <span class="math notranslate nohighlight">\(R\)</span> that is a ring, using the same operations as defined on and having the same multiplicative identity as <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</section>
+</div></section>
+<section id="ideal">
+<h2>Ideal<a class="headerlink" href="#ideal" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span class="caption-number">Definition 6 </span> (Ideal)</p>
+<section class="definition-content" id="proof-content">
+<p>A nonempty subset <span class="math notranslate nohighlight">\(I\)</span> of a ring <span class="math notranslate nohighlight">\(R\)</span> is an ideal if <span class="math notranslate nohighlight">\(I\)</span> is closed under subtraction and multiplication by any ring member <span class="math notranslate nohighlight">\(r\in R\)</span>.</p>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(S\)</span> be a subset of a ring <span class="math notranslate nohighlight">\(R\)</span> with identity. The set <span class="math notranslate nohighlight">\(〈S〉=\{r_1 s_1+\dots+r_n s_n |r_i\in R,s_i\in S,n≥1\}\)</span> of all finite linear combination of elements of <span class="math notranslate nohighlight">\(S\)</span> is an ideal in <span class="math notranslate nohighlight">\(R\)</span>, which is called the ideal generated by <span class="math notranslate nohighlight">\(S\)</span>. It is the smallest ideal of <span class="math notranslate nohighlight">\(R\)</span> containing <span class="math notranslate nohighlight">\(S\)</span>.</p>
+<p>The intersection of any collection of ideals is an ideal
+If <span class="math notranslate nohighlight">\(I_1\subseteq I_2\dots\)</span> is an ascending sequence of ideals, each one contained in the net, then the union <span class="math notranslate nohighlight">\(⋃I_k\)</span> is also an ideal.</p>
+<div class="proof definition admonition" id="definition-6">
+<p class="admonition-title"><span class="caption-number">Definition 7 </span> (Coset)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(S\)</span> be a subset of a commutative ring R with identity. The set <span class="math notranslate nohighlight">\(a+S=\{a+s|s\in S\}\)</span> is called a coset of <span class="math notranslate nohighlight">\(S\)</span>. The element a is called a coset representative for <span class="math notranslate nohighlight">\(a+S\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-7">
+<p class="admonition-title"><span class="caption-number">Definition 8 </span></p>
+<section class="definition-content" id="proof-content">
+<p>The set of all cosets, denoted by <span class="math notranslate nohighlight">\(\frac{R}{S}=\{a+S|a\in R\}\)</span>, is a ring if and only if <span class="math notranslate nohighlight">\(S\)</span> is an ideal. In this case, <span class="math notranslate nohighlight">\(\frac{R}{I}\)</span> is called the quotient ring of <span class="math notranslate nohighlight">\(R\)</span> modulo <span class="math notranslate nohighlight">\(I\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-8">
+<p class="admonition-title"><span class="caption-number">Definition 9 </span> (Maximum ideals)</p>
+<section class="definition-content" id="proof-content">
+<p>An ideal <span class="math notranslate nohighlight">\(I\)</span> in a ring <span class="math notranslate nohighlight">\(R\)</span> is a maximal ideal if <span class="math notranslate nohighlight">\(I\neq R\)</span> and if whenever <span class="math notranslate nohighlight">\(J\)</span> is an ideal satisfying <span class="math notranslate nohighlight">\(I\subseteq J\subseteq R\)</span> then either <span class="math notranslate nohighlight">\(J=I\)</span> or <span class="math notranslate nohighlight">\(J=R\)</span>.</p>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(R\)</span> be a commutative ring with identity. Then the quotient ring <span class="math notranslate nohighlight">\(\frac{R}{I}\)</span> is a field if and only if <span class="math notranslate nohighlight">\(I\)</span> is a maximal ideal.</p>
+<p>Any commutative ring R with identity contains a maximal ideal</p>
+</section>
+<section id="integral-domain">
+<h2>Integral Domain<a class="headerlink" href="#integral-domain" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-9">
+<p class="admonition-title"><span class="caption-number">Definition 10 </span> (Integral domain)</p>
+<section class="definition-content" id="proof-content">
+<p>An integral domain is a nonzero commutative ring in which the product of two non-zero elements is nonzero.</p>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(R\)</span> be a ring. A nonzero element <span class="math notranslate nohighlight">\(r\in R\)</span> is called a zero divisor if there exists a nonzero <span class="math notranslate nohighlight">\(s\in R\)</span> for which <span class="math notranslate nohighlight">\(rs=0\)</span>.</p>
+<p>A commutative ring <span class="math notranslate nohighlight">\(R\)</span> with identity is called an integral domain if it contains no zero divisors.</p>
+<p>Let R be a commutative ring with identity. Then <span class="math notranslate nohighlight">\(R\)</span> is an integral domain if and only if the cancellation law holds <span class="math notranslate nohighlight">\(rx=ry\)</span>, <span class="math notranslate nohighlight">\(r\neq 0\Rightarrow x=y\)</span></p>
+</section>
+<section id="principal-integral-domains">
+<h2>Principal integral domains<a class="headerlink" href="#principal-integral-domains" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-10">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(R\)</span> be a ring with identity. The principal ideal generated by <span class="math notranslate nohighlight">\(a\in R\)</span> is the ideal <span class="math notranslate nohighlight">\(〈a〉=\{ra|r\in R\}\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-11">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span></p>
+<section class="definition-content" id="proof-content">
+<p>An integral domain <span class="math notranslate nohighlight">\(R\)</span> in which every ideal is a principal ideal is called a principal integral domain.</p>
+</section>
+</div><p>The integers form a principal ideal domain. In fact, any ideal <span class="math notranslate nohighlight">\(I\)</span> in <span class="math notranslate nohighlight">\(Z\)</span> is generated by the smallest positive integer <span class="math notranslate nohighlight">\(a\)</span> that is contained in <span class="math notranslate nohighlight">\(I\)</span>
+The ring <span class="math notranslate nohighlight">\(F[x]\)</span> is a principal ideal domain. In fact, any ideal <span class="math notranslate nohighlight">\(I\)</span> is generated by the unique monic polynomial of smallest degree contained in <span class="math notranslate nohighlight">\(I\)</span>. Moreover, for polynomials <span class="math notranslate nohighlight">\(p_1 (x),\dots,p_n (x)\)</span>, <span class="math notranslate nohighlight">\(〈p_1 (x),\dots,p_n (x)〉=〈gcd⁡(p_1 (x),\dots,p_n (x)) 〉\)</span>.</p>
+<p>Any principal ideal domain R satisfies the ascending chain condition</p>
+<div class="proof definition admonition" id="definition-12">
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Prime)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(R\)</span> is an integral domain. A nonzero nonunit <span class="math notranslate nohighlight">\(p\in R\)</span>  is said to be prime if <span class="math notranslate nohighlight">\(p|ab\Rightarrow p|a\)</span> or <span class="math notranslate nohighlight">\(p|b\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-13">
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Irreducible elements)</p>
+<section class="definition-content" id="proof-content">
+<p>A nonzero nonunit <span class="math notranslate nohighlight">\(r\in R\)</span>  is said to be irreducible if <span class="math notranslate nohighlight">\(r=ab\Rightarrow a=1\)</span> or <span class="math notranslate nohighlight">\(b=1\)</span>.</p>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(R\)</span> be a principal ideal domain. 1) An <span class="math notranslate nohighlight">\(r\in R\)</span> is irreducible if and only if the ideal 〈r〉 is maximal. 2) An element in <span class="math notranslate nohighlight">\(R\)</span> is prime if and only if it is irreducible.</p>
+<div class="proof definition admonition" id="definition-14">
+<p class="admonition-title"><span class="caption-number">Definition 15 </span> (Unique Factorization Domains )</p>
+<section class="definition-content" id="proof-content">
+<p>An integral domain <span class="math notranslate nohighlight">\(R\)</span> is said to be a unique factorization domain if it has the following factorization properties:</p>
+<ol class="arabic simple">
+<li><p>Every nonzero nonunit element <span class="math notranslate nohighlight">\(r\in R\)</span> can be written as a product of a finite number of irreducible elements.</p></li>
+<li><p>The factorization into irreducible elements is unique in the sense that if <span class="math notranslate nohighlight">\(r=p_1\dots p_m\)</span> and <span class="math notranslate nohighlight">\(r=q_1\dots q_n\)</span> are two such factorizations then <span class="math notranslate nohighlight">\(m=n\)</span> and after a suitable reindexing of the factors, <span class="math notranslate nohighlight">\(p_i\)</span> and <span class="math notranslate nohighlight">\(q_i\)</span> are associates.</p></li>
+</ol>
+</section>
+</div><ul class="simple">
+<li><p>Every principal ideal domain is a unique factorization domain</p></li>
+</ul>
+<div class="admonition-characteristic-of-a-ring admonition">
+<p class="admonition-title">Characteristic of a ring</p>
+<p>Let <span class="math notranslate nohighlight">\(R\)</span> be a ring with identity. The smallest positive integer <span class="math notranslate nohighlight">\(c\)</span> for which <span class="math notranslate nohighlight">\(c1=0\)</span> is called the characteristic of <span class="math notranslate nohighlight">\(R\)</span>. If no such number c exists, we say that <span class="math notranslate nohighlight">\(R\)</span> has characteristic 0. The characteristic of <span class="math notranslate nohighlight">\(R\)</span> is denoted by <span class="math notranslate nohighlight">\(char(R)\)</span>.</p>
+</div>
+<ul class="simple">
+<li><p>Any finite ring has nonzero characteristic. Any finite field has prime characteristic</p></li>
+</ul>
+<div class="proof definition admonition" id="definition-15">
+<p class="admonition-title"><span class="caption-number">Definition 16 </span> (Field)</p>
+<section class="definition-content" id="proof-content">
+<p>A field is a commutative division ring.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-16">
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (Algebras)</p>
+<section class="definition-content" id="proof-content">
+<p>An algebra A over a field <span class="math notranslate nohighlight">\(F\)</span> is a nonempty set together with three operations, called addition (denoted by <span class="math notranslate nohighlight">\(+\)</span>), scalar multiplication and multiplication for which the following properties hold:</p>
+<ol class="arabic simple">
+<li><p>A is a vector space over <span class="math notranslate nohighlight">\(F\)</span> under addition and scalar multiplication.</p></li>
+<li><p>A is a ring under addition and multiplication.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(r\in F\)</span> and <span class="math notranslate nohighlight">\(a,b\in A\)</span> then <span class="math notranslate nohighlight">\(r(ab)=(ra)b=a(rb)\)</span></p></li>
+</ol>
+</section>
+</div></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap8.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 8: Applications of Linear Algebra</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap10.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 10: Vector Space</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group">Group</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ring">Ring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ideal">Ideal</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-domain">Integral Domain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-integral-domains">Principal integral domains</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

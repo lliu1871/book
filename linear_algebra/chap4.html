@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 4: Linear Transformations &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 5: Inner Product Spaces" href="chap5.html" />
+    <link rel="prev" title="Chapter 3: Vector Spaces" href="chap3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 4: Linear Transformations</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-transformations">Linear Transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preservation-of-vector-operations">Preservation of Vector Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preservation-of-linear-combinations">Preservation of Linear Combinations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-properties">Other Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-representations-of-linear-transformations">Matrix Representations of Linear Transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvectors-and-eigenvalues">Eigenvectors and Eigenvalues</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Applications</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-4-linear-transformations">
+<h1>Chapter 4: Linear Transformations<a class="headerlink" href="#chapter-4-linear-transformations" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="linear-transformations">
+<h2>Linear Transformations<a class="headerlink" href="#linear-transformations" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, a linear transformation is a mapping between two vector spaces that preserves the operations of vector addition and scalar multiplication. Linear transformations play a fundamental role in many areas of mathematics and its applications.</p>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span> be vector spaces over the same field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>. A function <span class="math notranslate nohighlight">\(T: V \rightarrow W\)</span> is called a linear transformation if it satisfies the following properties for all vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> in <span class="math notranslate nohighlight">\(V\)</span> and all scalars <span class="math notranslate nohighlight">\(\alpha\)</span> in <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Additivity:</strong> <span class="math notranslate nohighlight">\(T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v})\)</span></p></li>
+<li><p><strong>Homogeneity:</strong> <span class="math notranslate nohighlight">\(T(\alpha \mathbf{u}) = \alpha T(\mathbf{u})\)</span></p></li>
+</ol>
+</section>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
+<section id="preservation-of-vector-operations">
+<h4>Preservation of Vector Operations<a class="headerlink" href="#preservation-of-vector-operations" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Additivity:</strong> <span class="math notranslate nohighlight">\(T(\mathbf{0}) = \mathbf{0}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{0}\)</span> denotes the zero vector in the vector space.</p></li>
+<li><p><strong>Homogeneity:</strong> <span class="math notranslate nohighlight">\(T(\mathbf{u} - \mathbf{v}) = T(\mathbf{u}) - T(\mathbf{v})\)</span></p></li>
+<li><p><strong>Homogeneity of Scalar Multiplication:</strong> <span class="math notranslate nohighlight">\(T(\alpha \mathbf{v}) = \alpha T(\mathbf{v})\)</span> for any scalar <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+</ol>
+</section>
+<section id="preservation-of-linear-combinations">
+<h4>Preservation of Linear Combinations<a class="headerlink" href="#preservation-of-linear-combinations" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(T(\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_n \mathbf{v}_n) = \alpha_1 T(\mathbf{v}_1) + \alpha_2 T(\mathbf{v}_2) + \cdots + \alpha_n T(\mathbf{v}_n)\)</span> for any scalars <span class="math notranslate nohighlight">\(\alpha_1, \alpha_2, \ldots, \alpha_n\)</span> and vectors <span class="math notranslate nohighlight">\(\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\)</span> in <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
+</ol>
+</section>
+<section id="other-properties">
+<h4>Other Properties<a class="headerlink" href="#other-properties" title="Permalink to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p><strong>Injectivity:</strong> A linear transformation <span class="math notranslate nohighlight">\(T\)</span> is injective (or one-to-one) if and only if <span class="math notranslate nohighlight">\(\text{ker}(T) = \{\mathbf{0}\}\)</span>, where <span class="math notranslate nohighlight">\(\text{ker}(T)\)</span> denotes the kernel or null space of <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p><strong>Surjectivity:</strong> A linear transformation <span class="math notranslate nohighlight">\(T\)</span> is surjective (or onto) if and only if <span class="math notranslate nohighlight">\(\text{range}(T) = W\)</span>, where <span class="math notranslate nohighlight">\(\text{range}(T)\)</span> denotes the range or image of <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+</ol>
+</section>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Matrix Transformation:</strong> Let <span class="math notranslate nohighlight">\(A\)</span> be an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix. The function <span class="math notranslate nohighlight">\(T: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span> defined by <span class="math notranslate nohighlight">\(T(\mathbf{x}) = A\mathbf{x}\)</span> is a linear transformation.</p></li>
+<li><p><strong>Projection Transformation:</strong> Let <span class="math notranslate nohighlight">\(P\)</span> be a projection matrix onto a subspace <span class="math notranslate nohighlight">\(W\)</span> of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. The function <span class="math notranslate nohighlight">\(T: \mathbb{R}^n \rightarrow \mathbb{R}^n\)</span> defined by <span class="math notranslate nohighlight">\(T(\mathbf{x}) = P\mathbf{x}\)</span> is a linear transformation.</p></li>
+</ol>
+<p>Linear transformations provide a powerful framework for studying the structure and properties of vector spaces and matrices, and they have numerous applications in mathematics, physics, engineering, and computer science.</p>
+</section>
+</section>
+<section id="matrix-representations-of-linear-transformations">
+<h2>Matrix Representations of Linear Transformations<a class="headerlink" href="#matrix-representations-of-linear-transformations" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, linear transformations between vector spaces can often be represented by matrices. These matrix representations allow us to perform computations and analyze transformations using matrix operations.</p>
+<section id="id1">
+<h3>Definition<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(T: V \rightarrow W\)</span> be a linear transformation between vector spaces <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span>. If <span class="math notranslate nohighlight">\(\mathcal{B} = \{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}\)</span> is a basis for <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(\mathcal{C} = \{\mathbf{w}_1, \mathbf{w}_2, \ldots, \mathbf{w}_m\}\)</span> is a basis for <span class="math notranslate nohighlight">\(W\)</span>, then the matrix representation of <span class="math notranslate nohighlight">\(T\)</span> with respect to bases <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>, denoted as <span class="math notranslate nohighlight">\([T]_{\mathcal{C}, \mathcal{B}}\)</span>, is an <span class="math notranslate nohighlight">\(m \times n\)</span> matrix defined as follows:</p>
+<ul class="simple">
+<li><p>Let <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> be any vector in <span class="math notranslate nohighlight">\(V\)</span>. Then <span class="math notranslate nohighlight">\([T(\mathbf{v})]_{\mathcal{C}} = [T]_{\mathcal{C}, \mathcal{B}} [\mathbf{v}]_{\mathcal{B}}\)</span>, where <span class="math notranslate nohighlight">\([\mathbf{v}]_{\mathcal{B}}\)</span> is the coordinate vector of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> with respect to basis <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(j\)</span>-th column of <span class="math notranslate nohighlight">\([T]_{\mathcal{C}, \mathcal{B}}\)</span> consists of the coordinate vector of <span class="math notranslate nohighlight">\(T(\mathbf{v}_j)\)</span> with respect to basis <span class="math notranslate nohighlight">\(\mathcal{C}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{v}_j\)</span> is the <span class="math notranslate nohighlight">\(j\)</span>-th vector in basis <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Properties<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>The matrix representation of a linear transformation is unique for a given pair of bases.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> is the standard basis for <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> is the standard basis for <span class="math notranslate nohighlight">\(W\)</span>, then the matrix representation of <span class="math notranslate nohighlight">\(T\)</span> with respect to <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> is simply the matrix formed by the images of the standard basis vectors under <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+</ol>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<p>Consider the linear transformation <span class="math notranslate nohighlight">\(T: \mathbb{R}^2 \rightarrow \mathbb{R}^2\)</span> defined by <span class="math notranslate nohighlight">\(T(x, y) = (2x + y, x - y)\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathcal{B} = \{ \mathbf{e}_1, \mathbf{e}_2 \}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{C} = \{ \mathbf{f}_1, \mathbf{f}_2 \}\)</span> be the standard bases for <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>.</p>
+<p>The matrix representation of <span class="math notranslate nohighlight">\(T\)</span> with respect to bases <span class="math notranslate nohighlight">\(\mathcal{B}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{C}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+[T]_{\mathcal{C}, \mathcal{B}} = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}
+\end{split}\]</div>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Matrix representations of linear transformations are widely used in computer graphics, robotics, and numerical simulations to represent and manipulate geometric transformations.</p></li>
+<li><p>They provide a computationally efficient way to analyze and compute transformations in various mathematical and scientific contexts.</p></li>
+</ul>
+</section>
+</section>
+<section id="eigenvectors-and-eigenvalues">
+<h2>Eigenvectors and Eigenvalues<a class="headerlink" href="#eigenvectors-and-eigenvalues" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, eigenvectors and eigenvalues are important concepts associated with square matrices. They play a fundamental role in understanding transformations and systems of linear equations.</p>
+<section id="id3">
+<h3>Definition<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(A\)</span> be an <span class="math notranslate nohighlight">\(n \times n\)</span> square matrix. An eigenvector of <span class="math notranslate nohighlight">\(A\)</span> is a non-zero vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> such that when <span class="math notranslate nohighlight">\(A\)</span> is applied to <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, the resulting vector is a scalar multiple of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+A\mathbf{v} = \lambda \mathbf{v}
+\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\lambda\)</span> is called the eigenvalue corresponding to the eigenvector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>.</p>
+</section>
+<section id="id4">
+<h3>Properties<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Existence:</strong> Not every matrix has eigenvectors, but if <span class="math notranslate nohighlight">\(A\)</span> is a square matrix, it always has at least one eigenvalue and corresponding eigenvector.</p></li>
+<li><p><strong>Linear Independence:</strong> Eigenvectors corresponding to distinct eigenvalues are linearly independent.</p></li>
+<li><p><strong>Diagonalization:</strong> If <span class="math notranslate nohighlight">\(A\)</span> has <span class="math notranslate nohighlight">\(n\)</span> linearly independent eigenvectors, it can be diagonalized as <span class="math notranslate nohighlight">\(A = PDP^{-1}\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is the matrix whose columns are the eigenvectors of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(D\)</span> is a diagonal matrix with the corresponding eigenvalues on the diagonal.</p></li>
+</ol>
+</section>
+<section id="calculation">
+<h3>Calculation<a class="headerlink" href="#calculation" title="Permalink to this heading">#</a></h3>
+<p>To find the eigenvalues of a matrix <span class="math notranslate nohighlight">\(A\)</span>, solve the characteristic equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(A - \lambda I) = 0
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix. The roots of this equation are the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>Once the eigenvalues are found, the corresponding eigenvectors can be obtained by solving the equation <span class="math notranslate nohighlight">\((A - \lambda I)\mathbf{v} = \mathbf{0}\)</span>.</p>
+</section>
+<section id="id5">
+<h3>Example<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>Consider the matrix:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{pmatrix} 3 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}
+\end{split}\]</div>
+<p>To find the eigenvalues, solve the characteristic equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{det}(A - \lambda I) = 0
+\]</div>
+<p>which yields <span class="math notranslate nohighlight">\(\lambda_1 = 4\)</span> and <span class="math notranslate nohighlight">\(\lambda_2 = 2\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(\lambda_1 = 4\)</span>, solving <span class="math notranslate nohighlight">\((A - 4I)\mathbf{v}_1 = \mathbf{0}\)</span> gives the eigenvector <span class="math notranslate nohighlight">\(\mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}\)</span>. Similarly, for <span class="math notranslate nohighlight">\(\lambda_2 = 2\)</span>, solving <span class="math notranslate nohighlight">\((A - 2I)\mathbf{v}_2 = \mathbf{0}\)</span> gives the eigenvector <span class="math notranslate nohighlight">\(\mathbf{v}_2 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}\)</span>.</p>
+</section>
+<section id="id6">
+<h3>Applications<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Eigenvectors and eigenvalues are extensively used in solving systems of differential equations, stability analysis of dynamical systems, and optimization problems.</p></li>
+<li><p>They are crucial in various areas such as physics, engineering, computer science, and data analysis for understanding patterns and behaviors in datasets and systems.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 3: Vector Spaces</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 5: Inner Product Spaces</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-transformations">Linear Transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preservation-of-vector-operations">Preservation of Vector Operations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#preservation-of-linear-combinations">Preservation of Linear Combinations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#other-properties">Other Properties</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-representations-of-linear-transformations">Matrix Representations of Linear Transformations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvectors-and-eigenvalues">Eigenvectors and Eigenvalues</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Applications</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

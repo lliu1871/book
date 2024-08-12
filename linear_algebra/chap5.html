@@ -1,0 +1,696 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 5: Inner Product Spaces &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap5';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 6: Diagonalization and Spectral Theorem" href="chap6.html" />
+    <link rel="prev" title="Chapter 4: Linear Transformations" href="chap4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 5: Inner Product Spaces</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-product-and-norm">Inner Product and Norm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-product">Inner Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">Norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-inner-product-and-norm">Relationship between Inner Product and Norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-bases-and-orthonormal-bases">Orthogonal Bases and Orthonormal Bases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-bases">Orthogonal Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthonormal-bases">Orthonormal Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gram-schmidt-process-and-orthogonal-projections">Gram-Schmidt Process and Orthogonal Projections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gram-schmidt-process">Gram-Schmidt Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-projections">Orthogonal Projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Applications</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-5-inner-product-spaces">
+<h1>Chapter 5: Inner Product Spaces<a class="headerlink" href="#chapter-5-inner-product-spaces" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="inner-product-and-norm">
+<h2>Inner Product and Norm<a class="headerlink" href="#inner-product-and-norm" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, the inner product and norm are fundamental concepts that provide a way to measure the geometric properties of vectors and spaces.</p>
+<section id="inner-product">
+<h3>Inner Product<a class="headerlink" href="#inner-product" title="Permalink to this heading">#</a></h3>
+<p>An inner product on a vector space <span class="math notranslate nohighlight">\(V\)</span> over the field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> is a function <span class="math notranslate nohighlight">\(\langle \cdot, \cdot \rangle: V \times V \rightarrow \mathbb{F}\)</span> that satisfies the following properties for all vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span>, <span class="math notranslate nohighlight">\(\mathbf{v}\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{w}\)</span> in <span class="math notranslate nohighlight">\(V\)</span> and all scalars <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> in <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Linearity in the First Argument:</strong> <span class="math notranslate nohighlight">\(\langle \alpha \mathbf{u} + \beta \mathbf{v}, \mathbf{w} \rangle = \alpha \langle \mathbf{u}, \mathbf{w} \rangle + \beta \langle \mathbf{v}, \mathbf{w} \rangle\)</span></p></li>
+<li><p><strong>Conjugate Symmetry:</strong> <span class="math notranslate nohighlight">\(\langle \mathbf{u}, \mathbf{v} \rangle = \overline{\langle \mathbf{v}, \mathbf{u} \rangle}\)</span></p></li>
+<li><p><strong>Positive Definiteness:</strong> <span class="math notranslate nohighlight">\(\langle \mathbf{v}, \mathbf{v} \rangle \geq 0\)</span> and <span class="math notranslate nohighlight">\(\langle \mathbf{v}, \mathbf{v} \rangle = 0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{v} = \mathbf{0}\)</span></p></li>
+</ol>
+<p>Common examples of inner products include the dot product in Euclidean spaces and the Hermitian inner product in complex vector spaces.</p>
+</section>
+<section id="norm">
+<h3>Norm<a class="headerlink" href="#norm" title="Permalink to this heading">#</a></h3>
+<p>A norm on a vector space <span class="math notranslate nohighlight">\(V\)</span> over the field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> is a function <span class="math notranslate nohighlight">\(|| \cdot ||: V \rightarrow \mathbb{R}\)</span> that assigns a non-negative real number to each vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> in <span class="math notranslate nohighlight">\(V\)</span> and satisfies the following properties for all vectors <span class="math notranslate nohighlight">\(\mathbf{u}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> in <span class="math notranslate nohighlight">\(V\)</span> and all scalars <span class="math notranslate nohighlight">\(\alpha\)</span> in <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Positive Definiteness:</strong> <span class="math notranslate nohighlight">\(||\mathbf{v}|| \geq 0\)</span> and <span class="math notranslate nohighlight">\(||\mathbf{v}|| = 0\)</span> if and only if <span class="math notranslate nohighlight">\(\mathbf{v} = \mathbf{0}\)</span></p></li>
+<li><p><strong>Scalar Multiplication:</strong> <span class="math notranslate nohighlight">\(||\alpha \mathbf{v}|| = |\alpha| \cdot ||\mathbf{v}||\)</span></p></li>
+<li><p><strong>Triangle Inequality:</strong> <span class="math notranslate nohighlight">\(||\mathbf{u} + \mathbf{v}|| \leq ||\mathbf{u}|| + ||\mathbf{v}||\)</span></p></li>
+</ol>
+<p>A norm induces a metric on the vector space, defining the distance between two vectors as the norm of their difference.</p>
+</section>
+<section id="relationship-between-inner-product-and-norm">
+<h3>Relationship between Inner Product and Norm<a class="headerlink" href="#relationship-between-inner-product-and-norm" title="Permalink to this heading">#</a></h3>
+<p>For a vector space equipped with an inner product, the norm of a vector is defined as the square root of the inner product of the vector with itself:</p>
+<div class="math notranslate nohighlight">
+\[
+||\mathbf{v}|| = \sqrt{\langle \mathbf{v}, \mathbf{v} \rangle}
+\]</div>
+<p>This relationship allows us to use the inner product to compute the lengths (norms) of vectors and the angles between them.</p>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Inner products and norms are used extensively in geometry, functional analysis, optimization, and signal processing.</p></li>
+<li><p>They provide a framework for measuring distances, angles, and lengths in vector spaces, enabling the study of geometric properties and behaviors of vectors and spaces.</p></li>
+</ul>
+</section>
+</section>
+<section id="orthogonal-bases-and-orthonormal-bases">
+<h2>Orthogonal Bases and Orthonormal Bases<a class="headerlink" href="#orthogonal-bases-and-orthonormal-bases" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, orthogonal bases and orthonormal bases are special types of bases that provide useful geometric and computational properties for vector spaces.</p>
+<section id="orthogonal-bases">
+<h3>Orthogonal Bases<a class="headerlink" href="#orthogonal-bases" title="Permalink to this heading">#</a></h3>
+<p>An orthogonal basis for a vector space <span class="math notranslate nohighlight">\(V\)</span> is a set of vectors <span class="math notranslate nohighlight">\(\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}\)</span> such that every pair of distinct vectors in the set is orthogonal, meaning their inner product is zero:</p>
+<div class="math notranslate nohighlight">
+\[
+\langle \mathbf{v}_i, \mathbf{v}_j \rangle = 0 \quad \text{for all } i \neq j
+\]</div>
+<p>Orthogonal bases have the advantage that computing projections and solving systems of equations becomes simpler.</p>
+</section>
+<section id="orthonormal-bases">
+<h3>Orthonormal Bases<a class="headerlink" href="#orthonormal-bases" title="Permalink to this heading">#</a></h3>
+<p>An orthonormal basis for a vector space <span class="math notranslate nohighlight">\(V\)</span> is a set of vectors <span class="math notranslate nohighlight">\(\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}\)</span> that is both orthogonal and normalized, meaning each vector has unit length:</p>
+<ol class="arabic simple">
+<li><p><strong>Orthogonality:</strong> <span class="math notranslate nohighlight">\(\langle \mathbf{v}_i, \mathbf{v}_j \rangle = 0\)</span> for all <span class="math notranslate nohighlight">\(i \neq j\)</span></p></li>
+<li><p><strong>Normalization:</strong> <span class="math notranslate nohighlight">\(||\mathbf{v}_i|| = 1\)</span> for all <span class="math notranslate nohighlight">\(i\)</span></p></li>
+</ol>
+<p>Orthonormal bases are particularly useful because they simplify computations involving inner products and norms.</p>
+</section>
+<section id="construction">
+<h3>Construction<a class="headerlink" href="#construction" title="Permalink to this heading">#</a></h3>
+<p>Given any basis for a vector space <span class="math notranslate nohighlight">\(V\)</span>, an orthogonal basis can be constructed using the Gram-Schmidt process, which orthogonalizes the vectors one by one.</p>
+<p>To obtain an orthonormal basis, simply normalize each vector in the orthogonal basis.</p>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<p>Consider the vector space <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>. The standard basis vectors <span class="math notranslate nohighlight">\(\{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\}\)</span> form an orthonormal basis for <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>. Each basis vector is orthogonal to the others, and each has unit length.</p>
+</section>
+<section id="id1">
+<h3>Applications<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Orthogonal bases and orthonormal bases are used in various numerical methods, such as the QR decomposition and least squares approximation.</p></li>
+<li><p>They are fundamental in signal processing, where they are used to represent signals in terms of orthogonal or orthonormal basis functions (e.g., Fourier basis, wavelet basis).</p></li>
+<li><p>Orthonormal bases are essential in quantum mechanics for representing states of quantum systems and performing computations involving operators.</p></li>
+</ul>
+</section>
+</section>
+<section id="gram-schmidt-process-and-orthogonal-projections">
+<h2>Gram-Schmidt Process and Orthogonal Projections<a class="headerlink" href="#gram-schmidt-process-and-orthogonal-projections" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, the Gram-Schmidt process is a method for orthogonalizing a set of vectors, while orthogonal projections are a way to decompose vectors into components along orthogonal directions.</p>
+<section id="gram-schmidt-process">
+<h3>Gram-Schmidt Process<a class="headerlink" href="#gram-schmidt-process" title="Permalink to this heading">#</a></h3>
+<p>The Gram-Schmidt process is a method to transform a set of linearly independent vectors into an orthogonal or orthonormal set. Given a set of vectors <span class="math notranslate nohighlight">\(\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}\)</span>, the Gram-Schmidt process produces a new set of vectors <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}\)</span> with the following properties:</p>
+<ol class="arabic simple">
+<li><p><strong>Orthogonality:</strong> Each vector <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span> is orthogonal to all previous vectors <span class="math notranslate nohighlight">\(\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_{i-1}\)</span>.</p></li>
+<li><p><strong>Span Preservation:</strong> The span of the original set of vectors is the same as the span of the orthogonalized set.</p></li>
+</ol>
+<p>The Gram-Schmidt process can be described by the following steps:</p>
+<ol class="arabic simple">
+<li><p>Set <span class="math notranslate nohighlight">\(\mathbf{u}_1 = \mathbf{v}_1\)</span>.</p></li>
+<li><p>For <span class="math notranslate nohighlight">\(i = 2, 3, \ldots, n\)</span>, compute:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{u}_i = \mathbf{v}_i - \text{proj}_{\mathbf{u}_1}(\mathbf{v}_i) - \text{proj}_{\mathbf{u}_2}(\mathbf{v}_i) - \ldots - \text{proj}_{\mathbf{u}_{i-1}}(\mathbf{v}_i)\)</span></p></li>
+<li><p>Where <span class="math notranslate nohighlight">\(\text{proj}_{\mathbf{u}_j}(\mathbf{v}_i) = \frac{\langle \mathbf{v}_i, \mathbf{u}_j \rangle}{\langle \mathbf{u}_j, \mathbf{u}_j \rangle} \mathbf{u}_j\)</span> is the orthogonal projection of <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> onto <span class="math notranslate nohighlight">\(\mathbf{u}_j\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="orthogonal-projections">
+<h3>Orthogonal Projections<a class="headerlink" href="#orthogonal-projections" title="Permalink to this heading">#</a></h3>
+<p>Given a vector <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> and an orthogonal basis <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}\)</span>, the orthogonal projection of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> onto the subspace spanned by <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\}\)</span> is the vector:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{proj}_{\text{span}(\{\mathbf{u}_1, \mathbf{u}_2, \ldots, \mathbf{u}_n\})}(\mathbf{v}) = \sum_{i=1}^n \frac{\langle \mathbf{v}, \mathbf{u}_i \rangle}{\langle \mathbf{u}_i, \mathbf{u}_i \rangle} \mathbf{u}_i
+\]</div>
+<p>This projection represents the component of <span class="math notranslate nohighlight">\(\mathbf{v}\)</span> along each direction <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span>.</p>
+</section>
+<section id="id2">
+<h3>Example<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>Consider the vectors <span class="math notranslate nohighlight">\(\mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{v}_2 = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}\)</span>. To orthogonalize these vectors, we can apply the Gram-Schmidt process:</p>
+<ol class="arabic simple">
+<li><p>Set <span class="math notranslate nohighlight">\(\mathbf{u}_1 = \mathbf{v}_1\)</span>.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\mathbf{u}_2 = \mathbf{v}_2 - \text{proj}_{\mathbf{u}_1}(\mathbf{v}_2)\)</span>.</p></li>
+</ol>
+<p>The resulting orthogonal vectors are <span class="math notranslate nohighlight">\(\mathbf{u}_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{u}_2 = \begin{pmatrix} 0 \\ -1 \\ 1 \end{pmatrix}\)</span>.</p>
+</section>
+<section id="id3">
+<h3>Applications<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The Gram-Schmidt process is used in various numerical algorithms, such as QR decomposition and least squares approximation.</p></li>
+<li><p>Orthogonal projections are fundamental in signal processing, image processing, and machine learning for dimensionality reduction and feature extraction.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 4: Linear Transformations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap6.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 6: Diagonalization and Spectral Theorem</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-product-and-norm">Inner Product and Norm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inner-product">Inner Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">Norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-inner-product-and-norm">Relationship between Inner Product and Norm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-bases-and-orthonormal-bases">Orthogonal Bases and Orthonormal Bases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-bases">Orthogonal Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthonormal-bases">Orthonormal Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construction">Construction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gram-schmidt-process-and-orthogonal-projections">Gram-Schmidt Process and Orthogonal Projections</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gram-schmidt-process">Gram-Schmidt Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orthogonal-projections">Orthogonal Projections</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Applications</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,787 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 10: Vector Space &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap10';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 11: Linear Transformation" href="chap11.html" />
+    <link rel="prev" title="Chapter 9: Basic Algebra" href="chap9.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap10.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap10.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 10: Vector Space</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-space">Vector Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subspaces">Subspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-sum">Direct Sum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spanning-sets">Spanning Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear Independence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension">Dimension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordered-basis">Ordered basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-matrix">Coordinate Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-row-and-column-spaces-of-a-matrix">The row and column spaces of a matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-complexification-of-a-real-vector-space">The complexification of a real vector space</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-10-vector-space">
+<h1>Chapter 10: Vector Space<a class="headerlink" href="#chapter-10-vector-space" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="vector-space">
+<h2>Vector Space<a class="headerlink" href="#vector-space" title="Permalink to this heading">#</a></h2>
+<p>A vector space is a mathematical structure consisting of a set of elements called vectors, along with two operations: vector addition and scalar multiplication. These operations satisfy certain properties, such as closure under addition and scalar multiplication, associativity, commutativity, and distributivity. A vector space must also contain a zero vector and have additive inverses for each vector. Additionally, scalar multiplication must be compatible with the field of scalars that the vectors are drawn from. Overall, a vector space provides a framework for studying and manipulating vectors in a systematic way.</p>
+<p>A vector space is a mathematical structure that consists of a set of elements (vectors) along with two operations, vector addition and scalar multiplication, that satisfy certain properties. Here are some key properties of a vector space:</p>
+<ol class="arabic simple">
+<li><p>Closure under vector addition: For any vectors <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> in the vector space, their sum <span class="math notranslate nohighlight">\(u + v\)</span> is also in the vector space.</p></li>
+<li><p>Associativity of vector addition: For any vectors <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span>, and <span class="math notranslate nohighlight">\(w\)</span> in the vector space, <span class="math notranslate nohighlight">\((u + v) + w = u + (v + w)\)</span>.</p></li>
+<li><p>Commutativity of vector addition: For any vectors <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> in the vector space, <span class="math notranslate nohighlight">\(u + v = v + u\)</span>.</p></li>
+<li><p>Existence of an additive identity: There exists a vector 0 (the zero vector) in the vector space such that for any vector v in the space, <span class="math notranslate nohighlight">\(v + 0 = v\)</span>.</p></li>
+<li><p>Existence of additive inverses: For every vector <span class="math notranslate nohighlight">\(v\)</span> in the vector space, there exists a vector <span class="math notranslate nohighlight">\(-v\)</span> such that <span class="math notranslate nohighlight">\(v + (-v) = 0\)</span>.</p></li>
+<li><p>Closure under scalar multiplication: For any scalar <span class="math notranslate nohighlight">\(c\)</span> and vector <span class="math notranslate nohighlight">\(v\)</span> in the vector space, the scalar multiple <span class="math notranslate nohighlight">\(c*v\)</span> is also in the vector space.</p></li>
+<li><p>Scalar multiplication by 1: For any vector <span class="math notranslate nohighlight">\(v\)</span> in the vector space, <span class="math notranslate nohighlight">\(1*v = v\)</span>.</p></li>
+<li><p>Distributivity of scalar multiplication over vector addition: For any scalar <span class="math notranslate nohighlight">\(c\)</span> and vectors <span class="math notranslate nohighlight">\(u, v\)</span> in the vector space, <span class="math notranslate nohighlight">\(c*(u + v) = c*u + c*v\)</span>.</p></li>
+<li><p>Distributivity of scalar multiplication over scalar addition: For any scalars <span class="math notranslate nohighlight">\(c, d\)</span> and vector <span class="math notranslate nohighlight">\(v\)</span> in the vector space, <span class="math notranslate nohighlight">\((c + d)*v = c*v + d*v\)</span>.</p></li>
+<li><p>Associativity of scalar multiplication: For any scalars <span class="math notranslate nohighlight">\(c, d\)</span> and vector <span class="math notranslate nohighlight">\(v\)</span> in the vector space, <span class="math notranslate nohighlight">\((c*d)*v = c*(d*v)\)</span>.</p></li>
+</ol>
+<p>These properties ensure that a vector space is a well-behaved mathematical structure that captures the essence of “adding” and “scaling” vectors in a consistent and meaningful way.Here are some important theorems related to vector spaces:</p>
+<ol class="arabic simple">
+<li><p><strong>Closure under Addition</strong>: If <span class="math notranslate nohighlight">\( \mathbf{u}, \mathbf{v} \in V \)</span>, then <span class="math notranslate nohighlight">\( \mathbf{u} + \mathbf{v} \in V \)</span>.</p></li>
+<li><p><strong>Closure under Scalar Multiplication</strong>: If <span class="math notranslate nohighlight">\( \mathbf{u} \in V \)</span> and <span class="math notranslate nohighlight">\( c \)</span> is a scalar, then <span class="math notranslate nohighlight">\( c \mathbf{u} \in V \)</span>.</p></li>
+<li><p><strong>Empty Set</strong>: The empty set is not a vector space.</p></li>
+<li><p><strong>Zero Vector</strong>: There exists a unique vector denoted by <span class="math notranslate nohighlight">\( \mathbf{0} \)</span> in <span class="math notranslate nohighlight">\( V \)</span> such that <span class="math notranslate nohighlight">\( \mathbf{v} + \mathbf{0} = \mathbf{v} \)</span> for all <span class="math notranslate nohighlight">\( \mathbf{v} \in V \)</span>.</p></li>
+<li><p><strong>Additive Inverse</strong>: For every <span class="math notranslate nohighlight">\( \mathbf{v} \in V \)</span>, there exists a unique vector denoted by <span class="math notranslate nohighlight">\( -\mathbf{v} \)</span> such that <span class="math notranslate nohighlight">\( \mathbf{v} + (-\mathbf{v}) = \mathbf{0} \)</span>.</p></li>
+<li><p><strong>Scalar Multiplication with 1</strong>: For every <span class="math notranslate nohighlight">\( \mathbf{v} \in V \)</span>, <span class="math notranslate nohighlight">\( 1 \cdot \mathbf{v} = \mathbf{v} \)</span>.</p></li>
+<li><p><strong>Associativity of Addition</strong>: For all <span class="math notranslate nohighlight">\( \mathbf{u}, \mathbf{v}, \mathbf{w} \in V \)</span>, <span class="math notranslate nohighlight">\( (\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w}) \)</span>.</p></li>
+<li><p><strong>Distributivity of Scalar Multiplication over Vector Addition</strong>: For all <span class="math notranslate nohighlight">\( \mathbf{u}, \mathbf{v} \in V \)</span> and all scalars <span class="math notranslate nohighlight">\( a, b \)</span>, <span class="math notranslate nohighlight">\( a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v} \)</span>.</p></li>
+<li><p><strong>Distributivity of Scalar Multiplication over Field Addition</strong>: For all <span class="math notranslate nohighlight">\( \mathbf{u} \in V \)</span> and all scalars <span class="math notranslate nohighlight">\( a, b \)</span>, <span class="math notranslate nohighlight">\( (a + b)\mathbf{u} = a\mathbf{u} + b\mathbf{u} \)</span>.</p></li>
+<li><p><strong>Scalar Multiplication Associativity</strong>: For all <span class="math notranslate nohighlight">\( \mathbf{u} \in V \)</span> and all scalars <span class="math notranslate nohighlight">\( a, b \)</span>, <span class="math notranslate nohighlight">\( a(b\mathbf{u}) = (ab)\mathbf{u} \)</span>.</p></li>
+</ol>
+<p>These theorems, among others, are essential in understanding and working with vector spaces in the context of linear algebra.</p>
+</section>
+<section id="subspaces">
+<h2>Subspaces<a class="headerlink" href="#subspaces" title="Permalink to this heading">#</a></h2>
+<p>A vector subspace of a vector space <span class="math notranslate nohighlight">\(V\)</span> is a non-empty subset U of <span class="math notranslate nohighlight">\(V\)</span> that is closed under vector addition and scalar multiplication. In other words, U is a vector subspace of <span class="math notranslate nohighlight">\(V\)</span> if for every u and v in U, the sum u + v is in U, and for every scalar c and u in U, the scalar multiple cu is in U. Additionally, the zero vector 0 must be in U.</p>
+<p>Furthermore, a vector subspace U of a vector space <span class="math notranslate nohighlight">\(V\)</span> must satisfy the following properties:</p>
+<ol class="arabic simple">
+<li><p>U is closed under vector addition: For any u, v in U, u + v is also in U.</p></li>
+<li><p>U is closed under scalar multiplication: For any scalar c and u in U, the scalar multiple cu is in U.</p></li>
+<li><p>U contains the zero vector: The zero vector, denoted as 0, belongs to U.
+These properties ensure that U is a linear subspace of <span class="math notranslate nohighlight">\(V\)</span>.Vector subspaces are subsets of a vector space that have specific properties. Some key properties of vector subspaces include:</p></li>
+<li><p>Closure under addition: If two vectors are in a subspace, then their sum is also in the subspace.</p></li>
+<li><p>Closure under scalar multiplication: If a vector is in a subspace, then any scalar multiple of that vector is also in the subspace.</p></li>
+<li><p>Contains the zero vector: Every subspace must contain the zero vector (the additive identity element in the vector space).</p></li>
+<li><p>Non-empty: A subspace cannot be empty and must contain at least one vector.</p></li>
+<li><p>Closed under linear combinations: If vectors v1, v2, …, vn are in a subspace and c1, c2, …, cn are scalars, then the linear combination c1v1 + c2v2 + … + cnvn is also in the subspace.</p></li>
+<li><p>Closed under inner operations: Subspaces are closed under vector addition and scalar multiplication operations.</p></li>
+<li><p>Closed under projection: The projection of any vector in the subspace onto the subspace itself is still in the subspace.</p></li>
+</ol>
+<p>These properties are fundamental in understanding and working with vector subspaces in linear algebra.There are several important theorems related to vector subspaces in linear algebra. Here are some key theorems:</p>
+<ol class="arabic simple">
+<li><p><strong>Subspace Theorem</strong>: A non-empty subset <span class="math notranslate nohighlight">\(W\)</span> of a vector space <span class="math notranslate nohighlight">\(V\)</span> is a subspace of <span class="math notranslate nohighlight">\(V\)</span> if and only if for all vectors <span class="math notranslate nohighlight">\(u, v \in W\)</span> and scalars <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>, we have <span class="math notranslate nohighlight">\(u + v \in W\)</span> and <span class="math notranslate nohighlight">\(c \cdot u \in W\)</span>.</p></li>
+<li><p><strong>Intersection of Subspaces Theorem</strong>: If <span class="math notranslate nohighlight">\(W_1\)</span> and <span class="math notranslate nohighlight">\(W_2\)</span> are subspaces of a vector space <span class="math notranslate nohighlight">\(V\)</span>, then <span class="math notranslate nohighlight">\(W_1 \cap W_2\)</span> is also a subspace of <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
+<li><p><strong>Sum of Subspaces Theorem</strong>: If <span class="math notranslate nohighlight">\(W_1\)</span> and <span class="math notranslate nohighlight">\(W_2\)</span> are subspaces of a vector space <span class="math notranslate nohighlight">\(V\)</span>, then the set <span class="math notranslate nohighlight">\(W_1 + W_2 = \{w_1 + w_2 | w_1 \in W_1, w_2 \in W_2\}\)</span> is a subspace of <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
+<li><p><strong>Dimension of Subspace Theorem</strong>: If <span class="math notranslate nohighlight">\(W\)</span> is a subspace of a finite-dimensional vector space <span class="math notranslate nohighlight">\(V\)</span>, then the dimension of <span class="math notranslate nohighlight">\(W\)</span> is less than or equal to the dimension of <span class="math notranslate nohighlight">\(V\)</span>. Moreover, if <span class="math notranslate nohighlight">\(W\)</span> has the same dimension as <span class="math notranslate nohighlight">\(V\)</span>, then <span class="math notranslate nohighlight">\(W = V\)</span>.</p></li>
+<li><p><strong>Basis Theorem</strong>: If a set of vectors <span class="math notranslate nohighlight">\(\{v_1, v_2, \ldots, v_k\}\)</span> spans a vector space <span class="math notranslate nohighlight">\(V\)</span>, then a subset of these vectors forms a basis for <span class="math notranslate nohighlight">\(V\)</span> if and only if they are linearly independent.</p></li>
+<li><p><strong>Rank-Nullity Theorem</strong>: For a linear transformation <span class="math notranslate nohighlight">\(T: V \rightarrow W\)</span> between two vector spaces, the sum of the rank of <span class="math notranslate nohighlight">\(T\)</span> and the nullity of <span class="math notranslate nohighlight">\(T\)</span> is equal to the dimension of the domain <span class="math notranslate nohighlight">\(V\)</span>, i.e., <span class="math notranslate nohighlight">\(\text{rank}(T) + \text{nullity}(T) = \dim(V)\)</span>.</p></li>
+</ol>
+<p>These theorems provide important insights into the properties and relationships among vector subspaces in linear algebra.</p>
+</section>
+<section id="direct-sum">
+<h2>Direct Sum<a class="headerlink" href="#direct-sum" title="Permalink to this heading">#</a></h2>
+<p>The direct sum of two vector spaces <span class="math notranslate nohighlight">\(V\)</span> and W, denoted as V ⊕ W, is the set of all possible sums of vectors from <span class="math notranslate nohighlight">\(V\)</span> and W. Formally, V ⊕ W = {v + w | v ∈ V, w ∈ W}. This set is a vector space itself, where addition and scalar multiplication are defined component-wise. The direct sum allows for representing vectors as the direct sum of components with no overlap in terms of their underlying structure.The direct sum is a fundamental concept in linear algebra that describes the combination of subspaces or vectors in a vector space. Here are some key properties of direct sums:</p>
+<ol class="arabic simple">
+<li><p>Closure under addition: If <span class="math notranslate nohighlight">\(V\)</span> and W are subspaces of a vector space, then their direct sum V⊕W is also a subspace of the same vector space.</p></li>
+<li><p>Uniqueness of representation: If v ∈ V and w ∈ W such that v + w = 0, then v = 0 and w = 0, which implies that the decomposition of a vector into its direct sum components is unique.</p></li>
+<li><p>Dimension property: If <span class="math notranslate nohighlight">\(V\)</span> and W are finite-dimensional subspaces of a vector space, then the dimension of their direct sum V⊕W is equal to the sum of the dimensions of <span class="math notranslate nohighlight">\(V\)</span> and W, i.e., dim(V⊕W) = dim(V) + dim(W) - dim(V∩W).</p></li>
+<li><p>Coordinate axes: In the direct sum V⊕W, any vector v in V can be uniquely expressed as v = v1 + v2, where v1 ∈ V and v2 ∈ W.</p></li>
+<li><p>Direct sum decomposition: If a vector space V can be written as the direct sum of subspaces V1, V2, …, Vk, i.e., V = V1⊕V2⊕…⊕Vk, then any vector v in V can be uniquely represented as v = v1 + v2 + … + vk, where vi ∈ Vi for i = 1, 2, …, k.</p></li>
+<li><p>Direct sum as a direct product: If V and W are subspaces of a vector space such that V ∩ W = {0}, then the direct sum V⊕W is isomorphic to the Cartesian product V × W.</p></li>
+</ol>
+<p>These properties make direct sums a powerful tool in the study of vector spaces and their subspaces, providing a way to decompose vectors into simpler components and analyze their structure.1. If <span class="math notranslate nohighlight">\(V\)</span> is a vector space and <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(W\)</span> are subspaces of <span class="math notranslate nohighlight">\(V\)</span>, then <span class="math notranslate nohighlight">\(V\)</span> is the direct sum of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(W\)</span> if and only if every vector <span class="math notranslate nohighlight">\(v\)</span> in <span class="math notranslate nohighlight">\(V\)</span> can be uniquely expressed as the sum of a vector <span class="math notranslate nohighlight">\(u\)</span> in <span class="math notranslate nohighlight">\(U\)</span> and a vector <span class="math notranslate nohighlight">\(w\)</span> in <span class="math notranslate nohighlight">\(W\)</span>, i.e., <span class="math notranslate nohighlight">\(v = u + w\)</span> for <span class="math notranslate nohighlight">\(u \in U\)</span> and <span class="math notranslate nohighlight">\(w \in W\)</span>.</p>
+<ol class="arabic simple" start="2">
+<li><p>If <span class="math notranslate nohighlight">\(V\)</span> is a vector space and <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(W\)</span> are subspaces of <span class="math notranslate nohighlight">\(V\)</span>, then <span class="math notranslate nohighlight">\(V\)</span> is the direct sum of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(W\)</span> if and only if <span class="math notranslate nohighlight">\(V = U + W\)</span> and <span class="math notranslate nohighlight">\(U \cap W = \{0\}\)</span>, where <span class="math notranslate nohighlight">\(U + W\)</span> denotes the sum of the subspaces <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(W\)</span>, and <span class="math notranslate nohighlight">\(U \cap W\)</span> denotes their intersection.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(V\)</span> is the direct sum of subspaces <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(W\)</span>, then every vector <span class="math notranslate nohighlight">\(v\)</span> in <span class="math notranslate nohighlight">\(V\)</span> can be uniquely decomposed into the sum of a vector <span class="math notranslate nohighlight">\(u\)</span> in <span class="math notranslate nohighlight">\(U\)</span> and a vector <span class="math notranslate nohighlight">\(w\)</span> in <span class="math notranslate nohighlight">\(W\)</span>, and this decomposition is orthogonal in the sense that <span class="math notranslate nohighlight">\(u\)</span> is orthogonal to <span class="math notranslate nohighlight">\(w\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(V\)</span> is a finite-dimensional vector space and <span class="math notranslate nohighlight">\(U_1, U_2, ..., U_k\)</span> are pairwise orthogonal subspaces of <span class="math notranslate nohighlight">\(V\)</span>, then the sum <span class="math notranslate nohighlight">\(\text{span}(U_1 \cup U_2 \cup ... \cup U_k)\)</span> is a direct sum decomposition of <span class="math notranslate nohighlight">\(V\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(V\)</span> is a finite-dimensional vector space with subspaces <span class="math notranslate nohighlight">\(U_1, U_2,..., U_k\)</span> such that <span class="math notranslate nohighlight">\(V = U_1 \oplus U_2 \oplus ... \oplus U_k\)</span>, then every basis for <span class="math notranslate nohighlight">\(V\)</span> is a concatenation of bases for <span class="math notranslate nohighlight">\(U_1, U_2,..., U_k\)</span>.</p></li>
+</ol>
+</section>
+<section id="spanning-sets">
+<h2>Spanning Sets<a class="headerlink" href="#spanning-sets" title="Permalink to this heading">#</a></h2>
+<p>A spanning set of vectors in a vector space is a set of vectors that, through linear combinations of these vectors, can generate any vector in that vector space. In other words, a spanning set is a collection of vectors such that any vector in the vector space can be expressed as a linear combination of the vectors in the set. If a set of vectors is a spanning set for a vector space, then the vectors are said to span that space.A set of vectors in a vector space is said to be a spanning set if every vector in the space can be expressed as a linear combination of the vectors in the set. Here are some key properties of spanning sets:</p>
+<ol class="arabic simple">
+<li><p>Existence of Spanning Set: Every vector space has a spanning set. This can be a single vector, a finite set of vectors, an infinite set of vectors, or even the entire vector space itself.</p></li>
+<li><p>Minimal Spanning Set: A spanning set is said to be minimal if no vector in the set can be expressed as a linear combination of the other vectors in the set. In other words, removing any vector from the set would result in a set that no longer spans the vector space.</p></li>
+<li><p>Linear Independence: A spanning set may or may not be linearly independent. If the spanning set is linearly independent, then it is also a basis for the vector space. Otherwise, it can be reduced to a linearly independent set to form a basis.</p></li>
+<li><p>Cardinality: The cardinality of a spanning set is not unique. A vector space may have different spanning sets with different numbers of vectors. However, any two spanning sets for the same vector space will have the same cardinality.</p></li>
+<li><p>Spanning Set and Subspaces: If a set of vectors spans a vector space, then any linear combination of those vectors will also belong to the vector space. Furthermore, the span of a set of vectors forms a subspace of the original vector space.</p></li>
+<li><p>Combination of Spanning Sets: If two sets of vectors individually span a vector space, then their union will also span the vector space. This is because any vector in the vector space can be expressed as a linear combination of the vectors in either set, and hence in the union of the two sets.</p></li>
+<li><p>Basis and Spanning Set: A basis is a spanning set that is also linearly independent. Every finite-dimensional vector space has a basis, which is a minimal spanning set, and any vector in the space can be uniquely represented as a linear combination of the basis vectors.</p></li>
+</ol>
+<p>Understanding and utilizing the properties of spanning sets are essential in various areas of linear algebra, including solving systems of equations, finding bases for vector spaces, and understanding the structure of linear transformations.</p>
+<p>There are several theorems related to spanning sets in linear algebra. Here are some of the key theorems:</p>
+<ol class="arabic simple">
+<li><p><strong>Spanning Set Theorem</strong>: Let <span class="math notranslate nohighlight">\( V \)</span> be a vector space and let <span class="math notranslate nohighlight">\( S = \{v_1, v_2, \ldots, v_n\} \)</span> be a set of vectors in <span class="math notranslate nohighlight">\( V \)</span>. Then, <span class="math notranslate nohighlight">\( \text{span}(S) = \text{span}(\{v_1, v_2, \ldots, v_n\}) \)</span>.</p></li>
+<li><p><strong>Minimal Spanning Set Theorem</strong>: If <span class="math notranslate nohighlight">\( S = \{v_1, v_2, \ldots, v_n\} \)</span> is a spanning set for a vector space <span class="math notranslate nohighlight">\( V \)</span> and if removing any vector from <span class="math notranslate nohighlight">\( S \)</span> makes it not a spanning set, then <span class="math notranslate nohighlight">\( S \)</span> is called a minimal spanning set for <span class="math notranslate nohighlight">\( V \)</span>.</p></li>
+<li><p><strong>Extension Theorem</strong>: Suppose <span class="math notranslate nohighlight">\( S = \{v_1, v_2, \ldots, v_k\} \)</span> is a linearly independent set of vectors in a vector space <span class="math notranslate nohighlight">\( V \)</span>. If <span class="math notranslate nohighlight">\( S \)</span> can be extended to a spanning set of <span class="math notranslate nohighlight">\( V \)</span> by adding the vector <span class="math notranslate nohighlight">\( v_{k+1} \)</span>, then <span class="math notranslate nohighlight">\( v_{k+1} \)</span> cannot be written as a linear combination of the vectors in <span class="math notranslate nohighlight">\( S \)</span>.</p></li>
+<li><p><strong>Replacement Theorem</strong>: Let <span class="math notranslate nohighlight">\( S = \{v_1, v_2, \ldots, v_k\} \)</span> be a spanning set for a vector space <span class="math notranslate nohighlight">\( V \)</span>. If a vector <span class="math notranslate nohighlight">\( u \)</span> in <span class="math notranslate nohighlight">\( V \)</span> can be written as a linear combination of the vectors in <span class="math notranslate nohighlight">\( S \)</span>, then <span class="math notranslate nohighlight">\( S \cup \{u\} \setminus \{v_j\} \)</span> is also a spanning set for <span class="math notranslate nohighlight">\( V \)</span>, where <span class="math notranslate nohighlight">\(v_j\)</span> is a vector in <span class="math notranslate nohighlight">\( S\)</span>.</p></li>
+<li><p><strong>Linear Independence Theorem</strong>: Given a set of vectors <span class="math notranslate nohighlight">\( S = \{v_1, v_2, \ldots, v_n\} \)</span> in a vector space <span class="math notranslate nohighlight">\( V \)</span>, if there exist scalars <span class="math notranslate nohighlight">\( c_1, c_2, \ldots, c_n \)</span> such that <span class="math notranslate nohighlight">\( c_1v_1 + c_2v_2 + \ldots + c_nv_n = \mathbf{0} \)</span> where not all scalars are zero, then <span class="math notranslate nohighlight">\( S \)</span> is linearly dependent.</p></li>
+</ol>
+<p>These theorems are fundamental in understanding how sets of vectors span a vector space and the implications of linear independence and dependence within those sets.A set of vectors in a vector space is said to be linearly independent if no vector in the set can be represented as a linear combination of the other vectors in the set. In other words, given a set of vectors <span class="math notranslate nohighlight">\( \{ v_1, v_2, \ldots, v_n \} \)</span>, if the only solution to the equation <span class="math notranslate nohighlight">\( c_1 v_1 + c_2 v_2 + \ldots + c_n v_n = 0 \)</span> is when all the coefficients <span class="math notranslate nohighlight">\( c_1, c_2, \ldots, c_n \)</span> are zero, then the set is said to be linearly independent.</p>
+</section>
+<section id="linear-independence">
+<h2>Linear Independence<a class="headerlink" href="#linear-independence" title="Permalink to this heading">#</a></h2>
+<p>Linear independence is a key concept in linear algebra that describes the relationship between vectors in a vector space. Here are some important properties of linear independence:</p>
+<ol class="arabic simple">
+<li><p>Definition: A set of vectors {v1, v2, …, vn} in a vector space V is said to be linearly independent if the only solution to the equation a1v1 + a2v2 + … + anvn = 0 is a1 = a2 = … = an = 0. In other words, the vectors cannot be expressed as linear combinations of each other except when all coefficients are zero.</p></li>
+<li><p>Linear Combination: If a set of vectors is linearly independent, then any vector in the span of those vectors can be expressed in a unique way as a linear combination of them.</p></li>
+<li><p>Dimension: The maximum number of linearly independent vectors in a vector space V is called the dimension of V. If a set of vectors has more vectors than the dimension of the space, then those vectors are linearly dependent.</p></li>
+<li><p>Basis: A basis for a vector space V is a set of linearly independent vectors that span V. Every vector in the space can be expressed uniquely as a linear combination of the basis vectors.</p></li>
+<li><p>Orthogonality: In an inner product space, a set of orthogonal vectors is always linearly independent. If {v1, v2, …, vn} are orthogonal vectors, then a1v1 + a2v2 + … + anvn = 0 implies that each coefficient ai = 0.</p></li>
+<li><p>Linear Transformation: If a set of vectors {v1, v2, …, vn} is linearly independent, then the images of those vectors under a linear transformation T will also be linearly independent, provided that T is injective (one-to-one).</p></li>
+<li><p>Matrix Rank: The rank of a matrix A is the maximum number of linearly independent columns (or rows) of A. The rank of a matrix reveals important information about the properties of its solutions.</p></li>
+</ol>
+<p>These properties highlight the significance of linear independence in various aspects of linear algebra and its applications in mathematics and other fields.1. The Zero Vector Theorem: The vector 0 is linearly dependent on any set of vectors.
+2. Linear Dependence Lemma: If a set of vectors contains a zero vector, then the set is linearly dependent.
+3. Singleton Set Lemma: A set containing a single non-zero vector is linearly independent.
+4. Spanning Set Lemma: If the set of vectors spans a subspace, then the set is linearly independent if and only if each vector in the set is not a linear combination of the other vectors in the set.
+5. Linear Independence Theorem: If a set of vectors is linearly independent, then no vector in the set can be written as a linear combination of the other vectors in the set.
+6. Replacement Lemma: If a set of vectors contains a linear dependence relation, then removing any vector from the set will result in a linearly independent set.
+7. Maximal Linearly Independent Set Theorem: Every set of vectors can be extended to a maximal linearly independent set by adding additional linearly independent vectors from the vector space.</p>
+</section>
+<section id="dimension">
+<h2>Dimension<a class="headerlink" href="#dimension" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, the dimension of a vector space is the number of vectors in any basis for that space. In other words, it is the minimum number of vectors needed to express any vector in the vector space as a linear combination of those basis vectors. The dimension of a vector space is always a non-negative <a class="reference external" href="http://integer.In">integer.In</a> linear algebra, the dimension of a vector space is an important property that describes the size or the “capacity” of the vector space. Here are some key properties of dimension:</p>
+<ol class="arabic simple">
+<li><p>Dimension of a vector space is a non-negative integer: The dimension of a vector space V is a non-negative integer, denoted as dim(V) or simply as n if the dimension is n. A vector space with no non-zero elements has dimension 0.</p></li>
+<li><p>Basis and dimension: A basis of a vector space V is a set of linearly independent vectors that span V. The dimension of V is equal to the number of vectors in any basis of V. Different bases of the same vector space always have the same number of vectors, i.e., the same dimension.</p></li>
+<li><p>Dimension and rank: For a matrix A, the column space of A is the subspace of the vector space R^n spanned by its columns. The dimension of the column space is called the rank of A, denoted as rank(A). The rank of a matrix is always less than or equal to the minimum of the number of rows and columns of the matrix.</p></li>
+<li><p>Dimension and nullity: For a matrix A, the null space (or kernel) of A consists of all vectors x such that Ax = 0. The dimension of the null space is called the nullity of A, denoted as nullity(A). The nullity of a matrix is related to its rank by the Rank-Nullity Theorem: rank(A) + nullity(A) = n, where n is the number of columns of A.</p></li>
+<li><p>Dimension and linear transformations: For a linear transformation T : V -&gt; W between vector spaces V and W, the dimension of the image of T, denoted as dim(im(T)), is less than or equal to the dimension of the domain of T, dim(V). The dimension of the kernel of T, denoted as dim(ker(T)), is related to dim(im(T)) through the Rank-Nullity Theorem.</p></li>
+<li><p>Dimension and subspaces: If U is a subspace of a vector space V, then dim(U) ≤ dim(V). If dim(U) = dim(V), then U = V. In particular, a proper subspace of a finite-dimensional vector space has a dimension strictly less than the dimension of the original space.</p></li>
+</ol>
+<p>These are some important properties related to the dimension of vector spaces in linear algebra. Understanding dimension is crucial for studying the structure and properties of vector spaces and linear transformations.Several theorems related to the dimension of vector spaces in linear algebra are as follows:</p>
+<ol class="arabic simple">
+<li><p>The Dimension Theorem: If <span class="math notranslate nohighlight">\(V\)</span> is a vector space and <span class="math notranslate nohighlight">\(W\)</span> is a subspace of <span class="math notranslate nohighlight">\(V\)</span>, then
+<span class="math notranslate nohighlight">\( \text{dim}(W) + \text{dim}(V/W) = \text{dim}(V), \)</span>
+where <span class="math notranslate nohighlight">\(V/W\)</span> denotes the quotient space of <span class="math notranslate nohighlight">\(V\)</span> by <span class="math notranslate nohighlight">\(W\)</span>.</p></li>
+<li><p>Basis Extension Theorem: If <span class="math notranslate nohighlight">\(V\)</span> is a vector space and <span class="math notranslate nohighlight">\(W\)</span> is a subspace of <span class="math notranslate nohighlight">\(V\)</span>, and <span class="math notranslate nohighlight">\(\{v_1, v_2, \ldots, v_m\}\)</span> is a basis for <span class="math notranslate nohighlight">\(W\)</span>, then this basis can be extended to a basis <span class="math notranslate nohighlight">\(\{v_1, v_2, \ldots, v_m, v_{m+1}, \ldots, v_n\}\)</span> for <span class="math notranslate nohighlight">\(V\)</span>, where <span class="math notranslate nohighlight">\(n = \text{dim}(V)\)</span>.</p></li>
+<li><p>Rank-Nullity Theorem: For a linear transformation <span class="math notranslate nohighlight">\(T: V \rightarrow W\)</span>, where <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span> are vector spaces, we have
+<span class="math notranslate nohighlight">\(\text{dim}(\text{ker}(T)) + \text{rank}(T) = \text{dim}(V), \)</span>
+where <span class="math notranslate nohighlight">\(\text{ker}(T)\)</span> is the kernel (null space) of <span class="math notranslate nohighlight">\(T\)</span> and <span class="math notranslate nohighlight">\(\text{rank}(T)\)</span> is the rank of <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p>Dimension of the Column Space and Null Space: For a matrix <span class="math notranslate nohighlight">\(A\)</span> with <span class="math notranslate nohighlight">\(n\)</span> columns, the dimension of the column space of <span class="math notranslate nohighlight">\(A\)</span> is equal to the rank of <span class="math notranslate nohighlight">\(A\)</span>, and the dimension of the null space of <span class="math notranslate nohighlight">\(A\)</span> (or kernel of <span class="math notranslate nohighlight">\(A\)</span>) is equal to the number of free variables in the reduced row-echelon form of <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+</ol>
+<p>These theorems are fundamental in understanding the structure and properties of vector spaces and linear transformations in linear algebra.</p>
+</section>
+<section id="ordered-basis">
+<h2>Ordered basis<a class="headerlink" href="#ordered-basis" title="Permalink to this heading">#</a></h2>
+<p>An ordered basis in linear algebra is a sequence of vectors that forms a basis for a vector space. The order of the vectors in the basis is important, as changing the order of the vectors can result in a different basis. The ordered basis provides a systematic way to represent vectors in the vector space as linear combinations of the basis vectors. Each vector in the vector space can be uniquely expressed as a linear combination of the vectors in the ordered basis.</p>
+<p>An ordered basis in linear algebra refers to a specific ordering of the basis vectors in a vector space. Here are some properties of ordered bases:</p>
+<ol class="arabic simple">
+<li><p>Uniqueness: Any vector space has many different bases, but a specific basis has a unique ordered representation. Changing the order of the vectors in an ordered basis results in a different ordered basis.</p></li>
+<li><p>Coordinate Representation: Given an ordered basis B = {v1, v2, …, vn} of a vector space V, any vector v in V can be uniquely represented as a linear combination of the basis vectors. This representation is known as the coordinate representation of v with respect to the basis B.</p></li>
+<li><p>Change of Basis: If you have two ordered bases B = {v1, v2, …, vn} and C = {w1, w2, …, wn} of a vector space V, any vector v in V can be represented in terms of both bases. There exists a unique n x n matrix P such that the coordinates of v with respect to basis C is given by P times the coordinates of v with respect to basis B.</p></li>
+<li><p>Dimension: The number of vectors in an ordered basis of a vector space is called the dimension of the vector space. Two different bases of the same vector space always have the same number of elements, which is the dimension of the vector space.</p></li>
+<li><p>Linear Independence: An ordered set of vectors is an ordered basis if and only if the vectors are linearly independent and span the entire vector space.</p></li>
+<li><p>Standard Basis: In Euclidean space R^n, the standard basis {e1, e2, …, en} consists of unit vectors along the coordinate axes. This is a common example of an ordered basis.</p></li>
+<li><p>Basis Conversion Matrix: Given two ordered bases of a vector space, the basis conversion matrix relates the coordinates of vectors in one basis to the coordinates in the other basis. This matrix is invertible and plays a key role in changing coordinates between bases.</p></li>
+</ol>
+<p>These properties underscore the importance of ordered bases in linear algebra for representing vectors, performing calculations, and understanding the structure of vector spaces.1. Every vector space has a basis.</p>
+<ol class="arabic simple" start="2">
+<li><p>Every two bases of a vector space have the same cardinality (number of elements), which is called the dimension of the vector space.</p></li>
+<li><p>Any set of linearly independent vectors can be extended to form a basis for the vector space.</p></li>
+<li><p>Any set of vectors that spans the vector space can be reduced to form a basis for the vector space.</p></li>
+<li><p>If V is a vector space of dimension n, then any set of n linearly independent vectors in V forms a basis for V.</p></li>
+<li><p>Any linearly independent set in a finite-dimensional vector space can be extended to a basis by adding further vectors if necessary.</p></li>
+<li><p>If a vector space V has a basis B with n elements, and if v_1, v_2, …, v_m are linearly independent vectors in V for m &gt; n, then m ≤ n and the set {v_1, v_2, …, v_m} is linearly dependent.</p></li>
+<li><p>Every vector in a finite-dimensional vector space can be written uniquely as a linear combination of the basis vectors.</p></li>
+</ol>
+<p>These theorems encompass some of the fundamental properties and results related to ordered bases in linear algebra.</p>
+</section>
+<section id="coordinate-matrix">
+<h2>Coordinate Matrix<a class="headerlink" href="#coordinate-matrix" title="Permalink to this heading">#</a></h2>
+<p>A coordinate matrix is a matrix representation of a set of vectors in a given basis. Each column of the coordinate matrix corresponds to the coordinates of a vector in the basis. The rows of the matrix represent the different components of the vectors in the basis. Coordinate matrices are often used to simplify computations involving vectors and transformations in linear algebra.The properties of a coordinate matrix depend on the context in which it is used. In general, a coordinate matrix is a matrix that represents the coordinates of a vector relative to a particular basis. Here are some key properties of coordinate matrices:</p>
+<ol class="arabic simple">
+<li><p>Dimension: The dimension of a coordinate matrix is determined by the size of the vector space and the chosen basis. If the vector space has dimension n, then the coordinate matrix will have n rows.</p></li>
+<li><p>Basis dependence: The entries of a coordinate matrix depend on the choice of basis. Changing the basis will result in a different coordinate matrix for the same vector.</p></li>
+<li><p>Linear transformations: Coordinate matrices can be used to represent linear transformations. The action of a linear transformation on a vector can be represented by matrix multiplication with the coordinate matrix of the vector.</p></li>
+<li><p>Invertibility: If the basis is chosen carefully, the coordinate matrix can be invertible. In this case, the original vector can be uniquely reconstructed from its coordinate matrix using the inverse of the basis transformation matrix.</p></li>
+<li><p>Change of basis: When changing the basis of a vector space, the coordinate matrix also changes accordingly. The relationship between the coordinate matrices under different bases can be described by a basis transformation matrix.</p></li>
+<li><p>Addition and scalar multiplication: Coordinate matrices behave like regular matrices under addition and scalar multiplication. The sum and scalar multiples of coordinate matrices represent the sum and scalar multiples of the corresponding vectors.</p></li>
+<li><p>Orthogonality: In some applications, basis vectors may be chosen to be orthogonal or orthonormal. In this case, the coordinate matrix will have special properties related to orthogonality, such as making computations easier or preserving distances.</p></li>
+</ol>
+<p>Overall, coordinate matrices provide a useful way to represent vectors and linear transformations in a vector space and play a crucial role in various fields of mathematics and science, especially in linear algebra and geometry.Several important theorems related to coordinate matrices in linear algebra include:</p>
+<ol class="arabic simple">
+<li><p>Given a linear transformation <span class="math notranslate nohighlight">\(T: V \to W\)</span> between two vector spaces <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span> with bases <span class="math notranslate nohighlight">\(\beta = \{v_1, v_2, \dots, v_n\}\)</span> for <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(\gamma = \{w_1, w_2, \dots, w_m\}\)</span> for <span class="math notranslate nohighlight">\(W\)</span>, the coordinate matrix of <span class="math notranslate nohighlight">\(T\)</span> with respect to the bases <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> is denoted by <span class="math notranslate nohighlight">\([T]_{\beta}^{\gamma}\)</span>. This matrix represents the coefficients of the linear transformation with respect to the given bases.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is the matrix representation of a linear transformation <span class="math notranslate nohighlight">\(T: V \to W\)</span> with respect to the standard bases of <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span>, then the coordinate matrix of <span class="math notranslate nohighlight">\(T\)</span> with respect to arbitrary bases <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> can be obtained by the similarity transformation <span class="math notranslate nohighlight">\([T]_{\beta}^{\gamma} = P^{-1}AP\)</span>, where <span class="math notranslate nohighlight">\(P\)</span> is the change of basis matrix from the standard bases to the given bases.</p></li>
+<li><p>The composition of linear transformations corresponds to matrix multiplication. If <span class="math notranslate nohighlight">\(S: U \to V\)</span> and <span class="math notranslate nohighlight">\(T: V \to W\)</span> are linear transformations with coordinate matrices <span class="math notranslate nohighlight">\([S]_{\alpha}^{\beta}\)</span> and <span class="math notranslate nohighlight">\([T]_{\beta}^{\gamma}\)</span> respectively, then the coordinate matrix of the composition <span class="math notranslate nohighlight">\(T \circ S: U \to W\)</span> is <span class="math notranslate nohighlight">\([T \circ S]_{\alpha}^{\gamma} = [T]_{\beta}^{\gamma}[S]_{\alpha}^{\beta}\)</span>.</p></li>
+<li><p>The rank-nullity theorem states that for any linear transformation <span class="math notranslate nohighlight">\(T: V \to W\)</span>, the sum of the rank and nullity of <span class="math notranslate nohighlight">\(T\)</span> is equal to the dimension of the domain <span class="math notranslate nohighlight">\(V\)</span>. This theorem can also be expressed in terms of coordinate matrices, relating the rank and nullity of the matrix representation of <span class="math notranslate nohighlight">\(T\)</span> to the dimensions of the kernel and image of <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+</ol>
+<p>These theorems provide important insights into the relationships between linear transformations and their matrix representations, and are fundamental in the study of linear algebra.</p>
+</section>
+<section id="the-row-and-column-spaces-of-a-matrix">
+<h2>The row and column spaces of a matrix<a class="headerlink" href="#the-row-and-column-spaces-of-a-matrix" title="Permalink to this heading">#</a></h2>
+<p>The row space of a matrix A, denoted as row(A), is the subspace of R^n spanned by the rows of the matrix A. In other words, it is the set of all possible linear combinations of the rows of A. Similarly, the column space of a matrix A, denoted as col(A), is the subspace of R^m spanned by the columns of the matrix A. It is the set of all possible linear combinations of the columns of A. Both the row space and the column space are vector spaces and are fundamental concepts in linear algebra.The row space of a matrix consists of all possible linear combinations of the row vectors of the matrix. It is a subspace of the vector space defined by the row vectors of the matrix. It can also be viewed as the span of the row vectors of the matrix.</p>
+<p>Similarly, the column space of a matrix consists of all possible linear combinations of the column vectors of the matrix. It is a subspace of the vector space defined by the column vectors of the matrix. It can be viewed as the span of the column vectors of the matrix.</p>
+<p>Some important properties of the row and column spaces of a matrix include:</p>
+<ol class="arabic simple">
+<li><p>The row space and column space have the same dimension.</p></li>
+<li><p>The row space and column space are orthogonal complements of each other.</p></li>
+<li><p>The row space of a matrix is equal to the column space of its transpose, and vice versa.</p></li>
+<li><p>The rank of a matrix is equal to the dimension of its row space and its column space.</p></li>
+<li><p>The row space and column space are invariant under elementary row and column operations.</p></li>
+<li><p>The row and column spaces of a matrix together span the entire vector space defined by the matrix.</p></li>
+</ol>
+<p>Understanding the properties of the row and column spaces of a matrix is crucial in various applications of linear algebra, such as solving systems of linear equations, calculating matrix decompositions, and understanding the structure of linear transformations.1. The row space of a matrix A is the subspace of R^n spanned by the rows of A. It has the same dimension as the rank of the matrix.
+2. The column space of a matrix A is the subspace of R^m spanned by the columns of A. It also has the same dimension as the rank of the matrix.
+3. The row space and column space of a matrix are orthogonal complements of each other.
+4. The dimension of the row space plus the dimension of the null space of a matrix equals the number of columns of the matrix.
+5. The dimension of the column space plus the dimension of the null space of a matrix equals the number of rows of the matrix.
+6. The row space and column space of a matrix are related by the transpose of the matrix. Specifically, the row space of A is the same as the column space of the transpose of A, and vice versa.
+7. The row space and column space of a matrix are invariant under elementary row operations.
+8. The row space and column space of a matrix are subspaces of the respective vector spaces R^n and R^m.
+9. The row space and column space of a matrix are both subsets of the vector space R^n, where n is the number of columns of the matrix.</p>
+</section>
+<section id="the-complexification-of-a-real-vector-space">
+<h2>The complexification of a real vector space<a class="headerlink" href="#the-complexification-of-a-real-vector-space" title="Permalink to this heading">#</a></h2>
+<p>The complexification of a real vector space is the process of extending the base field of the vector space from the real numbers to the complex numbers. This results in a new vector space that is essentially the original real vector space “complexified” by allowing scalar multiplication by complex numbers.</p>
+<p>Formally, if V is a real vector space, then the complexification of V, denoted by V⊗C, is the vector space formed by taking the tensor product of V with the complex numbers C. The elements of V⊗C are linear combinations of tensors of the form v ⊗ z, where v is a vector in V and z is a complex number.</p>
+<p>The complexification of a real vector space carries additional structure compared to the original real vector space, as it now has a natural complex vector space structure. This can be useful in various mathematical contexts, such as representation theory, differential geometry, and functional analysis.The complexification of a real vector space is the process of extending the scalars of a real vector space to complex numbers. Here are some key properties of the complexification of a real vector space:</p>
+<ol class="arabic simple">
+<li><p>Extension of Scalars: When you complexify a real vector space, you essentially allow the scalar field to be extended from real numbers to complex numbers. This means that for every real scalar α, you now have α + i0 as a valid scalar in the complexified vector space, where i is the imaginary unit.</p></li>
+<li><p>Dimension: The dimension of the complexified vector space is twice the dimension of the original real vector space. If V is a real vector space of dimension n, then the complexified vector space V⊗C has dimension 2n.</p></li>
+<li><p>Basis: If {v1, v2, …, vn} is a basis for the real vector space V, then {v1, iv1, v2, iv2, …, vn, ivn} forms a basis for the complexified vector space V⊗C. This new basis includes the original real basis vectors and their complex multiples.</p></li>
+<li><p>Linearity: The complexified vector space inherits the vector addition and scalar multiplication operations from the real vector space. It is a complex vector space, meaning that the operations of addition and scalar multiplication are defined over the complex numbers.</p></li>
+<li><p>Inner Product: If the original real vector space V had an inner product defined on it, then the complexified vector space V⊗C inherits a Hermitian inner product. The inner product is sesquilinear (linear in the first component and conjugate-linear in the second) with respect to complex multiplication.</p></li>
+<li><p>Structure: The complexified vector space retains the structure of a vector space, with properties such as associativity, distributivity, and scalar multiplication holding in the complexified space as well.</p></li>
+<li><p>Representation of Complex Numbers: The complexification of a real vector space allows for a convenient representation and manipulation of complex numbers within the context of linear algebra, making it a powerful tool in various mathematical and scientific applications.</p></li>
+</ol>
+<p>These properties make the complexification of a real vector space a useful concept in mathematical analysis, quantum mechanics, and other branches of mathematics and physics where complex numbers play a significant role.1. The complexification of a real vector space V is a complex vector space denoted by V ⊗ C.</p>
+<ol class="arabic simple" start="2">
+<li><p>The complexification of a real vector space V has twice the dimension of V as a complex vector space, namely dim(V ⊗ C) = 2*dim(V).</p></li>
+<li><p>The complexification of a real vector space V is isomorphic to the tensor product of V with the complex field C, denoted by V ⊗ C.</p></li>
+<li><p>Any basis for a real vector space V can be extended to a basis for its complexification V ⊗ C by simply appending the basis vectors multiplied by the imaginary unit i.</p></li>
+<li><p>The complexification of a real vector space is a natural way to extend the scalars from real numbers to complex numbers, allowing for the representation of complex numbers in the vector space.</p></li>
+<li><p>The complexification of a real vector space preserves the linearity and additivity properties of the original real vector space.</p></li>
+<li><p>Any linear transformation between real vector spaces can be extended to a complex linear transformation between their complexifications.</p></li>
+<li><p>The dual space of the complexification of a real vector space consists of linear functionals that are complex-linear with respect to the extended scalar field.</p></li>
+<li><p>The complexification of a real inner product space preserves the inner product structure, and the resulting complex inner product space is also a Hilbert space.</p></li>
+<li><p>The complexification of a real vector space is a fundamental concept in the study of complex vector spaces and can be used to analyze and solve problems involving complex vector spaces.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap9.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 9: Basic Algebra</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap11.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 11: Linear Transformation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-space">Vector Space</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subspaces">Subspaces</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-sum">Direct Sum</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spanning-sets">Spanning Sets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-independence">Linear Independence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension">Dimension</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ordered-basis">Ordered basis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-matrix">Coordinate Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-row-and-column-spaces-of-a-matrix">The row and column spaces of a matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-complexification-of-a-real-vector-space">The complexification of a real vector space</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

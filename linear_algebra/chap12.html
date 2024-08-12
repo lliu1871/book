@@ -1,0 +1,886 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 12: Isomorphism &#8212; Linear Algebra</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap12';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 13: Modules" href="chap13.html" />
+    <link rel="prev" title="Chapter 11: Linear Transformation" href="chap11.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I - Basic Linear Algebra</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Introduction to Linear Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Systems of Linear Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Vector Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Linear Transformations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Inner Product Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Diagonalization and Spectral Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Singular Value Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Applications of Linear Algebra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II - Advanced Linear Algebra</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Basic Algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Vector Space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Linear Transformation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 12: Isomorphism</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part III - Graduate Level</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">Chapter 13: Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: The Structure of a Linear Operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap12.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap12.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 12: Isomorphism</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quotient-spaces">Quotient Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-universal-property-of-quotients">The Universal Property of Quotients</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomorphism-theorem">Isomorphism Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-isomorphism-theorem">The First Isomorphism Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-and-third-isomorphism-theorems">The Second and Third Isomorphism Theorems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-functionals">Linear Functionals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-space">Dual Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-bases">Dual Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflexivity">Reflexivity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance">Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annihilators">Annihilators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjoint-operators">Adjoint Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-12-isomorphism">
+<h1>Chapter 12: Isomorphism<a class="headerlink" href="#chapter-12-isomorphism" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em>
+– Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=YNstP0ESndU">Youtube lecture on limits</a></p></li>
+</ul>
+</div>
+<section id="quotient-spaces">
+<h2>Quotient Spaces<a class="headerlink" href="#quotient-spaces" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, a quotient space arises from the process of “quotienting out” a subspace from a larger vector space. Informally, it is the space of all possible cosets of the subspace within the larger space.</p>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a vector space and <span class="math notranslate nohighlight">\(W\)</span> be a subspace of <span class="math notranslate nohighlight">\(V\)</span>. The quotient space <span class="math notranslate nohighlight">\(\frac{V}{W}\)</span> is defined as the set of all cosets of <span class="math notranslate nohighlight">\(W \in V\)</span>. Formally,</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{V}{W} = \{v + W \,|\, v \in V\}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(v + W = \{v + w \,|\, w \in W\}\)</span> is the coset of <span class="math notranslate nohighlight">\(W \in V\)</span> containing the vector <span class="math notranslate nohighlight">\(v\)</span>.</p>
+</section>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Linearity</strong>: The quotient space inherits a natural vector space structure from <span class="math notranslate nohighlight">\(V\)</span>. Addition and scalar multiplication are defined as follows:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((v_1 + W) + (v_2 + W) = (v_1 + v_2) + W\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(c(v + W) = (cv) + W\)</span> for all <span class="math notranslate nohighlight">\(v_1, v_2 \in V\)</span> and <span class="math notranslate nohighlight">\(c \in \mathbb{R}\)</span>.</p></li>
+</ul>
+</li>
+<li><p><strong>Dimension</strong>: The dimension of the quotient space <span class="math notranslate nohighlight">\(V/W\)</span> is equal to the difference between the dimension of <span class="math notranslate nohighlight">\(V\)</span> and the dimension of <span class="math notranslate nohighlight">\(W\)</span>.</p></li>
+</ol>
+</section>
+<section id="applications">
+<h3>Applications<a class="headerlink" href="#applications" title="Permalink to this heading">#</a></h3>
+<p>Quotient spaces have various applications across different areas of mathematics, including linear algebra, functional analysis, and group theory. They provide a natural framework for studying solutions of linear equations, understanding symmetry structures, and analyzing geometric objects.</p>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
+<p>Quotient spaces are a powerful tool in linear algebra and abstract algebra, allowing us to study vector spaces in a more structured and organized way by considering their inherent symmetries and relations.</p>
+</section>
+</section>
+<section id="the-universal-property-of-quotients">
+<h2>The Universal Property of Quotients<a class="headerlink" href="#the-universal-property-of-quotients" title="Permalink to this heading">#</a></h2>
+<p>The universal property of quotients is a foundational concept in algebra and category theory. It provides a rigorous characterization of quotient maps between algebraic structures, such as groups, rings, and vector spaces.</p>
+<section id="id1">
+<h3>Definition<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a set equipped with an equivalence relation <span class="math notranslate nohighlight">\(\sim\)</span>, and let <span class="math notranslate nohighlight">\(Y\)</span> be a set equipped with a map <span class="math notranslate nohighlight">\(\pi: X \rightarrow Y\)</span>. The pair <span class="math notranslate nohighlight">\((Y, \pi)\)</span> is said to satisfy the universal property of quotients if the following conditions hold:</p>
+<ol class="arabic simple">
+<li><p><strong>Surjectivity</strong>: The map <span class="math notranslate nohighlight">\(\pi\)</span> is surjective, meaning that every element of <span class="math notranslate nohighlight">\(Y\)</span> is the image of at least one element in <span class="math notranslate nohighlight">\(X\)</span> under <span class="math notranslate nohighlight">\(\pi\)</span>.</p></li>
+<li><p><strong>Compatibility</strong>: The map <span class="math notranslate nohighlight">\(\pi\)</span> respects the equivalence relation <span class="math notranslate nohighlight">\(\sim\)</span> in the sense that for any <span class="math notranslate nohighlight">\(x_1, x_2 \in X\)</span>, if <span class="math notranslate nohighlight">\(x_1 \sim x_2\)</span>, then <span class="math notranslate nohighlight">\(\pi(x_1) = \pi(x_2)\)</span>.</p></li>
+<li><p><strong>Universality</strong>: For any set <span class="math notranslate nohighlight">\(Z\)</span> equipped with a map <span class="math notranslate nohighlight">\(f: X \rightarrow Z\)</span> that satisfies the compatibility condition with respect to <span class="math notranslate nohighlight">\(\sim\)</span>, there exists a unique map <span class="math notranslate nohighlight">\(\bar{f}: Y \rightarrow Z\)</span> such that <span class="math notranslate nohighlight">\(f = \bar{f} \circ \pi\)</span>. In other words, any map <span class="math notranslate nohighlight">\(f\)</span> that respects the equivalence relation factors uniquely through <span class="math notranslate nohighlight">\(\pi\)</span>.</p></li>
+</ol>
+</section>
+<section id="interpretation">
+<h3>Interpretation<a class="headerlink" href="#interpretation" title="Permalink to this heading">#</a></h3>
+<p>The universal property of quotients captures the essence of quotient maps by characterizing them in terms of their surjectivity, compatibility with the equivalence relation, and universality with respect to other maps satisfying the same compatibility condition. It provides a concise and precise description of quotient structures and their relations to other algebraic objects.</p>
+</section>
+<section id="id2">
+<h3>Applications<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>The universal property of quotients finds applications in various branches of mathematics, including group theory, ring theory, module theory, and topology. It serves as a foundational tool for studying quotient structures, constructing quotient spaces, and proving important theorems in algebraic structures.</p>
+</section>
+<section id="id3">
+<h3>Conclusion<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>The universal property of quotients is a fundamental concept in algebra and category theory, providing a rigorous characterization of quotient maps and their relations to other algebraic objects. It is an essential tool for understanding and analyzing quotient structures in mathematics.</p>
+</section>
+</section>
+<section id="isomorphism-theorem">
+<h2>Isomorphism Theorem<a class="headerlink" href="#isomorphism-theorem" title="Permalink to this heading">#</a></h2>
+<p>The Isomorphism Theorem is a fundamental result in algebra that establishes a correspondence between quotient structures and homomorphisms.</p>
+<section id="the-first-isomorphism-theorem">
+<h3>The First Isomorphism Theorem<a class="headerlink" href="#the-first-isomorphism-theorem" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(G\)</span> and <span class="math notranslate nohighlight">\(H\)</span> be groups, and let <span class="math notranslate nohighlight">\(\phi: G \rightarrow H\)</span> be a group homomorphism. The First Isomorphism Theorem states that the kernel of <span class="math notranslate nohighlight">\(\phi\)</span>, denoted by <span class="math notranslate nohighlight">\(\text{ker}(\phi)\)</span>, is a normal subgroup of <span class="math notranslate nohighlight">\(G\)</span>, and the image of <span class="math notranslate nohighlight">\(\phi\)</span>, denoted by <span class="math notranslate nohighlight">\(\text{im}(\phi)\)</span>, is isomorphic to the quotient group <span class="math notranslate nohighlight">\(G/\text{ker}(\phi)\)</span>. Formally:</p>
+<div class="math notranslate nohighlight">
+\[
+G/\text{ker}(\phi) \cong \text{im}(\phi)
+\]</div>
+<p>This theorem provides a fundamental understanding of the structure of quotient groups and their relationship to homomorphisms.</p>
+</section>
+<section id="the-second-and-third-isomorphism-theorems">
+<h3>The Second and Third Isomorphism Theorems<a class="headerlink" href="#the-second-and-third-isomorphism-theorems" title="Permalink to this heading">#</a></h3>
+<p>The Second and Third Isomorphism Theorems are extensions of the First Isomorphism Theorem and provide additional insights into the structure of groups.</p>
+<ul class="simple">
+<li><p><strong>Second Isomorphism Theorem</strong>: Let <span class="math notranslate nohighlight">\(G\)</span> be a group, <span class="math notranslate nohighlight">\(H\)</span> be a subgroup of <span class="math notranslate nohighlight">\(G\)</span>, and <span class="math notranslate nohighlight">\(N\)</span> be a normal subgroup of <span class="math notranslate nohighlight">\(G\)</span>. The Second Isomorphism Theorem states that <span class="math notranslate nohighlight">\((H \cap N)\)</span> is a normal subgroup of <span class="math notranslate nohighlight">\(H\)</span>, and <span class="math notranslate nohighlight">\((HN)/N\)</span> is isomorphic to <span class="math notranslate nohighlight">\(H/(H \cap N)\)</span>.</p></li>
+<li><p><strong>Third Isomorphism Theorem</strong>: Let <span class="math notranslate nohighlight">\(G\)</span> be a group, and let <span class="math notranslate nohighlight">\(N\)</span> and <span class="math notranslate nohighlight">\(M\)</span> be normal subgroups of <span class="math notranslate nohighlight">\(G\)</span> such that <span class="math notranslate nohighlight">\(N \subseteq M\)</span>. The Third Isomorphism Theorem states that <span class="math notranslate nohighlight">\(N\)</span> is a normal subgroup of <span class="math notranslate nohighlight">\(M\)</span>, and <span class="math notranslate nohighlight">\((G/N)/(M/N)\)</span> is isomorphic to <span class="math notranslate nohighlight">\(G/M\)</span>.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Applications<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<p>The Isomorphism Theorems are fundamental tools in group theory and other areas of algebra. They provide a systematic approach to understanding the structure of groups, quotient groups, and homomorphisms. These theorems have numerous applications in abstract algebra, cryptography, and other fields.</p>
+</section>
+<section id="id5">
+<h3>Conclusion<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>The Isomorphism Theorems are powerful results in algebra that establish important connections between quotient structures and homomorphisms. They play a central role in the study of group theory and have widespread applications in various branches of mathematics.</p>
+<p>Complements
+Let S be a subspace of V. All complements of S in V are isomorphic to V/S and hence to each other
+dim⁡(V)=dim⁡(S)+dim⁡(V/S)</p>
+<p>Codimension
+If S is a subspace of V then dim⁡(V/S) is the codimension of S in V and is denoted by codim_V (S)</p>
+</section>
+<section id="linear-functionals">
+<h3>Linear Functionals<a class="headerlink" href="#linear-functionals" title="Permalink to this heading">#</a></h3>
+<p>In functional analysis, a linear functional is a linear map from a vector space to its underlying field. In simpler terms, it is a function that assigns a scalar value to each vector in a vector space, satisfying certain linearity properties.</p>
+</section>
+<section id="id6">
+<h3>Definition<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a vector space over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>. A linear functional on <span class="math notranslate nohighlight">\(V\)</span> is a function <span class="math notranslate nohighlight">\(f: V \rightarrow \mathbb{F}\)</span> that satisfies the following properties for all vectors <span class="math notranslate nohighlight">\(\mathbf{v}, \mathbf{w} \in V\)</span> and scalars <span class="math notranslate nohighlight">\(c \in \mathbb{F}\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Linearity</strong>: <span class="math notranslate nohighlight">\(f(c\mathbf{v} + \mathbf{w}) = cf(\mathbf{v}) + f(\mathbf{w})\)</span></p></li>
+<li><p><strong>Scalar Preservation</strong>: <span class="math notranslate nohighlight">\(f(c\mathbf{v}) = cf(\mathbf{v})\)</span> for all <span class="math notranslate nohighlight">\(c \in \mathbb{F}\)</span></p></li>
+</ol>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Dot Product</strong>: In Euclidean spaces, the dot product <span class="math notranslate nohighlight">\(\mathbf{v} \cdot \mathbf{w}\)</span> is a linear functional that takes two vectors as input and outputs a scalar.</p></li>
+<li><p><strong>Integration</strong>: In spaces of integrable functions, the integral of a function over a certain interval is a linear functional.</p></li>
+</ol>
+</section>
+<section id="dual-space">
+<h3>Dual Space<a class="headerlink" href="#dual-space" title="Permalink to this heading">#</a></h3>
+<p>The set of all linear functionals on a vector space <span class="math notranslate nohighlight">\(V\)</span> forms a vector space itself, called the dual space of <span class="math notranslate nohighlight">\(V\)</span> and denoted by <span class="math notranslate nohighlight">\(V^*\)</span>. The elements of the dual space are often denoted by symbols like <span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span>, etc.</p>
+</section>
+<section id="id7">
+<h3>Applications<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>Linear functionals have applications in various areas of mathematics and physics. In functional analysis, they are used to study properties of vector spaces and operators. In quantum mechanics, they are used to represent observables and measurements.</p>
+</section>
+<section id="id8">
+<h3>Conclusion<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>Linear functionals provide a powerful tool for generalizing the concept of vectors to spaces of functions. They play a central role in functional analysis and have applications in diverse areas of mathematics and physics.</p>
+</section>
+<section id="dual-bases">
+<h3>Dual Bases<a class="headerlink" href="#dual-bases" title="Permalink to this heading">#</a></h3>
+<p>In linear algebra, given a basis for a vector space, the concept of dual bases arises when considering the corresponding dual space. Dual bases provide a convenient way to relate vectors in the original space to linear functionals in the dual space.</p>
+</section>
+<section id="id9">
+<h3>Definition<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a finite-dimensional vector space over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span> with basis <span class="math notranslate nohighlight">\(\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}\)</span>. The dual basis of <span class="math notranslate nohighlight">\(V\)</span>, denoted by <span class="math notranslate nohighlight">\(\{\mathbf{v}^*_1, \mathbf{v}^*_2, \ldots, \mathbf{v}^*_n\}\)</span>, is the set of linear functionals on <span class="math notranslate nohighlight">\(V\)</span> such that each <span class="math notranslate nohighlight">\(\mathbf{v}^*_i\)</span> evaluates to <span class="math notranslate nohighlight">\(1\)</span> on its corresponding basis vector <span class="math notranslate nohighlight">\(\mathbf{v}_i\)</span> and evaluates to <span class="math notranslate nohighlight">\(0\)</span> on all other basis vectors. Formally:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{v}^*_i(\mathbf{v}_j) = \begin{cases} 1 &amp; \text{if } i = j \\ 0 &amp; \text{if } i \neq j \end{cases}
+\end{split}\]</div>
+<p>for all <span class="math notranslate nohighlight">\(i, j = 1, 2, \ldots, n\)</span>.</p>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<p>Consider the vector space <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> with the standard basis <span class="math notranslate nohighlight">\(\{\mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3\}\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{e}_1 = (1, 0, 0)\)</span>, <span class="math notranslate nohighlight">\(\mathbf{e}_2 = (0, 1, 0)\)</span>, and <span class="math notranslate nohighlight">\(\mathbf{e}_3 = (0, 0, 1)\)</span>. The dual basis of <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span>, denoted by <span class="math notranslate nohighlight">\(\{\mathbf{e}^*_1, \mathbf{e}^*_2, \mathbf{e}^*_3\}\)</span>, consists of the linear functionals such that:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+\mathbf{e}^*_1(\mathbf{e}_1) &amp;= 1, \quad \mathbf{e}^*_1(\mathbf{e}_2) = 0, \quad \mathbf{e}^*_1(\mathbf{e}_3) = 0 \\
+\mathbf{e}^*_2(\mathbf{e}_1) &amp;= 0, \quad \mathbf{e}^*_2(\mathbf{e}_2) = 1, \quad \mathbf{e}^*_2(\mathbf{e}_3) = 0 \\
+\mathbf{e}^*_3(\mathbf{e}_1) &amp;= 0, \quad \mathbf{e}^*_3(\mathbf{e}_2) = 0, \quad \mathbf{e}^*_3(\mathbf{e}_3) = 1 \\
+\end{align*}
+\end{split}\]</div>
+</section>
+<section id="id10">
+<h3>Properties<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Dual bases are unique: Given a basis for a vector space, its dual basis is unique.</p></li>
+<li><p>Dimensionality: If <span class="math notranslate nohighlight">\(V\)</span> is an <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector space, then its dual space also has dimension <span class="math notranslate nohighlight">\(n\)</span>, and vice versa.</p></li>
+</ol>
+</section>
+<section id="id11">
+<h3>Applications<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p>Dual bases are extensively used in various areas of mathematics, including functional analysis, differential geometry, and optimization. They provide a powerful tool for understanding the relationship between vectors and linear functionals, as well as for solving problems involving duality.</p>
+</section>
+<section id="id12">
+<h3>Conclusion<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<p>Dual bases provide a natural correspondence between a basis of a vector space and its dual space, allowing for a deeper understanding of the structure and properties of both spaces. They are a fundamental concept in linear algebra and have applications in diverse areas of mathematics.</p>
+</section>
+</section>
+<section id="reflexivity">
+<h2>Reflexivity<a class="headerlink" href="#reflexivity" title="Permalink to this heading">#</a></h2>
+<p>Reflexivity is a property observed in certain mathematical structures, indicating a self-referential relationship within the structure itself.</p>
+<section id="id13">
+<h3>Definition<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<p>In the context of vector spaces and functional analysis, reflexivity refers to the property of a vector space being isomorphic to its double dual space. Formally, a vector space <span class="math notranslate nohighlight">\(V\)</span> is said to be reflexive if there exists an isomorphism <span class="math notranslate nohighlight">\(\phi: V \rightarrow V^{**}\)</span>, where <span class="math notranslate nohighlight">\(V^{**}\)</span> is the double dual space of <span class="math notranslate nohighlight">\(V\)</span>. This means that for every element <span class="math notranslate nohighlight">\(v \in V\)</span>, there exists a corresponding element <span class="math notranslate nohighlight">\(\phi(v) \in V^{**}\)</span> that uniquely represents <span class="math notranslate nohighlight">\(v\)</span> in the dual space of the dual space.</p>
+</section>
+<section id="id14">
+<h3>Example<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<p>Consider the vector space <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. The natural map from <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> to its double dual space <span class="math notranslate nohighlight">\((\mathbb{R}^n)^{**}\)</span>, defined by evaluating vectors on linear functionals, is an isomorphism. Therefore, <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span> is reflexive.</p>
+</section>
+<section id="importance">
+<h3>Importance<a class="headerlink" href="#importance" title="Permalink to this heading">#</a></h3>
+<p>Reflexivity is an important property in functional analysis, as it establishes a deeper understanding of the structure and properties of vector spaces. It allows for the identification of a vector space with its dual space, providing a convenient framework for studying linear transformations and functionals.</p>
+</section>
+<section id="id15">
+<h3>Conclusion<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<p>Reflexivity is a fundamental property in the study of vector spaces and functional analysis, indicating a close relationship between a vector space and its double dual space. It provides valuable insights into the structure and properties of vector spaces, leading to a deeper understanding of linear algebra and related areas of mathematics.</p>
+</section>
+</section>
+<section id="annihilators">
+<h2>Annihilators<a class="headerlink" href="#annihilators" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra, annihilators refer to sets of linear functionals that “annihilate” certain subsets of a vector space by mapping them to zero.</p>
+<section id="id16">
+<h3>Definition<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a vector space over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>, and let <span class="math notranslate nohighlight">\(S\)</span> be a subset of <span class="math notranslate nohighlight">\(V\)</span>. The annihilator of <span class="math notranslate nohighlight">\(S\)</span>, denoted by <span class="math notranslate nohighlight">\(S^\perp\)</span>, is the set of all linear functionals in the dual space <span class="math notranslate nohighlight">\(V^*\)</span> that vanish on every element of <span class="math notranslate nohighlight">\(S\)</span>. Mathematically, it is defined as:</p>
+<div class="math notranslate nohighlight">
+\[
+S^\perp = \{f \in V^* \,|\, f(s) = 0 \text{ for all } s \in S\}
+\]</div>
+<p>In other words, <span class="math notranslate nohighlight">\(S^\perp\)</span> consists of all linear functionals that map every vector in <span class="math notranslate nohighlight">\(S\)</span> to zero.</p>
+</section>
+<section id="id17">
+<h3>Example<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<p>Consider a vector space <span class="math notranslate nohighlight">\(V = \mathbb{R}^3\)</span> and a subset <span class="math notranslate nohighlight">\(S = \{(1, 0, 0), (0, 1, 0)\}\)</span>. The annihilator of <span class="math notranslate nohighlight">\(S\)</span>, denoted by <span class="math notranslate nohighlight">\(S^\perp\)</span>, consists of all linear functionals that vanish on the vectors <span class="math notranslate nohighlight">\((1, 0, 0)\)</span> and <span class="math notranslate nohighlight">\((0, 1, 0)\)</span>. Geometrically, <span class="math notranslate nohighlight">\(S^\perp\)</span> corresponds to the set of all planes in <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> that contain the <span class="math notranslate nohighlight">\(z\)</span>-axis.</p>
+</section>
+<section id="id18">
+<h3>Properties<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Linearity</strong>: The annihilator <span class="math notranslate nohighlight">\(S^\perp\)</span> is a subspace of the dual space <span class="math notranslate nohighlight">\(V^*\)</span>.</p></li>
+<li><p><strong>Dimensionality</strong>: The dimension of <span class="math notranslate nohighlight">\(S^\perp\)</span> is at least the dimension of <span class="math notranslate nohighlight">\(V\)</span> minus the dimension of <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+</ol>
+</section>
+<section id="id19">
+<h3>Importance<a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<p>Annihilators are useful in various areas of mathematics, including linear algebra, functional analysis, and optimization. They provide a way to characterize subsets of vector spaces based on their interactions with linear functionals. Annihilators also play a crucial role in duality theory, where they help establish connections between primal and dual spaces.</p>
+</section>
+<section id="id20">
+<h3>Conclusion<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<p>Annihilators are important mathematical objects that arise in the study of vector spaces and linear functionals. They provide a useful tool for characterizing subsets of vector spaces and have applications in various areas of mathematics, including functional analysis and optimization.</p>
+</section>
+</section>
+<section id="adjoint-operators">
+<h2>Adjoint Operators<a class="headerlink" href="#adjoint-operators" title="Permalink to this heading">#</a></h2>
+<p>In linear algebra and functional analysis, the adjoint operator is a concept that arises in the context of inner product spaces, providing a way to relate the action of a linear transformation on vectors to the action of its dual on functionals.</p>
+<section id="id21">
+<h3>Definition<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span> be inner product spaces, and let <span class="math notranslate nohighlight">\(T: V \rightarrow W\)</span> be a linear transformation between them. The adjoint operator of <span class="math notranslate nohighlight">\(T\)</span>, denoted by <span class="math notranslate nohighlight">\(T^*\)</span>, is a unique linear transformation from <span class="math notranslate nohighlight">\(W\)</span> to <span class="math notranslate nohighlight">\(V\)</span> such that for all vectors <span class="math notranslate nohighlight">\(v \in V\)</span> and <span class="math notranslate nohighlight">\(w \in W\)</span>, the following equality holds:</p>
+<div class="math notranslate nohighlight">
+\[
+\langle T(v), w \rangle_W = \langle v, T^*(w) \rangle_V
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle \cdot, \cdot \rangle_V\)</span> and <span class="math notranslate nohighlight">\(\langle \cdot, \cdot \rangle_W\)</span> denote the inner products on <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(W\)</span> respectively.</p>
+</section>
+<section id="id22">
+<h3>Properties<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Existence and Uniqueness</strong>: The adjoint operator <span class="math notranslate nohighlight">\(T^*\)</span> always exists and is unique for a given linear transformation <span class="math notranslate nohighlight">\(T\)</span>.</p></li>
+<li><p><strong>Conjugate Linear</strong>: In complex inner product spaces, the adjoint operator is conjugate linear, meaning that it satisfies <span class="math notranslate nohighlight">\(T^*(cv) = \overline{c} T^*(v)\)</span> for all scalars <span class="math notranslate nohighlight">\(c\)</span>.</p></li>
+<li><p><strong>Composition</strong>: The adjoint of the composition of two linear transformations is the composition of their adjoints in the reverse order, i.e., <span class="math notranslate nohighlight">\((ST)^* = T^*S^*\)</span>.</p></li>
+</ol>
+</section>
+<section id="id23">
+<h3>Example<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<p>Consider a linear transformation <span class="math notranslate nohighlight">\(T: \mathbb{R}^3 \rightarrow \mathbb{R}^3\)</span> represented by a <span class="math notranslate nohighlight">\(3 \times 3\)</span> matrix. The adjoint operator of <span class="math notranslate nohighlight">\(T\)</span>, denoted by <span class="math notranslate nohighlight">\(T^*\)</span>, can be found by taking the transpose of the matrix representation of <span class="math notranslate nohighlight">\(T\)</span> if <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> is equipped with the standard inner product.</p>
+</section>
+<section id="id24">
+<h3>Applications<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<p>Adjoint operators have various applications in mathematics and physics. They are used in the study of self-adjoint operators, which play a crucial role in spectral theory and quantum mechanics. Adjoint operators also arise in optimization problems, where they are used to derive necessary conditions for optimality.</p>
+</section>
+<section id="id25">
+<h3>Conclusion<a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<p>The adjoint operator is a fundamental concept in linear algebra and functional analysis, providing a way to relate the action of a linear transformation on vectors to the action of its dual on functionals. It has important applications in various areas of mathematics and physics, including spectral theory, quantum mechanics, and optimization.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap11.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 11: Linear Transformation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap13.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 13: Modules</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quotient-spaces">Quotient Spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-universal-property-of-quotients">The Universal Property of Quotients</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretation">Interpretation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomorphism-theorem">Isomorphism Theorem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-isomorphism-theorem">The First Isomorphism Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-second-and-third-isomorphism-theorems">The Second and Third Isomorphism Theorems</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-functionals">Linear Functionals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-space">Dual Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Conclusion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-bases">Dual Bases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reflexivity">Reflexivity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importance">Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#annihilators">Annihilators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Importance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Conclusion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adjoint-operators">Adjoint Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Properties</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Applications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
