@@ -29,17 +29,30 @@ kernelspec:
 
 ---
 
-````{prf:definition} topological space
-:label: topological_space
-A topological space is a set $X$ together with a collection of
-subsets of $X$ called open sets such that:
-1. the intersection of two open sets is open;
-2. the union of any collection of open sets is open; 
-3. the empty set 0 and whole space X are open.
+````{prf:definition} topology
+:label: def2.1
+Let $X$ be an arbitrary set. A topology $\tau$ is a
+collection of subsets of $X$ such that
+1. $X,\emptyset\in \tau$
+2. If $G_i\in \tau$ for each $i$ in a non-empty index set $I$, then $\cup_{i\in I} G_i\in\tau$
+3. If $G_1,\dots,G_n \in\tau$, then $\cap_{i=1}^nG_i \in\tau$
 ````
 
-- A subset $U\subset X$ is called "closed" if its complement $X-C$ is open.
+A **topological space** $(X,\tau)$ is a set $X$ together with a topology $\tau$ of subsets of $X$.
 
+````{prf:definition} open sets
+:label: def2.2
+A subset $G$ of a topological space $(X,\tau)$ if and only if it is an element of $\tau$, i.e., $G\in\tau$. A subset $U\subset X$ is called **closed** if its complement $U^c=X-U$ is open.
+````
+````{prf:proposition}
+:label: pro2.1
+1. If $F_1,\dots,F_n$ are closed sets, then $\cap_{i=1}^nF_i$ is closed.
+2. If $F_i$ is a closed set for each $u\in I$  in a non-empty index set $I$, then $\cup_{i\in I} F_i$ is closed.
+````
+
+Let $A$ be a subset of a topological space $(X,\tau)$, but not necessarily an element of $\tau$. A point $x$ is an **interior point** of $A$ if there exists $G \in\tau$ such that $x\in G\subset A$. The **interior** of $A$, denoted by $A^o$, is the set of interior points of $A$.
+
+A point $x$, not necessarily an element of $A$, is a **limit point** of $A$ if every open set that contains $x$ contains a point of $A$ other than $x$. The set of limit points of $A$ is sometimes denoted $A'$. Another name for limit point is accumulation point. The **closure** of $A$, frequently denoted $\bar{A}$, is the set $A\cup A'$. The **boundary** of $A$, sometimes written $\partial A$, is $\bar{A}- A^o$. A point $x \in A$ is an **isolated point** of $A$ if $x \in A - A'$, that is, it is a point of $A$ that is not a limit point of $A$.
 
 ## Neighborhood
 
@@ -49,7 +62,7 @@ A subset $N$ of a topological space $X$ is called
 a neighborhood of a point $x\in X$ if there is an open set $U\subset N$ with $x\in U$.
 ````
 
-A collection $B(x)$ of neighborhoods of a point $x$ in a topological space $X$ is called a **neighborhood basis** if each neighborhood of $x$ subsets of $X$ contains some element of $B(x)$.
+A collection $B(x)$ of neighborhoods of a point $x$ in a topological space $X$ is called a **neighborhood basis** if each neighborhood of $x$ subsets of $X$ contains some elements of $B(x)$.
 
 
 ````{prf:definition} basis
@@ -116,7 +129,7 @@ A function $f: X \rightarrow Y$ between topological spaces is said to
 be closed if $f(U)$ is closed in $Y$ for all closed $U\subset X$.
 ````
 
-A topology $T^*$ of a topological space $X$, whose open sets satisfy a presribed condition, is said to be the **coarsest** topology if for any
-topology $T$ whose open sets satisfy the condition, the $T^*$-open sets are
-also $T$-open, i.e., $T^* \subset T$. On the other hand, if $T\subset T^*$, then $T^*$ is the **finest** topology satisfying the condition.
+A topology $\tau^*$ of a topological space $X$, whose open sets satisfy a presribed condition, is said to be the **coarsest** topology if for any
+topology $\tau$ whose open sets satisfy the condition, the $\tau^*$-open sets are
+also $\tau$-open, i.e., $\tau^* \subset \tau$. On the other hand, if $\tau\subset \tau^*$, then $\tau^*$ is the **finest** topology satisfying the condition.
 

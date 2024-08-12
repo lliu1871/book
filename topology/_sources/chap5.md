@@ -34,11 +34,11 @@ A topological space $X$ is called a $\mathrm{T}_0$-space if for any two points $
 
 A topological space $X$ is called a $\mathrm{T}_1$-space if for any two points $x \neq y$ there is an open set containing $x$ but not $y$ and another open set containing $y$ but not $x$.
 
-A topological space $X$ is called a $\mathrm{T}_2$-space or Hausdorff if for any two points $x \neq y$ there are disjoint open sets $U$ and $V$ with $x \in U$ and $y \in V$.
+A topological space $X$ is called a $\mathrm{T}_2$-space or **Hausdorff** if for any two points $x \neq y$ there are disjoint open sets $U$ and $V$ with $x \in U$ and $y \in V$.
 
-A $\mathrm{T}_1$-space $X$ is called a $\mathrm{T}_3$-space or regular if for any point $x$ and closed set $F$ not containing $x$ there are disjoint open sets $U$ and $V$ with $x \in U$ and $F \subset V$.
+A $\mathrm{T}_1$-space $X$ is called a $\mathrm{T}_3$-space or **regular** if for any point $x$ and closed set $F$ not containing $x$ there are disjoint open sets $U$ and $V$ with $x \in U$ and $F \subset V$.
 
-A $\mathrm{T}_1$-space $X$ is called a $\mathrm{T}_4$-space or normal if for any two disjoint closed sets $F$ and $G$ there are disjoint open sets $U$ and $V$ with $F \subset U$ and $G \subset V$.
+A $\mathrm{T}_1$-space $X$ is called a $\mathrm{T}_4$-space or **normal** if for any two disjoint closed sets $F$ and $G$ there are disjoint open sets $U$ and $V$ with $F \subset U$ and $G \subset V$.
 
 ## Properties 
 How the points in a space are separated forms a basic structure of the space. Particularly, separation is closely related to neighborhood, closed sets, open sets, etc. 
