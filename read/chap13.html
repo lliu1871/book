@@ -1,0 +1,1000 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 13: Lp Spaces &#8212; Real Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap13';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 14: Banach spaces" href="chap14.html" />
+    <link rel="prev" title="Chapter 12: The Lebesgue Theory" href="chap12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents                              
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part I Basic topics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Set Theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Topology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: The Real Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Sequences and Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Continuity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Differentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Riemann-Stieltjes Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">Chapter 8: Sequences of functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">Chapter 9: Special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">Chapter 10: Functions of several variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">Chapter 11: Integration of Differential forms</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Part II Advanced topics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">Chapter 12: The Lebesgue Theory</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 13: <em>L</em><sup>p</sup> Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">Chapter 14: Banach spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">Chapter 15: Hilbert Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap16.html">Chapter 16: Sobolev Spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap17.html">Chapter 17: Singular Integrals</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap13.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap13.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 13: L<sup>p</sup> Spaces</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">Norm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#completeness">Completeness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutions">Convolutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-linear-functionals">Bounded linear functionals</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-13-l-sup-p-sup-spaces">
+<h1>Chapter 13: <em>L</em><sup>p</sup> Spaces<a class="headerlink" href="#chapter-13-l-sup-p-sup-spaces" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Power_series">Power series</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Fourier_series">Fourier series</a></p></li>
+</ul>
+</div>
+<p><em>“Life is a book and there are a thousand pages I have not yet read.”</em></p>
+<p>– Cassandra Clare, <em>Clockwork Princess</em></p>
+<p><span class="math notranslate nohighlight">\(L^p\)</span> spaces are a class of mathematical function spaces widely used in the field of functional analysis, particularly in the study of functions and sequences. These spaces are denoted as <span class="math notranslate nohighlight">\(L^p(X)\)</span>, where <span class="math notranslate nohighlight">\(X\)</span> is a measurable space and <span class="math notranslate nohighlight">\(p\)</span> is a real number greater than or equal to 1.</p>
+<p>The <span class="math notranslate nohighlight">\(L^p\)</span> space consists of all measurable functions <span class="math notranslate nohighlight">\(f\)</span> defined on <span class="math notranslate nohighlight">\(X\)</span> for which the integral of the <span class="math notranslate nohighlight">\(p\)</span>-th power of the absolute value of <span class="math notranslate nohighlight">\(f\)</span> is finite:</p>
+<div class="math notranslate nohighlight">
+\[\|f\|=\left(\int_X|f(x)|^pdx\right)^{1/p}&lt;\infty\]</div>
+<p>Here, the integral is taken over the entire measurable space <span class="math notranslate nohighlight">\(X\)</span>. The space <span class="math notranslate nohighlight">\(L^p(X)\)</span> includes various subspaces, such as <span class="math notranslate nohighlight">\(L^1(X)\)</span> and <span class="math notranslate nohighlight">\(L^2(X)\)</span>, which are commonly used in mathematical analysis and applications like signal processing.</p>
+<p>The concept of <span class="math notranslate nohighlight">\(L^p\)</span> spaces is fundamental in functional analysis, and it provides a framework for understanding convergence, continuity, and various properties of functions and sequences.</p>
+<section id="norm">
+<h2>Norm<a class="headerlink" href="#norm" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="def13.1">
+<p class="admonition-title"><span class="caption-number">Definition 95 </span> (norm)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\((X, \mathcal{A}, \mu)\)</span> be a <span class="math notranslate nohighlight">\(\sigma\)</span>-finite measure space. For <span class="math notranslate nohighlight">\(1 \leq p&lt;\infty\)</span>, define the <span class="math notranslate nohighlight">\(L^{p}\)</span> norm of <span class="math notranslate nohighlight">\(f\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+\|f\|_{p}=\left(\int|f(x)|^{p} d \mu\right)^{1 / p}
+\]</div>
+<p>For <span class="math notranslate nohighlight">\(p=\infty\)</span>, define the <span class="math notranslate nohighlight">\(L^{\infty}\)</span> norm of <span class="math notranslate nohighlight">\(f\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+\|f\|_{\infty}=\inf \{M \geq 0: \mu(\{x:|f(x)| \geq M\})=0\}
+\]</div>
+<p>If no such <span class="math notranslate nohighlight">\(M\)</span> exists, then <span class="math notranslate nohighlight">\(\|f\|_{\infty}=\infty\)</span>. Thus the <span class="math notranslate nohighlight">\(L^{\infty}\)</span> norm of a function <span class="math notranslate nohighlight">\(f\)</span> is the smallest number <span class="math notranslate nohighlight">\(M\)</span> such that <span class="math notranslate nohighlight">\(|f| \leq M\)</span> a.e.</p>
+</section>
+</div><p>For <span class="math notranslate nohighlight">\(1 \leq p \leq \infty\)</span> the space <span class="math notranslate nohighlight">\(L^{p}\)</span> is the set <span class="math notranslate nohighlight">\(\left\{f:\|f\|_{p}&lt;\infty\right\}\)</span>. One can also write <span class="math notranslate nohighlight">\(L^{p}(X)\)</span> or <span class="math notranslate nohighlight">\(L^{p}(\mu)\)</span> if one wants to emphasize the space or the measure. It is clear that <span class="math notranslate nohighlight">\(\|f\|_{p}=0\)</span> if and only if <span class="math notranslate nohighlight">\(f=0\)</span> a.e.</p>
+<p>If <span class="math notranslate nohighlight">\(1&lt;p&lt;\infty\)</span>, we define <span class="math notranslate nohighlight">\(q\)</span> by</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{1}{p}+\frac{1}{q}=1
+\]</div>
+<p>and call <span class="math notranslate nohighlight">\(q\)</span> the conjugate exponent of <span class="math notranslate nohighlight">\(p\)</span>. If <span class="math notranslate nohighlight">\(p=1\)</span>, set <span class="math notranslate nohighlight">\(q=\infty\)</span>, and if <span class="math notranslate nohighlight">\(p=\infty\)</span>, set <span class="math notranslate nohighlight">\(q=1\)</span>.</p>
+<p>Basic to the study of <span class="math notranslate nohighlight">\(L^{p}\)</span> spaces is Hölder’s inequality (usually pronounced by English speakers as “Hel-der,” although “Herl-der” is a closer approximation). ‘ Note that when <span class="math notranslate nohighlight">\(p=q=2\)</span>, this is the Cauchy-Schwarz inequality.</p>
+<div class="proof theorem admonition" id="thm13.1">
+<p class="admonition-title"><span class="caption-number">Theorem 87 </span> (Hölder’s inequality)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(1&lt;p, q&lt;\infty, p^{-1}+q^{-1}=1\)</span>, and <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are measurable, then</p>
+<div class="math notranslate nohighlight">
+\[
+\int|f g| d \mu \leq\|f\|_{p}\|g\|_{q}
+\]</div>
+<p>This also holds if <span class="math notranslate nohighlight">\(p=\infty\)</span> and <span class="math notranslate nohighlight">\(q=1\)</span> or if <span class="math notranslate nohighlight">\(p=1\)</span> and <span class="math notranslate nohighlight">\(q=\infty\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. If <span class="math notranslate nohighlight">\(M=\|f\|_{\infty}\)</span>, then <span class="math notranslate nohighlight">\(|f| \leq M\)</span> a.e. and <span class="math notranslate nohighlight">\(\int|f g| \leq M \int|g|\)</span>. The case <span class="math notranslate nohighlight">\(p=\infty\)</span> and <span class="math notranslate nohighlight">\(q=1\)</span> follows.</p>
+<p>Now let us assume <span class="math notranslate nohighlight">\(1&lt;p, q&lt;\infty\)</span>. If <span class="math notranslate nohighlight">\(\|f\|_{p}=0\)</span>, then <span class="math notranslate nohighlight">\(f=0\)</span> a.e. and <span class="math notranslate nohighlight">\(\int|f g|=0\)</span>, so the result is clear if <span class="math notranslate nohighlight">\(\|f\|_{p}=0\)</span> and similarly if <span class="math notranslate nohighlight">\(\|g\|_{q}=0\)</span>. The result is immediate if <span class="math notranslate nohighlight">\(\|f\|_{p}\)</span> or <span class="math notranslate nohighlight">\(\|g\|_{q}\)</span> is infinite, so suppose not. Let <span class="math notranslate nohighlight">\(F(x)=|f(x)| /\|f\|_{p}\)</span> and <span class="math notranslate nohighlight">\(G(x)=|g(x)| /\|g\|_{q}\)</span>. Note <span class="math notranslate nohighlight">\(\|F\|_{p}=1\)</span> and <span class="math notranslate nohighlight">\(\|G\|_{q}=1\)</span>, and it suffices to show that <span class="math notranslate nohighlight">\(\int F G d \mu \leq 1\)</span>.</p>
+<p>The second derivative of the function <span class="math notranslate nohighlight">\(e^{t}\)</span> is again <span class="math notranslate nohighlight">\(e^{t}\)</span>, which is everywhere positive. Any function whose second derivative is everywhere non-negative is convex, so if <span class="math notranslate nohighlight">\(0 \leq \lambda \leq 1\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[
+e^{\lambda a+(1-\lambda) b} \leq \lambda e^{a}+(1-\lambda) e^{b}
+\]</div>
+<p>for every pair of reals <span class="math notranslate nohighlight">\(a \leq b\)</span>. If <span class="math notranslate nohighlight">\(F(x), G(x) \neq 0\)</span>, let <span class="math notranslate nohighlight">\(a=p \log F(x)\)</span>, <span class="math notranslate nohighlight">\(b=q \log G(x), \lambda=1 / p\)</span>, and <span class="math notranslate nohighlight">\(1-\lambda=1 / q\)</span>. We then obtain from (15.3) that</p>
+<div class="math notranslate nohighlight">
+\[
+F(x) G(x) \leq \frac{F(x)^{p}}{p}+\frac{G(x)^{q}}{q}
+\]</div>
+<p>Clearly this inequality also holds if <span class="math notranslate nohighlight">\(F(x)=0\)</span> or <span class="math notranslate nohighlight">\(G(x)=0\)</span>. Integrating,</p>
+<div class="math notranslate nohighlight">
+\[
+\int F G d \mu \leq \frac{\|F\|_{p}^{p}}{p}+\frac{\|G\|_{q}^{q}}{q}=\frac{1}{p}+\frac{1}{q}=1
+\]</div>
+<p>This completes the proof.</p>
+</div>
+<p>One application of Hölder’s inequality is to prove Minkowski’s inequality, which is simply the triangle inequality for <span class="math notranslate nohighlight">\(L^{p}\)</span>.</p>
+<p>We first need the following lemma:</p>
+<div class="proof lemma admonition" id="lemma-2">
+<p class="admonition-title"><span class="caption-number">Lemma 1 </span></p>
+<section class="lemma-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(a, b \geq 0\)</span> and <span class="math notranslate nohighlight">\(1 \leq p&lt;\infty\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+(a+b)^{p} \leq 2^{p-1} a^{p}+2^{p-1} b^{p} .
+\]</div>
+</section>
+</div><p>Proof. The case <span class="math notranslate nohighlight">\(a=0\)</span> is obvious, so we assume <span class="math notranslate nohighlight">\(a&gt;0\)</span>. Dividing both sides by <span class="math notranslate nohighlight">\(a^{p}\)</span>, letting <span class="math notranslate nohighlight">\(x=b / a\)</span>, and setting</p>
+<div class="math notranslate nohighlight">
+\[
+f(x)=2^{p-1}+2^{p-1} x^{p}-(1+x)^{p},
+\]</div>
+<p>the inequality we want to prove is equivalent to showing <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> for <span class="math notranslate nohighlight">\(x \geq 0\)</span>. Note <span class="math notranslate nohighlight">\(f(0)&gt;0, f(1)=0, \lim _{x \rightarrow \infty} f(x)=\infty\)</span>, and the only solution to <span class="math notranslate nohighlight">\(f^{\prime}(x)=0\)</span> on <span class="math notranslate nohighlight">\((0, \infty)\)</span> is <span class="math notranslate nohighlight">\(x=1\)</span>. We conclude that <span class="math notranslate nohighlight">\(f\)</span> takes its minimum at <span class="math notranslate nohighlight">\(x=1\)</span> and hence <span class="math notranslate nohighlight">\(f(x) \geq 0\)</span> for <span class="math notranslate nohighlight">\(x \geq 0\)</span>.</p>
+<div class="proof theorem admonition" id="thm13.2">
+<p class="admonition-title"><span class="caption-number">Theorem 88 </span> (Minkowski’s inequality.)</p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(1 \leq p \leq \infty\)</span> and <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are measurable, then</p>
+<div class="math notranslate nohighlight">
+\[
+\|f+g\|_{p} \leq\|f\|_{p}+\|g\|_{p}
+\]</div>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Since <span class="math notranslate nohighlight">\(|(f+g)(x)| \leq|f(x)|+|g(x)|\)</span>, integrating gives the case when <span class="math notranslate nohighlight">\(p=1\)</span>. The case <span class="math notranslate nohighlight">\(p=\infty\)</span> is also easy. Now let us suppose <span class="math notranslate nohighlight">\(1&lt;p&lt;\infty\)</span>. If <span class="math notranslate nohighlight">\(\|f\|_{p}\)</span> or <span class="math notranslate nohighlight">\(\|g\|_{p}\)</span> is infinite, the result is obvious, so we may assume both are finite. The inequality (15.4) with <span class="math notranslate nohighlight">\(a=|f(x)|\)</span> and <span class="math notranslate nohighlight">\(b=|g(x)|\)</span> yields, after an integration,</p>
+<div class="math notranslate nohighlight">
+\[
+\int|(f+g)(x)|^{p} d \mu \leq 2^{p-1} \int|f(x)|^{p} d \mu+2^{p-1} \int|g(x)|^{p} d \mu .
+\]</div>
+<p>We therefore have <span class="math notranslate nohighlight">\(\|f+g\|_{p}&lt;\infty\)</span>. Clearly we may assume <span class="math notranslate nohighlight">\(\|f+g\|_{p}&gt;\)</span> 0 .</p>
+<p>Now write</p>
+<div class="math notranslate nohighlight">
+\[
+|f+g|^{p} \leq|f||f+g|^{p-1}+|g||f+g|^{p-1}
+\]</div>
+<p>and apply Hölder’s inequality with <span class="math notranslate nohighlight">\(q=\left(1-\frac{1}{p}\right)^{-1}\)</span>. We obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\int|f+g|^{p} \leq\|f\|_{p}\left(\int|f+g|^{(p-1) q}\right)^{1 / q}+\|g\|_{p}\left(\int|f+g|^{(p-1) q}\right)^{1 / q} .
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(p^{-1}+q^{-1}=1\)</span>, then <span class="math notranslate nohighlight">\((p-1) q=p\)</span>, so we have</p>
+<div class="math notranslate nohighlight">
+\[
+\|f+g\|_{p}^{p} \leq\left(\|f\|_{p}+\|g\|_{p}\right)\|f+g\|_{p}^{p / q}
+\]</div>
+<p>Dividing both sides by <span class="math notranslate nohighlight">\(\|f+g\|_{p}^{p / q}\)</span> and using the fact that <span class="math notranslate nohighlight">\(p-(p / q)=\)</span> 1 gives us our result.</p>
+</div>
+<p>Recall the definition of normed linear space from Chapter 1. We would like to say that by virtue of Minkowski’s inequality, <span class="math notranslate nohighlight">\(L^{p}\)</span> is a normed linear space. This is not quite right. The <span class="math notranslate nohighlight">\(L^{p}\)</span> norm of a function satisfies all the properties of a norm except that <span class="math notranslate nohighlight">\(\|f\|_{p}=0\)</span> does not imply that <span class="math notranslate nohighlight">\(f\)</span> is the zero function, only that <span class="math notranslate nohighlight">\(f=0\)</span> a.e. The procedure we follow to circumvent this is to say two functions are equivalent if they differ on a set of measure 0 . This is an equivalence relation for functions. We then define the space <span class="math notranslate nohighlight">\(L^{p}\)</span> to be the set of equivalence classes with respect to this equivalence relation, and define <span class="math notranslate nohighlight">\(\|f\|_{p}\)</span> to be the <span class="math notranslate nohighlight">\(L^{p}\)</span> norm of any function in the same equivalence class as <span class="math notranslate nohighlight">\(f\)</span>. We then have that <span class="math notranslate nohighlight">\(\|\cdot\|_{p}\)</span> is a norm on <span class="math notranslate nohighlight">\(L^{p}\)</span>. We henceforth keep this interpretation in the back of our minds when we talk about a function being in <span class="math notranslate nohighlight">\(L^{p}\)</span>; the understanding is that we identify functions that are equal a.e.</p>
+<p>When <span class="math notranslate nohighlight">\(X\)</span> is the positive integers and <span class="math notranslate nohighlight">\(\mu\)</span> is counting measure, the space <span class="math notranslate nohighlight">\(L^{p}\)</span> is called <span class="math notranslate nohighlight">\(\ell^{p}\)</span>. Thus if <span class="math notranslate nohighlight">\(x=\left\{x_{n}\right\}\)</span> is a sequence, <span class="math notranslate nohighlight">\(\|x\|_{\ell^{p}}=\)</span> <span class="math notranslate nohighlight">\(\left(\sum_{n=1}^{\infty}\left|x_{n}\right|^{p}\right)^{1 / p}\)</span> if <span class="math notranslate nohighlight">\(1 \leq p&lt;\infty\)</span>. For <span class="math notranslate nohighlight">\(p=\infty,\|x\|_{\ell \infty}=\sup _{n}\left|x_{n}\right| .\)</span>.</p>
+<div class="proof definition admonition" id="def13.2">
+<p class="admonition-title"><span class="caption-number">Definition 96 </span></p>
+<section class="definition-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(f_{n}\)</span> converges to <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(L^{p}\)</span> if <span class="math notranslate nohighlight">\(\int\left|f_{n}-f\right|^{p} \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>. In terms of <span class="math notranslate nohighlight">\(L^{p}\)</span> norms, this is equivalent to <span class="math notranslate nohighlight">\(\left\|f_{n}-f\right\|_{p}^{p} \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>.</p>
+</section>
+</div><div class="proof definition admonition" id="def13.3">
+<p class="admonition-title"><span class="caption-number">Definition 97 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Given a real-valued measurable function <span class="math notranslate nohighlight">\(f\)</span>, the essential supremum and essential infimum are defined by</p>
+<div class="math notranslate nohighlight">
+\[
+\text { ess } \sup f=\inf \{M: \mu(\{x: f(x)&gt;M\})=0\}
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\text { ess inf } f=\sup \{m: \mu(\{x: f(x)&lt;m\})=0\} \text {. }
+\]</div>
+</section>
+</div></section>
+<section id="completeness">
+<h2>Completeness<a class="headerlink" href="#completeness" title="Permalink to this heading">#</a></h2>
+<p>We show that the space <span class="math notranslate nohighlight">\(L^{p}\)</span> viewed as a metric space is complete.</p>
+<div class="proof theorem admonition" id="thm13.3">
+<p class="admonition-title"><span class="caption-number">Theorem 89 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(1 \leq p \leq \infty\)</span>, then <span class="math notranslate nohighlight">\(L^{p}\)</span> is complete.</p>
+</section>
+</div><p>Proof. We will do only the case <span class="math notranslate nohighlight">\(p&lt;\infty\)</span> and leave the case <span class="math notranslate nohighlight">\(p=\infty\)</span> as Exercise 15.1.</p>
+<p>Step 1. Suppose <span class="math notranslate nohighlight">\(f_{n}\)</span> is a Cauchy sequence in <span class="math notranslate nohighlight">\(L^{p}\)</span>. Our first step is to find a certain subsequence. Given <span class="math notranslate nohighlight">\(\varepsilon=2^{-(j+1)}\)</span>, there exists <span class="math notranslate nohighlight">\(n_{j}\)</span> such that if <span class="math notranslate nohighlight">\(n, m \geq n_{j}\)</span>, then <span class="math notranslate nohighlight">\(\left\|f_{n}-f_{m}\right\|_{p} \leq 2^{-(j+1)}\)</span>. Without loss of generality we may assume <span class="math notranslate nohighlight">\(n_{j} \geq n_{j-1}\)</span> for each <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>Step 2. Set <span class="math notranslate nohighlight">\(n_{0}=0\)</span> and define <span class="math notranslate nohighlight">\(f_{0}\)</span> to be identically 0 . Our candidate for the limit function will be <span class="math notranslate nohighlight">\(\sum_{m}\left(f_{n_{m}}-f_{n_{m-1}}\right)\)</span>. In this step we show absolute convergence of this series.</p>
+<p>Set <span class="math notranslate nohighlight">\(g_{j}(x)=\sum_{m=1}^{j}\left|f_{n_{m}}(x)-f_{n_{m-1}}(x)\right|\)</span>. Of course, <span class="math notranslate nohighlight">\(g_{j}(x)\)</span> increases in <span class="math notranslate nohighlight">\(j\)</span> for each <span class="math notranslate nohighlight">\(x\)</span>. Let <span class="math notranslate nohighlight">\(g(x)\)</span>, which might be infinite, be the limit. By Minkowski’s inequality</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\left\|g_{j}\right\|_{p} &amp; \leq \sum_{m=1}^{j}\left\|f_{n_{m}}-f_{n_{m-1}}\right\|_{p} \\
+&amp; \leq\left\|f_{n_{1}}-f_{n_{0}}\right\|_{p}+\sum_{m=2}^{j} 2^{-m} \\
+&amp; \leq\left\|f_{n_{1}}\right\|_{p}+\frac{1}{2}
+\end{aligned}
+\end{split}\]</div>
+<p>By Fatou’s lemma,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\int|g(x)|^{p} \mu(d x) &amp; \leq \lim _{j \rightarrow \infty} \int\left|g_{j}(x)\right|^{p} \mu(d x) \\
+&amp; =\lim _{j \rightarrow \infty}\left\|g_{j}\right\|_{p}^{p} \\
+&amp; \leq\left(\frac{1}{2}+\left\|f_{n_{1}}\right\|_{p}\right)^{p}
+\end{aligned}
+\end{split}\]</div>
+<p>Hence <span class="math notranslate nohighlight">\(g\)</span> is finite a.e. This proves the absolute convergence for almost every <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>Step 3. We define our function <span class="math notranslate nohighlight">\(f\)</span>. Set</p>
+<div class="math notranslate nohighlight">
+\[
+f(x)=\sum_{m=1}^{\infty}\left[f_{n_{m}}(x)-f_{n_{m-1}}(x)\right]
+\]</div>
+<p>We showed in Step 2 that this series is absolutely convergent for almost every <span class="math notranslate nohighlight">\(x\)</span>, so <span class="math notranslate nohighlight">\(f\)</span> is well defined for a.e. <span class="math notranslate nohighlight">\(x\)</span>. Set <span class="math notranslate nohighlight">\(f(x)=0\)</span> for any
+<span class="math notranslate nohighlight">\(x\)</span> where absolute convergence does not hold. We have</p>
+<div class="math notranslate nohighlight">
+\[
+f(x)=\lim _{K \rightarrow \infty} \sum_{m=1}^{K}\left[f_{n_{m}}(x)-f_{n_{m-1}}(x)\right]=\lim _{K \rightarrow \infty} f_{n_{K}}(x)
+\]</div>
+<p>since we have a telescoping series. By Fatou’s lemma,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\left\|f-f_{n_{j}}\right\|_{p}^{p} &amp; =\int\left|f-f_{n_{j}}\right|^{p} \leq \liminf _{K \rightarrow \infty} \int\left|f_{n_{K}}-f_{n_{j}}\right|^{p} \\
+&amp; =\liminf _{K \rightarrow \infty}\left\|f_{n_{K}}-f_{n_{j}}\right\|_{p}^{p} \leq 2^{-(j+1) p}
+\end{aligned}
+\end{split}\]</div>
+<p>Step 4. We have thus shown that <span class="math notranslate nohighlight">\(\left\|f-f_{n_{j}}\right\|_{p} \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(j \rightarrow \infty\)</span>. It is standard that a Cauchy sequence with a convergent subsequence itself converges. Here is the proof in our case. Given <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span>, there exists <span class="math notranslate nohighlight">\(N\)</span> such that <span class="math notranslate nohighlight">\(\left\|f_{n}-f_{m}\right\|_{p}&lt;\varepsilon\)</span> if <span class="math notranslate nohighlight">\(m, n \geq N\)</span>. In particular, <span class="math notranslate nohighlight">\(\left\|f_{n_{j}}-f_{m}\right\|_{p}&lt;\varepsilon\)</span> if <span class="math notranslate nohighlight">\(j\)</span> is large enough. By Fatou’s lemma,</p>
+<div class="math notranslate nohighlight">
+\[
+\left\|f-f_{m}\right\|_{p}^{p} \leq \liminf _{j \rightarrow \infty}\left\|f_{n_{j}}-f_{m}\right\|_{p}^{p} \leq \varepsilon^{p}
+\]</div>
+<p>if <span class="math notranslate nohighlight">\(m \geq N\)</span>. This shows that <span class="math notranslate nohighlight">\(f_{m}\)</span> converges to <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(L^{p}\)</span> norm.</p>
+<div class="proof theorem admonition" id="thm13.4">
+<p class="admonition-title"><span class="caption-number">Theorem 90 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>The set of continuous functions with compact support is dense in <span class="math notranslate nohighlight">\(L^{p}(\mathbb{R})\)</span> for <span class="math notranslate nohighlight">\(1 \leq p&lt;\infty\)</span>.</p>
+</section>
+</div><p>Proof. Suppose <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>. We have <span class="math notranslate nohighlight">\(\int\left|f-f \chi_{[-n, n]}\right|^{p} \rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span> by the dominated convergence theorem, the dominating function being <span class="math notranslate nohighlight">\(|f|^{p}\)</span>. Hence it suffices to approximate functions in <span class="math notranslate nohighlight">\(L^{p}\)</span> that have compact support. By writing <span class="math notranslate nohighlight">\(f=f^{+}-f^{-}\)</span>we may suppose <span class="math notranslate nohighlight">\(f \geq 0\)</span>. Consider simple functions <span class="math notranslate nohighlight">\(s_{m}\)</span> increasing to <span class="math notranslate nohighlight">\(f\)</span>; then we have <span class="math notranslate nohighlight">\(\int\left|f-s_{m}\right|^{p} \rightarrow 0\)</span> by the dominated convergence theorem, so it suffices to approximate simple functions with compact support. By linearity, it suffices to approximate characteristic functions with compact support. Given <span class="math notranslate nohighlight">\(E\)</span>, a Borel measurable set contained in a bounded interval, and <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span>, we showed in Theorem 8.4 that there exists <span class="math notranslate nohighlight">\(g\)</span> continuous with compact support and with values in <span class="math notranslate nohighlight">\([0,1]\)</span> such that <span class="math notranslate nohighlight">\(\int\left|g-\chi_{E}\right|&lt;\varepsilon\)</span>. Since <span class="math notranslate nohighlight">\(\left|g-\chi_{E}\right| \leq 1\)</span>, then <span class="math notranslate nohighlight">\(\int\left|g-\chi_{E}\right|^{p} \leq\)</span> <span class="math notranslate nohighlight">\(\int\left|g-\chi_{E}\right|&lt;\varepsilon\)</span>. This completes the proof.</p>
+<p>The same proof shows the following corollary.</p>
+<div class="proof corollary admonition" id="cor13.1">
+<p class="admonition-title"><span class="caption-number">Corollary 3 </span></p>
+<section class="corollary-content" id="proof-content">
+<p>The set of continuous functions on <span class="math notranslate nohighlight">\([a, b]\)</span> are dense in the space <span class="math notranslate nohighlight">\(L^{2}([a, b])\)</span> with respect to the <span class="math notranslate nohighlight">\(L^{2}([a, b])\)</span> norm.</p>
+</section>
+</div></section>
+<section id="convolutions">
+<h2>Convolutions<a class="headerlink" href="#convolutions" title="Permalink to this heading">#</a></h2>
+<p>In this section only, all functions are defined on <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span> and we are using Lebesgue measure on <span class="math notranslate nohighlight">\(\mathbb{R}^{n}\)</span>.</p>
+<p>The convolution of two measurable functions <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> is defined by</p>
+<div class="math notranslate nohighlight">
+\[
+f * g(x)=\int f(x-y) g(y) d y
+\]</div>
+<p>provided the integral exists.</p>
+<p>Let us address the measurability issues. Suppose <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are both Borel measurable functions. If <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>, then <span class="math notranslate nohighlight">\(A=f^{-1}((a, \infty))\)</span> is a Borel measurable subset of <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. The mapping <span class="math notranslate nohighlight">\(K: \mathbb{R}^{2} \rightarrow \mathbb{R}\)</span> defined by <span class="math notranslate nohighlight">\(K(x, y)=x-y\)</span> is Borel measurable. By Proposition 5.11 with <span class="math notranslate nohighlight">\(X=\mathbb{R}^{2}\)</span> and <span class="math notranslate nohighlight">\(\mathcal{A}\)</span> the Borel <span class="math notranslate nohighlight">\(\sigma\)</span>-algebra on <span class="math notranslate nohighlight">\(\mathbb{R}^{2}, K^{-1}(A)\)</span> is in <span class="math notranslate nohighlight">\(\mathcal{A}\)</span>. Therefore</p>
+<div class="math notranslate nohighlight">
+\[
+(f \circ K)^{-1}((a, \infty))=K^{-1}\left(f^{-1}((a, \infty))\right)=K^{-1}(A)
+\]</div>
+<p>is a Borel subset of <span class="math notranslate nohighlight">\(\mathbb{R}^{2}\)</span>, and hence <span class="math notranslate nohighlight">\(f \circ K\)</span> is Borel measurable. Thus, since <span class="math notranslate nohighlight">\(g\)</span> is also Borel measurable, the integrand is jointly measurable. Using Theorem 11.3(3), we see that <span class="math notranslate nohighlight">\(f * g\)</span> is a Borel measurable function of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>By a change of variables, <span class="math notranslate nohighlight">\(f * g(x)\)</span> is the same as <span class="math notranslate nohighlight">\(\int f(y) g(x-y) d y\)</span>, so <span class="math notranslate nohighlight">\(f * g=g * f\)</span>.</p>
+<p>Proposition 15.7 (1) If <span class="math notranslate nohighlight">\(f, g \in L^{1}\)</span>, then <span class="math notranslate nohighlight">\(f * g\)</span> is in <span class="math notranslate nohighlight">\(L^{1}\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[
+\|f * g\|_{1} \leq\|f\|_{1}\|g\|_{1} .
+\]</div>
+<p>(2) If <span class="math notranslate nohighlight">\(1&lt;p \leq \infty, f \in L^{1}\)</span>, and <span class="math notranslate nohighlight">\(g \in L^{p}\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+\|f * g\|_{p} \leq\|f\|_{1}\|g\|_{p}
+\]</div>
+<p>Proof. (1) We have</p>
+<div class="math notranslate nohighlight">
+\[
+\int|f * g(x)| d x \leq \iint|f(x-y)||g(y)| d y d x
+\]</div>
+<p>Since the integrand on the right is non-negative, we can apply the Fubini theorem to see that the right hand side is equal to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\iint|f(x-y)| d x|g(y)| d y &amp; =\iint|f(x)| d x|g(y)| d y \\
+&amp; =\|f\|_{1}\|g\|_{1}
+\end{aligned}
+\end{split}\]</div>
+<p>The first equality here follows by a change of variables (see Exercise 8.2). This together with (15.7) proves (15.5). From (15.5) we conclude that <span class="math notranslate nohighlight">\(f * g\)</span> is finite a.e.</p>
+<p>(2) The case <span class="math notranslate nohighlight">\(p=\infty\)</span> is easy and left to the reader, so let us suppose <span class="math notranslate nohighlight">\(p&lt;\infty\)</span>. Let <span class="math notranslate nohighlight">\(q\)</span> be the conjugate exponent to <span class="math notranslate nohighlight">\(p\)</span>. By Hölder’s inequality</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mid \int f(y) g(x &amp; -y) d y \mid \\
+&amp; \leq \int|f(y)|^{\frac{1}{q}}|f(y)|^{1-\frac{1}{q}}|g(x-y)| d y \\
+&amp; \leq\left(\int|f(y)| d y\right)^{\frac{1}{q}}\left(\int|f(y)|^{p\left(1-\frac{1}{q}\right)}|g(x-y)|^{p} d y\right)^{\frac{1}{p}}
+\end{aligned}
+\end{split}\]</div>
+<p>Then, using the Fubini theorem,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\int|f * g(x)|^{p} d x &amp; \leq \int\left(\int|f(y)| d y\right)^{\frac{p}{q}} \int|f(y)||g(x-y)|^{p} d y d x \\
+&amp; =\|f\|_{1}^{p / q}\|g\|_{p}^{p} \int|f(y)| d y \\
+&amp; =\|f\|_{1}^{1+\frac{p}{q}}\|g\|_{p}^{p} .
+\end{aligned}
+\end{split}\]</div>
+<p>Taking <span class="math notranslate nohighlight">\(p^{t h}\)</span> roots gives our desired result.</p>
+<p>One application of convolutions is to approximate functions in <span class="math notranslate nohighlight">\(L^{p}\)</span> by smooth functions. This procedure is known by the name mollification.</p>
+<p>Let <span class="math notranslate nohighlight">\(\varphi: \mathbb{R}^{n} \rightarrow \mathbb{R}\)</span> be infinitely differentiable with compact support, non-negative, and with integral equal to 1 . An example of such a function is give in Exercise 15.30. Let</p>
+<div class="math notranslate nohighlight">
+\[
+\varphi_{\varepsilon}(x)=\varepsilon^{-n} \varphi(x / \varepsilon) .
+\]</div>
+<p>Theorem 15.8 Suppose <span class="math notranslate nohighlight">\(1 \leq p \leq \infty\)</span> and <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>.</p>
+<p>(1) For each <span class="math notranslate nohighlight">\(\varepsilon&gt;0, f * \varphi_{\varepsilon}\)</span> is infinitely differentiable. For each <span class="math notranslate nohighlight">\(\alpha_{1}, \alpha_{2}, \ldots, \alpha_{n}\)</span> non-negative integers</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial^{\alpha_{1}+\cdots+\alpha_{n}}\left(f * \varphi_{\varepsilon}\right)}{\partial x_{1}^{\alpha_{1}} \cdots \partial x_{n}^{\alpha_{n}}}=f * \frac{\partial^{\alpha_{1}+\cdots+\alpha_{n}} \varphi_{\varepsilon}}{\partial x_{1}^{\alpha_{1}} \cdots \partial x_{n}^{\alpha_{n}}}
+\]</div>
+<p>We use the convention that the <span class="math notranslate nohighlight">\(0^{\text {th }}\)</span> order derivative of a function is just the function itself.</p>
+<p>(2) <span class="math notranslate nohighlight">\(f * \varphi_{\varepsilon} \rightarrow f\)</span> a.e. as <span class="math notranslate nohighlight">\(\varepsilon \rightarrow 0\)</span>.</p>
+<p>(3) If <span class="math notranslate nohighlight">\(f\)</span> is continuous, then <span class="math notranslate nohighlight">\(f * \varphi_{\varepsilon} \rightarrow f\)</span> uniformly on compact sets as <span class="math notranslate nohighlight">\(\varepsilon \rightarrow 0\)</span>.</p>
+<p>(4) If <span class="math notranslate nohighlight">\(1 \leq p&lt;\infty\)</span> and <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>, then <span class="math notranslate nohighlight">\(f * \varphi_{\varepsilon} \rightarrow f\)</span> in <span class="math notranslate nohighlight">\(L^{p}\)</span>.</p>
+<p>For other theorems along these lines, see Proposition 16.6 and Theorem 24.4.</p>
+<p>Proof. (1) Suppose <span class="math notranslate nohighlight">\(\varphi\)</span> has support in <span class="math notranslate nohighlight">\(B(0, R)\)</span>. Let <span class="math notranslate nohighlight">\(e_{i}\)</span> be the unit vector in the <span class="math notranslate nohighlight">\(i^{\text {th }}\)</span> direction. Write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+f * \varphi_{\varepsilon}\left(x+h e_{i}\right) &amp; -f * \varphi_{\varepsilon}(x) \\
+&amp; =\int f(y)\left[\varphi_{\varepsilon}\left(x+h e_{i}-y\right)-\varphi_{\varepsilon}(x-y)\right] d y
+\end{aligned}
+\end{split}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\varphi_{\varepsilon}\)</span> is continuously differentiable with compact support, there exists a constant <span class="math notranslate nohighlight">\(c_{1}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+\left|\varphi_{\varepsilon}\left(x+h e_{i}-y\right)-\varphi_{\varepsilon}(x-y)\right| \leq c_{1}|h|
+\]</div>
+<p>for all <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. We may then divide both sides of (15.9) by <span class="math notranslate nohighlight">\(h\)</span>, let <span class="math notranslate nohighlight">\(h \rightarrow 0\)</span>, and use dominated convergence with the dominating function being <span class="math notranslate nohighlight">\(c_{1}|f(y)| \chi_{B(0, R \varepsilon+1)}(y)\)</span>, provided <span class="math notranslate nohighlight">\(|h| \leq 1\)</span>. This dominating function is in <span class="math notranslate nohighlight">\(L^{1}\)</span> because <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>.</p>
+<p>We conclude</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{\partial\left(f * \varphi_{\varepsilon}\right)}{\partial x_{i}}(x)=f * \frac{\partial \varphi_{\varepsilon}}{\partial x_{i}}(x) .
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\partial \varphi_{\varepsilon} / \partial x_{i}\)</span> is also infinitely differentiable with compact support, we may continue and handle the higher order partial derivatives by induction.</p>
+<p>(2) Since <span class="math notranslate nohighlight">\(\varphi\)</span> has integral 1, using a change of variables shows that <span class="math notranslate nohighlight">\(\varphi_{\varepsilon}\)</span> does too. We then have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+f * \varphi_{\varepsilon}(x)-f(x) &amp; =\int[f(y)-f(x)] \varphi_{\varepsilon}(x-y) d y \\
+&amp; =\frac{1}{\varepsilon^{n}} \int_{B(x, R \varepsilon)}[f(y)-f(x)] \varphi\left(\frac{x-y}{\varepsilon}\right) d y
+\end{aligned}
+\end{split}\]</div>
+<p>This leads to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mid f * \varphi_{\varepsilon}(x) &amp; -f(x) \mid \\
+&amp; \leq \frac{1}{\varepsilon^{n}} \int_{B(x, R \varepsilon)}|f(y)-f(x)| \varphi\left(\frac{x-y}{\varepsilon}\right) d y \\
+&amp; \leq\|\varphi\|_{\infty} m(B(0, R)) \frac{1}{B(x, R \varepsilon)} \int_{B(x, R \varepsilon)}|f(y)-f(x)| d y
+\end{aligned}
+\end{split}\]</div>
+<p>The last line tends to 0 for almost every <span class="math notranslate nohighlight">\(x\)</span> by Theorem 14.4.</p>
+<p>(3) Let <span class="math notranslate nohighlight">\(N&gt;0\)</span>. Starting with (15.10),</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\sup _{|x| \leq N} \mid f * \varphi_{\varepsilon}(x) &amp; -f(x) \mid \\
+&amp; \leq\|\varphi\|_{\infty} m(B(0, R)) \sup _{|x| \leq N,|y-x| \leq R \varepsilon}|f(y)-f(x)|
+\end{aligned}
+\end{split}\]</div>
+<p>This tends to 0 as <span class="math notranslate nohighlight">\(\varepsilon \rightarrow 0\)</span> because <span class="math notranslate nohighlight">\(f\)</span> is uniformly continuous on <span class="math notranslate nohighlight">\(B(0, N+R)\)</span>.</p>
+<p>(4) Let <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span>. If <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>, let us take <span class="math notranslate nohighlight">\(g\)</span> bounded with compact support in <span class="math notranslate nohighlight">\(B(0, N)\)</span> so that <span class="math notranslate nohighlight">\(\|f-g\|_{p}&lt;\varepsilon\)</span>. We can do this by first looking at <span class="math notranslate nohighlight">\(f_{N}=f \chi_{B(0, N)}\)</span> with <span class="math notranslate nohighlight">\(N\)</span> large. Using dominated convergence, <span class="math notranslate nohighlight">\(\left\|f-f_{N}\right\|_{p} \rightarrow 0\)</span>, so take <span class="math notranslate nohighlight">\(N\)</span> sufficiently large such that <span class="math notranslate nohighlight">\(\left\|f-f_{N}\right\|&lt;\varepsilon / 2\)</span>. We then let <span class="math notranslate nohighlight">\(g\)</span> be a simple function approximation to <span class="math notranslate nohighlight">\(f_{N}\)</span> chosen so that <span class="math notranslate nohighlight">\(\left\|f_{N}-g\right\|_{p}&lt;\varepsilon / 2\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(g \in L^{\infty}\)</span>, then <span class="math notranslate nohighlight">\(g * \varphi_{\varepsilon}\)</span> is bounded by <span class="math notranslate nohighlight">\(\|g\|_{\infty}\left\|\varphi_{\varepsilon}\right\|_{1}=\|g\|_{\infty}\)</span>. By part (2) we have almost everywhere convergence of <span class="math notranslate nohighlight">\(g * g_{\varepsilon}\)</span> to <span class="math notranslate nohighlight">\(g\)</span> as <span class="math notranslate nohighlight">\(\varepsilon \rightarrow 0\)</span>. Since <span class="math notranslate nohighlight">\(\varphi_{\varepsilon}\)</span> has support in <span class="math notranslate nohighlight">\(B(0, R \varepsilon)\)</span> and <span class="math notranslate nohighlight">\(g\)</span> has support in <span class="math notranslate nohighlight">\(B(0, N)\)</span>, we see by Exercise 15.14 that <span class="math notranslate nohighlight">\(g * \varphi_{\varepsilon}\)</span> will have support in <span class="math notranslate nohighlight">\(B(0, N+R \varepsilon)\)</span>. We may therefore use dominated convergence to obtain that <span class="math notranslate nohighlight">\(g * \varphi_{\varepsilon} \rightarrow g\)</span> in <span class="math notranslate nohighlight">\(L^{p}\)</span> as <span class="math notranslate nohighlight">\(\varepsilon \rightarrow 0\)</span>.</p>
+<p>Now <span class="math notranslate nohighlight">\(\|f-g\|_{p}&lt;\varepsilon\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[
+\left\|f * \varphi_{\varepsilon}-g * \varphi_{\varepsilon}\right\|_{p} \leq\|f-g\|_{p}\left\|\varphi_{\varepsilon}\right\|_{1}&lt;\varepsilon,
+\]</div>
+<p>so <span class="math notranslate nohighlight">\(\left\|f * \varphi_{\varepsilon}-f\right\|_{p} \leq 2 \varepsilon+\left\|g * \varphi_{\varepsilon}-g\right\|_{p}\)</span>. Therefore</p>
+<div class="math notranslate nohighlight">
+\[
+\limsup _{\varepsilon \rightarrow 0}\left\|f * \varphi_{\varepsilon}-f\right\|_{p} \leq 2 \varepsilon
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\varepsilon\)</span> is arbitrary, (4) is proved.</p>
+</section>
+<section id="bounded-linear-functionals">
+<h2>Bounded linear functionals<a class="headerlink" href="#bounded-linear-functionals" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-9">
+<p class="admonition-title"><span class="caption-number">Definition 98 </span> (bounded linear functional)</p>
+<section class="definition-content" id="proof-content">
+<p>A <strong>linear functional</strong> on <span class="math notranslate nohighlight">\(L^{p}\)</span> is a map <span class="math notranslate nohighlight">\(H\)</span> from <span class="math notranslate nohighlight">\(L^{p}\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> satisfying <span class="math notranslate nohighlight">\(H(f+g)=H(f)+H(g), \quad H(a f)=a H(f)\)</span>,
+whenever <span class="math notranslate nohighlight">\(f, g \in L^{p}\)</span> and <span class="math notranslate nohighlight">\(a \in \mathbb{R}\)</span>. <span class="math notranslate nohighlight">\(H\)</span> is a bounded linear functional if</p>
+<div class="math notranslate nohighlight">
+\[
+\|H\|=\sup \left\{|H f|:\|f\|_{p} \leq 1\right\}
+\]</div>
+<p>is finite. The dual space of <span class="math notranslate nohighlight">\(L^{p}\)</span> is the collection of all bounded linear functionals with norm.</p>
+</section>
+</div><p>Our goal in this section is to identify the dual of <span class="math notranslate nohighlight">\(L^{p}\)</span>. We define the signum function or sign function by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\operatorname{sgn}(x)= \begin{cases}-1, &amp; x&lt;0 \\ 0, &amp; x=0 \\ 1, &amp; x&gt;0\end{cases}
+\end{split}\]</div>
+<p>Note <span class="math notranslate nohighlight">\(x \operatorname{sgn}(x)=|x|\)</span>.</p>
+<p>The following is very useful.</p>
+<div class="proof theorem admonition" id="thm13.5">
+<p class="admonition-title"><span class="caption-number">Theorem 91 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>For <span class="math notranslate nohighlight">\(1&lt;p&lt;\infty\)</span> and <span class="math notranslate nohighlight">\(p^{-1}+q^{-1}=1\)</span>, suppose <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[
+\|f\|_{p}=\sup \left\{\int f g d \mu:\|g\|_{q} \leq 1\right\} .
+\]</div>
+<p>When <span class="math notranslate nohighlight">\(p=1\)</span>, (15.12) holds if we take <span class="math notranslate nohighlight">\(q=\infty\)</span>, and if <span class="math notranslate nohighlight">\(p=\infty\)</span>, (15.12) holds if we take <span class="math notranslate nohighlight">\(q=1\)</span>.</p>
+</section>
+</div><p>Proof. The right hand side of (15.12) is less than the left hand side by Hölder’s inequality. Thus we need only show that the right hand side is greater than the left hand side.</p>
+<p>Case 1: <span class="math notranslate nohighlight">\(p=1\)</span>. Take <span class="math notranslate nohighlight">\(g(x)=\operatorname{sgn} f(x)\)</span>. Then <span class="math notranslate nohighlight">\(|g|\)</span> is bounded by 1 and <span class="math notranslate nohighlight">\(f g=|f|\)</span>. This takes care of the case <span class="math notranslate nohighlight">\(p=1\)</span>.</p>
+<p>Case 2: <span class="math notranslate nohighlight">\(p=\infty\)</span>. If <span class="math notranslate nohighlight">\(\|f\|_{\infty}=0\)</span>, the result is trivial, so suppose <span class="math notranslate nohighlight">\(\|f\|_{\infty}&gt;0\)</span>. Since <span class="math notranslate nohighlight">\(\mu\)</span> is <span class="math notranslate nohighlight">\(\sigma\)</span>-finite, there exist sets <span class="math notranslate nohighlight">\(F_{n}\)</span> increasing up to <span class="math notranslate nohighlight">\(X\)</span> such that <span class="math notranslate nohighlight">\(\mu\left(F_{n}\right)&lt;\infty\)</span> for each <span class="math notranslate nohighlight">\(n\)</span>. If <span class="math notranslate nohighlight">\(M=\|f\|_{\infty}\)</span>, let <span class="math notranslate nohighlight">\(a\)</span> be any finite real less than <span class="math notranslate nohighlight">\(M\)</span>. By the definition of <span class="math notranslate nohighlight">\(L^{\infty}\)</span> norm, the measure of <span class="math notranslate nohighlight">\(A_{n}=\left\{x \in F_{n}:|f(x)|&gt;a\right\}\)</span> must be positive if <span class="math notranslate nohighlight">\(n\)</span> is sufficiently large. Let</p>
+<div class="math notranslate nohighlight">
+\[
+g_{n}(x)=\frac{\operatorname{sgn}(f(x)) \chi_{A_{n}}(x)}{\mu\left(A_{n}\right)} .
+\]</div>
+<p>Then the <span class="math notranslate nohighlight">\(L^{1}\)</span> norm of <span class="math notranslate nohighlight">\(g_{n}\)</span> is 1 and <span class="math notranslate nohighlight">\(\int f g_{n}=\int_{A_{n}}|f| / \mu\left(A_{n}\right) \geq a\)</span>. Since <span class="math notranslate nohighlight">\(a\)</span> is arbitrary, the supremum on the right hand side of (15.12) must be <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>Case 3: <span class="math notranslate nohighlight">\(1&lt;p&lt;\infty\)</span>. We may suppose <span class="math notranslate nohighlight">\(\|f\|_{p}&gt;0\)</span>. Let <span class="math notranslate nohighlight">\(F_{n}\)</span> be measurable sets of finite measure increasing to <span class="math notranslate nohighlight">\(X, q_{n}\)</span> a sequence of non-negative simple functions increasing to <span class="math notranslate nohighlight">\(f^{+}, r_{n}\)</span> a sequence of non-negative simple functions increasing to <span class="math notranslate nohighlight">\(f^{-}\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[
+s_{n}(x)=\left(q_{n}(x)-r_{n}(x)\right) \chi_{F_{n}}(x) .
+\]</div>
+<p>Then <span class="math notranslate nohighlight">\(s_{n}(x) \rightarrow f(x)\)</span> for each <span class="math notranslate nohighlight">\(x,\left|s_{n}(x)\right|\)</span> increases to <span class="math notranslate nohighlight">\(|f(x)|\)</span> for each <span class="math notranslate nohighlight">\(x\)</span>, each <span class="math notranslate nohighlight">\(s_{n}\)</span> is a simple function, and <span class="math notranslate nohighlight">\(\left\|s_{n}\right\|_{p}&lt;\infty\)</span> for each <span class="math notranslate nohighlight">\(n\)</span>. Then <span class="math notranslate nohighlight">\(\left\|s_{n}\right\|_{p} \rightarrow\|f\|_{p}\)</span> by the monotone convergence theorem, whether or not <span class="math notranslate nohighlight">\(\|f\|_{p}\)</span> is finite. For <span class="math notranslate nohighlight">\(n\)</span> sufficiently large, <span class="math notranslate nohighlight">\(\left\|s_{n}\right\|_{p}&gt;0\)</span>.</p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[
+g_{n}(x)=(\operatorname{sgn} f(x)) \frac{\left|s_{n}(x)\right|^{p-1}}{\left\|s_{n}\right\|_{p}^{p / q}} .
+\]</div>
+<p><span class="math notranslate nohighlight">\(g_{n}\)</span> is again a simple function. Since <span class="math notranslate nohighlight">\((p-1) q=p\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[
+\left\|g_{n}\right\|_{q}=\frac{\left(\int\left|s_{n}\right|^{(p-1) q}\right)^{1 / q}}{\left\|s_{n}\right\|_{p}^{p / q}}=\frac{\left\|s_{n}\right\|_{p}^{p / q}}{\left\|s_{n}\right\|_{p}^{p / q}}=1
+\]</div>
+<p>On the other hand, since <span class="math notranslate nohighlight">\(|f| \geq\left|s_{n}\right|\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\int f g_{n}=\frac{\int|f|\left|s_{n}\right|^{p-1}}{\left\|s_{n}\right\|_{p}^{p / q}} \geq \frac{\int\left|s_{n}\right|^{p}}{\left\|s_{n}\right\|_{p}^{p / q}}=\left\|s_{n}\right\|_{p}^{p-(p / q)} .
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(p-(p / q)=1\)</span>, then <span class="math notranslate nohighlight">\(\int f g_{n} \geq\left\|s_{n}\right\|_{p}\)</span>, which tends to <span class="math notranslate nohighlight">\(\|f\|_{p}\)</span>. This proves the right hand side of (15.12) is at least as large as the left hand side.</p>
+<p>The proof of Theorem 15.9 also establishes</p>
+<div class="proof corollary admonition" id="cor13.2">
+<p class="admonition-title"><span class="caption-number">Corollary 4 </span></p>
+<section class="corollary-content" id="proof-content">
+<p>For <span class="math notranslate nohighlight">\(1&lt;p&lt;\infty\)</span> and <span class="math notranslate nohighlight">\(p^{-1}+q^{-1}=1\)</span>, suppose <span class="math notranslate nohighlight">\(f\)</span> is measurable and <span class="math notranslate nohighlight">\(\int f g\)</span> is defined for all simple <span class="math notranslate nohighlight">\(g\)</span>. Then</p>
+<div class="math notranslate nohighlight">
+\[
+\|f\|_{p}=\sup \left\{\int f g:\|g\|_{q} \leq 1, g \text { simple }\right\}
+\]</div>
+</section>
+</div><div class="proof proposition admonition" id="pro13.1">
+<p class="admonition-title"><span class="caption-number">Proposition 6 </span></p>
+<section class="proposition-content" id="proof-content">
+<p>Suppose <span class="math notranslate nohighlight">\(1&lt;p&lt;\infty, p^{-1}+q^{-1}=1\)</span>, and <span class="math notranslate nohighlight">\(g \in L^{q}\)</span>. If we define <span class="math notranslate nohighlight">\(H(f)=\int\)</span> fg for <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>, then <span class="math notranslate nohighlight">\(H\)</span> is a bounded linear functional on <span class="math notranslate nohighlight">\(L^{p}\)</span> and <span class="math notranslate nohighlight">\(\|H\|=\|g\|_{q}\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. The linearity is obvious. That <span class="math notranslate nohighlight">\(\|H\| \leq\|g\|_{q}\)</span> follows by Hölder’s inequality. Using Theorem 15.9 and writing</p>
+<div class="math notranslate nohighlight">
+\[
+\|H\|=\sup _{\|f\|_{p} \leq 1}|H(f)|=\sup _{\|f\|_{p} \leq 1}\left|\int f g\right| \geq \sup _{\|f\|_{p} \leq 1} \int f g=\|g\|_{q}
+\]</div>
+<p>completes the proof.</p>
+</div>
+<div class="proof theorem admonition" id="thm13.6">
+<p class="admonition-title"><span class="caption-number">Theorem 92 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Theorem 15.12 Suppose <span class="math notranslate nohighlight">\(1&lt;p&lt;\infty, p^{-1}+q^{-1}=1\)</span>, and <span class="math notranslate nohighlight">\(H\)</span> is a real-valued bounded linear functional on <span class="math notranslate nohighlight">\(L^{p}\)</span>. Then there exists <span class="math notranslate nohighlight">\(g \in L^{q}\)</span> such that <span class="math notranslate nohighlight">\(H(f)=\int f g\)</span> and <span class="math notranslate nohighlight">\(\|g\|_{q}=\|H\|\)</span>.</p>
+</section>
+</div><p>This theorem together with Proposition 15.11 allows us to identify the dual space of <span class="math notranslate nohighlight">\(L^{p}\)</span> with <span class="math notranslate nohighlight">\(L^{q}\)</span>.</p>
+<p>Proof. Suppose we are given a bounded linear functional <span class="math notranslate nohighlight">\(H\)</span> on <span class="math notranslate nohighlight">\(L^{p}\)</span>. First suppose <span class="math notranslate nohighlight">\(\mu(X)&lt;\infty\)</span>. Define <span class="math notranslate nohighlight">\(\nu(A)=H\left(\chi_{A}\right)\)</span>. Note <span class="math notranslate nohighlight">\(\chi_{A} \in L^{p}\)</span> by the finiteness of <span class="math notranslate nohighlight">\(\mu\)</span>. We will show that <span class="math notranslate nohighlight">\(\nu\)</span> is a signed measure, that <span class="math notranslate nohighlight">\(\nu \ll \mu\)</span> and that <span class="math notranslate nohighlight">\(g=d \nu / d \mu\)</span> is the function we seek.</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are disjoint, then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\nu(A \cup B) &amp; =H\left(\chi_{A \cup B}\right)=H\left(\chi_{A}+\chi_{B}\right) \\
+&amp; =H\left(\chi_{A}\right)+H\left(\chi_{B}\right)=\nu(A)+\nu(B) .
+\end{aligned}
+\end{split}\]</div>
+<p>To show <span class="math notranslate nohighlight">\(\nu\)</span> is countably additive, it suffices to show that if <span class="math notranslate nohighlight">\(A_{n} \uparrow A\)</span>, then <span class="math notranslate nohighlight">\(\nu\left(A_{n}\right) \rightarrow \nu(A)\)</span>, and then use Exercise 3.1. But if <span class="math notranslate nohighlight">\(A_{n} \uparrow A\)</span>, then <span class="math notranslate nohighlight">\(\chi_{A_{n}} \rightarrow \chi_{A}\)</span> in <span class="math notranslate nohighlight">\(L^{p}\)</span>, and so <span class="math notranslate nohighlight">\(\nu\left(A_{n}\right)=H\left(\chi_{A_{n}}\right) \rightarrow H\left(\chi_{A}\right)=\nu(A)\)</span>; we use here the facts that <span class="math notranslate nohighlight">\(\mu(X)&lt;\infty\)</span> and <span class="math notranslate nohighlight">\(p&lt;\infty\)</span>. We conclude that <span class="math notranslate nohighlight">\(\nu\)</span> is a countably additive signed measure. Moreover, if <span class="math notranslate nohighlight">\(\mu(A)=0\)</span>, then <span class="math notranslate nohighlight">\(\chi_{A}=0\)</span> a.e., hence <span class="math notranslate nohighlight">\(\nu(A)=H\left(\chi_{A}\right)=0\)</span>. We use the Jordan decomposition theorem to write <span class="math notranslate nohighlight">\(\nu=\nu^{+}-\nu^{-}\)</span>, apply the RadonNikodym theorem to obtain <span class="math notranslate nohighlight">\(g^{+}=d \nu^{+} / d \mu\)</span> and <span class="math notranslate nohighlight">\(g^{-}=d \nu^{-} / d \mu\)</span>, and set <span class="math notranslate nohighlight">\(g=g^{+}-g^{-}\)</span>. We therefore have a real-valued integrable function <span class="math notranslate nohighlight">\(g\)</span> such that <span class="math notranslate nohighlight">\(\nu(A)=\int_{A} g d \mu\)</span> for all sets <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(s=\sum_{i} a_{i} \chi_{A_{i}}\)</span> is a simple function, by linearity we have</p>
+<div class="math notranslate nohighlight">
+\[
+H(s)=\sum_{i} a_{i} H\left(\chi_{A_{i}}\right)=\sum_{i} a_{i} \nu\left(A_{i}\right)=\sum_{i} a_{i} \int g \chi_{A_{i}}=\int g s .
+\]</div>
+<p>By Corollary 15.10 and (15.13),</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\|g\|_{q} &amp; =\sup \left\{\int g s:\|s\|_{p} \leq 1, s \text { simple }\right\} \\
+&amp; =\sup \left\{H(s):\|s\|_{p} \leq 1, s \text { simple }\right\} \leq\|H\| .
+\end{aligned}
+\end{split}\]</div>
+<p>If <span class="math notranslate nohighlight">\(s_{n}\)</span> are simple functions tending to <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(L^{p}\)</span> (see Exercise 15.2), then <span class="math notranslate nohighlight">\(H\left(s_{n}\right) \rightarrow H(f)\)</span>, while by Hölder’s inequality and the fact that <span class="math notranslate nohighlight">\(g \in L^{q}\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\left|\int s_{n} g-\int f g\right|=\left|\int\left(s_{n}-f\right) g\right| \leq\left\|s_{n}-f\right\|_{p}\|g\|_{q} \rightarrow 0
+\]</div>
+<p>so <span class="math notranslate nohighlight">\(\int s_{n} g \rightarrow \int f g\)</span>. We thus have <span class="math notranslate nohighlight">\(H(f)=\int f g\)</span> for all <span class="math notranslate nohighlight">\(f \in L^{p}\)</span>, and <span class="math notranslate nohighlight">\(\|g\|_{q} \leq\|H\|\)</span>. By Hölder’s inequality, <span class="math notranslate nohighlight">\(\|H\| \leq\|g\|_{q}\)</span>.</p>
+<p>In the case where <span class="math notranslate nohighlight">\(\mu\)</span> is <span class="math notranslate nohighlight">\(\sigma\)</span>-finite, but not necessarily finite, let <span class="math notranslate nohighlight">\(F_{n} \uparrow X\)</span> so that <span class="math notranslate nohighlight">\(\mu\left(F_{n}\right)&lt;\infty\)</span> for each <span class="math notranslate nohighlight">\(n\)</span>. Define functionals <span class="math notranslate nohighlight">\(H_{n}\)</span> by <span class="math notranslate nohighlight">\(H_{n}(f)=H\left(f \chi_{F_{n}}\right)\)</span>. Clearly each <span class="math notranslate nohighlight">\(H_{n}\)</span> is a bounded linear functional on <span class="math notranslate nohighlight">\(L^{p}\)</span>. Applying the above argument, we see there exist <span class="math notranslate nohighlight">\(g_{n} \in\)</span> <span class="math notranslate nohighlight">\(L^{q}\left(F_{n}\right)\)</span> such that <span class="math notranslate nohighlight">\(H_{n}(f)=\int f g_{n}\)</span> and <span class="math notranslate nohighlight">\(\left\|g_{n}\right\|_{q}=\left\|H_{n}\right\| \leq\|H\|\)</span>. It is easy to see that <span class="math notranslate nohighlight">\(g_{n}\)</span> is 0 if <span class="math notranslate nohighlight">\(x \notin F_{n}\)</span>. Moreover, by the uniqueness part of the Radon-Nikodym theorem, if <span class="math notranslate nohighlight">\(n&gt;m\)</span>, then <span class="math notranslate nohighlight">\(g_{n}=g_{m}\)</span> on <span class="math notranslate nohighlight">\(F_{m}\)</span>. Define <span class="math notranslate nohighlight">\(g\)</span> by setting <span class="math notranslate nohighlight">\(g(x)=g_{n}(x)\)</span> if <span class="math notranslate nohighlight">\(x \in F_{n}\)</span>. Then <span class="math notranslate nohighlight">\(g\)</span> is well defined. By Fatou’s lemma, <span class="math notranslate nohighlight">\(g\)</span> is in <span class="math notranslate nohighlight">\(L^{q}\)</span> with a norm bounded by <span class="math notranslate nohighlight">\(\|H\|\)</span>. Note <span class="math notranslate nohighlight">\(f \chi_{F_{n}} \rightarrow f\)</span> in <span class="math notranslate nohighlight">\(L^{p}\)</span> by the dominated convergence theorem. Since <span class="math notranslate nohighlight">\(H\)</span> is a bounded linear functional on <span class="math notranslate nohighlight">\(L^{p}\)</span>, we have
+<span class="math notranslate nohighlight">\(H_{n}(f)=H\left(f \chi_{F_{n}}\right) \rightarrow H(f)\)</span>. On the other hand</p>
+<div class="math notranslate nohighlight">
+\[
+H_{n}(f)=\int_{F_{n}} f g_{n}=\int_{F_{n}} f g \rightarrow \int f g
+\]</div>
+<p>by the dominated convergence theorem. Thus <span class="math notranslate nohighlight">\(H(f)=\int f g\)</span>. Again by Hölder’s inequality <span class="math notranslate nohighlight">\(\|H\| \leq\|g\|_{q}\)</span>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 12: The Lebesgue Theory</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap14.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 14: Banach spaces</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#norm">Norm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#completeness">Completeness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convolutions">Convolutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-linear-functionals">Bounded linear functionals</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
