@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 1: Discrete time Markov chains &#8212; Stochastic Processes</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 2: Continuous time Markov chain" href="chap2.html" />
+    <link rel="prev" title="Preface" href="preface.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents      
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 1: Discrete time Markov chains</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Continuous time Markov chain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Renewal processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Margingales</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Brownian motions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Branching processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Stationary processes</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 1: Discrete time Markov chains</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-probability-matrix">Transition probability matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#irreducible">Irreducible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic">Periodic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recurrent">Recurrent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-probabilities">Limiting probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorbing-probabilities">Absorbing probabilities</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-1-discrete-time-markov-chains">
+<h1>Chapter 1: Discrete time Markov chains<a class="headerlink" href="#chapter-1-discrete-time-markov-chains" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Limit_(mathematics)">Limits at Wikipedia</a></p></li>
+</ul>
+</div>
+<p>A discrete time Markov chain <span class="math notranslate nohighlight">\(\{X_t; t=0, 1, \dots\}\)</span> is completed determined by the one-step transition probability matrix <span class="math notranslate nohighlight">\(P\)</span> and the probability distribution <span class="math notranslate nohighlight">\(\pi_0\)</span> of <span class="math notranslate nohighlight">\(X_0\)</span> at time <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<section id="transition-probability-matrix">
+<h2>Transition probability matrix<a class="headerlink" href="#transition-probability-matrix" title="Permalink to this heading">#</a></h2>
+<div class="proof theorem admonition" id="theorem-0">
+<p class="admonition-title"><span class="caption-number">Theorem 1 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(P_{ij}^n\)</span> be the transition probability that the process transits from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> at the nth transition. We have</p>
+<div class="math notranslate nohighlight">
+\[P_{ij}^n = \sum_{k=0}^\infty P_{ik}^rP_{kj}^{n-r}\]</div>
+</section>
+</div></section>
+<section id="irreducible">
+<h2>Irreducible<a class="headerlink" href="#irreducible" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span></p>
+<section class="definition-content" id="proof-content">
+<p>A Markov chain is irreducible if for any two states <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> there exists an integer <span class="math notranslate nohighlight">\(n&gt;0\)</span> such that <span class="math notranslate nohighlight">\(P_{ij}^n &gt; 0\)</span>. Otherwise, the state <span class="math notranslate nohighlight">\(i\)</span> is transient.</p>
+</section>
+</div></section>
+<section id="periodic">
+<h2>Periodic<a class="headerlink" href="#periodic" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="recurrent">
+<h2>Recurrent<a class="headerlink" href="#recurrent" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(f_{ii}^n\)</span> be the first return probability. A state <span class="math notranslate nohighlight">\(i\)</span> is recurrent if <span class="math notranslate nohighlight">\(\sum_{n=1}^\infty f_{ii}^n=1\)</span></p>
+</section>
+</div><div class="admonition-binomial-formula admonition">
+<p class="admonition-title">Binomial formula</p>
+<p>The product of two polynomial functions <span class="math notranslate nohighlight">\(K_a(x)=\sum_{i=0}^\infty a_ix^i\)</span> and <span class="math notranslate nohighlight">\(K_b(x)=\sum_{i=0}^\infty b_ix^i\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[K_a(x)K_b(x) = \sum_{i=0}^\infty c_ix^i\]</div>
+<p>where <span class="math notranslate nohighlight">\(c_i = \sum_{i=0}^n a_ib_{n-i}\)</span>.</p>
+</div>
+<p>Let <span class="math notranslate nohighlight">\(F_{ij}(s) = \sum_{n=0}^\infty f_{ij}^ns^n\)</span> and <span class="math notranslate nohighlight">\(P_{ij}(s) = \sum_{n=0}^\infty P_{ij}^ns^n\)</span> for <span class="math notranslate nohighlight">\(|s|&lt;1\)</span>, where <span class="math notranslate nohighlight">\(f_{ij}^0 = 0\)</span> and <span class="math notranslate nohighlight">\(P_{ij}^0=1\)</span>. We know that <span class="math notranslate nohighlight">\(P_{ij}^n = \sum_{k=0}^n f_{ij}^kP_{jj}^{n-k}\)</span>. Thus,</p>
+<div class="math notranslate nohighlight">
+\[F_{ii}(s)P_{ii}(s) = P_{ii}(s)-1\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[F_{ij}(s)P_{ij}(s) = P_{ij}(s)\]</div>
+<div class="proof theorem admonition" id="theorem-3">
+<p class="admonition-title"><span class="caption-number">Theorem 2 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>A state <span class="math notranslate nohighlight">\(i\)</span> is recurrent if and only if <span class="math notranslate nohighlight">\(\sum_{n=1}^\infty P_{ii}^n = \infty\)</span></p>
+</section>
+</div><ul class="simple">
+<li><p>If two states <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> commute, i.e., <span class="math notranslate nohighlight">\(i\leftrightarrow j\)</span>, and <span class="math notranslate nohighlight">\(i\)</span> is recurrent, then <span class="math notranslate nohighlight">\(j\)</span> is recurrent</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(Y_n = I_{X_n=i}\)</span>. The expected number of returns to the state <span class="math notranslate nohighlight">\(i\)</span> is <span class="math notranslate nohighlight">\(E(\sum_{n=1}^\infty Y_n) = \sum_{n=1}^\infty E(Y_n) = \sum_{n=1}^\infty P_{ii}^n\)</span></p></li>
+</ul>
+<div class="proof theorem admonition" id="theorem-4">
+<p class="admonition-title"><span class="caption-number">Theorem 3 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(Q_{ii}\)</span> be the probability of returning infinitely often to state <span class="math notranslate nohighlight">\(i\)</span>. Then the state <span class="math notranslate nohighlight">\(i\)</span> is recurrent or transient according to <span class="math notranslate nohighlight">\(Q_{ii} = 1\)</span> or 0, respectively.</p>
+</section>
+</div></section>
+<section id="limiting-probabilities">
+<h2>Limiting probabilities<a class="headerlink" href="#limiting-probabilities" title="Permalink to this heading">#</a></h2>
+<p>Consider a recurrent aperiodic irreducible Markov chain. The expected time of the first return to the state <span class="math notranslate nohighlight">\(i\)</span>, or the mean recurrent time, is <span class="math notranslate nohighlight">\(m_i = \sum_{n=1}^\infty nf_{ii}^n\)</span>. Then we have</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\rightarrow \infty} P_{ji}^n = \lim_{n\rightarrow \infty} P_{ji}^n = \frac{1}{m_i}\]</div>
+<div class="proof definition admonition" id="definition-5">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span></p>
+<section class="definition-content" id="proof-content">
+<p>If the limiting probabilities <span class="math notranslate nohighlight">\(\pi_\infty&gt;0\)</span> for all states in the recurrent class, it is called positive recurrent or <strong>strongly ergodic</strong>. If <span class="math notranslate nohighlight">\(\pi_\infty = 0\)</span> for all states in the recurrent class, it is called null recurrent or <strong>weakly ergodic</strong>.</p>
+</section>
+</div><div class="proof theorem admonition" id="theorem-6">
+<p class="admonition-title"><span class="caption-number">Theorem 4 </span> (Ergodic theorem)</p>
+<section class="theorem-content" id="proof-content">
+<p>In a positive recurrent aperiodic class, the limiting probabilities <span class="math notranslate nohighlight">\(\pi_\infty\)</span> satisfy the following equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{equation}
+\begin{cases}
+\pi_\infty = \pi_\infty P\\
+\sum\pi_\infty = 1
+\end{cases}
+\end{equation}
+\end{split}\]</div>
+</section>
+</div></section>
+<section id="absorbing-probabilities">
+<h2>Absorbing probabilities<a class="headerlink" href="#absorbing-probabilities" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(T\)</span> be the set of all transient states. We first calculate the probablity <span class="math notranslate nohighlight">\(x_i^n\)</span> that starting from a transient state <span class="math notranslate nohighlight">\(i\in T\)</span>, the process stays in the transient state <span class="math notranslate nohighlight">\(T\)</span> for the next <span class="math notranslate nohighlight">\(n\)</span> transitions,</p>
+<div class="math notranslate nohighlight">
+\[x_i^n = \sum_{j\in T} P_{ij}x_j^{n-1}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x_i^1 = \sum_{j\in T} P_{ij}\)</span>. We can show that <span class="math notranslate nohighlight">\(x_i^\infty = 0\)</span>, i.e., the absorbing probablity from a transient state into a recurrent class is 1.</p>
+<p>Let <span class="math notranslate nohighlight">\(\pi_i(C)\)</span> be the absorbing probability of the process, starting from an transient state <span class="math notranslate nohighlight">\(i\in T\)</span>, entering an aperiodic recurrent class <span class="math notranslate nohighlight">\(C\)</span>. The absorbing probabilities must satisfy the following systematic equation.</p>
+<div class="math notranslate nohighlight">
+\[\pi_i(C) = \pi_{C}^1 + \sum_{j\in T}P_{ij}\pi_j(C)\]</div>
+<div class="proof theorem admonition" id="theorem-7">
+<p class="admonition-title"><span class="caption-number">Theorem 5 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>The limiting probability that a transient state <span class="math notranslate nohighlight">\(i\in T\)</span> transits to a recurrent state <span class="math notranslate nohighlight">\(j\in C\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[\lim_{n\rightarrow \infty} P_{ij}^n = \pi_i(C)\pi_\infty(j)\]</div>
+</section>
+</div></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="preface.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Preface</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 2: Continuous time Markov chain</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transition-probability-matrix">Transition probability matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#irreducible">Irreducible</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodic">Periodic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recurrent">Recurrent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-probabilities">Limiting probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#absorbing-probabilities">Absorbing probabilities</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
