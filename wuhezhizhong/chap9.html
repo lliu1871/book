@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第九章 群体的分类 &#8212; 乌合之众</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap9';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第十章 被称为犯罪群体的群体" href="chap10.html" />
+    <link rel="prev" title="第八章 群体的信念与意见的变化范围" href="chap8.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    乌合之众目录      
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">序言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">第一章 群体的一般特征</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">第二章 群体的感情和道德观</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">第三章 群体的观念、理性与想象力</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">第四章 群体信仰所采取的宗教形式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">第五章 群体的意见与信念中的间接因素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">第六章 群体意见的直接因素</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">第七章 群体领袖及其说服的手法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">第八章 群体的信念与意见的变化范围</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">第九章 群体的分类</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">第十章 被称为犯罪群体的群体</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">第十一章 刑事案件的陪审团</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">第十二章 选民群体</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">第十三章 议会</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap9.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap9.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第九章 群体的分类</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第九章 群体的分类<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>提要：</p>
+<p>群体的一般分类/(1)异质性群体。它们的不同类型/种族的影响/群体精神敌不过种族精神/种族精神代表文明状态，群体精神代表野蛮状态。(2)同质性群体。它们的不同类型/宗派、身份团体和阶级。</p>
+<p>我们已在本书中论述了群体动理的一般特点。仍然有待说明的是，不同类型的集体在一定刺激因素的影响下变成群体时各自具有的特点。我们先用几句话来谈谈群体的分类。</p>
+<p>我们的起点是简单的人群。当许多人组成的人群是属于不同种族时，我们便看到了它最初级的形态。在这种情况下，惟一能够形成团结的共同纽带，是头领或多或少受到尊敬的意志。在几百年的时间里不断进犯罗马帝国的野蛮人，来源十分复杂，因此可以把他们作为这种人群的典型。</p>
+<p>比不同种族的个人组成的人群更高的层面，是那些在某些影响下获得了共同特征，因而最终形成一个种族的人群。它们有时表现出某些群体的特征，不过这些特征在一定程度上敌不过种族的因素。</p>
+<p>在本书阐述过的某些影响的作用下，这两种人群可以转变成有机的或心理学意义上的群体。我们把这些有机的群体分为以下两类：</p>
+<p>(1)异质性群体：a.无名称的群体(如街头群体)；b.有名称的群体(如陪审团、议会等)(2)同质性群体：a.派别(政治派别、宗教派别等)b.身份团体(军人、僧侣、劳工等)c.阶级(中产阶级、农民阶级等)我们将简单地指出这些不同类型群体的特征。</p>
+<p>(1)异质性群体本书前面研究的一直就是这种群体的特点。它们是由有着各种特点、各种职业、各种智力水平的个人组成的。</p>
+<p>我们只根据事实便已知道，人作为行动的群体中的一员，他们的集体心理与他们的个人心理有着本质的差别，而且他们的智力也会受到这种差别的影响。我们已经知道，智力在集体中不起作用，它完全处在无意识情绪的支配之下。</p>
+<p>一个基本因素，即种族的因素，使不同的异质性群体几乎完全不同。</p>
+<p>我们经常谈到种族的作用，指出它是人们行动最强大的决定因素。它的作用在群体的性格中也有迹可寻。由偶然聚集在一起的个人组成的群体，如果他们全是英国人或中国人，同有着任何不同特征但属于同一个种族的个人——如俄国人、法国人或西班牙人——组成的群体，会有很大的差别。</p>
+<p>当环境形成了一个群体，并且——虽然这种情况相当罕见——其中有着不同民族但比例大体相同的个人时，他们所继承的心理成分给人的感情和思想方式造成的巨大差异，立刻就会变得十分突出，不管让他们聚集在一起的是多么一致的利益，都会发生这种情况。社会主义者试图在大型集会中把不同国家的工人代表集合在一起的努力，最后总是以公开的分歧收场。拉丁民族的群体，不管它多么革命或多么保守，为了实现自己的要求，无一例外地求助于国家的干预。它总是倾向于集权，总是或明或暗地倾向于赞成独裁。相反，英国人或美国人的群体就不拿国家当回事，他们只求助于个人的主动精神。法国的群体特别看重平等，英国的群体则特别看重自由。这些差异解释了为何几乎有多少个国家就有多少种不同形式的社会主义和民主。</p>
+<p>由此可见，种族的气质对群体性格有着重大影响。它是一种决定性力量，限制着群体性格的变化。因此可以认为，一条基本定律就是，由于种族精神的强大，群体的次要性格相比之下并不十分重要。群体状态或支配群体的力量类似于野蛮状态，或者说是向这种状态的回归。种族正是通过获得结构稳定的集体精神，才使自身在越来越大的程度上摆脱了缺乏思考的群体力量，走出了野蛮状态。除了种族因素之外，对异质性群体最重要的分类，就是把它们分为无名称的群体——如街头群体——和有名称的群体，如精心组织起来的议会和陪审团。前一种群体缺乏责任感，而后一种群体则发挥了这种责任感，这往往使它们的行动有着很大的不同。</p>
+<p>(2)同质性群体同质性群体包括：(1)派别；(2)身份团体；(3)阶级。</p>
+<p>派别是同质性群体组织过程的第一步。一个派别包括在教育、职业和社会阶级的归属方面大不相同的个人，把他们联系在一起的是共同的信仰。这方面的例子是宗教和政治派别。身份团体是最易于组织起群体的一个因素。派别中包含着职业、教育程度和社会环境大不相同的个人，他们仅仅是被共同的信仰联系在一起，而身份团体则由职业相同的个人组成，因此他们也有相似的教养和相当一致的社会地位。这方面的例子如军人和僧侣团体。</p>
+<p>阶级是由来源不同的个人组成的，和派别有所不同，使他们结合在一起的不是共同的信仰，也不像身份团体那样，是因为相同的职业，而是某种利益、生活习惯以及几乎相同的教育。这方面的例子是中产阶级和农民阶级。</p>
+<p>本书只讨论异质性群体，把同质性群体(派别、身份团体和阶级)放在另一书本里研究，因此我不打算在这里谈论后一种群体的特点。在结束对异质性群体的研究时，我会考察一下几种典型的特殊群体。</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap8.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">第八章 群体的信念与意见的变化范围</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap10.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第十章 被称为犯罪群体的群体</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
