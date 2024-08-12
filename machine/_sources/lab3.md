@@ -10,6 +10,7 @@ jupytext:
 kernelspec:
   display_name: R
   language: R
+  version: 4.2.1
   name: ir
 ---
 
@@ -203,7 +204,7 @@ print("second class")
 which(g1<g2)
 
 print("two misclassified points")
-x[which(g1[101:200]>g2[101:200]),]
+print(x[which(g1[101:200]>g2[101:200]),])
 ```
 
 ### Regularized discriminant analysis

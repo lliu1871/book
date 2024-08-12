@@ -21,10 +21,7 @@ kernelspec:
 
 ```{code-cell}
 import gym
-env = gym.make("Taxi-v3").env
-env.render()
-```
-```{code-cell}
+env = gym.make("Taxi-v3",render_mode="rgb_array").env
 env.reset() # reset environment to a new, random state
 env.render()
 
@@ -48,30 +45,24 @@ env.P[328]
 
 ```{code-cell}
 env.s = 328  # set environment to illustration's state
-
 epochs = 0
 penalties, reward = 0, 0
-
 frames = [] # for animation
-
 done = False
 
 while not done:
     action = env.action_space.sample()
-    state, reward, done, info = env.step(action)
-
+    state, reward, done, info, _ = env.step(action)
     if reward == -10:
-        penalties += 1
-    
+        penalties += 1   
     # Put each rendered frame into dict for animation
     frames.append({
-        'frame': env.render(mode='ansi'),
+        'frame': env.render(),
         'state': state,
         'action': action,
         'reward': reward
         }
     )
-
     epochs += 1
     
     
@@ -97,6 +88,78 @@ print_frames(frames)
 ```
 
 ## Solving the enviroment with reinforcement learning
+```{code-cell}
+import numpy as np
+import gym
+import random
+
+# Initialize the FrozenLake environment
+env = gym.make("FrozenLake-v1", is_slippery=True)
+
+# Define Q-table and parameters
+action_space_size = env.action_space.n
+state_space_size = env.observation_space.n
+q_table = np.zeros((state_space_size, action_space_size))
+
+# Hyperparameters
+num_episodes = 10000
+max_steps_per_episode = 100
+
+learning_rate = 0.1
+discount_rate = 0.99
+exploration_rate = 1.0
+max_exploration_rate = 1.0
+min_exploration_rate = 0.01
+exploration_decay_rate = 0.001
+
+# Training the agent
+for episode in range(num_episodes):
+    state = env.reset()
+    done = False
+    for step in range(max_steps_per_episode):
+        # Exploration-exploitation trade-off
+        exploration_threshold = random.uniform(0, 1)
+        if exploration_threshold > exploration_rate:
+            action = np.argmax(q_table[state, :])
+        else:
+            action = env.action_space.sample()
+
+        # Take action and observe the reward
+        new_state, reward, done, info, _ = env.step(action)
+
+        # Update Q-table
+        q_table[state, action] = q_table[state, action] * (1 - learning_rate) + \
+            learning_rate * (reward + discount_rate * np.max(q_table[new_state, :]))
+
+        state = new_state
+
+        if done:
+            break
+
+    # Exploration rate decay
+    exploration_rate = min_exploration_rate + \
+        (max_exploration_rate - min_exploration_rate) * np.exp(-exploration_decay_rate * episode)
+
+# Test the agent
+num_test_episodes = 10
+for episode in range(num_test_episodes):
+    state = env.reset()
+    done = False
+    print(f"Episode {episode + 1}:\n\n")
+    for step in range(max_steps_per_episode):
+        env.render()
+        action = np.argmax(q_table[state, :])
+        new_state, reward, done, info, _ = env.step(action)
+        state = new_state
+        if done:
+            if reward == 1:
+                print("Reached the goal!")
+            else:
+                print("Fell into a hole!")
+            break
+
+env.close()
+```
 
 ```{code-cell}
 import numpy as np
@@ -114,7 +177,7 @@ epsilon = 0.1
 all_epochs = []
 all_penalties = []
 
-for i in range(1, 100001):
+for i in range(1, 10000):
     state = env.reset()
 
     epochs, penalties, reward, = 0, 0, 0
@@ -126,13 +189,13 @@ for i in range(1, 100001):
         else:
             action = np.argmax(q_table[state]) # Exploit learned values
 
-        next_state, reward, done, info = env.step(action) 
+        next_state, reward, done, info, _ = env.step(action) 
         
-        old_value = q_table[state, action]
+        old_value = q_table[state[0], action]
         next_max = np.max(q_table[next_state])
         
         new_value = (1 - alpha) * old_value + alpha * (reward + gamma * next_max)
-        q_table[state, action] = new_value
+        q_table[state[0], action] = new_value
 
         if reward == -10:
             penalties += 1
@@ -147,7 +210,7 @@ for i in range(1, 100001):
 print("Training finished.\n")
 ```
 
-### Q-table has been established over 100,000 episodes
+### Q-table has been established over 1000 episodes
 
 ```{code-cell}
 q_table[328]
@@ -169,7 +232,7 @@ while not done:
     #action = env.action_space.sample()
     #state, reward, done, info = env.step(action)
     action = np.argmax(q_table[env.s])
-    state, reward, done, info = env.step(action)
+    state, reward, done, info, _ = env.step(action)
 
     if reward == -10:
         penalties += 1
@@ -200,8 +263,8 @@ for _ in range(episodes):
     done = False
     
     while not done:
-        action = np.argmax(q_table[state])
-        state, reward, done, info = env.step(action)
+        action = np.argmax(q_table[state[0]])
+        state, reward, done, info, _ = env.step(action)
 
         if reward == -10:
             penalties += 1

@@ -17,6 +17,40 @@ kernelspec:
 
 
 ## Linear Discrimination Analysis
+```{code-cell}
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load dataset (Iris dataset for example)
+data = load_iris()
+X = data.data
+print(X)
+y = data.target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Create LDA model
+lda = LinearDiscriminantAnalysis()
+
+# Fit the model to the training data
+lda.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = lda.predict(X_test)
+
+# Calculate the accuracy of the model
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Optional: print the LDA coefficients
+print("LDA Coefficients:")
+print(lda.coef_)
+```
+
 
 ```{code-cell}
 print(__doc__)
@@ -119,9 +153,7 @@ def plot_ellipse(splot, mean, cov, color):
     angle = np.arctan(u[1] / u[0])
     angle = 180 * angle / np.pi  # convert to degrees
     # filled Gaussian at 2 standard deviation
-    ell = mpl.patches.Ellipse(mean, 2 * v[0] ** 0.5, 2 * v[1] ** 0.5,
-                              180 + angle, facecolor=color,
-                              edgecolor='black', linewidth=2)
+    ell = mpl.patches.Ellipse(mean, width=2 * v[0] ** 0.5, height=2 * v[1] ** 0.5, angle=180 + angle, facecolor=color, edgecolor='black', linewidth=2.0)
     ell.set_clip_box(splot.bbox)
     ell.set_alpha(0.2)
     splot.add_artist(ell)

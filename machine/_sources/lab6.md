@@ -471,6 +471,7 @@ where $w(u)$ is an indicator function whether the point $x^t$ is in the neighbor
 from pandas import read_csv
 from matplotlib import pyplot
 series = read_csv('https://book.phylolab.net/machine_learning_data/daily-total-female-births.csv', header=0, index_col=0)
+
 print(series.head())
 series.plot()
 pyplot.show()

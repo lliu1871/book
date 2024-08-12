@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 6: Nonparametric Methods &#8212; Machine Learning</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,554 +64,346 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab6';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lab 7: Decision Trees" href="lab7.html" />
     <link rel="prev" title="Lab 5: Clustering" href="lab5.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Machine Learning</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents      
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab1.html">
-   Lab 1: Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab2.html">
-   Lab 2: Supervised Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab3.html">
-   Lab 3: Multivariate Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab4.html">
-   Lab 4: Dimensionality Reduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab5.html">
-   Lab 5: Clustering
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lab 6: Nonparametric Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab7.html">
-   Lab 7: Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab8.html">
-   Lab 8: Linear Discrimination
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab9.html">
-   Lab 9: Neural network
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab10.html">
-   Lab 10: Local Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab11.html">
-   Lab 11: Kernel Machines
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab12.html">
-   Lab 12: Hidden Markov Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab13.html">
-   Lab 13: Reinforcement Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab14.html">
-   Lab 14: Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Applications</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab6.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab6.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab6.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/lab6.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/lab6.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonparametric-density-estimation">
-   Nonparametric density estimation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram-estimator">
-     Histogram estimator
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kernel-estimator">
-     Kernel estimator
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-all-available-kernels">
-       Plot all available kernels
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-a-1d-density">
-       Plot a 1D density
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#kde-on-a-sphere">
-       KDE on a sphere
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-nearest-neighbor-estimator">
-     k-nearest neighbor estimator
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#density-estimation-for-multivariate-data">
-     Density estimation for multivariate data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonparametric-classification">
-   Nonparametric classification
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonparametric-regression-smoothing-models">
-   Nonparametric regression: smoothing models
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#running-mean-smoother">
-     Running mean smoother
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kernel-smoother">
-     Kernel smoother
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#running-line-smoother">
-     Running line smoother
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-choose-the-smoothing-parameter">
-   How to choose the smoothing parameter
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 6: Nonparametric Methods</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonparametric-density-estimation">
-   Nonparametric density estimation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram-estimator">
-     Histogram estimator
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kernel-estimator">
-     Kernel estimator
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-all-available-kernels">
-       Plot all available kernels
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plot-a-1d-density">
-       Plot a 1D density
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#kde-on-a-sphere">
-       KDE on a sphere
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-nearest-neighbor-estimator">
-     k-nearest neighbor estimator
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#density-estimation-for-multivariate-data">
-     Density estimation for multivariate data
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonparametric-classification">
-   Nonparametric classification
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nonparametric-regression-smoothing-models">
-   Nonparametric regression: smoothing models
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#running-mean-smoother">
-     Running mean smoother
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#kernel-smoother">
-     Kernel smoother
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#running-line-smoother">
-     Running line smoother
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#how-to-choose-the-smoothing-parameter">
-   How to choose the smoothing parameter
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 6: Nonparametric Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-density-estimation">Nonparametric density estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-estimator">Histogram estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-estimator">Kernel estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-all-available-kernels">Plot all available kernels</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-1d-density">Plot a 1D density</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kde-on-a-sphere">KDE on a sphere</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor-estimator">k-nearest neighbor estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-estimation-for-multivariate-data">Density estimation for multivariate data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-classification">Nonparametric classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-regression-smoothing-models">Nonparametric regression: smoothing models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-mean-smoother">Running mean smoother</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-smoother">Kernel smoother</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-line-smoother">Running line smoother</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-choose-the-smoothing-parameter">How to choose the smoothing parameter</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="lab-6-nonparametric-methods">
-<h1>Lab 6: Nonparametric Methods<a class="headerlink" href="#lab-6-nonparametric-methods" title="Permalink to this headline">#</a></h1>
+<h1>Lab 6: Nonparametric Methods<a class="headerlink" href="#lab-6-nonparametric-methods" title="Permalink to this heading">#</a></h1>
 <p>In nonparametric estimation, we assume that similar inputs have similar outputs. Therefore, the nonparametric algorithm is composed of finding the similar past instances from teh training set using a suitable distance measure and interpolating from them to find the right output.</p>
 <section id="nonparametric-density-estimation">
-<h2>Nonparametric density estimation<a class="headerlink" href="#nonparametric-density-estimation" title="Permalink to this headline">#</a></h2>
+<h2>Nonparametric density estimation<a class="headerlink" href="#nonparametric-density-estimation" title="Permalink to this heading">#</a></h2>
 <p>Given the sample <span class="math notranslate nohighlight">\(X\)</span> in the training set, the cumulative distribution function can be estimated by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\hat{F}(x) = \frac{\\{x^t \le x\}}{N}\end{split}\]</div>
@@ -608,7 +411,7 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[\begin{split}\hat{p}(x) = \frac{1}{h}\big{[}\frac{\\{x^t \le x+h\}-\#\{x^t\le x\}}{N}\big{]}\end{split}\]</div>
 <section id="histogram-estimator">
-<h3>Histogram estimator<a class="headerlink" href="#histogram-estimator" title="Permalink to this headline">#</a></h3>
+<h3>Histogram estimator<a class="headerlink" href="#histogram-estimator" title="Permalink to this heading">#</a></h3>
 <p>The input space is divided into equal-sized intervals called bins <span class="math notranslate nohighlight">\(\{B_i: i=1,...,k\}\)</span>. The histogram estimator for <span class="math notranslate nohighlight">\(p(x)\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\hat{p}(x) = \frac{\\{x^t\in B_x \}}{Nh}\end{split}\]</div>
@@ -632,12 +435,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_1_0.png" src="_images/lab6_1_0.png" />
+<img alt="_images/23d9e0489a89f0caed446c5828554175e71845dca9c26a3235307ae19d608dc6.png" src="_images/23d9e0489a89f0caed446c5828554175e71845dca9c26a3235307ae19d608dc6.png" />
 </div>
 </div>
 </section>
 <section id="kernel-estimator">
-<h3>Kernel estimator<a class="headerlink" href="#kernel-estimator" title="Permalink to this headline">#</a></h3>
+<h3>Kernel estimator<a class="headerlink" href="#kernel-estimator" title="Permalink to this heading">#</a></h3>
 <p>The weights in the naive estimator is replaced by a probability distribution <span class="math notranslate nohighlight">\(k(x^t|h,x)\)</span> called kernel. Typically, the kernel is symmetric about <span class="math notranslate nohighlight">\(x\)</span> and truncated by the interval <span class="math notranslate nohighlight">\([x-3h, x+3h]\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[\hat{p}(x) = \frac{1}{Nh}\sum_{t=1}^Nk\big{(}\frac{x-x^t}{h}\big{)}\]</div>
@@ -703,15 +506,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Python37\lib\site-packages\ipykernel_launcher.py:9: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
-  if __name__ == &quot;__main__&quot;:
-</pre></div>
-</div>
-<img alt="_images/lab6_3_1.png" src="_images/lab6_3_1.png" />
+<img alt="_images/a1d24c935281baa288145543996f4f7711c3c774be4975decee9243e340e6fae.png" src="_images/a1d24c935281baa288145543996f4f7711c3c774be4975decee9243e340e6fae.png" />
 </div>
 </div>
 <section id="plot-all-available-kernels">
-<h4>Plot all available kernels<a class="headerlink" href="#plot-all-available-kernels" title="Permalink to this headline">#</a></h4>
+<h4>Plot all available kernels<a class="headerlink" href="#plot-all-available-kernels" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_plot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
@@ -753,12 +552,12 @@ title="Print to PDF"
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Available Kernels&#39;)
 </pre></div>
 </div>
-<img alt="_images/lab6_5_1.png" src="_images/lab6_5_1.png" />
+<img alt="_images/cd970fa85e50ac0503643f380e662c1d1b4706461936d122f215e3e441b59698.png" src="_images/cd970fa85e50ac0503643f380e662c1d1b4706461936d122f215e3e441b59698.png" />
 </div>
 </div>
 </section>
 <section id="plot-a-1d-density">
-<h4>Plot a 1D density<a class="headerlink" href="#plot-a-1d-density" title="Permalink to this headline">#</a></h4>
+<h4>Plot a 1D density<a class="headerlink" href="#plot-a-1d-density" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
@@ -796,12 +595,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_7_0.png" src="_images/lab6_7_0.png" />
+<img alt="_images/fbcab3ab5336c7be6400c6f96a8c88d4ff1ab158748f5596788ec92cf950f96d.png" src="_images/fbcab3ab5336c7be6400c6f96a8c88d4ff1ab158748f5596788ec92cf950f96d.png" />
 </div>
 </div>
 </section>
 <section id="kde-on-a-sphere">
-<h4>KDE on a sphere<a class="headerlink" href="#kde-on-a-sphere" title="Permalink to this headline">#</a></h4>
+<h4>KDE on a sphere<a class="headerlink" href="#kde-on-a-sphere" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -823,7 +622,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
 
 <span class="k">def</span> <span class="nf">construct_grids</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct the map grid from the batch object</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the map grid from the batch object</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -872,7 +671,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_11_0.png" src="_images/lab6_11_0.png" />
+<img alt="_images/3ed4ce796eebbe65dea3c3910006dbc54928289f0aab5819b114a91ca24cca40.png" src="_images/3ed4ce796eebbe65dea3c3910006dbc54928289f0aab5819b114a91ca24cca40.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -889,7 +688,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_12_0.png" src="_images/lab6_12_0.png" />
+<img alt="_images/48739c72e7bc1a444c12d720e0a4ceb4ac7c8cb2d337c37e871844cfa8a07bf9.png" src="_images/48739c72e7bc1a444c12d720e0a4ceb4ac7c8cb2d337c37e871844cfa8a07bf9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -908,7 +707,7 @@ title="Print to PDF"
     <span class="n">basemap</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">def</span> <span class="nf">construct_grids</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Construct the map grid from the batch object</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct the map grid from the batch object</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1007,13 +806,13 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> - plot coastlines using basemap
 </pre></div>
 </div>
-<img alt="_images/lab6_13_3.png" src="_images/lab6_13_3.png" />
+<img alt="_images/23f63604807e80812d2edd13893424f5ce0926071f509cf41abfc0b5d0c74c30.png" src="_images/23f63604807e80812d2edd13893424f5ce0926071f509cf41abfc0b5d0c74c30.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="k-nearest-neighbor-estimator">
-<h3>k-nearest neighbor estimator<a class="headerlink" href="#k-nearest-neighbor-estimator" title="Permalink to this headline">#</a></h3>
+<h3>k-nearest neighbor estimator<a class="headerlink" href="#k-nearest-neighbor-estimator" title="Permalink to this heading">#</a></h3>
 <p>Let <span class="math notranslate nohighlight">\(d_k(x)\)</span> be the minimum radius of an open ball of <span class="math notranslate nohighlight">\(x\)</span> that covers <span class="math notranslate nohighlight">\(k\)</span> points. The k-nearest neighbor density estimate is given by</p>
 <div class="math notranslate nohighlight">
 \[\hat{p}(x) = \frac{k}{2Nd_k(x)}\]</div>
@@ -1040,7 +839,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_15_0.png" src="_images/lab6_15_0.png" />
+<img alt="_images/ff358abe3ab4118ce52126314dc197d605f577304b2964bd5d1dc5b252a7a191.png" src="_images/ff358abe3ab4118ce52126314dc197d605f577304b2964bd5d1dc5b252a7a191.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1059,7 +858,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="density-estimation-for-multivariate-data">
-<h3>Density estimation for multivariate data<a class="headerlink" href="#density-estimation-for-multivariate-data" title="Permalink to this headline">#</a></h3>
+<h3>Density estimation for multivariate data<a class="headerlink" href="#density-estimation-for-multivariate-data" title="Permalink to this heading">#</a></h3>
 <p>Given a sample of <span class="math notranslate nohighlight">\(p\)</span>-dimensional obvservations <span class="math notranslate nohighlight">\(X=\{x^t\}_{t=1}^N\)</span>, the multivariate kernel density estimator is</p>
 <div class="math notranslate nohighlight">
 \[\hat{p}(x) = \frac{1}{Nh^p}\sum_{t=1}^N K\big{(}\frac{x-x^t}{h}\big{)}\]</div>
@@ -1093,13 +892,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_18_0.png" src="_images/lab6_18_0.png" />
+<img alt="_images/2def414765ed8c26aa94e8add1bfc98a784dd289d1da9dbe8bbbfed7fb4005ef.png" src="_images/2def414765ed8c26aa94e8add1bfc98a784dd289d1da9dbe8bbbfed7fb4005ef.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="nonparametric-classification">
-<h2>Nonparametric classification<a class="headerlink" href="#nonparametric-classification" title="Permalink to this headline">#</a></h2>
+<h2>Nonparametric classification<a class="headerlink" href="#nonparametric-classification" title="Permalink to this heading">#</a></h2>
 <p>The kernel estimator of the class-conditional density <span class="math notranslate nohighlight">\(P(x|C_i)\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[\hat{p}(x) = \frac{1}{N_ih^p}\sum_{t=1}^N K\big{(}\frac{x-x^t}{h}\big{)}r_i^t\]</div>
@@ -1114,13 +913,13 @@ title="Print to PDF"
 \[\hat{P}(C_i|x) = \frac{k_i}{k}\]</div>
 </section>
 <section id="nonparametric-regression-smoothing-models">
-<h2>Nonparametric regression: smoothing models<a class="headerlink" href="#nonparametric-regression-smoothing-models" title="Permalink to this headline">#</a></h2>
+<h2>Nonparametric regression: smoothing models<a class="headerlink" href="#nonparametric-regression-smoothing-models" title="Permalink to this heading">#</a></h2>
 <p>In regression, given the training set <span class="math notranslate nohighlight">\(X=\{x^t,r^t\}\)</span> where <span class="math notranslate nohighlight">\(r^t\in R\)</span>, we assume</p>
 <div class="math notranslate nohighlight">
 \[r^t = g(x^t)+\epsilon\]</div>
 <p>We assume that <span class="math notranslate nohighlight">\(g(.)\)</span> is a smooth function. In nonparametric regrssion, we will estimate the function <span class="math notranslate nohighlight">\(g(x)\)</span> locally by the nearby points of <span class="math notranslate nohighlight">\(x\)</span></p>
 <section id="running-mean-smoother">
-<h3>Running mean smoother<a class="headerlink" href="#running-mean-smoother" title="Permalink to this headline">#</a></h3>
+<h3>Running mean smoother<a class="headerlink" href="#running-mean-smoother" title="Permalink to this heading">#</a></h3>
 <p>The function <span class="math notranslate nohighlight">\(g(x)\)</span> is estimated by the moving average</p>
 <div class="math notranslate nohighlight">
 \[\hat{g}(x) = \frac{\sum_{t=1}^Nw\big{(}\frac{x-x^t}{h}\big{)}r^t}{\sum_{t=1}^{N}w\big{(}\frac{x-x^t}{h}\big{)}}\]</div>
@@ -1130,6 +929,7 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_csv</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
 <span class="n">series</span> <span class="o">=</span> <span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://book.phylolab.net/machine_learning_data/daily-total-female-births.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">series</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="n">series</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1146,7 +946,7 @@ Date
 1959-01-05      44
 </pre></div>
 </div>
-<img alt="_images/lab6_20_1.png" src="_images/lab6_20_1.png" />
+<img alt="_images/fd613e5d7455bf40e75614b0177adae9d88db59685b17631b4868019f4bdacb0.png" src="_images/fd613e5d7455bf40e75614b0177adae9d88db59685b17631b4868019f4bdacb0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1162,12 +962,12 @@ Date
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_21_0.png" src="_images/lab6_21_0.png" />
+<img alt="_images/4fd6b17a46c61adc01774d1a999b9806c2b296af720130ff2ed7a3e70deb7e52.png" src="_images/4fd6b17a46c61adc01774d1a999b9806c2b296af720130ff2ed7a3e70deb7e52.png" />
 </div>
 </div>
 </section>
 <section id="kernel-smoother">
-<h3>Kernel smoother<a class="headerlink" href="#kernel-smoother" title="Permalink to this headline">#</a></h3>
+<h3>Kernel smoother<a class="headerlink" href="#kernel-smoother" title="Permalink to this heading">#</a></h3>
 <p>The function <span class="math notranslate nohighlight">\(g(x)\)</span> is estimated by the moving average</p>
 <div class="math notranslate nohighlight">
 \[\hat{g}(x) = \frac{\sum_{t=1}^NK\big{(}\frac{x-x^t}{h}\big{)}r^t}{\sum_{t=1}^{N}K\big{(}\frac{x-x^t}{h}\big{)}}\]</div>
@@ -1182,7 +982,7 @@ Date
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_23_0.png" src="_images/lab6_23_0.png" />
+<img alt="_images/df158b6c23aa4f16e882cc6de1e2f30c79a0fdd9fcc5cc9ced26128626b335d8.png" src="_images/df158b6c23aa4f16e882cc6de1e2f30c79a0fdd9fcc5cc9ced26128626b335d8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1195,18 +995,18 @@ Date
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_24_0.png" src="_images/lab6_24_0.png" />
+<img alt="_images/9adc0c4f30af399ffe33f921723556ca15d5ad8805219c507ef6381eb46159de.png" src="_images/9adc0c4f30af399ffe33f921723556ca15d5ad8805219c507ef6381eb46159de.png" />
 </div>
 </div>
 </section>
 <section id="running-line-smoother">
-<h3>Running line smoother<a class="headerlink" href="#running-line-smoother" title="Permalink to this headline">#</a></h3>
+<h3>Running line smoother<a class="headerlink" href="#running-line-smoother" title="Permalink to this heading">#</a></h3>
 <p>Instead of taking an average, we can fit a local linear regression line using the neighbors of <span class="math notranslate nohighlight">\(x\)</span> and then estimate <span class="math notranslate nohighlight">\(g(x)\)</span> from the regression line.</p>
 <p>In the locally weighted running line smoother (loess), instead of a hard definition of neighborhoods, we use kernel weighting such that distant points have less effect on error.</p>
 </section>
 </section>
 <section id="how-to-choose-the-smoothing-parameter">
-<h2>How to choose the smoothing parameter<a class="headerlink" href="#how-to-choose-the-smoothing-parameter" title="Permalink to this headline">#</a></h2>
+<h2>How to choose the smoothing parameter<a class="headerlink" href="#how-to-choose-the-smoothing-parameter" title="Permalink to this heading">#</a></h2>
 <p>In nonparametric methods, choosing the correct smoothing parameters are important in oversmoothing or undersmoothing problems.</p>
 <p>A regularized cost function as used in smoothing splines</p>
 <div class="math notranslate nohighlight">
@@ -1232,7 +1032,7 @@ Date
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab6_26_0.png" src="_images/lab6_26_0.png" />
+<img alt="_images/f1304a05a3241af7cc4832859a541aebad8fb2b9710bafb396369cf7000e2d29.png" src="_images/f1304a05a3241af7cc4832859a541aebad8fb2b9710bafb396369cf7000e2d29.png" />
 </div>
 </div>
 </section>
@@ -1250,7 +1050,7 @@ Date
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1258,50 +1058,124 @@ Date
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lab5.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lab 5: Clustering</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 5: Clustering</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="lab7.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="lab7.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Lab 7: Decision Trees</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-density-estimation">Nonparametric density estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram-estimator">Histogram estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-estimator">Kernel estimator</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-all-available-kernels">Plot all available kernels</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-a-1d-density">Plot a 1D density</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kde-on-a-sphere">KDE on a sphere</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-nearest-neighbor-estimator">k-nearest neighbor estimator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#density-estimation-for-multivariate-data">Density estimation for multivariate data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-classification">Nonparametric classification</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nonparametric-regression-smoothing-models">Nonparametric regression: smoothing models</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-mean-smoother">Running mean smoother</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-smoother">Kernel smoother</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-line-smoother">Running line smoother</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-choose-the-smoothing-parameter">How to choose the smoothing parameter</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

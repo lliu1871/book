@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 5: Clustering &#8212; Machine Learning</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,618 +64,370 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab5';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lab 6: Nonparametric Methods" href="lab6.html" />
     <link rel="prev" title="Lab 4: Dimensionality Reduction" href="lab4.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Machine Learning</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents      
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab1.html">
-   Lab 1: Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab2.html">
-   Lab 2: Supervised Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab3.html">
-   Lab 3: Multivariate Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab4.html">
-   Lab 4: Dimensionality Reduction
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lab 5: Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab6.html">
-   Lab 6: Nonparametric Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab7.html">
-   Lab 7: Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab8.html">
-   Lab 8: Linear Discrimination
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab9.html">
-   Lab 9: Neural network
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab10.html">
-   Lab 10: Local Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab11.html">
-   Lab 11: Kernel Machines
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab12.html">
-   Lab 12: Hidden Markov Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab13.html">
-   Lab 13: Reinforcement Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab14.html">
-   Lab 14: Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Applications</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab5.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab5.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/lab5.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/lab5.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#k-means-clustering">
-   k-means clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-algorithm-for-clustering-points">
-     K-means algorithm for clustering points
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-on-digits">
-     k-means on digits
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#load-data">
-       load data
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#perform-kmeans-clustering">
-       perform kmeans clustering
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-result">
-       visualizing result
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expectation-maximization-algorithm">
-   Expectation-Maximization algorithm
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gmm-for-clustering">
-   GMM for clustering
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mixture-of-latent-variable-models">
-   Mixture of Latent Variable Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#supervised-learning-after-clustering">
-   Supervised learning after clustering
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering">
-   Hierarchical clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clustering-digits">
-     Clustering digits
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       load data
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-clusters">
-       Visualizing clusters
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#computing-embedding">
-       Computing embedding
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Hierarchical clustering
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#choosing-k-the-number-of-clusters">
-   Choosing k the number of clusters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#silhouette-analysis">
-     Silhouette analysis
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 5: Clustering</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#k-means-clustering">
-   k-means clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-algorithm-for-clustering-points">
-     K-means algorithm for clustering points
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#k-means-on-digits">
-     k-means on digits
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#load-data">
-       load data
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#perform-kmeans-clustering">
-       perform kmeans clustering
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-result">
-       visualizing result
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#expectation-maximization-algorithm">
-   Expectation-Maximization algorithm
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gmm-for-clustering">
-   GMM for clustering
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mixture-of-latent-variable-models">
-   Mixture of Latent Variable Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#supervised-learning-after-clustering">
-   Supervised learning after clustering
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hierarchical-clustering">
-   Hierarchical clustering
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#clustering-digits">
-     Clustering digits
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id1">
-       load data
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualizing-clusters">
-       Visualizing clusters
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#computing-embedding">
-       Computing embedding
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       Hierarchical clustering
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#choosing-k-the-number-of-clusters">
-   Choosing k the number of clusters
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#silhouette-analysis">
-     Silhouette analysis
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 5: Clustering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">k-means clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-algorithm-for-clustering-points">K-means algorithm for clustering points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-on-digits">k-means on digits</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">load data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perform-kmeans-clustering">perform kmeans clustering</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-result">visualizing result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-maximization-algorithm">Expectation-Maximization algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gmm-for-clustering">GMM for clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixture-of-latent-variable-models">Mixture of Latent Variable Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-after-clustering">Supervised learning after clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering">Hierarchical clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-digits">Clustering digits</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">load data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-clusters">Visualizing clusters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-embedding">Computing embedding</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hierarchical clustering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-k-the-number-of-clusters">Choosing k the number of clusters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-analysis">Silhouette analysis</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="lab-5-clustering">
-<h1>Lab 5: Clustering<a class="headerlink" href="#lab-5-clustering" title="Permalink to this headline">#</a></h1>
+<h1>Lab 5: Clustering<a class="headerlink" href="#lab-5-clustering" title="Permalink to this heading">#</a></h1>
 <p>Let <span class="math notranslate nohighlight">\(C_i: i=1,...,k\)</span> be <span class="math notranslate nohighlight">\(k\)</span> classes and <span class="math notranslate nohighlight">\(P(x|C_i)\)</span> be the probability density function of a data point <span class="math notranslate nohighlight">\(x\)</span> given the class <span class="math notranslate nohighlight">\(C_i\)</span>. Let <span class="math notranslate nohighlight">\(P(C_i)\)</span> be the probability of the class <span class="math notranslate nohighlight">\(C_i\)</span>. The marginal density is</p>
 <div class="math notranslate nohighlight">
 \[P(x) = \sum_i P(X|C_i)P(C_i)\]</div>
 <p>In the supervised cases, where the <span class="math notranslate nohighlight">\(k\)</span> classes are given, the density function and the probability of the class <span class="math notranslate nohighlight">\(C_i\)</span> can be estimated from the training set.</p>
 <p>This chapter focuses on the unsupervised learning problem where the labels are not given and we will discuss two algorithms - k-means clustering and Expectation-Maximization algorithm</p>
 <section id="k-means-clustering">
-<h2>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this headline">#</a></h2>
+<h2>k-means clustering<a class="headerlink" href="#k-means-clustering" title="Permalink to this heading">#</a></h2>
 <p>Given k, the k-means algorithm includes two major steps. In step 1, given k means <span class="math notranslate nohighlight">\(\{m_i\}\)</span>, a data point <span class="math notranslate nohighlight">\(x\)</span> is assigned to class <span class="math notranslate nohighlight">\(i\)</span> if</p>
 <div class="math notranslate nohighlight">
 \[||x-m_i|| = min_j||x-m_j||\]</div>
 <p>In step 2, given the assignments we update the k means <span class="math notranslate nohighlight">\(\{m_i\}\)</span> by the average of the assigned data points for class <span class="math notranslate nohighlight">\(C_i\)</span>. We iteratively update the assignments and k means until they converge.</p>
 <p>The k-means algorithm highly depend on the initial <span class="math notranslate nohighlight">\(m_i\)</span>. To overcome this problem we may</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>take random numbers as the initial <span class="math notranslate nohighlight">\(m_i\)</span></p></li>
 <li><p>calculate the overall mean and small random vectors may be added to the overall mean to get the k initial <span class="math notranslate nohighlight">\(m_i\)</span></p></li>
 <li><p>calculate the PCA and devide its range into k equal intervals partitioning the data into k groups</p></li>
 </ol>
 <section id="k-means-algorithm-for-clustering-points">
-<h3>K-means algorithm for clustering points<a class="headerlink" href="#k-means-algorithm-for-clustering-points" title="Permalink to this headline">#</a></h3>
+<h3>K-means algorithm for clustering points<a class="headerlink" href="#k-means-algorithm-for-clustering-points" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -680,7 +443,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab5_1_0.png" src="_images/lab5_1_0.png" />
+<img alt="_images/b91940608a853ec6f91282f75836327ff83e18b42913e58a60040ba8074ac25d.png" src="_images/b91940608a853ec6f91282f75836327ff83e18b42913e58a60040ba8074ac25d.png" />
 </div>
 </div>
 <p>By eye, it is relatively easy to pick out the four clusters. The k-means algorithm does this automatically, and in Scikit-Learn uses the typical estimator API:</p>
@@ -699,14 +462,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab5_3_0.png" src="_images/lab5_3_0.png" />
+<img alt="_images/4486bae2c6b6e7abef9796c1a836fe80346d7d2d0ad11dc4b7a26342d9dfbf19.png" src="_images/4486bae2c6b6e7abef9796c1a836fe80346d7d2d0ad11dc4b7a26342d9dfbf19.png" />
 </div>
 </div>
 </section>
 <section id="k-means-on-digits">
-<h3>k-means on digits<a class="headerlink" href="#k-means-on-digits" title="Permalink to this headline">#</a></h3>
+<h3>k-means on digits<a class="headerlink" href="#k-means-on-digits" title="Permalink to this heading">#</a></h3>
 <section id="load-data">
-<h4>load data<a class="headerlink" href="#load-data" title="Permalink to this headline">#</a></h4>
+<h4>load data<a class="headerlink" href="#load-data" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
@@ -723,7 +486,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="perform-kmeans-clustering">
-<h4>perform kmeans clustering<a class="headerlink" href="#perform-kmeans-clustering" title="Permalink to this headline">#</a></h4>
+<h4>perform kmeans clustering<a class="headerlink" href="#perform-kmeans-clustering" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -740,7 +503,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="visualizing-result">
-<h4>visualizing result<a class="headerlink" href="#visualizing-result" title="Permalink to this headline">#</a></h4>
+<h4>visualizing result<a class="headerlink" href="#visualizing-result" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -752,7 +515,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab5_9_0.png" src="_images/lab5_9_0.png" />
+<img alt="_images/9a35df8f4eedd2fee88bea195d7b909b0da83319af6e1b5b9750b16a72adbbef.png" src="_images/9a35df8f4eedd2fee88bea195d7b909b0da83319af6e1b5b9750b16a72adbbef.png" />
 </div>
 </div>
 <p>We see that even without the labels, KMeans is able to find clusters whose centers are recognizable digits, with perhaps the exception of 1 and 8.</p>
@@ -776,7 +539,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7935447968836951
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7440178074568725
 </pre></div>
 </div>
 </div>
@@ -795,14 +558,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab5_14_0.png" src="_images/lab5_14_0.png" />
+<img alt="_images/37c5531de427c520d8e9668b21e61dd8e991924a9e67aa7a702c0e158a31364e.png" src="_images/37c5531de427c520d8e9668b21e61dd8e991924a9e67aa7a702c0e158a31364e.png" />
 </div>
 </div>
 </section>
 </section>
 </section>
 <section id="expectation-maximization-algorithm">
-<h2>Expectation-Maximization algorithm<a class="headerlink" href="#expectation-maximization-algorithm" title="Permalink to this headline">#</a></h2>
+<h2>Expectation-Maximization algorithm<a class="headerlink" href="#expectation-maximization-algorithm" title="Permalink to this heading">#</a></h2>
 <p>Given the density function <span class="math notranslate nohighlight">\(P(x|C_i)\)</span> and the class probability <span class="math notranslate nohighlight">\(P(C_i)\)</span>, the loglikelihood is given by</p>
 <div class="math notranslate nohighlight">
 \[\sum_tlog\big{\{}\sum_{i=1}^kP(x^t|C_i)P(C_i)\big{\}}\]</div>
@@ -811,7 +574,7 @@ title="Print to PDF"
 <p>In the maximization step, the model parameters for class <span class="math notranslate nohighlight">\(C_i\)</span> are estimated using ML and the probablity <span class="math notranslate nohighlight">\(P(C_i)\)</span> of class <span class="math notranslate nohighlight">\(i\)</span> is estimated by the proportion of data points in the class <span class="math notranslate nohighlight">\(C_i\)</span>.</p>
 </section>
 <section id="gmm-for-clustering">
-<h2>GMM for clustering<a class="headerlink" href="#gmm-for-clustering" title="Permalink to this headline">#</a></h2>
+<h2>GMM for clustering<a class="headerlink" href="#gmm-for-clustering" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
@@ -825,14 +588,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.026 0.002 0.972 0.   ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.002 0.    0.972 0.026]
+ [0.    1.    0.    0.   ]
  [0.    0.    0.    1.   ]
- [1.    0.    0.    0.   ]
- [0.    0.    0.    1.   ]
- [0.001 0.    0.999 0.   ]]
+ [0.    1.    0.    0.   ]
+ [0.    0.    0.999 0.001]]
 </pre></div>
 </div>
-<img alt="_images/lab5_16_1.png" src="_images/lab5_16_1.png" />
+<img alt="_images/1cd121e223e503e0548592d13db6a68ba3e7882d91cc2679eba7b541f9b1c219.png" src="_images/1cd121e223e503e0548592d13db6a68ba3e7882d91cc2679eba7b541f9b1c219.png" />
 </div>
 </div>
 <p>Plot points, making the size of each point proportional to the certainty of its prediction</p>
@@ -844,32 +607,32 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab5_18_0.png" src="_images/lab5_18_0.png" />
+<img alt="_images/ac894b394ef14203ce4b8ae7b8952bd0d3c40d4121c413326a61f5ad9df62c07.png" src="_images/ac894b394ef14203ce4b8ae7b8952bd0d3c40d4121c413326a61f5ad9df62c07.png" />
 </div>
 </div>
 </section>
 <section id="mixture-of-latent-variable-models">
-<h2>Mixture of Latent Variable Models<a class="headerlink" href="#mixture-of-latent-variable-models" title="Permalink to this headline">#</a></h2>
+<h2>Mixture of Latent Variable Models<a class="headerlink" href="#mixture-of-latent-variable-models" title="Permalink to this heading">#</a></h2>
 <p>We look for latent variables that generate the data in the clusters, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[P(X^t|C_i) = Normal(m_i, V_iV_i^T+\Psi_i)\]</div>
 <p>where <span class="math notranslate nohighlight">\(V_i\)</span> and <span class="math notranslate nohighlight">\(\Psi_i\)</span> are factor loadings and specific variances of cluster <span class="math notranslate nohighlight">\(C_i\)</span>. This can be extended to mixture models to find mixtures of factor analyzers. The EM algorithm can be updated accordingly to find <span class="math notranslate nohighlight">\(V\)</span> and <span class="math notranslate nohighlight">\(\Psi\)</span>.</p>
 </section>
 <section id="supervised-learning-after-clustering">
-<h2>Supervised learning after clustering<a class="headerlink" href="#supervised-learning-after-clustering" title="Permalink to this headline">#</a></h2>
+<h2>Supervised learning after clustering<a class="headerlink" href="#supervised-learning-after-clustering" title="Permalink to this heading">#</a></h2>
 <p>Clustering like the dimensionality reduction methods can be used for data exploration or to understand the structure of data by grouping instances based on their similarities.</p>
 <p>If such groups are found we can choose the group mean as the representative prototype of instances in the group or possible range. This allows a simpler description of the data.</p>
 <p>In the case of classification, when each class is a mixture model composed of a number of components, the whole density is a miture of mixtures. Learning parameters of components is done separately for each class.</p>
 </section>
 <section id="hierarchical-clustering">
-<h2>Hierarchical clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this headline">#</a></h2>
+<h2>Hierarchical clustering<a class="headerlink" href="#hierarchical-clustering" title="Permalink to this heading">#</a></h2>
 <p>The aim is to find groups such that observations in a group are more similar to each other than obervations in different groups. Similarity is measured by a distance function.</p>
 <p>An agglomerative clustering algorithm starts with N groups each containing one training observation, merging similar groups to form larger groups until there is a single group</p>
 <p>A divisive clustering algorithm starts with a single group and divide large groups into smaller groups until each group contains a single observation.</p>
 <section id="clustering-digits">
-<h3>Clustering digits<a class="headerlink" href="#clustering-digits" title="Permalink to this headline">#</a></h3>
+<h3>Clustering digits<a class="headerlink" href="#clustering-digits" title="Permalink to this heading">#</a></h3>
 <section id="id1">
-<h4>load data<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<h4>load data<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Gael Varoquaux</span>
@@ -915,7 +678,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="visualizing-clusters">
-<h4>Visualizing clusters<a class="headerlink" href="#visualizing-clusters" title="Permalink to this headline">#</a></h4>
+<h4>Visualizing clusters<a class="headerlink" href="#visualizing-clusters" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_clustering</span><span class="p">(</span><span class="n">X_red</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -944,12 +707,12 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3594, 64)
 </pre></div>
 </div>
-<img alt="_images/lab5_22_1.png" src="_images/lab5_22_1.png" />
+<img alt="_images/37775a1d89a6625e80c09534df05f14ec3926311a066a6ee98e15005d38e3ed9.png" src="_images/37775a1d89a6625e80c09534df05f14ec3926311a066a6ee98e15005d38e3ed9.png" />
 </div>
 </div>
 </section>
 <section id="computing-embedding">
-<h4>Computing embedding<a class="headerlink" href="#computing-embedding" title="Permalink to this headline">#</a></h4>
+<h4>Computing embedding<a class="headerlink" href="#computing-embedding" title="Permalink to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
@@ -964,14 +727,14 @@ title="Print to PDF"
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<img alt="_images/lab5_24_1.png" src="_images/lab5_24_1.png" />
+<img alt="_images/dedb5584008d2d8133db10978abb61134d1866848942b8557426aac9de0607b4.png" src="_images/dedb5584008d2d8133db10978abb61134d1866848942b8557426aac9de0607b4.png" />
 </div>
 </div>
 </section>
 <section id="id2">
-<h4>Hierarchical clustering<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h4>
+<h4>Hierarchical clustering<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">AgglomerativeClustering</span>
 
 <span class="k">for</span> <span class="n">linkage</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;ward&#39;</span><span class="p">,</span> <span class="s1">&#39;average&#39;</span><span class="p">,</span> <span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="s1">&#39;single&#39;</span><span class="p">):</span>
@@ -983,30 +746,36 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
-<img alt="_images/lab5_26_0.png" src="_images/lab5_26_0.png" />
-<img alt="_images/lab5_26_1.png" src="_images/lab5_26_1.png" />
-<img alt="_images/lab5_26_2.png" src="_images/lab5_26_2.png" />
-<img alt="_images/lab5_26_3.png" src="_images/lab5_26_3.png" />
+<img alt="_images/1c16dc630f3f8ecbaa0d9a0c1fab7c4e1f488711f121ac3479bb7b57add7fbf8.png" src="_images/1c16dc630f3f8ecbaa0d9a0c1fab7c4e1f488711f121ac3479bb7b57add7fbf8.png" />
+<img alt="_images/709586b2c89b2c71d66156d9195725edea0b9af429eff135c035c29c864684bf.png" src="_images/709586b2c89b2c71d66156d9195725edea0b9af429eff135c035c29c864684bf.png" />
+<img alt="_images/f0d04868d3e100a580c8f417cf4cf7dd5262201c5f1f2d15bb13324636897b95.png" src="_images/f0d04868d3e100a580c8f417cf4cf7dd5262201c5f1f2d15bb13324636897b95.png" />
+<img alt="_images/757800be511fb8d217f9a7817a1439abda4e1c5d8daf0b07955b46f6ce5dfc76.png" src="_images/757800be511fb8d217f9a7817a1439abda4e1c5d8daf0b07955b46f6ce5dfc76.png" />
 </div>
+</details>
 </div>
 </section>
 </section>
 </section>
 <section id="choosing-k-the-number-of-clusters">
-<h2>Choosing k the number of clusters<a class="headerlink" href="#choosing-k-the-number-of-clusters" title="Permalink to this headline">#</a></h2>
+<h2>Choosing k the number of clusters<a class="headerlink" href="#choosing-k-the-number-of-clusters" title="Permalink to this heading">#</a></h2>
 <p>In some applications, k is defined by the application
 Plotting the data in two dimensions using PCA may be used in uncovering the number of clusters
 Setting a maximum allowed distance may help to find k
 We can plot the reconstruction error or loglikelihood as a function of k and look for the elbow (cross validation)</p>
 <section id="silhouette-analysis">
-<h3>Silhouette analysis<a class="headerlink" href="#silhouette-analysis" title="Permalink to this headline">#</a></h3>
+<h3>Silhouette analysis<a class="headerlink" href="#silhouette-analysis" title="Permalink to this heading">#</a></h3>
 <p>Silhouette analysis can be used to study the separation distance between the resulting clusters. The silhouette plot displays a measure of how close each point in one cluster is to points in the neighboring clusters and thus provides a way to assess parameters like number of clusters visually. This measure has a range of [-1, 1].</p>
 <p>Silhouette coefficients (as these values are referred to as) near +1 indicate that the sample is far away from the neighboring clusters. A value of 0 indicates that the sample is on or very close to the decision boundary between two neighboring clusters and negative values indicate that those samples might have been assigned to the wrong cluster.</p>
 <p>In this example the silhouette analysis is used to choose an optimal value for n_clusters. The silhouette plot shows that the n_clusters value of 3, 5 and 6 are a bad pick for the given data due to the presence of clusters with below average silhouette scores and also due to wide fluctuations in the size of the silhouette plots. Silhouette analysis is more ambivalent in deciding between 2 and 4.</p>
 <p>Also from the thickness of the silhouette plot the cluster size can be visualized. The silhouette plot for cluster 0 when n_clusters is equal to 2, is bigger in size owing to the grouping of the 3 sub clusters into one big cluster. However when the n_clusters is equal to 4, all the plots are more or less of similar thickness and hence are of similar sizes as can be also verified from the labelled scatter plot on the right.</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_samples</span><span class="p">,</span> <span class="n">silhouette_score</span>
@@ -1118,27 +887,31 @@ We can plot the reconstruction error or loglikelihood as a function of k and loo
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Automatically created module for IPython interactive environment
-For n_clusters = 2 The average silhouette_score is : 0.7049787496083261
+For n_clusters = 2 The average silhouette_score is : 0.7049787496083262
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For n_clusters = 3 The average silhouette_score is : 0.5882004012129721
 For n_clusters = 4 The average silhouette_score is : 0.6505186632729437
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For n_clusters = 5 The average silhouette_score is : 0.56376469026194
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For n_clusters = 5 The average silhouette_score is : 0.561464362648773
+For n_clusters = 6 The average silhouette_score is : 0.4857596147013469
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>For n_clusters = 6 The average silhouette_score is : 0.4504666294372765
-</pre></div>
+<img alt="_images/574d4c583af191fc8783dc25cdeddb74c606a109f9ee13ae1ec664c4a291ca0a.png" src="_images/574d4c583af191fc8783dc25cdeddb74c606a109f9ee13ae1ec664c4a291ca0a.png" />
+<img alt="_images/1c477272185a1ecf4c7b1b2341746450a007bf519f829b999b28960200874a87.png" src="_images/1c477272185a1ecf4c7b1b2341746450a007bf519f829b999b28960200874a87.png" />
+<img alt="_images/1c57f34a9f8437e1471b16dc5e8478310d373993569313d03c33a9e63cce687a.png" src="_images/1c57f34a9f8437e1471b16dc5e8478310d373993569313d03c33a9e63cce687a.png" />
+<img alt="_images/4d78da6e8a6eb1949895bf0202e644ddf5f3095bb81918e37c3e0f59ba78ff4f.png" src="_images/4d78da6e8a6eb1949895bf0202e644ddf5f3095bb81918e37c3e0f59ba78ff4f.png" />
+<img alt="_images/1ae733c599bd1df4c60a1045772c8a83b39b1b6c61d9b0ef7376f871d4726bf0.png" src="_images/1ae733c599bd1df4c60a1045772c8a83b39b1b6c61d9b0ef7376f871d4726bf0.png" />
 </div>
-<img alt="_images/lab5_28_4.png" src="_images/lab5_28_4.png" />
-<img alt="_images/lab5_28_5.png" src="_images/lab5_28_5.png" />
-<img alt="_images/lab5_28_6.png" src="_images/lab5_28_6.png" />
-<img alt="_images/lab5_28_7.png" src="_images/lab5_28_7.png" />
-<img alt="_images/lab5_28_8.png" src="_images/lab5_28_8.png" />
-</div>
+</details>
 </div>
 </section>
 </section>
@@ -1156,7 +929,7 @@ For n_clusters = 4 The average silhouette_score is : 0.6505186632729437
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1164,50 +937,132 @@ For n_clusters = 4 The average silhouette_score is : 0.6505186632729437
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lab4.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lab 4: Dimensionality Reduction</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 4: Dimensionality Reduction</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="lab6.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="lab6.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Lab 6: Nonparametric Methods</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-clustering">k-means clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-algorithm-for-clustering-points">K-means algorithm for clustering points</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means-on-digits">k-means on digits</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">load data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perform-kmeans-clustering">perform kmeans clustering</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-result">visualizing result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expectation-maximization-algorithm">Expectation-Maximization algorithm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gmm-for-clustering">GMM for clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mixture-of-latent-variable-models">Mixture of Latent Variable Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning-after-clustering">Supervised learning after clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hierarchical-clustering">Hierarchical clustering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-digits">Clustering digits</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">load data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-clusters">Visualizing clusters</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#computing-embedding">Computing embedding</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hierarchical clustering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-k-the-number-of-clusters">Choosing k the number of clusters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-analysis">Silhouette analysis</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

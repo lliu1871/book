@@ -43,7 +43,7 @@ print(target)             # for target variable
 # convert the data to data frame 
 bos = pd.DataFrame(boston)
 bos['Price'] = target
-X = bos.drop("Price", 1)       # feature matrix 
+X = bos.drop(['Price'], axis=1)       # feature matrix 
 y = bos['Price']               # target feature
 bos.head()
 
@@ -242,10 +242,9 @@ import matplotlib.pyplot as plt
 
 url = "https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv"
 df = pd.read_csv(url)
-df.columns
 
 # Dropping unnecessary columns
-df.drop(['Unnamed: 0','gender', 'education', 'age'],axis=1,inplace=True)
+df.drop(['gender', 'education', 'age'],axis=1,inplace=True)
 
 # Dropping missing values rows
 df.dropna(inplace=True)

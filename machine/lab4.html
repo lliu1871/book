@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 4: Dimensionality Reduction &#8212; Machine Learning</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,576 +64,357 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab4';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lab 5: Clustering" href="lab5.html" />
     <link rel="prev" title="Lab 3: Multivariate Methods" href="lab3.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Machine Learning</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents
+                    Table of Contents      
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab1.html">
-   Lab 1: Introduction to Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab2.html">
-   Lab 2: Supervised Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab3.html">
-   Lab 3: Multivariate Methods
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Lab 4: Dimensionality Reduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab5.html">
-   Lab 5: Clustering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab6.html">
-   Lab 6: Nonparametric Methods
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab7.html">
-   Lab 7: Decision Trees
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab8.html">
-   Lab 8: Linear Discrimination
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab9.html">
-   Lab 9: Neural network
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab10.html">
-   Lab 10: Local Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab11.html">
-   Lab 11: Kernel Machines
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab12.html">
-   Lab 12: Hidden Markov Models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab13.html">
-   Lab 13: Reinforcement Learning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="lab14.html">
-   Lab 14: Applications
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab 1: Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab 2: Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab 3: Multivariate Methods</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab 4: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab 5: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab 6: Nonparametric Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab 7: Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab 8: Linear Discrimination</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab 9: Neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab 10: Local Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab11.html">Lab 11: Kernel Machines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab12.html">Lab 12: Hidden Markov Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab13.html">Lab 13: Reinforcement Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab14.html">Lab 14: Applications</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lab4.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab4.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/lab4.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/lab4.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#subset-selection">
-   Subset Selection
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#forward-selection">
-     Forward selection
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backward-selection">
-     Backward selection
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bidirection-selection">
-     Bidirection selection
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#principal-components-analysis">
-   Principal components analysis
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#factor-analysis">
-   Factor Analysis
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multidimensional-scaling">
-   Multidimensional Scaling
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimension-reduction">
-     Dimension reduction
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#coordinate-learning">
-     Coordinate Learning
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#manifold-learning">
-     Manifold Learning
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nonlinear-embedding-mds-fails">
-     Nonlinear embedding MDS fails
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#isomap">
-   Isomap
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#manifold-learning-on-a-sphere">
-     Manifold learning on a sphere
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#locally-linear-embedding">
-   Locally Linear Embedding
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lle-for-manifold-learning-on-sphere">
-     LLE for manifold learning on sphere
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Lab 4: Dimensionality Reduction</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#subset-selection">
-   Subset Selection
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#forward-selection">
-     Forward selection
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backward-selection">
-     Backward selection
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bidirection-selection">
-     Bidirection selection
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#principal-components-analysis">
-   Principal components analysis
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#factor-analysis">
-   Factor Analysis
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#multidimensional-scaling">
-   Multidimensional Scaling
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dimension-reduction">
-     Dimension reduction
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#coordinate-learning">
-     Coordinate Learning
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#manifold-learning">
-     Manifold Learning
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nonlinear-embedding-mds-fails">
-     Nonlinear embedding MDS fails
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#isomap">
-   Isomap
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#manifold-learning-on-a-sphere">
-     Manifold learning on a sphere
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#locally-linear-embedding">
-   Locally Linear Embedding
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lle-for-manifold-learning-on-sphere">
-     LLE for manifold learning on sphere
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab 4: Dimensionality Reduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-selection">Subset Selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-selection">Forward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-selection">Backward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bidirection-selection">Bidirection selection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-analysis">Factor Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-scaling">Multidimensional Scaling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-reduction">Dimension reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-learning">Coordinate Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manifold-learning">Manifold Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-embedding-mds-fails">Nonlinear embedding MDS fails</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomap">Isomap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manifold-learning-on-a-sphere">Manifold learning on a sphere</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locally-linear-embedding">Locally Linear Embedding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lle-for-manifold-learning-on-sphere">LLE for manifold learning on sphere</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="lab-4-dimensionality-reduction">
-<h1>Lab 4: Dimensionality Reduction<a class="headerlink" href="#lab-4-dimensionality-reduction" title="Permalink to this headline">#</a></h1>
+<h1>Lab 4: Dimensionality Reduction<a class="headerlink" href="#lab-4-dimensionality-reduction" title="Permalink to this heading">#</a></h1>
 <p>There are two main methods for reducing dimensionality - feature selection and feature extraction</p>
 <p>In feature selection, we find <span class="math notranslate nohighlight">\(k\)</span> of the <span class="math notranslate nohighlight">\(p\)</span> dimensions that give us the most information and we discard the other <span class="math notranslate nohighlight">\(p-k\)</span> dimensions. The feature selection includes subset selection</p>
 <p>In feature extraction, we find <span class="math notranslate nohighlight">\(k\)</span> dimensions that are combination of original <span class="math notranslate nohighlight">\(p\)</span> dimensions. This includes principal component analysis, factor analysis, multidimensional scaling, Isometric feature mapping, etc</p>
 <section id="subset-selection">
-<h2>Subset Selection<a class="headerlink" href="#subset-selection" title="Permalink to this headline">#</a></h2>
+<h2>Subset Selection<a class="headerlink" href="#subset-selection" title="Permalink to this heading">#</a></h2>
 <p>There are <span class="math notranslate nohighlight">\(2^p\)</span> possible subsets of <span class="math notranslate nohighlight">\(p\)</span> variables. If <span class="math notranslate nohighlight">\(p\)</span> is small, the subset of significant variables can be found by an exhaustive search. Otherwise, we employ heuristics to find the subset.</p>
 <section id="forward-selection">
-<h3>Forward selection<a class="headerlink" href="#forward-selection" title="Permalink to this headline">#</a></h3>
+<h3>Forward selection<a class="headerlink" href="#forward-selection" title="Permalink to this heading">#</a></h3>
 <p>We start with no variables and add them one by one. At each step, we train our model on the training set and calculate the misclassification rate for the test set. we add the one that has the minimum misclassification rate. We stop if adding any feature does not decrease the misclassification rate, or if the decrease in error is too small.</p>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from sklearn.datasets import load_boston</span>
 <span class="c1"># boston = load_boston()</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -638,7 +430,7 @@ title="Print to PDF"
 <span class="c1"># convert the data to data frame </span>
 <span class="n">bos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boston</span><span class="p">)</span>
 <span class="n">bos</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">bos</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;Price&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>       <span class="c1"># feature matrix </span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">bos</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Price&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>       <span class="c1"># feature matrix </span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">bos</span><span class="p">[</span><span class="s1">&#39;Price&#39;</span><span class="p">]</span>               <span class="c1"># target feature</span>
 <span class="n">bos</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 
@@ -656,6 +448,11 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(506, 13)
 [24.  21.6 34.7 33.4 36.2 28.7 22.9 27.1 16.5 18.9 15.  18.9 21.7 20.4
@@ -697,18 +494,15 @@ title="Print to PDF"
  22.  11.9]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Python37\lib\site-packages\ipykernel_launcher.py:16: FutureWarning: In a future version of pandas all arguments of DataFrame.drop except for the argument &#39;labels&#39; will be keyword-only
-  
-</pre></div>
-</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="backward-selection">
-<h3>Backward selection<a class="headerlink" href="#backward-selection" title="Permalink to this headline">#</a></h3>
+<h3>Backward selection<a class="headerlink" href="#backward-selection" title="Permalink to this heading">#</a></h3>
 <p>We start with the full model and delete one variable at a time. At each step, delete the variable that causes the smallest increase in misclassificaiton rate. We stop if removal causes a significant increase in misclassification rate</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -731,7 +525,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="bidirection-selection">
-<h3>Bidirection selection<a class="headerlink" href="#bidirection-selection" title="Permalink to this headline">#</a></h3>
+<h3>Bidirection selection<a class="headerlink" href="#bidirection-selection" title="Permalink to this heading">#</a></h3>
 <p>It is similar to forward selection but the difference is while adding a new feature it also checks the significance of already added features and if it finds any of the already selected features insignificant then it simply removes that particular feature through backward elimination.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -755,7 +549,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="principal-components-analysis">
-<h2>Principal components analysis<a class="headerlink" href="#principal-components-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Principal components analysis<a class="headerlink" href="#principal-components-analysis" title="Permalink to this heading">#</a></h2>
 <p>Let <span class="math notranslate nohighlight">\(X=\{X_1,...,X_p\}\)</span> be the feature variables. PCA can reduce the dimension <span class="math notranslate nohighlight">\(p\)</span> by using the linear combinations of <span class="math notranslate nohighlight">\(X_1,...,X_p\)</span>.</p>
 <p>The principal component <span class="math notranslate nohighlight">\(w_1\)</span> maximizes the variance of the projection <span class="math notranslate nohighlight">\(z=w_1^TX\)</span> on the direction <span class="math notranslate nohighlight">\(w_1\)</span> with <span class="math notranslate nohighlight">\(||w_1||=1\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
@@ -765,12 +559,12 @@ title="Print to PDF"
 \[w_1^T\Sigma w_1 + \alpha (w_1^Tw_1-1)\]</div>
 <p>Taking the derivative with respect to <span class="math notranslate nohighlight">\(w_1\)</span>, we have <span class="math notranslate nohighlight">\(\Sigma w_1 = \alpha w_1\)</span>. It follows that <span class="math notranslate nohighlight">\(var(z) = \alpha w_1^Tw_1 = \alpha\)</span>. Thus, <span class="math notranslate nohighlight">\(w_1\)</span> is the eigenvector with the largest eigenvalue. Similarly, the second component is the eigenvector with the second largest eigenvalue and etc.</p>
 <p>The proportion of variance explained by the <span class="math notranslate nohighlight">\(k\)</span> components is $<span class="math notranslate nohighlight">\(\frac{\lambda_1+...+\lambda_k}{\lambda_1+...+\lambda_k+...+\lambda_p}\)</span>$</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>If the learning algorithm is too slow because the input dimension is too high, then using PCA to speed it up is a reasonable choice</p></li>
 <li><p>If memory or disk space is limited, PCA allows you to save space in exchange for losing a little of the data’s information. This can be a reasonable tradeoff</p></li>
 </ol>
 <p>The limitations of PCA</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>PCA is not scale invariant. check: we need to scale our data first.</p></li>
 <li><p>The directions with largest variance are assumed to be of the most interest</p></li>
 <li><p>Only considers orthogonal transformations (rotations) of the original variables</p></li>
@@ -1110,12 +904,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_17_0.png" src="_images/lab4_17_0.png" />
+<img alt="_images/22d767ee5a4463ac9e0a3e361f78a36f69d06d97514a78acc6bd80a13ffca5de.png" src="_images/22d767ee5a4463ac9e0a3e361f78a36f69d06d97514a78acc6bd80a13ffca5de.png" />
 </div>
 </div>
 </section>
 <section id="factor-analysis">
-<h2>Factor Analysis<a class="headerlink" href="#factor-analysis" title="Permalink to this headline">#</a></h2>
+<h2>Factor Analysis<a class="headerlink" href="#factor-analysis" title="Permalink to this heading">#</a></h2>
 <p>In factor analysis, we assume that there is a set of unobservable latent factors <span class="math notranslate nohighlight">\(z_i: j=1,...,k\)</span> which generate <span class="math notranslate nohighlight">\(X\)</span>, i.e.,</p>
 <div class="math notranslate nohighlight">
 \[X-\mu = Vz+\epsilon\]</div>
@@ -1154,10 +948,9 @@ title="Print to PDF"
 
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/psych/bfi.csv&quot;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span>
 
 <span class="c1"># Dropping unnecessary columns</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Dropping missing values rows</span>
 <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1185,6 +978,7 @@ title="Print to PDF"
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>rownames</th>
       <th>A1</th>
       <th>A2</th>
       <th>A3</th>
@@ -1194,7 +988,6 @@ title="Print to PDF"
       <th>C2</th>
       <th>C3</th>
       <th>C4</th>
-      <th>C5</th>
       <th>...</th>
       <th>N1</th>
       <th>N2</th>
@@ -1211,6 +1004,7 @@ title="Print to PDF"
   <tbody>
     <tr>
       <th>0</th>
+      <td>61617</td>
       <td>2.0</td>
       <td>4.0</td>
       <td>3.0</td>
@@ -1219,7 +1013,6 @@ title="Print to PDF"
       <td>2.0</td>
       <td>3.0</td>
       <td>3.0</td>
-      <td>4.0</td>
       <td>4.0</td>
       <td>...</td>
       <td>3.0</td>
@@ -1235,6 +1028,7 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>1</th>
+      <td>61618</td>
       <td>2.0</td>
       <td>4.0</td>
       <td>5.0</td>
@@ -1244,7 +1038,6 @@ title="Print to PDF"
       <td>4.0</td>
       <td>4.0</td>
       <td>3.0</td>
-      <td>4.0</td>
       <td>...</td>
       <td>3.0</td>
       <td>3.0</td>
@@ -1259,6 +1052,7 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>2</th>
+      <td>61620</td>
       <td>5.0</td>
       <td>4.0</td>
       <td>5.0</td>
@@ -1268,7 +1062,6 @@ title="Print to PDF"
       <td>5.0</td>
       <td>4.0</td>
       <td>2.0</td>
-      <td>5.0</td>
       <td>...</td>
       <td>4.0</td>
       <td>5.0</td>
@@ -1283,6 +1076,7 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>3</th>
+      <td>61621</td>
       <td>4.0</td>
       <td>4.0</td>
       <td>6.0</td>
@@ -1291,7 +1085,6 @@ title="Print to PDF"
       <td>4.0</td>
       <td>4.0</td>
       <td>3.0</td>
-      <td>5.0</td>
       <td>5.0</td>
       <td>...</td>
       <td>2.0</td>
@@ -1307,6 +1100,7 @@ title="Print to PDF"
     </tr>
     <tr>
       <th>4</th>
+      <td>61622</td>
       <td>2.0</td>
       <td>3.0</td>
       <td>3.0</td>
@@ -1316,7 +1110,6 @@ title="Print to PDF"
       <td>4.0</td>
       <td>5.0</td>
       <td>3.0</td>
-      <td>2.0</td>
       <td>...</td>
       <td>2.0</td>
       <td>3.0</td>
@@ -1331,7 +1124,7 @@ title="Print to PDF"
     </tr>
   </tbody>
 </table>
-<p>5 rows × 25 columns</p>
+<p>5 rows × 26 columns</p>
 </div></div></div>
 </div>
 <p>Bartlett’s test of sphericity checks whether or not the observed variables intercorrelate at all using the observed correlation matrix against the identity matrix. If the test found statistically insignificant, you should not employ a factor analysis</p>
@@ -1344,7 +1137,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18146.065577235022, 0.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(18184.306307820785, 0.0)
 </pre></div>
 </div>
 </div>
@@ -1359,7 +1152,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8486452309468394
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8483267027192372
 </pre></div>
 </div>
 </div>
@@ -1383,13 +1176,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.23855818, -0.3609032 ],
-       [-0.03465481,  0.1516786 ],
-       [-0.07183735,  0.49407327],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1.22579684, -0.34947758],
+       [-0.02526543,  0.16135118],
+       [-0.06451293,  0.50234141],
        ...,
-       [ 0.57415068, -0.24588987],
-       [-0.29289969,  0.95327634],
-       [-2.05957751, -1.57872746]])
+       [ 0.56514981, -0.25456616],
+       [-0.3044811 ,  0.94222745],
+       [-2.06599947, -1.59100156]])
 </pre></div>
 </div>
 </div>
@@ -1409,12 +1202,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_27_0.png" src="_images/lab4_27_0.png" />
+<img alt="_images/de4656a189e921867f2d19d8d2cc17843607a4331b3ff8a913b089122c5d2c30.png" src="_images/de4656a189e921867f2d19d8d2cc17843607a4331b3ff8a913b089122c5d2c30.png" />
 </div>
 </div>
 </section>
 <section id="multidimensional-scaling">
-<h2>Multidimensional Scaling<a class="headerlink" href="#multidimensional-scaling" title="Permalink to this headline">#</a></h2>
+<h2>Multidimensional Scaling<a class="headerlink" href="#multidimensional-scaling" title="Permalink to this heading">#</a></h2>
 <p>Given the pairwise distance matrix <span class="math notranslate nohighlight">\(D = d_{ij}\)</span>, MDS is the method for placing the points in a low dimension space such that the distance is as close as possible to <span class="math notranslate nohighlight">\(d_{ij}\)</span></p>
 <p>Let <span class="math notranslate nohighlight">\(D_X\)</span> be the <span class="math notranslate nohighlight">\(N\times N\)</span> pairwise distance matrix for a data matrix <span class="math notranslate nohighlight">\(X_{N\times p}\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the sample size. We want to find a linear map <span class="math notranslate nohighlight">\(W: R^p \rightarrow R^k\)</span> and <span class="math notranslate nohighlight">\(Z=WX\)</span> such that the distance matrix <span class="math notranslate nohighlight">\(D_Z\)</span> for <span class="math notranslate nohighlight">\(Z\)</span> is a good approximation to <span class="math notranslate nohighlight">\(D_X\)</span></p>
 <p>It can be shown that <span class="math notranslate nohighlight">\(B=XX^T\)</span> is a linear function of the distance matrix <span class="math notranslate nohighlight">\(D_X\)</span>. Thus, approximating <span class="math notranslate nohighlight">\(D_X\)</span> is equivalent to approximaing <span class="math notranslate nohighlight">\(XX^T\)</span>.</p>
@@ -1430,7 +1223,7 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[d'_{rs} = (1-\alpha)d_{rs} + \alpha L_{rs}\]</div>
 <section id="dimension-reduction">
-<h3>Dimension reduction<a class="headerlink" href="#dimension-reduction" title="Permalink to this headline">#</a></h3>
+<h3>Dimension reduction<a class="headerlink" href="#dimension-reduction" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_digits</span>
@@ -1462,7 +1255,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="coordinate-learning">
-<h3>Coordinate Learning<a class="headerlink" href="#coordinate-learning" title="Permalink to this headline">#</a></h3>
+<h3>Coordinate Learning<a class="headerlink" href="#coordinate-learning" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -1499,7 +1292,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_32_0.png" src="_images/lab4_32_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/53/vt_yht0j2h992vrjpc3y4v3cmgg9bt/T/ipykernel_31825/3655568187.py:28: MatplotlibDeprecationWarning: The get_cmap function was deprecated in Matplotlib 3.7 and will be removed two minor releases later. Use ``matplotlib.colormaps[name]`` or ``matplotlib.colormaps.get_cmap(obj)`` instead.
+  colorize = dict(c=X[:, 0], cmap=plt.cm.get_cmap(&#39;rainbow&#39;, 5))
+</pre></div>
+</div>
+<img alt="_images/9c6f40803c05a57c8d280c1a7c92565cc356bc9063521a6f58eea8ff53400029.png" src="_images/9c6f40803c05a57c8d280c1a7c92565cc356bc9063521a6f58eea8ff53400029.png" />
 </div>
 </div>
 <p>The particular choice of x and y values of the dataset are not the most fundamental description of the data: we can scale, shrink, or rotate the data, and the “HELLO” will still be apparent</p>
@@ -1518,7 +1315,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_34_0.png" src="_images/lab4_34_0.png" />
+<img alt="_images/6cdc6d071ef40d25fdc7236b931bdd76757543bb5f39c8a66d8fe0f2d3d30dd4.png" src="_images/6cdc6d071ef40d25fdc7236b931bdd76757543bb5f39c8a66d8fe0f2d3d30dd4.png" />
 </div>
 </div>
 <p>What is fundamental is the distance between each point and the other points in the dataset</p>
@@ -1534,7 +1331,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_36_0.png" src="_images/lab4_36_0.png" />
+<img alt="_images/c417f0aa569b7da604fff4793393cb4eb0e9fc4003cd7f6b57c6d8226a54f726.png" src="_images/c417f0aa569b7da604fff4793393cb4eb0e9fc4003cd7f6b57c6d8226a54f726.png" />
 </div>
 </div>
 <p>If we similarly construct a distance matrix for our rotated and translated data, we see that it is the same:</p>
@@ -1563,12 +1360,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_40_0.png" src="_images/lab4_40_0.png" />
+<img alt="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" src="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" />
 </div>
 </div>
 </section>
 <section id="manifold-learning">
-<h3>Manifold Learning<a class="headerlink" href="#manifold-learning" title="Permalink to this headline">#</a></h3>
+<h3>Manifold Learning<a class="headerlink" href="#manifold-learning" title="Permalink to this heading">#</a></h3>
 <p>Since distance matrices can be computed from data in any dimension, instead of simply rotating the data “HELLO” in the two-dimensional plane, we can project it into three dimensions using the following function (essentially a three-dimensional generalization of the rotation matrix used earlier):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1602,7 +1399,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_44_0.png" src="_images/lab4_44_0.png" />
+<img alt="_images/9bff8e6c6141332e22d7f6df3cbbc16cb0446d7f7a1bd369266e53eb2288fb05.png" src="_images/9bff8e6c6141332e22d7f6df3cbbc16cb0446d7f7a1bd369266e53eb2288fb05.png" />
 </div>
 </div>
 <p>We can now ask the MDS estimator to input this three-dimensional data, compute the distance matrix, and then determine the optimal two-dimensional embedding for this distance matrix. The result recovers a representation of the original data</p>
@@ -1616,12 +1413,12 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_46_0.png" src="_images/lab4_46_0.png" />
+<img alt="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" src="_images/99142b871a1a14ba5fc70d492d861bcb1be4513f0773c46baa769f1ff088969f.png" />
 </div>
 </div>
 </section>
 <section id="nonlinear-embedding-mds-fails">
-<h3>Nonlinear embedding MDS fails<a class="headerlink" href="#nonlinear-embedding-mds-fails" title="Permalink to this headline">#</a></h3>
+<h3>Nonlinear embedding MDS fails<a class="headerlink" href="#nonlinear-embedding-mds-fails" title="Permalink to this heading">#</a></h3>
 <p>Linear embeddings, which essentially consist of rotations, translations, and scalings of data into higher-dimensional spaces. MDS breaks down is when the embedding is nonlinear — that is, when it goes beyond this simple set of operations. Consider the following embedding, which takes the input and contorts it into an “S” shape in three dimensions:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1647,7 +1444,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_49_0.png" src="_images/lab4_49_0.png" />
+<img alt="_images/126d2eaf1714c282e0cc5915695530093cc8e0a09a09a31541d7b29ca0f51177.png" src="_images/126d2eaf1714c282e0cc5915695530093cc8e0a09a09a31541d7b29ca0f51177.png" />
 </div>
 </div>
 <p>The fundamental relationships between the data points are still there, but this time the data has been transformed in a nonlinear way: it has been wrapped-up into the shape of an “S.”</p>
@@ -1663,14 +1460,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_51_0.png" src="_images/lab4_51_0.png" />
+<img alt="_images/adbad059a133fd57eeb6f3cb10a71d14a7a5d7a17e9d37e7283c042c1434f298.png" src="_images/adbad059a133fd57eeb6f3cb10a71d14a7a5d7a17e9d37e7283c042c1434f298.png" />
 </div>
 </div>
 <p>This problem can be solved using local linear embedding (LLE, see below)</p>
 </section>
 </section>
 <section id="isomap">
-<h2>Isomap<a class="headerlink" href="#isomap" title="Permalink to this headline">#</a></h2>
+<h2>Isomap<a class="headerlink" href="#isomap" title="Permalink to this heading">#</a></h2>
 <p>Taking a series of pictures as a person slowly rotates hs or her head from right to left, the sequence of faces follows a trajectory that is not linear. Thus, similarity between two faces cannot simplybe written in terms of the sum of the pixel differences and Euclidean distance is not a good metric. The images of two different people with the same pose may have smaller Euclidean distance thn the images of two different poses of the same person.</p>
 <p>More reasonable distance is the geodesic distance along the manifold. Isometric feature mapping (Isomap) estimates the geodesic distance and applies multidimensional scaling for dimensionality reduction.</p>
 <p>Two nodes <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(s\)</span> are locally connected if <span class="math notranslate nohighlight">\(||X^r-X^s||&lt;\epsilon\)</span>. We set it as the distance between <span class="math notranslate nohighlight">\(X^r\)</span> and <span class="math notranslate nohighlight">\(X^s\)</span>. For two arbitrary nodes on the manifold, their distance <span class="math notranslate nohighlight">\(d_{rs}\)</span> is the shortest length path between them. This distance is called graph distance.</p>
@@ -1678,7 +1475,7 @@ title="Print to PDF"
 <p>The parameter <span class="math notranslate nohighlight">\(\epsilon\)</span> needs to be carefully tuned; if it is two small there might be more than one connected component and if it is too large, shortcut may be added that corrupt the low-dimensional embedding.</p>
 <p>One problem with Isomap is that it does not learn a general mappping function that will allow mapping a new test point; the new point should be added to the data set adn the whole algorithm mst be run once more using <span class="math notranslate nohighlight">\(N+1\)</span> points</p>
 <section id="manifold-learning-on-a-sphere">
-<h3>Manifold learning on a sphere<a class="headerlink" href="#manifold-learning-on-a-sphere" title="Permalink to this headline">#</a></h3>
+<h3>Manifold learning on a sphere<a class="headerlink" href="#manifold-learning-on-a-sphere" title="Permalink to this heading">#</a></h3>
 <p>Generate data on a sphere</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1729,7 +1526,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/lab4_53_0.png" src="_images/lab4_53_0.png" />
+<img alt="_images/0e1ef19aa54d4c45030ac656b77007ab205fb63dce690f559a955979e544f69f.png" src="_images/0e1ef19aa54d4c45030ac656b77007ab205fb63dce690f559a955979e544f69f.png" />
 </div>
 </div>
 <p>Perform Isomap Manifold learning</p>
@@ -1755,16 +1552,16 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ISO: 0.39 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ISO: 0.97 sec
 </pre></div>
 </div>
-<img alt="_images/lab4_55_1.png" src="_images/lab4_55_1.png" />
+<img alt="_images/262b39e9a30dfcce19a4430e1443b65d2fa2ddfaf6759a84638665efaa741ff0.png" src="_images/262b39e9a30dfcce19a4430e1443b65d2fa2ddfaf6759a84638665efaa741ff0.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="locally-linear-embedding">
-<h2>Locally Linear Embedding<a class="headerlink" href="#locally-linear-embedding" title="Permalink to this headline">#</a></h2>
+<h2>Locally Linear Embedding<a class="headerlink" href="#locally-linear-embedding" title="Permalink to this heading">#</a></h2>
 <p>Each local patch of the manifold can be approximated linearly and given enough data, each point can be written as a linear weighted sum of its neighbors.</p>
 <p>Given  <span class="math notranslate nohighlight">\(X^r\)</span> and its neighbor <span class="math notranslate nohighlight">\(X^s_{(r)}\)</span> in the original space, one can find the reconstruction weights <span class="math notranslate nohighlight">\(W_{rs}\)</span> that minimize the error function using least squares subject to <span class="math notranslate nohighlight">\(W_{rr}=0\)</span> for all <span class="math notranslate nohighlight">\(r\)</span> and <span class="math notranslate nohighlight">\(\sum_sW_{rs}=1\)</span></p>
 <div class="math notranslate nohighlight">
@@ -1786,9 +1583,9 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[z'=g(x'|\theta)\]</div>
 <section id="lle-for-manifold-learning-on-sphere">
-<h3>LLE for manifold learning on sphere<a class="headerlink" href="#lle-for-manifold-learning-on-sphere" title="Permalink to this headline">#</a></h3>
+<h3>LLE for manifold learning on sphere<a class="headerlink" href="#lle-for-manifold-learning-on-sphere" title="Permalink to this heading">#</a></h3>
 <div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
+<div class="cell_input above-output-prompt docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform Locally Linear Embedding Manifold learning</span>
 <span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;standard&quot;</span><span class="p">,</span> <span class="s2">&quot;ltsa&quot;</span><span class="p">,</span> <span class="s2">&quot;hessian&quot;</span><span class="p">,</span> <span class="s2">&quot;modified&quot;</span><span class="p">]</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;LLE&quot;</span><span class="p">,</span> <span class="s2">&quot;LTSA&quot;</span><span class="p">,</span> <span class="s2">&quot;Hessian LLE&quot;</span><span class="p">,</span> <span class="s2">&quot;Modified LLE&quot;</span><span class="p">]</span>
@@ -1815,24 +1612,30 @@ title="Print to PDF"
 </pre></div>
 </div>
 </div>
+<details class="hide below-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell output</span>
+<span class="expanded">Hide code cell output</span>
+</summary>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>standard: 0.16 sec
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>standard: 0.041 sec
 </pre></div>
 </div>
-<img alt="_images/lab4_57_1.png" src="_images/lab4_57_1.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ltsa: 0.25 sec
+<img alt="_images/1a8b17f7d18d8e1debc6fed0eb2751e2ff200aa1b17480aeb99d372e4c8261b7.png" src="_images/1a8b17f7d18d8e1debc6fed0eb2751e2ff200aa1b17480aeb99d372e4c8261b7.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ltsa: 0.11 sec
 </pre></div>
 </div>
-<img alt="_images/lab4_57_3.png" src="_images/lab4_57_3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hessian: 0.37 sec
+<img alt="_images/aaf3eb33b74a26db08cc0109599571a0bba53f106e9243f3978d801039e4e5cd.png" src="_images/aaf3eb33b74a26db08cc0109599571a0bba53f106e9243f3978d801039e4e5cd.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>hessian: 0.13 sec
 </pre></div>
 </div>
-<img alt="_images/lab4_57_5.png" src="_images/lab4_57_5.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>modified: 0.29 sec
+<img alt="_images/1f95fd3cc2452535eda8a2bb9e49532c4ff21b3b96b92041174262f4e065ef3c.png" src="_images/1f95fd3cc2452535eda8a2bb9e49532c4ff21b3b96b92041174262f4e065ef3c.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>modified: 0.11 sec
 </pre></div>
 </div>
-<img alt="_images/lab4_57_7.png" src="_images/lab4_57_7.png" />
+<img alt="_images/92d74cccfe512495fc787fdd2a9019aeefc7a56923efa9929b768ddaf1d3b7cc.png" src="_images/92d74cccfe512495fc787fdd2a9019aeefc7a56923efa9929b768ddaf1d3b7cc.png" />
 </div>
+</details>
 </div>
 </section>
 </section>
@@ -1850,7 +1653,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1858,50 +1661,127 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="lab3.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lab 3: Multivariate Methods</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab 3: Multivariate Methods</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="lab5.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="lab5.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Lab 5: Clustering</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-selection">Subset Selection</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forward-selection">Forward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#backward-selection">Backward selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bidirection-selection">Bidirection selection</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-components-analysis">Principal components analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#factor-analysis">Factor Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multidimensional-scaling">Multidimensional Scaling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimension-reduction">Dimension reduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#coordinate-learning">Coordinate Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manifold-learning">Manifold Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nonlinear-embedding-mds-fails">Nonlinear embedding MDS fails</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isomap">Isomap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manifold-learning-on-a-sphere">Manifold learning on a sphere</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#locally-linear-embedding">Locally Linear Embedding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lle-for-manifold-learning-on-sphere">LLE for manifold learning on sphere</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
