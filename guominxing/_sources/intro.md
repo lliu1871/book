@@ -22,7 +22,7 @@
 </h1>
 
 ---
-# 中国国民性演变史目录 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+# 中国国民性演变史目录 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 
 ```{tableofcontents}
 ```
