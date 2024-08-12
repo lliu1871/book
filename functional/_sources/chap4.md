@@ -162,7 +162,7 @@ $$|T^{\times} g(x)| = |g(Tx)| \le \|g\| \|T\| \|x\|$$
 - If $T$ is represented by a matrix $T_E$, then $T^{\times}$ is the transpose of $T_E$
 - The relation between the Hilbert adjoint operator $T^*$ and the adjoint operator $T^{\times}$ is given by $T^*=A_1 T^{\times} A_2^{-1}: \mathbb{H}_2 \rightarrow \mathbb{H}_1$ defined by $T^* y_0=x_0$ where $A_1:\mathbb{H}^{*}_1 \rightarrow \mathbb{H}_1$ and $A_2:\mathbb{H}^{*}_2 \rightarrow \mathbb{H}_2$
 
-![](./image/adjoint.png)
+![](./images/adjoint.png)
 
 ### Dual space
 ````{prf:definition} dual space
