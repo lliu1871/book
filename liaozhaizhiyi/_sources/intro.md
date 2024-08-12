@@ -22,7 +22,7 @@
 </h1>
 
 ---
-# 聊斋志异目录
+# 聊斋志异目录 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 
 ```{tableofcontents}
 ```
