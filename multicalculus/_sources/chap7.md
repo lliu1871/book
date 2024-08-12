@@ -39,7 +39,7 @@ $$
 where $v_i \cdot v_j$ is the inner product of $v_i$ and $v_j$.
 
 ````{prf:definition} surface integral
-:label: surface_integral
+:label: def7.1
 Let $A$ be an open subset of $\mathbb{R}^n$. Let $\Phi: D \longrightarrow A$ be a k-surface in $A$. Let $f: \Phi(D) \rightarrow \mathbb{R}$ be a function such that $f \circ \Phi$ is smooth. Then the integral of $f$ over $\Phi$ is
 
 $$
@@ -114,7 +114,7 @@ Instead of trying to analyze these complex integrals, we can represent their imp
 
 ## Differential forms
 ```{prf:definition} k-form
-:label: k-form
+:label: def7.2
 Let $A$ be an open subset of $\mathbb{R}^n$. A 0-form on $A$ is a smooth function $f : A \rightarrow \mathbb{R}$. For $k \ge 1$, a k-form
 on $A$ is an element of the form 
 
@@ -127,7 +127,7 @@ $$\sum_I f_I dx_I$$
 
 ## Integration of k-form
 ```{prf:definition} integration of form
-:label: integration_form
+:label: def7.3
 
 Let $A$ be an open subset of $\mathbb{R}^{n}$. For $k=0$, a syntactic 0-form $\omega=f$ on $A$ gives rise to a function of 0 -surfaces in $A$, also called $\omega$,
 
@@ -180,7 +180,7 @@ Forms have other algebraic properties
 
 ### Wedge product
 ````{prf:definition} wedge product
-:label: wedge_product
+:label: def7.4
 Let $A$ be an open subset of $Rn$. If $\omega=\sum_If_Idx_I$ is a k-form and $\lambda=\sum_Jg_Jdx_J$ is a $l$-form on $A$, then their wedge product $\omega\wedge\lambda$ is $(k+l)$-form on $A$, i.e.,
 
 $$\omega\wedge\lambda=\sum_{I,J}f_Ig_Jdx_{(I,J)}$$
@@ -196,7 +196,7 @@ and wedge-concatenating the dx-terms.
 ### Differentiation of k-form
 
 ````{prf:definition} derivative of a differential form
-:label: derivative_form
+:label: def7.5
 
 Let $A$ be an open subset of $\mathbb{R}^n$. For each integer $k \ge 0$ define the derivative mapping,
 
@@ -212,6 +212,7 @@ $$d\omega = \sum_Idf_I\wedge dx_I$$
 ````
 
 ````{prf:theorem}
+:label: them7.1
 Let $A$ be an open subset of $\mathbb{R}^n$. Let $\omega$ and $\lambda$ be respectively a $k$-form and an $l$-form on $A$. Then
 
 $$d(\omega\wedge\lambda) = d\omega\wedge\lambda+(-1)^k\omega\wedge d\lambda$$
@@ -223,7 +224,7 @@ $d^2\omega = 0$ for any form $\omega\in \Gamma k(A)$, where $d^2=d\circ d$. In o
 
 ### Pullback
 ````{prf:definition} pullback
-:label: pullback
+:label: def7.6
 Let $k$ be a nonnegative integer. Let $A$ be an open subset of $\mathbb{R}^{n}$, and let $B$ be an open subset of $\mathbb{R}^{m}$. Let
 
 $$
@@ -252,7 +253,8 @@ $$
 Given a form $\omega$ in terms of $y$'s and $dy$'s, its pullback $T^∗\omega$ comes from replacing each $y_i$ in $\omega$ by the expression $T_i(x_1, . . . , x_n)$ and then working out the resulting $d$’s and wedges.
 
 ````{prf:theorem}
-:label: pullback_determinant 
+:label: them7.2
+
 Let $A$ be an open
 subset of $\mathbb{R}^n$, and let $B$ be an open subset of $\mathbb{R}^m$. Let $T : A\rightarrow B$ be a smooth mapping. Let $\mathbb{R}^n$ have coordinates $(x1, . . . , xn)$, and let $\mathbb{R}^m$ have coordinates $(y1, . . . , ym)$. Let $I = (i1, . . . , in)$ be an n-tuple from $\{1, . . . ,m\}$. Then
 
@@ -272,20 +274,20 @@ A homotopy of a set is a process of deforming the set to a single point, the def
 $$h : [0, 1] × A \rightarrow A, h(t, x) = tx$$
 
 ````{prf:definition} homotopy
-:label: homotopy
+:label: def7.7
 Let $A$ be an open subset of $\mathbb{R}^n$. Let $\epsilon$ be a positive number. Let $B = (−\epsilon, 1 + \epsilon) \times A$ be
 an open subset of $\mathbb{R}^{n+1}$. A homotopy of $A$ is a a smooth mapping $h : B \rightarrow A$ such that for some point $p$ of $A$, $h(0, x) = p$ and  $h(1, x) = x$ for all $x in A$. 
 ````
 
 An open subset $A$ of $\mathbb{R}^n$ that has a homotopy is called **contractible**.
 ````{prf:theorem} Poincare
-:label: Poincare 
+:label: them7.3 
 Let $A$ be a contractible subset of $\mathbb{R}^n$. Let $k \ge 1$ be an integer. Then every closed k-form on $A$ is exact.
 ````
 
 ## Cubes and chain
 ````{prf:definition} cube
-:label: cube
+:label: def7.8
 Let $A$ be an open subset of $\mathbb{R}^{n}$. A singular $k$-cube in $A$ is a surface whose parameter domain is the unit $k$-box,
 
 $$
@@ -300,7 +302,7 @@ $$
 ````
 
 ````{prf:definition} chain
-:label: chain
+:label: def7.9
 Let $A$ be an open subset of $\mathbb{R}^{n}$. A -chain in $A$ is a finite formal linear combination
 
 $$
@@ -355,7 +357,7 @@ In property (2) the composition symbol "o" has been generalized a little from it
 
 ## The General Fundamental Theorem of Integral Calculus
 ````{prf:theorem} The General Fundamental Theorem of Integral Calculus
-:label: General_FTIC 
+:label: them7.4 
 Let $A$ be an open subset of $\mathbb{R}^n$. Let $C$ be a k-chain in $A$, and let $\omega$ be a $(k − 1)$-form on $A$. Then
 
 $$\int_Cd\omega = \int_{\partial C}\omega$$

@@ -30,6 +30,7 @@ In univariable calculus, we can calculate the area under a function curve $f(x)$
 ## Integration over Boxes
 
 ````{prf:definition} compact box
+:label: def5.1
 A nonempty compact box in $\mathbb{R}^n$ is a cartesian product $B=I_1 \times I_2 \times \cdots \times I_n$
 of nonempty compact intervals $I_j$ for $j=1, \ldots, n$. The volume of the box is the product of the lengths of its sides,
 
@@ -47,6 +48,7 @@ $$
 A partition divides the box $B$ into subboxes $J$. Each subbox is a cartesian product of subintervals. 
 
 ````{prf:definition}  n-dimensional Lower Sum and Upper Sum
+:label: def5.2
 Let $B$ be a nonempty compact box in $\mathbb{R}^n$, and let $f: B \longrightarrow \mathbb{R}$ be a bounded function. For any subbox $J$ of $B$, define $m_J(f)$ and $M_J(f)$,
 
 $$
@@ -66,7 +68,8 @@ U(f, P)=\sum_J M_J(f) \operatorname{vol}(J)
 $$
 ````
 
-````{prf:definition} Common Refinement 
+````{prf:definition} Common Refinement
+:label: def5.3 
 Given two partitions of $B$, $P=P_1 \times P_2 \times \cdots \times P_n$ and $P^{\prime}=P_1^{\prime} \times P_2^{\prime} \times \cdots \times P_n^{\prime}$, their common refinement is the partition
 
 $$
@@ -77,6 +80,7 @@ $$
 The common refinement of two partitions $P$ and $P^{\prime}$ is a partition that refines both $P$ and $P^{\prime}$, and it is the smallest such partition. 
 
 ````{prf:proposition} Lower Sums Are At Most Upper Sums
+:label: prop5.1
 Let $P$ and $P^{\prime}$ be partitions of the box $B$, and let $f: B \longrightarrow \mathbb{R}$ be any bounded function. Then
 
 $$
@@ -97,6 +101,7 @@ U \int_B f=\inf \{U(f, P): P \text { is a partition of } B\} \text {. }
 $$
 
 ````{prf:definition}  Integral
+:label: def5.4
 The function $f$ is said to be integrable over a box $B$ if the lower and upper integrals are equal,  
 
 $$L \int_B f=U \int_B f$$ 
@@ -112,6 +117,7 @@ This inequality indicates $U(f, P)\le L(f, P)$. We have shown that $L(f, P)\le U
 
 
 ````{prf:proposition}  
+:label: prop5.2
 Let $P$ be a partition of a box $B$. If a bounded function $f: B \longrightarrow \mathbb{R}$ is integrable over $B$ then $f$ is integrable over each subbox $J$ of $P$, in which case
 
 $$
@@ -120,6 +126,7 @@ $$
 ````
 
 ````{prf:theorem}  Continuity Implies Integrability
+:label: them5.1 
 Let $B$ be a box, and $f : B \rightarrow \mathbb{R}$ is a continuous function. Then $f$ is integrable over $B$
 ````
 
@@ -131,6 +138,7 @@ $$
 $$
 
 ````{prf:definition}  Volume of a Set
+:label: def5.5
 If the characteristic function \chi_S of a bounded set $S \subset \mathbb{R}^n$ is integrable, the volume of $S$ is defined by 
 
 $$\operatorname{vol}(S) := \int_B \chi_S$$
@@ -145,6 +153,7 @@ Sets of volume zero are small enough that they don't interfere with integration.
 - type II : $J$ such that $J \cap S=\emptyset$.
 
 ````{prf:proposition}  Volume Zero Criterion 
+:label: prop5.3
 A set $S$ contained in the box $B$ has volume zero if and only if for every $\varepsilon>0$ there exists a partition $P$ of $B$ such that
 
 $$
@@ -153,10 +162,12 @@ $$
 ````
 
 ````{prf:theorem} Near-continuity Implies Integrability 
+:label: them5.2
 Let $B \subset \mathbb{R}^n$ be a box. Let $f : B \rightarrow \mathbb{R}$ be bounded, and continuous except on a set $S \subset B$ of volume zero. Then $\int_Bf$ exists.
 ````
 
 ````{prf:definition} Known-Integrable Function 
+:label: def5.6
 A function $f : K \rightarrow \mathbb{R}$
 is known-integrable if $K$ is a compact subset of $R^n$ having boundary of
 volume zero, and if $f$ is bounded on $K$ and is continuous on all of $K$ except
@@ -164,7 +175,7 @@ possibly a subset of volume zero.
 ````
 
 ````{prf:definition} Integral over a Nonbox
-
+:label: def5.7
 Let $f: K \rightarrow \mathbb{R}$ be a known-integrable function. Extend its domain to $\mathbb{R}^n$ by defining a new function
 
 $$
@@ -175,6 +186,7 @@ The integral of $f$ over $K$ is $\int_K f=\int_B \tilde{f}$ where $B$ is any box
 ````
 
 ````{prf:proposition}
+:label: prop5.4
 Let $K \subset \mathbb{R}^n$ be a compact set whose boundary has volume
 zero. Let $f : K \rightarrow \mathbb{R}$ be continuous. Let $K = K_1 \cup K_2$ where each $K_j$
 is compact and the intersection $K_1 \cap K_2$ has volume zero. Then $f$ is integrable
@@ -186,7 +198,7 @@ $$\int_Kf = \int_{K_1}f + \int_{K_2}f$$
 ## Computing integrals
 
 ````{prf:example} 
-:label: double_integral
+:label: exp5.1
 The double integral is defined as the limit of the Riemann sum
 
 $$
@@ -195,7 +207,7 @@ $$
 ````
 
 ````{prf:example}
-:label: triple_integral
+:label: exp5.2
 If $f(x, y, z)$ is a function of three variables and $E$ is a solid region in space, then the triple integral is defined as the limit of the Riemann sum
 
 $$
@@ -206,7 +218,7 @@ $$
 Alternatively, we can calculate the surface area of a subset of $\mathbb{R}^n$ using surface integrals
 
 ````{prf:definition} surface integral
-:label: surface integral
+:label: def5.8
 A parameterized surface $\vec{r}(u, v)$ on a parameter domain $G\subset\mathbb{R}^2$ has the surface area
 
 $$
@@ -216,7 +228,7 @@ $$
 
 Under certain conditions, the order of the high dimensional integral does not matter.
 ````{prf:theorem} Fubini's theorem
-:label: Fubini_theorem
+:label: them5.3
 Fubini's theorem allows to switch the order of integration over a rectangle, if the function $f$ is continuous: 
 
 $$\int_a^b \int_c^d f(x,y) dxdy=\int_c^d \int_a^b f(x,y) dydx$$
@@ -226,7 +238,7 @@ $$\int_a^b \int_c^d f(x,y) dxdy=\int_c^d \int_a^b f(x,y) dydx$$
 In many cases, it is easier to integrate in the polar system. We here consider the relationship between the Cartesian integration and the Polar integration.
 
 ````{prf:theorem} polar integral
-:label: polar_integral
+:label: them5.4
 To integrate in polar coordinates, we evaluate the integral
 
 $$

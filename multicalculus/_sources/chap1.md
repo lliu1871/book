@@ -32,7 +32,7 @@ A point in $n$-dimensional Euclidean space is represented by an $n$-tuple of rea
 
 
 ````{prf:definition} Euclidean space
-:label: Euclidean_space
+:label: def1.1
 A Euclidean space is an affine space over $\mathbb{R}$ such that the associated vector space is a Euclidean vector space.
 ````
 
@@ -50,7 +50,7 @@ ax = plt.axes(projection='3d')
 ```
 
 ````{prf:definition} Euclidean distance
-:label: Euclidean_distance
+:label: def1.2
 The Euclidean distance between two points $P=\langle x_1,..., x_n\rangle$ and $Q=\langle y_1,..., y_n\rangle$ in space is defined as $d(P, Q)=\sqrt{\sum_{i=1}^n(x_i-y_i)^2}$.
 ````
 
@@ -88,12 +88,12 @@ A point in the Euclidean space is represented by its coordinates or a **vector**
 
 
 ````{prf:definition} vector addition
-:label: vector_addition
+:label: def1.3
 The addition of two vectors is $\vec{u}+\vec{v}=\left\langle u_1, u_2, u_3\right\rangle+\left\langle v_1, v_2, v_3\right\rangle=$ $\left\langle u_1+v_1, u_2+v_2, u_3+v_3\right\rangle$. 
 ````
 
 ````{prf:definition} vector scalar multiplication
-:label: vector_scalar_multiplication
+:label: def1.4
 The scalar multiple $\lambda \vec{u}=\lambda\left\langle u_1, u_2, u_3\right\rangle=\left\langle\lambda u_1, \lambda u_2, \lambda u_3\right\rangle$. The difference $\vec{u}-\vec{v}$ can best be seen as the addition of $\vec{u}$ and $(-1) \cdot \vec{v}$.
 ````
 The vector addition and scalar multiplication satisfy the communitativity, associativity, and distributivity laws
@@ -105,7 +105,7 @@ The vector addition and scalar multiplication satisfy the communitativity, assoc
 In addition to addition and scalar multiplication, Euclidean space is also equipped with dot product which can be used to measure distance, rotation, reflection, etc. 
 
 ````{prf:definition} dot product
-:label: dot_product
+:label: def1.5
 The dot product of two vectors $\vec{v}=\langle a, b, c\rangle$ and $\vec{w}=\langle p, q, r\rangle$ is defined as $\vec{v} \cdot \vec{w}=$ $a p+b q+c r$
 ````
 
@@ -125,7 +125,7 @@ A triangle $A B C$ with side lengths $a, b, c$ and angle $\alpha$ opposite to $c
 The vector $\mathrm{P}(\vec{v})=\frac{\vec{v} \cdot \vec{w}}{|\vec{w}|^2} \vec{w}$ is called the projection of $\vec{v}$ onto $\vec{w}$. The scalar projection $\frac{\vec{v} \cdot \vec{w}}{|\vec{w}|}$ is plus or minus the length of the projection of $\vec{v}$ onto $\vec{w}$. The vector $\vec{b}=\vec{v}-P(\vec{v})$ is a vector orthogonal to $\vec{w}$.
 
 ````{prf:definition} cross product
-:label: cross_product
+:label: def1.6
 The cross product of two vectors $\vec{v}=\left\langle v_1, v_2\right\rangle$ and $\vec{w}=\left\langle w_1, w_2\right\rangle$ in the plane is the scalar $v_1 w_2-v_2 w_1=\operatorname{det}\left[\begin{array}{cc}v_1 & v_2 \\ w_1 & w_2\end{array}\right]$
 
 The cross product of two vectors $\vec{v}=\left\langle v_1, v_2, v_3\right\rangle$ and $\vec{w}=\left\langle w_1, w_2, w_3\right\rangle$ in space is defined as the vector
@@ -137,7 +137,7 @@ $$
 
 - The cross product $\vec{v} \times \vec{w}$ is anti-commutative. The resulting vector is orthogonal to both $\vec{v}$ and $\vec{w}$.
 - $|\vec{v} \times \vec{w}|=|\vec{v}||\vec{w}| \sin (\alpha)$
-- The absolute value respectively length $|\vec{v} \times \vec{w}|$ defines the area of the parallelogram spanned by $\vec{v}$ and $\vec{w}$
+- $|\vec{v} \times \vec{w}|$ defines the area of the parallelogram spanned by $\vec{v}$ and $\vec{w}$
 
 ## Lines and planes
 ```{note}
@@ -186,14 +186,14 @@ Three points $\vec{v_1}$, $\vec{v_2}$, and $\vec{v_3}$ define a plane $\Sigma=\{
 A parametrization of a planar curve is a map $\vec{r}(t)=\langle x(t), y(t)\rangle$ from a parameter interval $t\in[a, b]$ to the plane. The functions $x(t)$ and $y(t)$ are called coordinate functions. The image of the parametrization is called a **parametrized curve** in the plane. The parametrization of a space curve is $\vec{r}(t)=\langle x(t), y(t), z(t)\rangle$. The image of $\vec{r}$ is a parametrized curve in space.
 
 ````{prf:definition} velocity
-:label: velocity
+:label: def1.7
 The velocity of a parameterized curve $\vec{r}(t)=\langle x(t), y(t), z(t)\rangle$ at time $t$ is the tangent vector (or derivative) $\vec{r}^{\prime}(t)=\left\langle x^{\prime}(t), y^{\prime}(t), z^{\prime}(t)\right\rangle=\langle\dot{x}, \dot{y}, \dot{z}\rangle$ of the curve $\vec{r}$ at $t$. 
 ````
 
-The length $\|\vec{r}^{\prime}(t)\|$ of velocity is called **speed** and $\vec{r}^{\prime} /|\vec{v}^{\prime}|$ is called **direction** of motion. The vector $\vec{r}^{\prime \prime}(t)$ is called the **acceleration**. The third derivative $\vec{r}^{\prime \prime \prime}$ is called the **jerk**.
+The length $\|\vec{r}^{\prime}(t)\|$ of velocity is called **speed** and $\vec{r}^{\prime} /|\vec{r}^{\prime}|$ is called **direction** of motion. The vector $\vec{r}^{\prime \prime}(t)$ is called the **acceleration**. The third derivative $\vec{r}^{\prime \prime \prime}$ is called the **jerk**.
 
 ````{prf:definition} tangent vector
-:label: tangent_vector
+:label: def1.8
 Any vector parallel to $\vec{r}^{\prime}(t)$ is called tangent to the curve at $\vec{r}(t)$
 ````
 
@@ -230,7 +230,7 @@ plt.show()
 The curvature measures how fast a curve is changing direction at a given point.
 
 ````{prf:definition} arc length
-:label: arc_length
+:label: def1.9
 Let $\vec{r}(t)$ be a parameterized curve with velocity $\vec{r}^{\prime}(t)$ and speed $\|\vec{r}^{\prime}(t)\|$. The arc length of the curve is given by 
 
 $$L=\int_a^b\|\vec{r}^{\prime}(t)\| d t$$
@@ -238,11 +238,12 @@ $$L=\int_a^b\|\vec{r}^{\prime}(t)\| d t$$
 ````
 
 ````{prf:example}
+:label: exp1.1
 In $\mathbb{R}^3$, the arc length is $L=\int_a^b \sqrt{x^{\prime}(t)^2+y^{\prime}(t)^2+z^{\prime}(t)^2} dt$.
 ````
 
 ````{prf:definition} curvature
-:label: curvature
+:label: def1.10
 Let $\vec{T}(t)=\frac{\vec{r}^{\prime}(t)}{\| \vec{r}^{\prime}(t)\|}$ be the unit tangent vector. The curvature of a curve at the point $\vec{r}(t)$ is defined as 
 
 $$\kappa(t)=\left\|\frac{d\vec{T}}{ds} \right\| = \frac{\|\vec{T}^{\prime}(t)\|}{\|\vec{r}^{\prime}(t)\|}$$
@@ -250,15 +251,16 @@ $$\kappa(t)=\left\|\frac{d\vec{T}}{ds} \right\| = \frac{\|\vec{T}^{\prime}(t)\|}
 where $s$ is the arc length.
 ````
 
+
 - The curvature does not depend on the parametrization
-- $\kappa=\frac{\left\|\vec{r}^{\prime}(t) \times \vec{r}^{\prime \prime}(t)\right\|}{\left\|\vec{r}^{\prime}(t)\right\|^3}$
+- $\kappa=\frac{\left\|\vec{r}^{\prime}(t) \times \vec{r}^{\prime \prime}(t)\right\|}{\left\|\vec{r}^{\prime}(t)\right\|^3}$, because $\vec{r}^{\prime} \times \vec{r}^{\prime \prime} = T\left\|\vec{r}^{\prime}\right\| \times \left(T'\left\|\vec{r}^{\prime}\right\|+\left\|\vec{r}^{\prime}\right\|^{\prime}T\right) = \left\|\vec{r}^{\prime}\right\|^2T\times T'$ and $\left\|T\times T'\right\|= \left\| T' \right\|$.
 - The distance from the vertex to the center of curvature is known as the radius of curvature $R=1/\kappa$
 
 In general, the absolute curvature of a curve is the reciprocal of the radius of the best-fitting circle to $\gamma$. If $\gamma$ is a curve parametrized and begins at some point $p_0$ with initial tangent vector $T_0$, and that $\gamma$ has curvature function $\kappa(s)$, then we can reproduce the curve $\gamma$. Thus, the combination of a set of initial conditions and the local information of the curvature at each point of a curve is enough to recover the curve itself, a global object.
 
 ````{prf:example}
+:label: exp1.2
 Find the curvature for $\vec{r}(t)=\langle t, 3 \sin t, 3 \cos t\rangle$
-
 
 We first find the tangent vector $\vec{r}^{\prime}(t)=\langle 1,3 \cos t,-3 \sin t\rangle$ and the unit tangent vector 
 $\vec{T}(t)=\left\langle\frac{1}{\sqrt{10}}, \frac{3}{\sqrt{10}} \cos t,-\frac{3}{\sqrt{10}} \sin t\right\rangle$. The derivative of the unit tangent vector is given by
@@ -305,14 +307,14 @@ ax.plot3D(xline, yline, zline, 'gray')
 
 
 ````{prf:definition} normal vector
-:label: normal_vector
+:label: def1.11
 Let $\vec{r}(t)$ be a parameterized curve with nonzero speed at $t$. Let $T$ be the unit tangent vector. The normal vector is defined by
 
 $$
 \vec{N}(t)=\frac{\vec{T}^{\prime}(t)}{\|\vec{T}^{\prime}(t)\|}$$
 ````
 ````{prf:definition} binormal vector
-:label: binormal_vector
+:label: def1.12
 The binormal vector is defined by $\vec{B}(t)=\vec{T}(t) \times \vec{N}(t)$. 
 ````
 
@@ -358,7 +360,7 @@ The torsion of a space curve is the rate of change of the curve's osculating pla
 
 
 ````{prf:definition} torsion
-:label: torsion
+:label: def1.13
 
 The torsion of a parameterized curve $\lambda(t)$ is defined by $
 \tau := -\vec{N}(t) \cdot \vec{B}^{\prime}(t)$
@@ -378,7 +380,7 @@ $$
 
 ## Parametrized surfaces
 ````{prf:definition} parameterized surface
-:label: parameterized_surface
+:label: def1.14
 A parametrization of a surface is a vector-valued function
 
 $$

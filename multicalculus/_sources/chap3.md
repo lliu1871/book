@@ -26,7 +26,7 @@ kernelspec:
 ```
 
 ````{prf:definition} linear mapping
-:label: linear_mapping
+:label: def3.1
 The mapping $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ is linear if for all positive integers $k$, all real numbers $\alpha_1$ through $\alpha_k$, and all vectors $x_1$ through $x_k$,
 
 $$
@@ -37,6 +37,7 @@ $$
 Consider a special linear map $T: \mathbb{R}^n\rightarrow\mathbb{R}$ called linear functionals. All linear functionals can be expressed as an inner product with a fixed vector.
 
 ````{prf:proposition}
+:label: prop3.1
 The linear functionals $T: \mathbb{R}^n \rightarrow \mathbb{R}$ are precisely the mappings
 
 $$
@@ -47,6 +48,7 @@ where $a \in \mathbb{R}^n$. That is, each linear functional $T: \mathbb{R}^n \ri
 
 A linear map can be represented as an $m$-tuple of linear maps as described in the following proposition.
 ````{prf:proposition}
+:label: prop3.2
 $T=(T_1,...,T_m):\mathbb{R}^n\rightarrow \mathbb{R}^m$ is linear if and only if each scalar-valued component function $T_i:\mathbb{R}^n\rightarrow \mathbb{R}$ is linear
 ````
 
@@ -56,6 +58,7 @@ $T=(T_1,...,T_m):\mathbb{R}^n\rightarrow \mathbb{R}^m$ is linear if and only if 
 
 All finite linear maps can be expressed as matrices. 
 ````{prf:theorem}
+:label: them3.1
 The linear maps $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$ are precisely the mappings
 
 $$
@@ -67,6 +70,7 @@ where $A \in \mathrm{M}_{m, n}(\mathbb{R})$. That is, each linear mapping $T: \m
 The set of linear maps $L(n,m)$ forms a vector space.
 
 ````{prf:theorem}
+:label: them3.2
 Suppose that $S, T: \mathbb{R}^n \longrightarrow \mathbb{R}^m$ are linear and that $a \in \mathbb{R}$. Then the mappings
 
 $$
@@ -80,7 +84,7 @@ are also linear. Consequently, the set of linear mappings from $\mathbb{R}^n$ to
 The set of matrices with the same dimension is a vector space. Here, we define the vector addition and scalar multiplication for matrices.
 
 ````{prf:definition} matrix addition
-:label: matrix_addition
+:label: def3.2
 Definition 3.2.1 (Matrix Addition).
 If $A=\left[a_{i j}\right]_{m \times n}$ and $B=\left[b_{i j}\right]_{m \times n}$, then 
 
@@ -88,7 +92,7 @@ $$A+B=\left[a_{i j}+b_{i j}\right]_{m \times n}$$
 ````
 
 ````{prf:definition} matrix scalar multiplication
-:label: matrix_scalar
+:label: def3.3
 Definition 3.2.2 (Scalar-by-Matrix Multiplication).
 If $\alpha \in \mathbb{R}$ and $A=\left[a_{i j}\right]_{m \times n}$, then 
 
@@ -102,7 +106,7 @@ The set $\mathrm{M}_{m, n}(\mathbb{R})$ of $m$-by-$n$ matrices forms a vector sp
 Matrix multiplication corresponds to composition of two linear functions.
 
 ````{prf:definition} matrix multiplication
-:label: matrix_multiplication
+:label: def3.4
 Given two matrices $A \in \mathrm{M}_{m, n}(\mathbb{R})$ and $B \in \mathrm{M}_{n, p}(\mathbb{R})$ such that $A$ has as many columns as $B$ has rows, their product, then the product of two matrices $AB \in \mathrm{M}_{m, p}(\mathbb{R})$ has for its $(i, j)^{th}$ entry (for any $i \in\{1, \cdots, m\}$ and $j \in\{1, \cdots, p\})$ the inner product of the $i^{th}$ row of $A$ and the $j^{th}$ column of $B$. In symbols,
 
 $$
@@ -114,7 +118,7 @@ $$
 ## Inverse
 
 ````{prf:theorem} 
-:label: invertibility_matrix_theorem
+:label: them3.3
 A nonsquare matrix $A$ is never invertible. A square matrix $A$ is invertible if and only if its echelon form is the identity matrix.
 ````
 
@@ -131,7 +135,7 @@ in $\mathrm{M}_{n, 2 n}(\mathbb{R})$. Carry out row operations on this matrix to
 
 ## Determinant
 ````{prf:definition} determinant
-:label: determinant
+:label: def3.5
 The determinant is a multilinear skew-symmetric normalized function from the $n$-fold product of $\mathbb{R}^n$ to $\mathbb{R}$
 
 $$
@@ -142,6 +146,7 @@ $$
 The above definition of determinant makes sense only if it exists and unique.
 
 ````{prf:theorem}
+:label: them3.4
 The determinant exists and is unique. Furthermore, all multilinear skew-symmetric functions from the $n$-fold product of $\mathbb{R}^n$ to $\mathbb{R}$ are scalar multiples of of the determinant. That is, any multilinear skew-symmetric function $\delta: \mathbb{R}^n \times \cdots \times \mathbb{R}^n \longrightarrow \mathbb{R}$ is
 
 $$
@@ -150,6 +155,7 @@ $$
 ````
 The determinant of the product of two matrices is equal to the product of the determinants of two matrices
 ````{prf:theorem}
+:label: them3.5
 For all matrices $A, B \in \mathrm{M}_n(\mathbb{R})$,
 
 $$
@@ -164,11 +170,13 @@ $$
 
 The following theorem tells us the relationship between determinant and invertibility.
 ````{prf:theorem}
+:label: them3.6
 The matrix $A \in \mathrm{M}_n(\mathbb{R})$ is invertible if and only if $\operatorname{det}(A) \neq 0$.
 ````
 
 The geometric interpretation of a determinant is that the determinant measures the volumn of the parallelepiped formed by the column vectors of the matrix.
 
 ````{prf:theorem}
+:label: them3.7
 Any linear mapping $T: \mathbb{R}^n \rightarrow \mathbb{R}^n$ is the composition of a possible squash followed by shears, scales and reflections. If the matrix of $T$ is $A$, then $T$ magnifies volume by $|\operatorname{det} A|$.
 ````

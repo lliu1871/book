@@ -1,49 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 4: Derivative &#8212; Multivariate Calculus</title>
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="_static/proof.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -53,61 +64,93 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap4';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Chapter 5: Integral" href="chap5.html" />
     <link rel="prev" title="Chapter 3: Linear maps" href="chap3.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.jpg" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Multivariate Calculus</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -117,384 +160,231 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="preface.html">
-   Preface
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap1.html">
-   Chapter 1: Geometry
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap2.html">
-   Chapter 2: Vector space
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap3.html">
-   Chapter 3: Linear maps
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 4: Derivative
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap5.html">
-   Chapter 5: Integral
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap6.html">
-   Chapter 6: Vector calculus
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="chap7.html">
-   Chapter 7: Differential forms
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">Chapter 2: Vector space</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Linear maps</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 4: Derivative</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Integral</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Vector calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">Chapter 7: Differential forms</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chap4.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap4.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/chap4.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="_sources/chap4.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extreme-values">
-   Extreme values
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#directional-derivatives">
-   Directional derivatives
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient">
-   Gradient
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cylindrical-and-spherical-coordinates">
-     Cylindrical and spherical coordinates
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integral-curves">
-   Integral curves
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inverse-function-theorem">
-   Inverse function theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implicit-function-theorem">
-   Implicit function theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lagrange-multiplier">
-   Lagrange multiplier
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 4: Derivative</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#extreme-values">
-   Extreme values
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#directional-derivatives">
-   Directional derivatives
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient">
-   Gradient
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cylindrical-and-spherical-coordinates">
-     Cylindrical and spherical coordinates
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#integral-curves">
-   Integral curves
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inverse-function-theorem">
-   Inverse function theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implicit-function-theorem">
-   Implicit function theorem
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lagrange-multiplier">
-   Lagrange multiplier
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 4: Derivative</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-approximation">Linear approximation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-values">Extreme values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directional-derivatives">Directional derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient">Gradient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cylindrical-and-spherical-coordinates">Cylindrical and spherical coordinates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-curves">Integral curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-function-theorem">Inverse function theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-function-theorem">Implicit function theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagrange-multiplier">Lagrange multiplier</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="chapter-4-derivative">
-<h1>Chapter 4: Derivative<a class="headerlink" href="#chapter-4-derivative" title="Permalink to this headline">#</a></h1>
+<h1>Chapter 4: Derivative<a class="headerlink" href="#chapter-4-derivative" title="Permalink to this heading">#</a></h1>
 <blockquote class="epigraph">
 <div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
 <p class="attribution">—Lao Tzu</p>
@@ -507,7 +397,7 @@ title="Print to PDF"
 </ul>
 </div>
 <p>The derivative of a univariable function at a point <span class="math notranslate nohighlight">\(a\)</span> is defined as <span class="math notranslate nohighlight">\(f'(a)=\lim_{h\rightarrow 0}\frac{f(a+h)-f(a)}{h}\)</span>. This definition can be generalized to partial derivatives for multivariable cases where the partial derivative is taken with respect to a single variable keeping other variables fixed.</p>
-<div class="proof definition admonition" id="partial_derivative">
+<div class="proof definition admonition" id="def4.1">
 <p class="admonition-title"><span class="caption-number">Definition 27 </span> (partial derivative)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(A\)</span> be a subset of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, The continuous mapping <span class="math notranslate nohighlight">\(f\)</span> : <span class="math notranslate nohighlight">\(A \rightarrow \mathbb{R}\)</span> is differentiable at an interior point <span class="math notranslate nohighlight">\(a\in A^{\mathrm{o}}\)</span>. Fix <span class="math notranslate nohighlight">\(j \in\{1, \ldots, n\}\)</span>. Define</p>
@@ -515,21 +405,17 @@ title="Print to PDF"
 \[
 \varphi(t)=f\left(a_1, \ldots, a_{j-1}, t, a_{j+1}, \ldots, a_n\right) \text { for } t \text { near } a_j .
 \]</div>
-<p>Then the <span class="math notranslate nohighlight">\(j\)</span> th partial derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> is defined as <span class="math notranslate nohighlight">\(D_jf(a) = f_j'(a)=\varphi^{\prime}\left(a_j\right)\)</span>.</p>
+<p>Then the <span class="math notranslate nohighlight">\(j^{th}\)</span> partial derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> is defined as <span class="math notranslate nohighlight">\(D_jf(a) = f_j'(a)=\varphi^{\prime}\left(a_j\right)\)</span>.</p>
 </section>
 </div><p>However, this definition cannot be generalized to the derivative of multiple variables because the division <span class="math notranslate nohighlight">\(\frac{f(a+h)-f(a)}{h}\)</span> by a vector <span class="math notranslate nohighlight">\(h\)</span> is not defined. Therefore, we define the derivative of multiple variables as a linear map.</p>
-<div class="proof definition admonition" id="differentiable_function">
+<div class="proof definition admonition" id="def4.2">
 <p class="admonition-title"><span class="caption-number">Definition 28 </span> (differetiable function)</p>
 <section class="definition-content" id="proof-content">
 <p>A continuous mapping <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}^m\)</span> from <span class="math notranslate nohighlight">\(A\subset \mathbb{R}^n\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span> is differentiable at an interial point <span class="math notranslate nohighlight">\(a\in A^{\mathrm{o}}\)</span>, if there exists a linear mapping <span class="math notranslate nohighlight">\(T_a: \mathbb{R}^n \rightarrow \mathbb{R}^m\)</span> satisfying the condition</p>
 <div class="math notranslate nohighlight">
-\[
-f(a+h)=f(a)+T_a(h)+\epsilon(h)
-\]</div>
-<p>where the error <span class="math notranslate nohighlight">\(\epsilon(h) = o(\|h\|)\)</span> and <span class="math notranslate nohighlight">\(o\)</span> is little-<span class="math notranslate nohighlight">\(o\)</span> notation and indicates that <span class="math notranslate nohighlight">\(\epsilon(h)\)</span> is much smaller than
-<span class="math notranslate nohighlight">\(\|h\|\)</span> as <span class="math notranslate nohighlight">\(h\rightarrow 0\)</span>.</p>
+\[\lim_{h \rightarrow 0} \frac{\|f(a+h)-f(a)-T_a(h)\|}{\|h\|}=0\]</div>
 </section>
-</div><p>The linear map <span class="math notranslate nohighlight">\(T_a\)</span> is called the total <strong>derivative</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>, written <span class="math notranslate nohighlight">\(D f_a\)</span> or <span class="math notranslate nohighlight">\((D f)_a\)</span>. The matrix of the linear map <span class="math notranslate nohighlight">\(D f_a\)</span> is written <span class="math notranslate nohighlight">\(f^{\prime}(a)\)</span> and is called the <strong>Jacobian matrix</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>.</p>
+</div><p>The linear map <span class="math notranslate nohighlight">\(T_a\)</span> is called the total <strong>derivative</strong> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>, written <span class="math notranslate nohighlight">\(D f_a\)</span> or <span class="math notranslate nohighlight">\((D f)_a\)</span> or <span class="math notranslate nohighlight">\(f'_a\)</span>. The matrix of the linear map <span class="math notranslate nohighlight">\(D f_a\)</span> is called the <strong>Jacobian matrix</strong> <span class="math notranslate nohighlight">\(J_a\)</span> of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span>.</p>
 <ul class="simple">
 <li><p>The linear map <span class="math notranslate nohighlight">\(T_a\)</span>, if exists, is unique.</p></li>
 <li><p>If the function <span class="math notranslate nohighlight">\(f\)</span> is differentiable at the point <span class="math notranslate nohighlight">\(a\)</span>, then all partial derivatives of <span class="math notranslate nohighlight">\(f\)</span> at the point <span class="math notranslate nohighlight">\(a\)</span> exist.</p></li>
@@ -542,20 +428,20 @@ f(a+h)=f(a)+T_a(h)+\epsilon(h)
 </ul>
 <div class="admonition-jacobian-matrix admonition">
 <p class="admonition-title">Jacobian matrix</p>
-<p>The derivative of a multivariable function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at a point <span class="math notranslate nohighlight">\(a\)</span> is a linear map which can approximate the function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at the point <span class="math notranslate nohighlight">\(a\)</span>. The entries of the matrix of the linear map are partial derivatives <span class="math notranslate nohighlight">\(f_i'(x)\)</span>.</p>
+<p>The derivative of a multivariable function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at a point <span class="math notranslate nohighlight">\(a\)</span> is a linear map which can approximate the function <span class="math notranslate nohighlight">\(f(\vec{x})\)</span> at the point <span class="math notranslate nohighlight">\(a\)</span>. The entries of the matrix of the linear map are partial derivatives <span class="math notranslate nohighlight">\(f_i'(a)\)</span> at <span class="math notranslate nohighlight">\(a\)</span>.</p>
 </div>
 <p>Since the derivatives are the linear maps, they have the linearity property, i.e., <span class="math notranslate nohighlight">\(D(f+g)_a = Df_a+Dg_a\)</span> and <span class="math notranslate nohighlight">\(D(cf)_a=cDf_a\)</span> as described in the following theorem.</p>
-<div class="proof theorem admonition" id="linearity_derivative_theorem">
+<div class="proof theorem admonition" id="them4.1">
 <p class="admonition-title"><span class="caption-number">Theorem 11 </span> (linearity of the derivative)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}^m\)</span> (where <span class="math notranslate nohighlight">\(A \subset \mathbb{R}^n\)</span> ) and <span class="math notranslate nohighlight">\(g: B \rightarrow \mathbb{R}^m\)</span> (where <span class="math notranslate nohighlight">\(B \subset \mathbb{R}^n\)</span> ) be mappings. Suppose that <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are differentiable at <span class="math notranslate nohighlight">\(a\in A\cap B\)</span> with derivatives <span class="math notranslate nohighlight">\(D f_a\)</span> and <span class="math notranslate nohighlight">\(D g_a\)</span>. Then</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>The sum <span class="math notranslate nohighlight">\(f+g: A \cap B \longrightarrow \mathbb{R}^m\)</span> is differentiable at a with derivative <span class="math notranslate nohighlight">\(D(f+g)_a=D f_a+D g_a\)</span>.</p></li>
 <li><p>For any <span class="math notranslate nohighlight">\(\alpha \in \mathbb{R}\)</span>, the scalar multiple <span class="math notranslate nohighlight">\(\alpha f: A \longrightarrow \mathbb{R}^m\)</span> is differentiable at a with derivative <span class="math notranslate nohighlight">\(D(\alpha f)_a=\alpha D f_a\)</span>.</p></li>
 </ol>
 </section>
 </div><p>In univariable calculus, the derivative of the product of two functions is <span class="math notranslate nohighlight">\((fg)'=f'g+g'f\)</span>. Here is the multivariable version.</p>
-<div class="proof theorem admonition" id="product derivative">
+<div class="proof theorem admonition" id="them4.2">
 <p class="admonition-title"><span class="caption-number">Theorem 12 </span> (derivatives of the product )</p>
 <section class="theorem-content" id="proof-content">
 <p>If two functions <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(A \subset \mathbb{R}^n\)</span>) and <span class="math notranslate nohighlight">\(g: B \rightarrow \mathbb{R}\)</span> where <span class="math notranslate nohighlight">\(B \subset \mathbb{R}^n\)</span> are differentiable at <span class="math notranslate nohighlight">\(a\)</span>, then <span class="math notranslate nohighlight">\(fg\)</span> is differentiable at <span class="math notranslate nohighlight">\(a\)</span> with derivative</p>
@@ -570,7 +456,7 @@ D\left(\frac{f}{g}\right)_a=\frac{g(a) D f_a-f(a) D g_a}{g(a)^2}
 \]</div>
 </section>
 </div><p>The most important theorem for calculating multivariable derivatives is the chain rule.</p>
-<div class="proof theorem admonition" id="multivariable_derivative_chain_rule">
+<div class="proof theorem admonition" id="them4.3">
 <p class="admonition-title"><span class="caption-number">Theorem 13 </span> (multivariable chain rule)</p>
 <section class="theorem-content" id="proof-content">
 <p>If a continuous map <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}^m\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^n\right)\)</span> is differentiable at the point <span class="math notranslate nohighlight">\(a \in A\)</span>, and another continuous mapping <span class="math notranslate nohighlight">\(g: B \rightarrow \mathbb{R}^{\ell}\)</span> is differentiable at the point <span class="math notranslate nohighlight">\(f(a) \in B \subset \mathbb{R}^m\)</span>, then the composition <span class="math notranslate nohighlight">\(g \circ f\)</span> is differentiable at the point <span class="math notranslate nohighlight">\(a\)</span>, and its derivative is</p>
@@ -579,30 +465,63 @@ D\left(\frac{f}{g}\right)_a=\frac{g(a) D f_a-f(a) D g_a}{g(a)^2}
 <p>In terms of Jacobian matrices, since the matrix of a composition is the product of the matrices, the Chain Rule is</p>
 <div class="math notranslate nohighlight">
 \[
-(g \circ f)^{\prime}(a)=g^{\prime}(f(a)) f^{\prime}(a) .
+(g \circ f)^{\prime}_a=g^{\prime}_{f(a)} f^{\prime}_a .
 \]</div>
 </section>
-</div><section id="extreme-values">
-<h2>Extreme values<a class="headerlink" href="#extreme-values" title="Permalink to this headline">#</a></h2>
-<div class="proof theorem admonition" id="theorem-5">
+</div><p>Let <span class="math notranslate nohighlight">\(f\)</span> be a differentiable function of several variables and <span class="math notranslate nohighlight">\(C\)</span> be a smooth curve in the domain of <span class="math notranslate nohighlight">\(f\)</span>. Then one can restrict the function <span class="math notranslate nohighlight">\(f\)</span> to the curve <span class="math notranslate nohighlight">\(C\)</span>, that is, define a function on the curve <span class="math notranslate nohighlight">\(C\)</span> by values of <span class="math notranslate nohighlight">\(f\)</span> on <span class="math notranslate nohighlight">\(C\)</span>. Let <span class="math notranslate nohighlight">\(\mathbf{r}=\mathbf{r}(s)\)</span> be a natural parameterization of <span class="math notranslate nohighlight">\(C\)</span> in some rectangular coordinate system. Then the rate of change of <span class="math notranslate nohighlight">\(f\)</span> along <span class="math notranslate nohighlight">\(C\)</span> at a point <span class="math notranslate nohighlight">\(\mathbf{r}(s)\)</span> with increasing <span class="math notranslate nohighlight">\(\mid s\)</span> is given by the chain rule</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d f}{d s}=f_{x_1}^{\prime}(\mathbf{r}(s)) x_1^{\prime}(s)+f_{x_2}^{\prime}(\mathbf{r}(s)) x_2^{\prime}(s)+\cdots+f_{x_m}^{\prime}(\mathbf{r}(s)) x_m^{\prime}(s)
+\]</div>
+<section id="linear-approximation">
+<h2>Linear approximation<a class="headerlink" href="#linear-approximation" title="Permalink to this heading">#</a></h2>
+<p>If a continuous map <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}^m\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^n\right)\)</span> is differentiable at the point <span class="math notranslate nohighlight">\(r_0 \in A\)</span>, then <span class="math notranslate nohighlight">\(f(r)\)</span> for <span class="math notranslate nohighlight">\(r=r_0+h\)</span> can be approximated by</p>
+<div class="math notranslate nohighlight">
+\[
+f(r_0+h)=f(r_0)+f'_{r_0}(h)+\epsilon(h)
+\]</div>
+<p>where the error <span class="math notranslate nohighlight">\(\epsilon(h) = o(\|h\|)\)</span> and <span class="math notranslate nohighlight">\(o\)</span> is little-<span class="math notranslate nohighlight">\(o\)</span> notation and indicates that <span class="math notranslate nohighlight">\(\epsilon(h)\)</span> is much smaller than
+<span class="math notranslate nohighlight">\(\|h\|\)</span> as <span class="math notranslate nohighlight">\(h\rightarrow 0\)</span>.</p>
+<div class="proof example admonition" id="exp4.1">
+<p class="admonition-title"><span class="caption-number">Example 4 </span></p>
+<section class="example-content" id="proof-content">
+<p>Find all points at which the function <span class="math notranslate nohighlight">\(f(x, y)=x^2+3 y^2\)</span> has a good linear approximation. Find the tangent plane to the graph <span class="math notranslate nohighlight">\(z=\)</span> <span class="math notranslate nohighlight">\(f(x, y)\)</span> at the point <span class="math notranslate nohighlight">\((2,1,7)\)</span> or show that no such plane exists.</p>
+<p>The tangent plane at a point <span class="math notranslate nohighlight">\(\left(x_0, y_0, z_0\right)\)</span> of the graph <span class="math notranslate nohighlight">\(z=f(x, y)\)</span> exits if and only if <span class="math notranslate nohighlight">\(f(x, y)\)</span> is differentiable at <span class="math notranslate nohighlight">\(\left(x_0, y_0\right)\)</span>. The polynomial function <span class="math notranslate nohighlight">\(f(x, y)=x^2+3 y^2\)</span> has continuous partial derivatives at any point and, f$ is differentiable everywhere. The components of a normal of the tangent plane are</p>
+<div class="math notranslate nohighlight">
+\[
+f_x^{\prime}(2,1)=\left.2 x\right|_{(2,1)}=4, \quad f_y^{\prime}(2,1)=\left.6 y\right|_{(2,1)}=6.
+\]</div>
+<p>An equation of the tangent plane is <span class="math notranslate nohighlight">\(4(x-2)+6(y-1)-(z-7)=0\)</span> or <span class="math notranslate nohighlight">\(4 x+6 y-z=7\)</span>.</p>
+</section>
+</div><div class="proof example admonition" id="exp4.2">
+<p class="admonition-title"><span class="caption-number">Example 5 </span> (Multivariate Newton’s method)</p>
+<section class="example-content" id="proof-content">
+<p>We may use the linear approximation to find the solution to the systematic equations <span class="math notranslate nohighlight">\(f(x) = 0\)</span> of the nonlinear multivariate function <span class="math notranslate nohighlight">\(f:\mathbb{R}^n \longrightarrow \mathbb{R}^n\)</span> which is differentiable everywhere, i.e., <span class="math notranslate nohighlight">\(f(x)-f(x^*) = J_x(x-x^*)\)</span>. Thus, we may update the value of <span class="math notranslate nohighlight">\(x\)</span> using the linear approximation</p>
+<div class="math notranslate nohighlight">
+\[x_{k+1} = x_k - J_{x_k}^{-1}f(x_k)\]</div>
+</section>
+</div></section>
+<section id="extreme-values">
+<h2>Extreme values<a class="headerlink" href="#extreme-values" title="Permalink to this heading">#</a></h2>
+<div class="proof theorem admonition" id="them4.4">
 <p class="admonition-title"><span class="caption-number">Theorem 14 </span> (Multivariable Critical Point Theorem)</p>
 <section class="theorem-content" id="proof-content">
-<p>Suppose that the function <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}\)</span> takes an extreme value at the point <span class="math notranslate nohighlight">\(a\in A\subset \mathbb{R}^n\)</span>. If <span class="math notranslate nohighlight">\(f\)</span> is differentiable at <span class="math notranslate nohighlight">\(a\)</span>, then <span class="math notranslate nohighlight">\(f'=\vec{0}\)</span>.</p>
+<p>Suppose that the function <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}\)</span> takes an extreme value at the point <span class="math notranslate nohighlight">\(a\in A\subset \mathbb{R}^n\)</span>. If <span class="math notranslate nohighlight">\(f\)</span> is differentiable at <span class="math notranslate nohighlight">\(a\)</span>, then <span class="math notranslate nohighlight">\(f_a'=\vec{0}\)</span>.</p>
 </section>
-</div><div class="proof definition admonition" id="Second Derivative Matrix">
-<p class="admonition-title"><span class="caption-number">Definition 29 </span> (second derivative matrix)</p>
+</div><div class="proof definition admonition" id="def4.3">
+<p class="admonition-title"><span class="caption-number">Definition 29 </span> (second derivative (Hessian) matrix)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(A \subset \mathbb{R}^n\)</span> ) be a function and let a be an interior point of <span class="math notranslate nohighlight">\(A\)</span>. The second derivative matrix of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> is the <span class="math notranslate nohighlight">\(n\)</span>-by-n matrix whose <span class="math notranslate nohighlight">\((i, j)\)</span> th entry is the second order partial derivative <span class="math notranslate nohighlight">\(D_{i j} f(a)\)</span>. Thus</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
-f^{\prime \prime}(a)=\left[\begin{array}{ccc}
+f^{\prime \prime}_a=\left[\begin{array}{ccc}
 D_{11} f(a) &amp; \cdots &amp; D_{1 n} f(a) \\
 \vdots &amp; \ddots &amp; \vdots \\
 D_{n 1} f(a) &amp; \cdots &amp; D_{n n} f(a)
 \end{array}\right]
 \end{split}\]</div>
 </section>
-</div><div class="proof proposition admonition" id="proposition-7">
+</div><div class="proof proposition admonition" id="prop4.1">
 <p class="admonition-title"><span class="caption-number">Proposition 3 </span> (Two-variable <span class="math notranslate nohighlight">\(\operatorname{Max} / \min\)</span> Test)</p>
 <section class="proposition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^2\right)\)</span> be <span class="math notranslate nohighlight">\(\mathcal{C}^2\)</span> on its interior points. Let <span class="math notranslate nohighlight">\((a, b)\)</span> be an interior point
@@ -610,7 +529,7 @@ D_{n 1} f(a) &amp; \cdots &amp; D_{n n} f(a)
 (2) If <span class="math notranslate nohighlight">\(\alpha&lt;0\)</span> and <span class="math notranslate nohighlight">\(\alpha \delta-\beta^2&gt;0\)</span> then <span class="math notranslate nohighlight">\(f(a, b)\)</span> is a local maximum.
 (3) If <span class="math notranslate nohighlight">\(\alpha \delta-\beta^2&lt;0\)</span> then <span class="math notranslate nohighlight">\(f(a, b)\)</span> is a saddle point.</p>
 </section>
-</div><div class="proof definition admonition" id="characteristic_polynomial">
+</div><div class="proof definition admonition" id="def4.4">
 <p class="admonition-title"><span class="caption-number">Definition 30 </span> (characteristic polynomial)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(M\)</span> be an <span class="math notranslate nohighlight">\(n\)</span>-by-<span class="math notranslate nohighlight">\(n\)</span> matrix. Its characteristic polynomial is <span class="math notranslate nohighlight">\(p_M(\lambda)=\operatorname{det}(M-\lambda I)\)</span>.</p>
@@ -619,21 +538,21 @@ D_{n 1} f(a) &amp; \cdots &amp; D_{n n} f(a)
 <p class="admonition-title">Note</p>
 <p>The characteristic polynomial of <span class="math notranslate nohighlight">\(M\)</span> is a polynomial of degree <span class="math notranslate nohighlight">\(n\)</span> in the scalar variable <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 </div>
-<div class="proof theorem admonition" id="theorem-9">
+<div class="proof theorem admonition" id="them4.5">
 <p class="admonition-title"><span class="caption-number">Theorem 15 </span> (Definite/Indefinite)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(M\)</span> be a symmetric matrix in <span class="math notranslate nohighlight">\(\mathrm{M}_n(\mathbb{R})\)</span>. Then</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p><span class="math notranslate nohighlight">\(M\)</span> is positive definite if and only if all the roots of <span class="math notranslate nohighlight">\(p_M(\lambda)\)</span> are positive.</p></li>
 <li><p><span class="math notranslate nohighlight">\(M\)</span> is negative definite if and only if all the roots of <span class="math notranslate nohighlight">\(p_M(\lambda)\)</span> are negative.</p></li>
 <li><p><span class="math notranslate nohighlight">\(M\)</span> is indefinite if and only if <span class="math notranslate nohighlight">\(p_M(\lambda)\)</span> has positive roots and negative roots.</p></li>
 </ol>
 </section>
-</div><div class="proof proposition admonition" id="proposition-10">
+</div><div class="proof proposition admonition" id="prop4.2">
 <p class="admonition-title"><span class="caption-number">Proposition 4 </span> (General Max/min Test)</p>
 <section class="proposition-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^n\right)\)</span> be <span class="math notranslate nohighlight">\(\mathcal{C}^2\)</span> on its interior points. Let a be an interior point of <span class="math notranslate nohighlight">\(A\)</span>, and suppose that <span class="math notranslate nohighlight">\(f^{\prime}(a)=0_n\)</span>. Let the second derivative matrix <span class="math notranslate nohighlight">\(f^{\prime \prime}(a)\)</span> have characteristic polynomial <span class="math notranslate nohighlight">\(p(\lambda)\)</span>.</p>
-<ol class="simple">
+<p>Let <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^n\right)\)</span> be <span class="math notranslate nohighlight">\(\mathcal{C}^2\)</span> on its interior points. Let a be an interior point of <span class="math notranslate nohighlight">\(A\)</span>, and suppose that <span class="math notranslate nohighlight">\(f^{\prime}_a=0\)</span>. Let the second derivative matrix <span class="math notranslate nohighlight">\(f^{\prime \prime}_a\)</span> have characteristic polynomial <span class="math notranslate nohighlight">\(p(\lambda)\)</span>.</p>
+<ol class="arabic simple">
 <li><p>If all roots of <span class="math notranslate nohighlight">\(p(\lambda)\)</span> are positive then <span class="math notranslate nohighlight">\(f(a)\)</span> is a local minimum.</p></li>
 <li><p>If all roots of <span class="math notranslate nohighlight">\(p(\lambda)\)</span> are negative then <span class="math notranslate nohighlight">\(f(a)\)</span> is a local maximum.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(p(\lambda)\)</span> has positive and negative roots then <span class="math notranslate nohighlight">\(f(a)\)</span> is a saddle point.</p></li>
@@ -641,8 +560,8 @@ D_{n 1} f(a) &amp; \cdots &amp; D_{n n} f(a)
 </section>
 </div></section>
 <section id="directional-derivatives">
-<h2>Directional derivatives<a class="headerlink" href="#directional-derivatives" title="Permalink to this headline">#</a></h2>
-<div class="proof definition admonition" id="directional_derivative">
+<h2>Directional derivatives<a class="headerlink" href="#directional-derivatives" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="def4.5">
 <p class="admonition-title"><span class="caption-number">Definition 31 </span> (directional derivative)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(f: A \longrightarrow \mathbb{R}\)</span> (where <span class="math notranslate nohighlight">\(A \subset\)</span> <span class="math notranslate nohighlight">\(\left.\mathbb{R}^n\right)\)</span> be a function, let a be an interior point of <span class="math notranslate nohighlight">\(A\)</span>, and let <span class="math notranslate nohighlight">\(d \in \mathbb{R}^n\)</span> be a unit vector. The directional derivative of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> in the <span class="math notranslate nohighlight">\(d\)</span> direction is</p>
@@ -658,8 +577,8 @@ D_d f(a) =\sum_{j=1}^n D_j f(a) d_j = Df_a(d)
 \]</div>
 </section>
 <section id="gradient">
-<h2>Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">#</a></h2>
-<div class="proof definition admonition" id="definition-12">
+<h2>Gradient<a class="headerlink" href="#gradient" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="def4.6">
 <p class="admonition-title"><span class="caption-number">Definition 32 </span> (Gradient)</p>
 <section class="definition-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(f\)</span> be a scalar-valued differentiable function of several variables. The gradient <span class="math notranslate nohighlight">\(\nabla f\)</span> of <span class="math notranslate nohighlight">\(f\)</span> at a point <span class="math notranslate nohighlight">\(p\)</span> is a vector of the direction and rate of fastest increase.</p>
@@ -675,8 +594,8 @@ D_d f(a) =\sum_{j=1}^n D_j f(a) d_j = Df_a(d)
 \end{split}\]</div>
 <p>If the gradient of a function is non-zero at a point <span class="math notranslate nohighlight">\(p\)</span>, the direction of the gradient <span class="math notranslate nohighlight">\(\nabla f\)</span> is the direction in which the function increases most quickly from <span class="math notranslate nohighlight">\(p\)</span>, and the magnitude <span class="math notranslate nohighlight">\(\|\nabla f\|\)</span> is the rate of increase in that direction, the greatest absolute directional derivative.</p>
 <p>The rate of increase of <span class="math notranslate nohighlight">\(f\)</span> at <span class="math notranslate nohighlight">\(a\)</span> in the <span class="math notranslate nohighlight">\(d\)</span> direction varies with <span class="math notranslate nohighlight">\(d\)</span>, from <span class="math notranslate nohighlight">\(-\|\nabla f(a)\|\)</span> when <span class="math notranslate nohighlight">\(d\)</span> points in the direction opposite to <span class="math notranslate nohighlight">\(\nabla f(a)\)</span>, to <span class="math notranslate nohighlight">\(\|\nabla f(a)\|\)</span> when <span class="math notranslate nohighlight">\(d\)</span> points in the same direction as <span class="math notranslate nohighlight">\(\nabla f(a)\)</span>. Also, the directions orthogonal to <span class="math notranslate nohighlight">\(\nabla f(a)\)</span> are the directions in which <span class="math notranslate nohighlight">\(f\)</span> neither increases nor decreases at <span class="math notranslate nohighlight">\(a\)</span>.</p>
-<div class="proof example admonition" id="example-13">
-<p class="admonition-title"><span class="caption-number">Example 4 </span></p>
+<div class="proof example admonition" id="exp4.3">
+<p class="admonition-title"><span class="caption-number">Example 6 </span></p>
 <section class="example-content" id="proof-content">
 <p>The gradient of the function <span class="math notranslate nohighlight">\(f(x, y, z)=2 x+3 y^2-\sin (z)\)</span> is</p>
 <div class="math notranslate nohighlight">
@@ -692,7 +611,7 @@ D_d f(a) =\sum_{j=1}^n D_j f(a) d_j = Df_a(d)
 <div class="math notranslate nohighlight">
 \[\nabla f(p) \cdot \mathbf{v}=\frac{\partial f}{\partial \mathbf{v}}(p)=d f_p(\mathbf{v})\]</div>
 <section id="cylindrical-and-spherical-coordinates">
-<h3>Cylindrical and spherical coordinates<a class="headerlink" href="#cylindrical-and-spherical-coordinates" title="Permalink to this headline">#</a></h3>
+<h3>Cylindrical and spherical coordinates<a class="headerlink" href="#cylindrical-and-spherical-coordinates" title="Permalink to this heading">#</a></h3>
 <p>In cylindrical coordinates with a Euclidean metric, the gradient is given by</p>
 <div class="math notranslate nohighlight">
 \[
@@ -707,8 +626,8 @@ D_d f(a) =\sum_{j=1}^n D_j f(a) d_j = Df_a(d)
 </section>
 </section>
 <section id="integral-curves">
-<h2>Integral curves<a class="headerlink" href="#integral-curves" title="Permalink to this headline">#</a></h2>
-<div class="proof definition admonition" id="definition-14">
+<h2>Integral curves<a class="headerlink" href="#integral-curves" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="def4.7">
 <p class="admonition-title"><span class="caption-number">Definition 33 </span> (Integral curve)</p>
 <section class="definition-content" id="proof-content">
 <p>If a function <span class="math notranslate nohighlight">\(f: \mathbb{R}^n \longrightarrow \mathbb{R}\)</span> has a continuous gradient, then from any starting point <span class="math notranslate nohighlight">\(a \in \mathbb{R}^n\)</span> where the gradient <span class="math notranslate nohighlight">\(\nabla f(a)\)</span> is nonzero, there is a path of steepest ascent of <span class="math notranslate nohighlight">\(f\)</span> (called an <strong>integral curve</strong> of <span class="math notranslate nohighlight">\(\nabla f\)</span> ) starting at <span class="math notranslate nohighlight">\(a\)</span>.</p>
@@ -722,11 +641,11 @@ D_d f(a) =\sum_{j=1}^n D_j f(a) d_j = Df_a(d)
 <p>that satisfies the differential equation with initial conditions <span class="math notranslate nohighlight">\(\gamma^{\prime}(t)=\nabla f(\gamma(t))\)</span> and <span class="math notranslate nohighlight">\(\gamma(0)=a\)</span>.</p>
 </section>
 <section id="inverse-function-theorem">
-<h2>Inverse function theorem<a class="headerlink" href="#inverse-function-theorem" title="Permalink to this headline">#</a></h2>
-<div class="proof theorem admonition" id="inverse_function_theorem">
+<h2>Inverse function theorem<a class="headerlink" href="#inverse-function-theorem" title="Permalink to this heading">#</a></h2>
+<div class="proof theorem admonition" id="them4.6">
 <p class="admonition-title"><span class="caption-number">Theorem 16 </span> (inverse function theorem)</p>
 <section class="theorem-content" id="proof-content">
-<p>Let <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}^n\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^n\right)\)</span> be a mapping, let <span class="math notranslate nohighlight">\(a\)</span> be an interior point of <span class="math notranslate nohighlight">\(A\)</span>, and let <span class="math notranslate nohighlight">\(f\)</span> be continuously differentiable on some <span class="math notranslate nohighlight">\(\varepsilon\)</span>-ball about a. (Continuous differentiability on a ball means first that the derivative mapping <span class="math notranslate nohighlight">\(D f_x\)</span> exists for each <span class="math notranslate nohighlight">\(x\)</span> in the ball, and second that the entries of the derivative matrix <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span>, i.e., the partial derivatives <span class="math notranslate nohighlight">\(D_j f_i(x)\)</span>, are continuous functions of <span class="math notranslate nohighlight">\(x\)</span> on the ball.) Suppose that <span class="math notranslate nohighlight">\(\operatorname{det} f^{\prime}(a) \neq 0\)</span>. Then there is an open set <span class="math notranslate nohighlight">\(V \subset A\)</span> containing <span class="math notranslate nohighlight">\(a\)</span> and an open set <span class="math notranslate nohighlight">\(W \subset \mathbb{R}^n\)</span> containing <span class="math notranslate nohighlight">\(f(a)\)</span> such that <span class="math notranslate nohighlight">\(f: V \rightarrow W\)</span> has a continuously differentiable inverse <span class="math notranslate nohighlight">\(f^{-1}: W \rightarrow V\)</span>. For each <span class="math notranslate nohighlight">\(y=f(x) \in W\)</span>, the derivative of the inverse is the inverse of the derivative,</p>
+<p>Let <span class="math notranslate nohighlight">\(f: A \rightarrow \mathbb{R}^n\)</span> (where <span class="math notranslate nohighlight">\(\left.A \subset \mathbb{R}^n\right)\)</span> be a mapping, let <span class="math notranslate nohighlight">\(a\)</span> be an interior point of <span class="math notranslate nohighlight">\(A\)</span>, and let <span class="math notranslate nohighlight">\(f\)</span> be continuously differentiable on some <span class="math notranslate nohighlight">\(\varepsilon\)</span>-ball about <span class="math notranslate nohighlight">\(a\)</span>. Suppose that <span class="math notranslate nohighlight">\(\operatorname{det} f^{\prime}(a) \neq 0\)</span>. Then there is an open set <span class="math notranslate nohighlight">\(V \subset A\)</span> containing <span class="math notranslate nohighlight">\(a\)</span> and an open set <span class="math notranslate nohighlight">\(W \subset \mathbb{R}^n\)</span> containing <span class="math notranslate nohighlight">\(f(a)\)</span> such that <span class="math notranslate nohighlight">\(f: V \rightarrow W\)</span> has a continuously differentiable inverse <span class="math notranslate nohighlight">\(f^{-1}: W \rightarrow V\)</span>. For each <span class="math notranslate nohighlight">\(y=f(x) \in W\)</span>, the derivative of the inverse is the inverse of the derivative,</p>
 <div class="math notranslate nohighlight">
 \[
 D\left(f^{-1}\right)_y=\left(D f_x\right)^{-1} .
@@ -734,8 +653,19 @@ D\left(f^{-1}\right)_y=\left(D f_x\right)^{-1} .
 </section>
 </div></section>
 <section id="implicit-function-theorem">
-<h2>Implicit function theorem<a class="headerlink" href="#implicit-function-theorem" title="Permalink to this headline">#</a></h2>
-<div class="proof theorem admonition" id="implicit_function_theorem">
+<h2>Implicit function theorem<a class="headerlink" href="#implicit-function-theorem" title="Permalink to this heading">#</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(F\)</span> be a function of <span class="math notranslate nohighlight">\(m+1\)</span> variables, <span class="math notranslate nohighlight">\(F(\mathbf{r}, z)\)</span>, where <span class="math notranslate nohighlight">\(\mathbf{r}=\left\langle x_1, x_2, \ldots, x_m\right\rangle\)</span> and <span class="math notranslate nohighlight">\(z\)</span> is real such that <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(F_z^{\prime}\)</span> are continuous in an open ball <span class="math notranslate nohighlight">\(B\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^{m+1}\)</span>. Suppose that there exists a point <span class="math notranslate nohighlight">\(\left(\mathbf{r}_0, z_0\right)\)</span> in <span class="math notranslate nohighlight">\(B\)</span> such that <span class="math notranslate nohighlight">\(F\left(\mathbf{r}_0, z_0\right)=0\)</span> and <span class="math notranslate nohighlight">\(F_z^{\prime}\left(\mathbf{r}_0, z_0\right) \neq 0\)</span>. Then there exists an open neighborhood <span class="math notranslate nohighlight">\(D\)</span> of <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> in <span class="math notranslate nohighlight">\(\mathbb{R}^m\)</span>, an open interval <span class="math notranslate nohighlight">\(I\)</span>, and a unique function <span class="math notranslate nohighlight">\(z(\mathbf{r})\)</span> on <span class="math notranslate nohighlight">\(D\)</span> with the range <span class="math notranslate nohighlight">\(I\)</span> such that for <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> in <span class="math notranslate nohighlight">\(D\)</span> and <span class="math notranslate nohighlight">\(u\)</span> in <span class="math notranslate nohighlight">\(I, F(\mathbf{r}, u)=0\)</span> if and only if <span class="math notranslate nohighlight">\(u=z(\mathbf{r})\)</span>. Moreover, the function <span class="math notranslate nohighlight">\(z(\mathbf{r})\)</span> is continuous. If, in addition, <span class="math notranslate nohighlight">\(F\)</span> is differentiable in <span class="math notranslate nohighlight">\(B\)</span>, then the function <span class="math notranslate nohighlight">\(z(\mathbf{r})\)</span> is differentiable in <span class="math notranslate nohighlight">\(D\)</span> and for all <span class="math notranslate nohighlight">\(\mathbf{r}\)</span> in <span class="math notranslate nohighlight">\(D\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+z_{x_i}^{\prime}(\mathbf{r})=-\frac{F_{x_i}^{\prime}(\mathbf{r}, z(\mathbf{r}))}{F_z^{\prime}(\mathbf{r}, z(\mathbf{r}))} .
+\]</div>
+<div class="proof example admonition" id="exp4.4">
+<p class="admonition-title"><span class="caption-number">Example 7 </span></p>
+<section class="example-content" id="proof-content">
+<p>Show that <span class="math notranslate nohighlight">\(F(x, y, z)=z^5-2 x z+y=0, \quad z(2,3)=1, \quad F(2,3,1)=0\)</span> has a unique continuous solution <span class="math notranslate nohighlight">\(z=z(x, y)\)</span> near <span class="math notranslate nohighlight">\((x, y)=(2,3)\)</span> and that the function <span class="math notranslate nohighlight">\(z(x, y)\)</span> is differentiable near <span class="math notranslate nohighlight">\((2,3)\)</span>.</p>
+<p>Let us verify the hypotheses of the implicit function theorem. The function <span class="math notranslate nohighlight">\(F(x, y, z)=z^5-2 x z+y\)</span> and its partial derivative <span class="math notranslate nohighlight">\(F_z^{\prime}=5 z^4-2 x\)</span> are polynomials and, hence, continuous everywhere. In particular, they are continuous in a ball centered at <span class="math notranslate nohighlight">\((2,3,1)\)</span>. Furthermore, <span class="math notranslate nohighlight">\(F(2,3,1)=0\)</span> and <span class="math notranslate nohighlight">\(F_z^{\prime}(2,3,1)=1 \neq 0\)</span>. By the implicit function theorem the equation <span class="math notranslate nohighlight">\(F(x, y, z)=0\)</span> has a unique solution <span class="math notranslate nohighlight">\(z=z(x, y)\)</span> in some disk <span class="math notranslate nohighlight">\(D\)</span> centered at <span class="math notranslate nohighlight">\((2,3)\)</span> such that <span class="math notranslate nohighlight">\(z(2,3)=1\)</span> and the function <span class="math notranslate nohighlight">\(z(x, y)\)</span> is continuous in the disk.</p>
+</section>
+</div><div class="proof theorem admonition" id="them4.7">
 <p class="admonition-title"><span class="caption-number">Theorem 17 </span> (implicit funciton theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Let <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(n\)</span> be positive integers with <span class="math notranslate nohighlight">\(n&gt;c\)</span>, and let <span class="math notranslate nohighlight">\(r=n-c\)</span>. Let <span class="math notranslate nohighlight">\(A\)</span> be an open subset of <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>, and let <span class="math notranslate nohighlight">\(g: A \longrightarrow \mathbb{R}^c\)</span> have continuous partial derivatives at every point of <span class="math notranslate nohighlight">\(A\)</span>. Consider the level set</p>
@@ -743,8 +673,8 @@ D\left(f^{-1}\right)_y=\left(D f_x\right)^{-1} .
 \[
 L=\left\{v \in A: g(v)=0_c\right\} .
 \]</div>
-<p>Let <span class="math notranslate nohighlight">\(p\)</span> be a point of <span class="math notranslate nohighlight">\(L\)</span>, i.e., let <span class="math notranslate nohighlight">\(g(p)=0_c\)</span>. Let <span class="math notranslate nohighlight">\(p=(a, b)\)</span> where <span class="math notranslate nohighlight">\(a \in \mathbb{R}^r\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^c\)</span>, and let <span class="math notranslate nohighlight">\(g^{\prime}(p)=\left[\begin{array}{ll}M &amp; N\end{array}\right]\)</span> where <span class="math notranslate nohighlight">\(M\)</span> is the left c-by-r submatrix and <span class="math notranslate nohighlight">\(N\)</span> is the remaining right square c-by-c submatrix.</p>
-<p>If <span class="math notranslate nohighlight">\(\operatorname{det} N \neq 0\)</span> then the level set <span class="math notranslate nohighlight">\(L\)</span> is locally a graph near <span class="math notranslate nohighlight">\(p\)</span>. That is, the condition <span class="math notranslate nohighlight">\(g(x, y)=\mathbf{0}_c\)</span> for <span class="math notranslate nohighlight">\((x, y)\)</span> near <span class="math notranslate nohighlight">\((a, b)\)</span> implicitly defines <span class="math notranslate nohighlight">\(y\)</span> as a function <span class="math notranslate nohighlight">\(y=\varphi(x)\)</span> where <span class="math notranslate nohighlight">\(\varphi\)</span> takes <span class="math notranslate nohighlight">\(r\)</span>-vectors near a to <span class="math notranslate nohighlight">\(c\)</span>-vectors near <span class="math notranslate nohighlight">\(b\)</span>, and in particular <span class="math notranslate nohighlight">\(\varphi(a)=b\)</span>. The function <span class="math notranslate nohighlight">\(\varphi\)</span> is differentiable at a with derivative matrix</p>
+<p>Let <span class="math notranslate nohighlight">\(p\)</span> be a point of <span class="math notranslate nohighlight">\(L\)</span>, i.e., let <span class="math notranslate nohighlight">\(g(p)=0_c\)</span>. Let <span class="math notranslate nohighlight">\(p=(a, b)\)</span> where <span class="math notranslate nohighlight">\(a \in \mathbb{R}^r\)</span> and <span class="math notranslate nohighlight">\(b \in \mathbb{R}^c\)</span>, and let <span class="math notranslate nohighlight">\(g^{\prime}(p)=[MN]\)</span> where <span class="math notranslate nohighlight">\(M\)</span> is the left c-by-r submatrix and <span class="math notranslate nohighlight">\(N\)</span> is the remaining right square c-by-c submatrix.</p>
+<p>If <span class="math notranslate nohighlight">\(\operatorname{det} N \neq 0\)</span> then the level set <span class="math notranslate nohighlight">\(L\)</span> is locally a graph near <span class="math notranslate nohighlight">\(p\)</span>. That is, the condition <span class="math notranslate nohighlight">\(g(x, y)=\mathbf{0}_c\)</span> for <span class="math notranslate nohighlight">\((x, y)\)</span> near <span class="math notranslate nohighlight">\((a, b)\)</span> implicitly defines <span class="math notranslate nohighlight">\(y\)</span> as a function <span class="math notranslate nohighlight">\(y=\varphi(x)\)</span> where <span class="math notranslate nohighlight">\(\varphi\)</span> takes <span class="math notranslate nohighlight">\(r\)</span>-vectors near <span class="math notranslate nohighlight">\(a\)</span> to <span class="math notranslate nohighlight">\(c\)</span>-vectors near <span class="math notranslate nohighlight">\(b\)</span>, and in particular <span class="math notranslate nohighlight">\(\varphi(a)=b\)</span>. The function <span class="math notranslate nohighlight">\(\varphi\)</span> is differentiable at <span class="math notranslate nohighlight">\(a\)</span> with derivative matrix</p>
 <div class="math notranslate nohighlight">
 \[
 \varphi^{\prime}(a)=-N^{-1} M .
@@ -757,14 +687,17 @@ L=\left\{v \in A: g(v)=0_c\right\} .
 </section>
 </div></section>
 <section id="lagrange-multiplier">
-<h2>Lagrange multiplier<a class="headerlink" href="#lagrange-multiplier" title="Permalink to this headline">#</a></h2>
+<h2>Lagrange multiplier<a class="headerlink" href="#lagrange-multiplier" title="Permalink to this heading">#</a></h2>
 <p>We aim to find maxima and minima of a function <span class="math notranslate nohighlight">\(f(x, y)\)</span> in the presence of a constraint <span class="math notranslate nohighlight">\(g(x, y)=\)</span> 0 . A necessary condition for a critical point is that the gradients of <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> are parallel because otherwise the we can move along the curve <span class="math notranslate nohighlight">\(g\)</span> and increase <span class="math notranslate nohighlight">\(f\)</span>. The directional derivative of <span class="math notranslate nohighlight">\(f\)</span> in the direction tangent to the level curve is zero if and only if the tangent vector to <span class="math notranslate nohighlight">\(g\)</span> is perpendicular to the gradient of <span class="math notranslate nohighlight">\(f\)</span> or if there is no tangent vector.</p>
-<div class="proof definition admonition" id="Lagrange_multiplier">
+<p>Consider first the case of a single constraint for two variables <span class="math notranslate nohighlight">\(\mathbf{r}=\langle x, y\rangle\)</span>. Let <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> be a point at which a differentiable function <span class="math notranslate nohighlight">\(f\)</span> has a local extremum on the set <span class="math notranslate nohighlight">\(S\)</span> defined by the constraint <span class="math notranslate nohighlight">\(g(\mathbf{r})=0\)</span>. Let us further assume that <span class="math notranslate nohighlight">\(g\)</span> has continuous partial derivatives in a neighborhood of <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> and <span class="math notranslate nohighlight">\(\nabla g\left(\mathbf{r}_0\right) \neq \mathbf{0}\)</span>. Then the equation <span class="math notranslate nohighlight">\(g(\mathbf{r})=0\)</span> defines a smooth curve through the point <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span>. Let <span class="math notranslate nohighlight">\(\mathbf{r}(t)\)</span> be parametric equations of this curve in a neighborhood of <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span>, that is, for some <span class="math notranslate nohighlight">\(t=t_0, \mathbf{r}\left(t_0\right)=\mathbf{r}_0\)</span> and <span class="math notranslate nohighlight">\(\mathbf{r}^{\prime}\left(t_0\right) \neq 0\)</span> (a smooth curve has a tangent vector at any point). The function <span class="math notranslate nohighlight">\(F(t)=\)</span> <span class="math notranslate nohighlight">\(f(\mathbf{r}(t))\)</span> defines values of <span class="math notranslate nohighlight">\(f\)</span> along the curve and has a local extremum at <span class="math notranslate nohighlight">\(t_0\)</span>. Since the curve is smooth, the vector function <span class="math notranslate nohighlight">\(\mathbf{r}(t)\)</span> is differentiable and it is concluded that <span class="math notranslate nohighlight">\(F\)</span> has no rate of change at <span class="math notranslate nohighlight">\(t=t_0, F^{\prime}\left(t_0\right)=0\)</span>, i.e., the gradient <span class="math notranslate nohighlight">\(\nabla f\left(\mathrm{r}_0\right)\)</span> is orthogonal to a tangent vector to the curve at the point where <span class="math notranslate nohighlight">\(f\)</span> has a local extremum on the curve. The gradient <span class="math notranslate nohighlight">\(\nabla g(\mathbf{r})\)</span> at any point is normal to the level curve <span class="math notranslate nohighlight">\(g(\mathbf{r})=0\)</span>, that is, <span class="math notranslate nohighlight">\(\nabla g(\mathbf{r}(t)) \perp \mathbf{r}^{\prime}(t)\)</span> for any <span class="math notranslate nohighlight">\(t\)</span>, provided <span class="math notranslate nohighlight">\(\nabla g\left(\mathbf{r}_0\right) \neq 0\)</span>. Therefore, the gradients <span class="math notranslate nohighlight">\(\nabla f\left(\mathrm{r}_0\right)\)</span> and <span class="math notranslate nohighlight">\(\nabla g\left(\mathrm{r}_0\right)\)</span> must be parallel at <span class="math notranslate nohighlight">\(\mathrm{r}_0\)</span> (see Fig. 27.1):</p>
+<p><img alt="" src="_images/lagrange.png" /></p>
+<p>The characteristic geometrical property of the point <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> is that the level curve of <span class="math notranslate nohighlight">\(f\)</span> and the curve <span class="math notranslate nohighlight">\(g(x, y)=0\)</span> are intersecting at <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> and tangential to one another (they share the same tangent line through <span class="math notranslate nohighlight">\(\mathbf{r}_0\)</span> ).</p>
+<div class="proof definition admonition" id="def4.8">
 <p class="admonition-title"><span class="caption-number">Definition 34 </span> (Lagrange multiplier)</p>
 <section class="definition-content" id="proof-content">
 <p>The system of equations <span class="math notranslate nohighlight">\(\begin{equation}\begin{cases}\nabla f(x, y) =\lambda \nabla g(x, y)\\ g(x, y)=0\end{cases}\end{equation}\)</span> for the three unknowns <span class="math notranslate nohighlight">\(x, y, \lambda\)</span> are called Lagrange equations. The variable <span class="math notranslate nohighlight">\(\lambda\)</span> is a Lagrange multiplier.</p>
 </section>
-</div><div class="proof theorem admonition" id="theorem-18">
+</div><div class="proof theorem admonition" id="them4.8">
 <p class="admonition-title"><span class="caption-number">Theorem 18 </span> (Lagrange theorem)</p>
 <section class="theorem-content" id="proof-content">
 <p>Extrema of <span class="math notranslate nohighlight">\(f(x, y)\)</span> on the curve <span class="math notranslate nohighlight">\(g(x, y)=c\)</span> are either solutions of the Lagrange equations or critical points of <span class="math notranslate nohighlight">\(g\)</span>.</p>
@@ -784,7 +717,7 @@ L=\left\{v \in A: g(v)=0_c\right\} .
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -792,50 +725,115 @@ L=\left\{v \in A: g(v)=0_c\right\} .
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="chap3.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Chapter 3: Linear maps</p>
-        </div>
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 3: Linear maps</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="chap5.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="chap5.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Chapter 5: Integral</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Liang Liu<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
-
-
       </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-approximation">Linear approximation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extreme-values">Extreme values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#directional-derivatives">Directional derivatives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient">Gradient</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cylindrical-and-spherical-coordinates">Cylindrical and spherical coordinates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integral-curves">Integral curves</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse-function-theorem">Inverse function theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implicit-function-theorem">Implicit function theorem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lagrange-multiplier">Lagrange multiplier</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

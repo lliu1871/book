@@ -30,7 +30,7 @@ kernelspec:
 A vector field in the plane is a map assigning to each point $(x, y)$ a vector $\vec{F}(x, y)=\langle P(x, y), Q(x, y)\rangle$. Similarly, a vector field in space assigns to each point $(x, y, z)$ in space a vector $\vec{F}(x, y, z)=\langle P(x, y, z), Q(x, y, z), R(x, y, z)\rangle$.
 
 ````{prf:definition} vector field
-:label: vector_field
+:label: def6.1
 Let $A$ be an open subset of $\mathbb{R}^n$. A mapping $F: A \longrightarrow \mathbb{R}^n$ is called a vector field on $A$. 
 ````
 
@@ -38,13 +38,13 @@ If $f(x, y)$ is a function of two variables, then $\vec{F}(x, y)=\nabla f(x, y)$
 
 ## Line integral (flow integral)
 ````{prf:definition} flow
-:label: flow
+:label: def6.2
 Let $\gamma: I \rightarrow A$ be a curve in $A\subset \mathbb{R}^n$. The flow of a vector field $F$ along $\gamma$ at $u\in I$ is the scalar component of $F(\gamma(u))$ tangent to $\gamma$ at $\gamma(u)$. 
 ````
 Integrals involving the flow of a vector field arise naturally in physics. If $F$ is a force field then its flow integrals, also called line integrals, measure the work of moving along curves $\gamma$ in $A$.
 
 ````{prf:definition} line integral
-:label: line_integral
+:label: def6.3
 
 If $\vec{F}$ is a vector field and $C: t \mapsto \vec{r}(t)$ is a curve defined on the interval $[a, b]$, then the line integral of $\vec{F}$ along the curve $C$ is defined by
 
@@ -56,7 +56,7 @@ $$
 The following theorem regarding line integrals generalizes the fundamental theorem of calculus to higher dimensions.
 
 ````{prf:theorem} higher dimension fundamental theorem of calculus
-:label: high_dimension_fundamental_theorem_calculus
+:label: them6.1
 
 If $\vec{F}=\nabla f$, then
 
@@ -67,19 +67,21 @@ $$
 
 ## Curl
 ````{prf:definition} curl
-:label: curl
+:label: def6.4
 The curl of a vector field $\vec{F}$ is the cross product of the nabla operator $\nabla$ and the vector field $\vec{F}$, i.e., 
 
 $$\operatorname{curl}(\vec{F})=\nabla\times \vec{F}$$
 ````
 
 ````{prf:example}
+:label: exp6.1
 In $\mathbb{R}^2$, the curl of a vector field $\vec{F}(x, y)=\langle P(x, y), Q(x, y)\rangle$ is a scalar field
 
 $$\operatorname{curl}(\vec{F})(x, y)=Q_x(x, y)-P_y(x, y)$$
 ````
 
 ````{prf:example}
+:label: exp6.2
 In $\mathbb{R}^3$, the curl of a vector field $\vec{F}=\langle P, Q, R\rangle$ is the vector field 
 
 $$
@@ -93,7 +95,7 @@ $$
 ````
 
 ````{prf:theorem} Green's theorem
-:label: Green
+:label: them6.2
 If $\vec{F}(x, y)=\langle P(x, y), Q(x, y)\rangle$ is a vector field and $G$ is a region for which the boundary $C$ is parametrized so that $G$ is to the left, then
 
 $$
@@ -106,7 +108,7 @@ If $\vec{F}$ is a gradient field then both sides of Green's theorem are zero: $\
 
 ## Flux integral
 ````{prf:definition} flux
-:label: flux
+:label: def6.5
 If $\Phi: D \rightarrow A$ is an $(n-1)$-surface in $A$ and $u$ is a point of $D$, then the **flux** of $F$ through $\Phi$ at $u$ is the scalar component of $F$ normal to $\Phi$ at $\Phi(u)$. 
 ````
 ```{note}
@@ -116,7 +118,7 @@ Because $\vec{n}=\vec{r}_u \times \vec{r}_v /\left|\vec{r}_u \times \vec{r}_v\ri
 The flux integral is $\iint_S \vec{F} \cdot \vec{dS}=\iint \vec{F} \cdot \vec{n} dS$ where $dS=\left|\vec{r}_u \times \vec{r}_v\right| dudv$. It weights each area element $d S$ with the normal component $\vec{F}(\vec{r}(u, v) \cdot \vec{n}(\vec{r}(u, v))$ of the vector field.
 
 ````{prf:definition} flux integral
-:label: flux_integral
+:label: def6.6
 If a surface $S$ is parametrized as $\vec{r}(u, v)=\langle x(u, v), y(u, v), z(u, v)\rangle$ over a domain $G$ in the $u v$-plane and $\vec{F}$ is a vector field, then the flux integral of $\vec{F}$ through $S$ is
 
 $$
@@ -130,7 +132,7 @@ The short hand notation $\vec{dS}=\left(\vec{r}_u \times \vec{r}_v\right) dudv$ 
 The boundary of a surface is a curve oriented so that the surface is to the "left" if the normal vector to the surface is pointing "up". In other words, the velocity vector $v$, a vector $w$ pointing towards the surface and the normal vector $n$ to the surface form a right handed coordinate system.
 
 ````{prf:theorem} Stokes
-:label: stokes_theorem
+:label: them6.3
 Stokes theorem: Let $S$ be a surface bounded by a curve $C$ and $\vec{F}$ be a vector field. Then
 
 $$
@@ -141,7 +143,7 @@ $$
 
 ## Divergence
 ````{prf:definition} diverence
-:label: divergence
+:label: def6.7
 The divergence of a vector field $\vec{F}=\langle P, Q, R\rangle$ is the scalar field 
 
 $$\operatorname{div}(\vec{F})=\nabla \cdot \vec{F}=P_x+Q_y+R_z$$
@@ -158,7 +160,7 @@ Because $\nabla \cdot \nabla \times \vec{F}=0$ and $\nabla \times \nabla \vec{F}
 ```
 
 ````{prf:theorem} divergence
-:label: divergence_theorem
+:label: them6.4
 Divergence Theorem. Let $E$ be a solid with boundary surface $S$ oriented so that the normal vector points outside. Let $\vec{F}$ be a vector field. Then
 
 $$

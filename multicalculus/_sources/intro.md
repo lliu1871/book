@@ -23,7 +23,7 @@ Multivariate Calculus
 </h1>
 
 ---
-# Table of Contents
+# Table of Contents &emsp;&emsp;&emsp;&emsp;&emsp;
 
 ```{tableofcontents}
 ```
