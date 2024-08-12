@@ -20,6 +20,7 @@ Calculus
 
 ---
 # Table of Contents &emsp;&emsp;&emsp;&emsp;&emsp;
+[cover](./images/cover.jpg)
 
 ```{tableofcontents}
 ```
