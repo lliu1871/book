@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Chapter 2: Banach spaces &#8212; Functional Analysis</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 3: Hilbert spaces" href="chap3.html" />
+    <link rel="prev" title="Chapter 1: Metric spaces" href="chap1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chapter 1: Metric spaces</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Chapter 2: Banach spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">Chapter 3: Hilbert spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">Chapter 4: Foundamental theorems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">Chapter 5: Spectral theory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">Chapter 6: Unbounded linear operator</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chapter 2: Banach spaces</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-dimensional-normed-spaces">Finite dimensional normed spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalent-norms">Equivalent norms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compactness">Compactness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riesz-lemma">Riesz Lemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-operators">Linear operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-linear-operators">Bounded linear operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-of-a-linear-operator">Extension of a linear operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-functionals">Linear functionals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-space">Dual space</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isomorphism">Isomorphism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#canonical-mapping-of-v-into-v">Canonical mapping of <span class="math notranslate nohighlight">\(V\)</span> into <span class="math notranslate nohighlight">\(V^*\)</span></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-2-banach-spaces">
+<h1>Chapter 2: Banach spaces<a class="headerlink" href="#chapter-2-banach-spaces" title="Permalink to this heading">#</a></h1>
+<blockquote class="epigraph">
+<div><p><em>“Do the difficult things while they are easy and do the great things while they are small. A journey of a thousand miles must begin with a single step.”</em></p>
+<p class="attribution">—Lao Tzu</p>
+</div></blockquote>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Banach_space">Banach space</a></p></li>
+</ul>
+</div>
+<div class="proof definition admonition" id="definition-0">
+<p class="admonition-title"><span class="caption-number">Definition 11 </span> (Norm)</p>
+<section class="definition-content" id="proof-content">
+<p>A norm on a (real or complex) vector space <span class="math notranslate nohighlight">\(X\)</span> is a real-valued function on <span class="math notranslate nohighlight">\(X\)</span> whose value at an <span class="math notranslate nohighlight">\(𝑥∈𝑋\)</span> is denoted by <span class="math notranslate nohighlight">\(\|𝑥\|\)</span>, which has the properties</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\|𝑥\|\ge 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|𝑥\|=0\)</span> if and only if <span class="math notranslate nohighlight">\(𝑥=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|𝑥+𝑦\|\le \|𝑥\|+\|𝑦\|\)</span></p></li>
+</ol>
+</section>
+</div><ul class="simple">
+<li><p>A norm on a vector space <span class="math notranslate nohighlight">\(X\)</span> defines a metric <span class="math notranslate nohighlight">\(d\)</span> on <span class="math notranslate nohighlight">\(X\)</span> which is given by <span class="math notranslate nohighlight">\(𝑑(𝑥,𝑦)=\|𝑥−𝑦\|\)</span>.</p></li>
+<li><p>The norm is a continuous map from <span class="math notranslate nohighlight">\(X\)</span> to <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>.</p></li>
+</ul>
+<div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 12 </span> (normed space)</p>
+<section class="definition-content" id="proof-content">
+<p>A normed space <span class="math notranslate nohighlight">\((𝑋,\|∙\|)\)</span> is a vector space <span class="math notranslate nohighlight">\(X\)</span> equipped with a norm.</p>
+</section>
+</div><div class="proof definition admonition" id="definition-2">
+<p class="admonition-title"><span class="caption-number">Definition 13 </span> (Banach space)</p>
+<section class="definition-content" id="proof-content">
+<p>A Banach space is a complete normed space</p>
+</section>
+</div><ul class="simple">
+<li><p>A subspace <span class="math notranslate nohighlight">\(Y\)</span> of a Banach space <span class="math notranslate nohighlight">\(X\)</span> is complete if and only if the set <span class="math notranslate nohighlight">\(Y\)</span> is closed in <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+</ul>
+<div class="proof definition admonition" id="definition-3">
+<p class="admonition-title"><span class="caption-number">Definition 14 </span> (Schauder basis)</p>
+<section class="definition-content" id="proof-content">
+<p>If a normed space <span class="math notranslate nohighlight">\(X\)</span> contains a sequence <span class="math notranslate nohighlight">\(\left\{e_1, \ldots, e_n\right\}\)</span> with the property that for every <span class="math notranslate nohighlight">\(x \in X\)</span> there is a unique sequence of scalars <span class="math notranslate nohighlight">\(\left\{a_n\right\}\)</span> such that as <span class="math notranslate nohighlight">\(n \rightarrow\)</span> <span class="math notranslate nohighlight">\(\infty\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\| x-\sum_{i=1}^n a_i e_i\| \rightarrow 0
+\]</div>
+<p>then <span class="math notranslate nohighlight">\(\left\{e_1, \ldots, e_n\right\}\)</span> is called a Schauder basis (or basis) for <span class="math notranslate nohighlight">\(\mathrm{X}\)</span></p>
+</section>
+</div><p>The series <span class="math notranslate nohighlight">\(\sum_{i=1}^{\infty} a_i e_i\)</span> is called the expansion of <span class="math notranslate nohighlight">\(x\)</span> with respect to <span class="math notranslate nohighlight">\(\left\{e_1, \ldots, e_n\right\}\)</span> and we write</p>
+<div class="math notranslate nohighlight">
+\[
+x=\sum_{i=1}^{\infty} a_i e_i
+\]</div>
+<section id="finite-dimensional-normed-spaces">
+<h2>Finite dimensional normed spaces<a class="headerlink" href="#finite-dimensional-normed-spaces" title="Permalink to this heading">#</a></h2>
+<p>Every finite dimensional subspace Y of a normed space X is complete. In particular, every finite dimensional normed space is complete
+Every finite dimensional subspace Y of a normel1 space X is closed in X</p>
+<section id="equivalent-norms">
+<h3>Equivalent norms<a class="headerlink" href="#equivalent-norms" title="Permalink to this heading">#</a></h3>
+<p>A norm <span class="math notranslate nohighlight">\(\|\cdot\|\)</span> on a vector space <span class="math notranslate nohighlight">\(X\)</span> is said to be equivalent to a norm <span class="math notranslate nohighlight">\(\|\cdot\|_0\)</span> on <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> if there are positive numbers <span class="math notranslate nohighlight">\(\mathrm{a}\)</span> and <span class="math notranslate nohighlight">\(\mathrm{b}\)</span> such that for all <span class="math notranslate nohighlight">\(x \in X\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+a\| x\|_0 \leq\| x\| \leq b\| x\|_0
+\]</div>
+<p>Equivalent norms on <span class="math notranslate nohighlight">\(\mathrm{X}\)</span> define the same topology for <span class="math notranslate nohighlight">\(\mathrm{X}\)</span>
+On a finite dimensional vector space <span class="math notranslate nohighlight">\(X\)</span>, any norm <span class="math notranslate nohighlight">\(\|\cdot\|\)</span> is equivalent to any other norm <span class="math notranslate nohighlight">\(\|\cdot \|_0\)</span></p>
+</section>
+</section>
+<section id="compactness">
+<h2>Compactness<a class="headerlink" href="#compactness" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-4">
+<p class="admonition-title"><span class="caption-number">Definition 15 </span> (compact metric space)</p>
+<section class="definition-content" id="proof-content">
+<p>A metric space X is said to be compact if every sequence in X has a convergent subsequence</p>
+</section>
+</div><p>A subset M of X is said to be compact if M is compact considered as a subspace of X, that is, if every sequence in M has a convergent subsequence whose limit is an element of M</p>
+<p>A compact subset M of a metric space is closed and bounded, but converse is false
+In a finite dimensional normed space X, any subset M c X is compact if and only if M is closed and bounded</p>
+<p>Let X and Y be metric spaces and 𝑇:𝑋→𝑌 continuous mapping. Then the image of a compact subset M of X under T is compact</p>
+<p>A continuous mapping T of a compact subset M of a metric space X into ℝ assumes a maximum and a minimum at some points of M</p>
+</section>
+<section id="riesz-lemma">
+<h2>Riesz Lemma<a class="headerlink" href="#riesz-lemma" title="Permalink to this heading">#</a></h2>
+<p>The Riesz lemma is the Banach-space substitute for one aspect of orthogonality in Hilbert apces. In a Hilbert spaces <span class="math notranslate nohighlight">\(Y\)</span>, given a non-dense subspace <span class="math notranslate nohighlight">\(X\)</span>, there is <span class="math notranslate nohighlight">\(y \in Y\)</span> with <span class="math notranslate nohighlight">\(|y|=1\)</span> and <span class="math notranslate nohighlight">\(\inf_{x \in X}|x-y|=1\)</span>, by taking <span class="math notranslate nohighlight">\(y\)</span> in the orthogonal complement to <span class="math notranslate nohighlight">\(X\)</span>. Of course, this device is unavailable more generally.</p>
+<div class="proof theorem admonition" id="theorem-5">
+<p class="admonition-title"><span class="caption-number">Theorem 2 </span> (Riesz Lemma)</p>
+<section class="theorem-content" id="proof-content">
+<p>For a non-dense subspace <span class="math notranslate nohighlight">\(X\)</span> of a Banach space <span class="math notranslate nohighlight">\(Y\)</span>, given <span class="math notranslate nohighlight">\(r&lt;1\)</span>, there is <span class="math notranslate nohighlight">\(y \in Y\)</span> with <span class="math notranslate nohighlight">\(|y|=1\)</span> and <span class="math notranslate nohighlight">\(\inf _{x \in X}|x-y| \geq r\)</span>.</p>
+</section>
+</div><div class="proof admonition" id="proof">
+<p>Proof. Take <span class="math notranslate nohighlight">\(y_1\)</span> not in the closure of <span class="math notranslate nohighlight">\(X\)</span>, and put <span class="math notranslate nohighlight">\(R=\inf _{x \in X}\left|x-y_1\right|\)</span>. Thus, <span class="math notranslate nohighlight">\(R&gt;0\)</span>. For <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span>, let <span class="math notranslate nohighlight">\(x_1 \in X\)</span> be such that <span class="math notranslate nohighlight">\(\left|x_1-y_1\right|&lt;R+\varepsilon\)</span>. Put <span class="math notranslate nohighlight">\(y=\left(y_1-x_1\right) /\left|x_1-y_1\right|\)</span>, so <span class="math notranslate nohighlight">\(|y|=1\)</span>. And</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+\inf _{x \in X}|x-y|=\inf _{x \in X}\left|x+\frac{x_1}{\left|x_1-y_1\right|}-\frac{y_1}{\left|x_1-y_1\right|}\right|=\inf _{x \in X}\left|\frac{x}{\left|x_1-y_1\right|}+\frac{x_1}{\left|x_1-y_1\right|}-\frac{y_1}{\left|x_1-y_1\right|}\right| \\
+=\frac{\inf _{x \in X}\left|x-y_1\right|}{\left|x_1-y_1\right|} \geq \frac{R}{R+\varepsilon}
+\end{gathered}
+\end{split}\]</div>
+<p>By choosing <span class="math notranslate nohighlight">\(\varepsilon&gt;0\)</span> small, <span class="math notranslate nohighlight">\(R /(R+\varepsilon)\)</span> can be made arbitrarily close to 1 .</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">plotrix</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="m">-2</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="m">-2</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&quot;n&quot;</span><span class="p">,</span><span class="n">asp</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">xlab</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="n">ylab</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="nf">draw.circle</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="n">border</span><span class="o">=</span><span class="s">&quot;brown&quot;</span><span class="p">)</span>
+<span class="nf">segments</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">0</span><span class="p">)</span>
+<span class="nf">segments</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">-2</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+<span class="nf">segments</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">segments</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2-0.5</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="o">/</span><span class="m">2</span>
+<span class="nf">segments</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="n">x</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="o">+</span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="n">y</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="o">+</span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;blue&quot;</span><span class="p">)</span>
+<span class="nf">segments</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="o">+</span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="m">0</span><span class="p">,</span><span class="n">x</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="o">+</span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="n">y</span><span class="o">/</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="m">2</span><span class="o">+</span><span class="n">y</span><span class="o">^</span><span class="m">2</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+<span class="nf">text</span><span class="p">(</span><span class="m">0.8</span><span class="p">,</span><span class="m">0.3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">&quot;R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>Error in library(plotrix): there is no package called ‘plotrix’
+Traceback:
+
+1. library(plotrix)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Riesz’s lemma guarantees that for any given <span class="math notranslate nohighlight">\(0&lt;\alpha&lt;1\)</span>, every infinite-dimensional normed space contains a sequence <span class="math notranslate nohighlight">\(x_1, x_2, \ldots\)</span> of (distinct) unit vectors satisfying <span class="math notranslate nohighlight">\(\left\|x_n-x_m\right\|&gt;\alpha\)</span> for <span class="math notranslate nohighlight">\(m \neq n\)</span>; or stated in plain English, these vectors are all separated from each other by a distance of more than <span class="math notranslate nohighlight">\(\alpha\)</span> while simultaneously also all lying on the unit sphere. Such an infinite sequence of vectors cannot be found in the unit sphere of any finite dimensional normed space (just consider for example the unit circle in <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> ).
+This sequence can be constructed by induction. Start by picking any element <span class="math notranslate nohighlight">\(x_1\)</span> from the unit sphere. Pick <span class="math notranslate nohighlight">\(x_n\)</span> from the unit sphere such that <span class="math notranslate nohighlight">\(d\left(x_n, Y_{n-1}\right)&gt;\alpha\)</span> for a constant <span class="math notranslate nohighlight">\(0&lt;\alpha&lt;1\)</span>, where <span class="math notranslate nohighlight">\(Y_{n-1}\)</span> is the linear span of <span class="math notranslate nohighlight">\(\left\{x_1, \ldots, x_{n-1}\right\}\)</span> and <span class="math notranslate nohighlight">\(d\left(x_n, Y\right)=\inf _{y \in Y}\left\|x_n-y\right\|\)</span>.
+Clearly <span class="math notranslate nohighlight">\(x_1, x_2, \ldots\)</span> contains no convergent subsequence and the non-compactness of the unit ball follows.</p>
+</section>
+<section id="linear-operators">
+<h2>Linear operators<a class="headerlink" href="#linear-operators" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-6">
+<p class="admonition-title"><span class="caption-number">Definition 16 </span></p>
+<section class="definition-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are vector spaces over the same field. The mapping <span class="math notranslate nohighlight">\(T: X \rightarrow Y\)</span> is a linear operator if for all <span class="math notranslate nohighlight">\(x, y \in X\)</span> and scalars <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(T(x+y)=Tx+Ty\)</span> and <span class="math notranslate nohighlight">\(T(ax)=aTx\)</span>.</p>
+</section>
+</div><p>The null space (i.e., kernal) of <span class="math notranslate nohighlight">\(T\)</span> is the set of all <span class="math notranslate nohighlight">\(x \in X\)</span> such that <span class="math notranslate nohighlight">\(T x=0\)</span>, denoted by <span class="math notranslate nohighlight">\(\kappa(T)\)</span></p>
+<ul class="simple">
+<li><p>The range <span class="math notranslate nohighlight">\(Y\)</span> of <span class="math notranslate nohighlight">\(T\)</span> is a vector space, and <span class="math notranslate nohighlight">\(\operatorname{dim} X \geq \operatorname{dim} Y\)</span></p></li>
+<li><p>The null space is a vector space</p></li>
+</ul>
+<div class="proof theorem admonition" id="theorem-7">
+<p class="admonition-title"><span class="caption-number">Theorem 3 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X, Y\)</span> be vector spaces. Let <span class="math notranslate nohighlight">\(T: X \rightarrow Y\)</span> be a linear operator. The inverse <span class="math notranslate nohighlight">\(T^{-1}: Y \rightarrow X\)</span> exists if and only if <span class="math notranslate nohighlight">\(Tx=0\)</span> indicates <span class="math notranslate nohighlight">\(x=0\)</span></p>
+</section>
+</div><ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(T^{-1}\)</span> exists, then <span class="math notranslate nohighlight">\(T^{-1}\)</span> is a linear operator</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\operatorname{dim} X&lt;\infty\)</span>, then the inverse <span class="math notranslate nohighlight">\(T^{-1}\)</span> exists if and only - If <span class="math notranslate nohighlight">\(\operatorname{dim} X=\operatorname{dim} Y\)</span></p></li>
+</ul>
+<section id="bounded-linear-operators">
+<h3>Bounded linear operators<a class="headerlink" href="#bounded-linear-operators" title="Permalink to this heading">#</a></h3>
+<div class="proof definition admonition" id="definition-8">
+<p class="admonition-title"><span class="caption-number">Definition 17 </span> (bounded linear operator)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> be normed spaces and <span class="math notranslate nohighlight">\(T: X \rightarrow Y\)</span> a linear operator. The operator <span class="math notranslate nohighlight">\(T\)</span> is said to be bounded if there is a real number <span class="math notranslate nohighlight">\(c\)</span> such that for all <span class="math notranslate nohighlight">\(x \in X\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\| T x\| \leq c\| x\|
+\]</div>
+</section>
+</div><ul class="simple">
+<li><p>If a normed space <span class="math notranslate nohighlight">\(X\)</span> is finite dimensional, then every linear operator on <span class="math notranslate nohighlight">\(X\)</span> is bounded</p></li>
+</ul>
+<div class="proof definition admonition" id="definition-9">
+<p class="admonition-title"><span class="caption-number">Definition 18 </span> (norm of a bounded linear operator)</p>
+<section class="definition-content" id="proof-content">
+<p>If <span class="math notranslate nohighlight">\(T: X \rightarrow Y\)</span> is a bounded linear operator, then we define the norm of T by</p>
+<div class="math notranslate nohighlight">
+\[
+\|T\|=\sup _{x \in X} \frac{\|T x\|}{\|x\|}
+\]</div>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(T\)</span> be a bounded linear operator as defined. Then</p>
+<div class="math notranslate nohighlight">
+\[
+\| T\|=\sup _{x \in X, \|x\|=1}\| T x \|
+\]</div>
+<div class="proof definition admonition" id="definition-10">
+<p class="admonition-title"><span class="caption-number">Definition 19 </span> (continuity)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(T: X \rightarrow Y\)</span> be any operator, not necessarily linear, where <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are normed spaces. The operator <span class="math notranslate nohighlight">\(T\)</span> is continuous at an <span class="math notranslate nohighlight">\(x_0 \in X\)</span> if for every <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> there is a <span class="math notranslate nohighlight">\(\delta&gt;0\)</span> such that for all <span class="math notranslate nohighlight">\(x \in X\)</span> satisfying ||<span class="math notranslate nohighlight">\(x-x_0||&lt;\delta\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[
+\|Tx-Tx_0 \|&lt;\epsilon
+\]</div>
+<p><span class="math notranslate nohighlight">\(T\)</span> is continuous if it is continuous at every <span class="math notranslate nohighlight">\(x \in X\)</span></p>
+</section>
+</div><ul class="simple">
+<li><p>A linear operator <span class="math notranslate nohighlight">\(T\)</span> is continuous if and only if it is bounded</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(T\)</span> is continuous at a single point, it is continuous at all points</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(T\)</span> be a bounded linear operator. Then <span class="math notranslate nohighlight">\(x_n \rightarrow x\)</span> implies <span class="math notranslate nohighlight">\(T x_n \rightarrow T x\)</span></p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(\mathrm{T}\)</span> be a bounded linear operator. The null space <span class="math notranslate nohighlight">\(\mathrm{N}(T)\)</span> is closed</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_1\)</span> and <span class="math notranslate nohighlight">\(T_2\)</span> are bounded linear operators. Then <span class="math notranslate nohighlight">\(\|T_1 T_2\|\leq\| T_1\|\ \|T_2\|\)</span></p></li>
+</ul>
+</section>
+<section id="extension-of-a-linear-operator">
+<h3>Extension of a linear operator<a class="headerlink" href="#extension-of-a-linear-operator" title="Permalink to this heading">#</a></h3>
+<div class="proof definition admonition" id="definition-11">
+<p class="admonition-title"><span class="caption-number">Definition 20 </span></p>
+<section class="definition-content" id="proof-content">
+<p>Two operators are equal, <span class="math notranslate nohighlight">\(T_1=T_2\)</span>, if they have the same domain <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(T_1 x=\)</span> <span class="math notranslate nohighlight">\(T_2 x\)</span> for all <span class="math notranslate nohighlight">\(x \in X\)</span>.</p>
+</section>
+</div><p>The restriction of an operator <span class="math notranslate nohighlight">\(T: X \rightarrow Y\)</span> to a subset <span class="math notranslate nohighlight">\(B \subset X\)</span> is denoted by <span class="math notranslate nohighlight">\(T|_B\)</span>, and is defined by <span class="math notranslate nohighlight">\(\left.T\right|_Bx=Tx\)</span> for all <span class="math notranslate nohighlight">\(x \in B\)</span>.</p>
+<div class="proof definition admonition" id="definition-12">
+<p class="admonition-title"><span class="caption-number">Definition 21 </span></p>
+<section class="definition-content" id="proof-content">
+<p>An extension of <span class="math notranslate nohighlight">\(T\)</span> to a set <span class="math notranslate nohighlight">\(M \supset X\)</span> is an operator <span class="math notranslate nohighlight">\(\tilde{T}: M \rightarrow Y\)</span> such that <span class="math notranslate nohighlight">\(\left.\tilde{T}\right|_Xx=T x\)</span> for all <span class="math notranslate nohighlight">\(x\in X\)</span>.</p>
+</section>
+</div><div class="proof theorem admonition" id="theorem-13">
+<p class="admonition-title"><span class="caption-number">Theorem 4 </span></p>
+<section class="theorem-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(T: D(T) \rightarrow Y\)</span> be a bounded linear operator where the domain <span class="math notranslate nohighlight">\(D(T)\)</span> is a subset of a normed space and <span class="math notranslate nohighlight">\(Y\)</span> is a Banach space. Then <span class="math notranslate nohighlight">\(T\)</span> has an extension</p>
+<div class="math notranslate nohighlight">
+\[\tilde{T}: \overline{D(T)} \rightarrow Y\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tilde{T}\)</span> is a bounded linear operator with a norm <span class="math notranslate nohighlight">\(\|\tilde{T}\|=\| T \|\)</span></p>
+</section>
+</div></section>
+</section>
+<section id="linear-functionals">
+<h2>Linear functionals<a class="headerlink" href="#linear-functionals" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-14">
+<p class="admonition-title"><span class="caption-number">Definition 22 </span> (linear functional)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a vector space over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>. A linear functional on <span class="math notranslate nohighlight">\(V\)</span> is a linear map <span class="math notranslate nohighlight">\(T: V \rightarrow \mathbb{F}\)</span>.</p>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(L(V, \mathbb{F})\)</span> be the set of all linear functionals on <span class="math notranslate nohighlight">\(V\)</span>. The set <span class="math notranslate nohighlight">\(L(V, \mathbb{F})\)</span> forms a vector space, because <span class="math notranslate nohighlight">\(\alpha f_1+\beta f_2 \in L(V, \mathbb{F})\)</span> for all <span class="math notranslate nohighlight">\(\alpha, \beta \in \mathbb{F}\)</span> and all <span class="math notranslate nohighlight">\(f_1, f_2 \in L(V, \mathbb{F})\)</span>. Also, there is a unique linear functional on <span class="math notranslate nohighlight">\(V\)</span>, called the zero functional, which sends everything in <span class="math notranslate nohighlight">\(V\)</span> to zero.</p>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a normed space over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>. A bounded linear functional <span class="math notranslate nohighlight">\(f\)</span> is a linear operator <span class="math notranslate nohighlight">\(X \rightarrow \mathbb{F}\)</span>, and there exists a real number <span class="math notranslate nohighlight">\(c\)</span> such that for all <span class="math notranslate nohighlight">\(x \in\)</span> <span class="math notranslate nohighlight">\(X,|f(x)| \leq c\| x\|\)</span>.</p>
+<div class="proof definition admonition" id="definition-15">
+<p class="admonition-title"><span class="caption-number">Definition 23 </span></p>
+<section class="definition-content" id="proof-content">
+<p>The norm of a bounded linear function <span class="math notranslate nohighlight">\(f\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[
+\|f\|=\sup _{x \in D(f), x \neq 0} \frac{|f(x)|}{\|x\|}
+\]</div>
+</section>
+</div></section>
+<section id="dual-space">
+<h2>Dual space<a class="headerlink" href="#dual-space" title="Permalink to this heading">#</a></h2>
+<div class="proof definition admonition" id="definition-16">
+<p class="admonition-title"><span class="caption-number">Definition 24 </span> (dual space)</p>
+<section class="definition-content" id="proof-content">
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a vector space over a field <span class="math notranslate nohighlight">\(\mathbb{F}\)</span>. The algebraic dual space of <span class="math notranslate nohighlight">\(V\)</span>, denoted by <span class="math notranslate nohighlight">\(V^*\)</span>, is the space of all linear functionals on <span class="math notranslate nohighlight">\(V\)</span>, i.e., <span class="math notranslate nohighlight">\(V^*:=L(V, \mathbb{F})\)</span>.</p>
+</section>
+</div><p>Let <span class="math notranslate nohighlight">\(\left(v_1, \ldots, v_n\right)\)</span> be a basis of the <span class="math notranslate nohighlight">\(n\)</span>-dimensional vector space <span class="math notranslate nohighlight">\(V\)</span>. For each <span class="math notranslate nohighlight">\(i=1, \ldots n\)</span>, define a linear functional <span class="math notranslate nohighlight">\(f_i: V \rightarrow \mathbb{F}\)</span> by setting</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f_i\left(v_j\right)=\left\{\begin{array}{l}0, i \neq j \\ 1, i=j\end{array}\right.\end{split}\]</div>
+<p>Then <span class="math notranslate nohighlight">\(\left(f_1, \ldots, f_n\right)\)</span> is a basis of <span class="math notranslate nohighlight">\(V^*\)</span>, called the <strong>dual basis</strong> of <span class="math notranslate nohighlight">\(\left(v_1, \ldots, v_n\right)\)</span>.</p>
+<ul class="simple">
+<li><p>If a vector space <span class="math notranslate nohighlight">\(V\)</span> is finite-dimensional, then <span class="math notranslate nohighlight">\(\dim V=\dim V^*\)</span></p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f(v)=0\)</span> for all <span class="math notranslate nohighlight">\(f \in V^*\)</span>, then <span class="math notranslate nohighlight">\(v=0\)</span></p></li>
+</ul>
+<div class="proof definition admonition" id="definition-17">
+<p class="admonition-title"><span class="caption-number">Definition 25 </span> (second dual space)</p>
+<section class="definition-content" id="proof-content">
+<p>The algebraic dual <span class="math notranslate nohighlight">\((X^*)^*\)</span> of <span class="math notranslate nohighlight">\(X*\)</span>, whose elements are the linear functionals defined on <span class="math notranslate nohighlight">\(X^*\)</span>. We denote <span class="math notranslate nohighlight">\((X^*)^*\)</span> by <span class="math notranslate nohighlight">\(X^{**}\)</span> and call it the second algebraic dual space of <span class="math notranslate nohighlight">\(X\)</span>.</p>
+</section>
+</div><section id="isomorphism">
+<h3>Isomorphism<a class="headerlink" href="#isomorphism" title="Permalink to this heading">#</a></h3>
+<div class="proof definition admonition" id="definition-18">
+<p class="admonition-title"><span class="caption-number">Definition 26 </span> (isomorphism)</p>
+<section class="definition-content" id="proof-content">
+<p>Isomorphism is a bijective mapping of <span class="math notranslate nohighlight">\(X\)</span> onto <span class="math notranslate nohighlight">\(\tilde{X}\)</span> which preserves the structure of the space.</p>
+</section>
+</div><p>For example, an isomorphism <span class="math notranslate nohighlight">\(T\)</span> of a metric space <span class="math notranslate nohighlight">\(X=(X, d)\)</span> onto a metric space <span class="math notranslate nohighlight">\(\tilde{X}=\)</span> <span class="math notranslate nohighlight">\((\tilde{X}, \tilde{d})\)</span> is a bijective mapping which preserves distance, that is, for all <span class="math notranslate nohighlight">\(x, y \in X\)</span>, <span class="math notranslate nohighlight">\(d(x, y)=\tilde{d}(T x, T y)\)</span>.</p>
+<ul class="simple">
+<li><p>An isomorphism T of a vector space onto a metric space is a bijective mapping which preserves two operations - addition and scalar multiplication</p></li>
+<li><p>An isomorphism is said to be <strong>natural</strong> if it can be written down without the choice of a basis</p></li>
+<li><p>If a vector space <span class="math notranslate nohighlight">\(X\)</span> is isomorphic with a subspace of a vector space <span class="math notranslate nohighlight">\(Y\)</span>, we say that <span class="math notranslate nohighlight">\(X\)</span> is <strong>embeddable</strong> in <span class="math notranslate nohighlight">\(Y\)</span></p></li>
+</ul>
+</section>
+<section id="canonical-mapping-of-v-into-v">
+<h3>Canonical mapping of <span class="math notranslate nohighlight">\(V\)</span> into <span class="math notranslate nohighlight">\(V^*\)</span><a class="headerlink" href="#canonical-mapping-of-v-into-v" title="Permalink to this heading">#</a></h3>
+<p>Suppose <span class="math notranslate nohighlight">\(g\)</span> is a function defined on <span class="math notranslate nohighlight">\(V^*\)</span> by setting <span class="math notranslate nohighlight">\(g(f)=g_x(f)=f(x)\)</span> for a <span class="math notranslate nohighlight">\(x \in V\)</span>. Then <span class="math notranslate nohighlight">\(g\)</span> is a linear functional, i.e., <span class="math notranslate nohighlight">\(g \in V^{* *}\)</span>.</p>
+<div class="proof definition admonition" id="definition-19">
+<p class="admonition-title"><span class="caption-number">Definition 27 </span></p>
+<section class="definition-content" id="proof-content">
+<p>To each <span class="math notranslate nohighlight">\(x \in V\)</span> there corresponds a <span class="math notranslate nohighlight">\(g \in V^{* *}\)</span>. This defines a mapping <span class="math notranslate nohighlight">\(C: V \rightarrow\)</span> <span class="math notranslate nohighlight">\(V^{* *}\)</span>, which is called the canonical mapping of <span class="math notranslate nohighlight">\(V\)</span> into <span class="math notranslate nohighlight">\(V^{* *}\)</span></p>
+</section>
+</div><p>The canonical mapping <span class="math notranslate nohighlight">\(C: V \rightarrow V^{* *}\)</span> is injective, because the null space contains only the zero functional i.e., <span class="math notranslate nohighlight">\(f=0\)</span>. Since <span class="math notranslate nohighlight">\(C\)</span> is linear, it is an isomorphism of <span class="math notranslate nohighlight">\(X\)</span> onto the range <span class="math notranslate nohighlight">\(R(C) \subset V^{* *}\)</span>. Thus, <span class="math notranslate nohighlight">\(V\)</span> is embeddable in <span class="math notranslate nohighlight">\(V^{**}\)</span>.</p>
+<div class="proof definition admonition" id="definition-20">
+<p class="admonition-title"><span class="caption-number">Definition 28 </span> (reflexive)</p>
+<section class="definition-content" id="proof-content">
+<p>If the canonical mapping <span class="math notranslate nohighlight">\(C: V \rightarrow V^{* *}\)</span> is surjective (hence bijective), so that <span class="math notranslate nohighlight">\(R(C)=V^{* *}\)</span>, then <span class="math notranslate nohighlight">\(V\)</span> is said to be algebraically reflexive.</p>
+</section>
+</div><p>The vector space <span class="math notranslate nohighlight">\(B(X, Y)\)</span> of all bounded linear operators from a normed space <span class="math notranslate nohighlight">\(X\)</span> into a normed space <span class="math notranslate nohighlight">\(Y\)</span> is itself a normed space with norm defined by <span class="math notranslate nohighlight">\(\|T\|=\sup _{x \in X, \|x\|=1}\|T x\|\)</span>. If <span class="math notranslate nohighlight">\(Y\)</span> is a Banach space, then <span class="math notranslate nohighlight">\(B(X, Y)\)</span> is a Banach space.</p>
+<p>Let <span class="math notranslate nohighlight">\(X\)</span> be a normed space. Then the set of all bounded linear functionals on <span class="math notranslate nohighlight">\(X\)</span> constitutes a normed space with norm defined by</p>
+<div class="math notranslate nohighlight">
+\[
+\|f\|=\sup _{x \in X, \| x\|=1}|f(x)|
+\]</div>
+<p>which is called the dual space of <span class="math notranslate nohighlight">\(X\)</span> and is denoted by <span class="math notranslate nohighlight">\(X^{\prime}\)</span>. The dual space <span class="math notranslate nohighlight">\(X'\)</span> of a normed space <span class="math notranslate nohighlight">\(X\)</span> is a Banach space (whether or not <span class="math notranslate nohighlight">\(X\)</span> is)</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chapter 1: Metric spaces</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 3: Hilbert spaces</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-dimensional-normed-spaces">Finite dimensional normed spaces</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalent-norms">Equivalent norms</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compactness">Compactness</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#riesz-lemma">Riesz Lemma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-operators">Linear operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bounded-linear-operators">Bounded linear operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extension-of-a-linear-operator">Extension of a linear operator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-functionals">Linear functionals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-space">Dual space</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isomorphism">Isomorphism</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#canonical-mapping-of-v-into-v">Canonical mapping of <span class="math notranslate nohighlight">\(V\)</span> into <span class="math notranslate nohighlight">\(V^*\)</span></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
