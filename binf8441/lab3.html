@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 3: The law of large numbers &#8212; Statistical Inference in Bioinformatics</title>
   
@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents                              
+                    Table of Contents      
                 </a>
             </li>
         </ul>
@@ -432,11 +432,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 5.9&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 4&quot;
 </pre></div>
 </div>
-<div class="output text_html">3.41402336775183</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    2.0     3.5     5.5     5.9     7.5    13.0 
+<div class="output text_html">2.70801280154532</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    1.0     3.0     3.5     4.0     4.0    11.0 
 </pre></div>
 </div>
 <div class="output text_html"><style>
@@ -444,8 +444,8 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>2</li><li>3</li><li>5</li><li>5</li><li>6</li><li>6</li><li>8</li><li>9</li><li>13</li></ol>
-</div><div class="output text_html">13</div><div class="output text_html">2</div><div class="output text_html"><strong>95%:</strong> 11.2</div><img alt="_images/4c01d33ca8be8b71662d6c71b1995cb0878e994b3491784ee3c19489dcf2fcbd.png" src="_images/4c01d33ca8be8b71662d6c71b1995cb0878e994b3491784ee3c19489dcf2fcbd.png" />
+<ol class=list-inline><li>1</li><li>2</li><li>3</li><li>3</li><li>3</li><li>4</li><li>4</li><li>4</li><li>5</li><li>11</li></ol>
+</div><div class="output text_html">11</div><div class="output text_html">1</div><div class="output text_html"><strong>95%:</strong> 8.29999999999999</div><img alt="_images/c7be542bfc83ea7f777e7f08eecb2d89ce048278d6a0a02a32bf730c4b7fc0cf.png" src="_images/c7be542bfc83ea7f777e7f08eecb2d89ce048278d6a0a02a32bf730c4b7fc0cf.png" />
 </div>
 </div>
 <p>Then we increase the sample size <span class="math notranslate nohighlight">\(n\)</span> from 100, 200, up to 100,000 and recalculate the sample average. By the law of large numbers, we expect that the sample average gets closer to the true population mean 5 as the sample size increases.</p>
@@ -465,7 +465,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8139f7d1746cbc366ffde7016ff0f00979e174abd89f512f02c078701355a159.png" src="_images/8139f7d1746cbc366ffde7016ff0f00979e174abd89f512f02c078701355a159.png" />
+<img alt="_images/5e487d04dbc44adce954caf87c5ccf8bd585b142796cef0e4d104e979071d741.png" src="_images/5e487d04dbc44adce954caf87c5ccf8bd585b142796cef0e4d104e979071d741.png" />
 </div>
 </div>
 </section>
@@ -493,11 +493,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 2.53828188458356&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average is 3.06171170701605&quot;
 </pre></div>
 </div>
-<div class="output text_html">1.80209457975876</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -1.395   1.814   2.533   2.538   3.711   4.827 
+<div class="output text_html">1.47026633616873</div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-0.01974  2.42655  2.93877  3.06171  4.27034  4.78223 
 </pre></div>
 </div>
 <div class="output text_html"><style>
@@ -505,8 +505,8 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>-1.39455005743823</li><li>1.48401084148317</li><li>1.72041908150297</li><li>2.0960053806262</li><li>2.41876989503602</li><li>2.64737702908047</li><li>3.02864567856145</li><li>3.9388086190002</li><li>4.61609490854408</li><li>4.82723746943925</li></ol>
-</div><div class="output text_html">4.82723746943925</div><div class="output text_html">-1.39455005743823</div><div class="output text_html"><strong>95%:</strong> 4.73222331703642</div><img alt="_images/d874234f213a281e270b1e6c4f19dda273fba252a7d64e322f5398a8a79533e0.png" src="_images/d874234f213a281e270b1e6c4f19dda273fba252a7d64e322f5398a8a79533e0.png" />
+<ol class=list-inline><li>-0.0197368225213488</li><li>2.00174372407675</li><li>2.33999065904709</li><li>2.6862366733661</li><li>2.86452177199222</li><li>3.01300876088124</li><li>3.79575969152683</li><li>4.4285323154812</li><li>4.72482636673622</li><li>4.78223392957418</li></ol>
+</div><div class="output text_html">4.78223392957418</div><div class="output text_html">-0.0197368225213488</div><div class="output text_html"><strong>95%:</strong> 4.7564005262971</div><img alt="_images/ac72b4d7960d33a94211941433c3dc2b844c225f3dbd35bf24a8d9c96b789d52.png" src="_images/ac72b4d7960d33a94211941433c3dc2b844c225f3dbd35bf24a8d9c96b789d52.png" />
 </div>
 </div>
 <p>Then we increase the sample size <span class="math notranslate nohighlight">\(n\)</span> from 100, 200, up to 100,000 and recalculate the sample average. By the law of large numbers, we expect that the sample average gets closer to the true population mean 2.7 as the sample size increases.</p>
@@ -526,7 +526,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c8aeebb2c5b0f3fe60e5c6c0dc56a381fc07873b20072adb68c8e4e824f04b80.png" src="_images/c8aeebb2c5b0f3fe60e5c6c0dc56a381fc07873b20072adb68c8e4e824f04b80.png" />
+<img alt="_images/0b7ff70faaa30aab5bce73ff1277d708fb15dca61cff3b824e1cceb7968fe2cc.png" src="_images/0b7ff70faaa30aab5bce73ff1277d708fb15dca61cff3b824e1cceb7968fe2cc.png" />
 </div>
 </div>
 </section>

@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Chapter 6: Hypothesis testing &#8212; Statistical Inference in Bioinformatics</title>
   
@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents                              
+                    Table of Contents      
                 </a>
             </li>
         </ul>
@@ -473,7 +473,7 @@ document.write(`
 </div></section>
 <section id="type-i-and-ii-errors">
 <h2>Type I and II errors<a class="headerlink" href="#type-i-and-ii-errors" title="Permalink to this heading">#</a></h2>
-<table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
 <th class="head"><p><span class="math notranslate nohighlight">\(H_0\)</span> is true</p></th>
@@ -586,13 +586,13 @@ P\left(t&gt;a \mid H_{0}\right)=0.05
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -7.0441, df = 19, p-value = 5.255e-07
+t = -5.0692, df = 19, p-value = 3.407e-05
 alternative hypothesis: true mean is less than 3
 95 percent confidence interval:
-     -Inf 1.819848
+     -Inf 2.284231
 sample estimates:
 mean of x 
- 1.435903 
+ 1.913682 
 </pre></div>
 </div>
 </div>
@@ -634,13 +634,13 @@ mean of x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	One Sample t-test
 
 data:  data
-t = -4.0242, df = 19, p-value = 0.0007249
+t = -4.2848, df = 19, p-value = 4e-04
 alternative hypothesis: true mean is not equal to 3
 95 percent confidence interval:
- 1.652676 2.574650
+ 1.619345 2.525523
 sample estimates:
 mean of x 
- 2.113663 
+ 2.072434 
 </pre></div>
 </div>
 </div>
@@ -685,16 +685,16 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 &lt; \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -4.285, df = 37.939, p-value = 0.9999
+t = -3.8401, df = 34.332, p-value = 0.9997
 alternative hypothesis: true difference in means is greater than 0
 95 percent confidence interval:
- -1.978876       Inf
+ -1.475106       Inf
 sample estimates:
 mean of x mean of y 
- 2.203917  3.624026 
+ 1.681810  2.706036 
 </pre></div>
 </div>
-<img alt="_images/c1417755aa9ec4f8b7fe6ddcc47971c7c3f45dd34a1a97206d468965eb250ba0.png" src="_images/c1417755aa9ec4f8b7fe6ddcc47971c7c3f45dd34a1a97206d468965eb250ba0.png" />
+<img alt="_images/508eb464c432a7f018c126d34b143851a65f12cf6866e09a35990ba66314c7da.png" src="_images/508eb464c432a7f018c126d34b143851a65f12cf6866e09a35990ba66314c7da.png" />
 </div>
 </div>
 </section>
@@ -716,13 +716,13 @@ H_0: \mu_1 = \mu_2 \text{ versus } H_1: \mu_1 \ne \mu_2
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>	Welch Two Sample t-test
 
 data:  group1 and group2
-t = -4.285, df = 37.939, p-value = 0.0001204
+t = -3.8401, df = 34.332, p-value = 0.0005053
 alternative hypothesis: true difference in means is not equal to 0
 95 percent confidence interval:
- -2.0910523 -0.7491647
+ -1.5660716 -0.4823795
 sample estimates:
 mean of x mean of y 
- 2.203917  3.624026 
+ 1.681810  2.706036 
 </pre></div>
 </div>
 </div>
@@ -760,14 +760,14 @@ mean of x mean of y
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-group        2  32.28  16.141   14.32 9.16e-06 ***
-Residuals   57  64.26   1.127                     
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>            Df Sum Sq Mean Sq F value  Pr(&gt;F)    
+group        2  44.66  22.332   15.74 3.6e-06 ***
+Residuals   57  80.86   1.419                    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 </pre></div>
 </div>
-<img alt="_images/a56dfde960f00cf3ba04e0d3b811af33de91479e3fa62e4e9affa80d0067d548.png" src="_images/a56dfde960f00cf3ba04e0d3b811af33de91479e3fa62e4e9affa80d0067d548.png" />
+<img alt="_images/94ac56f9d9cfd3107e9f786899ac209cbaaebecd6b1d4d1842faf85f3813da2e.png" src="_images/94ac56f9d9cfd3107e9f786899ac209cbaaebecd6b1d4d1842faf85f3813da2e.png" />
 </div>
 </div>
 </section>
@@ -870,7 +870,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -21.6036194292831 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is -25.9000033079571 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>
@@ -905,7 +905,7 @@ t=2 \log \left(l_{1}\right)-2 \log \left(l_{0}\right)=\frac{-2 \sum_{i=1}^{n} x_
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 8.40400992377934 and the critical value a = 3.84145882069412&quot;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the test statistic is 4.36725719895644 and the critical value a = 3.84145882069412&quot;
 </pre></div>
 </div>
 </div>

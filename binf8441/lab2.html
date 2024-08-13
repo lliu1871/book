@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 2: Generating random numbers &#8212; Statistical Inference in Bioinformatics</title>
   
@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Table of Contents                              
+                    Table of Contents      
                 </a>
             </li>
         </ul>
@@ -410,7 +410,7 @@ document.write(`
 <section id="discrete-probability-distributions">
 <h2>Discrete probability distributions<a class="headerlink" href="#discrete-probability-distributions" title="Permalink to this heading">#</a></h2>
 <p>In this lab, we will generate random numbers from a probability distribution. We begin with a discrete probability distribution.</p>
-<table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>x</p></th>
 <th class="head"><p>1</p></th>
@@ -454,7 +454,7 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>1</li></ol>
+<ol class=list-inline><li>3</li><li>2</li></ol>
 </div></div>
 </div>
 <p>To select two numbers at random from (1,2,3) with replacement, we do</p>
@@ -470,13 +470,13 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>2</li><li>2</li></ol>
+<ol class=list-inline><li>2</li><li>1</li></ol>
 </div></div>
 </div>
 <div class="admonition-exercise-1 admonition">
 <p class="admonition-title">Exercise 1</p>
 <p>Flipping a fair coin 5 times and then we count the number of heads. Suppose head is 1 and tail is 0. Because it is a fair coin, the probability distribution of X is</p>
-<table class="table">
+<table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>x</p></th>
 <th class="head"><p>0</p></th>
@@ -509,8 +509,8 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>0</li><li>0</li><li>0</li><li>1</li><li>1</li></ol>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The count of heads is 2&quot;
+<ol class=list-inline><li>1</li><li>1</li><li>1</li><li>0</li><li>1</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;The count of heads is 4&quot;
 </pre></div>
 </div>
 </div>
@@ -535,10 +535,10 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 33 142 314 305 176  30 
+ 35 154 305 308 156  42 
 </pre></div>
 </div>
-<img alt="_images/4e7718c4c3ab0bdc89740625e03477c7bf3417a5504604fde1b5a2e9c5e90149.png" src="_images/4e7718c4c3ab0bdc89740625e03477c7bf3417a5504604fde1b5a2e9c5e90149.png" />
+<img alt="_images/dd0db9bc752ed99ff2237f42c46087835442eb597ce9605c5efb931ceced45e3.png" src="_images/dd0db9bc752ed99ff2237f42c46087835442eb597ce9605c5efb931ceced45e3.png" />
 </div>
 </div>
 <p>Alternative, we may simulate random numbers from the binomial distribution with <span class="math notranslate nohighlight">\(n=5\)</span> and <span class="math notranslate nohighlight">\(p=0.5\)</span>.</p>
@@ -553,10 +553,10 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>result
   0   1   2   3   4   5 
- 31 172 325 309 129  34 
+ 38 167 319 285 159  32 
 </pre></div>
 </div>
-<img alt="_images/a241c6571fbefb870921966effd39db50655e9936b8eea77547fb5dfa8ac0c81.png" src="_images/a241c6571fbefb870921966effd39db50655e9936b8eea77547fb5dfa8ac0c81.png" />
+<img alt="_images/d31adf480f88d282bfb0a1a211e8ea0ceb472d5e551078574364551e468945ce.png" src="_images/d31adf480f88d282bfb0a1a211e8ea0ceb472d5e551078574364551e468945ce.png" />
 </div>
 </div>
 <div class="admonition-exercise-3 admonition">
@@ -606,19 +606,19 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">0.195121951219512</div><div class="output text_html">0.341463414634146</div><div class="output text_html">0.24390243902439</div><div class="output text_html">0.219512195121951</div><div class="output text_html">'T'</div><div class="output text_html"><style>
+<div class="output text_html">0.195121951219512</div><div class="output text_html">0.341463414634146</div><div class="output text_html">0.24390243902439</div><div class="output text_html">0.219512195121951</div><div class="output text_html">'C'</div><div class="output text_html"><style>
 .list-inline {list-style: none; margin:0; padding: 0}
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>'A'</li><li>'G'</li><li>'C'</li><li>'T'</li><li>'G'</li><li>'C'</li><li>'A'</li><li>'C'</li><li>'A'</li><li>'G'</li></ol>
+<ol class=list-inline><li>'A'</li><li>'C'</li><li>'T'</li><li>'A'</li><li>'C'</li><li>'T'</li><li>'G'</li><li>'C'</li><li>'C'</li><li>'C'</li></ol>
 </div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 10 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.3</div><div class="output text_html">0.3</div><div class="output text_html">0.3</div><div class="output text_html">0.1</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
+<div class="output text_html">0.2</div><div class="output text_html">0.5</div><div class="output text_html">0.1</div><div class="output text_html">0.2</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the proportions of A, C, G, T in the sample of 100 nucleotides&quot;
 </pre></div>
 </div>
-<div class="output text_html">0.16</div><div class="output text_html">0.35</div><div class="output text_html">0.26</div><div class="output text_html">0.23</div></div>
+<div class="output text_html">0.19</div><div class="output text_html">0.36</div><div class="output text_html">0.23</div><div class="output text_html">0.22</div></div>
 </div>
 <p>To generate a random number from the binomial distribution</p>
 <div class="cell docutils container">
@@ -633,7 +633,7 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>4</li><li>2</li><li>2</li><li>2</li><li>1</li><li>1</li><li>1</li><li>2</li><li>4</li><li>1</li></ol>
+<ol class=list-inline><li>2</li><li>3</li><li>3</li><li>2</li><li>2</li><li>4</li><li>3</li><li>2</li><li>3</li><li>2</li></ol>
 </div></div>
 </div>
 <p>to generate a random number from the Poisson distribution</p>
@@ -649,7 +649,7 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>3</li><li>3</li><li>6</li><li>4</li><li>3</li><li>1</li><li>5</li><li>5</li><li>3</li><li>2</li></ol>
+<ol class=list-inline><li>6</li><li>3</li><li>4</li><li>1</li><li>3</li><li>3</li><li>0</li><li>3</li><li>3</li><li>4</li></ol>
 </div></div>
 </div>
 </section>
@@ -663,7 +663,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">1.15435207402334</div></div>
+<div class="output text_html">1.94677625317127</div></div>
 </div>
 <p>Or generate 10 random numbers from the interval [2, 10]</p>
 <div class="cell docutils container">
@@ -678,7 +678,7 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>6.22156600281596</li><li>6.08436202071607</li><li>8.16146789491177</li><li>9.62915288284421</li><li>8.14285960420966</li><li>9.79395081289113</li><li>6.33411935903132</li><li>5.62932014465332</li><li>4.99513333290815</li><li>7.61099634692073</li></ol>
+<ol class=list-inline><li>3.23496624082327</li><li>7.76770966872573</li><li>5.36018450558186</li><li>2.4951937533915</li><li>9.52136170677841</li><li>4.55617613531649</li><li>8.0581475533545</li><li>8.49363647028804</li><li>2.55170818045735</li><li>2.27868529781699</li></ol>
 </div></div>
 </div>
 <p>We may generate 10 random numbers from the normal distribution with mean = 4.5 and variance = 2 and then calculate the sample average.</p>
@@ -696,8 +696,8 @@ document.write(`
 .list-inline>li {display: inline-block}
 .list-inline>li:not(:last-child)::after {content: "\00b7"; padding: 0 .5ex}
 </style>
-<ol class=list-inline><li>4.50369729574876</li><li>5.0272744996039</li><li>5.12644401818394</li><li>5.1031017691711</li><li>1.94899854794817</li><li>3.75365166414387</li><li>4.67811813310454</li><li>5.24330908025717</li><li>5.59127887801222</li><li>4.40802810071953</li></ol>
-</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 4.53839019868932&quot;
+<ol class=list-inline><li>4.5062229924065</li><li>5.11821511476538</li><li>3.14321250263959</li><li>5.72484443164852</li><li>3.73176494917267</li><li>4.36132261330203</li><li>5.81746174114681</li><li>8.10412427773735</li><li>7.0695020475563</li><li>7.29412543343412</li></ol>
+</div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1] &quot;the sample average: 5.48707961038093&quot;
 </pre></div>
 </div>
 </div>
