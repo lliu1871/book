@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第二章 &#8212; 炮打双灯</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第三章" href="chap3.html" />
+    <link rel="prev" title="第一章" href="chap1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    目录            
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">序言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">第一章</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">第二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">第三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">第四章</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第二章</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第二章<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>转过两天，牛宝在独流镇的炮市上拉开阵势。</p>
+<p>独流镇的炮市与静海县城不同。十来亩平平坦坦一块场子，四外围着泥坯垒的一道墙，多处坍塌，任人跨出跨进；地上光秃秃，只是戳着高高矮矮许多拴牲口用的木桩，平时这是买卖牲口的地界儿。可一人腊月，卖花炮的渐渐挤进来，鞭炮一响，牲口吓走了，自然而然改做临时的炮市。</p>
+<p>今儿牛宝好精神。一身崭新的棉袄棉裤，乌鞋净袜，脑袋一早洗过，此刻太阳一照，墨黑油亮。卖炮的人从没有这般打扮，烟熏火燎，鞭炸炮崩，衣衫多是旧破与糊洞。牛宝平时最不爱穿新衣，这样一身全新，架架楞楞，生生板板，像是相亲来的。他身边站着一个苍白消瘦的小子，带着病相，一双小眼倒是亮亮闪闪，十二分的精神。这人是他堂弟，名唤窦哥，专门折腾花炮的小贩：昨天牛宝请他买来一批上好鞭炮。窦哥既钻钱眼，也讲义气，买卖道上很有情面，这批鞭炮是他打沿儿庄 “万家雷。’家里买出来的。这“万家雷”不单名满静海，还在天津卫宫前大街和北平的厂甸设炮摊，挂字号，有几分名气。人说“万家雷”能开山打洞，装进大炮膛里当炮弹使。</p>
+<p>牛宝连夜把鞭炮上凡有“万家雷”的戳记都扯下来，换上红纸，临时使块杜梨木刻条大鲤鱼盖上去。自打静海造炮千八百年来，还没见过这字号。转天满满装一小车，运到集上，车上车下摆得漂漂亮亮；大挂的万头雷子鞭，一包三尺多高，立在车上，像半扇猪，极是气派。牛宝和窦哥各拿_根大竹竿，足足两丈长，左右一站，好比守阵门的两员武将。</p>
+<p>对面是圆头小子，手握长竿，挑一挂红纸大鞭，横刀立马站在前头。后边是装满鞭炮的驴车，那女人面雕泥塑般坐在车上。车前，除去那年龄小的小子，还多出一个黑瘦瘦的男子。他们腰上全扎一条避邪用的红布腰带。炮市上的人看这阵势，知道要比炮，都围了上来。</p>
+<p>窦哥一瞅对方，眼珠惊得差点没掉在地上，扭脸对牛宝低声说：</p>
+<p>“牛宝哥，你咋跟他们斗上气儿了?人家是文安县蔡家啊!在天津卫‘蔡家鞭’和‘万家雷’齐名，前二年蔡家老大给火药炸死，蔡家人不大往咱静海这边来了， ‘蔡家鞭’也见不着了。哎，你瞧，坐在车上那俊俏人就是蔡家大媳妇，名叫春枝，方圆百里，打灯笼也难找着这么俊的人儿!可惜守了寡!这圆脑袋小子是蔡三，靠车站着的是蔡家老二和老四，都是放炮的好手。咱的炮再好，也放不过人家，更别说人家‘蔡家鞭’了!”</p>
+<p>牛宝听了，脑袋里只多了春枝，根本没有“蔡家鞭”，还要多问，可不容他说话，圆头圆脑的蔡三已经将竹竿子使劲划起圈儿来，直把拴在竿尖上的那挂鞭甩成一条直线，在空中呜呜响。卖鞭的人都这么做，显示自己编炮使的麻绳结实不断。跟着，蔡三又变了手法，耍起花活，叫手中的竿子转起来，半圈紧，半圈松，一紧一松，有张有弛，那鞭就忽弯忽直，忽刚忽柔，蛇舞龙飞，十分好看，还没点炮，就引得人们叫好：随后，竹竿往地上“噔”地一戳，鞭炮垂下来，点着就炸，声音比上次那小钢鞭响几倍，震得周围一些拉车的牲口慌慌挪动身子和腿，受不住?要跑。</p>
+<p>牛宝挑起一挂雷子鞭也点响，“万家雷”名不虚传，个个爆竹都像炸雷，带着一股烈性与豪气，只比蔡家的大鞭强，决不比蔡家弱，也招来一阵喝好。</p>
+<p>两边就紧紧较上劲儿。</p>
+<p>只见蔡三往右边一闪，小小蔡四从车子那儿走来，手提一挂巨型大鞭，每只都有黄瓜一般粗，总共十二只，像是提着一串长茄子，引得人们喊怪叫奇。蔡四身小，虽然斜向上举，最下边的一只大鞭依然嚓嚓蹭地。牛宝头次瞧见这般大的鞭。窦哥告诉他：“这叫‘一步一响’，走一步，炸一个，这是‘蔡家鞭’的看家货．已经多年见不到，你一听就知道了。”他掏钱给了身边一个熟人，嘀咕些话，然后对牛宝说，“我叫人去买他几挂，有几挂这鞭当幌子，今年多赚一倍钱。”</p>
+<p>蔡四走到场子中央，蔡三帮他点着药信子，大鞭炸开，响声像打炮，震得看热闹的人不单堵耳朵，还闭眼。小小蔡四却毫不为之所动，炮炸身边，浓烟蔽体，他却像提着笼子遛鸟，从容又清闲!叫人佩服蔡家人鞭炮这行真有功底。</p>
+<p>蔡四稳稳当当走了十二步．一停，手里的大鞭刚好放完。一时不少人拥上来，争买大鞭。窦哥扬手大叫：“别急，还有更好的家伙哪!”他从车上抱下来一个天下少见的大雷子炮，立在地上，一尺多高．快要齐到膝盖，小胳膊粗，药信子像根麻绳，大红纸筒，上边盖的戳记是条墨线大鱼。</p>
+<p>“娘哟!这不是炸城池子用的吧!”有人惊叫道。</p>
+<p>“你瞧炮上那条鱼，挺像是牛宝的缸鱼，哎，那壮小子是牛宝吧，他咋改行卖起炮来了?”人们议论着。</p>
+<p>春枝在车上，仍旧像娘娘庙里的泥像，端坐不动，只是眼睫毛偶尔惊颤一下，那是听到人们议论时的反应，这反应却不为任何人发现。</p>
+<p>牛宝拿香点着大雷子炮，轰地炸开，烟腾火起，声如天塌地陷，近前的人溅了一身黄土，没人叫，都呆了，像是出了大事。连牛宝都发懵，一时竟不知发生什么意外。面皮生疼，是大炮炸开气浪拍打的。惟有蔡家人眼皮眨也没眨，但这一炸，却使春枝对眼前的事全然明了。</p>
+<p>随后两边各逞其能，蔡家人放炮似有用不尽的花样，可牛宝一招不会，新棉袄叫炮打煳了两大片，一只耳朵打红了，差点丢人现眼，多亏窦哥常年贩炮，见多识广，会些小伎俩，支应着局面，但要不是“万家雷”货真价实，东西地道，也早叫蔡家打趴地下。看来，真东西没亏吃，此亦万事之理。</p>
+<p>蔡家老二放“二踢脚”①的本事，叫人赞叹不已。他打开两把“二踢脚”，一个个插在红布腰带上，站到场子中央，先照寻常手法放上天空。蔡家鞭好，炮一样是头等；这“二踢脚”飞得高，炸得脆，高空一炸，碎屑飞散，像是打中一只鸟，羽毛进开，飘飘飞去。他这样一连放三个，便换了手法，把“二踢脚”倒拿手里，点着药信子，先叫下边一响在手上炸了，再用力抛上天空，炸上边一响。想叫它在哪儿炸就在哪儿炸。圆头圆脑的蔡三在两丈开外举起一挂鞭，蔡二看准，点着“二踢脚”，炸掉一响后，把余下一响抛过去，正好在那挂鞭下端炸开，当即引着那鞭，劈劈啪啪响起来，更引得周围一个满堂彩：这蔡老二得好却不罢手，更演出一手绝活。他像刚才那样倒拿“二踢脚”，炸掉下边一响后，却不抛出手，而是交给另一只手，抓住炸开的下半截，叫上边一响在另一只手上炸：两响不离手，一手一响，这招极是危险，换手慢了，就把手炸伤：但他黑瘦瘦、紧绷绷的脸上老练而自信，动作从容又娴熟，好像玩一条鱼。</p>
+<p>①二踢脚：花炮之一种，名为“两响”，“二踢脚”是其俗称。通常立在地上放，也有拿在手中放，第一响打上天空，第二响在空中炸开。</p>
+<p>牛宝见对方压住自己，心里着急。</p>
+<p>窦哥说：“在天津卫大街上摆炮摊，不叫你乱放‘二踢脚’，怕引着房子，崩着人，‘二踢脚’就这样拿在手里，放给人看。蔡老大，就是那女人死了的爷们儿，还有手活儿更绝，他把大雷子夹在手指头缝里，一个指缝夹一个，两手总共夹八个，平举着，八个药信子先后点着，哪个快炸，松开哪个。叫雷子掉下来炸，可又不能碰地，碰地会弹起来崩着人。这火候拿不准，手指头就炸飞了。如今蔡老大一死，没人敢耍这手活了。哎，牛宝哥，你咋直眼了?”</p>
+<p>牛宝听着这话，眼盯春枝，脑袋里轰地涌出个念头，他对窦哥说：</p>
+<p>“你给俺把大雷子夹在手指头缝里，俺试试。”</p>
+<p>“你疯啦，这手活是拿空炮筒子练出来的，咋能使真的试?炸坏手，你使啥画缸鱼，俺不干!”窦哥说。</p>
+<p>牛宝不理他，从车上取些大雷子，一个个夹在手指缝里，平举双臂，瞪大眼，用一种命令口气对窦哥说：“点上!”</p>
+<p>窦哥见事不好，想扔下香头跑掉。</p>
+<p>谁知牛宝这么一来，蔡家哥仨如同中了枪弹，怔住。春枝脸色十分难看，像是闹心口疼；蔡三红着脸喊道：“这小子当俺们蔡家没人，欺侮俺们嫂子，拼啦!”哥仨疯了似的冲过来。还有蔡家同乡和要好的也一齐拥上。</p>
+<p>牛宝还没弄懂这原故，就给蔡家人按在地上，窦哥也被揪扯住。对方喊着要把雷子插进他们肛门点上，窦哥吓得叫救求饶，想解释，却不知牛宝与蔡家究竟什么仇。牛宝给十来只大手死死按着，按得愈死，他犟劲愈大，用力一挣，脑袋刚抬起来，嘴巴反被压下来，在冻硬的地皮上蹭破，火辣辣的疼痛，蔡老三问他要干啥，他火在身体里撞，嘴更笨，索性大叫：</p>
+<p>“俺想做你哥，俺想做蔡老大!”</p>
+<p>这话叫在场的人全傻了!傻子也没有这么说话的。蔡家哥仨气得发狂，把他拉起来，用几十挂大鞭把他浑身上下缠起来，要炸他。牛宝使劲使得脖子脑门全是青筋，叫着：</p>
+<p>“点火，点火呀!死活我是你哥啦!”</p>
+<p>蔡三攥着一把香火，指着牛宝说：“你欺人太甚，俺豁出去吃官司，坐大牢，今儿也要把你点了。大伙闪开，我个人做事个人当——”说着就要冲上去点。</p>
+<p>“慢着。”忽然响起一个清亮的声音。</p>
+<p>牛宝瞧见春枝竞站在他身前，一手拦着蔡三，面朝自己。这张脸就是在杨柳青年画《美人图》上也找不着，可此刻满面愁容，两眼亮晃晃，厚厚包着泪水，像是委屈极了。在牛宝惊讶中，春枝说：“你不好好卖你的‘缸鱼’，弄来这些‘万家雷’来闹啥?你要再来搅扰俺，俺就亲手点这鞭!”然后对蔡家哥仨说，“回家!”一扭身，一大片眼泪全甩在牛宝当胸上。牛宝觉得，像是一排枪子打在自己身上。</p>
+<p>春枝和蔡家人去了，浑身缠着大鞭的牛宝，像那挂牲口的木桩，直呆呆戳在那儿。</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">第一章</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第三章</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
