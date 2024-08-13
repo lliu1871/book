@@ -19,8 +19,8 @@ Artificial Intelligence
 </h1>
 
 ---
-# Table of Contents &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+# Table of Contents &emsp;&emsp;&emsp;&emsp;&emsp;
+[cover](./images/cover.jpg)
 
 ```{tableofcontents}
 ```
-[book cover](./image/cover.jpg)
