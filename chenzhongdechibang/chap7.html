@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第七章 &#8212; 沉重的翅膀</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap7';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第八章" href="chap8.html" />
+    <link rel="prev" title="第六章" href="chap6.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    目录            
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">序言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">第一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">第二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">第三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">第四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">第五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">第六章</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">第七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">第八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">第九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">第十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">第十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">第十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">第十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">第十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">第十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap16.html">第十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap17.html">第十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap18.html">第十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap19.html">第十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap20.html">第二十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap21.html">第二十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap22.html">第二十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap23.html">第二十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap24.html">第二十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap25.html">第二十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap26.html">第二十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap27.html">第二十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap28.html">第二十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap29.html">第二十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap30.html">第三十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap31.html">第三十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap32.html">第三十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap33.html">第三十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap34.html">第三十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap35.html">第三十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap36.html">第三十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap37.html">第三十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap38.html">第三十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap39.html">第三十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap40.html">第四十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap41.html">第四十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap42.html">第四十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap43.html">第四十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap44.html">第四十四章</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap7.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap7.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第七章</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第七章<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>这女人，外表是那么一副死硬的样子，其实呢，像未醒世的儿童一样的执著、认真。郑子云不由得问道：“您记得《共产党宣言》里的第一句话吗”</p>
+<p>“一个幽灵，共产主义的幽灵，在欧洲徘徊。旧欧洲的一切势力，教皇和沙皇、梅特涅和基佐、法国的激进党人和德国的警察，都为驱除这个幽灵而结成了神圣同盟。”</p>
+<p>“好极了。记得最后一句吗”</p>
+<p>“全世界无产者，联合起来!”简直像中学生在课堂上回答教师的提问。他在想什么纯粹的“意识流”。</p>
+<p>郑子云从沙发上站起来，倒背着双手，脚步很轻地，但又是很快地在房间里来回走动着。隔了好长一段时间，他才说话：“您怎么会找到了我”</p>
+<p>“我有个同学，在您那个部工作。他告诉我，在您这一层干部里，您是一个肯干、敢干、思想解放的领导干部。”这话说得真糟糕，好像成心在拍他的马屁，叶知秋浑身不自在起来。</p>
+<p>郑子云果然锁紧了眉头。</p>
+<p>“您那位同学叫什么名字在哪个部门工作”</p>
+<p>“他叫贺家彬，在……”</p>
+<p>“哦，我熟悉他。他很久没来看我了。”</p>
+<p>“他这人有点古怪。”</p>
+<p>“他有一种病态的自尊心，这也许是知识分子的通病。不过人是很好的。”</p>
+<p>叶知秋笑笑：“未必吧”</p>
+<p>“怎么这样说呢”</p>
+<p>“他们那个管政工的局长，似乎并不这么认为。”</p>
+<p>“为什么”</p>
+<p>“也许他的思想有些偏激和异端吧。”</p>
+<p>一抹讥讽的微笑，浮上了郑子云的嘴角。</p>
+<p>“念大学的时候，我们都是b大学最早的校刊编委，当时，为了给校刊命名，争得面红耳赤。他说我那些提议，只能让人想起女人用的化妆品商店，而新闻绝不应该是一种装饰。新闻报纸的灵魂，是真实。他建议用‘x光室’，编委们一致反对，说那个名字容易引起人们的误解，以为我们办的是一张有关医学方面的报纸。</p>
+<p>他大嚷大叫，说从某种意义上来说，报纸就应该像医生一样，至少是个会照x光的医生，即使治不了病，也应该能够作出诊断，告诉这个社会，你有病了，你的病在哪儿；或是说，你别疑神疑鬼，你没病，你的内脏是健康的，它在正常地工作。挺幼稚，还有点偏激，是不是想起来很可笑。可是这里面总有些让人感动的东西。并不是每一个人都能保留住那些让人感动的稚气，保护着自己不受世俗生活的污染。二十多年过去了，他还是那个劲头。这个连花岗岩也能锉碎的生活，似乎并没有将他改变多少。您说，究竟什么力量是强大的呢生活岁月精神我倒真是干了新闻这一行。</p>
+<p>我才明白，他那套议论，完全行不通。按理，应该说真话，怕什么呢不是说吗，彻底的唯物主义者是无所畏惧的。也许我们还不够彻底。我们常说报纸的党性，但党性就是只说好话吗我们吃这个亏吃得不少了。我不是政治家，我大概也不是个合格的记者——我只是从思想深处说。事实上我还是按着整个机器的转速运转着。您知道我们那一代人最基本的特征是什么是不识时务。“</p>
+<p>叶知秋端起茶杯，呷了一口：“哦，这茶叶的味道很好。”</p>
+<p>郑子云停住脚步。为什么她也喜欢龙井他看不出她和自己的老婆有什么共通之处，几乎没有。她总在想着什么，问着什么。</p>
+<p>要是十亿部头脑都像这样开动起来，会产生多大的能量呢喜欢龙井不能说明任何问题。他为什么要去考虑这个问题呢在他心底深处，总是纠缠着一种淡淡的忧虑，他害怕所有的人会变得和他老婆一样。</p>
+<p>“喜欢吗”</p>
+<p>“不错。”叶知秋一向分辨不清茶叶的品种。喝茶是一桩讲究的事，她和莫征连开水都不能保证供应。</p>
+<p>郑子云重又开始踱步。应该从哪儿说起，又应该怎样才能让一个和工业、和经济毫无关系的人明白，工业发展、改革所面临着的重重困难，又怎样在困难中前进呢她有热情，愿意了解、研究，然而这是多么复杂的一套程序啊。也许应该先让她看些经济研究之类的材料有关目前工业生产、企业管理、体制改革以及国外的经验对，让秘书或调查研究室的同志找些材料给她看看，但她叫什么名字，住在什么地方“对不起，请问您的名字”</p>
+<p>他早已忘记了那张介绍信上的名字，尽管他很认真地看过介绍信上的印章和日期。</p>
+<p>“叶知秋。”</p>
+<p>“这名字很美。”他站住沉思起来，想着这女人有个很适合她的，能表现她精神、性格的名字。</p>
+<p>“对了，可惜给了我这样一个人。”</p>
+<p>她为什么这样敏感也许还有一点神经质。郑子云觉得这句随意的话好像伤害了她。他很想向这个值得尊敬的女人挽回这一点，于是玩笑地加了一句：“哦，不，比方苦瓜很苦，可有人就爱吃它的苦味儿……”这句话更是不伦不类，郑子云觉得这次是真正地失言了。除了自己的老婆，他从未在办公室以外和女人打过交道，他根本不懂得女人的心理，不知道如何同女人周旋。况且，这女人和他妻子不同，不能用那种“好男不和女斗”的迁就态度，她是完全独立于男人之外的。也不能用虚伪的奉承，虽然好些女人都喜欢那一套假话。她的头脑相当清楚。</p>
+<p>叶知秋却豁达地笑了：“这比喻挺准确，我还从没有想到过这么合适的一个字眼儿：苦瓜，好。”</p>
+<p>她是真没有生气，还是有意地做作不，这样的女人是不会做作的。这萍水相逢的女人，给人一种信赖感，她是那种第一次见面就可以无话不谈的人。</p>
+<p>第六感觉究竟是唯心的，还是科学的时间过得真有那么快吗他们谈社会，谈经济，谈体制改革，谈三中全会以后正在展开的远景，也谈哲学，谈政治……她，一副职业妇女的派头，像男人一样把手叉在腰上讲话。谈到激动的时候，也不管是不是第一次在一个副部长家里做客，背着手在房间里走来走去。郑子云从这头走到那头，叶知秋从那头走到这头，或是他们就干脆站在地当间儿讲话。</p>
+<p>真怪，他老婆是和他差不多党龄的老党员了。可是，为什么他们早已不在一起谈政治，谈社会，谈经济，谈哲学了呢也许这应该怪他自己。他大部分的生活，除了睡觉(而且他们也早已不在一个房间里睡了)，都是在部里、在各种会议上、在小汽车上度过的，就连星期天也很少休息。即使回到家里，那些公事，也像他热恋着的情人，不肯从他的脑海里退去。更何况每每回到家里．便已累得精疲力竭，没有精力说东道西。有时，即使想要聊聊，夏竹筠也似听非听地没有反应，郑子云很快地就没有了兴味。他常想，有什么能撼醒她那任什么也不思索，已经变得麻木的头脑呢难道她的精神，已经随着肉体变得老朽让一个人的情感保持经久不变的吸引力究竟是什么呢难道仅仅是物质上、形式上的美但再美的肉体也会老化、起皱。他不明白为什么好些女人，偏偏把全副精力，放在监视自己的丈夫和防范别的女人这种完全不可挽回的后果上，而不注重于保持自己的进取精神，永远把一个崭新的、可爱的、美好的、因而也是富有魅力的精神世界展现在丈夫的眼前爱情，绝不是少男少女才享有的专利权。即使在多年的老夫老妻之间，也应该注意保持着初婚时那种诗意和美丽。对待它，应该像对待花朵一样，经常浇水、施肥、松土、去虫……绝不能像对待买回家的扫帚一样，往厨房的门后一扔，就万无一失了。不了解这一点的女人，真是个傻女人。</p>
+<p>夏竹筠衣着入时，注意修饰，从不哈哈大笑，生怕脸上不断堆出的笑纹会加深皮肤的皱褶。真的，近六十岁的人了，看上去也就是四十七八的样子。脸上的皮肤仍然白皙光洁，没有一块花斑。</p>
+<p>只有凑得很近，又十分注意观察的时候，才能发现她眼角上那些很细很细的皱纹。可郑子云还是觉得结婚之后的夏竹筠，像个开完化装舞会的仕女，一走进那个外人看不见的家门，立刻就丢掉了顶温柔的微笑、顶文雅的风度、顶上流的教养。擦去涂过的红唇、描过的长眉，撕下粘在眼皮上的假睫毛，摘掉了假胸，脱掉了勒住松弛肌肉的紧身马甲，只穿件睡袍，披头散发，趿着一双踩歪了后跟的鞋子，摔摔打打，无缘无故地竖起眉毛，恶声恶气地对待家里的人……是不是所有的女人都会发生这种变化呢天色暗下来了，他们忘了开灯。沙发啦，电视机啦，小柜子啦，钢琴啦，以及人的面孔，全都变得含混起来，溶在浓浓的暮色里。</p>
+<p>叶知秋觉得，这景象分明在哪里见过。在哪儿呢也许是在梦里，也许在她那数不尽的幻想里。好像她还是个小姑娘的时候，便曾在这硬邦邦的、又窄又长的沙发上翻过筋斗，读过童话，听过祖母讲故事……她好像已经在这沙发上面坐了一生一世……她突然意识到她应该告辞了。</p>
+<p>但是，女主人回家了。</p>
+<p>夏竹筠把大提包往沙发上一丢，顺手打开了天花板上的吊灯。</p>
+<p>注意到房间里有个女客人，便怪声怪气地说：“哟，怎么不开灯啊。”</p>
+<p>然后又高声地叫道：“圆圆!”</p>
+<p>楼下没有停着“丰田”或是“奔驰”，家里的客人肯定是个平头百姓。</p>
+<p>郑子云皱了皱眉头，向夏竹筠介绍着：“这是报社的叶知秋同志。”</p>
+<p>夏竹筠这才慢慢地转过身来，点点头：“请坐。”没等叶知秋回答，又叫了一声：“圆圆!”</p>
+<p>叶知秋发现，当夏竹筠把目光从一件东西移到另一件东西上去的时候，总是闭着眼睛来完成这一目光的转移。再加上她一切动作都慢得过分，就给人一个十分傲慢的印象。</p>
+<p>郑圆圆从自己的房问里走出来，从她蓬乱的头发可以猜出，她大概刚从床上爬起来。</p>
+<p>“你又躺在床上看书了吧，我跟你说过多少次，这样会变成近视眼。一个女人戴眼镜，要多难看有多难看。”夏竹筠完全不顾叶知秋是戴眼镜的。</p>
+<p>郑圆圆和郑子云立刻感到极大的难堪。仿佛这没有教养的话是他们说的。两个人都僵在那里，一时不知说些什么来打破这令人尴尬的场面。倒是叶知秋没事儿人似的接着说下去：“是的，躺着看书对眼睛不好。”</p>
+<p>夏竹筠并未感到有什么不妥，也根本想不到丈夫和女儿有什么必要因她的行为而害臊。她打开一个大纸包，自管自地说着：“我给你买了一件浅蓝色的登山服，鸭绒的，又暖又轻，现在很多女孩子都穿这种衣服。”</p>
+<p>郑子云似乎没听见：“吃晚饭吧，好不好”然后对圆圆说：“请吴阿姨开饭吧。”</p>
+<p>精明的吴阿姨，显然知道圆圆的吩咐是不作数的，系着围裙从厨房里跑过来：“夏同志，要开晚饭吗”</p>
+<p>夏竹筠看看手表：“好吧。”然后想起，“今天有客人，添点什么菜了”</p>
+<p>叶知秋看见，她腕上的皮肤是细腻的，雪白的。细细的金表链勒在手腕上显得紧了，她已经开始发胖。</p>
+<p>吴阿姨在围裙上揩着她那双并不需要揩的胖手。永远是一副刚刚放下又累又脏的苦差事的样子：“今天是星期天，我多买了些菜，准备着有客人来的。一只母鸡，自由市场上买的，七块多钱……”</p>
+<p>“七块多!”夏竹筠插嘴了。</p>
+<p>吴阿姨赶紧补充情况：“因为是活的，贵一些。还买了几斤黄鱼……”</p>
+<p>大家全站在那里听吴阿姨报账。</p>
+<p>叶知秋把眼睛冷冷地扫向郑子云。他脸上，那种讥讽的微笑更浓了。眼睛里，闪烁着一种狡黠的光。而当他的目光和叶知秋的目光相遇时，她又在他的眼睛里看到一种近乎于冷酷和陌生的情绪。叶知秋立即告辞。他生硬地问：“您不留这儿吃晚饭吗”然后说不上是嘲讽自己还是嘲讽别人，“您没听见，这儿有一只七块多钱的活母鸡。”</p>
+<p>叶知秋忽然从心底升起对他的一片同情。唉，这受着许多人的尊重，掌管着上万个企业、上百万职工的副部长，也像常人一样，有着他的烦恼和被生活捉弄、奚落的时候。</p>
+<p>情绪转换得似乎毫无缘由。郑子云一下子觉得眼前的一切都显得是无聊透顶。他有点琢磨不透地看着叶知秋，难道他刚才真和她进行过那么有趣的谈话吗来了一位有身份的客人。他一进门就喊：“我是来赶饭吃的，有什么好吃的吗”</p>
+<p>“汪部长，欢迎，欢迎。”即使对这样一位客人，夏竹筠也不过是稍稍提高了一点声调，稍稍加快了一点节奏。</p>
+<p>汪方亮直盯盯地瞅着叶知秋：“这位同志好像没有见过嘛。”</p>
+<p>郑子云介绍着：“报社的记者。”</p>
+<p>“噢，记者。老郑，我们应该拍记者的马屁，不然，他们要是写起文章来骂我们，我们可受不了。”他说话的声音很响，好像有一屋子人在听他讲话，而且这屋子还很大，生怕坐在角落里的人听不到似的。叶知秋想，他平时一定是作惯了报告。</p>
+<p>不等任何人插话，汪方亮又接着说：“你来采访他那你算倒了楣啦。他是个异教徒，前不久还挨了批。不怕你生气，我说句不客气的话，就凭你选的这个采访对象，当记者，你还太嫩哪。哈哈——我说老郑，你没有跟她讲讲你那套理论‘买一个现代化，还是自力更生创造一个现代化，这个事搞不好，中国老百姓会没裤子穿。”’郑子云笑笑：“你不要吓唬人家。”xiaoshuotxt。comww　w.xＩaoshuotxt.。net</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap6.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">第六章</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap8.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第八章</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

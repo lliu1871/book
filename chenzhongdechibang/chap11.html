@@ -1,0 +1,589 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第十一章 &#8212; 沉重的翅膀</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap11';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第十二章" href="chap12.html" />
+    <link rel="prev" title="第十章" href="chap10.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    目录            
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">序言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">第一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">第二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">第三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">第四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">第五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">第六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">第七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">第八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">第九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">第十章</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">第十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">第十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">第十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">第十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">第十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap16.html">第十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap17.html">第十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap18.html">第十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap19.html">第十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap20.html">第二十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap21.html">第二十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap22.html">第二十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap23.html">第二十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap24.html">第二十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap25.html">第二十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap26.html">第二十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap27.html">第二十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap28.html">第二十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap29.html">第二十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap30.html">第三十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap31.html">第三十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap32.html">第三十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap33.html">第三十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap34.html">第三十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap35.html">第三十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap36.html">第三十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap37.html">第三十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap38.html">第三十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap39.html">第三十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap40.html">第四十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap41.html">第四十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap42.html">第四十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap43.html">第四十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap44.html">第四十四章</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap11.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap11.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第十一章</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第十一章<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>反正厂里的人，对陈咏明要么恨之入骨，要么拥护得要命，持中不溜儿态度的很少。</p>
+<p>两个多月，偏偏没人理李瑞林的茬儿。他沉不住气了，去找陈咏明。</p>
+<p>陈咏明劈头就问：“想通了”</p>
+<p>“想通想不通，以后再说，先工作吧。”</p>
+<p>“这就对了。有些事儿，不是一下子就能想通的，那就慢慢想吧。”</p>
+<p>这句话还说得尽情尽理。</p>
+<p>下一句，可就不行了。“这两个月的工资，我已经通知财务科，超出七天以外的，全部扣发了。七天之内，算你事假。老李，咱们是老同志了，就算想不通，不该不上班。你做了那么多年的思想政治工作，难道不知道这一点”陈咏明原先还很柔和的眼神，变得死硬起来，甚至还有些烦恼的样子，好像这谈话，这决定，都让他感到极大的不快。</p>
+<p>李瑞林闹了两个多月的情绪，陈咏明没短了一天的思虑。他知道，扣发李瑞林工资这件事，不但会引起李瑞林极大的不满，也会引起其他人的不满。毫无疑问，有那么一伙人，还会在这个问题上大做文章，去迎合一部分人的不满情绪。眼下什么东西都在涨价，扣两个月工资，真够李瑞林受的。但是陈咏明宁愿完事儿以后，自己掏腰包送一部分钱给李瑞林，也不能不这么干。作为这个厂的厂长，如果没有这个“狠心”，要是任何一个人，因为任何一件事不顺自己的心，就撂挑子躺倒不干，怎么办呢不是已经有人在处心积虑地找岔子，钻空子吗比方像董大山那样的人，因为自己后台硬，不是处处刁难他吗简直是骑在他脖子上拉屎撒尿，使他无法开展工作。</p>
+<p>进厂的时候，有个车间的土建工程还没完工。陈咏明了解到要完成汽车厂当年的任务，这是个突破口。便把董大山找了来。</p>
+<p>“这个车间是不是打个歼灭战，早点投产。你找几个人研究一下．提个方案。”</p>
+<p>董大山想，哼，新官上任三把火。你这头把火就烧到我头上来了，看我好拿捏嘴头上却答应得挺好。半个月过去了，什么动静也没有。</p>
+<p>陈咏明问：“七次说的事，你研究了没有”</p>
+<p>董大山一点也不亏心地回答：“没有。”</p>
+<p>“你抓紧研究研究好吗什么时候可以完工”</p>
+<p>“你说呢，你想什么时候完工‘’董大山歪着头，眯缝着眼睛，反问陈咏明。他在看陈咏明的笑话，看他能说出什么道道。他觉得陈咏明初来乍到，两眼一抹黑，什么情况都不知道。</p>
+<p>陈咏明也确实好像没有主意地说：“我问你的意见。”</p>
+<p>“要我说，十月份。”董大山信口说道。</p>
+<p>“还是找几个人研究一下，是不是可以缩短工期。”陈咏明恳切地要求。</p>
+<p>“我看没那个可能。”</p>
+<p>“你还是找几个人研究一下，能不能缩短工期。”陈咏明的口气强硬起来。董大山把他的耐心，看做是软弱可欺了。</p>
+<p>又过半个月，一问，董大山还是没研究。</p>
+<p>陈咏明不满意了。“怎么回事还没研究”</p>
+<p>“你到底想要我什么时候完成”还是那句话。</p>
+<p>又来了，陈咏明心里暗笑。“我想顶好明天就完成，你办得到吗”</p>
+<p>“这不是开玩笑吗!”</p>
+<p>“是玩笑。但我希望越快越好。你是搞基建的，应该心中有数。”</p>
+<p>董大山被他缠得烦了，又答应研究研究。</p>
+<p>再过半个月，还是没信儿。</p>
+<p>陈咏明想：伙计，你太“轻敌”了。</p>
+<p>陈咏明刚到厂子的时候，一个多月，什么话也没说，什么事也没办，先把大大小小的角落都走到了，看遍了。有关这个收尾车间的土建情况，他早已调查清楚。</p>
+<p>陈咏明第四次找董大山。“你到底打算怎么办”</p>
+<p>董大山嬉皮笑脸地跟他泡：“你到底要求什么时候完工”</p>
+<p>“我说不出。你既然负责这个工作，你就得拿出个最佳、最快的方案来。”</p>
+<p>“什么时候拿方案”</p>
+<p>“五天以后。”</p>
+<p>“五天!要了我的命我也拿不出来。”</p>
+<p>“咱们得把话说清楚，我给你的期限可不是五天，而是一个半月的时间，对不对你自己可以算一算。我可不是不讲理的人。</p>
+<p>事情有再一、再二，哪有再三、再四我也知道五天你拿不出方案，但这是你自己造成的。按照我的经验八天就够了，不过我可以给你十天的时间。十天以后，必须拿出方案来。“陈咏明用不容分辩的口气说。他已经下了决心，董大山再拿不出方案，他就先撤了他。厂长的权力范围里有一条，叫做”临机处置“。不这样整整他，还能进行工作吗这几句话让董大山感到一些分量了。他开始琢磨陈咏明：这到底是个什么等级的对手但他还要试一试他以为可以拿住陈咏明的那个法宝。”你到底要求什么时候完成“</p>
+<p>“‘五一’。这个时间比较实事求是。你为什么非说‘十一’不可”</p>
+<p>董大山的脑袋摇得像个货郎鼓。列数着“五一”不能完成的种种原因。陈咏明也不插嘴，抱着两个膀子，笑眯眯地听他说。董大山发现，他越说下去，陈咏明的嘴咧得越大。</p>
+<p>陈咏明耐心地等他说完，才不慌不忙地反驳。“你说收尾工程量很大根本不是那么回事。”陈咏明从口袋里掏出一个蓝色塑料封面的笔记本，用手指头轻轻地弹了弹笔记本的封面，发出“嗒，，的一响，董大山觉得那一指头像弹在了自己的脑门上。”我已经全部调查清楚，收尾工程一共二十一项，每项工程的工作量，都在我这个本上记着。是像你说的那个情况吗你强调车间里要安几十台床子，床子有大有小，非常复杂。你大概忘了，我是从哪里来的吧我是从机床厂来的，摆弄了二十几年的床子，难道不如你你给我来这一套你真是看错人了。车间里一共要安四十台床子，每台床子的型号、规格、重量，以及多少个地脚螺丝全在我这个本子上，是像你说的那个情况吗至于混凝土的养生期，在气温低的情况下，也不是不可以加快的。你可以用电养生，也可以加化学制剂，有一周时间足够了，为什么非二十八天我可以向你介绍一下我的履历，我还搞过八年的基建，你没想到吧你以为你很聪明别给我来这一套，你还是老老实实的，十天以后交出方案。“</p>
+<p>这一席话听得董大山目瞪口呆，他不得不对陈咏明刮目相看了。</p>
+<p>后来，他们又打了第二个回合。</p>
+<p>金工车间非常拥挤，机床也安得横七竖八，需要重新布置，合理流程。一些工段要迁出去，腾出地方，车间的工艺线路才能调整。</p>
+<p>需要盖一个可以安装三吨吊车的九百平方米的厂房。根据陈咏明过去搞基建的经验，干基建主要是个组织工作，这个厂房三十天完成，他心里还是有谱的。</p>
+<p>他召集计划处、基建处、运输处布置工作。“明天是星期天，基建处放线，运输处清理场地，下午挖方，夜间打垫层。现在天暖了，混凝土的养生期有四五个小时就可以了。星期一起基础。”</p>
+<p>星期一早上，陈咏明上班一看，工地上一动没动。他很奇怪，布置工作的时候，没有人反对嘛!他到基建处去找董大山，办公室里没有，直到九点钟才把他找着。“今天应该起基础，怎么一动没动”</p>
+<p>“这个线我不能放。”</p>
+<p>“这就怪了，星期六开会不是说得好好的吗怎么不能放”</p>
+<p>“图纸没给，我怎么放”</p>
+<p>“我不是给了你一个平面图吗”</p>
+<p>“那不能作为放线的依据。”董大山振振有词。</p>
+<p>“平面图不能放线吗”</p>
+<p>“不能。”</p>
+<p>“这是标准厂房，十八米跨是标准跨距，平面图上标没标这个尺寸”</p>
+<p>“有。”董大山最怕陈咏明发问，他的问题像层层剥笋，最后非把你藏着掖着的东西剥出来不可。</p>
+<p>“厂房的长度九百米，图纸上有吧”</p>
+<p>“有。”董大山觉得扣子一环一环地扣紧了。</p>
+<p>“好，再问，安装天车的六米柱距是标准柱距你知道吗”</p>
+<p>“知道。”他不能说不知道，宋克不是在汽车行业的厂长会议上表扬过他精通基建业务吗“既然平面图上给了你这三个条件，你怎么不能放这个线你想糊弄老百姓你知道，我可不是种地的。三十天工期你给我耽误了两天。你到底能不能放这个线你说，你到底什么时候才能放出来”</p>
+<p>“明天。”董大山垂头丧气地说。</p>
+<p>“不行。今天下午三点你必须把线放出来，三点放不出来，你这个处长就别当了。”说罢，陈咏明转身就走。下午两点半一看，不但线放了，土方都开挖了。</p>
+<p>陈咏明真想把董大山撤了。这么一件事，不但宋克打电话替董大山说情，连田守诚部长也给他打招呼。田守诚不可能认识董大山，这当然是宋克游说的结果。</p>
+<p>陈咏明能不服从吗一个是他的主管局长，一个是重工业部的部长。他能去问郑子云吗“你说的话算数不算数‘能下放的权力，部里一点儿不留……”’郑子云又能说些什么、做些什么呢据说他的工作也并不顺利。</p>
+<p>再说，他自己不是也得一而再、再而三地做一定的迁就和让步吗上次，田部长不知为什么缘由来厂里看看走走，他不是也同意报销一笔招待费吗他说：“香烟嘛，就买三盒吧。他们要抽就抽，不抽不要打开，留着下次用。”原政工组组长深奥莫测地笑了。还有人说他小气。小气谁不小气又从自己腰包里掏了一分钱呢部长们在自己家里抽烟怎么办也有人招待明知这么做要讨人的不喜欢，但他要决心在自己的工厂里造就一种公事公办的风气。</p>
+<p>据说，行政科的经办同志买了一条。那位行政科长不错，不给报销，说：“剩下的哪里去了查不出来不要报销。”好，这么一来，下次就没有人再敢拿着公家的钱瞎花，并且从中揩油了。有反对的．不是也有支持的吗使陈咏明感到忧虑的还有，像李瑞林这种党龄不算短、党性比较强的同志，事情一涉及到自己头上，不但思想跟不上趟．甚至还产生了抵触情绪。而且，随着今后工作的发展，肯定还会涉及更多按老规矩办事的人。那阻力是多么的大啊!他，吃得消吗偶尔，他也会有力不从心的惶惑和短暂地丧失信心。这时候．他只要大步流星地在厂子里走上几圈，心里的郁闷渐渐就会被随时遇到需要他裁决的各种问题所驱散。他没有时间发愁，他必须把百分之百的精力投入这复杂的生活中去。</p>
+<p>扣工资的事，气得李瑞林七窍生烟，可他既没跳也没闹。他知道这事不能闹。他不在理，摆到桌面儿上说不过去。不管怎么说，在他那杂乱的思想里，还有一根弦总在提着：我是三十多年的老党员了……</p>
+<p>老吕头还按着老称呼招呼他：“李书记，您——来得这么早哇。”</p>
+<p>老吕头的两个门牙已经豁了，说起话来直漏风。所以，那语调更让李瑞林感到一种落魄的凄凉。</p>
+<p>他原想对老吕头说：“别叫我书记了，往后，就叫我老李吧。”话到嘴边儿，却硬是说不出来。</p>
+<p>一想到今后要与老吕头为伍，一块儿看大门儿了，脸上总有些挂不住的样子。话虽那么说，共产党的干部能上能下。谁见过呀。</p>
+<p>历来的习惯是，只有那些犯了错误的干部才会连撸几级。平白无故，哪有从干部变工人的不往上升，至少也得保持原有地位不变，才说得过去吧不论怎么说，老吕头还那么称呼他，在精神上多少给了他一些安慰。至少老吕头没拿他当犯了错误、撸下来劳改的干部。于是他装着没有留神的样子，只是执意劝老吕头早些下班，回家休息。</p>
+<p>老吕头从车棚里推出自己那辆除了铃不响哪儿都乱响的自行车，头上戴着一顶小儿子吕志民复员的时候带回来的军帽。绿色布面、灰色兔毛的衬里，耷拉着两个耳扇子，一走一扇忽。身上穿的那件棉大衣，油腻腻的。胳膊肘、前襟和下摆的边缘都已经补过了，就连每个扣眼儿，也都重新锁过了。这件大衣，早该换一换了。</p>
+<p>当老人的，省啊，省啊，还不都是为了孩子。</p>
+<p>李瑞林想起老吕头的小儿子吕志民，昕说净和老吕头闹不对付。能说那孩子坏吗也不是，就是犟，你说东，他偏说西，毛毛躁躁，是个“二了八十”的浑小子。唉，现在的年轻人，哪个也不是省油的灯。</p>
+<p>上了年纪，心里还不得安宁啊。做父母的，除非到了蹬腿的那一天，活一天，就有操不完的心。</p>
+<p>家家都有一本难念的经。t/xt.小/说.天+堂www/xiaoshuotxt.n et</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap10.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">第十章</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap12.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第十二章</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

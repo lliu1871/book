@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第四章 &#8212; 沉重的翅膀</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap4';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第五章" href="chap5.html" />
+    <link rel="prev" title="第三章" href="chap3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    目录            
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">序言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">第一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">第二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">第三章</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">第四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">第五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap6.html">第六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">第七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">第八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">第九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">第十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">第十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">第十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">第十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">第十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">第十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap16.html">第十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap17.html">第十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap18.html">第十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap19.html">第十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap20.html">第二十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap21.html">第二十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap22.html">第二十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap23.html">第二十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap24.html">第二十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap25.html">第二十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap26.html">第二十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap27.html">第二十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap28.html">第二十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap29.html">第二十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap30.html">第三十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap31.html">第三十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap32.html">第三十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap33.html">第三十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap34.html">第三十四章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap35.html">第三十五章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap36.html">第三十六章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap37.html">第三十七章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap38.html">第三十八章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap39.html">第三十九章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap40.html">第四十章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap41.html">第四十一章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap42.html">第四十二章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap43.html">第四十三章</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap44.html">第四十四章</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap4.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap4.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第四章</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第四章<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>小伙子在一阵激动和慌乱之中，从提包里掏出一个纸袋，递给刘玉英：“刘师傅，请您收下，这是——这是我们的喜糖。”</p>
+<p>刘玉英执意不肯接受：“哪能这样，我心领了。”</p>
+<p>推来推去，盛情难却。刘玉英只好打开纸袋，挑了两块包着红色箔纸、印有“喜喜”字的奶糖，然后又把纸袋塞进他们的提包，送他们出了理发店。</p>
+<p>路上行人已见稀落，地上的雪也积了薄薄的一层。刘玉英站在雪地里，久久地望着他们远去的背影，再一次在心里默祝那姑娘：“愿你永远这样美丽。”</p>
+<p>三</p>
+<p>直到他们的背影消失在夜色里，她才掉转头来，她看见，在理发店门口的一棵树干上，靠着吴国栋。他一定在那里站了很久，旧棉帽上、肩膀头上、围巾上全都积了一层薄薄的雪花。刘玉英用力攥住手里的两块喜糖，看着吴国栋一步步地向她走来。</p>
+<p>贺家彬严厉地、甚至还有点幸灾乐祸地看着他面前那张胖得几乎汪出油来的大脸。那张脸真大，差不多比一张普通的脸大出一半。他真想喝一声彩，用旧戏园子里那种怪声怪气的调门儿来一声：“好脸，好大的脸!”再不，就来一声：“好大的面子!”</p>
+<p>那张油脸的主人，年纪并不很大。但脂肪却过早地在他的腮帮上、下巴上、肚皮上沉积下来。那是长期没有节制地吃喝的结果。</p>
+<p>贺家彬心里想：“着急了活该!也该让你着着急，那些脂肪也许会消下去一些。”</p>
+<p>贺家彬把他想得太好了。他才不着急呢。他不过是做出一副焦急的样子罢了。他干了采购员这一行，整年在外头走南闯北，知道该用哪一种态度对待哪一种人。脸上的表情，如同京戏里的脸谱，根据不同的观众的胃口，决定演哪一折，画哪一副。贺家彬这种人，顶好对付。他不过是个经办人，当然首先要通过他，这叫敬酒。实在不行，可以甩开他，去找冯局长。冯局长是地委书记的老战友，他们这个发电站配套用的全部机械、电器设备就是走冯局长的后门解决的。眼下这点小事，不在话下。但也不能为了屁大的事，动不动就找局长。利用关系，也是一门学问，要看时机，看火候。这就好像一笔存款，总有用光取完的时候，你得抻着点儿，不到关键的时候不能随便乱用。条件许可的情况下，还要不断地再往存折上加一点。</p>
+<p>那人堆着一脸谦卑的微笑，说：“是不是麻烦您再向生产厂打个招呼，把电压等级改一下，我们填写订货卡片的时候，时间太紧，没有顾得上再复查一下。”</p>
+<p>“笑话!这么普通的常识，怎么还会搞错这种规格型号的风机，配套电机的电压等级就应该是六千伏，怎么会写成三百八十伏也许填卡片的人当时喝醉了吧这是业务工作，不是阿猫阿狗都可以挤进来混饭吃的。”他气恼地拍了拍那张摊在桌上，揉得皱皱巴巴的订货卡片，“再说，这事儿我也管不着，你们这个发电厂，是今年国家计划外的，根本就不应该通过我们这个渠道订货。</p>
+<p>我们这个渠道，只保证国家计划内基本建设项目的需要。我真纳闷儿，你们是通过什么办法把机电设备弄到手的。“</p>
+<p>贺家彬连挖苦带损地发泄着自己的怒气。他常常感慨现在的工作简直不好干。要么不干，只要干，就惹得他肝火上升。</p>
+<p>比方眼前这个人，据他所知，早先是他们县供销社的售货员。</p>
+<p>他要好好干他的售货员，也许是块挺好的材料——也难说，就凭他这油滑劲儿，要不贪污才叫见鬼——可偏偏要当什么采购员。有些人，准把采购员当成售货员了，以为那不过是和卖针、卖线、卖大白菜差不多的事儿，而且还可以借着这个差事遍游名山大川。为什么无非因为他是那个电厂厂长的小舅子。正因为如此，才闹出这种驴唇不对马嘴的笑话。闹了这样的笑话，赔了公家的钱都算不了什么，反正不会从自己腰包里往外掏一分钱。</p>
+<p>这种夹塞儿、走门子的事，他见得太多了，何足为奇!别说这么一个小小的发电站，就是大的又怎么样那一年，某位首长，不就是塞进来一个十二万五千千瓦的大机组嘛!因为那个电厂的基本建设指挥长，战争时期是那位首长的警卫员，不必经过什么手续可以直人首长府，话就好说多了嘛。贺家彬在重工业部呆了这么多年，“文化大革命”开始后，哪年没有几个头头脑脑说上就上的建设项目呢。计划内没有算不了什么，可以增补计划嘛。那计划的严肃性自也不必提了。年年喊基建战线过长，没法儿不长。制订得好端端的计划(这计划是否符合经济发展的实际需要，还可以进一步总结)，谁想往上加一个就加一个。五个人吃的饭十个人吃，谁也别想吃饱。还要强词夺理，叫做“有饭大家吃”。</p>
+<p>往下砍吧，压缩一下吧，你砍谁的谁的后台都挺硬。于是就这么凑合着，谁也别想快，一个大中型的建设项目，搞个十年八年完不成谁也不着急，反正离自己的心、肝、肺还远着呢。</p>
+<p>就拿这位小舅子来说，虽然没给哪位首长当过警卫员，可他也有他的高招儿。前不久，运来了不少核桃、红枣、鸡蛋，还有名酒……处里大家分了。当然，给钱了。谁能不要呢外头买不着哇!而且价钱还便宜得多。就连贺家彬也买了十斤鸡蛋。他是单身汉，不像人家有家室的，有个副食供应本，每月凭本还可以供应两斤。</p>
+<p>他们这里什么都不缺。黄花、木耳、花生米、人参……全国哪一个省不需要建设电站呢又有哪一个省没有土特产呢当地的管电的又有什么弄不到手呢需要什么，只要张张嘴，不想办法送来，就拉你的闸，停你的电!哪个单位能离了电呢就连土特产公司也不能例外。建电站的单位，要想很快把电站建设起来，除了要为投资以及木材、钢材、水泥……这些基建材料奔命之外．配套的机电设备能不能及时地、按质按量地拿到手也是关键哪。要想按质按量把设备很快地拿到手，就得搞好同分配、管理这些设备的人们的关系。人熟好办事嘛。到时候，可给可不给的，也许就给了；不能及早提前交货的，也能顺顺当当地提前了。</p>
+<p>事情就是这么进行的，就像人体某个重要部位的血管上长了一个瘤子，你不能割掉它，那会影响你的生命。血液不得不进行这种畸形的循环，把养料不断地送进那累赘的瘤子里去，养肥那多余的细胞，任它长大、膨胀，慢慢地侵吞着自己的生命或是有一天突然爆炸。</p>
+<p>而且，据说这么一个县办的小电站，就派了五六个人在北京坐跑投资(只靠县里自筹资金根本不够，还是得靠国家贴补)、材料和设备。在招待所里包了一间房子，一包就是几个月，进出都是出租小汽车。光小汽车一项开支几个月下来就是六百多元，那是全县农民的血汗钱哪。如果能办事，倒也说得过去。可是，就像这风机卡片一样，电压等级六于伏写成三百八十伏，英文字母z也可以写成阿拉伯数码2。这是哪儿和哪儿啊。</p>
+<p>贺家彬知道，他生气也好，说刻薄话也好，不过是耍小孩子脾气。这种事，他管得了吗。再说，这家伙有的是本事，他可以找冯局长，冯局长可以找何处长。贺家彬不愿意干，何处长可以找个办事灵活的同志办，反正又不是计划内的项目，没人分工抓它。比方可以让石全清去办。石全清正巴不得有这么个机会来踩贺家彬。</p>
+<p>他可以冠冕堂皇地说，要支援农业建设啊——这个电站，打的不就是这块招牌吗——这是对农业现代化的态度问题啊。不想出这样生拉硬拽的理由，他整天去何处长、冯局长那里汇报点什么呢他不是要争取入党吗石全清确实在密切地注意着贺家彬的一举一动，但他从不流露出注意的样子。他正在看《参考消息》。不要以为他看《参考消息》是装样子，不，他有非凡的才能，既可眼观六路，又可耳听八方，四下里全不耽误。</p>
+<p>在石全清看来，贺家彬的行为是幼稚可笑的。他和贺家彬共事多年了，在这许多年里，他眼见过贺家彬栽了一次又一次的跟头，碰过一次又一次的钉子。他能够清楚地看见横在贺家彬面前，并且注定要把他绊个大跟头的每一块石头，但他从来不提醒贺家彬注意，他巴不得贺家彬这样折腾下去。因为，人在跌跤的时候，很容易丢掉自己的金表或钱包。偷别人的金表和钱包是不行的，那太卑劣，但是可以捡，而且还不会被丢东西的人发现，因为，那会儿，他正疼得难忍呢。</p>
+<p>世界上的事物，便是这样奇妙地平衡着。一种生物常会攀附在另一种生物身上才能生存。如同苔藓类、蔓藤类的植物攀附在老树的周身。它们不像菌类，只在死亡的树干上依存，它们是在活活地掠夺着、吸吮着老树的生命。</p>
+<p>贺家彬现在的这些言行，虽然还不值得石全清立即采取什么行动，但是，先放在那里，总有用处的。</p>
+<p>办公室的门，先是无声地开了一道小缝，然后“吱呀”一声大大地敞开。从何婷处长比往日越发显得威严的步态上，从她脸上那种大惊小怪、煞有介事的神态上，石全清知道，她一定是找贺家彬的。</p>
+<p>她走到贺家彬的办公桌前，刚要对他说些什么，电话铃却响了起来。</p>
+<p>那一定是长途电话，铃声急促而持续。</p>
+<p>贺家彬拿起话筒：“喂，哪里”</p>
+<p>“我是长途台，找贺家彬讲话。”</p>
+<p>“我是贺家彬，请讲吧。”</p>
+<p>“喂，喂，你是老贺吗我是洮江水电站的老蔡呀。”</p>
+<p>“你有什么事呀”</p>
+<p>“喂，喂——喂，喂——”</p>
+<p>“你老喂喂什么，有话就讲嘛，什么毛病!这是长途，你这喂喂就喂了一分钟，要算钱的。”</p>
+<p>“是这么回事，我们的水轮机是在奥地利订货的——”</p>
+<p>“这我知道。”</p>
+<p>“最近奥地利才把主机的技术数据寄来，上次订货会议上订的机电设备，有很多不符合主机技术数据的要求。我们要求退货呀。”</p>
+<p>嗬，说得倒轻巧，重工业部好像是个皮鞋店，鞋子选得不合适说退就能退。贺家彬立刻大吼起来：“我早就跟你们说过，等一等，等一等，等主机技术数据来了之后再订配套设备，你们就是不听。</p>
+<p>现在都什么时候了生产厂早已经投料了，你退货，生产厂怎么办“</p>
+<p>老蔡满腹牢骚地申辩着：“你老说等一等、等一等，我怎么个等法订货会议一年才一次，这趟班车一误就是一年。到时候外国人的主机到了，国内的配套设备还没订上怎么办只能先这样估摸着订上货再说。这是你们自己订的制度嘛。人家国外都是用户随时订货，生产厂随时接。有买卖就干，哪有一年只许订一次货的，人家要是也这么干，工厂早关门了。你们把这套办法改改行不行让我们参加订货会，也是上头的安排嘛，我们不订货行吗到时候说我们耽误了工程进度，我们受得了吗我们是按国家计划办事嘛，怎么能怪我们呢”</p>
+<p>老蔡说得对，能光怪他们吗多年来，计划工作成了这么一个模式。每年先开材料订货会，也是过时不候，班车一过就是一年。这种僵硬不合理的体制，生产厂也同样受不了。因为设备订货会开在材料订货会之后，生产厂订材料时还不知道用户要订的设备是什么，也只好先估摸着订一批钢铁、有色金属材料。等到用户需要的设备订货下来，生产厂原先订的材料和加工这批设备需要的材料满拧。然后，只好再想办法去串换材料。又没有交易市场，弄得材料库存积压量很大。每年只好再开几次材料调剂会，说是调剂了库存多少吨。领导一看，好像成绩很大，其实都是自己多出来的事。这能怪企业吗难道不能有一个更灵活的、使材料供应和生产需要相结合的市场吗老蔡埋怨他们，他们埋怨别人。实际上这都是经济体制上的大问题，需要认真地改革。什么时候工业经济也能像农业一样，有条放宽的政策，真正搞活起来，这才是解决材料积压，加速资金周转的根本办法。</p>
+<p>而一些合理的规章制度，又不那么认真执行，比方上面规定，每个基本建设项目，都要严格地按照基本建设程序办事。要有设计批准书，设计任务书，设计审批文件，全部的设计资料、图纸，主、副机及配套设备的技术数据……并在列入国家计划后才能参加订货。可是在今年夏天的订货会议上，光是贺家彬分管的几个省，就有三个不按基建程序办事的电站参加了订货。一个连主机究竟进口还是由国内生产还未落实；一个连厂址还没有确定，究竟烧油还是烧煤也不知道，不用说，主机根本也就无从设计；再一个就是老蔡他们这个水电站。刚和奥地利签订了协议，还不是正式合同，主机技术数据还没有拿到，就敢拍脑袋，凭着想当然提出配套设备。</p>
+<p>那么以后，还要这基本建设程序有什么用呢想到这里，贺家彬也只有无可奈何地说：“造成的浪费谁负责”这不是废话吗，谁负责谁也不会负责。还是说句实在的吧：“你们赔偿不赔偿生产厂的损失”</p>
+<p>老蔡真是老油子，立刻痛快地说：“赔偿!”</p>
+<p>贺家彬心头一动：“这样吧，也不能随随便便说退货就退货，你们是不是把事情的经过写个书面情况，我们也好向生产厂做工作。”</p>
+<p>“那好吧，就这么办。”</p>
+<p>“就这么办．”</p>
+<p>贺家彬放下了电话筒，心里盘算着，他一定要向国务院写一封信，反映一下国家计划和基本建设方面存在的这些问题。“四人帮”没垮台的时候，出了问题，责任当然是“四人帮”的。现在“四人帮”垮台了，经济建设中如果还出现这种混乱，怎么能把有限的人力、物力、财力用在刀刃上呢又如何加速实现四个现代化呢当他还在抹着额头上因为大声嚷嚷冒出来的汗珠，思绪还留在计划、基建程序等等问题上的时候，何婷不耐烦地用手指头敲了敲他的桌子。贺家彬这才注意到她有话要对他说，但他并不主动问她。她从来看他不顺眼，对他也很刻薄，要是他好心好意地主动问她，没准还会被她抢白一顿。</p>
+<p>“听你们科长说，你个人学大庆的总结还没有交”</p>
+<p>“我不是早说过了，我压根儿就没有写个人学大庆的规划。”</p>
+<p>何婷像在牌桌上甩出一张“小王”似的说：“那好吧，冯局长请你去一下。”</p>
+<p>那油脸的汉子立即显出一副解恨的模样。</p>
+<p>而石全清连忙垂下眼睑，挡住眼睛里满得快要淌出来的快意。</p>
+<p>何婷原来和贺家彬的关系还过得去，但自从去年支部改选以后，便每况愈下了。</p>
+<p>如果真是因为郭宏才工作能力差，宣传委员的工作做得不大好，让老罗上，也不是说不过去。可是，见鬼哟。这一套全是摆在明处让人看的样子货。实际是因为郭宏才在支委里，总是一个唱反调的角色，是何婷和罗海涛的眼中钉。他们处处想找岔子整整郭宏才，可是他又没有什么小辫子可供人揪。支部里不团结，闹得群众也分成了两派，团结总是搞不好。为这，贺家彬多次向何婷提过意见：应该开个生活会，大家交换一下意见。自从何婷到电力处领导工作，总有几年没开过生话会了，实在说不过去。t.xt.小.说.天.堂ww　w　.　xia　oshu　<a class="reference external" href="http://otxt.ne">otxt.ne</a> t</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">第三章</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第五章</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
