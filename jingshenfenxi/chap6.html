@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>第六讲 初步的假说与释梦的技术 &#8212; 精神分析引论</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chap6';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="第七讲 显意和隐意" href="chap7.html" />
+    <link rel="prev" title="第五讲 初步的研究及其困难" href="chap5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    目录            
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">序言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">第一讲 绪论</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap2.html">第二讲 过失心理学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap3.html">第三讲 过失心理学（续）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap4.html">第四讲 过失心理学（续完）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap5.html">第五讲 初步的研究及其困难</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">第六讲 初步的假说与释梦的技术</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap7.html">第七讲 显意和隐意</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap8.html">第八讲 儿童的梦</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap9.html">第九讲 梦的检查</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap10.html">第十讲 梦的象征作用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap11.html">第十一讲 梦的工作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap12.html">第十二讲 梦的举例及其分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap13.html">第十三讲 梦的原始的与幼稚的特点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap14.html">第十四讲 欲望的满足</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap15.html">第十五讲 几点疑问与批判的观察</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap16.html">第十六讲 精神分析法与精神病学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap17.html">第十七讲 症候的意义</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap18.html">第十八讲 创伤的执着——潜意识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap19.html">第十九讲 抗拒与压抑</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap20.html">第二十讲 人们的性生活</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap21.html">第二十一讲 里比多的发展与性的组织</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap22.html">第二十二讲 发展与退化的各方面、病原学</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap23.html">第二十三讲 症候形成的过程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap24.html">第二十四讲 一般的神经过敏</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap25.html">第二十五讲 焦虑</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap26.html">第二十六讲 里比多说：自恋</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap27.html">第二十七讲 移情作用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap28.html">第二十八讲 分析疗法</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchap6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chap6.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>第六讲 初步的假说与释梦的技术</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>第六讲 初步的假说与释梦的技术<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+<p>因此，我们知道要研究梦而有成绩，则不得不采用一种新的方法。我要明白地对你们说：我们要承认下面的一个假说，作为进一步研究的根据：——梦不是一种躯体的现象，乃是一种心理的现象。你们总懂得这是什么意义；但是这个假定究竟有什么理由呢？我们没有理由，但另一方面也没有理由阻止我们作出这种假定。我们的看法是：假使梦是一种躯体的现象，那便与我们无关；若要我们发生兴趣，那就只好假定它是一种心理的现象。因此，我们宁愿认定这个假说是对的，再看有什么结果。有了结果，便可决定这个假说是否可以拥护，而确认为一种稳妥的结论。现在要明确的是我们这个研究究竟有什么目的，或者我们究竟要向哪个方向努力？我们的目的和一切科学的研究目的相同——就是说，求得对这些现象的了解，确立各个现象之间的关系，最后，设法对它们加以控制。</p>
+<p>因此，我们仍继续以“梦是一种心理现象”的假说为基矗而且梦是梦者方面的行动和语言，只是我们不懂罢了。现在假使我们有所表示，而你们不懂，你们会怎么办呢？你们不是会要我解释吗？那么我们为什么不可以向梦者询问梦的意义呢？</p>
+<p>你们要记得研究过失的意义时，我们也曾采用这个办法。那时所讨论的是舌误的例子。有人说：“于是某事又发龊了，”我们便问——不，我讲错了，发问的幸亏不是我们而是与精神分析无关的旁人——他们便问，这句莫名其妙的话究作何解。那个人立即回答说他自己本想说“那是一件龌龊的事，”但是他制止了自己，用了较温和的字眼说：“那边又有些事情发生了。”那时我已经说过这个询问就是精神分析研究的模型。你们现在当可懂得，精神分析的技术就是想要在可能的范围内，让那些被分析者答复他们自己的问题。因此梦者也应当为我们解释他自己的梦。</p>
+<p>但是梦的手续就不如此简单了，这是我们大家知道的。就过失说，一有许多实例可以应用这个方法；二有许多例子，受质问者不愿答复，而且听到人家代为答复时，便愤怒地加以驳斥。至于梦，则第一类例子完全缺乏；梦者常说自己对于此事一无所知。我们不能代为解释，他也没有表示驳斥。那么我们便不必努力求解吗？他既无所知，我们也无所知，第三个人当然也无所知，所以解决是没有希望的。你们如果高兴，那就算了吧。但是如果你们不以为然，那便跟着我来吧。我可以告诉你，梦者确实明白自己的梦的意义；只是他不知道自己明白，就以为自己一无所知罢了。</p>
+<p>在这一点上，你们或许要我注意这个事实：我刚说了几句话，却已作出了两个假定，因此，恐怕就很难说自己方法的可靠了。既说梦是一种心理的现象，又说某些事件原也明白，可不知道自己是明白的——诸如此类的假定！你们只要记得这两个假说不可能并存，就会对于由此演绎而得的结论，漠然不生兴趣了。</p>
+<p>是的，我来此讲演，不是要欺瞒你们的。我曾自称要讲演“精神分析引论”，但是我可不愿宣传神的指示，对你们讲许多易于联贯的事实，而将一切困难隐藏起来，使你们轻易相信自己学到了新东西。不，正因为你们都是初学者，我才急于想把这个科学的本来面目，包括它的累赘和不成熟之处，以及它所提出的要求和可能引起的批判，赤裸裸地告诉你们。我知道无论何种科学，尤其对于初学者就不能不如此。我也知道在讲授旁的科学时，开头总竭力将那些困难和缺点向学生隐瞒起来。但精神分析可不能这样做。所以我提出两个假说，一个包含在另一个之中。若有人觉得这都太勉强或太不肯定，或有人习惯于应用更可靠的事实或更精密的演绎，那么他们就不必再跟我走了。只是我要劝告他们完全丢开心理学问题，因为在心理学范围内，怕很难找到象他们所要走的那样切实可靠的路了。而且一种科学要对人类的知识有所贡献，也不必勉强人家信服。相信不相信，要看成绩，它可以耐心等待用自己的研究成果来引起大家的注意。</p>
+<p>但是对于那些不因此而泄气的人，我也要警告他们说我这两个假说的重要性实不相同。第一个假说“梦是一种心理现象”将可因我们的研究而得到证实。第二个假说已在别的地方取得证据，我只是将它移用到这里罢了。</p>
+<p>我们究竟在哪里和因有什么关系可以假定一个梦者具有他不知道自己具有的知识呢？这个事实似可令人惊异，它既改变我们有关精神生活的概念，却也没有予以隐瞒的需要。还可以顺便指出，这个事实一说出来，就会引人误会，却又是真实不虚的——总之是词义矛盾的。但是梦者可决没有隐瞒的任何企图。我们也不能将这个事实归罪于人们的无知或缺乏兴趣，我们也不归罪于我们自己，因为这些心理学问题是有决定性的观察和实验所忽视的。</p>
+<p>这第二个假说的证据究竟在哪里得到的呢？原来得自催眠现象的研究。１８８９年，我在南锡看李厄保和伯恩海姆作下面一个实验。他们使某人进入睡眠状态之中，使他有种种幻觉的经验。醒后，他似乎对于催眠时所经过的事件，一无所知。伯恩海姆屡次请他将催眠时的经过说出。那人则自称全不记得。但是伯恩海姆再三申请，说他总应该知道，总应该记得。那人迟疑不决，开始回忆，先模糊地记起催眠者所暗示的某事，接着又记得一事，其记忆也逐渐明了而完满，到后来竟不再有所遗漏。那时并没人告诉他，都是他自己想起的，可见这些回忆开头便在心里，只是拿取不到而已；他不知道自己知道，只相信自己不知道。他的情形和我们所揣想的梦者的情形是完全相似的。</p>
+<p>这个事实如果成立，我想你们必将惊奇地问我：“你讨论过失时，说错误的话后面隐有用意，只是自己不知道，所以极力否认，那时你为什么不提出这个证据呢？假使一个人可以有某种记忆，而自己又相信毫不知道，那么他有自己所不知道的他种心理历程在他的心里不断进行，也就是可能的了。这个论据如果老早提出，当已使我们信服，而我们对于过失也就较易了解了。”是的，那时我也本想提出，但是我却要将这个论据留待将来更需要时再用。有些过失本身自易解释，还有些过失，我们若要懂得它们的意义，便须假定有为本人所不知道的心理历程的存在。至于就梦而言，我们便不得不在他处寻求解释，而且这里若在催眠方面拿证据，你们也较易接受。过失的情况是常态的，和催眠的状态不同。梦的主要条件是睡眠，而睡眠和催眠之间则有明显的关系。催眠或可称为不自然的睡眠；我们对被催眠者说：“睡吧”，这个暗示便可和自然睡眠时的梦相比拟。二者的心理情境也互相类似。在自然的睡眠中，我们和外界完全停止交涉；催眠时也是如此，只是和施术者互相感通inrapport而已。保姆的睡眠可视为常态的催眠，保姆虽睡，却仍和孩子互相感通，只可为孩子所唤醒。所以现在若以催眠来比拟自然的睡眠，似乎就不算大胆了。而“梦者对梦本有所知，只是接触不到这个知识，所以不相信自己知道”的假定也就不能算是荒唐的捏造了。我们对于梦的研究，曾从干扰睡眠的刺激和昼梦入手，现在已看见了第三条通路，那就是催眠时为暗示所引起的梦。</p>
+<p>现在如果回头再来讲梦，或者就较有把握了。我们知道梦者对梦确有所知；问题就是如何使他有可能拿出这个知识来告诉我们。我们不希望他立即说出梦的意义，然而我们却认为他能推知梦的起源，和梦所由起的思想和情感。就过失说，你会记得有人错说了“发龊”，你问他如何产生这个错误的，他的第一个联想便给我们作出了解释。释梦的技术很简单，可用这个例子作范型。我们也问梦者如何会做这个梦，他的回答也可视为对梦的解释。至于他是否以为自己有所知或无所知，那是无关重要的，我们都给以同等的对待。</p>
+<p>这个技术原很简单，然而我怕你们不免要反对得更厉害了。你们会说：“又来一个假定了，这是第三个了！更不可靠了！你问梦者对于梦有什么意见，你以为他的第一个联想真的就是我们所需要的解释吗？然而他也许根本没有什么联想，或者只有上帝才知道他的联想是什么。你这个期望根据什么理由，是我们想象不出的。其实，你太相信机会，然而这里却需要用更多的批判力才可对付。况且梦不象一个单独的舌误，而是许多元素组合成的。我们究竟信赖哪一个联想呢？”</p>
+<p>在一切不重要的方面，你们的话都是中肯的。你们说梦和舌误不同，是由许多元素组成的，这都不错。我们的技术当然要顾到这一点。我们将梦分析为各个元素，逐一研究；于是梦和舌误相似之处便可成立了。你又说，我们若问到梦者的梦中所有单独的元素，他也许说自己引不起什么意念，那也是对的。就有些例子而言，这个答复可以接受，这些例子是什么，将来再告诉你们；奇怪的很，关于这些例子，我们自己却有明确的见解。但是，大概地说，梦者若说自己没有意念，我们将反驳他，竭力求他作答，告诉他总应当有一些意念——结果，我们可没有错。他会引起一个联想，至于联想究竟是什么，那便不关我们的事了。已往的经验尤其容易想起。他会说：“那是昨天的事”例如前面所举出的两个不费解的梦，或者：“那使我记起新近发生的事”，由此可见梦与前一天的印象常易发生联系，而非我们的初料所及。而且他以梦为起点，就会记起早先的事，最后竟可忆及遥远的往事了。</p>
+<p>但是就主要之点说，你们可错了。我假定梦者的第一个联想必定正是我们所需要的，或者至少也可为解释的线索，你们以为这个假定是荒谬的，又以为联想可随心所欲，而不与我们所想寻求的事情发生关系，更以为我若期望别的事，有别的可能，就是盲目地信托机会以求侥幸——这都不免大错了。我已经大胆地说过，你们对于精神的自由和选择，有一种根深蒂固的信仰，我也已经指出这个信仰是不科学的，而应当让位于支配心理生活的决定论的要求。梦者受查问时恰巧发生这一联想，而不发生另一联想——这个事实我却要你们尊重。我也不是举出一个信仰以反抗另一信仰。由此而得的联想本不是选择的结果，也不是无定的，也不是和我们所想求得的毫无关系，这都是可以证明的。我最近知道，即在实验心理学内，也可以得到相类似的证据。</p>
+<p>这很重要，请你们加以特殊的注意。我若问某人对于梦中的某一成分有什么联想，我便要他将原来的观念留在心头，任意想去，这便叫做自由联想。自由联想需要一种特殊的不同于反省的注意，反省是我们要排除的。有许多人不难采取这个态度，有些人要作这种联想便觉得异常困难。假使我不用任何特殊的刺激字，或只限定我所需要的联想的种类，例如要某人记起一个专名或一个数目，那么因此呈现的联想必将有较高度的自由。你们以为这种联想比精神分析所用的甚至更有选择的余地。然而就每一实例说，其联想都受重要的心绪的严格控制，而这个心绪在发生作用时并不为我们所知晓，这正与那些引起过失和所谓“偶然”动作的倾向是一样的。</p>
+<p>我自己，还有许多人跟着我，对于那些无因而至的姓名和数目，作过多次的实验；有些实验且已刊布。其方法如下：用一个专名引起一系列联想，而这些联想互相连锁，已不再是完全自由的了。正与梦中各成分所引起的联想是一样的。这个联想系列前后持续，直至由此冲动而引起的思想竭尽所能不再有所遗漏为止。但在那时，你或已可解释一个专名的自由联想的动机和意义了。这些实验屡次产生同样的结果；因此而得到的材料也非常丰富，使我们不得不进而作细节的研究。因数目而引起的联想或更可以用为说明。这些联想彼此衔接得如此地迅速，而趋向一个隐藏的目的又如此地有把握，真不能不使我们感到惊奇。我将举一个人名的分析为例，因为这个分析用不着包括大堆的材料。</p>
+<p>我曾在治疗一个青年人的时候，偶然谈到这个问题，说我们在这些方面看起来好象有选取的自由，事实上所想到的专名，无一不决定于当时的形势和受试验者的特癖及地位。因为他表示怀疑，我就请他当场实验。我知道他有许多女朋友，其亲密的程度各不相同，所以我告诉他，如果他要随意记起一个女人的姓名，便有许多姓名可供他自由取舍。他同意了。可是不仅我感到惊奇，连他自己也觉得诧异了，因为他并未顺口举出大量女人的姓名，而是先静默片刻，然后承认自己所想到的只有Albine译按：其意为“白”。“这就怪了！”我对他说，“你和这个姓名有什么关系呢？你所知道的有多少Albines呢？”更奇怪的是，他并不认得什么人叫AlbiDe，这个姓名也引不起他的什么联想。你们也许认为分析是失败了；其实分析是完满的，不需要其他联想的补充。原来这个人的肤色非常洁白；我对他作分析的谈话时，常戏称之为Albino意即“天老儿”；而且那时我们正是在研究他的性格中的女性的成分。所以他那时候最感兴趣的女人或女天老儿就是他自己。</p>
+<p>一个人偶然想到的曲调也可因某些意念而起，不过这些意念的存在，本人一无所知而已。至于曲调之所以引起，则一可由于曲中的歌词，二可由于曲调的来源，这都是容易证明的。但是这句话须有下面的限制：真正的音乐家忽然想起一个曲调，则可因这个曲调有音乐的价值。我对于音乐家没有分析的经验，所以不敢将他们包括在上面的结论之内。第一种原因确较为普遍。我知道一个年轻人在某一时期内酷嗜“特洛伊的海伦”HelenofTroy中的巴黎歌的曲调我也承认这个曲调很吸引人，后来受分析时，他才注意到自己那时正同时恋着两个少女，一个叫伊达“lda”，一个叫海伦“Helen”。</p>
+<p>这些原很自由发生的联想，若都受此种限制，并附属于某种确定的背景，那么依附于单独的刺激观念而引起的联想，也必受同样严格的约束。实验证明，这些联想不仅依附于我们所给予的刺激观念，而且有赖于潜意识的活动，意即有赖于当时没有意识到的含有强烈的情感价值的思想和兴趣也就是我们所称的情结。</p>
+<p>这种联想曾经是很有价值的实验材料，而这些实验在精神分析史上也占一重要的地位。冯特学派首创一种所谓“联想实验”，受实验者对于一个指定的“刺激字”须尽可能地答出他所想到的“反应字”。那时，要注意下列各点：刺激字和反应字之间的时距，反应字的性质，重复实验时所可产生的错误，等等。布洛伊勒和荣格所领导的苏黎世学派，有时请被实验者说明为什么有奇异的联想，有时用持续的实验，以求解释联想实验的反应，结果才逐渐知道这些非常态的反应都严格地决定于一个人的情结。布洛伊勒和荣格的这个发现，在实验心理学和精神分析之间架起了第一座桥梁。</p>
+<p>你们听到这些，也许会说：“我们现在都承认自由联想是受约束的，不是可以自由选择的，象我们原初所想象的那样；我们承认梦的成分的联想也是如此。然而我们争执的并不在此。你主张梦里每一元素的联想都为这个元素的心理背景所制约，至于这个背景是什么，则不得而知，我们看不出这有什么证据。要说梦的元素的联想决定于梦者的情结，但这对我们有什么用处呢？这对于梦的了解毫无帮助；最多象联想实验那样，只是导致对所谓情结的一些了解；然而情结和梦又有什么关系呢？”</p>
+<p>不错，然而你们却忽略了一个要点，也就是这个要点才使我不用联想实验作为这个讨论的起点。就联想实验说，决定着反应的刺激字是我们任意选取的，反应则介于刺激字和被试验者的情结之间。至就梦而言，刺激字则代以梦者的心理成分，而其起源则非梦者所知，因此，这个心理成分本身即可视为一个情结的派生物。所以我们若假定梦的各成分的联想即为产生这一特殊成分的情结所决定，从而由这些成分便可发现这个情结，就不算是异想天开的了。</p>
+<p>现在请另举一例为证。专名的遗忘实可用以说明梦的分析，所不同的，前者只关系到一个人，而释梦则关系到两个人。我如果暂时忘记了一个专名，我断定自己仍然是知道的，而由伯恩海姆的实验转一个弯，便可对于梦者也有同样的断定。现在这个虽已忘记但却确实知道的专名，已经使我捉摸不到了。经验告诉我，努力思索是无用的。但是我往往可以想到一个或几个旁的专名。如果我只是自然地想起一个代名，则这时的情境和梦的分析的情境显然是互相类似的。梦的元素也不是我真正想追求的，它只是用来代替我所不知道而想借梦的分析来追求的那一件事。所不同的是：我若忘记了一个专名，我完全明白那代名并不就是原名，而就梦的元素而言，只有经过苦心研究之后，才可有此见解。我若忘了专名，则可用那代名为起点，去求得那时逃出意识之外的原物，如已忘之名。假使我注意这些代名，让它们在我心内引起一层一层的联想，迟早便可唤回那已经遗忘的原名，因此，我知道自然引起的那些代名，不仅和遗忘的名字有明确的关系，而且是为它所限制的。</p>
+<p>我想用下面的例子来说明这种分析：有一天，我记不起在里维埃拉河上以蒙特卡洛为首都的那一个小国的国名。关于这个国家的事，我所知道的，什么都想过了；想起鲁锡南王室的艾伯特王子，想起他的结婚，他的深海探险的热情——总之，一切都回忆到了，但都归于无效。因此，我就不再去想了；只让种种代名涌上心头。它们来得迅速：最先是蒙特卡洛，其次便有Piedmont，Albania，Montevideo，Colico。阿尔巴尼亚Albania第一个引起我的注意；其次是蒙特尼哥罗Montenegro，或许因为黑和白的对比。译按Albania之意为白，而Montenegro之意为黑。再次，我便注意到那些代名有四个同有“Mon”一个音节，就立即记起那已经遗忘的国名而叫出摩纳哥“Monaco”，可见代名实起源于已忘的原名；四个代名来自原名的第一音节，而最后一个代名恰依原名各音节的次序，而且包括了末尾的音节，使原名的音节都齐全了。至于这个专名之所以暂时健忘的原因，也不难发现。摩纳哥是意大利用来称呼慕尼黑的，由于慕尼黑有关的思想就使我抑制了摩纳哥的回忆。</p>
+<p>这是一个好例，可是太简单了。就其它例子而言，你也许要对代名作较长的联想，那时与梦的分析就会更相类似了。这个经验我也有过。某人曾请我和他同饮意大利酒。他对于某种酒有愉快的回忆，在饭店里要这种酒，可是忘掉了酒名。有许多不同的代名相继引起，我从而推知他因一个名叫赫德维Hedwig的女子而使他遗忘这种酒名。果真如此，他不仅说自己曾经在初尝此酒时遇见一位赫德维，而且因我这个推测，而记起了酒名。那时他已愉快地结婚了，赫德维这个名字则属于不愿回首的往事。</p>
+<p>专名的遗忘若如上述，则释梦也有可能了。由代替物出发，利用一系列联想，总可以得到原来的对象；而且由遗忘的名字推论起来，我们或可假定一个梦的元素的联想不仅因那元素而定，而且决定于不在意识内的原来的念头。这个假定如能成立，那么释梦的技术便具有相当的根据了。</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chap5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">第五讲 初步的研究及其困难</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="chap7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">第七讲 显意和隐意</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
