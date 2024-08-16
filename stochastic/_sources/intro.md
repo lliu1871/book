@@ -23,7 +23,7 @@ Stochastic Processes
 </h1>
 
 ---
-# Table of Contents &emsp;&emsp;&emsp;&emsp;&emsp;
+# Table of Contents &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 [cover](./images/cover.jpg)
 ```{tableofcontents}
 ```
