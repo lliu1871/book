@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab3: scWGBS data analysis &#8212; Single Cell Sequencing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab4: scWES data analysis" href="lab4.html" />
+    <link rel="prev" title="Lab2: scATAC-seq data analysis" href="lab2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Single Cell Sequencing - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Single Cell Sequencing - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents      
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chap1: Single Cell Sequencing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab1: scRNA-seq data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab2: scATAC-seq data analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab3: scWGBS data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab4: scWES data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab5: scChIP-seq data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab6: scTCR data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab7: Spatial transcriptomics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab8: Single-cell multi-omics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab9: Single-cell proteomics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab10: Single-cell metabolomics data analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab3.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab3: scWGBS data analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">1. <strong>Install Required Packages</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">2. <strong>Load Required Libraries</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">3. <strong>Load the Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control">4. <strong>Quality Control</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unite-methylation-calls-across-cells">5. <strong>Unite Methylation Calls Across Cells</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-methylation-analysis">6. <strong>Differential Methylation Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-differential-methylation">7. <strong>Visualizing Differential Methylation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regional-analysis-dmrs">8. <strong>Regional Analysis (DMRs)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-bsseq-for-single-cell-methylation-data">9. <strong>Using bsseq for Single-Cell Methylation Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-methylation-objects">10. <strong>Saving and Loading Methylation Objects</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab3-scwgbs-data-analysis">
+<h1>Lab3: scWGBS data analysis<a class="headerlink" href="#lab3-scwgbs-data-analysis" title="Permalink to this heading">#</a></h1>
+<p>Analyzing single-cell whole-genome bisulfite sequencing (scWGBS) data in <strong>R</strong> involves some specialized tools. One of the main R packages used for methylation analysis is <strong>methylKit</strong>. Below is a basic pipeline for scWGBS data analysis using <strong>methylKit</strong>, <strong>bsseq</strong>, and <strong>methylSig</strong>. This pipeline includes steps for data loading, quality control, methylation calling, and differential methylation analysis.</p>
+<section id="install-required-packages">
+<h2>1. <strong>Install Required Packages</strong><a class="headerlink" href="#install-required-packages" title="Permalink to this heading">#</a></h2>
+<p>First, you need to install the necessary R packages for scWGBS analysis.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Bioconductor packages</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;methylKit&quot;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;bsseq&quot;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;methylSig&quot;</span><span class="p">)</span>
+
+<span class="c1"># Other useful packages</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-required-libraries">
+<h2>2. <strong>Load Required Libraries</strong><a class="headerlink" href="#load-required-libraries" title="Permalink to this heading">#</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">methylKit</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">bsseq</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">methylSig</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-the-data">
+<h2>3. <strong>Load the Data</strong><a class="headerlink" href="#load-the-data" title="Permalink to this heading">#</a></h2>
+<p>You can load scWGBS data in various formats such as <code class="docutils literal notranslate"><span class="pre">.bam</span></code> files, <code class="docutils literal notranslate"><span class="pre">.cov</span></code> files, or even bedgraph files. If you already have methylation calls from a previous step, you can directly use them. Below is an example using <code class="docutils literal notranslate"><span class="pre">.cov</span></code> files, which contain methylation information (cytosine count data).</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load methylation data from .cov files (example format: chr, position, strand, methCount, unmethCount)</span>
+<span class="n">file.list</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="s">&quot;sample1.cov&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sample2.cov&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sample3.cov&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load the data into methylKit objects</span>
+<span class="n">meth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">methRead</span><span class="p">(</span><span class="n">file.list</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">sample.id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">list</span><span class="p">(</span><span class="s">&quot;sample1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sample2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sample3&quot;</span><span class="p">),</span>
+<span class="w">                 </span><span class="n">assembly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;hg19&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                 </span><span class="n">treatment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                 </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;CpG&quot;</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">pipeline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;bismarkCov&quot;</span><span class="p">)</span>
+
+<span class="c1"># Check the object</span>
+<span class="n">meth</span>
+</pre></div>
+</div>
+</section>
+<section id="quality-control">
+<h2>4. <strong>Quality Control</strong><a class="headerlink" href="#quality-control" title="Permalink to this heading">#</a></h2>
+<p>For scWGBS data, quality control steps are crucial to remove low-quality cells or regions with insufficient coverage.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter out bases with low read coverage (&lt;10 reads)</span>
+<span class="n">meth_filtered</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">filterByCoverage</span><span class="p">(</span><span class="n">meth</span><span class="p">,</span><span class="w"> </span><span class="n">lo.count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="n">lo.perc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">hi.count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">hi.perc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">99.9</span><span class="p">)</span>
+
+<span class="c1"># Normalize coverage across samples (optional)</span>
+<span class="n">meth_norm</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">normalizeCoverage</span><span class="p">(</span><span class="n">meth_filtered</span><span class="p">)</span>
+
+<span class="c1"># Visualize methylation statistics</span>
+<span class="nf">getMethylationStats</span><span class="p">(</span><span class="n">meth_filtered</span><span class="p">[[</span><span class="m">1</span><span class="p">]],</span><span class="w"> </span><span class="n">plot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">both.strands</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="unite-methylation-calls-across-cells">
+<h2>5. <strong>Unite Methylation Calls Across Cells</strong><a class="headerlink" href="#unite-methylation-calls-across-cells" title="Permalink to this heading">#</a></h2>
+<p>Next, we combine the methylation information across all samples (cells) at common CpG sites.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine methylation data across samples</span>
+<span class="n">meth_united</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">unite</span><span class="p">(</span><span class="n">meth_norm</span><span class="p">,</span><span class="w"> </span><span class="n">destrand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="c1"># View the first few rows</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">meth_united</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="differential-methylation-analysis">
+<h2>6. <strong>Differential Methylation Analysis</strong><a class="headerlink" href="#differential-methylation-analysis" title="Permalink to this heading">#</a></h2>
+<p>For scWGBS data, it is common to identify differentially methylated cytosines (DMCs) or differentially methylated regions (DMRs) across different conditions or cell populations.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform differential methylation analysis between groups (e.g., condition 0 vs 1)</span>
+<span class="n">diff_meth</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">calculateDiffMeth</span><span class="p">(</span><span class="n">meth_united</span><span class="p">)</span>
+
+<span class="c1"># View the top differentially methylated cytosines (DMCs)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">diff_meth</span><span class="p">)</span>
+
+<span class="c1"># Get DMCs with q-value &lt; 0.01</span>
+<span class="n">dmcs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">getMethylDiff</span><span class="p">(</span><span class="n">diff_meth</span><span class="p">,</span><span class="w"> </span><span class="n">qvalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">difference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">)</span>
+
+<span class="c1"># View the DMCs</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">dmcs</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualizing-differential-methylation">
+<h2>7. <strong>Visualizing Differential Methylation</strong><a class="headerlink" href="#visualizing-differential-methylation" title="Permalink to this heading">#</a></h2>
+<p>Visualize the results to explore differentially methylated sites or regions between samples.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot distribution of methylation percentage differences</span>
+<span class="nf">plot</span><span class="p">(</span><span class="nf">density</span><span class="p">(</span><span class="n">dmcs</span><span class="o">$</span><span class="n">meth.diff</span><span class="p">),</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Differential Methylation&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Methylation Difference&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a methylation heatmap</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">pheatmap</span><span class="p">)</span>
+<span class="n">meth_matrix</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">percMethylation</span><span class="p">(</span><span class="n">meth_united</span><span class="p">)</span>
+<span class="nf">pheatmap</span><span class="p">(</span><span class="n">meth_matrix</span><span class="p">,</span><span class="w"> </span><span class="n">cluster_rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">cluster_cols</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">show_rownames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">show_colnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="regional-analysis-dmrs">
+<h2>8. <strong>Regional Analysis (DMRs)</strong><a class="headerlink" href="#regional-analysis-dmrs" title="Permalink to this heading">#</a></h2>
+<p>To identify differentially methylated regions (DMRs), you can group nearby CpGs and assess methylation differences across larger genomic regions.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find DMRs (regions with at least 3 CpGs and a methylation difference &gt; 25%)</span>
+<span class="n">dmrs</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">calculateDiffMeth</span><span class="p">(</span><span class="n">meth_united</span><span class="p">,</span><span class="w"> </span><span class="n">overdispersion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">window.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span><span class="p">,</span><span class="w"> </span><span class="n">step.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">)</span>
+
+<span class="c1"># Get DMRs with q-value &lt; 0.01</span>
+<span class="n">dmrs_sig</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">getMethylDiff</span><span class="p">(</span><span class="n">dmrs</span><span class="p">,</span><span class="w"> </span><span class="n">qvalue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"> </span><span class="n">difference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">)</span>
+
+<span class="c1"># Visualize DMRs</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">dmrs_sig</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-bsseq-for-single-cell-methylation-data">
+<h2>9. <strong>Using bsseq for Single-Cell Methylation Data</strong><a class="headerlink" href="#using-bsseq-for-single-cell-methylation-data" title="Permalink to this heading">#</a></h2>
+<p><strong>bsseq</strong> is another package commonly used for bisulfite sequencing data. It’s particularly useful for smoothing methylation data and calling DMRs.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data into bsseq object</span>
+<span class="n">bs_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.bismark</span><span class="p">(</span><span class="s">&quot;sample1.cov&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sampleNames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample1&quot;</span><span class="p">)</span>
+
+<span class="c1"># Perform smoothing to reduce noise in scWGBS data</span>
+<span class="n">bs_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">BSmooth</span><span class="p">(</span><span class="n">bs_obj</span><span class="p">)</span>
+
+<span class="c1"># Visualize the smoothed methylation levels</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">bs_obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="saving-and-loading-methylation-objects">
+<h2>10. <strong>Saving and Loading Methylation Objects</strong><a class="headerlink" href="#saving-and-loading-methylation-objects" title="Permalink to this heading">#</a></h2>
+<p>You can save and reload your methylation analysis objects for future use.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save methylation object</span>
+<span class="nf">saveRDS</span><span class="p">(</span><span class="n">meth_united</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;meth_united.rds&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load methylation object</span>
+<span class="n">meth_united</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;meth_united.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>This R pipeline provides a basic framework for analyzing single-cell whole-genome bisulfite sequencing (scWGBS) data using <strong>methylKit</strong>, <strong>bsseq</strong>, and other tools. Key steps include loading methylation data, performing quality control, uniting methylation calls, conducting differential methylation analysis, and visualizing results. Further extensions of this pipeline could include regional analysis (DMRs), integrating multi-omics data, or performing functional annotation.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab2: scATAC-seq data analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab4: scWES data analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">1. <strong>Install Required Packages</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">2. <strong>Load Required Libraries</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-data">3. <strong>Load the Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control">4. <strong>Quality Control</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unite-methylation-calls-across-cells">5. <strong>Unite Methylation Calls Across Cells</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-methylation-analysis">6. <strong>Differential Methylation Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-differential-methylation">7. <strong>Visualizing Differential Methylation</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regional-analysis-dmrs">8. <strong>Regional Analysis (DMRs)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-bsseq-for-single-cell-methylation-data">9. <strong>Using bsseq for Single-Cell Methylation Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-methylation-objects">10. <strong>Saving and Loading Methylation Objects</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab5: scChIP-seq data analysis &#8212; Single Cell Sequencing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab5';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab6: scTCR data analysis" href="lab6.html" />
+    <link rel="prev" title="Lab4: scWES data analysis" href="lab4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Single Cell Sequencing - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Single Cell Sequencing - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents      
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chap1: Single Cell Sequencing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab1: scRNA-seq data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab2: scATAC-seq data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab3: scWGBS data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab4: scWES data analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab5: scChIP-seq data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab6.html">Lab6: scTCR data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab7: Spatial transcriptomics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab8: Single-cell multi-omics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab9: Single-cell proteomics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab10: Single-cell metabolomics data analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab5.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab5.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab5: scChIP-seq data analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">1. <strong>Install Required Packages</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">2. <strong>Load Required Libraries</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-peak-data">3. <strong>Load the Peak Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control">4. <strong>Quality Control</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">5. <strong>Normalization</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-and-clustering">6. <strong>Dimensionality Reduction and Clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-peak-analysis">7. <strong>Differential Peak Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-calling-optional">8. <strong>Peak Calling (Optional)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-chromatin-states">9. <strong>Visualization of Chromatin States</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motif-enrichment-analysis">10. <strong>Motif Enrichment Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-and-load-seurat-signac-objects">11. <strong>Save and Load Seurat/Signac Objects</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab5-scchip-seq-data-analysis">
+<h1>Lab5: scChIP-seq data analysis<a class="headerlink" href="#lab5-scchip-seq-data-analysis" title="Permalink to this heading">#</a></h1>
+<p>Single-cell chromatin immunoprecipitation sequencing (scChIP-seq) is used to profile DNA-protein interactions at a single-cell level, providing insights into transcription factor binding sites, histone modifications, and other chromatin-associated features. While most scChIP-seq analysis relies on specialized tools like <strong>SCALE</strong>, <strong>CisTopic</strong>, or <strong>SnapATAC</strong>, you can use R for downstream processing, quality control, and visualization.</p>
+<p>Here’s a basic R workflow for single-cell ChIP-seq data analysis, which assumes you’ve already performed preprocessing steps (like peak calling) using tools such as <strong>MACS2</strong>.</p>
+<section id="install-required-packages">
+<h2>1. <strong>Install Required Packages</strong><a class="headerlink" href="#install-required-packages" title="Permalink to this heading">#</a></h2>
+<p>You will need packages like <strong>Signac</strong>, <strong>Seurat</strong>, and <strong>DiffBind</strong> to handle ChIP-seq data analysis in R.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Bioconductor and CRAN packages</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;Signac&quot;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;DiffBind&quot;</span><span class="p">)</span>
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;GenomicRanges&quot;</span><span class="p">)</span>
+
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;Seurat&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-required-libraries">
+<h2>2. <strong>Load Required Libraries</strong><a class="headerlink" href="#load-required-libraries" title="Permalink to this heading">#</a></h2>
+<p>Load the necessary libraries for data handling, normalization, and visualization.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">Signac</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">Seurat</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DiffBind</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">GenomicRanges</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-the-peak-data">
+<h2>3. <strong>Load the Peak Data</strong><a class="headerlink" href="#load-the-peak-data" title="Permalink to this heading">#</a></h2>
+<p>Assuming you have ChIP-seq peak data (in BED or count matrix format) and metadata for the cells, you can create a <strong>Seurat</strong> or <strong>Signac</strong> object to handle the data.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load peak counts (e.g., from MACS2 peak calling)</span>
+<span class="n">peak_counts</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Read10X</span><span class="p">(</span><span class="s">&quot;path_to_peak_count_matrix&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load metadata (e.g., cell barcodes, sample information)</span>
+<span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;path_to_metadata.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+
+<span class="c1"># Create a Seurat object</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">CreateSeuratObject</span><span class="p">(</span>
+<span class="w">  </span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">peak_counts</span><span class="p">,</span>
+<span class="w">  </span><span class="n">assay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;peaks&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">meta.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span>
+<span class="p">)</span>
+
+<span class="c1"># View the Seurat object</span>
+<span class="n">chip_obj</span>
+</pre></div>
+</div>
+</section>
+<section id="quality-control">
+<h2>4. <strong>Quality Control</strong><a class="headerlink" href="#quality-control" title="Permalink to this heading">#</a></h2>
+<p>Perform quality control by filtering low-quality cells based on various metrics such as fragment counts and peak coverage.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter based on the number of detected peaks</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">subset</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">subset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nFeature_peaks</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">500</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">nFeature_peaks</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">25000</span><span class="p">)</span>
+
+<span class="c1"># Add additional QC metrics (if needed)</span>
+<span class="n">chip_obj</span><span class="o">$</span><span class="n">percent_mito</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">PercentageFeatureSet</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;^MT-&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize QC metrics</span>
+<span class="nf">VlnPlot</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;nFeature_peaks&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;nCount_peaks&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;percent_mito&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">ncol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="normalization">
+<h2>5. <strong>Normalization</strong><a class="headerlink" href="#normalization" title="Permalink to this heading">#</a></h2>
+<p>Normalize the peak counts across cells to account for varying library sizes.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform TF-IDF normalization (Term Frequency–Inverse Document Frequency)</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunTFIDF</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">)</span>
+
+<span class="c1"># Find the top variable features</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindTopFeatures</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">min.cutoff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;q0&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="dimensionality-reduction-and-clustering">
+<h2>6. <strong>Dimensionality Reduction and Clustering</strong><a class="headerlink" href="#dimensionality-reduction-and-clustering" title="Permalink to this heading">#</a></h2>
+<p>To explore the data, you can perform dimensionality reduction and clustering to identify distinct chromatin states or cell types.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run Singular Value Decomposition (SVD) for dimensionality reduction</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunSVD</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">)</span>
+
+<span class="c1"># Run UMAP for visualization</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunUMAP</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;lsi&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">30</span><span class="p">)</span>
+
+<span class="c1"># Find neighbors and clusters</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindNeighbors</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;lsi&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="o">:</span><span class="m">30</span><span class="p">)</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindClusters</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">resolution</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+
+<span class="c1"># Visualize clusters using UMAP</span>
+<span class="nf">DimPlot</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;umap&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="differential-peak-analysis">
+<h2>7. <strong>Differential Peak Analysis</strong><a class="headerlink" href="#differential-peak-analysis" title="Permalink to this heading">#</a></h2>
+<p>To find differentially bound regions between groups or clusters, you can use <strong>DiffBind</strong>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a DiffBind object</span>
+<span class="n">dba</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dba</span><span class="p">(</span><span class="n">sampleSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;path_to_sample_sheet.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Count the reads for peaks across samples</span>
+<span class="n">dba</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dba.count</span><span class="p">(</span><span class="n">dba</span><span class="p">,</span><span class="w"> </span><span class="n">summits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="p">)</span>
+
+<span class="c1"># Perform differential binding analysis</span>
+<span class="n">dba_contrast</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dba.contrast</span><span class="p">(</span><span class="n">dba</span><span class="p">,</span><span class="w"> </span><span class="n">categories</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DBA_CONDITION</span><span class="p">,</span><span class="w"> </span><span class="n">minMembers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="n">dba_analysis</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">dba.analyze</span><span class="p">(</span><span class="n">dba_contrast</span><span class="p">)</span>
+
+<span class="c1"># View the results</span>
+<span class="nf">dba.show</span><span class="p">(</span><span class="n">dba_analysis</span><span class="p">,</span><span class="w"> </span><span class="n">bContrasts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="peak-calling-optional">
+<h2>8. <strong>Peak Calling (Optional)</strong><a class="headerlink" href="#peak-calling-optional" title="Permalink to this heading">#</a></h2>
+<p>If you haven’t done peak calling yet, you can call peaks for each cell using <strong>MACS2</strong> or another external tool and then import them into R.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example peak calling using MACS2 (command line)</span>
+macs2<span class="w"> </span>callpeak<span class="w"> </span>-t<span class="w"> </span>fragments.bed<span class="w"> </span>-f<span class="w"> </span>BED<span class="w"> </span>-g<span class="w"> </span>hs<span class="w"> </span>-n<span class="w"> </span>sample_name<span class="w"> </span>--outdir<span class="w"> </span>output_dir<span class="w"> </span>--nomodel<span class="w"> </span>--shift<span class="w"> </span>-100<span class="w"> </span>--extsize<span class="w"> </span><span class="m">200</span><span class="w"> </span>-B<span class="w"> </span>--SPMR
+</pre></div>
+</div>
+</section>
+<section id="visualization-of-chromatin-states">
+<h2>9. <strong>Visualization of Chromatin States</strong><a class="headerlink" href="#visualization-of-chromatin-states" title="Permalink to this heading">#</a></h2>
+<p>Visualize the distribution of specific features, such as chromatin accessibility or transcription factor binding.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a feature (e.g., a specific peak or gene region)</span>
+<span class="nf">FeaturePlot</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;peakA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;peakB&quot;</span><span class="p">))</span>
+
+<span class="c1"># Plot heatmap for peak intensity across clusters</span>
+<span class="nf">DoHeatmap</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">TopFeatures</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="motif-enrichment-analysis">
+<h2>10. <strong>Motif Enrichment Analysis</strong><a class="headerlink" href="#motif-enrichment-analysis" title="Permalink to this heading">#</a></h2>
+<p>You can perform motif analysis to identify transcription factors that bind to specific regions.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run motif enrichment analysis using ChromVAR</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunChromVAR</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">)</span>
+
+<span class="c1"># Visualize motif activities</span>
+<span class="nf">VlnPlot</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;motif1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;seurat_clusters&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="save-and-load-seurat-signac-objects">
+<h2>11. <strong>Save and Load Seurat/Signac Objects</strong><a class="headerlink" href="#save-and-load-seurat-signac-objects" title="Permalink to this heading">#</a></h2>
+<p>You can save the object for future analysis.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the Seurat object</span>
+<span class="nf">saveRDS</span><span class="p">(</span><span class="n">chip_obj</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;chip_obj.rds&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load the object</span>
+<span class="n">chip_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;chip_obj.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>This pipeline outlines a workflow for analyzing single-cell ChIP-seq data using <strong>Signac</strong>, <strong>Seurat</strong>, and <strong>DiffBind</strong> in <strong>R</strong>. The steps include loading data, quality control, normalization, dimensionality reduction, clustering, differential peak analysis, and motif enrichment. For peak calling, you can integrate external tools like <strong>MACS2</strong> or use preprocessed peak data from public databases.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab4: scWES data analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab6.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab6: scTCR data analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">1. <strong>Install Required Packages</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">2. <strong>Load Required Libraries</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-the-peak-data">3. <strong>Load the Peak Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control">4. <strong>Quality Control</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalization">5. <strong>Normalization</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-and-clustering">6. <strong>Dimensionality Reduction and Clustering</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-peak-analysis">7. <strong>Differential Peak Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#peak-calling-optional">8. <strong>Peak Calling (Optional)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-chromatin-states">9. <strong>Visualization of Chromatin States</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motif-enrichment-analysis">10. <strong>Motif Enrichment Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save-and-load-seurat-signac-objects">11. <strong>Save and Load Seurat/Signac Objects</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

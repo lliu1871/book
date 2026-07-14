@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Lab6: scTCR data analysis &#8212; Single Cell Sequencing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab6';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lab7: Spatial transcriptomics data analysis" href="lab7.html" />
+    <link rel="prev" title="Lab5: scChIP-seq data analysis" href="lab5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.jpg" class="logo__image only-light" alt="Single Cell Sequencing - Home"/>
+    <script>document.write(`<img src="_static/logo.jpg" class="logo__image only-dark" alt="Single Cell Sequencing - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Table of Contents      
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap1.html">Chap1: Single Cell Sequencing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab1.html">Lab1: scRNA-seq data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab2.html">Lab2: scATAC-seq data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab3.html">Lab3: scWGBS data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab4.html">Lab4: scWES data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab5.html">Lab5: scChIP-seq data analysis</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lab6: scTCR data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab7.html">Lab7: Spatial transcriptomics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab8.html">Lab8: Single-cell multi-omics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab9.html">Lab9: Single-cell proteomics data analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab10.html">Lab10: Single-cell metabolomics data analysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab6.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab6.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lab6: scTCR data analysis</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">1. <strong>Install Required Packages</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">2. <strong>Load Required Libraries</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-process-tcr-bcr-data">3. <strong>Load and Process TCR/BCR Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-seurat-object-if-rna-data-is-available">4. <strong>Create a Seurat Object (if RNA data is available)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-tcr-bcr-data-with-seurat-object">5. <strong>Combine TCR/BCR Data with Seurat Object</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-and-clonotype-analysis">6. <strong>Quality Control and Clonotype Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clonotype-diversity-analysis">7. <strong>Clonotype Diversity Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-tcr-bcr-data">8. <strong>Visualization of TCR/BCR Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-clonotype-analysis">9. <strong>Differential Clonotype Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-with-gene-expression-data">10. <strong>Integrating with Gene Expression Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tcr-bcr-network-analysis">11. <strong>TCR/BCR Network Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-seurat-object">12. <strong>Saving and Loading Seurat Object</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lab6-sctcr-data-analysis">
+<h1>Lab6: scTCR data analysis<a class="headerlink" href="#lab6-sctcr-data-analysis" title="Permalink to this heading">#</a></h1>
+<p>Single-cell TCR (T-cell receptor) and BCR (B-cell receptor) sequencing data analysis allows you to study the clonality and diversity of immune cells at the single-cell level. For TCR/BCR analysis, tools like <strong><code class="docutils literal notranslate"><span class="pre">Seurat</span></code></strong>, <strong><code class="docutils literal notranslate"><span class="pre">scRepertoire</span></code></strong>, and <strong><code class="docutils literal notranslate"><span class="pre">vdjtools</span></code></strong> are commonly used to integrate and analyze the sequencing data.</p>
+<p>Below is an R workflow that demonstrates how to analyze single-cell TCR/BCR sequencing data using <strong><code class="docutils literal notranslate"><span class="pre">scRepertoire</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">Seurat</span></code></strong> for integrating V(D)J data with gene expression analysis.</p>
+<section id="install-required-packages">
+<h2>1. <strong>Install Required Packages</strong><a class="headerlink" href="#install-required-packages" title="Permalink to this heading">#</a></h2>
+<p>You will need <strong><code class="docutils literal notranslate"><span class="pre">Seurat</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">scRepertoire</span></code></strong> for handling TCR/BCR sequencing data.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install necessary Bioconductor and CRAN packages</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">quietly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">))</span>
+<span class="w">    </span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+
+<span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&quot;scRepertoire&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;Seurat&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;ggplot2&quot;</span><span class="p">)</span>
+<span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;dplyr&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-required-libraries">
+<h2>2. <strong>Load Required Libraries</strong><a class="headerlink" href="#load-required-libraries" title="Permalink to this heading">#</a></h2>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">Seurat</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">scRepertoire</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="load-and-process-tcr-bcr-data">
+<h2>3. <strong>Load and Process TCR/BCR Data</strong><a class="headerlink" href="#load-and-process-tcr-bcr-data" title="Permalink to this heading">#</a></h2>
+<p>Assuming you have TCR or BCR sequencing data available in the form of V(D)J clonotypes, here’s how to load and process the data.</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">scRepertoire</span></code></strong> supports V(D)J data formats from CellRanger (<code class="docutils literal notranslate"><span class="pre">filtered_contig_annotations.csv</span></code>) or 10x Genomics.</p></li>
+</ul>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the TCR or BCR sequencing data</span>
+<span class="n">tcr_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;path_to_filtered_contig_annotations.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load metadata for the corresponding single-cell RNA-seq data (if applicable)</span>
+<span class="n">metadata</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;path_to_metadata.csv&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">row.names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="create-a-seurat-object-if-rna-data-is-available">
+<h2>4. <strong>Create a Seurat Object (if RNA data is available)</strong><a class="headerlink" href="#create-a-seurat-object-if-rna-data-is-available" title="Permalink to this heading">#</a></h2>
+<p>If you want to integrate TCR/BCR sequencing data with RNA-seq data, you’ll need to create a <strong>Seurat</strong> object from the RNA data.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load single-cell RNA-seq data (e.g., from CellRanger output)</span>
+<span class="n">rna_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">Read10X</span><span class="p">(</span><span class="s">&quot;path_to_rna_data/&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a Seurat object for RNA data</span>
+<span class="n">seurat_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">CreateSeuratObject</span><span class="p">(</span><span class="n">counts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rna_data</span><span class="p">,</span><span class="w"> </span><span class="n">meta.data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">metadata</span><span class="p">)</span>
+
+<span class="c1"># Inspect the Seurat object</span>
+<span class="n">seurat_obj</span>
+</pre></div>
+</div>
+</section>
+<section id="combine-tcr-bcr-data-with-seurat-object">
+<h2>5. <strong>Combine TCR/BCR Data with Seurat Object</strong><a class="headerlink" href="#combine-tcr-bcr-data-with-seurat-object" title="Permalink to this heading">#</a></h2>
+<p>You can combine TCR/BCR clonotypes with the RNA data in the Seurat object using <strong>scRepertoire</strong>.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine TCR/BCR clonotype data with Seurat object</span>
+<span class="n">seurat_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">combineTCR</span><span class="p">(</span><span class="n">tcr_data</span><span class="p">,</span><span class="w"> </span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">cloneCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gene&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="quality-control-and-clonotype-analysis">
+<h2>6. <strong>Quality Control and Clonotype Analysis</strong><a class="headerlink" href="#quality-control-and-clonotype-analysis" title="Permalink to this heading">#</a></h2>
+<p>Perform quality control on the TCR/BCR data, filter low-quality cells, and explore the clonotype diversity.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Filter out low-quality TCR/BCR clonotypes based on your criteria (e.g., number of chains)</span>
+<span class="n">tcr_filtered</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tcr_data</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="n">chain</span><span class="w"> </span><span class="o">%in%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;TRA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;TRB&quot;</span><span class="p">))</span>
+
+<span class="c1"># Visualize clonotype abundance</span>
+<span class="n">clono_abundance</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">quantContig</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">cloneCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gene&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">clono_abundance</span>
+
+<span class="c1"># Plot clonotype distribution across samples</span>
+<span class="n">clono_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clonoAbundance</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">cloneCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gene&quot;</span><span class="p">)</span>
+<span class="n">clono_plot</span>
+</pre></div>
+</div>
+</section>
+<section id="clonotype-diversity-analysis">
+<h2>7. <strong>Clonotype Diversity Analysis</strong><a class="headerlink" href="#clonotype-diversity-analysis" title="Permalink to this heading">#</a></h2>
+<p>You can assess the clonotype diversity using various measures, such as Shannon entropy or Simpson’s diversity index.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate Shannon entropy (clonotype diversity)</span>
+<span class="n">shannon_diversity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">diversityContig</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">cloneCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gene&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">metric</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;shannon&quot;</span><span class="p">)</span>
+<span class="n">shannon_diversity</span>
+
+<span class="c1"># Plot diversity by sample or condition</span>
+<span class="n">clonotype_diversity</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clonoDiversity</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">cloneCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gene&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">)</span>
+<span class="n">clonotype_diversity</span>
+</pre></div>
+</div>
+</section>
+<section id="visualization-of-tcr-bcr-data">
+<h2>8. <strong>Visualization of TCR/BCR Data</strong><a class="headerlink" href="#visualization-of-tcr-bcr-data" title="Permalink to this heading">#</a></h2>
+<p>You can visualize the TCR/BCR data using UMAP, highlighting clonotypes or cell types.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run UMAP on Seurat object (if RNA data is included)</span>
+<span class="n">seurat_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunPCA</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">npcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="n">verbose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">)</span>
+<span class="n">seurat_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">RunUMAP</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">dims</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">)</span>
+
+<span class="c1"># Plot UMAP colored by clonotype</span>
+<span class="nf">DimPlot</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;clonotype&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize clonotype expansion across clusters</span>
+<span class="nf">DimPlot</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;clonotype&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">label.size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">reduction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;umap&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot clonotype frequency in clusters</span>
+<span class="nf">clonoFreqPlot</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="differential-clonotype-analysis">
+<h2>9. <strong>Differential Clonotype Analysis</strong><a class="headerlink" href="#differential-clonotype-analysis" title="Permalink to this heading">#</a></h2>
+<p>You can compare clonotypes between different groups or conditions using differential analysis methods.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compare clonotypes between two groups or conditions</span>
+<span class="n">clonotype_comparison</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">compareClonotypes</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cloneCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gene&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot the comparison</span>
+<span class="n">clonotype_comparison_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plotCompareClonotypes</span><span class="p">(</span><span class="n">clonotype_comparison</span><span class="p">)</span>
+<span class="n">clonotype_comparison_plot</span>
+</pre></div>
+</div>
+</section>
+<section id="integrating-with-gene-expression-data">
+<h2>10. <strong>Integrating with Gene Expression Data</strong><a class="headerlink" href="#integrating-with-gene-expression-data" title="Permalink to this heading">#</a></h2>
+<p>You can integrate TCR/BCR data with single-cell gene expression data to study how specific clonotypes correlate with gene expression profiles.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identify markers for specific clonotypes</span>
+<span class="n">clonotype_markers</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">FindMarkers</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">ident.1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;clonotypeA&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ident.2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;clonotypeB&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualize expression of key genes in clonotypes</span>
+<span class="nf">FeaturePlot</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;GeneA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;GeneB&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">split.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;clonotype&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot heatmap of gene expression across clonotypes</span>
+<span class="nf">DoHeatmap</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">features</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">TopFeatures</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">),</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;clonotype&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tcr-bcr-network-analysis">
+<h2>11. <strong>TCR/BCR Network Analysis</strong><a class="headerlink" href="#tcr-bcr-network-analysis" title="Permalink to this heading">#</a></h2>
+<p>Network visualization of clonotypes can help explore the relationships between them.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a network graph of clonotypes</span>
+<span class="n">tcr_network</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">clonoNetwork</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">group.by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;sample&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cloneCall</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gene&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot the network</span>
+<span class="n">tcr_network_plot</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">plotClonoNetwork</span><span class="p">(</span><span class="n">tcr_network</span><span class="p">)</span>
+<span class="n">tcr_network_plot</span>
+</pre></div>
+</div>
+</section>
+<section id="saving-and-loading-seurat-object">
+<h2>12. <strong>Saving and Loading Seurat Object</strong><a class="headerlink" href="#saving-and-loading-seurat-object" title="Permalink to this heading">#</a></h2>
+<p>You can save the Seurat object for future use.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save the Seurat object</span>
+<span class="nf">saveRDS</span><span class="p">(</span><span class="n">seurat_obj</span><span class="p">,</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;seurat_tcr_bcr.rds&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load the saved Seurat object</span>
+<span class="n">seurat_obj</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;seurat_tcr_bcr.rds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
+<p>This pipeline provides a basic framework for analyzing single-cell TCR/BCR sequencing data using <strong><code class="docutils literal notranslate"><span class="pre">scRepertoire</span></code></strong> and <strong><code class="docutils literal notranslate"><span class="pre">Seurat</span></code></strong>. The workflow includes loading and integrating TCR/BCR data with single-cell RNA-seq data, clonotype diversity analysis, visualization, and differential clonotype analysis. The use of <strong><code class="docutils literal notranslate"><span class="pre">scRepertoire</span></code></strong> simplifies the process of analyzing immune repertoires, while <strong><code class="docutils literal notranslate"><span class="pre">Seurat</span></code></strong> allows for integrated analysis of gene expression and clonotype data.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lab5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Lab5: scChIP-seq data analysis</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lab7.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lab7: Spatial transcriptomics data analysis</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-required-packages">1. <strong>Install Required Packages</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-required-libraries">2. <strong>Load Required Libraries</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-and-process-tcr-bcr-data">3. <strong>Load and Process TCR/BCR Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-seurat-object-if-rna-data-is-available">4. <strong>Create a Seurat Object (if RNA data is available)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-tcr-bcr-data-with-seurat-object">5. <strong>Combine TCR/BCR Data with Seurat Object</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quality-control-and-clonotype-analysis">6. <strong>Quality Control and Clonotype Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clonotype-diversity-analysis">7. <strong>Clonotype Diversity Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-tcr-bcr-data">8. <strong>Visualization of TCR/BCR Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differential-clonotype-analysis">9. <strong>Differential Clonotype Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integrating-with-gene-expression-data">10. <strong>Integrating with Gene Expression Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tcr-bcr-network-analysis">11. <strong>TCR/BCR Network Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-and-loading-seurat-object">12. <strong>Saving and Loading Seurat Object</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Liang Liu
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
